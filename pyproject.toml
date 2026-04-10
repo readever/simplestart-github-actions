@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "starlette>=0.27.0",
+    "starlette==0.50.0",
     "uvicorn[standard]>=0.23.0",
     "pyyaml>=6.0",
     "watchdog>=3.0.0",
@@ -50,4 +50,4 @@ include = ["simplestart"]  # 包含simplestart包，会安装在site-package
 namespaces = false  # 是否使用命名空间包
 
 [tool.setuptools.package-data]
-"simplestart" = ["*.py", "ui/*", "api/*", "core/*", "modules/*", "system/*", "static/*", "static/**/*"]
+"simplestart" = ["*.py", "ss_core/*.py", "ss_api/*.py", "ss_modules/*.py", "ss_ui/*.py", "ss_system/*.py", "static/*", "static/**/*"]
