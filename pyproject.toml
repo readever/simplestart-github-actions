@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simplestart"
-version = "0.0.1.44"
+# 注意：版本号现在由 setup.py 动态读取，这里可以写占位符，或者保持同步
+version = "0.0.1.44" 
 description = "build web app using python"
 readme = "readme.md"
 requires-python = ">=3.10, <3.14"
-license = "MIT"
+license = { text = "MIT" }
 authors = [
-    {name = "wy"}
+    { name = "wy" }
 ]
 keywords = ["web", "framework", "async", "ui", "element ui"]
 classifiers = [
@@ -21,7 +22,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "Operating System :: OS Independent",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
 ]
 
 dependencies = [
@@ -41,13 +44,8 @@ pyramid = "simplestart.pyramid:main"
 ss = "simplestart.launch:start"
 simplestart = "simplestart.launch:start"
 
-[project.urls]
+[project.url]
 Homepage = "https://example.com"
 
-[tool.setuptools.packages.find]
-where = [".", "./simplestart"]  # 从当前目录和simplestart目录查找包
-include = ["simplestart"]  # 包含simplestart包，会安装在site-package
-namespaces = false  # 是否使用命名空间包
-
-[tool.setuptools.package-data]
-"simplestart" = ["*.py", "ss_core/*.py", "ss_api/*.py", "ss_modules/*.py", "ss_ui/*.py", "ss_system/*.py", "static/*", "static/**/*"]
+# --- 重要：删除 [tool.setuptools.packages.find] ---
+# 让 setup.py 中的 find_packages() 和 ext_modules 完全控制打包过程
