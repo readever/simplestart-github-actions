@@ -45,6 +45,7 @@ app.workpath = os.getcwd()
 # 媒体文件处理路由 - 支持 /media/ 路径
 @app.route('/media/{filename:path}')
 async def _media_handler(request):
+    print("媒体请求", request)
     return await server.media_handler(request)
 
 # ============ 路由定义 ============
@@ -98,16 +99,6 @@ async def _send_static(request):
 @app.route("/assets/{path}")
 async def _send_static_resource(request):
     return await server.send_static_resource(request)
-
-# 这里不能带子目录，否则不能映射到这里。通过ss.config["videopath"]实现真正的子目录
-@app.route("/video/{filename}")
-async def _serve_video(request):
-    return await server.serve_video(request)
-
-# 图片处理路由
-@app.route("/image/{filename}")
-async def _serve_image(request):
-    return await server.serve_image(request)
 
 # WebSocket 路由
 @app.websocket_route('/api/stream') 
