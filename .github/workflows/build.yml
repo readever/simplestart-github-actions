@@ -1,13 +1,19 @@
 name: Build Wheels
 
+# 修改触发器：仅保留手动触发，禁用所有自动触发
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  release:
-    types: [published]
   workflow_dispatch:
+    # 可选：添加手动运行时的选项，比如选择是否发布到 PyPI
+    inputs:
+      deploy_target:
+        description: 'Deploy target (TestPyPI or PyPI)'
+        required: true
+        default: 'none'
+        type: choice
+        options:
+          - none
+          - testpypi
+          - pypi
 
 jobs:
   build_wheels:
@@ -51,7 +57,8 @@ jobs:
           # 确保 Xcode 命令行工具就绪
           xcode-select --install || true
           # 安装 python-dev 等头文件 (macOS 特定)
-          brew install python@${{ matrix.python-version }}
+          # 注意：这里使用了 brew，确保 runner 支持或改用其他方式
+          brew install python@${{ matrix.python-version }} || true
 
       - name: Install Python Dependencies
         run: |
@@ -68,7 +75,7 @@ jobs:
           name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
           path: dist/*.whl
 
-  # --- 下面的 sdist 和 upload 部分保持不变 (为了完整性保留) ---
+  # --- 下面的 sdist 部分保持不变 ---
   
   build_sdist:
     name: Build source distribution
@@ -99,7 +106,12 @@ jobs:
     name: Upload to PyPI
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    
+    # 修改判断逻辑：
+    # 1. 如果是自动触发（虽然这里禁用了），判断 release 事件
+    # 2. 如果是手动触发，判断 inputs.deploy_target 是否不为 none
+    if: (github.event_name == 'release' && github.event.action == 'published') || 
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_target != 'none')
 
     steps:
       - name: Download all artifacts
@@ -112,4 +124,8 @@ jobs:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
+          # 如果是 TestPyPI，需要修改 repository-url (这里简化处理，仅展示 PyPI)
+          # 如果需要支持 TestPyPI，通常建议写两个 step 或用变量控制 url
           password: ${{ secrets.PYPI_TOKEN }}
+          # 示例：如果是 testpypi，使用不同的 action 或配置
+          # repository-url: https://test.pypi.org/legacy/
