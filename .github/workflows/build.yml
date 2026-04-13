@@ -14,37 +14,72 @@ on:
         default: 'none'
 
 jobs:
-  # --- 任务 1: 构建 Wheel ---
+  # --- 任务 1: 构建 Wheel (Linux 使用 cibuildwheel，Win/Mac 使用原生构建) ---
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        # 我们把 os 和 python-version 分开处理
+        # Linux 只需要跑一次，cibuildwheel 会自动构建所有 Python 版本
+        # Win/Mac 则保持矩阵并行
         os: [ubuntu-latest, windows-latest, macos-latest]
+        # python-version 仅用于 Win/Mac，Linux 会忽略此设置
         python-version: ['3.10', '3.11', '3.12', '3.13']
 
     env:
+      # macOS 通用配置
       ARCHFLAGS: -arch x86_64 -arch arm64
       MACOSX_DEPLOYMENT_TARGET: "10.9"
 
     steps:
       - uses: actions/checkout@v4
+
+      # =======================
+      # Linux 构建路径
+      # =======================
+      - name: Build wheels on Linux (using cibuildwheel)
+        if: runner.os == 'Linux'
+        uses: pypa/cibuildwheel@v2.18.1
+        env:
+          # 指定要构建的 Python 版本 (例如 cp310, cp311 等)
+          CIBW_BUILD: "cp310-* cp311-* cp312-* cp313-*"
+          # 跳过 32-bit 架构
+          CIBW_ARCHS: "x86_64"
+
+      # =======================
+      # Windows/macOS 构建路径
+      # =======================
       - name: Set up Python ${{ matrix.python-version }}
+        if: runner.os != 'Linux'
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install build tools
+
+      - name: Install build tools (Win/Mac)
+        if: runner.os != 'Linux'
         run: |
           python -m pip install --upgrade pip
           pip install build setuptools wheel
-      - name: Build Wheel
+
+      - name: Build Wheel (Win/Mac)
+        if: runner.os != 'Linux'
         run: python -m build --wheel
+
+      # =======================
+      # 上传产物
+      # =======================
       - name: Upload Wheel Artifact
         uses: actions/upload-artifact@v4
         with:
+          # Linux 的产物在 wheelhouse 目录，Win/Mac 在 dist 目录
+          path: |
+            dist/*.whl
+            wheelhouse/*.whl
           name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
-          path: dist/*.whl
+          # 避免在非 Linux 上上传空文件夹报错
+          if-no-files-found: ignore
 
   # --- 任务 2: 构建源码包 ---
   build_sdist:
@@ -68,16 +103,16 @@ jobs:
           name: sdist
           path: dist/*.tar.gz
 
-  # --- 任务 3: 上传到 PyPI (已修复) ---
+  # --- 任务 3: 上传到 PyPI ---
   publish_to_pypi:
     name: 🚀 Publish to PyPI
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
 
-    # 关键逻辑：只有当选择 'pypi' 时才运行
+    # 只有当选择 'pypi' 时才运行
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_target == 'pypi'
 
-    # 【关键修复】添加权限配置
+    # 必须添加权限配置
     permissions:
       id-token: write   # 必须：用于 OIDC 认证
       contents: read    # 推荐：用于读取代码库
@@ -92,5 +127,5 @@ jobs:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          # 请确保你已经在仓库 Settings -> Secrets 中添加了 PYPI_TOKEN
+          # 确保已在 Settings -> Secrets 中添加了 PYPI_TOKEN
           password: ${{ secrets.PYPI_TOKEN }}
