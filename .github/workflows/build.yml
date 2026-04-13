@@ -7,15 +7,14 @@ on:
         description: '🎯 手动触发选项：是否发布到 PyPI？'
         required: true
         type: choice
-        # 这里定义了下拉菜单的三个选项
         options:
-          - none      # 仅构建，不上传
-          - testpypi  # 上传到测试站 (可选)
-          - pypi      # 上传到正式 PyPI
+          - none
+          - testpypi
+          - pypi
         default: 'none'
 
 jobs:
-  # --- 任务 1: 构建 Wheel (保持不变) ---
+  # --- 任务 1: 构建 Wheel ---
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -47,7 +46,7 @@ jobs:
           name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
           path: dist/*.whl
 
-  # --- 任务 2: 构建源码包 (保持不变) ---
+  # --- 任务 2: 构建源码包 ---
   build_sdist:
     name: Build Source Distribution
     runs-on: ubuntu-latest
@@ -69,20 +68,26 @@ jobs:
           name: sdist
           path: dist/*.tar.gz
 
-  # --- 任务 3: 上传到 PyPI (核心修改) ---
+  # --- 任务 3: 上传到 PyPI (已修复) ---
   publish_to_pypi:
     name: 🚀 Publish to PyPI
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    
-    # 关键逻辑：只有当手动触发的输入参数 deploy_target 等于 'pypi' 时才运行
+
+    # 关键逻辑：只有当选择 'pypi' 时才运行
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_target == 'pypi'
-    
+
+    # 【关键修复】添加权限配置
+    permissions:
+      id-token: write   # 必须：用于 OIDC 认证
+      contents: read    # 推荐：用于读取代码库
+
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
           path: dist
+          merge-multiple: true
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
