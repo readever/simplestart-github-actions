@@ -2357,7 +2357,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_tuple[2];
   PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[84];
+  PyObject *__pyx_string_tab[79];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2399,89 +2399,84 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u_DEBUG_image_py_data_src __pyx_string_tab[1]
-#define __pyx_kp_u__2 __pyx_string_tab[2]
-#define __pyx_kp_u__3 __pyx_string_tab[3]
-#define __pyx_kp_u__4 __pyx_string_tab[4]
-#define __pyx_kp_u__5 __pyx_string_tab[5]
+#define __pyx_kp_u_4_5 __pyx_string_tab[1]
+#define __pyx_kp_u_DEBUG_image_py_data_src __pyx_string_tab[2]
+#define __pyx_kp_u__2 __pyx_string_tab[3]
+#define __pyx_kp_u__3 __pyx_string_tab[4]
+#define __pyx_kp_u__4 __pyx_string_tab[5]
 #define __pyx_kp_u_by_BytesIO __pyx_string_tab[6]
 #define __pyx_kp_u_by_PIL_Image __pyx_string_tab[7]
-#define __pyx_kp_u_by_local_file_path __pyx_string_tab[8]
-#define __pyx_kp_u_by_unknown_type __pyx_string_tab[9]
-#define __pyx_kp_u_el_image_style_data_style_error __pyx_string_tab[10]
-#define __pyx_kp_u_height_2 __pyx_string_tab[11]
-#define __pyx_kp_u_media __pyx_string_tab[12]
-#define __pyx_kp_u_png __pyx_string_tab[13]
-#define __pyx_kp_u_simplestart_ss_ui_image_py __pyx_string_tab[14]
-#define __pyx_kp_u_width_2 __pyx_string_tab[15]
-#define __pyx_n_u_2 __pyx_string_tab[16]
-#define __pyx_n_u_3 __pyx_string_tab[17]
-#define __pyx_n_u_4 __pyx_string_tab[18]
-#define __pyx_n_u_5 __pyx_string_tab[19]
-#define __pyx_n_u_BytesIO __pyx_string_tab[20]
-#define __pyx_n_u_FAILED __pyx_string_tab[21]
-#define __pyx_n_u_NamedTemporaryFile __pyx_string_tab[22]
-#define __pyx_n_u_PNG __pyx_string_tab[23]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[24]
-#define __pyx_n_u_add __pyx_string_tab[25]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[26]
-#define __pyx_n_u_bytes __pyx_string_tab[27]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[28]
-#define __pyx_n_u_contain __pyx_string_tab[29]
-#define __pyx_n_u_data __pyx_string_tab[30]
-#define __pyx_n_u_delete __pyx_string_tab[31]
-#define __pyx_n_u_enter __pyx_string_tab[32]
-#define __pyx_n_u_error __pyx_string_tab[33]
-#define __pyx_n_u_exit __pyx_string_tab[34]
-#define __pyx_n_u_file_key __pyx_string_tab[35]
-#define __pyx_n_u_file_key_map __pyx_string_tab[36]
-#define __pyx_n_u_fit __pyx_string_tab[37]
-#define __pyx_n_u_format __pyx_string_tab[38]
-#define __pyx_n_u_func __pyx_string_tab[39]
-#define __pyx_n_u_get __pyx_string_tab[40]
-#define __pyx_n_u_getsize __pyx_string_tab[41]
-#define __pyx_n_u_getvalue __pyx_string_tab[42]
-#define __pyx_n_u_height __pyx_string_tab[43]
-#define __pyx_n_u_image __pyx_string_tab[44]
-#define __pyx_n_u_io __pyx_string_tab[45]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[46]
-#define __pyx_n_u_isfile __pyx_string_tab[47]
-#define __pyx_n_u_items __pyx_string_tab[48]
-#define __pyx_n_u_kwargs __pyx_string_tab[49]
-#define __pyx_n_u_main __pyx_string_tab[50]
-#define __pyx_n_u_module __pyx_string_tab[51]
-#define __pyx_n_u_name __pyx_string_tab[52]
-#define __pyx_n_u_name_2 __pyx_string_tab[53]
-#define __pyx_n_u_os __pyx_string_tab[54]
-#define __pyx_n_u_path __pyx_string_tab[55]
-#define __pyx_n_u_pop __pyx_string_tab[56]
-#define __pyx_n_u_preview_src_list __pyx_string_tab[57]
-#define __pyx_n_u_print __pyx_string_tab[58]
-#define __pyx_n_u_qualname __pyx_string_tab[59]
-#define __pyx_n_u_res __pyx_string_tab[60]
-#define __pyx_n_u_save __pyx_string_tab[61]
-#define __pyx_n_u_set_name __pyx_string_tab[62]
-#define __pyx_n_u_setdefault __pyx_string_tab[63]
-#define __pyx_n_u_show_progress __pyx_string_tab[64]
-#define __pyx_n_u_simplestart_ss_ui_image __pyx_string_tab[65]
-#define __pyx_n_u_simplestream __pyx_string_tab[66]
-#define __pyx_n_u_src __pyx_string_tab[67]
-#define __pyx_n_u_ss __pyx_string_tab[68]
-#define __pyx_n_u_ss_core __pyx_string_tab[69]
-#define __pyx_n_u_ss_core_file_map __pyx_string_tab[70]
-#define __pyx_n_u_style __pyx_string_tab[71]
-#define __pyx_n_u_suffix __pyx_string_tab[72]
-#define __pyx_n_u_temp __pyx_string_tab[73]
-#define __pyx_n_u_temp_file_path __pyx_string_tab[74]
-#define __pyx_n_u_tempfile __pyx_string_tab[75]
-#define __pyx_n_u_test __pyx_string_tab[76]
-#define __pyx_n_u_tmp_file __pyx_string_tab[77]
-#define __pyx_n_u_uuid __pyx_string_tab[78]
-#define __pyx_n_u_values __pyx_string_tab[79]
-#define __pyx_n_u_vuetify __pyx_string_tab[80]
-#define __pyx_n_u_width __pyx_string_tab[81]
-#define __pyx_n_u_write __pyx_string_tab[82]
-#define __pyx_kp_b_iso88591_6_Qha_F_ay_V4q_F_ay_q_2Q_q_Rq_F __pyx_string_tab[83]
+#define __pyx_kp_u_by_string_path __pyx_string_tab[8]
+#define __pyx_kp_u_el_image_style_data_style_error __pyx_string_tab[9]
+#define __pyx_kp_u_height_2 __pyx_string_tab[10]
+#define __pyx_kp_u_media __pyx_string_tab[11]
+#define __pyx_kp_u_png __pyx_string_tab[12]
+#define __pyx_kp_u_simplestart_ss_ui_image_py __pyx_string_tab[13]
+#define __pyx_kp_u_width_2 __pyx_string_tab[14]
+#define __pyx_n_u_2 __pyx_string_tab[15]
+#define __pyx_n_u_3 __pyx_string_tab[16]
+#define __pyx_n_u_BytesIO __pyx_string_tab[17]
+#define __pyx_n_u_FAILED __pyx_string_tab[18]
+#define __pyx_n_u_NamedTemporaryFile __pyx_string_tab[19]
+#define __pyx_n_u_PNG __pyx_string_tab[20]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[21]
+#define __pyx_n_u_add __pyx_string_tab[22]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[23]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[24]
+#define __pyx_n_u_contain __pyx_string_tab[25]
+#define __pyx_n_u_convertPath2Url __pyx_string_tab[26]
+#define __pyx_n_u_data __pyx_string_tab[27]
+#define __pyx_n_u_delete __pyx_string_tab[28]
+#define __pyx_n_u_enter __pyx_string_tab[29]
+#define __pyx_n_u_error __pyx_string_tab[30]
+#define __pyx_n_u_exit __pyx_string_tab[31]
+#define __pyx_n_u_file_key __pyx_string_tab[32]
+#define __pyx_n_u_file_key_map __pyx_string_tab[33]
+#define __pyx_n_u_fit __pyx_string_tab[34]
+#define __pyx_n_u_format __pyx_string_tab[35]
+#define __pyx_n_u_func __pyx_string_tab[36]
+#define __pyx_n_u_get __pyx_string_tab[37]
+#define __pyx_n_u_getvalue __pyx_string_tab[38]
+#define __pyx_n_u_height __pyx_string_tab[39]
+#define __pyx_n_u_image __pyx_string_tab[40]
+#define __pyx_n_u_io __pyx_string_tab[41]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[42]
+#define __pyx_n_u_items __pyx_string_tab[43]
+#define __pyx_n_u_kwargs __pyx_string_tab[44]
+#define __pyx_n_u_main __pyx_string_tab[45]
+#define __pyx_n_u_module __pyx_string_tab[46]
+#define __pyx_n_u_name __pyx_string_tab[47]
+#define __pyx_n_u_name_2 __pyx_string_tab[48]
+#define __pyx_n_u_os __pyx_string_tab[49]
+#define __pyx_n_u_pop __pyx_string_tab[50]
+#define __pyx_n_u_preview_src_list __pyx_string_tab[51]
+#define __pyx_n_u_print __pyx_string_tab[52]
+#define __pyx_n_u_qualname __pyx_string_tab[53]
+#define __pyx_n_u_res __pyx_string_tab[54]
+#define __pyx_n_u_save __pyx_string_tab[55]
+#define __pyx_n_u_set_name __pyx_string_tab[56]
+#define __pyx_n_u_setdefault __pyx_string_tab[57]
+#define __pyx_n_u_show_progress __pyx_string_tab[58]
+#define __pyx_n_u_simplestart_ss_ui_image __pyx_string_tab[59]
+#define __pyx_n_u_simplestream __pyx_string_tab[60]
+#define __pyx_n_u_src __pyx_string_tab[61]
+#define __pyx_n_u_ss __pyx_string_tab[62]
+#define __pyx_n_u_ss_core __pyx_string_tab[63]
+#define __pyx_n_u_ss_core_file_map __pyx_string_tab[64]
+#define __pyx_n_u_ss_core_utils __pyx_string_tab[65]
+#define __pyx_n_u_style __pyx_string_tab[66]
+#define __pyx_n_u_suffix __pyx_string_tab[67]
+#define __pyx_n_u_temp __pyx_string_tab[68]
+#define __pyx_n_u_temp_file_path __pyx_string_tab[69]
+#define __pyx_n_u_tempfile __pyx_string_tab[70]
+#define __pyx_n_u_test __pyx_string_tab[71]
+#define __pyx_n_u_tmp_file __pyx_string_tab[72]
+#define __pyx_n_u_uuid __pyx_string_tab[73]
+#define __pyx_n_u_values __pyx_string_tab[74]
+#define __pyx_n_u_vuetify __pyx_string_tab[75]
+#define __pyx_n_u_width __pyx_string_tab[76]
+#define __pyx_n_u_write __pyx_string_tab[77]
+#define __pyx_kp_b_iso88591_6_Qha_F_ay_V4q_F_ay_q_2Q_q_Rq_F __pyx_string_tab[78]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2498,7 +2493,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<84; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<79; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2523,7 +2518,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<84; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<79; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2643,11 +2638,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
   PyObject *__pyx_v_width = NULL;
   PyObject *__pyx_v_height = NULL;
   PyObject *__pyx_v_style = NULL;
-  PyObject *__pyx_v_os = NULL;
+  CYTHON_UNUSED PyObject *__pyx_v_os = NULL;
   PyObject *__pyx_v_tempfile = NULL;
   PyObject *__pyx_v_tmp_file = NULL;
   PyObject *__pyx_v_temp_file_path = NULL;
   PyObject *__pyx_v_file_key = NULL;
+  PyObject *__pyx_v_convertPath2Url = NULL;
   PyObject *__pyx_v_res = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2664,7 +2660,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
   PyObject *__pyx_t_11 = NULL;
   PyObject *__pyx_t_12 = NULL;
   int __pyx_t_13;
-  PyObject *__pyx_t_14 = NULL;
+  Py_ssize_t __pyx_t_14;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3526,7 +3522,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
  *         file_key = file_key_map.add(temp_file_path, temp=True)  #
  *         data["src"] = f"/media/{file_key}"             # <<<<<<<<<<<<<<
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")
- *     elif isinstance(src, str) and os.path.isfile(src):
+ *     elif isinstance(src, str):
 */
     __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_v_file_key, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -3540,8 +3536,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
  *         file_key = file_key_map.add(temp_file_path, temp=True)  #
  *         data["src"] = f"/media/{file_key}"
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")             # <<<<<<<<<<<<<<
- *     elif isinstance(src, str) and os.path.isfile(src):
- *         print("4", src, "by local file path")
+ *     elif isinstance(src, str):
+ *         print("4/5", src, "by string path")
 */
     __pyx_t_1 = NULL;
     __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_src); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
@@ -3576,215 +3572,143 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
   /* "simplestart/ss_ui/image.py":65
  *         data["src"] = f"/media/{file_key}"
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")
- *     elif isinstance(src, str) and os.path.isfile(src):             # <<<<<<<<<<<<<<
- *         print("4", src, "by local file path")
- *         print(" ", os.path.getsize(src), "bytes")
+ *     elif isinstance(src, str):             # <<<<<<<<<<<<<<
+ *         print("4/5", src, "by string path")
+ *         #  convertPath2Url
 */
-  __pyx_t_13 = PyUnicode_Check(__pyx_v_src); 
-  if (__pyx_t_13) {
-  } else {
-    __pyx_t_3 = __pyx_t_13;
-    goto __pyx_L35_bool_binop_done;
-  }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_os, __pyx_mstate_global->__pyx_n_u_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __pyx_t_1;
-  __Pyx_INCREF(__pyx_t_7);
-  __pyx_t_6 = 0;
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_src};
-    __pyx_t_8 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_isfile, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 65, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-  }
-  __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_3 = __pyx_t_13;
-  __pyx_L35_bool_binop_done:;
+  __pyx_t_3 = PyUnicode_Check(__pyx_v_src); 
   if (__pyx_t_3) {
 
     /* "simplestart/ss_ui/image.py":66
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")
- *     elif isinstance(src, str) and os.path.isfile(src):
- *         print("4", src, "by local file path")             # <<<<<<<<<<<<<<
- *         print(" ", os.path.getsize(src), "bytes")
- *         #    file_key_map
+ *     elif isinstance(src, str):
+ *         print("4/5", src, "by string path")             # <<<<<<<<<<<<<<
+ *         #  convertPath2Url
+ *         from ss_core.utils import convertPath2Url
 */
-    __pyx_t_1 = NULL;
+    __pyx_t_7 = NULL;
     __pyx_t_6 = 1;
     {
-      PyObject *__pyx_callargs[4] = {__pyx_t_1, __pyx_mstate_global->__pyx_n_u_4, __pyx_v_src, __pyx_mstate_global->__pyx_kp_u_by_local_file_path};
+      PyObject *__pyx_callargs[4] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_4_5, __pyx_v_src, __pyx_mstate_global->__pyx_kp_u_by_string_path};
       __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_6, (4-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 66, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "simplestart/ss_ui/image.py":67
- *     elif isinstance(src, str) and os.path.isfile(src):
- *         print("4", src, "by local file path")
- *         print(" ", os.path.getsize(src), "bytes")             # <<<<<<<<<<<<<<
- *         #    file_key_map
- *         file_key = file_key_map.add(src)
+    /* "simplestart/ss_ui/image.py":68
+ *         print("4/5", src, "by string path")
+ *         #  convertPath2Url
+ *         from ss_core.utils import convertPath2Url             # <<<<<<<<<<<<<<
+ *         data["src"] = convertPath2Url(src)
+ *         print(f"[DEBUG] image.py  data.src = {data['src']}")
 */
-    __pyx_t_1 = NULL;
-    __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_os, __pyx_mstate_global->__pyx_n_u_path); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 67, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_14);
-    __pyx_t_2 = __pyx_t_14;
-    __Pyx_INCREF(__pyx_t_2);
-    __pyx_t_6 = 0;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_src};
-      __pyx_t_7 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getsize, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
+      PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_convertPath2Url};
+      __pyx_t_5 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_utils, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
     }
-    __pyx_t_6 = 1;
+    __pyx_t_8 = __pyx_t_5;
+    __Pyx_GOTREF(__pyx_t_8);
     {
-      PyObject *__pyx_callargs[4] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u__3, __pyx_t_7, __pyx_mstate_global->__pyx_n_u_bytes};
-      __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_6, (4-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 67, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_8);
+      PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_convertPath2Url};
+      __pyx_t_14 = 0; {
+        __pyx_t_7 = __Pyx_ImportFrom(__pyx_t_8, __pyx_imported_names[__pyx_t_14]); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 68, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
+        switch (__pyx_t_14) {
+          case 0:
+          __Pyx_INCREF(__pyx_t_7);
+          __pyx_v_convertPath2Url = __pyx_t_7;
+          break;
+          default:;
+        }
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      }
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
     /* "simplestart/ss_ui/image.py":69
- *         print(" ", os.path.getsize(src), "bytes")
- *         #    file_key_map
- *         file_key = file_key_map.add(src)             # <<<<<<<<<<<<<<
- *         data["src"] = f"/media/{file_key}"
+ *         #  convertPath2Url
+ *         from ss_core.utils import convertPath2Url
+ *         data["src"] = convertPath2Url(src)             # <<<<<<<<<<<<<<
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")
+ * 
 */
     __pyx_t_7 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_file_key_map); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_add); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 69, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_14);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_INCREF(__pyx_v_convertPath2Url);
+    __pyx_t_1 = __pyx_v_convertPath2Url; 
     __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_14))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_14);
+    if (unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
       assert(__pyx_t_7);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_14);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_14, __pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_1, __pyx__function);
       __pyx_t_6 = 0;
     }
     #endif
     {
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_src};
-      __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_14, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 69, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
     }
-    __pyx_v_file_key = __pyx_t_8;
-    __pyx_t_8 = 0;
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_src, __pyx_t_8) < 0))) __PYX_ERR(0, 69, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
     /* "simplestart/ss_ui/image.py":70
- *         #    file_key_map
- *         file_key = file_key_map.add(src)
- *         data["src"] = f"/media/{file_key}"             # <<<<<<<<<<<<<<
- *         print(f"[DEBUG] image.py  data.src = {data['src']}")
- *     else:
-*/
-    __pyx_t_8 = __Pyx_PyObject_FormatSimple(__pyx_v_file_key, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 70, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_14 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_media, __pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 70, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_14);
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_src, __pyx_t_14) < 0))) __PYX_ERR(0, 70, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-
-    /* "simplestart/ss_ui/image.py":71
- *         file_key = file_key_map.add(src)
- *         data["src"] = f"/media/{file_key}"
+ *         from ss_core.utils import convertPath2Url
+ *         data["src"] = convertPath2Url(src)
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")             # <<<<<<<<<<<<<<
- *     else:
- *         print("5", src, "by unknown type")
+ * 
+ *     res = vuetify(f'''
 */
-    __pyx_t_8 = NULL;
-    __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_src); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 71, __pyx_L1_error)
+    __pyx_t_1 = NULL;
+    __pyx_t_7 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_src); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_DEBUG_image_py_data_src, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 71, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_DEBUG_image_py_data_src, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_6 = 1;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_t_7};
-      __pyx_t_14 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+      PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_7};
+      __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 71, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_14);
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 70, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_8);
     }
-    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
     /* "simplestart/ss_ui/image.py":65
  *         data["src"] = f"/media/{file_key}"
  *         print(f"[DEBUG] image.py  data.src = {data['src']}")
- *     elif isinstance(src, str) and os.path.isfile(src):             # <<<<<<<<<<<<<<
- *         print("4", src, "by local file path")
- *         print(" ", os.path.getsize(src), "bytes")
+ *     elif isinstance(src, str):             # <<<<<<<<<<<<<<
+ *         print("4/5", src, "by string path")
+ *         #  convertPath2Url
 */
-    goto __pyx_L6;
-  }
-
-  /* "simplestart/ss_ui/image.py":73
- *         print(f"[DEBUG] image.py  data.src = {data['src']}")
- *     else:
- *         print("5", src, "by unknown type")             # <<<<<<<<<<<<<<
- *         # URL
- *         data["src"] = src
-*/
-  /*else*/ {
-    __pyx_t_7 = NULL;
-    __pyx_t_6 = 1;
-    {
-      PyObject *__pyx_callargs[4] = {__pyx_t_7, __pyx_mstate_global->__pyx_n_u_5, __pyx_v_src, __pyx_mstate_global->__pyx_kp_u_by_unknown_type};
-      __pyx_t_14 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_6, (4-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 73, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_14);
-    }
-    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-
-    /* "simplestart/ss_ui/image.py":75
- *         print("5", src, "by unknown type")
- *         # URL
- *         data["src"] = src             # <<<<<<<<<<<<<<
- * 
- *     res = vuetify(f'''
-*/
-    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_src, __pyx_v_src) < 0))) __PYX_ERR(0, 75, __pyx_L1_error)
   }
   __pyx_L6:;
 
-  /* "simplestart/ss_ui/image.py":77
- *         data["src"] = src
+  /* "simplestart/ss_ui/image.py":72
+ *         print(f"[DEBUG] image.py  data.src = {data['src']}")
  * 
  *     res = vuetify(f'''             # <<<<<<<<<<<<<<
  *         <el-image
  *         :style = "data.style"
 */
   __pyx_t_7 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
 
-  /* "simplestart/ss_ui/image.py":91
+  /* "simplestart/ss_ui/image.py":86
  *             </template>
  *         </el-image>
  *     ''', data = data)             # <<<<<<<<<<<<<<
@@ -3793,32 +3717,32 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
 */
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_8))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_8);
+  if (unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
     assert(__pyx_t_7);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_8);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_1);
     __Pyx_INCREF(__pyx_t_7);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_8, __pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_1, __pyx__function);
     __pyx_t_6 = 0;
   }
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_el_image_style_data_style_error};
-    __pyx_t_1 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_1, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 77, __pyx_L1_error)
-    __pyx_t_14 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_1);
+    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 72, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 77, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_14);
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
   }
-  __pyx_v_res = __pyx_t_14;
-  __pyx_t_14 = 0;
+  __pyx_v_res = __pyx_t_8;
+  __pyx_t_8 = 0;
 
-  /* "simplestart/ss_ui/image.py":93
+  /* "simplestart/ss_ui/image.py":88
  *     ''', data = data)
  * 
  *     return res             # <<<<<<<<<<<<<<
@@ -3842,7 +3766,6 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_XDECREF(__pyx_t_14);
   __Pyx_AddTraceback("simplestart.ss_ui.image.image", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -3855,6 +3778,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5image_image(CYTHON_UNUSED PyObje
   __Pyx_XDECREF(__pyx_v_tmp_file);
   __Pyx_XDECREF(__pyx_v_temp_file_path);
   __Pyx_XDECREF(__pyx_v_file_key);
+  __Pyx_XDECREF(__pyx_v_convertPath2Url);
   __Pyx_XDECREF(__pyx_v_res);
   __Pyx_XDECREF(__pyx_v_src);
   __Pyx_XGIVEREF(__pyx_r);
@@ -4445,34 +4369,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{0},{35},{1},{25},{1},{1},{10},{12},{18},{15},{517},{8},{7},{4},{26},{7},{13},{13},{13},{13},{7},{6},{18},{3},{20},{3},{18},{5},{18},{7},{4},{6},{9},{5},{8},{8},{12},{3},{6},{8},{3},{7},{8},{6},{5},{2},{13},{6},{5},{6},{8},{10},{4},{8},{2},{4},{3},{16},{5},{12},{3},{4},{12},{10},{13},{23},{12},{3},{2},{7},{16},{5},{6},{4},{14},{8},{8},{8},{4},{6},{7},{5},{5},{556}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1190 bytes) */
-const char* const cstring = "BZh91AY&SY\360\030}\n\000\001\005\177\377\347\377\357\256\377\363\377\377\267\245\367\372\277\377\377\372@\350\302HD\301\302C\000@@@C\300@\000P\003\336\032\222\355T!\306CEP\000\006\230\311\265@\006\236\246\232\003@\320\320\0004\003@\321\352`\214\200\006\203\324\311\246C\324\032\r@\246\2460\215G\251\265=\004\032\000\320\000\365\003@\000\323@\000\003@h\000hh4\000\003DLOQ\244f\245=M\223\312m\"h\032\000=C \000\000\000\000\006\200\000h\321\352\000\000\203\000L&\004\302a4\3011\030\002`\010\320\311\200L\000\000\000\214\004\300\000\000\224\324\010\010i\030\320\010\247\352OP\362\217P\323M6\243\324\000\310\365\032h\001\240\r\000\000\3651\250\r\0322\036\246\274m\351f\364~\326\341\351\376g\355\003\362:\310!/\354\354 BB\244\n(k\307\036\263TO8$\300\232s^!9\023\262B\252|\255\306>\007$uQ\305T\326]yX]3\003\3150\036\003\3573\236H\330\233LMA\263Y]\270\214O\354\216\242\206\252{\242\233Q\221\3256f}\023\212\360\303\027Fo3\233\221\003\235\322\352\372\213\200\220\272\377[\337\361(\317\324\373\237\t\223G`0\305;)\324\257*QU`\201\361]\030\220\003\260\2521A\302\025l8I\034k\262'^\367\t\235O\260\304\270z\016x\233\022:$p\301\373\355\210\364\216\214\213q\332\326\255\211F\017\217\000\343\357\216\313\243\306W=8blu\026\222\200\366\240\213\245\222\321e\235\333\352\3476&1\231\"\002K\005\241\317\222$T\213\235\241\"\010\n0\331(A\201\312$j\257\322x\tn6gN\307\002J\007\001NN\031;\355\007\262B\036G8C\367\225\261Zk,dg\\\305\363\337\222d\023w\237E4m8z\336\271\262H\325\202\014\364\t\335\0050q\010\216\362&\037\231\356'N\360\207\002\021U\004@\336\345\\\374GC\210\001T\177. L\n'\216C\307AH()\000\273\014\021e\316\320\201\n1\341\034\310Zs\226\230\366\211\275\003@b\254\010\"Pb\374\031\347x\265\251Z?\023_\204\312S\014\232\223t[\275\344\205A\333\317\306\222\242\236\003\223\334\226\226\355\023\257 \227\"h\2348?]\254\355*i\326\326\236\350t\320\\2\271\262\363\374\230.!)\276\004\0250\026k\nb\314)\205\210JM5\360\217\313\365^\017\277V\246X\035\006\253L\312\232\344\257\233|\206g\302\344CSka\266M\273T\36641\211-\274\006~\377u""\237\264\322(m\030w\314\213*\306B\235L\345r\341\310\301o\036f\234\032S\rs\331\034M\007- [-=\023L\016\353\247\254\320\333\032P\261\241\236\317\203\356\312\212o\247\327\244\251\344\341\313D\233^\014c\323s\032i\231\004p\347\323\022\223*\271\256\240\030\035\261T/\216g\023\356_l!C\240&s\314H}i\273\206\3119nIY\014\010\202m3\272\315P\273m9\2253\310~\215\r\315oh\344\227\033\030\204\253V3'f\035K\2575\325\236.lLE\345\014I\235v\222\305\022N\312\231\345Av\241a\256r\343\2227\013I l\210M\255K\007u\002\213\031JG]\204B\204t\005\301\212\270\262&[\230\310\326@-ak\006\221\352,\310\201\000\250\240\260\232!)\033\327,\003\2423\255\201@QU\342\302\321\244la%~=/\302\241c&\370\020\025\311#Jj\021f\014d\276\330\212\333[\021\211p\001M\017\314\274\3418\026O,\"$p\023?\027f0f\366'\2374\267\337 F:F\"\223\361\t\251\275\004\261\001\240\006\306\347\241\010?\300\230!\252\323\240\306\376\222\354\247\363A\366\365\3102u\337n\373\272t\332\301\021%$e\"\025\310\016\203\0046W\314U\314\005\024\2704=\\D@\021\344\266\\)\224\207)\226\261z\313G\350,\351&\202KM8\330\205*[\210\251\314\017\3376Y(\314\330\230\032s\252\250\236n\261~M\033F\206D\333\373\215\3126\332\3166;\034\005\207_\236s\277\321\272\336Yx\361[\222m\033\274\310\305\017\277\225\361\036\240\234\366}\244\210\216\1778\"\3453\246\232d9\275\337\335m\362\362\177\237\362c\215\232SHUm\324\377\213\271\"\234(Hx\014>\205\000";
-    PyObject *data = __Pyx_DecompressString(cstring, 1190, 2);
+    const struct { const unsigned int length: 10; } index[] = {{0},{15},{35},{1},{1},{1},{10},{12},{14},{517},{8},{7},{4},{26},{7},{13},{13},{7},{6},{18},{3},{20},{3},{18},{18},{7},{15},{4},{6},{9},{5},{8},{8},{12},{3},{6},{8},{3},{8},{6},{5},{2},{13},{5},{6},{8},{10},{4},{8},{2},{3},{16},{5},{12},{3},{4},{12},{10},{13},{23},{12},{3},{2},{7},{16},{13},{5},{6},{4},{14},{8},{8},{8},{4},{6},{7},{5},{5},{502}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1156 bytes) */
+const char* const cstring = "BZh91AY&SY\277\322\275\340\000\003\036\377\377\347\377\357\256\377\363\377\377\267\245\367\372\277\377\377\372@\350BH@A\302C\000@@@C\300@\000P\003\236=\3357m\260m\253\207\206\212\211\2654\r\014\233CD\003 \321\240= \r\014\2154h\r\r2\007\251\246 \003@\310z\023C \320I\251\251\340\230\23225=L\247\2506Q\220\r\250\000\000\r\000\000\r\001\221\243#@\000\000\212M\241&\001\014\002d\300\2320\000\t\202b14\310\3020\214@\300\203M\000\000\310\332\r\tL\23256\221\243\3222\003A\240\006\2004\000\001\240\r\000\001\240\320\0004\000\000\022\246\211\246\020\247\243)\036\241\264\236\241\352\003\023#@\006\200\000\000\0002\003@\310\323G\244\320\006\201[mx\360:y\252\316\317\2740\274}\021Lo\344\375  \210$\000\177\325T\237\352\2250\345\003\321H<\255\240\361\246\221$\321\343\341(\312_\221\013\310hN\3734\260\240)-\251\205\311\013\022\n\221\026\244a)\254u\306\227C[9>\242\320\263H{\310\272\201%\272j\227\022\331)\323\000\332\004\010<\004X\330\220\014\004I\022\243\234`\270?dI\007%n\345,\247\302b\030n\034\021jj\033\362\020\260t![\017\010`\344\005\014\213\020j\350I\352\032r{\204~\315\021h\364\271\310\240\311\023Xq#\004\021Anq\"7Dd\003V\301\262k'\240uI,B\030c1\003\333\331a\026\272\3542\025\317Yuq\002\221\274\373\207\360W\255l\335\333\"%\240\300\330\204W\356\226\303|\323\352u\263\251(&\342\025\345Q\235rM5\245\276\035\302<<\256@\030\037\364y\263\374\226\305|\360\310\263T2\346;\004%\r\224#\220\214,v\247&B\357\210\311\215\356&]\303@\243\212\324 \270\244m\301(\3004\031\246\344\t@\302\321Lp\313lX\364_\000X \204\320\032\006\373qFx\271/\000\230\037,B!\256\276q\023\241\372\230d\007\000M|\342\221\227\006=\334\325L\203`\2576\216J\306\004\3063\032\025\004+\241\3575\247\200\210\304\373\207o\354|\214\2310\333PM\313\214\013\306J\224\3430\3504\240h\212C:\002\204i.\201.\301\3153\252\327\344)\260\246\231h\017z\004\305\245\252\327C\213#*i4\366T2\240\261lG\024\321\302\230\221\354\025\014hv:T\2100e=)\203\260\3147\240lc&\316\250\211\2168\005\342\226\315g\000\313zJ\n\200\341\236\031\205[|\262Z\211\243\030\252\336Z\004\314""\021_E\2462\242\203y\301dj\241l\255(F\322\006\272\306\203\244Y\031RA\000:\355xTO\335,\211\314\203\t\\Xl<\374f\271\001\257(@3\0148P0\204\365A9\225b0\034\251C\242\203~6!\201#\251\020B4\030b)\0105\036\006H\245)\205|\313\001P\350\235\304\214\304\346T\242E}\220\314\304\341\272ap\246`\210\345\252\"\007\204\374\0303\2267\244F\022\000Gh\364\232Y(\342\271Q6C\230EC\304E\3231e\032J\263R\212e\005\375t\265\322\275\361q\177\010\222\301\352\276v\n\260\035\027 \nT\242[\203\031\035`\225\033`\\\032\325c/\302\312\315k\252@*\205Pu\341\211b0 \027\n\330B%\321\022vU:\016\221\020\255\253\014\033\206\213M\213\\>3_\247\343m\004Z\353\302Qy\347\254\326(\245yL\030\303T\342v\270\246 \304X\366!\305v\260\220\n\371az\372\266B\301\306H{+\231\203\tE\246\251\030\216bYq\016vg\014\204b(%\257\277\354JS*Ei\330b,\371\266k\240\003\362\360\3700\237\233\245&-6j\tL\325)21\206(\244[\223\240^\340)\232\335\275\371\270\234$\267\036\215f\206\317\222v\320C\023\250%\374O\376M!!\024^\205hB\352\242\"\304h\357\215\031t\003\036\227\"9~\324\001\2415\016\213\0209*\205\371\004<\024u\204\nd\253\360\304BH\236\007\301\332h.0\267E\350\211\001\310\034\004\003\202@(\010\001\305\270\000I&\n \004\006F\257\254o\374b\300\010,c\264\016g\027rE8P\220\277\322\275\340";
+    PyObject *data = __Pyx_DecompressString(cstring, 1156, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1037 bytes) */
-const char* const cstring = "x\332\235SMo\333F\020\265\000\247\221e;\211\220\270A\221\024]9N\223\026\220\344\257\244\265d\247P`;0\020\270v\220\364\023\005\261&\227\322\326\024)q\227\222\351 \200oe\321C\367R`\201^x(P\235R]\n\370\322\234s\324QG]\334\344\350\237\320!E\332\214\003\024E\t\222;\363f\370\366\315\354\360\333\325\265\373O\036|\207h\035WI\241\341\242\327\317_\274\372\3539\3220\307\005f\253h\005\225\217~}\361\352\307\037\376\376\363\247\327\177\374\202\206\316\321o\277\037u\177.|\266\343\242\373.'l\343s\260\2666\036\242\215\200\007l\303R\261\201tj\020\324\300\274\006\210c\356\232V\333D\334m\220\014\212\256eb\344\303\255O\220\022\343.|\264\202\246\207\022\002o\3724Jl\333\262W\206\261\320N\304@n\024\001+\2017l\322\242\244\235\0074oP\306\243\244\010V\000V\0028\311T\263\332\371\206mUm\302X\314\t\230\022c\211\\\235\306\204`M\337;\t\204\345qRo\030\230\023t#\024\373f4\314\320h\013\205E\002\te\220\354\226\220n\220\2752\372\336a\234\352n^\265LNL^B*\274\211]F\330\240U3O\201\233\235\202m\252\361Z\t\315\315\316\336,\243\032\241\325\032\217\275\035\254\356Vm\31315\3402,\273\204n\350w\364Ot\\F\261\2774\273\264\260\264T\236~[`p=}z\332\357g\317\336\256\241\010E\234)\274\030W~\212/\027\343\303\036b\261\310b\235h\024\027\013\r\263\312(|D\030\3076/2\2468\264\030\317eT^r\024\347\223\316B\322YL:w\242\001]\257l<\\[\335\304\260\333c\320f\331\330v\327a>\2676\037(\312\226\273\007\317*U\271\262I\366\370#\242cM\303\3145Uj\025T\013\232\307\251I\330N@\245\032`*\324T\270\215U\022478!L\315\240I\0321\010'\212\022\236\n,A\313`\331\243\\Q\202\277A\331%n\274*u\334\200\231\321-\273\216\203\260c\252\212R%\034nF\367\t,-l8d\330\247\260\021\324R(SN\364P\026P\205\203\260\333\306v\225)@\t\302\340\252[\232\003\273(&\324\033\277-\026\374\212\r\253qv\362\03365A@\323\301\30603\030q\334\002\203\021\036}\014\226\006]q\014\376\306\217\2208\261Bxb\205Ph\014\333\004\327a\027\310\013e\223h)\204-\200\362\303\311g\216\256\323\275``\202g\330\246@i\340\205\216\002]\007}<\n:\016\325\302\316\260\226C\202_$\034\216\266\r\2158\310x\271\376\350""\270wW\\\021\333\242&\361`t\302[\0273\002\013\327O\365G'\275/\304\242h\312\214\237;\0239\177\320\354\247/\2111\231\225\037\371\363\376\366\t\222\2219Y\362\037\371\315\343wF\316\215y)\357\232X\2273\022K\267\223\032@\022\367\026<\334O_\360t\261*S\362j@\226\206\264\367\304\207rTV\344\227~%\004zc\037\310\226\377\270\223\355}|\357\020G\320u\271\356\317\370\270w\353\323\303\350\263k\2422\030\2378~w\344\\\372`_d\305Ma\313l?=\351m{T8\2622\270x\251\017\367\344To\352v'\325\271\332M\037\236?\334\177\231\355O\\\001]9\271 \251\337\354O\274/\277\362\267\007\351\313bYr\177\2567\263\330];\004\232\t\257\342}-\250l\202\312\200\263w\241\330ivG\273\225\356v\177\354\222H\211)\201\377\323f\027=GT\3047\262\355\343\377\267\331e1'\326\344\224\324\374i\177\r\230S\335d\225C\263.\347\345\023\377v'\327\271\333\315\236\360C?\377\215z\220\220\037\345\301\024d\274[\320\314\334\361\365\221LV\300\271\215{s\377\000J~\231d";
-    PyObject *data = __Pyx_DecompressString(cstring, 1037, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (995 bytes) */
+const char* const cstring = "x\332\235T\275o\333F\024\267\000\245\221e;\261\220\270A\221\024\245\034\247i\013H\362W\332ZrR(\260\025\030\010\\+H\372\211\342p\021\217\322\325\024)\335\035%3A\000oe\321\345\226\002\007t\341\250)\325R\300K3w\324\250QK>F\377\t}\244H[q\226\242\004\311{\357\367\336\375\356}\221/\377x\361\372\327_^\375\365\333\233?\177_/\334\372qk\373\356\243{?i\264\211\353$\337r\2657\317_\274\376\373\271\246c\201\363\234\325\264\333Z)\377\325cW\273\353\n\302w\276\006io\347\276\266\023\270\203\314\005\243V]ka\321Hk\321\265I\314\\Hw\202\024\271pM\002T\213c\332@[<\265\022\306lv{l\013\345\t\033\204\020Y@\232\300[\214t(\351\346\000\315\231\224\213\310)\202\021\300(\200'\231\032v7\327bv\235\021\316cN\300P\214M\370\0324&\004i\361\316\211!LO\220f\313\304\202h\327\303`\337\266\206\036:\355ha\222@B98\273E\3150\311AI\373\331\341\202\032n\256f[\202X\242\250\325\340MXI\303&\255[9\n\334\374\024\354R]4\212\332\312\362\362\215\222\326 \264\336\020\261\366\030\327\366\353\314v,\035\270L\233\025\265\353\306-\343\013\003\227\264X\337X\336X\333\330(-\276\033`p=}zZ\357g\317\336\315\241\000I\234I\274\020g~\212o\026\342f\217\2618\310B\223\350\024\027\362-\253\316)l\"\\`&\n\234#\207\026\342Y\213\322{91\221\253\223\312Z4s\225\362\316\375\355\255]\014\234\017!\002\233a\346V\250I\366v\357!\264\347\036\300\263Ek\002\355\222\003\361\200\030X\3271w\255\032\265\3635\033J$\250Ex\315\2047\242\026\022\014\327HP\275\240\005\230Z\260t\010\023{0\301\253\217\230\031\024E'&\021\004\241\260\013\260\004%\202\345\200\n\204\0148\027\355\0237^Q\023\267`F\014\2335q`v\254\032Bu\"\340\356`\323!\343\202\204\031S\033Q\216NB\n{\275\337\305\254\316\021\260@hp5m\335\001bdA\262\361\333\346-\273uv\260[\360\335\301ym\007\233c\257`\202q\007\004ND\264\021$\035\312\341\230\342\2559\237hH>lH>\014/\206\031\301M8\005\374\302`I\264\344\303\214!\333X\207$L\036N9w\014\203\036\004\303\021<\343\022\005\177\204@\013\025\004m\204`Edt\034\252\207\305\341\035\207\004\237C8\010]\006\0259L{\331ar\306\373\\^\226U\331Px\224\234\365*rIb\351\372\211ar\316\373F""\256\313\266J\373\3313\226\363\207\355aj^N\253\214\372\324_\365\253'HZeU\321\177\340\267\217\337\233:7\355%\274\253\262\242\226\024Vn/1\002'\341\255yx\230\272\340\031rK%\324\225\200,\005n\037\310\217UR\225\325\267~9\004\006\323\037\251\216\377\260\227\031|v\347\010G\3205U\361\227|<\270\371\345Q\264\355\252,\217ff\217\337\237:\227:|\"3\362\206d*3L\315yU\217JG\225G\027\347\207p\317-\014\026>\351%zW\372\251\243\363GO\376\311\014g/C\\Y\265\246\250\337\036\316~\250\276\363\253\243\324%\271\251\204\2772XZ\357o\037\001\315\254W\366\276\227T\265!\312\200sp\241\320k\367\223\375r\277:\234\236\227\t\271 \361\177:\354\242\347\310\262\374Au}\374\377\016\273$W\344v\234\331\276Z\200V\245\346\006s\213~6\336h\373U\037\237\3358J\246\275\233P\226\354\361\265\251tFB\007f\274\225\177\001l\372dR";
+    PyObject *data = __Pyx_DecompressString(cstring, 995, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1787 bytes) */
-const char* const bytes = "[DEBUG] image.py \350\256\276\347\275\256 data.src = ;\345\233\276\347\211\207\346\265\213\350\257\225 \345\233\276\347\211\207\345\244\247\345\260\217.?by BytesIOby PIL Imageby local file pathby unknown type\n        <el-image\n        :style = \"data.style\"\n        :error=\"data.error\"\n        :src=\"data.src\"\n        :preview-src-list=\"data.preview_src_list\"\n        :show-progress=\"data.show_progress\"\n        :fit=\"data.fit\">\n            <template #error>\n                <div style=\"display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #f5f7fa; color: #909399;\">\n                    {{data.error}}\n                </div>\n            </template>\n        </el-image>\n    height: /media/.pngsimplestart/ss_ui/image.pywidth: \345\233\276\347\211\207\346\265\213\350\257\2252\345\233\276\347\211\207\346\265\213\350\257\2253\345\233\276\347\211\207\346\265\213\350\257\2254\345\233\276\347\211\207\346\265\213\350\257\2255BytesIOFAILEDNamedTemporaryFilePNG__Pyx_PyDict_NextRefaddasyncio.coroutinesbytescline_in_tracebackcontaindatadelete__enter__error__exit__file_keyfile_key_mapfitformat__func__getgetsizegetvalueheightimageio_is_coroutineisfileitemskwargs__main____module__name__name__ospathpoppreview_src_listprint__qualname__ressave__set_name__setdefaultshow_progresssimplestart.ss_ui.imagesimplestreamsrcssss_coress_core.file_mapstylesuffixtemptemp_file_pathtempfile__test__tmp_fileuuidvaluesvuetifywidthwrite\200\n\210!\330\004\013\2106\220\024\220Q\220h\230a\340\004\014\210F\220$\220a\220y\240\001\330\004\r\210V\2204\220q\230\n\240!\340\004\014\210F\220$\220a\220y\240\001\330\004\007\200q\330\010\020\220\t\230\021\230)\2402\240Q\330\004\007\200q\330\010\020\220\n\230!\230:\240R\240q\360\006\000\005\t\210\001\210\033\220F\230$\230a\230y\250\001\340\004\007\200t\2103\210a\330\010\016\210f\220D\230\001\230\027\240\001\330\004\010\210\001\210\031\220&\230\004\230A\230W\240A\330\004\010\210\001\320\t\037\230v""\240T\250\021\320*>\270a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\210\033\220A\340\013\014\360\026\000\005\010\200z\220\021\220%\220r\230\021\330\010\r\210Q\210i\220u\230A\340\017\020\330\017\020\330\r\025\320\025(\250\001\250\027\260\010\270\007\270z\310\021\330\014\024\220F\230!\2303\230i\240q\330\014\035\230X\240Q\340\010\023\220<\230t\2401\320$4\260E\270\021\330\010\014\210A\210Y\220i\230q\240\001\330\010\r\210Q\320\016/\250q\260\004\260A\260Q\330\t\020\220\001\220\025\220a\330\010\r\210Q\210i\220u\230A\340\017\020\330\017\020\330\r\025\320\025(\250\001\250\027\260\010\270\007\270z\310\021\330\014\017\210u\220A\220Z\230w\240a\330\014\035\230X\240Q\340\010\023\220<\230t\2401\320$4\260E\270\021\330\010\014\210A\210Y\220i\230q\240\001\330\010\r\210Q\320\016/\250q\260\004\260A\260Q\330\t\023\2201\220E\230\025\230d\240\"\240E\250\027\260\001\260\021\330\010\r\210Q\210i\220u\230A\330\010\r\210Q\210m\2302\230U\240(\250!\2506\260\021\340\010\023\220<\230t\2401\240A\330\010\014\210A\210Y\220i\230q\240\001\330\010\r\210Q\320\016/\250q\260\004\260A\260Q\340\010\r\210Q\210i\220u\230A\340\010\014\210A\210Y\220a\340\004\n\210'\220\021\220!\360\034\000\n\021\220\001\340\004\013\2101";
+    #else /* compression: none (1684 bytes) */
+const char* const bytes = "\345\233\276\347\211\207\346\265\213\350\257\2254/5[DEBUG] image.py \350\256\276\347\275\256 data.src = ;.?by BytesIOby PIL Imageby string path\n        <el-image\n        :style = \"data.style\"\n        :error=\"data.error\"\n        :src=\"data.src\"\n        :preview-src-list=\"data.preview_src_list\"\n        :show-progress=\"data.show_progress\"\n        :fit=\"data.fit\">\n            <template #error>\n                <div style=\"display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: #f5f7fa; color: #909399;\">\n                    {{data.error}}\n                </div>\n            </template>\n        </el-image>\n    height: /media/.pngsimplestart/ss_ui/image.pywidth: \345\233\276\347\211\207\346\265\213\350\257\2252\345\233\276\347\211\207\346\265\213\350\257\2253BytesIOFAILEDNamedTemporaryFilePNG__Pyx_PyDict_NextRefaddasyncio.coroutinescline_in_tracebackcontainconvertPath2Urldatadelete__enter__error__exit__file_keyfile_key_mapfitformat__func__getgetvalueheightimageio_is_coroutineitemskwargs__main____module__name__name__ospoppreview_src_listprint__qualname__ressave__set_name__setdefaultshow_progresssimplestart.ss_ui.imagesimplestreamsrcssss_coress_core.file_mapss_core.utilsstylesuffixtemptemp_file_pathtempfile__test__tmp_fileuuidvaluesvuetifywidthwrite\200\n\210!\330\004\013\2106\220\024\220Q\220h\230a\340\004\014\210F\220$\220a\220y\240\001\330\004\r\210V\2204\220q\230\n\240!\340\004\014\210F\220$\220a\220y\240\001\330\004\007\200q\330\010\020\220\t\230\021\230)\2402\240Q\330\004\007\200q\330\010\020\220\n\230!\230:\240R\240q\360\006\000\005\t\210\001\210\033\220F\230$\230a\230y\250\001\340\004\007\200t\2103\210a\330\010\016\210f\220D\230\001\230\027\240\001\330\004\010\210\001\210\031\220&\230\004\230A\230W\240A\330\004\010\210\001\320\t\037\230v\240T\250\021\320*>\270a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\210\033\220A\340\013\014\360\026\000\005\010\200z\220""\021\220%\220r\230\021\330\010\r\210Q\210i\220u\230A\340\017\020\330\017\020\330\r\025\320\025(\250\001\250\027\260\010\270\007\270z\310\021\330\014\024\220F\230!\2303\230i\240q\330\014\035\230X\240Q\340\010\023\220<\230t\2401\320$4\260E\270\021\330\010\014\210A\210Y\220i\230q\240\001\330\010\r\210Q\320\016/\250q\260\004\260A\260Q\330\t\020\220\001\220\025\220a\330\010\r\210Q\210i\220u\230A\340\017\020\330\017\020\330\r\025\320\025(\250\001\250\027\260\010\270\007\270z\310\021\330\014\017\210u\220A\220Z\230w\240a\330\014\035\230X\240Q\340\010\023\220<\230t\2401\320$4\260E\270\021\330\010\014\210A\210Y\220i\230q\240\001\330\010\r\210Q\320\016/\250q\260\004\260A\260Q\330\t\023\2201\220E\230\021\330\010\r\210Q\210k\230\025\230a\340\010\r\320\r\"\240!\330\010\014\210A\210Y\220o\240Q\240a\330\010\r\210Q\320\016/\250q\260\004\260A\260Q\340\004\n\210'\220\021\220!\360\034\000\n\021\220\001\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 83; i++) {
+    for (int i = 0; i < 78; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 16) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 15) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -4480,7 +4404,7 @@ const char* const bytes = "[DEBUG] image.py \350\256\276\347\275\256 data.src = 
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 83; i < 84; i++) {
+    for (int i = 78; i < 79; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -4491,14 +4415,14 @@ const char* const bytes = "[DEBUG] image.py \350\256\276\347\275\256 data.src = 
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 84; i++) {
+    for (Py_ssize_t i = 0; i < 79; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 83;
+      PyObject **table = stringtab + 78;
       for (Py_ssize_t i=0; i<1; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -4544,8 +4468,8 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 12, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 8};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_src, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_os, __pyx_mstate->__pyx_n_u_tempfile, __pyx_mstate->__pyx_n_u_tmp_file, __pyx_mstate->__pyx_n_u_temp_file_path, __pyx_mstate->__pyx_n_u_file_key, __pyx_mstate->__pyx_n_u_res};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 13, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 8};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_src, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_os, __pyx_mstate->__pyx_n_u_tempfile, __pyx_mstate->__pyx_n_u_tmp_file, __pyx_mstate->__pyx_n_u_temp_file_path, __pyx_mstate->__pyx_n_u_file_key, __pyx_mstate->__pyx_n_u_convertPath2Url, __pyx_mstate->__pyx_n_u_res};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_image_py, __pyx_mstate->__pyx_n_u_image, __pyx_mstate->__pyx_kp_b_iso88591_6_Qha_F_ay_V4q_F_ay_q_2Q_q_Rq_F, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
@@ -6470,7 +6394,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         if (unlikely(!module_name_str)) { goto modbad; }
         module_name = PyUnicode_FromString(module_name_str);
         if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__4);
+        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__3);
         if (unlikely(!module_dot)) { goto modbad; }
         full_name = PyUnicode_Concat(module_dot, name);
         if (unlikely(!full_name)) { goto modbad; }
@@ -8362,7 +8286,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__5);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
     }
     goto done;
 }

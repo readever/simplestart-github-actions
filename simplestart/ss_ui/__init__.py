@@ -46,6 +46,7 @@ from .colorpicker import colorpicker
 from .popconfirm import popconfirm
 from .layout import row, col
 from .timer import timer
+from .plot import plot
 
 #不太成熟，以后再弄
 ##from .echarts import echarts
@@ -97,7 +98,8 @@ __all__ = [
     'colorpicker',
     'popconfirm',
     'row', 'col',
-    'timer'
+    'timer',
+    'plot'
 ]
 
 import importlib
