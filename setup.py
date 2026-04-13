@@ -48,7 +48,7 @@ for file in system_files:
 
 setup(
     name="simplestart",
-    version="0.0.1.44",
+    version="0.0.1.48",
     author="wy",
     description="build web app using python",
     ext_modules=extensions,
