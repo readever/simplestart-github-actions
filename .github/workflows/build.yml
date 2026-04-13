@@ -1,112 +1,106 @@
-name: Build Wheels
+name: Build Python Release
 
-# 仅保留手动触发
+# 仅允许手动触发
 on:
   workflow_dispatch:
 
 jobs:
-  # --- 原有的构建任务保持不变 ---
+  # 任务 1: 构建二进制 Wheel 包 (Windows, Linux, macOS)
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        # 可以在这里添加或移除 Python 版本
         python-version: ['3.10', '3.11', '3.12', '3.13']
-    
+
     env:
+      # macOS 通用构建变量
       ARCHFLAGS: -arch x86_64 -arch arm64
       MACOSX_DEPLOYMENT_TARGET: "10.9"
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install System Dependencies
-        if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y build-essential
-      - name: Install Xcode Tools (macOS)
-        if: runner.os == 'macOS'
-        run: xcode-select --install || true
-      - name: Install Python Dependencies
+
+      - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install Cython setuptools wheel build
+          # 安装构建工具
+          pip install build wheel setuptools
+
       - name: Build wheels
-        run: python -m build --wheel
-      - name: Upload artifacts
+        run: |
+          # 使用 build 包构建
+          python -m build --wheel
+        # 如果你的项目需要编译C/C++扩展，可能需要在这里添加额外的构建步骤
+
+      - name: Upload wheel artifacts
         uses: actions/upload-artifact@v4
         with:
+          # 这里的名字格式很重要，必须是以 wheels- 开头，以便后续聚合任务识别
           name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
-          path: dist/*.whl
+          path: ./dist/*.whl
 
+  # 任务 2: 构建源码包 (Source Distribution)
   build_sdist:
     name: Build source distribution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: python -m pip install --upgrade pip && pip install cython setuptools wheel build
+          python-version: '3.x'
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
       - name: Build sdist
-        run: python -m build --sdist
-      - name: Upload sdist
+        run: |
+          python -m build --sdist
+
+      - name: Upload sdist artifact
         uses: actions/upload-artifact@v4
         with:
+          # 名字必须叫 sdist，以便后续聚合任务识别
           name: sdist
-          path: dist/*.tar.gz
+          path: ./dist/*.tar.gz
 
-  # --- 新增：聚合所有产物并打包成 ZIP ---
+  # 任务 3: 聚合所有包并打包成 ZIP
   collect_all:
     name: Collect and Zip All Artifacts
-    needs: [build_wheels, build_sdist] # 必须等上面都做完
+    needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
     steps:
-      # 1. 下载所有 whl 和 sdist 文件，并合并到一个文件夹
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          pattern: wheels-*,sdist
+          # 关键修复：使用花括号语法匹配 'sdist' 或 'wheels-' 开头的任意文件
+          pattern: '{sdist,wheels-*}'
+          # 开启合并，将所有文件下载到一个平级目录中
           merge-multiple: true
-          path: all_builds
+          path: ./all_builds
 
-      # 2. 查看一下文件，确认数量（可选）
-      - name: List files
-        run: ls -lh all_builds
+      - name: List downloaded files (Debug)
+        run: ls -R ./all_builds
 
-      # 3. 打包成 zip
       - name: Zip all files
         run: |
-          cd all_builds
-          # 打包成 complete-release.zip
-          zip -r ../complete-release.zip .
+          cd ./all_builds
+          zip -r ../full-release-package.zip .
 
-      # 4. 上传这个唯一的 zip 包
       - name: Upload complete zip
         uses: actions/upload-artifact@v4
         with:
-          name: complete-release # 下载时这个名字会显示在列表里
-          path: complete-release.zip
-
-  # --- 原有的发布任务 ---
-  upload_pypi:
-    name: Upload to PyPI
-    needs: [build_wheels, build_sdist]
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-    steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          pattern: wheels-*,sdist
-          merge-multiple: true
-          path: dist
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          name: full-release-package
+          path: ./full-release-package.zip
