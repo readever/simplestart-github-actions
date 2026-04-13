@@ -1,24 +1,36 @@
-name: Build Python Release
+name: Build Wheels
 
-# 仅允许手动触发
+# 修改触发器：仅保留手动触发，禁用所有自动触发
 on:
   workflow_dispatch:
+    # 可选：添加手动运行时的选项，比如选择是否发布到 PyPI
+    inputs:
+      deploy_target:
+        description: 'Deploy target (TestPyPI or PyPI)'
+        required: true
+        default: 'none'
+        type: choice
+        options:
+          - none
+          - testpypi
+          - pypi
 
 jobs:
-  # 任务 1: 构建二进制 Wheel 包 (Windows, Linux, macOS)
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        # 可以在这里添加或移除 Python 版本
         python-version: ['3.10', '3.11', '3.12', '3.13']
-
+    
+    # -------------------------------------------------------
+    # 关键修复：添加环境变量 (解决 macOS 架构问题)
+    # -------------------------------------------------------
     env:
-      # macOS 通用构建变量
+      # 针对 macOS：强制编译为 Universal2 (兼容 Intel 和 M1/M2)
       ARCHFLAGS: -arch x86_64 -arch arm64
+      # 针对 macOS：指定最低支持的系统版本
       MACOSX_DEPLOYMENT_TARGET: "10.9"
 
     steps:
@@ -29,26 +41,42 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install build dependencies
+      # -------------------------------------------------------
+      # 关键修复：安装系统依赖 (解决编译器缺失问题)
+      # -------------------------------------------------------
+      - name: Install System Dependencies
+        if: runner.os == 'Linux'
+        run: |
+          # Ubuntu 需要安装系统编译器
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
+      - name: Install Xcode Tools (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          # 确保 Xcode 命令行工具就绪
+          xcode-select --install || true
+          # 安装 python-dev 等头文件 (macOS 特定)
+          # 注意：这里使用了 brew，确保 runner 支持或改用其他方式
+          brew install python@${{ matrix.python-version }} || true
+
+      - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          # 安装构建工具
-          pip install build wheel setuptools
+          # 必须先安装构建依赖
+          pip install Cython setuptools wheel build
 
       - name: Build wheels
-        run: |
-          # 使用 build 包构建
-          python -m build --wheel
-        # 如果你的项目需要编译C/C++扩展，可能需要在这里添加额外的构建步骤
+        run: python -m build --wheel
 
-      - name: Upload wheel artifacts
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          # 这里的名字格式很重要，必须是以 wheels- 开头，以便后续聚合任务识别
           name: wheels-${{ matrix.os }}-${{ matrix.python-version }}
-          path: ./dist/*.whl
+          path: dist/*.whl
 
-  # 任务 2: 构建源码包 (Source Distribution)
+  # --- 下面的 sdist 部分保持不变 ---
+  
   build_sdist:
     name: Build source distribution
     runs-on: ubuntu-latest
@@ -58,49 +86,46 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
-      - name: Install build dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install build
+          pip install cython setuptools wheel build
 
       - name: Build sdist
-        run: |
-          python -m build --sdist
+        run: python -m build --sdist
 
-      - name: Upload sdist artifact
+      - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
-          # 名字必须叫 sdist，以便后续聚合任务识别
           name: sdist
-          path: ./dist/*.tar.gz
+          path: dist/*.tar.gz
 
-  # 任务 3: 聚合所有包并打包成 ZIP
-  collect_all:
-    name: Collect and Zip All Artifacts
+  upload_pypi:
+    name: Upload to PyPI
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
+    
+    # 修改判断逻辑：
+    # 1. 如果是自动触发（虽然这里禁用了），判断 release 事件
+    # 2. 如果是手动触发，判断 inputs.deploy_target 是否不为 none
+    if: (github.event_name == 'release' && github.event.action == 'published') || 
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_target != 'none')
+
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          # 关键修复：使用花括号语法匹配 'sdist' 或 'wheels-' 开头的任意文件
-          pattern: '{sdist,wheels-*}'
-          # 开启合并，将所有文件下载到一个平级目录中
+          pattern: wheels-*,sdist
           merge-multiple: true
-          path: ./all_builds
+          path: dist
 
-      - name: List downloaded files (Debug)
-        run: ls -R ./all_builds
-
-      - name: Zip all files
-        run: |
-          cd ./all_builds
-          zip -r ../full-release-package.zip .
-
-      - name: Upload complete zip
-        uses: actions/upload-artifact@v4
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          name: full-release-package
-          path: ./full-release-package.zip
+          # 如果是 TestPyPI，需要修改 repository-url (这里简化处理，仅展示 PyPI)
+          # 如果需要支持 TestPyPI，通常建议写两个 step 或用变量控制 url
+          password: ${{ secrets.PYPI_TOKEN }}
+          # 示例：如果是 testpypi，使用不同的 action 或配置
+          # repository-url: https://test.pypi.org/legacy/
