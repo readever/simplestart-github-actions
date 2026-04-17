@@ -2539,11 +2539,11 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_vuetify_prop __pyx_string_tab[76]
 #define __pyx_n_u_vuetify_start __pyx_string_tab[77]
 #define __pyx_n_u_vuetify_visible __pyx_string_tab[78]
-#define __pyx_kp_b_iso88591_A_4z_N_4_IQ_IQj_1Jd_a __pyx_string_tab[79]
-#define __pyx_kp_b_iso88591_A_F __pyx_string_tab[80]
-#define __pyx_kp_b_iso88591_A_IQfF_q __pyx_string_tab[81]
-#define __pyx_kp_b_iso88591_A_IQj_1Jd_a __pyx_string_tab[82]
-#define __pyx_kp_b_iso88591_A_Ja_q __pyx_string_tab[83]
+#define __pyx_kp_b_iso88591_A_F __pyx_string_tab[79]
+#define __pyx_kp_b_iso88591_A_IQfF_q __pyx_string_tab[80]
+#define __pyx_kp_b_iso88591_A_IQj_1Jd_a __pyx_string_tab[81]
+#define __pyx_kp_b_iso88591_A_Ja_q __pyx_string_tab[82]
+#define __pyx_kp_b_iso88591_A_QgQ_N_4_IQj_1Jd_a __pyx_string_tab[83]
 #define __pyx_kp_b_iso88591_A_R_t1 __pyx_string_tab[84]
 #define __pyx_kp_b_iso88591_A_R_wat9AQ __pyx_string_tab[85]
 #define __pyx_kp_b_iso88591_A_Ry_I_1D_6_Qha_q_a_9Cq_1Kwd_1_A __pyx_string_tab[86]
@@ -4311,7 +4311,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_16data(CYTHON
  * 
  *     @data.setter             # <<<<<<<<<<<<<<
  *     def data(self, value):
- *         if not isinstance(value, AutoUpdateDict):
+ *         #  AutoUpdateDict  _update_callback
 */
 
 /* Python wrapper */
@@ -4412,137 +4412,148 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_18data(CYTHON
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   int __pyx_t_2;
-  int __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  size_t __pyx_t_7;
+  size_t __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("data", 0);
   __Pyx_INCREF(__pyx_v_value);
 
-  /* "simplestart/ss_core/vuetify.py":65
- *     @data.setter
+  /* "simplestart/ss_core/vuetify.py":66
  *     def data(self, value):
- *         if not isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
- *             value = AutoUpdateDict(self._on_data_changed, value)
- * 
+ *         #  AutoUpdateDict  _update_callback
+ *         if isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
+ *             self._data = value
+ *         else:
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_value, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_value, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = (!__pyx_t_2);
-  if (__pyx_t_3) {
+  if (__pyx_t_2) {
+
+    /* "simplestart/ss_core/vuetify.py":67
+ *         #  AutoUpdateDict  _update_callback
+ *         if isinstance(value, AutoUpdateDict):
+ *             self._data = value             # <<<<<<<<<<<<<<
+ *         else:
+ *             #  AutoUpdateDict AutoUpdateDict
+*/
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_value) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
 
     /* "simplestart/ss_core/vuetify.py":66
  *     def data(self, value):
- *         if not isinstance(value, AutoUpdateDict):
- *             value = AutoUpdateDict(self._on_data_changed, value)             # <<<<<<<<<<<<<<
- * 
- *         self._data = value
+ *         #  AutoUpdateDict  _update_callback
+ *         if isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
+ *             self._data = value
+ *         else:
 */
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
+    goto __pyx_L3;
+  }
+
+  /* "simplestart/ss_core/vuetify.py":70
+ *         else:
+ *             #  AutoUpdateDict AutoUpdateDict
+ *             value = AutoUpdateDict(self._on_data_changed, value)             # <<<<<<<<<<<<<<
+ *             self._data = value
+ * 
+*/
+  /*else*/ {
+    __pyx_t_3 = NULL;
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_on_data_changed); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_on_data_changed); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 66, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = 1;
+    __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_4);
+    if (unlikely(PyMethod_Check(__pyx_t_4))) {
+      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+      assert(__pyx_t_3);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
-      __pyx_t_7 = 0;
+      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+      __pyx_t_6 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_t_6, __pyx_v_value};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_5, __pyx_v_value};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/vuetify.py":65
- *     @data.setter
- *     def data(self, value):
- *         if not isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
+    /* "simplestart/ss_core/vuetify.py":71
+ *             #  AutoUpdateDict AutoUpdateDict
  *             value = AutoUpdateDict(self._on_data_changed, value)
+ *             self._data = value             # <<<<<<<<<<<<<<
  * 
-*/
-  }
-
-  /* "simplestart/ss_core/vuetify.py":68
- *             value = AutoUpdateDict(self._on_data_changed, value)
- * 
- *         self._data = value             # <<<<<<<<<<<<<<
  *         self.resource["content"]["options"]["data"] = self._data
- *         update_cm(self.id)
 */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_value) < (0)) __PYX_ERR(0, 68, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_value) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
+  }
+  __pyx_L3:;
 
-  /* "simplestart/ss_core/vuetify.py":69
+  /* "simplestart/ss_core/vuetify.py":73
+ *             self._data = value
  * 
- *         self._data = value
  *         self.resource["content"]["options"]["data"] = self._data             # <<<<<<<<<<<<<<
  *         update_cm(self.id)
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_resource); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_resource); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_content); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_content); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 69, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_options); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 69, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1) < 0))) __PYX_ERR(0, 69, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1) < 0))) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/vuetify.py":70
- *         self._data = value
+  /* "simplestart/ss_core/vuetify.py":74
+ * 
  *         self.resource["content"]["options"]["data"] = self._data
  *         update_cm(self.id)             # <<<<<<<<<<<<<<
  * 
  *     @property
 */
-  __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_update_cm); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = 1;
+  __pyx_t_4 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_update_cm); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_6))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_6);
-    assert(__pyx_t_5);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-    __Pyx_INCREF(__pyx_t_5);
+  if (unlikely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
+    assert(__pyx_t_4);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
+    __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
-    __pyx_t_7 = 0;
+    __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+    __pyx_t_6 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4552,7 +4563,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_18data(CYTHON
  * 
  *     @data.setter             # <<<<<<<<<<<<<<
  *     def data(self, value):
- *         if not isinstance(value, AutoUpdateDict):
+ *         #  AutoUpdateDict  _update_callback
 */
 
   /* function exit code */
@@ -4560,9 +4571,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_18data(CYTHON
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("simplestart.ss_core.vuetify.vuetify.data", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -4572,7 +4583,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_18data(CYTHON
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/vuetify.py":72
+/* "simplestart/ss_core/vuetify.py":76
  *         update_cm(self.id)
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -4619,32 +4630,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 72, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 76, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 72, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 76, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "prop", 0) < (0)) __PYX_ERR(0, 72, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "prop", 0) < (0)) __PYX_ERR(0, 76, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("prop", 1, 1, 1, i); __PYX_ERR(0, 72, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("prop", 1, 1, 1, i); __PYX_ERR(0, 76, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 72, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 76, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("prop", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 72, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("prop", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 76, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4674,7 +4685,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_20prop(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("prop", 0);
 
-  /* "simplestart/ss_core/vuetify.py":74
+  /* "simplestart/ss_core/vuetify.py":78
  *     @property
  *     def prop(self):
  *         return self._data             # <<<<<<<<<<<<<<
@@ -4682,13 +4693,13 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_20prop(CYTHON
  *     @prop.setter
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/vuetify.py":72
+  /* "simplestart/ss_core/vuetify.py":76
  *         update_cm(self.id)
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -4707,12 +4718,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_20prop(CYTHON
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/vuetify.py":76
+/* "simplestart/ss_core/vuetify.py":80
  *         return self._data
  * 
  *     @prop.setter             # <<<<<<<<<<<<<<
  *     def prop(self, value):
- *         if not isinstance(value, AutoUpdateDict):
+ *         #  AutoUpdateDict  _update_callback
 */
 
 /* Python wrapper */
@@ -4755,39 +4766,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 76, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 80, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 76, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 80, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 76, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "prop", 0) < (0)) __PYX_ERR(0, 76, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "prop", 0) < (0)) __PYX_ERR(0, 80, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("prop", 1, 2, 2, i); __PYX_ERR(0, 76, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("prop", 1, 2, 2, i); __PYX_ERR(0, 80, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 76, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 76, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 80, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_value = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("prop", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 76, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("prop", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 80, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4813,144 +4824,155 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_22prop(CYTHON
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   int __pyx_t_2;
-  int __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  size_t __pyx_t_7;
+  size_t __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("prop", 0);
   __Pyx_INCREF(__pyx_v_value);
 
-  /* "simplestart/ss_core/vuetify.py":78
- *     @prop.setter
+  /* "simplestart/ss_core/vuetify.py":83
  *     def prop(self, value):
- *         if not isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
- *             value = AutoUpdateDict(self._on_data_changed, value)
- * 
+ *         #  AutoUpdateDict  _update_callback
+ *         if isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
+ *             self._data = value
+ *         else:
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_IsInstance(__pyx_v_value, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_2 = PyObject_IsInstance(__pyx_v_value, __pyx_t_1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = (!__pyx_t_2);
-  if (__pyx_t_3) {
+  if (__pyx_t_2) {
 
-    /* "simplestart/ss_core/vuetify.py":79
- *     def prop(self, value):
- *         if not isinstance(value, AutoUpdateDict):
- *             value = AutoUpdateDict(self._on_data_changed, value)             # <<<<<<<<<<<<<<
- * 
- *         self._data = value
+    /* "simplestart/ss_core/vuetify.py":84
+ *         #  AutoUpdateDict  _update_callback
+ *         if isinstance(value, AutoUpdateDict):
+ *             self._data = value             # <<<<<<<<<<<<<<
+ *         else:
+ *             #  AutoUpdateDict AutoUpdateDict
 */
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_value) < (0)) __PYX_ERR(0, 84, __pyx_L1_error)
+
+    /* "simplestart/ss_core/vuetify.py":83
+ *     def prop(self, value):
+ *         #  AutoUpdateDict  _update_callback
+ *         if isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
+ *             self._data = value
+ *         else:
+*/
+    goto __pyx_L3;
+  }
+
+  /* "simplestart/ss_core/vuetify.py":87
+ *         else:
+ *             #  AutoUpdateDict AutoUpdateDict
+ *             value = AutoUpdateDict(self._on_data_changed, value)             # <<<<<<<<<<<<<<
+ *             self._data = value
+ * 
+*/
+  /*else*/ {
+    __pyx_t_3 = NULL;
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_AutoUpdateDict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_on_data_changed); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_on_data_changed); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 79, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = 1;
+    __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_4);
+    if (unlikely(PyMethod_Check(__pyx_t_4))) {
+      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+      assert(__pyx_t_3);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
-      __pyx_t_7 = 0;
+      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+      __pyx_t_6 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_t_6, __pyx_v_value};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_5, __pyx_v_value};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/vuetify.py":78
- *     @prop.setter
- *     def prop(self, value):
- *         if not isinstance(value, AutoUpdateDict):             # <<<<<<<<<<<<<<
+    /* "simplestart/ss_core/vuetify.py":88
+ *             #  AutoUpdateDict AutoUpdateDict
  *             value = AutoUpdateDict(self._on_data_changed, value)
+ *             self._data = value             # <<<<<<<<<<<<<<
  * 
-*/
-  }
-
-  /* "simplestart/ss_core/vuetify.py":81
- *             value = AutoUpdateDict(self._on_data_changed, value)
- * 
- *         self._data = value             # <<<<<<<<<<<<<<
  *         self.resource["content"]["options"]["data"] = self._data
- *         update_cm(self.id)
 */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_value) < (0)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_value) < (0)) __PYX_ERR(0, 88, __pyx_L1_error)
+  }
+  __pyx_L3:;
 
-  /* "simplestart/ss_core/vuetify.py":82
+  /* "simplestart/ss_core/vuetify.py":90
+ *             self._data = value
  * 
- *         self._data = value
  *         self.resource["content"]["options"]["data"] = self._data             # <<<<<<<<<<<<<<
  *         update_cm(self.id)
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_resource); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_resource); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_content); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_content); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Dict_GetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_options); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1) < 0))) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1) < 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/vuetify.py":83
- *         self._data = value
+  /* "simplestart/ss_core/vuetify.py":91
+ * 
  *         self.resource["content"]["options"]["data"] = self._data
  *         update_cm(self.id)             # <<<<<<<<<<<<<<
 */
-  __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_update_cm); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = 1;
+  __pyx_t_4 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_update_cm); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_6))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_6);
-    assert(__pyx_t_5);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-    __Pyx_INCREF(__pyx_t_5);
+  if (unlikely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
+    assert(__pyx_t_4);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
+    __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
-    __pyx_t_7 = 0;
+    __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+    __pyx_t_6 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/vuetify.py":76
+  /* "simplestart/ss_core/vuetify.py":80
  *         return self._data
  * 
  *     @prop.setter             # <<<<<<<<<<<<<<
  *     def prop(self, value):
- *         if not isinstance(value, AutoUpdateDict):
+ *         #  AutoUpdateDict  _update_callback
 */
 
   /* function exit code */
@@ -4958,9 +4980,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7vuetify_7vuetify_22prop(CYTHON
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("simplestart.ss_core.vuetify.vuetify.prop", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -5657,7 +5679,7 @@ __Pyx_RefNannySetupContext("PyInit_vuetify", 0);
  * 
  *     @data.setter             # <<<<<<<<<<<<<<
  *     def data(self, value):
- *         if not isinstance(value, AutoUpdateDict):
+ *         #  AutoUpdateDict  _update_callback
 */
   __pyx_t_7 = NULL;
   __pyx_t_9 = PyObject_GetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_data);
@@ -5688,7 +5710,7 @@ __Pyx_RefNannySetupContext("PyInit_vuetify", 0);
   if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_4) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_core/vuetify.py":72
+  /* "simplestart/ss_core/vuetify.py":76
  *         update_cm(self.id)
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -5696,7 +5718,7 @@ __Pyx_RefNannySetupContext("PyInit_vuetify", 0);
  *         return self._data
 */
   __pyx_t_8 = NULL;
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7vuetify_7vuetify_21prop, 0, __pyx_mstate_global->__pyx_n_u_vuetify_prop, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_vuetify, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7vuetify_7vuetify_21prop, 0, __pyx_mstate_global->__pyx_n_u_vuetify_prop, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_vuetify, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_9);
@@ -5707,18 +5729,18 @@ __Pyx_RefNannySetupContext("PyInit_vuetify", 0);
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_property, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 72, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_prop, __pyx_t_4) < (0)) __PYX_ERR(0, 72, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_prop, __pyx_t_4) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_core/vuetify.py":76
+  /* "simplestart/ss_core/vuetify.py":80
  *         return self._data
  * 
  *     @prop.setter             # <<<<<<<<<<<<<<
  *     def prop(self, value):
- *         if not isinstance(value, AutoUpdateDict):
+ *         #  AutoUpdateDict  _update_callback
 */
   __pyx_t_9 = NULL;
   __pyx_t_8 = PyObject_GetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_prop);
@@ -5726,12 +5748,12 @@ __Pyx_RefNannySetupContext("PyInit_vuetify", 0);
     PyErr_Clear();
     __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_prop);
   }
-  if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_setter); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_setter); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7vuetify_7vuetify_23prop, 0, __pyx_mstate_global->__pyx_n_u_vuetify_prop, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_vuetify, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7vuetify_7vuetify_23prop, 0, __pyx_mstate_global->__pyx_n_u_vuetify_prop, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_vuetify, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
@@ -5743,10 +5765,10 @@ __Pyx_RefNannySetupContext("PyInit_vuetify", 0);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_prop, __pyx_t_4) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_prop, __pyx_t_4) < (0)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "simplestart/ss_core/vuetify.py":8
@@ -5883,25 +5905,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{1},{1},{29},{24},{28},{30},{25},{14},{12},{20},{13},{6},{18},{6},{5},{18},{2},{9},{13},{15},{7},{4},{5},{7},{3},{9},{6},{8},{7},{8},{8},{3},{5},{8},{2},{8},{13},{5},{6},{8},{4},{13},{10},{7},{8},{16},{7},{3},{11},{4},{8},{5},{12},{8},{4},{12},{10},{6},{27},{13},{5},{5},{8},{8},{5},{9},{5},{6},{7},{7},{17},{16},{16},{24},{12},{11},{12},{13},{15},{66},{13},{20},{32},{14},{14},{22},{174},{9},{13}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (750 bytes) */
-const char* const cstring = "BZh91AY&SY6\233\264\032\000\0006\377\377t^\274\030\345\301\245:\255=v\211\277\377\377\360@@@@@@@@@@@@@\000@\002\235\232\246\201\2044$)\341\rOL#A0CM\000\320\006\200\003F\215\240OCPi\240\223&\2053I6\t\030\200\320\000\000\000\0004\r\007\250p\320\311\246\206\231\032\032dd\031\031\032\031\001\211\243&\2002db\030h\212\000\000\000\000\000\000\000\000\000\000\006\226\007p<\017\004\241\005\014\0303\000\314\003\006\014\2751\t\006\010\220\240@%\014$HM\206B[c\213s\016!\351\225\014\244\301v#29\271N\367\354\t\375T()\370\000\2512e\266`\321?\322g\025x\347\364#\206\264\331\260 \213\242\353\356\023!&n\023H\320\302\310K\300\211\260\301fy\027}\212*l3\255\t\323\n\204\325\207\357\0242\347E\226F\232xR\327\343h<DEH\270C\332\250\215A@\004\020\004\215\244$\332\255%RQ@-\"\007?\202\033\372\265\030l\264\023\017kB'\311\362#3qP\212\371\222\355H\230\224WwZj\317\240;&\266?\3321:wg\016\210\325\024\007m]'\033\202\255\021\206\000\266m\361\271\200I\333\264\356\241\305\234\237\340\263\363\2223X\233R\313\010\356\026\254\026\345\220j\264\030A\020\327\263f\203I\002A\253a\025\272\007eA\"\253\302\005\005\260h\271\253F\301T\246\243\2104\220#!\244O\007b\301h&\343\203\315.`\345`N9\022\203\233\205\341\223@\3165*\r\002\221)\021\277\200\327\016\214\2714\314iA\274\002\304\231\301\005s\232\360\233\005\246B\300\010`QK)BQF|\232\305@{FP\025\202\351I\026\000fQm\274w\340(\260\327\"\t\340\367\3063fgB\033\204\r\274\346\364\306\3630\225\255\025B0\220d\004\203\210\277zJ\210\316\246\3017\031~M\251\245\211j\214\243\022=m\025()\014\314^\2109\033\246\361\\\024X\326\000\354\301Q\032\216\340\262N\333!-\213,\270\240LEr,N\246\330\236\311\256\016!\016\336\266l\020#\2526oI@U,t\035\250\2758\227'\034;5iF\313\226\357\010\204\023\327\004\371\020kF\314\263\205\023a\203b1,x\234\207\275dE\274\306\000C\320\016\340W\377\032\036\302\327\277\032\202\225\007\301\237\2267p\347\005\3724RC\032,\313\2274\307E\374\211#\331.=Z\373\317v\326\3164\351\2610\313\272>\256[\232\013X\306\377T\315\340\360\322\032q\261{UK\301\241\256n\033\266\254=\217\224Y\223""\265\243\315\345\246\274\3432IN\245\034\0358\202\3049$F\231\377\305\334\221N\024$\r\246\355\006\200";
-    PyObject *data = __Pyx_DecompressString(cstring, 750, 2);
+    const struct { const unsigned int length: 8; } index[] = {{1},{1},{29},{24},{28},{30},{25},{14},{12},{20},{13},{6},{18},{6},{5},{18},{2},{9},{13},{15},{7},{4},{5},{7},{3},{9},{6},{8},{7},{8},{8},{3},{5},{8},{2},{8},{13},{5},{6},{8},{4},{13},{10},{7},{8},{16},{7},{3},{11},{4},{8},{5},{12},{8},{4},{12},{10},{6},{27},{13},{5},{5},{8},{8},{5},{9},{5},{6},{7},{7},{17},{16},{16},{24},{12},{11},{12},{13},{15},{13},{20},{32},{14},{75},{14},{22},{174},{9},{13}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (771 bytes) */
+const char* const cstring = "BZh91AY&SY\001\236o\367\000\000:\177\377\365~\376\030\345\301\245:\255=v\211\277\377\377\340@@@@@@@@@@@@@\000@\000@\002\234\300U\014\006\246\246\231Q\351\2424\361Fi\244f\223L\236\246\232h2\014F\324\032\006\207\251\265\007\224\375Sh4\3214\2314 L\232d\324\364\206\206\200\000\003@\000\r\r\0312yC\215\r\003F\231\032h\323 10@\0004\006\200\323 0&@\224\022\247\246\232\217)\243CM\000\032\000\000\000\000\000\000\320\017\325 l\236\341d\262\221\"$EPU\005\024T\227\351'\202P\310\020P\204F\0225F L\214:\264n\350(\274=\216\232S,\2228\321Gt\202\316X\374\t}T()\304\001Rje\256@\315\035XW\251\317W\254\375zO^\260\201\354{-\240\221A#`\222\350R \240>2*\212q`X\342\216\026\254KZ\245\342\033\031o\257\337\203\037/\032\302\0139\340\023\256\034\214\347\204\207\241\026\007\205j\210\323\023\0009\000D\326BI\250\321U%\030\010p\250\247 S\213V\242+O\352G\006\265D\304\230\221\t4lcG\022\357f\311\036Q\242\366t\315\263\224A\223;\035Sbv\266\344\360Dj\t\203\260\260I>AFw\272\340[\026\340\311pIWz\020Q\001V\217\360\253\216\373\342\251/G\003\244 \026\214\026\305\210j3\227@\372'm\252Y\002)z\364\340Q\374\200a\330\310\2013\337\027J\364.\276\037v\360\363\025\320EB\271N\210:\270\323\022\300\305\346\223\034\302\267U\271\250\224\313\024N:^\225\213\345A\224M\343\0227.\031\336\010\313\177jCi\006\220\025\342\320\004\025\3314\3365\n\314J@\243\212\214\256\312\212\250\305j\227\345\250Bb\340\031\306\256\222+\201U\211\253\344\266\3415v\261\020J\350Z\370d\314\320B\033x\r\215\223ja\264\310%)5P\214\"\031\001 \341\026\351\212\2424\024\324%\001\203\201\2634p\226\240\3000\221\361g\241A7fc\t\240\307\266m\024\271EMP\020f\n\210\323\204\001d\225u:V\365Ua@\230E/\253\331\226\261l\213\203\220c\335\327-(\020\347\027\372|7\014\351\372\272\366g\313\221\322\224*\357RwU\233\020\r\240\345\004\0036c\006%\242\251\341\242JI.\251\270\231\205\345\326\\\376\030\301\206 1\003re\t\036!\377.#\203\235\3172,\221\353\346\223\354\200\316%\246\026!+\352\374\2230&\334\217;Q\331\372\354\255}\246\261\311 R\254L \036\273\326fsv!w\252i\335p\377\206\031\234.hv\000""\300\2717\r\267\3676>9Eh\257\323\207#\324\203f$\n\213\032\205u\320\261] \202\twP\350\322.\344\212p\241 \003<\337\356";
+    PyObject *data = __Pyx_DecompressString(cstring, 771, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (676 bytes) */
-const char* const cstring = "x\332}R\277k\0331\024\306\245\203i\035\214\233L\355\320\034\204\246\223\203!\004\322R\212i\010$-\241\016\r\035\002\025\212NNT\337\235\344\223\316\311u\352x\243F\2157\336\350\321c\306\2147z\364\237\322\247\373\225\320\206\036\272\247\367\276\367\364\364\351\223\372\037%\363\205G\245\302\241\352K\211\010\017i\237p_\360\200\006\352\261\244\217Y\360\030\256(`X\321\007\271\235*\2673\213\250b\343\270/bu\305\344&\014\237\273\221G7\357\023\303H\3613\341B\203\003F\324a\024\020\305x\360-\026\024\241\257\361\r\374\026G'\364F\235\3221v]\324\260\304B\320\300\3052\016\010\343@>\344\221b\001\225\304\303\226\200\265\304\003\000\261\000\251\020\023z\201\311\204\370\315\372\306AR\205\204CC(\016!\260e\020B\006xaT\030\344r\202\020\354g\215\2022Do\010R\027\205\005\266v\236a\317\302L!\370\306p\024\204.\251\202A\374+\034\270\036\r%\203\365,(*X!R\311\231\201\212rr\215\303K\211\220U\272\261\024\330\024\347\201\257\024\017\346X\204\014h\243\000\373\020\"\036\224\034\t\354rI].\254\204Rp\201\220\010\251\300!\265\016\027\366\247!\260\205\031\032N#\354\225\035B*y\024\022*\2517FHRUu\006\317\005\321#O\201\247,\375\177\357\277\272\312:,\230\025\0252\262\233U\257\003!x!\300\330J\005\t{\337\210\370 XD\013#gL\262\013\217V\335\352\367\321\210\375\000(\364\275\217K5\233\370/-j\334b\265\017\227\330\274?P\242\366\013\322uP\321\371=\\\265\237'\273\311/\3233\333io\331\331\320'\251\223\356\346\333\357\026\316\252\335I\216\364hYN\372g\332J_f\203\354x\356.\234e\273\247{zKc\333\241\223\034jG\177H[e`\213\307\3460\205\242n2\275\307\376\327\340X\343\252z\331^KN\363\356k\243\322\301\203\350:\305\251\312\366\347\303\371\250B\223\330\264V\355\027\332)\t\376H\007\351A\376\366\375b\357v\343vt{uW6\324\317\314\226\301\366\224\373\372\223\236.;\353z\240?C;7s\262\201]\377\306<5Cs\236\265\312\37253Z\265\327\365\236\3310#\343e\240\302ZrVn\362\305<1\375\254\225\275\232\037-\316\357\272\371w\234\343I>\231\345\263\353\222\303\231q\314\256\231\226\212lif\246\245&\335D\351A\355\354\201\326\316\037\333!\337\311";
-    PyObject *data = __Pyx_DecompressString(cstring, 676, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (684 bytes) */
+const char* const cstring = "x\332\205R\277o\323@\024&\010\241\024R\205\320\262\300@-U\300\224*R\025\251E\010ET\225ZPE**\206J\234\256\347Kz\304\3669\276sZo\214\036o\274\321\243\307\214\035;v\364\2301\177\002\177\002\357\374\253\025T\302\262\337\275\367\275\037\367\371\273\353~\024\314\365\035*$\016dW\010Dx@\273\204\273>\367\250'\357K\272\230y\367\341\222\002\206%\275\223\333*s[\263\220J6\212\272~$\317\231\330\200\327\345v\350\320\215\333\304 \224\374\304\267a\300\036#r?\364\210d\334\373\026\371\024\241\257\321%|\006GG\364R\036\323\021\266mT\263\304\276O=\033\213\310#\214\003\371\200\207\222yT\020\007\033\002\306\022\007\000\304<$\003L\350\031&\023\342\326\375\265\203\204\014\010\207\201P\034@`\312 \204\014\360\302(7\310\346\004!\330\317\030\te\210^\022$\317r\013l\315:\303\216\201\231D\360\214\340W\020\032S\t/q\317\261g;4\020\014\372\231\227W\260\\\244\2023\003\025\305\344\002\007c\201\220Q\272\266\024\330\344\377\003O!\036\254\221\0370\240\215<\354B\210\270Wp$\260\313\230\332\3347\022\n\237\373\010\371\001\365q@\215\303}\363\321\000\330\302\n\003\247!v\212\t\001\025<\014\010\025\324\031!$\250,'\203g\203\350\241#\301\223\206\376\277\347_\036e\025\346\314\362\n\021\232\315\312\333\201\020\334\020`l\244\202\2049oD\\\020,\244\271\0213&\330\231C\313i\325\375\250\305\276\003\344\372\336\306\205\232u\374\227\026\025n\260\312\207C\254\357\037(Q\3719\351*(\351\374\032,\233\255x_Y\352C\322(\202\0035T#\275\237X\213f;\236\336b?\223F\3622\355\245\207s\373\nr\035\325Q\233\n\027\371C\205\313\352\337\217\037\254\264\342]\250\037\353\341\242\365L\255\350\016`\253/\324Qb%\333\331\333]h.\340\377\r^4W\343\343\254\375Z\313\244w'\272Hp\"\323\235\371`>,\3218\322\215e\363\271\202f3\361G\322K\366\262w\357\257\372\327\353\327\303\353\363\233\202\233z\24275^6\237\306;\352\223\232.Zk\252\247>\3038;\265\322\236\351\177\243\037\351\201>M\033E\375\252\036.\233k\252\257\327\365P;\251\265\204\275N\212M\276\350\207\272\2336\322W\363\203\253\323\233v\366\035gx\222Mf\331\354\242\340p\242-\275\255\247\205\270\233\212\351i!o;\226""\252W9}\335\321\326\037\251 \341{";
+    PyObject *data = __Pyx_DecompressString(cstring, 684, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1185 bytes) */
-const char* const bytes = ".?simplestart.ss_core.componentsimplestart.ss_core.mainsimplestart.ss_core.templatesimplestart/ss_core/vuetify.pythis is module vuetify.pyAutoUpdateDictFunctionType__Pyx_PyDict_NextRefadd_componentappendasyncio.coroutinesclass_classcline_in_tracebackcmcomponentcomponent_strcontainer_stackcontentdata_data__doc__end__enter__exc_tbexc_typeexc_val__exit____func__getgetcmhandlersid__init___is_coroutineitemskwargs__main__main__metaclass____module__myprint__name___on_data_changedoptionspop__prepare__proppropertyprops__qualname__resourceself__set_name__setdefaultsettersimplestart.ss_core.vuetifyss_core.printstartsupertemplate__test__typesupdate_cmvaluevaluesvisiblevuetifyvuetify.__enter__vuetify.__exit__vuetify.__init__vuetify._on_data_changedvuetify.datavuetify.endvuetify.propvuetify.startvuetify.visible\200A\340\010\013\2104\210z\230\021\230'\240\021\330\014\024\220N\240!\2404\320':\270!\340\010\014\210I\220Q\330\010\014\210I\220Q\220j\240\001\240\032\2501\250J\260d\270!\330\010\021\220\021\220$\220a\200A\340\010\014\210F\220!\220=\240\001\200A\340\010\014\210I\220Q\220f\230F\240!\330\010\017\210q\200A\340\010\014\210I\220Q\220j\240\001\240\032\2501\250J\260d\270!\330\010\021\220\021\220$\220a\200A\340\010\014\210J\220a\330\010\017\210q\200A\330\010\r\210R\320\017\037\230t\2401\200A\330\010\r\210R\320\017\037\230w\240a\240t\2509\260A\260Q\200A\330\010\r\210R\210y\230\001\340\010\022\220!\330\010\014\210I\220^\2401\240D\320(;\2706\300\024\300Q\300h\310a\330\010\017\210q\220\n\230$\230a\340\010\013\2109\220C\220q\330\014\023\2201\220K\230w\240d\250!\2501\340\010\022\220&\230\004\230A\230[\250\001\330\010\017\210q\220\r\230Q\340\010\023\2206\230\024\230Q\230l\250!\340\010\r\210U\220!\330\010\014\210L\230\002\230.\250\001\250\033\260I\270[\310\017\320Wa\320ak\320kv\320vw\330\010\014\210I\220U\230!\2304\230q\340\010\014\210F\220$\220i\230q\240\001\200A\340\010\017\210t\2201\200A\340\010\017\210t\2206\230\021\230!";
+    #else /* compression: none (1194 bytes) */
+const char* const bytes = ".?simplestart.ss_core.componentsimplestart.ss_core.mainsimplestart.ss_core.templatesimplestart/ss_core/vuetify.pythis is module vuetify.pyAutoUpdateDictFunctionType__Pyx_PyDict_NextRefadd_componentappendasyncio.coroutinesclass_classcline_in_tracebackcmcomponentcomponent_strcontainer_stackcontentdata_data__doc__end__enter__exc_tbexc_typeexc_val__exit____func__getgetcmhandlersid__init___is_coroutineitemskwargs__main__main__metaclass____module__myprint__name___on_data_changedoptionspop__prepare__proppropertyprops__qualname__resourceself__set_name__setdefaultsettersimplestart.ss_core.vuetifyss_core.printstartsupertemplate__test__typesupdate_cmvaluevaluesvisiblevuetifyvuetify.__enter__vuetify.__exit__vuetify.__init__vuetify._on_data_changedvuetify.datavuetify.endvuetify.propvuetify.startvuetify.visible\200A\340\010\014\210F\220!\220=\240\001\200A\340\010\014\210I\220Q\220f\230F\240!\330\010\017\210q\200A\340\010\014\210I\220Q\220j\240\001\240\032\2501\250J\260d\270!\330\010\021\220\021\220$\220a\200A\340\010\014\210J\220a\330\010\017\210q\200A\360\006\000\t\014\210:\220Q\220g\230Q\330\014\020\220\t\230\021\360\006\000\r\025\220N\240!\2404\320':\270!\330\014\020\220\t\230\021\340\010\014\210I\220Q\220j\240\001\240\032\2501\250J\260d\270!\330\010\021\220\021\220$\220a\200A\330\010\r\210R\320\017\037\230t\2401\200A\330\010\r\210R\320\017\037\230w\240a\240t\2509\260A\260Q\200A\330\010\r\210R\210y\230\001\340\010\022\220!\330\010\014\210I\220^\2401\240D\320(;\2706\300\024\300Q\300h\310a\330\010\017\210q\220\n\230$\230a\340\010\013\2109\220C\220q\330\014\023\2201\220K\230w\240d\250!\2501\340\010\022\220&\230\004\230A\230[\250\001\330\010\017\210q\220\r\230Q\340\010\023\2206\230\024\230Q\230l\250!\340\010\r\210U\220!\330\010\014\210L\230\002\230.\250\001\250\033\260I\270[\310\017\320Wa\320ak\320kv\320vw\330\010\014\210I\220U\230!\2304\230q\340\010\014\210F\220$\220i\230q\240\001\200A\340\010\017\210t\2201\200A\340\010\017\210t\2206\230\021\230!";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -6029,17 +6051,17 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_vuetify_py, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_kp_b_iso88591_A_4z_N_4_IQ_IQj_1Jd_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_vuetify_py, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_kp_b_iso88591_A_QgQ_N_4_IQj_1Jd_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 72};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 76};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_vuetify_py, __pyx_mstate->__pyx_n_u_prop, __pyx_mstate->__pyx_kp_b_iso88591_A_t1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 76};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 80};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_vuetify_py, __pyx_mstate->__pyx_n_u_prop, __pyx_mstate->__pyx_kp_b_iso88591_A_4z_N_4_IQ_IQj_1Jd_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_vuetify_py, __pyx_mstate->__pyx_n_u_prop, __pyx_mstate->__pyx_kp_b_iso88591_A_QgQ_N_4_IQj_1Jd_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

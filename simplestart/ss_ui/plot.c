@@ -1542,7 +1542,7 @@ struct __pyx_obj_11simplestart_5ss_ui_4plot___pyx_scope_struct_1_genexpr {
 };
 
 
-/* "simplestart/ss_ui/plot.py":160
+/* "simplestart/ss_ui/plot.py":162
  *                     scatter_data.append([key, value])
  *             elif isinstance(data, (list, tuple)):
  *                 if all(isinstance(item, (list, tuple)) and len(item) == 2 for item in data):             # <<<<<<<<<<<<<<
@@ -2101,6 +2101,39 @@ static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject *k
 #define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
 #endif
 
+/* PyDictContains.proto */
+static CYTHON_INLINE int __Pyx_PyDict_ContainsTF(PyObject* item, PyObject* dict, int eq) {
+    int result = PyDict_Contains(dict, item);
+    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
+}
+
+/* PyObjectCall2Args.proto (used by PyObjectCallMethod1) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
+
+/* PyObjectCallMethod1.proto (used by append) */
+static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
+
+/* append.proto */
+static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x);
+
+/* DictGetItem.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
+#define __Pyx_PyObject_Dict_GetItem(obj, name)\
+    (likely(PyDict_CheckExact(obj)) ?\
+     __Pyx_PyDict_GetItem(obj, name) : PyObject_GetItem(obj, name))
+#else
+#define __Pyx_PyDict_GetItem(d, key) PyObject_GetItem(d, key)
+#define __Pyx_PyObject_Dict_GetItem(obj, name)  PyObject_GetItem(obj, name)
+#endif
+
+/* PyObject_Unicode.proto */
+#define __Pyx_PyObject_Unicode(obj)\
+    (likely(PyUnicode_CheckExact(obj)) ? __Pyx_NewRef(obj) : PyObject_Str(obj))
+
+/* py_dict_keys.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyDict_Keys(PyObject* d);
+
 /* PySequenceContains.proto */
 static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
     int result = PySequence_Contains(seq, item);
@@ -2307,9 +2340,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
 /* CalculateMetaclass.proto (used by Py3ClassCreate) */
 static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases);
 
-/* PyObjectCall2Args.proto (used by Py3ClassCreate) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
 /* PyObjectLookupSpecial.proto (used by Py3ClassCreate) */
 #if CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
 #define __Pyx_PyObject_LookupSpecialNoError(obj, attr_name)  __Pyx__PyObject_LookupSpecial(obj, attr_name, 0)
@@ -2455,9 +2485,6 @@ static CYTHON_INLINE PyObject *__Pyx_PyIter_Next_Plain(PyObject *iterator);
 #if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030A0000
 static PyObject *__Pyx_GetBuiltinNext_LimitedAPI(void);
 #endif
-
-/* PyObjectCallMethod1.proto (used by CoroutineBase) */
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
 
 /* ReturnWithStopIteration.proto (used by CoroutineBase) */
 static CYTHON_INLINE void __Pyx_ReturnWithStopIteration(PyObject* value, int async, int iternext);
@@ -2622,7 +2649,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_line(CYTHON_UNUSED Py
 static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_3bar_genexpr(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_genexpr_arg_0); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_2bar(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_data, PyObject *__pyx_v_x_label, PyObject *__pyx_v_y_label, PyObject *__pyx_v_title, PyObject *__pyx_v_color, PyObject *__pyx_v_width, PyObject *__pyx_v_height, PyObject *__pyx_v_grid, PyObject *__pyx_v_legend); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_7scatter_genexpr(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_genexpr_arg_0); /* proto */
-static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_data, PyObject *__pyx_v_x_label, PyObject *__pyx_v_y_label, PyObject *__pyx_v_title, PyObject *__pyx_v_color, PyObject *__pyx_v_width, PyObject *__pyx_v_height, PyObject *__pyx_v_grid, PyObject *__pyx_v_legend); /* proto */
+static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_data, PyObject *__pyx_v_x_label, PyObject *__pyx_v_y_label, PyObject *__pyx_v_title, PyObject *__pyx_v_color, PyObject *__pyx_v_width, PyObject *__pyx_v_height, PyObject *__pyx_v_grid, PyObject *__pyx_v_legend, CYTHON_UNUSED PyObject *__pyx_v_hue, PyObject *__pyx_v_hue_data); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_data, PyObject *__pyx_v_labels, PyObject *__pyx_v_values, PyObject *__pyx_v_title, PyObject *__pyx_v_width, PyObject *__pyx_v_height, PyObject *__pyx_v_legend); /* proto */
 static PyObject *__pyx_tp_new_11simplestart_5ss_ui_4plot___pyx_scope_struct__genexpr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_11simplestart_5ss_ui_4plot___pyx_scope_struct_1_genexpr(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2654,12 +2681,13 @@ typedef struct {
   PyTypeObject *__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_1_genexpr;
   PyTypeObject *__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
+  __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_keys;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
-  PyObject *__pyx_tuple[3];
+  PyObject *__pyx_tuple[4];
   PyObject *__pyx_codeobj_tab[7];
-  PyObject *__pyx_string_tab[106];
-  PyObject *__pyx_number_tab[2];
+  PyObject *__pyx_string_tab[123];
+  PyObject *__pyx_number_tab[5];
 /* #### Code section: module_state_contents ### */
 
 #if CYTHON_USE_FREELISTS
@@ -2725,112 +2753,132 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_0 __pyx_string_tab[0]
 #define __pyx_kp_u_400px __pyx_string_tab[1]
-#define __pyx_kp_u_50 __pyx_string_tab[2]
-#define __pyx_kp_u_55 __pyx_string_tab[3]
-#define __pyx_kp_u_60 __pyx_string_tab[4]
-#define __pyx_kp_u_800px __pyx_string_tab[5]
-#define __pyx_kp_u__2 __pyx_string_tab[6]
-#define __pyx_kp_u__3 __pyx_string_tab[7]
-#define __pyx_kp_u_a_br_b_c_d __pyx_string_tab[8]
-#define __pyx_kp_u_disable __pyx_string_tab[9]
-#define __pyx_kp_u_enable __pyx_string_tab[10]
-#define __pyx_kp_u_gc __pyx_string_tab[11]
-#define __pyx_kp_u_isenabled __pyx_string_tab[12]
-#define __pyx_kp_u_simplestart_ss_ui_echarts __pyx_string_tab[13]
-#define __pyx_kp_u_simplestart_ss_ui_plot_py __pyx_string_tab[14]
-#define __pyx_n_u_ __pyx_string_tab[15]
-#define __pyx_n_u_Plot __pyx_string_tab[16]
-#define __pyx_n_u_Plot_bar __pyx_string_tab[17]
-#define __pyx_n_u_Plot_bar_locals_genexpr __pyx_string_tab[18]
-#define __pyx_n_u_Plot_line __pyx_string_tab[19]
-#define __pyx_n_u_Plot_line_locals_genexpr __pyx_string_tab[20]
-#define __pyx_n_u_Plot_pie __pyx_string_tab[21]
-#define __pyx_n_u_Plot_scatter __pyx_string_tab[22]
-#define __pyx_n_u_Plot_scatter_locals_genexpr __pyx_string_tab[23]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[24]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[25]
-#define __pyx_n_u_axis __pyx_string_tab[26]
-#define __pyx_n_u_bar __pyx_string_tab[27]
-#define __pyx_n_u_bottom __pyx_string_tab[28]
-#define __pyx_n_u_category __pyx_string_tab[29]
-#define __pyx_n_u_center __pyx_string_tab[30]
-#define __pyx_n_u_class_getitem __pyx_string_tab[31]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[32]
-#define __pyx_n_u_close __pyx_string_tab[33]
-#define __pyx_n_u_color __pyx_string_tab[34]
-#define __pyx_n_u_data __pyx_string_tab[35]
-#define __pyx_n_u_doc __pyx_string_tab[36]
-#define __pyx_n_u_echarts __pyx_string_tab[37]
-#define __pyx_n_u_enumerate __pyx_string_tab[38]
-#define __pyx_n_u_formatter __pyx_string_tab[39]
-#define __pyx_n_u_func __pyx_string_tab[40]
-#define __pyx_n_u_genexpr __pyx_string_tab[41]
-#define __pyx_n_u_grid __pyx_string_tab[42]
-#define __pyx_n_u_height __pyx_string_tab[43]
-#define __pyx_n_u_i __pyx_string_tab[44]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[45]
-#define __pyx_n_u_item __pyx_string_tab[46]
-#define __pyx_n_u_itemStyle __pyx_string_tab[47]
-#define __pyx_n_u_items __pyx_string_tab[48]
-#define __pyx_n_u_key __pyx_string_tab[49]
-#define __pyx_n_u_keys __pyx_string_tab[50]
-#define __pyx_n_u_label __pyx_string_tab[51]
-#define __pyx_n_u_labels __pyx_string_tab[52]
-#define __pyx_n_u_left __pyx_string_tab[53]
-#define __pyx_n_u_legend __pyx_string_tab[54]
-#define __pyx_n_u_line __pyx_string_tab[55]
-#define __pyx_n_u_lineStyle __pyx_string_tab[56]
-#define __pyx_n_u_main __pyx_string_tab[57]
-#define __pyx_n_u_metaclass __pyx_string_tab[58]
-#define __pyx_n_u_min_len __pyx_string_tab[59]
-#define __pyx_n_u_module __pyx_string_tab[60]
-#define __pyx_n_u_name __pyx_string_tab[61]
-#define __pyx_n_u_name_2 __pyx_string_tab[62]
-#define __pyx_n_u_next __pyx_string_tab[63]
-#define __pyx_n_u_option __pyx_string_tab[64]
-#define __pyx_n_u_orient __pyx_string_tab[65]
-#define __pyx_n_u_pie __pyx_string_tab[66]
-#define __pyx_n_u_pie_data __pyx_string_tab[67]
-#define __pyx_n_u_plot __pyx_string_tab[68]
-#define __pyx_n_u_pop __pyx_string_tab[69]
-#define __pyx_n_u_prepare __pyx_string_tab[70]
-#define __pyx_n_u_qualname __pyx_string_tab[71]
-#define __pyx_n_u_radius __pyx_string_tab[72]
-#define __pyx_n_u_scatter __pyx_string_tab[73]
-#define __pyx_n_u_scatter_data __pyx_string_tab[74]
-#define __pyx_n_u_self __pyx_string_tab[75]
-#define __pyx_n_u_send __pyx_string_tab[76]
-#define __pyx_n_u_series __pyx_string_tab[77]
-#define __pyx_n_u_set_name __pyx_string_tab[78]
-#define __pyx_n_u_setdefault __pyx_string_tab[79]
-#define __pyx_n_u_show __pyx_string_tab[80]
-#define __pyx_n_u_simplestart_ss_ui_plot __pyx_string_tab[81]
-#define __pyx_n_u_smooth __pyx_string_tab[82]
-#define __pyx_n_u_test __pyx_string_tab[83]
-#define __pyx_n_u_text __pyx_string_tab[84]
-#define __pyx_n_u_throw __pyx_string_tab[85]
-#define __pyx_n_u_title __pyx_string_tab[86]
-#define __pyx_n_u_tooltip __pyx_string_tab[87]
-#define __pyx_n_u_trigger __pyx_string_tab[88]
-#define __pyx_n_u_type __pyx_string_tab[89]
-#define __pyx_n_u_value __pyx_string_tab[90]
-#define __pyx_n_u_values __pyx_string_tab[91]
-#define __pyx_n_u_vertical __pyx_string_tab[92]
-#define __pyx_n_u_width __pyx_string_tab[93]
-#define __pyx_n_u_x __pyx_string_tab[94]
-#define __pyx_n_u_xAxis __pyx_string_tab[95]
-#define __pyx_n_u_x_label __pyx_string_tab[96]
-#define __pyx_n_u_y __pyx_string_tab[97]
-#define __pyx_n_u_yAxis __pyx_string_tab[98]
-#define __pyx_n_u_y_label __pyx_string_tab[99]
-#define __pyx_n_u_zip __pyx_string_tab[100]
-#define __pyx_kp_b_iso88591_N_7_5_q_z_D_U_D_WA_1G6_7q_Qc_XQ __pyx_string_tab[101]
-#define __pyx_kp_b_iso88591_N_q_1_1_5_q_z_G9D_a_G2XWIQ_1G6_H __pyx_string_tab[102]
-#define __pyx_kp_b_iso88591_O88_nN_8_kQR_5_q_z_D_U_D_WA_1G6 __pyx_string_tab[103]
-#define __pyx_kp_b_iso88591_hhk_Q_Q_q_5_q_z_E_fA_q_a_1G6_7q __pyx_string_tab[104]
-#define __pyx_kp_b_iso88591_q __pyx_string_tab[105]
+#define __pyx_kp_u_4C72B0 __pyx_string_tab[2]
+#define __pyx_kp_u_50 __pyx_string_tab[3]
+#define __pyx_kp_u_55 __pyx_string_tab[4]
+#define __pyx_kp_u_55A868 __pyx_string_tab[5]
+#define __pyx_kp_u_60 __pyx_string_tab[6]
+#define __pyx_kp_u_800px __pyx_string_tab[7]
+#define __pyx_kp_u_DD8452 __pyx_string_tab[8]
+#define __pyx_kp_u__2 __pyx_string_tab[9]
+#define __pyx_kp_u__3 __pyx_string_tab[10]
+#define __pyx_kp_u_a_br_b_c_d __pyx_string_tab[11]
+#define __pyx_kp_u_disable __pyx_string_tab[12]
+#define __pyx_kp_u_enable __pyx_string_tab[13]
+#define __pyx_kp_u_gc __pyx_string_tab[14]
+#define __pyx_kp_u_isenabled __pyx_string_tab[15]
+#define __pyx_kp_u_simplestart_ss_ui_echarts __pyx_string_tab[16]
+#define __pyx_kp_u_simplestart_ss_ui_plot_py __pyx_string_tab[17]
+#define __pyx_n_u_ __pyx_string_tab[18]
+#define __pyx_n_u_Plot __pyx_string_tab[19]
+#define __pyx_n_u_Plot_bar __pyx_string_tab[20]
+#define __pyx_n_u_Plot_bar_locals_genexpr __pyx_string_tab[21]
+#define __pyx_n_u_Plot_line __pyx_string_tab[22]
+#define __pyx_n_u_Plot_line_locals_genexpr __pyx_string_tab[23]
+#define __pyx_n_u_Plot_pie __pyx_string_tab[24]
+#define __pyx_n_u_Plot_scatter __pyx_string_tab[25]
+#define __pyx_n_u_Plot_scatter_locals_genexpr __pyx_string_tab[26]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[27]
+#define __pyx_n_u_append __pyx_string_tab[28]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[29]
+#define __pyx_n_u_axis __pyx_string_tab[30]
+#define __pyx_n_u_axisLabel __pyx_string_tab[31]
+#define __pyx_n_u_bar __pyx_string_tab[32]
+#define __pyx_n_u_bottom __pyx_string_tab[33]
+#define __pyx_n_u_boundaryGap __pyx_string_tab[34]
+#define __pyx_n_u_categories __pyx_string_tab[35]
+#define __pyx_n_u_category __pyx_string_tab[36]
+#define __pyx_n_u_center __pyx_string_tab[37]
+#define __pyx_n_u_class_getitem __pyx_string_tab[38]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[39]
+#define __pyx_n_u_close __pyx_string_tab[40]
+#define __pyx_n_u_color __pyx_string_tab[41]
+#define __pyx_n_u_colors __pyx_string_tab[42]
+#define __pyx_n_u_data __pyx_string_tab[43]
+#define __pyx_n_u_doc __pyx_string_tab[44]
+#define __pyx_n_u_echarts __pyx_string_tab[45]
+#define __pyx_n_u_enumerate __pyx_string_tab[46]
+#define __pyx_n_u_formatter __pyx_string_tab[47]
+#define __pyx_n_u_func __pyx_string_tab[48]
+#define __pyx_n_u_genexpr __pyx_string_tab[49]
+#define __pyx_n_u_grid __pyx_string_tab[50]
+#define __pyx_n_u_height __pyx_string_tab[51]
+#define __pyx_n_u_hue __pyx_string_tab[52]
+#define __pyx_n_u_hue_data __pyx_string_tab[53]
+#define __pyx_n_u_i __pyx_string_tab[54]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[55]
+#define __pyx_n_u_item __pyx_string_tab[56]
+#define __pyx_n_u_itemStyle __pyx_string_tab[57]
+#define __pyx_n_u_items __pyx_string_tab[58]
+#define __pyx_n_u_key __pyx_string_tab[59]
+#define __pyx_n_u_keys __pyx_string_tab[60]
+#define __pyx_n_u_label __pyx_string_tab[61]
+#define __pyx_n_u_labels __pyx_string_tab[62]
+#define __pyx_n_u_left __pyx_string_tab[63]
+#define __pyx_n_u_legend __pyx_string_tab[64]
+#define __pyx_n_u_line __pyx_string_tab[65]
+#define __pyx_n_u_lineStyle __pyx_string_tab[66]
+#define __pyx_n_u_main __pyx_string_tab[67]
+#define __pyx_n_u_metaclass __pyx_string_tab[68]
+#define __pyx_n_u_middle __pyx_string_tab[69]
+#define __pyx_n_u_min_len __pyx_string_tab[70]
+#define __pyx_n_u_module __pyx_string_tab[71]
+#define __pyx_n_u_name __pyx_string_tab[72]
+#define __pyx_n_u_nameGap __pyx_string_tab[73]
+#define __pyx_n_u_nameLocation __pyx_string_tab[74]
+#define __pyx_n_u_nameRotate __pyx_string_tab[75]
+#define __pyx_n_u_name_2 __pyx_string_tab[76]
+#define __pyx_n_u_next __pyx_string_tab[77]
+#define __pyx_n_u_option __pyx_string_tab[78]
+#define __pyx_n_u_orient __pyx_string_tab[79]
+#define __pyx_n_u_pie __pyx_string_tab[80]
+#define __pyx_n_u_pie_data __pyx_string_tab[81]
+#define __pyx_n_u_plot __pyx_string_tab[82]
+#define __pyx_n_u_points __pyx_string_tab[83]
+#define __pyx_n_u_pop __pyx_string_tab[84]
+#define __pyx_n_u_prepare __pyx_string_tab[85]
+#define __pyx_n_u_qualname __pyx_string_tab[86]
+#define __pyx_n_u_radius __pyx_string_tab[87]
+#define __pyx_n_u_rotate __pyx_string_tab[88]
+#define __pyx_n_u_scale __pyx_string_tab[89]
+#define __pyx_n_u_scatter __pyx_string_tab[90]
+#define __pyx_n_u_scatter_data __pyx_string_tab[91]
+#define __pyx_n_u_self __pyx_string_tab[92]
+#define __pyx_n_u_send __pyx_string_tab[93]
+#define __pyx_n_u_series __pyx_string_tab[94]
+#define __pyx_n_u_set_name __pyx_string_tab[95]
+#define __pyx_n_u_setdefault __pyx_string_tab[96]
+#define __pyx_n_u_show __pyx_string_tab[97]
+#define __pyx_n_u_simplestart_ss_ui_plot __pyx_string_tab[98]
+#define __pyx_n_u_smooth __pyx_string_tab[99]
+#define __pyx_n_u_test __pyx_string_tab[100]
+#define __pyx_n_u_text __pyx_string_tab[101]
+#define __pyx_n_u_throw __pyx_string_tab[102]
+#define __pyx_n_u_title __pyx_string_tab[103]
+#define __pyx_n_u_tooltip __pyx_string_tab[104]
+#define __pyx_n_u_trigger __pyx_string_tab[105]
+#define __pyx_n_u_type __pyx_string_tab[106]
+#define __pyx_n_u_value __pyx_string_tab[107]
+#define __pyx_n_u_values __pyx_string_tab[108]
+#define __pyx_n_u_vertical __pyx_string_tab[109]
+#define __pyx_n_u_width __pyx_string_tab[110]
+#define __pyx_n_u_x __pyx_string_tab[111]
+#define __pyx_n_u_xAxis __pyx_string_tab[112]
+#define __pyx_n_u_x_label __pyx_string_tab[113]
+#define __pyx_n_u_y __pyx_string_tab[114]
+#define __pyx_n_u_yAxis __pyx_string_tab[115]
+#define __pyx_n_u_y_label __pyx_string_tab[116]
+#define __pyx_n_u_zip __pyx_string_tab[117]
+#define __pyx_kp_b_iso88591_N_7_5_q_z_D_U_D_WA_1G6_7q_Qc_XQ __pyx_string_tab[118]
+#define __pyx_kp_b_iso88591_N_q_1_1_5_q_z_G9D_a_G2XWIQ_1G6_H __pyx_string_tab[119]
+#define __pyx_kp_b_iso88591_O88_nN_8_kQR_5_q_z_D_U_D_WA_1G6 __pyx_string_tab[120]
+#define __pyx_kp_b_iso88591_hhk_Q_R_q_5_q_z_E_fA_q_a_1G6_7q __pyx_string_tab[121]
+#define __pyx_kp_b_iso88591_q __pyx_string_tab[122]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_1 __pyx_number_tab[1]
+#define __pyx_int_30 __pyx_number_tab[2]
+#define __pyx_int_40 __pyx_number_tab[3]
+#define __pyx_int_90 __pyx_number_tab[4]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2851,10 +2899,10 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_1_genexpr);
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr);
-  for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
+  for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<7; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<106; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<123; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<5; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2886,10 +2934,10 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_1_genexpr);
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr);
-  for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
+  for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<7; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<106; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<123; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<5; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -5069,7 +5117,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_2bar(CYTHON_UNUSED Py
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
- *                color=None, width="800px", height="400px", grid=True, legend=True):
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
  *         """
 */
 
@@ -5081,7 +5129,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_4plot_4Plot_4scatter, "\n        \345\210\233\345\273\272\346\225\243\347\202\271\345\233\276\n        \n        \345\217\202\346\225\260:\n        - x: x \350\275\264\346\225\260\346\215\256\n        - y: y \350\275\264\346\225\260\346\215\256\n        - data: \346\225\260\346\215\256\357\274\214\345\217\257\344\273\245\346\230\257\345\255\227\345\205\270\343\200\201\345\210\227\350\241\250\343\200\201NumPy \346\225\260\347\273\204\346\210\226 Pandas DataFrame\n        - x_label: x \350\275\264\346\240\207\347\255\276\n        - y_label: y \350\275\264\346\240\207\347\255\276\n        - title: \345\233\276\350\241\250\346\240\207\351\242\230\n        - color: \347\202\271\347\232\204\351\242\234\350\211\262\n        - width: \345\233\276\350\241\250\345\256\275\345\272\246\n        - height: \345\233\276\350\241\250\351\253\230\345\272\246\n        - grid: \346\230\257\345\220\246\346\230\276\347\244\272\347\275\221\346\240\274\n        - legend: \346\230\257\345\220\246\346\230\276\347\244\272\345\233\276\344\276\213\n        \n        \350\277\224\345\233\236:\n        - \345\233\276\350\241\250\347\273\204\344\273\266\345\257\271\350\261\241\n        ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_4plot_4Plot_4scatter, "\n        \345\210\233\345\273\272\346\225\243\347\202\271\345\233\276\n        \n        \345\217\202\346\225\260:\n        - x: x \350\275\264\346\225\260\346\215\256\n        - y: y \350\275\264\346\225\260\346\215\256\n        - data: \346\225\260\346\215\256\357\274\214\345\217\257\344\273\245\346\230\257\345\255\227\345\205\270\343\200\201\345\210\227\350\241\250\343\200\201NumPy \346\225\260\347\273\204\346\210\226 Pandas DataFrame\n        - x_label: x \350\275\264\346\240\207\347\255\276\n        - y_label: y \350\275\264\346\240\207\347\255\276\n        - title: \345\233\276\350\241\250\346\240\207\351\242\230\n        - color: \347\202\271\347\232\204\351\242\234\350\211\262\n        - width: \345\233\276\350\241\250\345\256\275\345\272\246\n        - height: \345\233\276\350\241\250\351\253\230\345\272\246\n        - grid: \346\230\257\345\220\246\346\230\276\347\244\272\347\275\221\346\240\274\n        - legend: \346\230\257\345\220\246\346\230\276\347\244\272\345\233\276\344\276\213\n        - hue: \345\210\206\347\261\273\345\217\230\351\207\217\345\220\215\347\247\260\357\274\210\347\224\250\344\272\216\345\233\276\344\276\213\357\274\211\n        - hue_data: \346\257\217\344\270\252\346\225\260\346\215\256\347\202\271\347\232\204\347\261\273\345\210\253\346\225\260\346\215\256\n        \n        \350\277\224\345\233\236:\n        - \345\233\276\350\241\250\347\273\204\344\273\266\345\257\271\350\261\241\n        ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_4plot_4Plot_5scatter = {"scatter", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_4plot_4Plot_5scatter, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_4plot_4Plot_4scatter};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_4plot_4Plot_5scatter(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -5102,11 +5150,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   PyObject *__pyx_v_height = 0;
   PyObject *__pyx_v_grid = 0;
   PyObject *__pyx_v_legend = 0;
+  CYTHON_UNUSED PyObject *__pyx_v_hue = 0;
+  PyObject *__pyx_v_hue_data = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+  PyObject* values[14] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5122,11 +5172,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_y,&__pyx_mstate_global->__pyx_n_u_data,&__pyx_mstate_global->__pyx_n_u_x_label,&__pyx_mstate_global->__pyx_n_u_y_label,&__pyx_mstate_global->__pyx_n_u_title,&__pyx_mstate_global->__pyx_n_u_color,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_height,&__pyx_mstate_global->__pyx_n_u_grid,&__pyx_mstate_global->__pyx_n_u_legend,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_x,&__pyx_mstate_global->__pyx_n_u_y,&__pyx_mstate_global->__pyx_n_u_data,&__pyx_mstate_global->__pyx_n_u_x_label,&__pyx_mstate_global->__pyx_n_u_y_label,&__pyx_mstate_global->__pyx_n_u_title,&__pyx_mstate_global->__pyx_n_u_color,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_height,&__pyx_mstate_global->__pyx_n_u_grid,&__pyx_mstate_global->__pyx_n_u_legend,&__pyx_mstate_global->__pyx_n_u_hue,&__pyx_mstate_global->__pyx_n_u_hue_data,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
     if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 130, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
+        case 14:
+        values[13] = __Pyx_ArgRef_FASTCALL(__pyx_args, 13);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 130, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 13:
+        values[12] = __Pyx_ArgRef_FASTCALL(__pyx_args, 12);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 130, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
         case 12:
         values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
         if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 130, __pyx_L3_error)
@@ -5190,7 +5248,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       /* "simplestart/ss_ui/plot.py":131
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,
- *                color=None, width="800px", height="400px", grid=True, legend=True):             # <<<<<<<<<<<<<<
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
@@ -5199,11 +5257,21 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!values[9]) values[9] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_kp_u_400px)));
       if (!values[10]) values[10] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_True)));
       if (!values[11]) values[11] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_True)));
+      if (!values[12]) values[12] = __Pyx_NewRef(((PyObject *)Py_None));
+      if (!values[13]) values[13] = __Pyx_NewRef(((PyObject *)Py_None));
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("scatter", 0, 1, 12, i); __PYX_ERR(0, 130, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("scatter", 0, 1, 14, i); __PYX_ERR(0, 130, __pyx_L3_error) }
       }
     } else {
       switch (__pyx_nargs) {
+        case 14:
+        values[13] = __Pyx_ArgRef_FASTCALL(__pyx_args, 13);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[13])) __PYX_ERR(0, 130, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case 13:
+        values[12] = __Pyx_ArgRef_FASTCALL(__pyx_args, 12);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[12])) __PYX_ERR(0, 130, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
         case 12:
         values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
         if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 130, __pyx_L3_error)
@@ -5259,7 +5327,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
- *                color=None, width="800px", height="400px", grid=True, legend=True):
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
  *         """
 */
       if (!values[1]) values[1] = __Pyx_NewRef(((PyObject *)Py_None));
@@ -5272,7 +5340,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       /* "simplestart/ss_ui/plot.py":131
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,
- *                color=None, width="800px", height="400px", grid=True, legend=True):             # <<<<<<<<<<<<<<
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
@@ -5281,6 +5349,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!values[9]) values[9] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_kp_u_400px)));
       if (!values[10]) values[10] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_True)));
       if (!values[11]) values[11] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_True)));
+      if (!values[12]) values[12] = __Pyx_NewRef(((PyObject *)Py_None));
+      if (!values[13]) values[13] = __Pyx_NewRef(((PyObject *)Py_None));
     }
     __pyx_v_self = values[0];
     __pyx_v_x = values[1];
@@ -5294,10 +5364,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     __pyx_v_height = values[9];
     __pyx_v_grid = values[10];
     __pyx_v_legend = values[11];
+    __pyx_v_hue = values[12];
+    __pyx_v_hue_data = values[13];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("scatter", 0, 1, 12, __pyx_nargs); __PYX_ERR(0, 130, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("scatter", 0, 1, 14, __pyx_nargs); __PYX_ERR(0, 130, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5308,13 +5380,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_y, __pyx_v_data, __pyx_v_x_label, __pyx_v_y_label, __pyx_v_title, __pyx_v_color, __pyx_v_width, __pyx_v_height, __pyx_v_grid, __pyx_v_legend);
+  __pyx_r = __pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_y, __pyx_v_data, __pyx_v_x_label, __pyx_v_y_label, __pyx_v_title, __pyx_v_color, __pyx_v_width, __pyx_v_height, __pyx_v_grid, __pyx_v_legend, __pyx_v_hue, __pyx_v_hue_data);
 
   /* "simplestart/ss_ui/plot.py":130
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
- *                color=None, width="800px", height="400px", grid=True, legend=True):
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
  *         """
 */
 
@@ -5327,7 +5399,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 }
 static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "simplestart/ss_ui/plot.py":160
+/* "simplestart/ss_ui/plot.py":162
  *                     scatter_data.append([key, value])
  *             elif isinstance(data, (list, tuple)):
  *                 if all(isinstance(item, (list, tuple)) and len(item) == 2 for item in data):             # <<<<<<<<<<<<<<
@@ -5347,7 +5419,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_7scatter_genexpr(CYTH
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 160, __pyx_L1_error)
+    __PYX_ERR(0, 162, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
@@ -5355,7 +5427,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_7scatter_genexpr(CYTH
   __Pyx_INCREF(__pyx_cur_scope->__pyx_genexpr_arg_0);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_genexpr_arg_0);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2]), (PyObject *) __pyx_cur_scope, __pyx_mstate_global->__pyx_n_u_genexpr, __pyx_mstate_global->__pyx_n_u_Plot_scatter_locals_genexpr, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_plot); if (unlikely(!gen)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2]), (PyObject *) __pyx_cur_scope, __pyx_mstate_global->__pyx_n_u_genexpr, __pyx_mstate_global->__pyx_n_u_Plot_scatter_locals_genexpr, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_plot); if (unlikely(!gen)) __PYX_ERR(0, 162, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -5395,16 +5467,16 @@ static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 160, __pyx_L1_error)
-  if (unlikely(!__pyx_cur_scope->__pyx_genexpr_arg_0)) { __Pyx_RaiseUnboundLocalError(".0"); __PYX_ERR(0, 160, __pyx_L1_error) }
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_genexpr_arg_0)) { __Pyx_RaiseUnboundLocalError(".0"); __PYX_ERR(0, 162, __pyx_L1_error) }
   if (likely(PyList_CheckExact(__pyx_cur_scope->__pyx_genexpr_arg_0)) || PyTuple_CheckExact(__pyx_cur_scope->__pyx_genexpr_arg_0)) {
     __pyx_t_1 = __pyx_cur_scope->__pyx_genexpr_arg_0; __Pyx_INCREF(__pyx_t_1);
     __pyx_t_2 = 0;
     __pyx_t_3 = NULL;
   } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_cur_scope->__pyx_genexpr_arg_0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_cur_scope->__pyx_genexpr_arg_0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_3 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_3)) {
@@ -5412,7 +5484,7 @@ static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 162, __pyx_L1_error)
           #endif
           if (__pyx_t_2 >= __pyx_temp) break;
         }
@@ -5422,7 +5494,7 @@ static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 162, __pyx_L1_error)
           #endif
           if (__pyx_t_2 >= __pyx_temp) break;
         }
@@ -5433,13 +5505,13 @@ static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(
         #endif
         ++__pyx_t_2;
       }
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
     } else {
       __pyx_t_4 = __pyx_t_3(__pyx_t_1);
       if (unlikely(!__pyx_t_4)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 160, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 162, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -5464,7 +5536,7 @@ static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(
       __pyx_t_5 = __pyx_t_6;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_8 = PyObject_Length(__pyx_cur_scope->__pyx_v_item); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_8 = PyObject_Length(__pyx_cur_scope->__pyx_v_item); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 162, __pyx_L1_error)
     __pyx_t_6 = (__pyx_t_8 == 2);
     __pyx_t_5 = __pyx_t_6;
     __pyx_L7_bool_binop_done:;
@@ -5510,17 +5582,22 @@ static PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2(
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
- *                color=None, width="800px", height="400px", grid=True, legend=True):
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
  *         """
 */
 
-static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_data, PyObject *__pyx_v_x_label, PyObject *__pyx_v_y_label, PyObject *__pyx_v_title, PyObject *__pyx_v_color, PyObject *__pyx_v_width, PyObject *__pyx_v_height, PyObject *__pyx_v_grid, PyObject *__pyx_v_legend) {
+static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_data, PyObject *__pyx_v_x_label, PyObject *__pyx_v_y_label, PyObject *__pyx_v_title, PyObject *__pyx_v_color, PyObject *__pyx_v_width, PyObject *__pyx_v_height, PyObject *__pyx_v_grid, PyObject *__pyx_v_legend, CYTHON_UNUSED PyObject *__pyx_v_hue, PyObject *__pyx_v_hue_data) {
   PyObject *__pyx_v_scatter_data = NULL;
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_v_i = NULL;
   Py_ssize_t __pyx_v_min_len;
   PyObject *__pyx_v_option = NULL;
+  PyObject *__pyx_v_colors = NULL;
+  PyObject *__pyx_v_categories = NULL;
+  PyObject *__pyx_v_category = NULL;
+  PyObject *__pyx_v_points = NULL;
+  PyObject *__pyx_v_series = NULL;
   PyObject *__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2 = 0;
   PyObject *__pyx_8genexpr7__pyx_v_item = NULL;
   PyObject *__pyx_r = NULL;
@@ -5539,24 +5616,26 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   size_t __pyx_t_12;
   PyObject *__pyx_t_13 = NULL;
   Py_ssize_t __pyx_t_14;
+  PyObject *__pyx_t_15 = NULL;
+  PyObject *__pyx_t_16 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("scatter", 0);
 
-  /* "simplestart/ss_ui/plot.py":152
+  /* "simplestart/ss_ui/plot.py":154
  *         """
  *         #
  *         scatter_data = []             # <<<<<<<<<<<<<<
  * 
  *         if data is not None:
 */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_scatter_data = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/plot.py":154
+  /* "simplestart/ss_ui/plot.py":156
  *         scatter_data = []
  * 
  *         if data is not None:             # <<<<<<<<<<<<<<
@@ -5566,7 +5645,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   __pyx_t_2 = (__pyx_v_data != Py_None);
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/plot.py":155
+    /* "simplestart/ss_ui/plot.py":157
  * 
  *         if data is not None:
  *             if isinstance(data, dict):             # <<<<<<<<<<<<<<
@@ -5576,7 +5655,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
     __pyx_t_2 = PyDict_Check(__pyx_v_data); 
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/plot.py":157
+      /* "simplestart/ss_ui/plot.py":159
  *             if isinstance(data, dict):
  *                 # : {x1: y1, x2: y2, ...}
  *                 for key, value in data.items():             # <<<<<<<<<<<<<<
@@ -5586,9 +5665,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       __pyx_t_3 = 0;
       if (unlikely(__pyx_v_data == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-        __PYX_ERR(0, 157, __pyx_L1_error)
+        __PYX_ERR(0, 159, __pyx_L1_error)
       }
-      __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_data, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 157, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_data, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 159, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_1);
       __pyx_t_1 = __pyx_t_6;
@@ -5596,7 +5675,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       while (1) {
         __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_4, &__pyx_t_3, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
         if (unlikely(__pyx_t_8 == 0)) break;
-        if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 157, __pyx_L1_error)
+        if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 159, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_6);
@@ -5604,27 +5683,27 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "simplestart/ss_ui/plot.py":158
+        /* "simplestart/ss_ui/plot.py":160
  *                 # : {x1: y1, x2: y2, ...}
  *                 for key, value in data.items():
  *                     scatter_data.append([key, value])             # <<<<<<<<<<<<<<
  *             elif isinstance(data, (list, tuple)):
  *                 if all(isinstance(item, (list, tuple)) and len(item) == 2 for item in data):
 */
-        __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 158, __pyx_L1_error)
+        __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 160, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_INCREF(__pyx_v_key);
         __Pyx_GIVEREF(__pyx_v_key);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_v_key) != (0)) __PYX_ERR(0, 158, __pyx_L1_error);
+        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_v_key) != (0)) __PYX_ERR(0, 160, __pyx_L1_error);
         __Pyx_INCREF(__pyx_v_value);
         __Pyx_GIVEREF(__pyx_v_value);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 1, __pyx_v_value) != (0)) __PYX_ERR(0, 158, __pyx_L1_error);
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 158, __pyx_L1_error)
+        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 1, __pyx_v_value) != (0)) __PYX_ERR(0, 160, __pyx_L1_error);
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 160, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "simplestart/ss_ui/plot.py":155
+      /* "simplestart/ss_ui/plot.py":157
  * 
  *         if data is not None:
  *             if isinstance(data, dict):             # <<<<<<<<<<<<<<
@@ -5634,7 +5713,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       goto __pyx_L4;
     }
 
-    /* "simplestart/ss_ui/plot.py":159
+    /* "simplestart/ss_ui/plot.py":161
  *                 for key, value in data.items():
  *                     scatter_data.append([key, value])
  *             elif isinstance(data, (list, tuple)):             # <<<<<<<<<<<<<<
@@ -5652,23 +5731,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/plot.py":160
+      /* "simplestart/ss_ui/plot.py":162
  *                     scatter_data.append([key, value])
  *             elif isinstance(data, (list, tuple)):
  *                 if all(isinstance(item, (list, tuple)) and len(item) == 2 for item in data):             # <<<<<<<<<<<<<<
  *                     # : [(x1, y1), (x2, y2), ...]
  *                     scatter_data = [list(item) for item in data]
 */
-      __pyx_t_1 = __pyx_pf_11simplestart_5ss_ui_4plot_4Plot_7scatter_genexpr(NULL, __pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+      __pyx_t_1 = __pyx_pf_11simplestart_5ss_ui_4plot_4Plot_7scatter_genexpr(NULL, __pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = __Pyx_Generator_GetInlinedResult(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 160, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_Generator_GetInlinedResult(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_7); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       if (__pyx_t_2) {
 
-        /* "simplestart/ss_ui/plot.py":162
+        /* "simplestart/ss_ui/plot.py":164
  *                 if all(isinstance(item, (list, tuple)) and len(item) == 2 for item in data):
  *                     # : [(x1, y1), (x2, y2), ...]
  *                     scatter_data = [list(item) for item in data]             # <<<<<<<<<<<<<<
@@ -5676,16 +5755,16 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
  *                     #  y x
 */
         { /* enter inner scope */
-          __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 162, __pyx_L12_error)
+          __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 164, __pyx_L12_error)
           __Pyx_GOTREF(__pyx_t_7);
           if (likely(PyList_CheckExact(__pyx_v_data)) || PyTuple_CheckExact(__pyx_v_data)) {
             __pyx_t_1 = __pyx_v_data; __Pyx_INCREF(__pyx_t_1);
             __pyx_t_4 = 0;
             __pyx_t_11 = NULL;
           } else {
-            __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L12_error)
+            __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L12_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 162, __pyx_L12_error)
+            __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 164, __pyx_L12_error)
           }
           for (;;) {
             if (likely(!__pyx_t_11)) {
@@ -5693,7 +5772,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
                 {
                   Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
                   #if !CYTHON_ASSUME_SAFE_SIZE
-                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 162, __pyx_L12_error)
+                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 164, __pyx_L12_error)
                   #endif
                   if (__pyx_t_4 >= __pyx_temp) break;
                 }
@@ -5703,7 +5782,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
                 {
                   Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
                   #if !CYTHON_ASSUME_SAFE_SIZE
-                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 162, __pyx_L12_error)
+                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 164, __pyx_L12_error)
                   #endif
                   if (__pyx_t_4 >= __pyx_temp) break;
                 }
@@ -5714,13 +5793,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
                 #endif
                 ++__pyx_t_4;
               }
-              if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 162, __pyx_L12_error)
+              if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 164, __pyx_L12_error)
             } else {
               __pyx_t_6 = __pyx_t_11(__pyx_t_1);
               if (unlikely(!__pyx_t_6)) {
                 PyObject* exc_type = PyErr_Occurred();
                 if (exc_type) {
-                  if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 162, __pyx_L12_error)
+                  if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 164, __pyx_L12_error)
                   PyErr_Clear();
                 }
                 break;
@@ -5729,9 +5808,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
             __Pyx_GOTREF(__pyx_t_6);
             __Pyx_XDECREF_SET(__pyx_8genexpr7__pyx_v_item, __pyx_t_6);
             __pyx_t_6 = 0;
-            __pyx_t_6 = PySequence_List(__pyx_8genexpr7__pyx_v_item); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 162, __pyx_L12_error)
+            __pyx_t_6 = PySequence_List(__pyx_8genexpr7__pyx_v_item); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 164, __pyx_L12_error)
             __Pyx_GOTREF(__pyx_t_6);
-            if (unlikely(__Pyx_ListComp_Append(__pyx_t_7, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 162, __pyx_L12_error)
+            if (unlikely(__Pyx_ListComp_Append(__pyx_t_7, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 164, __pyx_L12_error)
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           }
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5745,7 +5824,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         __Pyx_DECREF_SET(__pyx_v_scatter_data, ((PyObject*)__pyx_t_7));
         __pyx_t_7 = 0;
 
-        /* "simplestart/ss_ui/plot.py":160
+        /* "simplestart/ss_ui/plot.py":162
  *                     scatter_data.append([key, value])
  *             elif isinstance(data, (list, tuple)):
  *                 if all(isinstance(item, (list, tuple)) and len(item) == 2 for item in data):             # <<<<<<<<<<<<<<
@@ -5755,7 +5834,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         goto __pyx_L9;
       }
 
-      /* "simplestart/ss_ui/plot.py":165
+      /* "simplestart/ss_ui/plot.py":167
  *                 else:
  *                     #  y x
  *                     for i, value in enumerate(data):             # <<<<<<<<<<<<<<
@@ -5770,9 +5849,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
           __pyx_t_4 = 0;
           __pyx_t_11 = NULL;
         } else {
-          __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
+          __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 165, __pyx_L1_error)
+          __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 167, __pyx_L1_error)
         }
         for (;;) {
           if (likely(!__pyx_t_11)) {
@@ -5780,7 +5859,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
               {
                 Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
                 #if !CYTHON_ASSUME_SAFE_SIZE
-                if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 165, __pyx_L1_error)
+                if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 167, __pyx_L1_error)
                 #endif
                 if (__pyx_t_4 >= __pyx_temp) break;
               }
@@ -5790,7 +5869,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
               {
                 Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
                 #if !CYTHON_ASSUME_SAFE_SIZE
-                if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 165, __pyx_L1_error)
+                if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 167, __pyx_L1_error)
                 #endif
                 if (__pyx_t_4 >= __pyx_temp) break;
               }
@@ -5801,13 +5880,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
               #endif
               ++__pyx_t_4;
             }
-            if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 165, __pyx_L1_error)
+            if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L1_error)
           } else {
             __pyx_t_6 = __pyx_t_11(__pyx_t_1);
             if (unlikely(!__pyx_t_6)) {
               PyObject* exc_type = PyErr_Occurred();
               if (exc_type) {
-                if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 165, __pyx_L1_error)
+                if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 167, __pyx_L1_error)
                 PyErr_Clear();
               }
               break;
@@ -5818,31 +5897,31 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
           __pyx_t_6 = 0;
           __Pyx_INCREF(__pyx_t_7);
           __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_7);
-          __pyx_t_6 = __Pyx_PyLong_AddObjC(__pyx_t_7, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 165, __pyx_L1_error)
+          __pyx_t_6 = __Pyx_PyLong_AddObjC(__pyx_t_7, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 167, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_DECREF(__pyx_t_7);
           __pyx_t_7 = __pyx_t_6;
           __pyx_t_6 = 0;
 
-          /* "simplestart/ss_ui/plot.py":166
+          /* "simplestart/ss_ui/plot.py":168
  *                     #  y x
  *                     for i, value in enumerate(data):
  *                         scatter_data.append([i, value])             # <<<<<<<<<<<<<<
  *         elif x is not None and y is not None:
  *             #  x  y
 */
-          __pyx_t_6 = PyList_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 166, __pyx_L1_error)
+          __pyx_t_6 = PyList_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_INCREF(__pyx_v_i);
           __Pyx_GIVEREF(__pyx_v_i);
-          if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_v_i) != (0)) __PYX_ERR(0, 166, __pyx_L1_error);
+          if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_v_i) != (0)) __PYX_ERR(0, 168, __pyx_L1_error);
           __Pyx_INCREF(__pyx_v_value);
           __Pyx_GIVEREF(__pyx_v_value);
-          if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 1, __pyx_v_value) != (0)) __PYX_ERR(0, 166, __pyx_L1_error);
-          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_6); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 166, __pyx_L1_error)
+          if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 1, __pyx_v_value) != (0)) __PYX_ERR(0, 168, __pyx_L1_error);
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_6); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 168, __pyx_L1_error)
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-          /* "simplestart/ss_ui/plot.py":165
+          /* "simplestart/ss_ui/plot.py":167
  *                 else:
  *                     #  y x
  *                     for i, value in enumerate(data):             # <<<<<<<<<<<<<<
@@ -5855,7 +5934,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       }
       __pyx_L9:;
 
-      /* "simplestart/ss_ui/plot.py":159
+      /* "simplestart/ss_ui/plot.py":161
  *                 for key, value in data.items():
  *                     scatter_data.append([key, value])
  *             elif isinstance(data, (list, tuple)):             # <<<<<<<<<<<<<<
@@ -5865,7 +5944,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
     }
     __pyx_L4:;
 
-    /* "simplestart/ss_ui/plot.py":154
+    /* "simplestart/ss_ui/plot.py":156
  *         scatter_data = []
  * 
  *         if data is not None:             # <<<<<<<<<<<<<<
@@ -5875,7 +5954,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
     goto __pyx_L3;
   }
 
-  /* "simplestart/ss_ui/plot.py":167
+  /* "simplestart/ss_ui/plot.py":169
  *                     for i, value in enumerate(data):
  *                         scatter_data.append([i, value])
  *         elif x is not None and y is not None:             # <<<<<<<<<<<<<<
@@ -5893,19 +5972,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   __pyx_L20_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/plot.py":169
+    /* "simplestart/ss_ui/plot.py":171
  *         elif x is not None and y is not None:
  *             #  x  y
  *             if len(x) == len(y):             # <<<<<<<<<<<<<<
  *                 for i in range(len(x)):
  *                     scatter_data.append([x[i], y[i]])
 */
-    __pyx_t_4 = PyObject_Length(__pyx_v_x); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 169, __pyx_L1_error)
-    __pyx_t_3 = PyObject_Length(__pyx_v_y); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 169, __pyx_L1_error)
+    __pyx_t_4 = PyObject_Length(__pyx_v_x); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 171, __pyx_L1_error)
+    __pyx_t_3 = PyObject_Length(__pyx_v_y); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 171, __pyx_L1_error)
     __pyx_t_2 = (__pyx_t_4 == __pyx_t_3);
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/plot.py":170
+      /* "simplestart/ss_ui/plot.py":172
  *             #  x  y
  *             if len(x) == len(y):
  *                 for i in range(len(x)):             # <<<<<<<<<<<<<<
@@ -5913,8 +5992,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
  *             else:
 */
       __pyx_t_1 = NULL;
-      __pyx_t_3 = PyObject_Length(__pyx_v_x); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 170, __pyx_L1_error)
-      __pyx_t_6 = PyLong_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_3 = PyObject_Length(__pyx_v_x); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 172, __pyx_L1_error)
+      __pyx_t_6 = PyLong_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_12 = 1;
       {
@@ -5922,12 +6001,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)(&PyRange_Type), __pyx_callargs+__pyx_t_12, (2-__pyx_t_12) | (__pyx_t_12*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 170, __pyx_L1_error)
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 172, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
       }
-      __pyx_t_6 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_6 = PyObject_GetIter(__pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_6); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 170, __pyx_L1_error)
+      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_6); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 172, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       for (;;) {
         {
@@ -5935,7 +6014,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
           if (unlikely(!__pyx_t_7)) {
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
-              if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 170, __pyx_L1_error)
+              if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 172, __pyx_L1_error)
               PyErr_Clear();
             }
             break;
@@ -5945,29 +6024,29 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "simplestart/ss_ui/plot.py":171
+        /* "simplestart/ss_ui/plot.py":173
  *             if len(x) == len(y):
  *                 for i in range(len(x)):
  *                     scatter_data.append([x[i], y[i]])             # <<<<<<<<<<<<<<
  *             else:
  *                 #
 */
-        __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_x, __pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_x, __pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 173, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_y, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_y, __pyx_v_i); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_13 = PyList_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_13 = PyList_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 173, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_GIVEREF(__pyx_t_7);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_t_7) != (0)) __PYX_ERR(0, 171, __pyx_L1_error);
+        if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_t_7) != (0)) __PYX_ERR(0, 173, __pyx_L1_error);
         __Pyx_GIVEREF(__pyx_t_1);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 1, __pyx_t_1) != (0)) __PYX_ERR(0, 171, __pyx_L1_error);
+        if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 1, __pyx_t_1) != (0)) __PYX_ERR(0, 173, __pyx_L1_error);
         __pyx_t_7 = 0;
         __pyx_t_1 = 0;
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_13); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_13); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 173, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-        /* "simplestart/ss_ui/plot.py":170
+        /* "simplestart/ss_ui/plot.py":172
  *             #  x  y
  *             if len(x) == len(y):
  *                 for i in range(len(x)):             # <<<<<<<<<<<<<<
@@ -5977,7 +6056,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       }
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "simplestart/ss_ui/plot.py":169
+      /* "simplestart/ss_ui/plot.py":171
  *         elif x is not None and y is not None:
  *             #  x  y
  *             if len(x) == len(y):             # <<<<<<<<<<<<<<
@@ -5987,7 +6066,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       goto __pyx_L22;
     }
 
-    /* "simplestart/ss_ui/plot.py":174
+    /* "simplestart/ss_ui/plot.py":176
  *             else:
  *                 #
  *                 min_len = min(len(x), len(y))             # <<<<<<<<<<<<<<
@@ -5995,8 +6074,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
  *                     scatter_data.append([x[i], y[i]])
 */
     /*else*/ {
-      __pyx_t_3 = PyObject_Length(__pyx_v_y); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 174, __pyx_L1_error)
-      __pyx_t_4 = PyObject_Length(__pyx_v_x); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 174, __pyx_L1_error)
+      __pyx_t_3 = PyObject_Length(__pyx_v_y); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 176, __pyx_L1_error)
+      __pyx_t_4 = PyObject_Length(__pyx_v_x); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 176, __pyx_L1_error)
       __pyx_t_2 = (__pyx_t_3 < __pyx_t_4);
       if (__pyx_t_2) {
         __pyx_t_14 = __pyx_t_3;
@@ -6005,7 +6084,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
       }
       __pyx_v_min_len = __pyx_t_14;
 
-      /* "simplestart/ss_ui/plot.py":175
+      /* "simplestart/ss_ui/plot.py":177
  *                 #
  *                 min_len = min(len(x), len(y))
  *                 for i in range(min_len):             # <<<<<<<<<<<<<<
@@ -6013,7 +6092,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
  * 
 */
       __pyx_t_13 = NULL;
-      __pyx_t_1 = PyLong_FromSsize_t(__pyx_v_min_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_1 = PyLong_FromSsize_t(__pyx_v_min_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_12 = 1;
       {
@@ -6021,12 +6100,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         __pyx_t_6 = __Pyx_PyObject_FastCall((PyObject*)(&PyRange_Type), __pyx_callargs+__pyx_t_12, (2-__pyx_t_12) | (__pyx_t_12*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 175, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
       }
-      __pyx_t_1 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       for (;;) {
         {
@@ -6034,7 +6113,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
           if (unlikely(!__pyx_t_6)) {
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
-              if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 175, __pyx_L1_error)
+              if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 177, __pyx_L1_error)
               PyErr_Clear();
             }
             break;
@@ -6044,29 +6123,29 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
         __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "simplestart/ss_ui/plot.py":176
+        /* "simplestart/ss_ui/plot.py":178
  *                 min_len = min(len(x), len(y))
  *                 for i in range(min_len):
  *                     scatter_data.append([x[i], y[i]])             # <<<<<<<<<<<<<<
  * 
  *         #  ECharts
 */
-        __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_x, __pyx_v_i); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 176, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_x, __pyx_v_i); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_13 = __Pyx_PyObject_GetItem(__pyx_v_y, __pyx_v_i); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 176, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PyObject_GetItem(__pyx_v_y, __pyx_v_i); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
-        __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 176, __pyx_L1_error)
+        __pyx_t_7 = PyList_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 178, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_GIVEREF(__pyx_t_6);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 176, __pyx_L1_error);
+        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 178, __pyx_L1_error);
         __Pyx_GIVEREF(__pyx_t_13);
-        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 1, __pyx_t_13) != (0)) __PYX_ERR(0, 176, __pyx_L1_error);
+        if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 1, __pyx_t_13) != (0)) __PYX_ERR(0, 178, __pyx_L1_error);
         __pyx_t_6 = 0;
         __pyx_t_13 = 0;
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 176, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_scatter_data, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 178, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "simplestart/ss_ui/plot.py":175
+        /* "simplestart/ss_ui/plot.py":177
  *                 #
  *                 min_len = min(len(x), len(y))
  *                 for i in range(min_len):             # <<<<<<<<<<<<<<
@@ -6078,7 +6157,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
     }
     __pyx_L22:;
 
-    /* "simplestart/ss_ui/plot.py":167
+    /* "simplestart/ss_ui/plot.py":169
  *                     for i, value in enumerate(data):
  *                         scatter_data.append([i, value])
  *         elif x is not None and y is not None:             # <<<<<<<<<<<<<<
@@ -6088,64 +6167,21 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   }
   __pyx_L3:;
 
-  /* "simplestart/ss_ui/plot.py":180
+  /* "simplestart/ss_ui/plot.py":182
  *         #  ECharts
  *         option = {
  *             "title": {"text": title, "left": "center"} if title else {},             # <<<<<<<<<<<<<<
  *             "tooltip": {"trigger": "item"},
  *             "legend": {"data": [""], "bottom": "0"} if legend else {},
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_title); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 180, __pyx_L1_error)
-  if (__pyx_t_2) {
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 180, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_text, __pyx_v_title) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_n_u_center) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
-    __pyx_t_7 = __pyx_t_13;
-    __pyx_t_13 = 0;
-  } else {
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 180, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_7 = __pyx_t_13;
-    __pyx_t_13 = 0;
-  }
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_7) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-  /* "simplestart/ss_ui/plot.py":181
- *         option = {
- *             "title": {"text": title, "left": "center"} if title else {},
- *             "tooltip": {"trigger": "item"},             # <<<<<<<<<<<<<<
- *             "legend": {"data": [""], "bottom": "0"} if legend else {},
- *             "xAxis": {
-*/
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 181, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_trigger, __pyx_mstate_global->__pyx_n_u_item) < (0)) __PYX_ERR(0, 181, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_tooltip, __pyx_t_7) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-  /* "simplestart/ss_ui/plot.py":182
- *             "title": {"text": title, "left": "center"} if title else {},
- *             "tooltip": {"trigger": "item"},
- *             "legend": {"data": [""], "bottom": "0"} if legend else {},             # <<<<<<<<<<<<<<
- *             "xAxis": {
- *                 "type": "value",
-*/
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_legend); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_title); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 182, __pyx_L1_error)
   if (__pyx_t_2) {
     __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 182, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_);
-    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_);
-    if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_mstate_global->__pyx_n_u_) != (0)) __PYX_ERR(0, 182, __pyx_L1_error);
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_6) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_bottom, __pyx_mstate_global->__pyx_kp_u_0) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_text, __pyx_v_title) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_n_u_center) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
     __pyx_t_7 = __pyx_t_13;
     __pyx_t_13 = 0;
   } else {
@@ -6154,173 +6190,614 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
     __pyx_t_7 = __pyx_t_13;
     __pyx_t_13 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_legend, __pyx_t_7) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "simplestart/ss_ui/plot.py":183
+ *         option = {
+ *             "title": {"text": title, "left": "center"} if title else {},
+ *             "tooltip": {"trigger": "item"},             # <<<<<<<<<<<<<<
+ *             "legend": {"data": [""], "bottom": "0"} if legend else {},
+ *             "xAxis": {
+*/
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_trigger, __pyx_mstate_global->__pyx_n_u_item) < (0)) __PYX_ERR(0, 183, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_tooltip, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /* "simplestart/ss_ui/plot.py":184
+ *             "title": {"text": title, "left": "center"} if title else {},
+ *             "tooltip": {"trigger": "item"},
+ *             "legend": {"data": [""], "bottom": "0"} if legend else {},             # <<<<<<<<<<<<<<
+ *             "xAxis": {
+ *                 "type": "value",
+*/
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_legend); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (__pyx_t_2) {
+    __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_13);
+    __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_mstate_global->__pyx_n_u_) != (0)) __PYX_ERR(0, 184, __pyx_L1_error);
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_6) < (0)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_bottom, __pyx_mstate_global->__pyx_kp_u_0) < (0)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __pyx_t_7 = __pyx_t_13;
+    __pyx_t_13 = 0;
+  } else {
+    __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 184, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_13);
+    __pyx_t_7 = __pyx_t_13;
+    __pyx_t_13 = 0;
+  }
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_legend, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "simplestart/ss_ui/plot.py":186
  *             "legend": {"data": [""], "bottom": "0"} if legend else {},
  *             "xAxis": {
  *                 "type": "value",             # <<<<<<<<<<<<<<
- *                 "name": x_label
- *             },
+ *                 "name": x_label,
+ *                 "nameLocation": "middle",  #
 */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_value) < (0)) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_value) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/plot.py":185
+  /* "simplestart/ss_ui/plot.py":187
  *             "xAxis": {
  *                 "type": "value",
- *                 "name": x_label             # <<<<<<<<<<<<<<
+ *                 "name": x_label,             # <<<<<<<<<<<<<<
+ *                 "nameLocation": "middle",  #
+ *                 "nameGap": 30,  #
+*/
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_x_label) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_nameLocation, __pyx_mstate_global->__pyx_n_u_middle) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_nameGap, __pyx_mstate_global->__pyx_int_30) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/plot.py":190
+ *                 "nameLocation": "middle",  #
+ *                 "nameGap": 30,  #
+ *                 "scale": True,  # 0             # <<<<<<<<<<<<<<
+ *                 "boundaryGap": False
+ *             },
+*/
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_scale, Py_True) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/plot.py":191
+ *                 "nameGap": 30,  #
+ *                 "scale": True,  # 0
+ *                 "boundaryGap": False             # <<<<<<<<<<<<<<
  *             },
  *             "yAxis": {
 */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_x_label) < (0)) __PYX_ERR(0, 184, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_xAxis, __pyx_t_7) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_boundaryGap, Py_False) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_xAxis, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_ui/plot.py":188
+  /* "simplestart/ss_ui/plot.py":194
  *             },
  *             "yAxis": {
  *                 "type": "value",             # <<<<<<<<<<<<<<
- *                 "name": y_label
- *             },
+ *                 "name": y_label,
+ *                 "nameLocation": "middle",  #
 */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_value) < (0)) __PYX_ERR(0, 188, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_value) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/plot.py":189
+  /* "simplestart/ss_ui/plot.py":195
  *             "yAxis": {
  *                 "type": "value",
- *                 "name": y_label             # <<<<<<<<<<<<<<
+ *                 "name": y_label,             # <<<<<<<<<<<<<<
+ *                 "nameLocation": "middle",  #
+ *                 "nameGap": 40,  #
+*/
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_y_label) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_nameLocation, __pyx_mstate_global->__pyx_n_u_middle) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_nameGap, __pyx_mstate_global->__pyx_int_40) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_nameRotate, __pyx_mstate_global->__pyx_int_90) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/plot.py":200
+ *                 "nameRotate": 90,  # 90
+ *                 "axisLabel": {
+ *                     "rotate": 0  #             # <<<<<<<<<<<<<<
+ *                 },
+ *                 "scale": True,  # 0
+*/
+  __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_13);
+  if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_rotate, __pyx_mstate_global->__pyx_int_0) < (0)) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_axisLabel, __pyx_t_13) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+
+  /* "simplestart/ss_ui/plot.py":202
+ *                     "rotate": 0  #
+ *                 },
+ *                 "scale": True,  # 0             # <<<<<<<<<<<<<<
+ *                 "boundaryGap": False
+ *             },
+*/
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_scale, Py_True) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/plot.py":203
+ *                 },
+ *                 "scale": True,  # 0
+ *                 "boundaryGap": False             # <<<<<<<<<<<<<<
  *             },
  *             "grid": {"show": grid},
 */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_y_label) < (0)) __PYX_ERR(0, 188, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_yAxis, __pyx_t_7) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_boundaryGap, Py_False) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_yAxis, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_ui/plot.py":191
- *                 "name": y_label
+  /* "simplestart/ss_ui/plot.py":205
+ *                 "boundaryGap": False
  *             },
  *             "grid": {"show": grid},             # <<<<<<<<<<<<<<
- *             "series": [{
- *                 "name": "",
+ *             "series": []
+ *         }
 */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_show, __pyx_v_grid) < (0)) __PYX_ERR(0, 191, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_grid, __pyx_t_7) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_show, __pyx_v_grid) < (0)) __PYX_ERR(0, 205, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_grid, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_ui/plot.py":193
+  /* "simplestart/ss_ui/plot.py":206
+ *             },
  *             "grid": {"show": grid},
- *             "series": [{
+ *             "series": []             # <<<<<<<<<<<<<<
+ *         }
+ * 
+*/
+  __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_series, __pyx_t_7) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_v_option = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/plot.py":210
+ * 
+ *         #  hue_data
+ *         if hue_data is not None and len(hue_data) == len(scatter_data):             # <<<<<<<<<<<<<<
+ *             #
+ *             colors = ["#4C72B0", "#DD8452", "#55A868"]  # (Iris-setosa), (Iris-versicolor), (Iris-virginica)
+*/
+  __pyx_t_10 = (__pyx_v_hue_data != Py_None);
+  if (__pyx_t_10) {
+  } else {
+    __pyx_t_2 = __pyx_t_10;
+    goto __pyx_L30_bool_binop_done;
+  }
+  __pyx_t_14 = PyObject_Length(__pyx_v_hue_data); if (unlikely(__pyx_t_14 == ((Py_ssize_t)-1))) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyList_GET_SIZE(__pyx_v_scatter_data); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_10 = (__pyx_t_14 == __pyx_t_3);
+  __pyx_t_2 = __pyx_t_10;
+  __pyx_L30_bool_binop_done:;
+  if (__pyx_t_2) {
+
+    /* "simplestart/ss_ui/plot.py":212
+ *         if hue_data is not None and len(hue_data) == len(scatter_data):
+ *             #
+ *             colors = ["#4C72B0", "#DD8452", "#55A868"]  # (Iris-setosa), (Iris-versicolor), (Iris-virginica)             # <<<<<<<<<<<<<<
+ * 
+ *             #
+*/
+    __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_4C72B0);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_kp_u_4C72B0);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_mstate_global->__pyx_kp_u_4C72B0) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_DD8452);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_kp_u_DD8452);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 1, __pyx_mstate_global->__pyx_kp_u_DD8452) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_55A868);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_kp_u_55A868);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 2, __pyx_mstate_global->__pyx_kp_u_55A868) != (0)) __PYX_ERR(0, 212, __pyx_L1_error);
+    __pyx_v_colors = ((PyObject*)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "simplestart/ss_ui/plot.py":215
+ * 
+ *             #
+ *             categories = {}  #  ->             # <<<<<<<<<<<<<<
+ *             for i, category in enumerate(hue_data):
+ *                 if category not in categories:
+*/
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_v_categories = ((PyObject*)__pyx_t_1);
+    __pyx_t_1 = 0;
+
+    /* "simplestart/ss_ui/plot.py":216
+ *             #
+ *             categories = {}  #  ->
+ *             for i, category in enumerate(hue_data):             # <<<<<<<<<<<<<<
+ *                 if category not in categories:
+ *                     categories[category] = []
+*/
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
+    __pyx_t_1 = __pyx_mstate_global->__pyx_int_0;
+    if (likely(PyList_CheckExact(__pyx_v_hue_data)) || PyTuple_CheckExact(__pyx_v_hue_data)) {
+      __pyx_t_7 = __pyx_v_hue_data; __Pyx_INCREF(__pyx_t_7);
+      __pyx_t_3 = 0;
+      __pyx_t_11 = NULL;
+    } else {
+      __pyx_t_3 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_v_hue_data); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 216, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_7); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 216, __pyx_L1_error)
+    }
+    for (;;) {
+      if (likely(!__pyx_t_11)) {
+        if (likely(PyList_CheckExact(__pyx_t_7))) {
+          {
+            Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_7);
+            #if !CYTHON_ASSUME_SAFE_SIZE
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+            #endif
+            if (__pyx_t_3 >= __pyx_temp) break;
+          }
+          __pyx_t_13 = __Pyx_PyList_GetItemRefFast(__pyx_t_7, __pyx_t_3, __Pyx_ReferenceSharing_OwnStrongReference);
+          ++__pyx_t_3;
+        } else {
+          {
+            Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_7);
+            #if !CYTHON_ASSUME_SAFE_SIZE
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+            #endif
+            if (__pyx_t_3 >= __pyx_temp) break;
+          }
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_13 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_7, __pyx_t_3));
+          #else
+          __pyx_t_13 = __Pyx_PySequence_ITEM(__pyx_t_7, __pyx_t_3);
+          #endif
+          ++__pyx_t_3;
+        }
+        if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 216, __pyx_L1_error)
+      } else {
+        __pyx_t_13 = __pyx_t_11(__pyx_t_7);
+        if (unlikely(!__pyx_t_13)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 216, __pyx_L1_error)
+            PyErr_Clear();
+          }
+          break;
+        }
+      }
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_XDECREF_SET(__pyx_v_category, __pyx_t_13);
+      __pyx_t_13 = 0;
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_1);
+      __pyx_t_13 = __Pyx_PyLong_AddObjC(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 216, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_DECREF(__pyx_t_1);
+      __pyx_t_1 = __pyx_t_13;
+      __pyx_t_13 = 0;
+
+      /* "simplestart/ss_ui/plot.py":217
+ *             categories = {}  #  ->
+ *             for i, category in enumerate(hue_data):
+ *                 if category not in categories:             # <<<<<<<<<<<<<<
+ *                     categories[category] = []
+ *                 categories[category].append(scatter_data[i])
+*/
+      __pyx_t_2 = (__Pyx_PyDict_ContainsTF(__pyx_v_category, __pyx_v_categories, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 217, __pyx_L1_error)
+      if (__pyx_t_2) {
+
+        /* "simplestart/ss_ui/plot.py":218
+ *             for i, category in enumerate(hue_data):
+ *                 if category not in categories:
+ *                     categories[category] = []             # <<<<<<<<<<<<<<
+ *                 categories[category].append(scatter_data[i])
+ * 
+*/
+        __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 218, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_13);
+        if (unlikely((PyDict_SetItem(__pyx_v_categories, __pyx_v_category, __pyx_t_13) < 0))) __PYX_ERR(0, 218, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+
+        /* "simplestart/ss_ui/plot.py":217
+ *             categories = {}  #  ->
+ *             for i, category in enumerate(hue_data):
+ *                 if category not in categories:             # <<<<<<<<<<<<<<
+ *                     categories[category] = []
+ *                 categories[category].append(scatter_data[i])
+*/
+      }
+
+      /* "simplestart/ss_ui/plot.py":219
+ *                 if category not in categories:
+ *                     categories[category] = []
+ *                 categories[category].append(scatter_data[i])             # <<<<<<<<<<<<<<
+ * 
+ *             #
+*/
+      __pyx_t_13 = __Pyx_PyDict_GetItem(__pyx_v_categories, __pyx_v_category); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 219, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_v_scatter_data, __pyx_v_i); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 219, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_9 = __Pyx_PyObject_Append(__pyx_t_13, __pyx_t_6); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 219, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+      /* "simplestart/ss_ui/plot.py":216
+ *             #
+ *             categories = {}  #  ->
+ *             for i, category in enumerate(hue_data):             # <<<<<<<<<<<<<<
+ *                 if category not in categories:
+ *                     categories[category] = []
+*/
+    }
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_ui/plot.py":222
+ * 
+ *             #
+ *             for i, (category, points) in enumerate(categories.items()):             # <<<<<<<<<<<<<<
+ *                 series = {
+ *                     "name": str(category),
+*/
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
+    __pyx_t_1 = __pyx_mstate_global->__pyx_int_0;
+    __pyx_t_3 = 0;
+    __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_categories, 1, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_14), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_XDECREF(__pyx_t_7);
+    __pyx_t_7 = __pyx_t_6;
+    __pyx_t_6 = 0;
+    while (1) {
+      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_7, __pyx_t_14, &__pyx_t_3, &__pyx_t_6, &__pyx_t_13, NULL, __pyx_t_5);
+      if (unlikely(__pyx_t_8 == 0)) break;
+      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 222, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_XDECREF_SET(__pyx_v_category, __pyx_t_6);
+      __pyx_t_6 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_points, __pyx_t_13);
+      __pyx_t_13 = 0;
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_1);
+      __pyx_t_13 = __Pyx_PyLong_AddObjC(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 222, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __Pyx_DECREF(__pyx_t_1);
+      __pyx_t_1 = __pyx_t_13;
+      __pyx_t_13 = 0;
+
+      /* "simplestart/ss_ui/plot.py":224
+ *             for i, (category, points) in enumerate(categories.items()):
+ *                 series = {
+ *                     "name": str(category),             # <<<<<<<<<<<<<<
+ *                     "type": "scatter",
+ *                     "data": points,
+*/
+      __pyx_t_13 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 224, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_6 = __Pyx_PyObject_Unicode(__pyx_v_category); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 224, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_name, __pyx_t_6) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_scatter) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
+
+      /* "simplestart/ss_ui/plot.py":226
+ *                     "name": str(category),
+ *                     "type": "scatter",
+ *                     "data": points,             # <<<<<<<<<<<<<<
+ *                     "itemStyle": {"color": colors[i % len(colors)]}
+ *                 }
+*/
+      if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_data, __pyx_v_points) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
+
+      /* "simplestart/ss_ui/plot.py":227
+ *                     "type": "scatter",
+ *                     "data": points,
+ *                     "itemStyle": {"color": colors[i % len(colors)]}             # <<<<<<<<<<<<<<
+ *                 }
+ *                 option["series"].append(series)
+*/
+      __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_4 = __Pyx_PyList_GET_SIZE(__pyx_v_colors); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_15 = PyLong_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_15);
+      __pyx_t_16 = PyNumber_Remainder(__pyx_v_i, __pyx_t_15); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_16);
+      __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+      __pyx_t_15 = __Pyx_PyObject_GetItem(__pyx_v_colors, __pyx_t_16); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_15);
+      __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_15) < (0)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+      if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_itemStyle, __pyx_t_6) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_series, ((PyObject*)__pyx_t_13));
+      __pyx_t_13 = 0;
+
+      /* "simplestart/ss_ui/plot.py":229
+ *                     "itemStyle": {"color": colors[i % len(colors)]}
+ *                 }
+ *                 option["series"].append(series)             # <<<<<<<<<<<<<<
+ * 
+ *             #
+*/
+      __pyx_t_13 = __Pyx_PyDict_GetItem(__pyx_v_option, __pyx_mstate_global->__pyx_n_u_series); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 229, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_9 = __Pyx_PyObject_Append(__pyx_t_13, __pyx_v_series); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 229, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_ui/plot.py":232
+ * 
+ *             #
+ *             if legend:             # <<<<<<<<<<<<<<
+ *                 option["legend"]["data"] = list(categories.keys())
+ *         else:
+*/
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_legend); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 232, __pyx_L1_error)
+    if (__pyx_t_2) {
+
+      /* "simplestart/ss_ui/plot.py":233
+ *             #
+ *             if legend:
+ *                 option["legend"]["data"] = list(categories.keys())             # <<<<<<<<<<<<<<
+ *         else:
+ *             #
+*/
+      __pyx_t_1 = __Pyx_PyDict_Keys(__pyx_v_categories); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_7 = __Pyx_PySequence_ListKeepNew(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_option, __pyx_mstate_global->__pyx_n_u_legend); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_7) < 0))) __PYX_ERR(0, 233, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+      /* "simplestart/ss_ui/plot.py":232
+ * 
+ *             #
+ *             if legend:             # <<<<<<<<<<<<<<
+ *                 option["legend"]["data"] = list(categories.keys())
+ *         else:
+*/
+    }
+
+    /* "simplestart/ss_ui/plot.py":210
+ * 
+ *         #  hue_data
+ *         if hue_data is not None and len(hue_data) == len(scatter_data):             # <<<<<<<<<<<<<<
+ *             #
+ *             colors = ["#4C72B0", "#DD8452", "#55A868"]  # (Iris-setosa), (Iris-versicolor), (Iris-virginica)
+*/
+    goto __pyx_L29;
+  }
+
+  /* "simplestart/ss_ui/plot.py":236
+ *         else:
+ *             #
+ *             series = {             # <<<<<<<<<<<<<<
+ *                 "name": "",
+ *                 "type": "scatter",
+*/
+  /*else*/ {
+
+    /* "simplestart/ss_ui/plot.py":237
+ *             #
+ *             series = {
  *                 "name": "",             # <<<<<<<<<<<<<<
  *                 "type": "scatter",
  *                 "data": scatter_data,
 */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 193, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_) < (0)) __PYX_ERR(0, 193, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_scatter) < (0)) __PYX_ERR(0, 193, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_scatter) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/plot.py":195
+    /* "simplestart/ss_ui/plot.py":239
  *                 "name": "",
  *                 "type": "scatter",
  *                 "data": scatter_data,             # <<<<<<<<<<<<<<
  *                 "itemStyle": {"color": color} if color else {}
- *             }]
+ *             }
 */
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_data, __pyx_v_scatter_data) < (0)) __PYX_ERR(0, 193, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_data, __pyx_v_scatter_data) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/plot.py":196
+    /* "simplestart/ss_ui/plot.py":240
  *                 "type": "scatter",
  *                 "data": scatter_data,
  *                 "itemStyle": {"color": color} if color else {}             # <<<<<<<<<<<<<<
- *             }]
- *         }
+ *             }
+ *             option["series"].append(series)
 */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_color); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 196, __pyx_L1_error)
-  if (__pyx_t_2) {
-    __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 196, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_color, __pyx_v_color) < (0)) __PYX_ERR(0, 196, __pyx_L1_error)
-    __pyx_t_13 = __pyx_t_6;
-    __pyx_t_6 = 0;
-  } else {
-    __pyx_t_6 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 196, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_13 = __pyx_t_6;
-    __pyx_t_6 = 0;
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_color); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
+    if (__pyx_t_2) {
+      __pyx_t_13 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_color, __pyx_v_color) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_1 = __pyx_t_13;
+      __pyx_t_13 = 0;
+    } else {
+      __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_13);
+      __pyx_t_1 = __pyx_t_13;
+      __pyx_t_13 = 0;
+    }
+    if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_itemStyle, __pyx_t_1) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_series = ((PyObject*)__pyx_t_7);
+    __pyx_t_7 = 0;
+
+    /* "simplestart/ss_ui/plot.py":242
+ *                 "itemStyle": {"color": color} if color else {}
+ *             }
+ *             option["series"].append(series)             # <<<<<<<<<<<<<<
+ * 
+ *         return echarts(option=option, width=width, height=height)
+*/
+    __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_option, __pyx_mstate_global->__pyx_n_u_series); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_9 = __Pyx_PyObject_Append(__pyx_t_7, __pyx_v_series); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_itemStyle, __pyx_t_13) < (0)) __PYX_ERR(0, 193, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+  __pyx_L29:;
 
-  /* "simplestart/ss_ui/plot.py":192
- *             },
- *             "grid": {"show": grid},
- *             "series": [{             # <<<<<<<<<<<<<<
- *                 "name": "",
- *                 "type": "scatter",
-*/
-  __pyx_t_13 = PyList_New(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 192, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_13);
-  __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_t_7) != (0)) __PYX_ERR(0, 192, __pyx_L1_error);
-  __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_series, __pyx_t_13) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_v_option = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/plot.py":200
- *         }
+  /* "simplestart/ss_ui/plot.py":244
+ *             option["series"].append(series)
  * 
  *         return echarts(option=option, width=width, height=height)             # <<<<<<<<<<<<<<
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_13 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_echarts); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_1 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_echarts); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 244, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_13);
   __pyx_t_12 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_7);
-    assert(__pyx_t_13);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
-    __Pyx_INCREF(__pyx_t_13);
+  if (unlikely(PyMethod_Check(__pyx_t_13))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_13);
+    assert(__pyx_t_1);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_13);
+    __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_13, __pyx__function);
     __pyx_t_12 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_13, NULL};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 200, __pyx_L1_error)
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_1, NULL};
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 244, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_option, __pyx_v_option, __pyx_t_6, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 200, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_width, __pyx_v_width, __pyx_t_6, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 200, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_height, __pyx_v_height, __pyx_t_6, __pyx_callargs+1, 2) < (0)) __PYX_ERR(0, 200, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_12, (1-__pyx_t_12) | (__pyx_t_12*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
-    __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_option, __pyx_v_option, __pyx_t_6, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 244, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_width, __pyx_v_width, __pyx_t_6, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 244, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_height, __pyx_v_height, __pyx_t_6, __pyx_callargs+1, 2) < (0)) __PYX_ERR(0, 244, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_13, __pyx_callargs+__pyx_t_12, (1-__pyx_t_12) | (__pyx_t_12*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 244, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
   }
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_7;
+  __pyx_t_7 = 0;
   goto __pyx_L0;
 
   /* "simplestart/ss_ui/plot.py":130
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
- *                color=None, width="800px", height="400px", grid=True, legend=True):
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
  *         """
 */
 
@@ -6330,6 +6807,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_13);
+  __Pyx_XDECREF(__pyx_t_15);
+  __Pyx_XDECREF(__pyx_t_16);
   __Pyx_AddTraceback("simplestart.ss_ui.plot.Plot.scatter", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -6338,6 +6817,11 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_v_value);
   __Pyx_XDECREF(__pyx_v_i);
   __Pyx_XDECREF(__pyx_v_option);
+  __Pyx_XDECREF(__pyx_v_colors);
+  __Pyx_XDECREF(__pyx_v_categories);
+  __Pyx_XDECREF(__pyx_v_category);
+  __Pyx_XDECREF(__pyx_v_points);
+  __Pyx_XDECREF(__pyx_v_series);
   __Pyx_XDECREF(__pyx_gb_11simplestart_5ss_ui_4plot_4Plot_7scatter_2generator2);
   __Pyx_XDECREF(__pyx_8genexpr7__pyx_v_item);
   __Pyx_XGIVEREF(__pyx_r);
@@ -6345,7 +6829,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_4scatter(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/plot.py":202
+/* "simplestart/ss_ui/plot.py":246
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,             # <<<<<<<<<<<<<<
@@ -6400,46 +6884,46 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_data,&__pyx_mstate_global->__pyx_n_u_labels,&__pyx_mstate_global->__pyx_n_u_values,&__pyx_mstate_global->__pyx_n_u_title,&__pyx_mstate_global->__pyx_n_u_width,&__pyx_mstate_global->__pyx_n_u_height,&__pyx_mstate_global->__pyx_n_u_legend,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 202, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 246, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "pie", 0) < (0)) __PYX_ERR(0, 202, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "pie", 0) < (0)) __PYX_ERR(0, 246, __pyx_L3_error)
       if (!values[1]) values[1] = __Pyx_NewRef(((PyObject *)Py_None));
       if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
       if (!values[3]) values[3] = __Pyx_NewRef(((PyObject *)Py_None));
@@ -6447,7 +6931,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!values[5]) values[5] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_kp_u_800px)));
       if (!values[6]) values[6] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_kp_u_400px)));
 
-      /* "simplestart/ss_ui/plot.py":203
+      /* "simplestart/ss_ui/plot.py":247
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,
  *             width="800px", height="400px", legend=True):             # <<<<<<<<<<<<<<
@@ -6456,46 +6940,46 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[7]) values[7] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_True)));
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("pie", 0, 1, 8, i); __PYX_ERR(0, 202, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("pie", 0, 1, 8, i); __PYX_ERR(0, 246, __pyx_L3_error) }
       }
     } else {
       switch (__pyx_nargs) {
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 202, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 246, __pyx_L3_error)
         break;
         default: goto __pyx_L5_argtuple_error;
       }
 
-      /* "simplestart/ss_ui/plot.py":202
+      /* "simplestart/ss_ui/plot.py":246
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,             # <<<<<<<<<<<<<<
@@ -6521,7 +7005,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pie", 0, 1, 8, __pyx_nargs); __PYX_ERR(0, 202, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pie", 0, 1, 8, __pyx_nargs); __PYX_ERR(0, 246, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6570,19 +7054,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("pie", 0);
 
-  /* "simplestart/ss_ui/plot.py":220
+  /* "simplestart/ss_ui/plot.py":264
  *         """
  *         #
  *         pie_data = []             # <<<<<<<<<<<<<<
  *         if data is not None:
  *             if isinstance(data, dict):
 */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_pie_data = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/plot.py":221
+  /* "simplestart/ss_ui/plot.py":265
  *         #
  *         pie_data = []
  *         if data is not None:             # <<<<<<<<<<<<<<
@@ -6592,7 +7076,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
   __pyx_t_2 = (__pyx_v_data != Py_None);
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/plot.py":222
+    /* "simplestart/ss_ui/plot.py":266
  *         pie_data = []
  *         if data is not None:
  *             if isinstance(data, dict):             # <<<<<<<<<<<<<<
@@ -6602,7 +7086,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
     __pyx_t_2 = PyDict_Check(__pyx_v_data); 
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/plot.py":223
+      /* "simplestart/ss_ui/plot.py":267
  *         if data is not None:
  *             if isinstance(data, dict):
  *                 for label, value in data.items():             # <<<<<<<<<<<<<<
@@ -6612,9 +7096,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       __pyx_t_3 = 0;
       if (unlikely(__pyx_v_data == Py_None)) {
         PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-        __PYX_ERR(0, 223, __pyx_L1_error)
+        __PYX_ERR(0, 267, __pyx_L1_error)
       }
-      __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_data, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 223, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_dict_iterator(__pyx_v_data, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_4), (&__pyx_t_5)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 267, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_1);
       __pyx_t_1 = __pyx_t_6;
@@ -6622,7 +7106,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       while (1) {
         __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_4, &__pyx_t_3, &__pyx_t_6, &__pyx_t_7, NULL, __pyx_t_5);
         if (unlikely(__pyx_t_8 == 0)) break;
-        if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 223, __pyx_L1_error)
+        if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 267, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_XDECREF_SET(__pyx_v_label, __pyx_t_6);
@@ -6630,23 +7114,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
         __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "simplestart/ss_ui/plot.py":224
+        /* "simplestart/ss_ui/plot.py":268
  *             if isinstance(data, dict):
  *                 for label, value in data.items():
  *                     pie_data.append({"name": label, "value": value})             # <<<<<<<<<<<<<<
  *             elif isinstance(data, (list, tuple)):
  *                 for item in data:
 */
-        __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 224, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 268, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_label) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
-        if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_value) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pie_data, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 224, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_label) < (0)) __PYX_ERR(0, 268, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_value) < (0)) __PYX_ERR(0, 268, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pie_data, __pyx_t_7); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 268, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "simplestart/ss_ui/plot.py":222
+      /* "simplestart/ss_ui/plot.py":266
  *         pie_data = []
  *         if data is not None:
  *             if isinstance(data, dict):             # <<<<<<<<<<<<<<
@@ -6656,7 +7140,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       goto __pyx_L4;
     }
 
-    /* "simplestart/ss_ui/plot.py":225
+    /* "simplestart/ss_ui/plot.py":269
  *                 for label, value in data.items():
  *                     pie_data.append({"name": label, "value": value})
  *             elif isinstance(data, (list, tuple)):             # <<<<<<<<<<<<<<
@@ -6674,7 +7158,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/plot.py":226
+      /* "simplestart/ss_ui/plot.py":270
  *                     pie_data.append({"name": label, "value": value})
  *             elif isinstance(data, (list, tuple)):
  *                 for item in data:             # <<<<<<<<<<<<<<
@@ -6686,9 +7170,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
         __pyx_t_4 = 0;
         __pyx_t_11 = NULL;
       } else {
-        __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+        __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 226, __pyx_L1_error)
+        __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 270, __pyx_L1_error)
       }
       for (;;) {
         if (likely(!__pyx_t_11)) {
@@ -6696,7 +7180,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
             {
               Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
               #if !CYTHON_ASSUME_SAFE_SIZE
-              if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 226, __pyx_L1_error)
+              if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 270, __pyx_L1_error)
               #endif
               if (__pyx_t_4 >= __pyx_temp) break;
             }
@@ -6706,7 +7190,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
             {
               Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
               #if !CYTHON_ASSUME_SAFE_SIZE
-              if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 226, __pyx_L1_error)
+              if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 270, __pyx_L1_error)
               #endif
               if (__pyx_t_4 >= __pyx_temp) break;
             }
@@ -6717,13 +7201,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
             #endif
             ++__pyx_t_4;
           }
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 226, __pyx_L1_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 270, __pyx_L1_error)
         } else {
           __pyx_t_7 = __pyx_t_11(__pyx_t_1);
           if (unlikely(!__pyx_t_7)) {
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
-              if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 226, __pyx_L1_error)
+              if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 270, __pyx_L1_error)
               PyErr_Clear();
             }
             break;
@@ -6733,7 +7217,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
         __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_7);
         __pyx_t_7 = 0;
 
-        /* "simplestart/ss_ui/plot.py":227
+        /* "simplestart/ss_ui/plot.py":271
  *             elif isinstance(data, (list, tuple)):
  *                 for item in data:
  *                     if isinstance(item, dict) and "name" in item and "value" in item:             # <<<<<<<<<<<<<<
@@ -6746,27 +7230,27 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
           __pyx_t_2 = __pyx_t_10;
           goto __pyx_L12_bool_binop_done;
         }
-        __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_n_u_name, __pyx_v_item, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 227, __pyx_L1_error)
+        __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_n_u_name, __pyx_v_item, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
         if (__pyx_t_10) {
         } else {
           __pyx_t_2 = __pyx_t_10;
           goto __pyx_L12_bool_binop_done;
         }
-        __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_n_u_value, __pyx_v_item, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 227, __pyx_L1_error)
+        __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_n_u_value, __pyx_v_item, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
         __pyx_t_2 = __pyx_t_10;
         __pyx_L12_bool_binop_done:;
         if (__pyx_t_2) {
 
-          /* "simplestart/ss_ui/plot.py":228
+          /* "simplestart/ss_ui/plot.py":272
  *                 for item in data:
  *                     if isinstance(item, dict) and "name" in item and "value" in item:
  *                         pie_data.append(item)             # <<<<<<<<<<<<<<
  *         elif labels and values:
  *             #  data  None  labels  values
 */
-          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pie_data, __pyx_v_item); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 228, __pyx_L1_error)
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pie_data, __pyx_v_item); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 272, __pyx_L1_error)
 
-          /* "simplestart/ss_ui/plot.py":227
+          /* "simplestart/ss_ui/plot.py":271
  *             elif isinstance(data, (list, tuple)):
  *                 for item in data:
  *                     if isinstance(item, dict) and "name" in item and "value" in item:             # <<<<<<<<<<<<<<
@@ -6775,7 +7259,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
 */
         }
 
-        /* "simplestart/ss_ui/plot.py":226
+        /* "simplestart/ss_ui/plot.py":270
  *                     pie_data.append({"name": label, "value": value})
  *             elif isinstance(data, (list, tuple)):
  *                 for item in data:             # <<<<<<<<<<<<<<
@@ -6785,7 +7269,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "simplestart/ss_ui/plot.py":225
+      /* "simplestart/ss_ui/plot.py":269
  *                 for label, value in data.items():
  *                     pie_data.append({"name": label, "value": value})
  *             elif isinstance(data, (list, tuple)):             # <<<<<<<<<<<<<<
@@ -6795,7 +7279,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
     }
     __pyx_L4:;
 
-    /* "simplestart/ss_ui/plot.py":221
+    /* "simplestart/ss_ui/plot.py":265
  *         #
  *         pie_data = []
  *         if data is not None:             # <<<<<<<<<<<<<<
@@ -6805,25 +7289,25 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
     goto __pyx_L3;
   }
 
-  /* "simplestart/ss_ui/plot.py":229
+  /* "simplestart/ss_ui/plot.py":273
  *                     if isinstance(item, dict) and "name" in item and "value" in item:
  *                         pie_data.append(item)
  *         elif labels and values:             # <<<<<<<<<<<<<<
  *             #  data  None  labels  values
  *             for label, value in zip(labels, values):
 */
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_v_labels); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_v_labels); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 273, __pyx_L1_error)
   if (__pyx_t_10) {
   } else {
     __pyx_t_2 = __pyx_t_10;
     goto __pyx_L16_bool_binop_done;
   }
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_v_values); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_v_values); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 273, __pyx_L1_error)
   __pyx_t_2 = __pyx_t_10;
   __pyx_L16_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/plot.py":231
+    /* "simplestart/ss_ui/plot.py":275
  *         elif labels and values:
  *             #  data  None  labels  values
  *             for label, value in zip(labels, values):             # <<<<<<<<<<<<<<
@@ -6836,7 +7320,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_v_labels, __pyx_v_values};
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_zip, __pyx_callargs+__pyx_t_12, (3-__pyx_t_12) | (__pyx_t_12*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
@@ -6844,9 +7328,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       __pyx_t_4 = 0;
       __pyx_t_11 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
+      __pyx_t_4 = -1; __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 275, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_7); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 231, __pyx_L1_error)
+      __pyx_t_11 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_7); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 275, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
@@ -6855,7 +7339,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_7);
             #if !CYTHON_ASSUME_SAFE_SIZE
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 231, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 275, __pyx_L1_error)
             #endif
             if (__pyx_t_4 >= __pyx_temp) break;
           }
@@ -6865,7 +7349,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_7);
             #if !CYTHON_ASSUME_SAFE_SIZE
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 231, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 275, __pyx_L1_error)
             #endif
             if (__pyx_t_4 >= __pyx_temp) break;
           }
@@ -6876,13 +7360,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
           #endif
           ++__pyx_t_4;
         }
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
       } else {
         __pyx_t_1 = __pyx_t_11(__pyx_t_7);
         if (unlikely(!__pyx_t_1)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
-            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 231, __pyx_L1_error)
+            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 275, __pyx_L1_error)
             PyErr_Clear();
           }
           break;
@@ -6895,7 +7379,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 231, __pyx_L1_error)
+          __PYX_ERR(0, 275, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -6905,22 +7389,22 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
           __Pyx_INCREF(__pyx_t_13);
         } else {
           __pyx_t_6 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 231, __pyx_L1_error)
+          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 275, __pyx_L1_error)
           __Pyx_XGOTREF(__pyx_t_6);
           __pyx_t_13 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 231, __pyx_L1_error)
+          if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 275, __pyx_L1_error)
           __Pyx_XGOTREF(__pyx_t_13);
         }
         #else
-        __pyx_t_6 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 231, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 275, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_13 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 231, __pyx_L1_error)
+        __pyx_t_13 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 275, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_14 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 231, __pyx_L1_error)
+        __pyx_t_14 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 275, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_15 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_14);
@@ -6928,7 +7412,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
         __Pyx_GOTREF(__pyx_t_6);
         index = 1; __pyx_t_13 = __pyx_t_15(__pyx_t_14); if (unlikely(!__pyx_t_13)) goto __pyx_L20_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_13);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 2) < (0)) __PYX_ERR(0, 231, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_15(__pyx_t_14), 2) < (0)) __PYX_ERR(0, 275, __pyx_L1_error)
         __pyx_t_15 = NULL;
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         goto __pyx_L21_unpacking_done;
@@ -6936,7 +7420,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __pyx_t_15 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 231, __pyx_L1_error)
+        __PYX_ERR(0, 275, __pyx_L1_error)
         __pyx_L21_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_label, __pyx_t_6);
@@ -6944,21 +7428,21 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
       __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_13);
       __pyx_t_13 = 0;
 
-      /* "simplestart/ss_ui/plot.py":232
+      /* "simplestart/ss_ui/plot.py":276
  *             #  data  None  labels  values
  *             for label, value in zip(labels, values):
  *                 pie_data.append({"name": label, "value": value})             # <<<<<<<<<<<<<<
  * 
  *         #  ECharts
 */
-      __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_label) < (0)) __PYX_ERR(0, 232, __pyx_L1_error)
-      if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_value) < (0)) __PYX_ERR(0, 232, __pyx_L1_error)
-      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pie_data, __pyx_t_1); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 232, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name, __pyx_v_label) < (0)) __PYX_ERR(0, 276, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_value) < (0)) __PYX_ERR(0, 276, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pie_data, __pyx_t_1); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 276, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "simplestart/ss_ui/plot.py":231
+      /* "simplestart/ss_ui/plot.py":275
  *         elif labels and values:
  *             #  data  None  labels  values
  *             for label, value in zip(labels, values):             # <<<<<<<<<<<<<<
@@ -6968,7 +7452,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "simplestart/ss_ui/plot.py":229
+    /* "simplestart/ss_ui/plot.py":273
  *                     if isinstance(item, dict) and "name" in item and "value" in item:
  *                         pie_data.append(item)
  *         elif labels and values:             # <<<<<<<<<<<<<<
@@ -6978,128 +7462,128 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
   }
   __pyx_L3:;
 
-  /* "simplestart/ss_ui/plot.py":236
+  /* "simplestart/ss_ui/plot.py":280
  *         #  ECharts
  *         option = {
  *             "title": {"text": title, "left": "center"} if title else {},             # <<<<<<<<<<<<<<
  *             "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
  *             "legend": {"orient": "vertical", "left": "left"} if legend else {},
 */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_title); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_title); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 280, __pyx_L1_error)
   if (__pyx_t_2) {
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 236, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_text, __pyx_v_title) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_n_u_center) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_text, __pyx_v_title) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_n_u_center) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_13;
     __pyx_t_13 = 0;
   } else {
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 236, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __pyx_t_1 = __pyx_t_13;
     __pyx_t_13 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_1) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_1) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/plot.py":237
+  /* "simplestart/ss_ui/plot.py":281
  *         option = {
  *             "title": {"text": title, "left": "center"} if title else {},
  *             "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},             # <<<<<<<<<<<<<<
  *             "legend": {"orient": "vertical", "left": "left"} if legend else {},
  *             "series": [{
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_trigger, __pyx_mstate_global->__pyx_n_u_item) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_formatter, __pyx_mstate_global->__pyx_kp_u_a_br_b_c_d) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_tooltip, __pyx_t_1) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_trigger, __pyx_mstate_global->__pyx_n_u_item) < (0)) __PYX_ERR(0, 281, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_formatter, __pyx_mstate_global->__pyx_kp_u_a_br_b_c_d) < (0)) __PYX_ERR(0, 281, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_tooltip, __pyx_t_1) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/plot.py":238
+  /* "simplestart/ss_ui/plot.py":282
  *             "title": {"text": title, "left": "center"} if title else {},
  *             "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
  *             "legend": {"orient": "vertical", "left": "left"} if legend else {},             # <<<<<<<<<<<<<<
  *             "series": [{
  *                 "name": "",
 */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_legend); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 238, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_legend); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 282, __pyx_L1_error)
   if (__pyx_t_2) {
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 238, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_orient, __pyx_mstate_global->__pyx_n_u_vertical) < (0)) __PYX_ERR(0, 238, __pyx_L1_error)
-    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_n_u_left) < (0)) __PYX_ERR(0, 238, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_orient, __pyx_mstate_global->__pyx_n_u_vertical) < (0)) __PYX_ERR(0, 282, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_n_u_left) < (0)) __PYX_ERR(0, 282, __pyx_L1_error)
     __pyx_t_1 = __pyx_t_13;
     __pyx_t_13 = 0;
   } else {
-    __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 238, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __pyx_t_1 = __pyx_t_13;
     __pyx_t_13 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_legend, __pyx_t_1) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_legend, __pyx_t_1) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/plot.py":240
+  /* "simplestart/ss_ui/plot.py":284
  *             "legend": {"orient": "vertical", "left": "left"} if legend else {},
  *             "series": [{
  *                 "name": "",             # <<<<<<<<<<<<<<
  *                 "type": "pie",
  *                 "radius": "55%",
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_pie) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_radius, __pyx_mstate_global->__pyx_kp_u_55) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_) < (0)) __PYX_ERR(0, 284, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_pie) < (0)) __PYX_ERR(0, 284, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_radius, __pyx_mstate_global->__pyx_kp_u_55) < (0)) __PYX_ERR(0, 284, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/plot.py":243
+  /* "simplestart/ss_ui/plot.py":287
  *                 "type": "pie",
  *                 "radius": "55%",
  *                 "center": ["50%", "60%"],             # <<<<<<<<<<<<<<
  *                 "data": pie_data
  *             }]
 */
-  __pyx_t_13 = PyList_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_13 = PyList_New(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_50);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_kp_u_50);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_mstate_global->__pyx_kp_u_50) != (0)) __PYX_ERR(0, 243, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_mstate_global->__pyx_kp_u_50) != (0)) __PYX_ERR(0, 287, __pyx_L1_error);
   __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_60);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_kp_u_60);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 1, __pyx_mstate_global->__pyx_kp_u_60) != (0)) __PYX_ERR(0, 243, __pyx_L1_error);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_center, __pyx_t_13) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 1, __pyx_mstate_global->__pyx_kp_u_60) != (0)) __PYX_ERR(0, 287, __pyx_L1_error);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_center, __pyx_t_13) < (0)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
 
-  /* "simplestart/ss_ui/plot.py":244
+  /* "simplestart/ss_ui/plot.py":288
  *                 "radius": "55%",
  *                 "center": ["50%", "60%"],
  *                 "data": pie_data             # <<<<<<<<<<<<<<
  *             }]
  *         }
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_data, __pyx_v_pie_data) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_data, __pyx_v_pie_data) < (0)) __PYX_ERR(0, 284, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/plot.py":239
+  /* "simplestart/ss_ui/plot.py":283
  *             "tooltip": {"trigger": "item", "formatter": "{a} <br/>{b}: {c} ({d}%)"},
  *             "legend": {"orient": "vertical", "left": "left"} if legend else {},
  *             "series": [{             # <<<<<<<<<<<<<<
  *                 "name": "",
  *                 "type": "pie",
 */
-  __pyx_t_13 = PyList_New(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_13 = PyList_New(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 239, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_13, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 283, __pyx_L1_error);
   __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_series, __pyx_t_13) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_series, __pyx_t_13) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __pyx_v_option = ((PyObject*)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "simplestart/ss_ui/plot.py":248
+  /* "simplestart/ss_ui/plot.py":292
  *         }
  * 
  *         return echarts(option=option, width=width, height=height)             # <<<<<<<<<<<<<<
@@ -7108,7 +7592,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_13 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_echarts); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_echarts); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_12 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -7124,23 +7608,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4plot_4Plot_6pie(CYTHON_UNUSED Py
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_13, NULL};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 248, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_option, __pyx_v_option, __pyx_t_6, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 248, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_width, __pyx_v_width, __pyx_t_6, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 248, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_height, __pyx_v_height, __pyx_t_6, __pyx_callargs+1, 2) < (0)) __PYX_ERR(0, 248, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_option, __pyx_v_option, __pyx_t_6, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 292, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_width, __pyx_v_width, __pyx_t_6, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 292, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_height, __pyx_v_height, __pyx_t_6, __pyx_callargs+1, 2) < (0)) __PYX_ERR(0, 292, __pyx_L1_error)
     __pyx_t_7 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_12, (1-__pyx_t_12) | (__pyx_t_12*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 248, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
   }
   __pyx_r = __pyx_t_7;
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/plot.py":202
+  /* "simplestart/ss_ui/plot.py":246
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,             # <<<<<<<<<<<<<<
@@ -7750,15 +8234,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   }
   #endif
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr)) __PYX_ERR(0, 160, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr)) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 162, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr = &__pyx_type_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 162, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_4plot___pyx_scope_struct_2_genexpr);
@@ -8142,7 +8626,7 @@ __Pyx_RefNannySetupContext("PyInit_plot", 0);
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
- *                color=None, width="800px", height="400px", grid=True, legend=True):
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
  *         """
 */
   __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_4plot_4Plot_5scatter, 0, __pyx_mstate_global->__pyx_n_u_Plot_scatter, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_plot, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 130, __pyx_L1_error)
@@ -8150,24 +8634,24 @@ __Pyx_RefNannySetupContext("PyInit_plot", 0);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_tuple[1]);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_tuple[2]);
   if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_scatter, __pyx_t_4) < (0)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/plot.py":202
+  /* "simplestart/ss_ui/plot.py":246
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,             # <<<<<<<<<<<<<<
  *             width="800px", height="400px", legend=True):
  *         """
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_4plot_4Plot_7pie, 0, __pyx_mstate_global->__pyx_n_u_Plot_pie, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_plot, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_4plot_4Plot_7pie, 0, __pyx_mstate_global->__pyx_n_u_Plot_pie, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_plot, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_tuple[2]);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pie, __pyx_t_4) < (0)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_tuple[3]);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pie, __pyx_t_4) < (0)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "simplestart/ss_ui/plot.py":9
@@ -8186,13 +8670,13 @@ __Pyx_RefNannySetupContext("PyInit_plot", 0);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/plot.py":251
+  /* "simplestart/ss_ui/plot.py":295
  * 
  * #
  * plot = Plot()             # <<<<<<<<<<<<<<
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_Plot); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_Plot); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = 1;
   {
@@ -8200,10 +8684,10 @@ __Pyx_RefNannySetupContext("PyInit_plot", 0);
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_plot, __pyx_t_2) < (0)) __PYX_ERR(0, 251, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_plot, __pyx_t_2) < (0)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/plot.py":1
@@ -8254,12 +8738,14 @@ __Pyx_RefNannySetupContext("PyInit_plot", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 165, __pyx_L1_error)
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 275, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.method_name = &__pyx_mstate->__pyx_n_u_items;
+  __pyx_mstate->__pyx_umethod_PyDict_Type_keys.type = (PyObject*)&PyDict_Type;
+  __pyx_mstate->__pyx_umethod_PyDict_Type_keys.method_name = &__pyx_mstate->__pyx_n_u_keys;
   __pyx_mstate->__pyx_umethod_PyDict_Type_pop.type = (PyObject*)&PyDict_Type;
   __pyx_mstate->__pyx_umethod_PyDict_Type_pop.method_name = &__pyx_mstate->__pyx_n_u_pop;
   __pyx_mstate->__pyx_umethod_PyDict_Type_values.type = (PyObject*)&PyDict_Type;
@@ -8297,20 +8783,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[1]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[1]);
 
-  /* "simplestart/ss_ui/plot.py":202
+  /* "simplestart/ss_ui/plot.py":130
+ *         return echarts(option=option, width=width, height=height)
+ * 
+ *     def scatter(self, x=None, y=None, data=None, x_label=None, y_label=None, title=None,             # <<<<<<<<<<<<<<
+ *                color=None, width="800px", height="400px", grid=True, legend=True, hue=None, hue_data=None):
+ *         """
+*/
+  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(13, Py_None, Py_None, Py_None, Py_None, Py_None, Py_None, Py_None, ((PyObject*)__pyx_mstate_global->__pyx_kp_u_800px), ((PyObject*)__pyx_mstate_global->__pyx_kp_u_400px), ((PyObject*)Py_True), ((PyObject*)Py_True), Py_None, Py_None); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
+
+  /* "simplestart/ss_ui/plot.py":246
  *         return echarts(option=option, width=width, height=height)
  * 
  *     def pie(self, data=None, labels=None, values=None, title=None,             # <<<<<<<<<<<<<<
  *             width="800px", height="400px", legend=True):
  *         """
 */
-  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(7, Py_None, Py_None, Py_None, Py_None, ((PyObject*)__pyx_mstate_global->__pyx_kp_u_800px), ((PyObject*)__pyx_mstate_global->__pyx_kp_u_400px), ((PyObject*)Py_True)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 202, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
-  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
+  __pyx_mstate_global->__pyx_tuple[3] = PyTuple_Pack(7, Py_None, Py_None, Py_None, Py_None, ((PyObject*)__pyx_mstate_global->__pyx_kp_u_800px), ((PyObject*)__pyx_mstate_global->__pyx_kp_u_400px), ((PyObject*)Py_True)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[3])) __PYX_ERR(0, 246, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[3]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[3]);
   #if CYTHON_IMMORTAL_CONSTANTS
   {
     PyObject **table = __pyx_mstate->__pyx_tuple;
-    for (Py_ssize_t i=0; i<3; ++i) {
+    for (Py_ssize_t i=0; i<4; ++i) {
       #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
       #if PY_VERSION_HEX < 0x030E0000
       if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -8337,34 +8834,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{1},{5},{3},{3},{3},{5},{1},{1},{24},{7},{6},{2},{9},{25},{25},{6},{4},{8},{25},{9},{26},{8},{12},{29},{20},{18},{4},{3},{6},{8},{6},{17},{18},{5},{5},{4},{7},{7},{9},{9},{8},{7},{4},{6},{1},{13},{4},{9},{5},{3},{4},{5},{6},{4},{6},{4},{9},{8},{13},{7},{10},{4},{8},{4},{6},{6},{3},{8},{4},{3},{11},{12},{6},{7},{12},{4},{4},{6},{12},{10},{4},{22},{6},{8},{4},{5},{5},{7},{7},{4},{5},{6},{8},{5},{1},{5},{7},{1},{5},{7},{3},{286},{270},{294},{395},{2}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1185 bytes) */
-const char* const cstring = "BZh91AY&SYXz\206&\000\000\354\377\377\355\377\357\377\377\377\377\377\246\341\372\313\277\357\377\373@BB@@A@@@@@@A\000@\000P\004\036\031\315\264\242\250\356\202\341)\024\215\000\0002b`i\006\206\324\321\352\00044\032\0004\000\000\000\320\323F\203 \321\0012h\002dh\204\331@\006\200\000\000\000\000\000\000\003M\0322h\320\006\200\204\204\237\264\212i\352mO\"\0002\003M\000h\003\0040 \000\0004\032\006\232d\007\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\022E4\232\233S\365\024\365\031\014\2154h4\301\014\230\230&\200\r2224\323L\004\0320\203F\t\264\220\013{j\300\264x\031G\354\017\340n\233\314\373\252\000'`v\033\205\3161@\336D\222\245\000\342\253P\025\036XT+\002\202\240\014\014\300\311\204\240q:\261\0257~s\004\322\nf\022\t\202\016\023\312\021)\252\254\024\253ZW\231\023\214&\236\314\"\310\240\004\341J4\222\201\027\002\305\355&x\225\260\t\322\006\031&\006\322\014\224\261\311\033\n\274\3203ZN{\351(\211\254v\240\346\304[\010\206\006<\251\n\026\244$\324,\300\347,G\304\344\234@*\251\217s2\367\260\013VtT\020\\\372\036\243\322\321\032\037\036\271$\220d\035\022\326_c3R\330\277\002\241M\244\002\312\242\230waZw\372\340\034@\206\334\272\267\000z\357\016\263\250\273\304{\331EO\330\263-5\025j\241Gxu\202\244I\351 \340\311M\310+\200\256S\355\360\2237W\243g\323t\325f%\234\"\004m\223\246\016C\306\006\233\022\307R;\222\321\242\t\017*\010\004:\205\244\204\242:\220T\030\322\2212g\350$\325\201\210-3I\375\343xR\242H\n\270v.V\201\t\031\022D\227\362\002\251\321\365t\247V\222\375\003\210\020\211M\n`\353\215=2\203\212\006\025&\255\300\013E\301\000_+q\206\340\"\207\255\373\313\306Xg\210\010\256\2147QC\010\374\255\022\276\023\322B\232\032-o\226\022\254\340\272aZ\302\215\367\305`)V\276\213\315\0328*R;\224,\022\350\016\0035[T0,_-)\022\024\262^\213\327j\305\203\031\034Y\260b\007\324\342\3041LQ\035\354$\020,$\300\346\n\243\020\021\324,\245.9\0100\205$\221\236\357\325a\006b\017,\253'\250\007\231\316cUTdY\206\261\340\32792<\3335\311\222\001\201\225b\0148\324\312I2_\006\351QNB\306\275\211""\007\031\030Y1r\244\222\004v-@/\244\266\034\356\222\231\2300\242\311\302\246\016D`5\010[\246\234\212\334\343j\006\323Haod0\230\020q\213k\031\rSQ}\020\224\263\255Z\262\212\361\272\256\000b6Wf\026`\027\014\200,\224\2040\276\236\315.\0053)\315\032\223qmZ\010[E\201\031\203[\002\331^j\220\003C\262/\251\261.\350\361L\020\214q]\206V<H0\345\252r\022\206o\351\240\001I\036V\\\356\210\315\004h0\340\0363\014\253\016EvBa~\250Yl\217U\022\311+\341\032\2211\006\247H+/\204\320\342\245\321\3154bQS\222,!\230\005\002\213\233\017\240y\025\261\02326\266X\022hT\255\202$\006\303\341%\307\301\304a\355\203\2260*\372M\023|\322\216\nB\206`6r\321&\232j\3045\221\"\006\210\033O\340\t>!\223\314I\364\336\244\003\024\030\004\314\032\214\007x9\372\000{\245\037Jn\003\371A\022\323jg=\037W\031\361\331,;\336\207zNLdl\022\340\217\320\307\010 \245\246B?\344\204\271a\225\202\031\311\006\022\2028\273\337\240\231\n\032\230\365\200\322CaB\201p\347\020&\314Z\337\004\331@\320\334|\203\300x)4\221\322_\251\245\276\277\036\366\202\306\235'\343\213\253Q\313\206uP\373\212\021U\031AL\317\263*\234\311\217=\321\270\355\300\310\234\322\\\006\324J\373_\270\301C\366\332g\254\024n\020\003\335\274\371\t#\212\024\211\362|m\322\335\014O\355\355}\272\016\335\327J\241\303p\306\003)\0208\302Es\005z\301\334\241\002\224\034t\357\014U\3004\210pa\022\314\316\r*\203\010\034B\210\006Y;\2639\000\241<y\310$R\224L%\022\324\377\213\271\"\234(H,=C\023\000";
-    PyObject *data = __Pyx_DecompressString(cstring, 1185, 2);
+    const struct { const unsigned int length: 10; } index[] = {{1},{5},{7},{3},{3},{7},{3},{5},{7},{1},{1},{24},{7},{6},{2},{9},{25},{25},{6},{4},{8},{25},{9},{26},{8},{12},{29},{20},{6},{18},{4},{9},{3},{6},{11},{10},{8},{6},{17},{18},{5},{5},{6},{4},{7},{7},{9},{9},{8},{7},{4},{6},{3},{8},{1},{13},{4},{9},{5},{3},{4},{5},{6},{4},{6},{4},{9},{8},{13},{6},{7},{10},{4},{7},{12},{10},{8},{4},{6},{6},{3},{8},{4},{6},{3},{11},{12},{6},{6},{5},{7},{12},{4},{4},{6},{12},{10},{4},{22},{6},{8},{4},{5},{5},{7},{7},{4},{5},{6},{8},{5},{1},{5},{7},{1},{5},{7},{3},{286},{270},{294},{666},{2}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1428 bytes) */
+const char* const cstring = "BZh91AY&SYnn\\\235\000\001\037\377\377\355\377\377\377\377\377\377\377\276\365\373\317\277\357\377\377@BB@@A@@@@@@A\000@\000P\005\010\032R\201J\030\003<%\022\"\207\2504\032z\206\311\247\242aO)\341G\250\310\364\237\246\250\017D\001\247\244h6\241\265\017\024\315@\321\3444\321\244\036PJ#I\221\220\231\004\323F\232S\304\324\310\000\000\032\003@\000\032\000\000\000\000d\323L\231\003M\023$\324Q\352y2jh~\2504\r\000\000\000\0002\000\000\000\000\000\r\017P4\004\0310\002`\000&\000\000\000\0010L\000L\000\00110\000\00111\002\014\230\0010\000\023\000\000\000\000\230&\000&\000\000\230\230\000\000\230\230\201\260\231/\202\021\246\276\023L\274\006\345\3647\214\010\254i\033@\024Q\025F*1\214\350+\372ox\377\370B\003 \314\003\007S\252`\t\\\227@d+\010\244APQAADFN\244\236\242\213\250K\267\031\365\275\301[ V\250\252\010\212\250\003V\220\036\022j\202\322\211I\267U\207\n\233\006\202\213c\340\326!AA\026\220\t\252\025\0010\272\333\000b\216J\205CS\370d\352\023`\212\010(\250(\261B\253\223\211\213gc\236\025f\340\007\234\rZY0~)RE\234\2658\237D\346<\202r\244m\221,K\313 m0\313\001\264m\331.\177t\257}+<l\234\262t\003\341\324vw\037/\026\241\365\362\242\007\270~>c\301\311\037\017g1\031\024\240u[\331\031\034\217\227C\020_\006)\201\231\311\255\231^f}=\006\212\222\237\217\\\222P\267n\246\351\204dV\025\373\r\302\236^\300\2377?7\tO\316\225\320 \234=\344#\305\335\244p\376S\323\325\t\350\353\272\017Iv\013A\343\225\322z\232[U\304_\256\305\264\022\005(\330\314&\210\342\310\014\242\302\334\207\333\345\013\007U\246\306\232\241\376\314\205\210Z\005\234h\344P\314\3521\362\251\032O\346^t0\262\300\261F\242b\200\353cO\2420\010}\356\310_\251\311\225N~\017\303\363\375^\255\246\247'\364\257^t\354\031\211<\036\376\336\225\330\200* \005\2327\237\000\022\221\261\223\nm\346>\305>\340\315\023\321\007\005\022\354\222\350\300\267\016A\326\3309R\325+\270\351l\020\334M\202\2715#\235\267\327\227n\001u\277l\371z.rk\316\367\250W\273i\037\355\215gF\027?%-\303\0243qZ_ZKJ\3757\352\215K}Yn\323\r\241`\347c\246\325d\331U[\224\317\204\216,""\223z)f\273\033zOpT2\212\330\335\273\270\312\027\344~\016\255\010\263\267\343\n3\246\345K\243%\2134\344\037\262\313Y\256\364\222\347\335A\306\204}\026\361\2145\204\362\2321}qqj\021C\024\334n\313=?\315\003\225R\312$\252\311\224,U\327\203\223\245\307VWAIU1a\202UN\014\255\265\311\205\366\222'^}dV\326\266\254+\310\364\315\003fk\0324\303\017\253AB\204:C\332d`,\346^H\217\317x\006\335h\365U\025+\336\206U%\212\324\221DPi\216\036\274.\302I\312\325LJ\363\310XA\321\273g&\261\236\242\034\214\363y\266<\344+a\265n}M~D\356c\005m.\337M+<\376)'j+\305\003\024&u4 >\340\207b\025\306\266\325\334E\276\030\224\273\204\262\270\\g\032F\r\3456\331\321G(\252\353MI\22659\300\243\2231\251\313\031C\\\367\357\034\3569\356\353\272\243\202e\346\363dB\342\032\261\300\014Qw\267\362W%Q\310\260\036\340\254,:\305G\346*~\214\364\300\216\234\264\321\265t\333\013\356\276\313f\320}\020\213s\206\331\314\304\254\232cd\362O\"\227\231ky\241\r\360\304\307ThxE\210\231$\225q\346\222\325\240z\271\256\212j\265\367\003\021D\271\336\247\331\223\001\314|\211\022q\255\232&\250\272\025TUT13J\2402\027\306\221\245\303\334[\037\006\300\270\247\267P\n!hB\343<\000\322\331\n\320\300b\353,\026\302\240*\002*\246\272\201\236\026\332#k\001\264\2156\031!*\270\235/,/s\031\t\364<\203o\354\221\005\331\r\207\003a0#\310\320l\307\037\244T;\001\034\025\211~\317m#\335+\363\332\323Z\233IL\3611\254\306\301\215\244\271\212\032\007C\326\336n\350k\315\236\267'\315\2615\344jz\250\240\312\030\t\223\326u\345b\314\017\236\240:?%\241\226\204\254\261\211U\034\"\256r\272\254\222\310\304u\266\n;!\304\375\303?\275L\242\235\227\"u\375/(5\276\350:\257(q)\336upg%L9'\276+\"D)\t\0237+z\253\201Y\312Y\235nu\327\333\356\206.]\277\344\251\320wV\365\004\200\020`\320\013\3600\316M\033S\237\337\363a\364]\303E(\206z\341\261[W\024\210\370\365\375V\244ta\336y\324\315\010\321\201\264\222\370yP|\375\263\032Q\217\016\035\035Z\036\371\312\005\321A\004\020\202t\242\226\010\253P`R\216&h\030:3\274,,\204<\230\300\013\n\030\315\340K\313\216\242`\315j4\251\244\003\310>\361\237""\342\356H\247\n\022\r\315\313\223\240";
+    PyObject *data = __Pyx_DecompressString(cstring, 1428, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1048 bytes) */
-const char* const cstring = "x\332\335S\317O\033G\024\006%\n\2411\005+\006L\241)nCBCkp\003\301M\323D\226\210H.\024\007UA\252\322\321xwl\217X{\326;\343`\203\250z\344Ri/\225\3468\3079U{\334\243\217\034}\334\243O9\363'\364\315\332\005\032h+U=u\265\363v\336\217y\357\233\357\275]Y]Yq[k+\013kk\013\217V\026\362F\313>;\304G\363OJ\336\362\323\303\322\321\343\371C\353h~\361\320>Z\370\334\246\034\227\034B\352FV,\312\373;\233\323\232\353\020.\260'\262\234\243&\315\022\253\n\n\277\340X\216\035\313\256\303D\326m\277\3735x\367\313o\333\240\230\225-a\357\217o\366\211\303,\354\360\247\331\n\251\223\226\333w8\264N\3166W\207\270\264\037\301-,\004\361.\356/\035@h\273\335\202\265A-\201\266HK\274\"e\314\333u\213\262\254\305<\326\024P\206\343\026\345\200\250\304\204`5\310D*\314k[\244\016\031\021\262\034\0147\252\020A\005\251\031\025N ZG\302\303\026)ak\317r\030'\026s\230gc\201\021\262\231\205\320\200\027Ro\326\210\007\031\313\314\253\305\020\021*7\353\0200\000X\361\250]%\264R\025\024Q\216\3160\231bf\355\210\266\023+|\217\264\341\345\016.\021'\026\334!e\001\355!u\333`2+\216F\250\206\001\037<5\"p\037>\252\201\305!`\2551\273ib\352\270v.\201\030\346\n\312\352\314\243pm`\030^d\256c\332\3502\027!\327#.\366\210I\333hb\247\177\320\3036m\362\001\371\203O|\214\023\247\014\227\2679\201\204P\236\0231\250\005;\033z\320t\004\257\262\375\313\003e\n\362\032c\242\212\220\000\217\221-!\252\036\333\207\0168D0\346\010\352\n\217V*\304\023m\227\274\305N\263/\370[\260P\030\200}j\213j\253U\200\276\266PLV\273m\224v_9\240\356\317[\376\242\\TK\372\307\360\351I2J\244\345x\367\376zp\330\311\234>\030\032M\034\257\371#~#J\214\037\037\310\244\274\247\206\243\211\224\277!\207eJ~\2572\347\312kU\210\222\2632'7\325#\235\214&\326\203F\224J\307\256\242\264TJ\355\352\342%C\317\030\214\365\272,\230t\352\241\302\252qzch\364\203(1\351\027\375\252\254@\334\233p\251S4\310n\251\\\224\230\362\261\337\222\r5\242\016\202t8g<c\321\204It&z\027-=\310\264+\213\361\301\367\342\242\211\217\001\014\205D\263a\341\364\346\320\350\304\361>d\337\227UU\326\233\301z\230\001v""\226\344\033\375%\334&1\333\235]\322\271\323O\207FS~.\272y\353Jj6\345\327jC\337\3208J\315\001\027_\001\374\327\301\313\260\370'rR\376\013Y\210R\323\376\201J\252{\020m\007\367\303\333\341\363N\252\263{\262\323\335.F\351y\270_C\017Gc1\301\275\304\004\324j\253k*\247^\350\202\001?\"=\225\326\323\301h\230\374;\302\362\372\333p\270O\332\201\232\323\273\301\017\235\304I\341\022\031\037\311L,\344\272i*\230\256f\343;?/\363\352\033]\017\267N2\321\330\214\374\244\273\230\017?\354\354u\213\257N\277\370\377\217KL\323?\315L\367\372\024 \251\252\275\340N\370\323I1\032\237\225\317\272\017\036\033T\346\227J\373\215\336\025\303\323\003n\236\313\031u\027\322\300l\014\372\257'a\222\336#\252\227\372\014\306`\003\234SZ\004\3710\007\014L\316\310k0y/u\021\342\323w\325\246\316\351\202\336\t`\200\306\001\037\221\2530.\323\032n7~\314\375\214\377\320\267\344m`\261\030\305e'%\226\034\010\315\235\027N\352\214^\325\215`80\363\225\274\023\267!\t\360,\343:?\326\370\253#\377\276)\377\335\357\0334~\007w\254\"w";
-    PyObject *data = __Pyx_DecompressString(cstring, 1048, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1313 bytes) */
+const char* const cstring = "x\332\335TAs\323F\024\216\207\014\020p\210U\034HH\n1!\020Hkb\210\023\207R\030C\230@\207\2418\231\226\314\224tG\2266\266&\262$k\327\304J\232N\217\271tF\227\316\354q\217{\352\350\250\243\2179\372\250\243O\234\363\023\372VvIJ\002=\364V\217\366iw\337\333\267\337\373\336'\317\316\315\316:\315\311\271\247\013\367\236\314\346g\247\362\371\251\311|\276X\230/\314\317N\025b\337\322Ra.\177/\373xG\335\235xXv\357>\332)\357>\230\330\321v'\246w\364\335\251\333\272A\324\262\211\261%mE3Hw\246\023\243\346\230\230P\325\245YBP\303\310b\255\n\013r\304q7v\334uL\233f\035\357\375\037\301\373\337\377|\r\0139\262e\325\375\373\235}h\332\232j\222G\331\n\266p\323\351:L\303\302\037&'\2078F7\202h*\245\330=:?v\000\241\327^\023\306\222\241Q\364\n7\351\n\336P\035\007[\272J<K3\354\254f\273v\203\302eDm\032\361x\251\226\261\t\000\3136\245v\255l7 \330\365\226U\007\356\300\025\33350\351\315<\r[p+B\232\251B\325\025L\r\212kr\t\371\220a!\352\252\032.\253\332\246f\332\004k\266i\273\261!\272JU\204t[C\250\307 \266\0325\354B\336\r\333\255\305\305 \264\321\260 \240WJ\3055\364*6*UZm`x\220\314a \203\240\017%\310\333\345X\245\236\031/\310&\366\340!\246,)6\304\304\033\024z\n\014H\220r\304\321\010\325T\000\014\277\032\246j\267\036T3t\335\204\224\02621\370j\266\336\220\221\226Z\303r\000%\362\365\022(\247\206m\311\371\212M\241\204n\010X \334v\244O\262fQ\350\034<1p)\017\3076,J\034\333A\310q\261\243\272X\336_o\250f\367\270\253\352F\203\270qJ\240\334\304\275.\367^q\036\202\315\r\340N'X\366\005!\202i\357r\230\351\320\354\206II\325\336:\256\\\211\200\324l\233V\021\202\374T\332&\245U\327\336\2026\232\230\332\266I\r\207\272F\245\202]\3529\370\235j6\272\206\274\203\035\003 m\031:\2556\233E\220M\023\305\004{\236\\x\335\305\266\341\374\366\312\237f\323|F\374\034>\332W\242\344\010\033j\337Z\010vZ\231\203;}\003\311\275\274\177\306\257G\311\241\275m\246\260\233<\021\245\322\376\022K\2604\373\201g\016\027ox1R\306X\216-\363y\241D\251\205\240\036\245GbW\211i<\315\327D\351\330FGn\310\335~V\224\351\370}\256\362\372\301\351\276\201sQr""\330/\371UV\201\270\365p\246U\222\310\316\363\\\224\274\344\253~\223\325\371\031\276\035\214\204\343\3223\030\245d\242\017\246st\247\003\231\326X)>\370Q\\\224\372\022\300\030\220h,,\036\234\355\033H\355mA\366-V\345\033b9X\0103\300\316\014[\027_C5\311\261\366\330\214\310\035\\\357\033H\373\271\350\354\371\023\251Yf\213|I\234\026j\224\036\007.\356\001\3747\301\213\260\364\017r\322\376sV\214\322\227\375m\256\360\233\020\255\007\267\302\213\341\263V\272\265\266\277\332~]\212F&\240\276\272HD\2031\301\235d\n\356\362\370)\236\343\317EQ\202?\303\\>\".\007\003\241\3629\302\n\342\3330\321%m\233\217\213\265\340\247Vr\277x\214\214+,\023\033\266 \233\n['\263\361\275_`\005\376\215\260\302W\373\231hp\224]kO\027\302\013\255\315vi\345\340\253\377\277\\b\232\376M3\355\376K\200\244\3127\203\253\341\257\373\245hh\214=n\337y\000\250\326\333+o\333o\327\017\262}\003#~\275s\202\204:\300\32036\312o@2PHO\005b\030\364\364\021]\235\364$\210a\t\234\227\004\r\na\016x\030\036e\247@\177/D\t\342Gn\360e\221\023E\261\032\200\214\206\000%fs \232\313\002j\034\332#~\306\277\357k\354\"pY\212\342k\207\231\312\010\320\232;\274X\021\0311'\352A\"\220*S\256\306\315P\000\236&]\207\307\352\237:\362_Z3!\345\003UG\251Q\006E_c\365\316\247\002\2562h\226\022\245\341\3359\022}\330J\331\251\344\336\"|\237y\336\317\237\002\322s\301d\260\032&B\245\023\003\334\344c\242\010\200\007\257\300i\370\334N\371\017\231'\313\211R\027\375E >\027gg\277\210\\\367KY\214\351})3\310c\212\337\357\177\3076\305h\220\t\036\204?\266r1\236q\366\024\nL\310I\261g\256\363\333b>P\202\353\301\223@\013\2250\323II\"\274.}2Uj\257\036\365\366\022\374JL\346\271p*\224J\037\274\360\271\277\260N\362\013\350j\014\226\027;g\207>VfP\377\013\355n\272M";
+    PyObject *data = __Pyx_DecompressString(cstring, 1313, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2031 bytes) */
-const char* const bytes = "0400px50%55%60%800px.?{a} <br/>{b}: {c} ({d}%)disableenablegcisenabledsimplestart.ss_ui.echartssimplestart/ss_ui/plot.py\346\225\260\346\215\256PlotPlot.barPlot.bar.<locals>.genexprPlot.linePlot.line.<locals>.genexprPlot.piePlot.scatterPlot.scatter.<locals>.genexpr__Pyx_PyDict_NextRefasyncio.coroutinesaxisbarbottomcategorycenter__class_getitem__cline_in_tracebackclosecolordata__doc__echartsenumerateformatter__func__genexprgridheighti_is_coroutineitemitemStyleitemskeykeyslabellabelsleftlegendlinelineStyle__main____metaclass__min_len__module__name__name__nextoptionorientpiepie_dataplotpop__prepare____qualname__radiusscatterscatter_dataselfsendseries__set_name__setdefaultshowsimplestart.ss_ui.plotsmooth__test__textthrowtitletooltiptriggertypevaluevaluesverticalwidthxxAxisx_labelyyAxisy_labelzip\200N\220(\230(\240+\250^\270>\310\021\330\014\030\230\017\320'7\260{\300!\360*\000\t\014\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\330\020\024\220D\230\001\230\024\230U\240!\330\020\024\220D\230\001\230\024\230W\240A\330\021\033\2301\230G\2406\250\021\330\0207\260q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\340\024\030\230\001\330\024\030\230\004\230A\230U\240!\2403\240a\240q\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2401\330\014\026\220a\220x\230q\240\007\240z\260\030\270\034\300Q\330\014\r\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\340\014\r\330\020\030\230\001\330\020\030\230\001\340\014\025\220X\230Q\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\330\020\035\230Q\230i\240z\260\033\270A\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\200N\220+\230]\250-\260q\330\014\033\320\033+\2501\360\"\000\t\024\2201\330\010\013\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\330\020\024\220G\2309\240D\250\006\250a\330\024\034\230G\2402\240X\250W\260I\270Q\330\021\033\2301\230G\2406\250\021\330\020\024""\220H\230A\330\024\027\220z\240\021\240&\250\006\250d\260'\270\023\270E\300\024\300X\310S\320PQ\330\030 \240\007\240q\250\001\330\r\024\220D\230\001\340\014\020\220\007\220y\240\003\2401\240H\250A\330\020\030\230\007\230r\240\030\250\027\260\t\270\021\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2408\250=\270\001\330\014\026\220a\220z\240\034\250X\260[\300\014\310A\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\032\230!\330\020\032\230!\2307\240!\330\020\030\230\001\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\200O\2208\2308\240;\250n\270N\310!\330\r\031\230\037\320(8\270\016\300k\320QR\360,\000\t\014\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\330\020\024\220D\230\001\230\024\230U\240!\330\020\024\220D\230\001\230\024\230W\240A\330\021\033\2301\230G\2406\250\021\330\0207\260q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\340\024\030\230\001\330\024\030\230\004\230A\230U\240!\2403\240a\240q\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2401\330\014\026\220a\220x\230q\240\007\240z\260\030\270\034\300Q\330\014\r\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\340\014\r\330\020\030\230\001\330\020\030\230\001\340\014\025\220X\230Q\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\330\020\032\230!\330\020\035\230Q\230i\240z\260\033\270A\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\320\004\026\220h\230h\240k\260\036\270~\310Q\330\017\033\230?\320*:\270+\300Q\360*\000\t\030\220q\340\010\013\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\340\020\024\220E\230\031\240$\240f\250A\330\024 \240\007\240q\250\001\250\025\250a\330\021\033\2301\230G\2406\250\021\330\0207\260q\340\024#\2401\240D\250\001\250\026\250t\2608\2701\360\006\000\025\031\230\003\2309\240I\250Q\250a\330\030$\240G\2501\250A\250S\260\001\330\r\017\210w\220e\2304\230r""\240\027\250\001\340\014\017\210s\220!\2203\220c\230\023\230A\230Q\330\020\024\220E\230\025\230a\230s\240!\2401\330\024 \240\007\240q\250\001\250\021\250!\2504\250q\260\001\260\021\360\006\000\021\036\230Q\230c\240\021\240$\240c\250\021\250!\330\020\024\220E\230\025\230a\230q\330\024 \240\007\240q\250\001\250\021\250!\2504\250q\260\001\260\021\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2401\330\014\026\220a\220x\230q\240\007\240z\260\030\270\034\300Q\330\014\r\330\020\030\230\001\330\020\030\230\001\340\014\r\330\020\030\230\001\330\020\030\230\001\340\014\025\220X\230Q\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\330\020\035\230Q\230i\240z\260\033\270A\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\260q";
+    #else /* compression: none (2428 bytes) */
+const char* const bytes = "0400px#4C72B050%55%#55A86860%800px#DD8452.?{a} <br/>{b}: {c} ({d}%)disableenablegcisenabledsimplestart.ss_ui.echartssimplestart/ss_ui/plot.py\346\225\260\346\215\256PlotPlot.barPlot.bar.<locals>.genexprPlot.linePlot.line.<locals>.genexprPlot.piePlot.scatterPlot.scatter.<locals>.genexpr__Pyx_PyDict_NextRefappendasyncio.coroutinesaxisaxisLabelbarbottomboundaryGapcategoriescategorycenter__class_getitem__cline_in_tracebackclosecolorcolorsdata__doc__echartsenumerateformatter__func__genexprgridheighthuehue_datai_is_coroutineitemitemStyleitemskeykeyslabellabelsleftlegendlinelineStyle__main____metaclass__middlemin_len__module__namenameGapnameLocationnameRotate__name__nextoptionorientpiepie_dataplotpointspop__prepare____qualname__radiusrotatescalescatterscatter_dataselfsendseries__set_name__setdefaultshowsimplestart.ss_ui.plotsmooth__test__textthrowtitletooltiptriggertypevaluevaluesverticalwidthxxAxisx_labelyyAxisy_labelzip\200N\220(\230(\240+\250^\270>\310\021\330\014\030\230\017\320'7\260{\300!\360*\000\t\014\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\330\020\024\220D\230\001\230\024\230U\240!\330\020\024\220D\230\001\230\024\230W\240A\330\021\033\2301\230G\2406\250\021\330\0207\260q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\340\024\030\230\001\330\024\030\230\004\230A\230U\240!\2403\240a\240q\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2401\330\014\026\220a\220x\230q\240\007\240z\260\030\270\034\300Q\330\014\r\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\340\014\r\330\020\030\230\001\330\020\030\230\001\340\014\025\220X\230Q\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\330\020\035\230Q\230i\240z\260\033\270A\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\200N\220+\230]\250-\260q\330\014\033\320\033+\2501\360\"\000\t\024\2201\330\010\013\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001""\330\020\024\220G\2309\240D\250\006\250a\330\024\034\230G\2402\240X\250W\260I\270Q\330\021\033\2301\230G\2406\250\021\330\020\024\220H\230A\330\024\027\220z\240\021\240&\250\006\250d\260'\270\023\270E\300\024\300X\310S\320PQ\330\030 \240\007\240q\250\001\330\r\024\220D\230\001\340\014\020\220\007\220y\240\003\2401\240H\250A\330\020\030\230\007\230r\240\030\250\027\260\t\270\021\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2408\250=\270\001\330\014\026\220a\220z\240\034\250X\260[\300\014\310A\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\032\230!\330\020\032\230!\2307\240!\330\020\030\230\001\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\200O\2208\2308\240;\250n\270N\310!\330\r\031\230\037\320(8\270\016\300k\320QR\360,\000\t\014\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\330\020\024\220D\230\001\230\024\230U\240!\330\020\024\220D\230\001\230\024\230W\240A\330\021\033\2301\230G\2406\250\021\330\0207\260q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\330\024\030\230\001\230\024\230Q\230c\240\024\240X\250Q\340\024\030\230\001\330\024\030\230\004\230A\230U\240!\2403\240a\240q\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2401\330\014\026\220a\220x\230q\240\007\240z\260\030\270\034\300Q\330\014\r\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\340\014\r\330\020\030\230\001\330\020\030\230\001\340\014\025\220X\230Q\330\014\026\220a\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\330\020\032\230!\330\020\035\230Q\230i\240z\260\033\270A\360\010\000\t\020\210w\220a\220w\230h\240f\250G\2607\270!\320\004\026\220h\230h\240k\260\036\270~\310Q\330\017\033\230?\320*:\270+\300]\320R\\\320\\]\360.\000\t\030\220q\340\010\013\2105\220\007\220q\330\014\017\210z\230\021\230&\240\001\340\020\024\220E\230\031\240$\240f\250A\330\024 \240\007\240q\250\001\250\025\250a\330\021\033\2301\230G\2406\250\021\330\0207\260q\340\024#\2401\240D\250""\001\250\026\250t\2608\2701\360\006\000\025\031\230\003\2309\240I\250Q\250a\330\030$\240G\2501\250A\250S\260\001\330\r\017\210w\220e\2304\230r\240\027\250\001\340\014\017\210s\220!\2203\220c\230\023\230A\230Q\330\020\024\220E\230\025\230a\230s\240!\2401\330\024 \240\007\240q\250\001\250\021\250!\2504\250q\260\001\260\021\360\006\000\021\036\230Q\230c\240\021\240$\240c\250\021\250!\330\020\024\220E\230\025\230a\230q\330\024 \240\007\240q\250\001\250\021\250!\2504\250q\260\001\260\021\360\006\000\t\n\330\014\025\220Q\220h\230g\240X\250]\270+\300Q\330\014\030\230\013\2401\330\014\026\220a\220x\230q\240\007\240z\260\030\270\034\300Q\330\014\r\330\020\030\230\001\330\020\030\230\001\330\020 \240\001\330\020\033\2301\330\020\031\230\021\330\020\037\230q\340\014\r\330\020\030\230\001\330\020\030\230\001\330\020 \240\001\330\020\033\2301\330\020\036\230a\330\020\021\330\024\036\230a\340\020\031\230\021\330\020\037\230q\340\014\025\220X\230Q\330\014\026\220a\360\010\000\t\014\2109\220G\2305\240\004\240C\240q\250\n\260#\260S\270\001\270\021\340\014\025\220Q\220k\240\033\250A\360\006\000\r\032\230\021\330\014\020\220\003\220<\230y\250\001\250\021\330\020\023\2209\230G\2401\330\024\036\230a\230|\2501\330\020\032\230!\2309\240G\2501\250L\270\001\270\021\360\006\000\r\021\220\004\220J\230k\250\031\260!\260:\270V\3001\330\020\021\330\024\034\230C\230q\240\001\330\024\034\230A\330\024\034\230A\330\024\"\240)\2506\260\021\260\"\260B\260c\270\021\270!\340\020\026\220a\220y\240\007\240q\250\001\360\006\000\r\020\210q\330\020\026\220a\220y\240\001\240\032\2504\250q\260\n\270%\270q\360\006\000\r\016\330\020\030\230\001\330\020\030\230\001\330\020\030\230\001\330\020\035\230Q\230i\240z\260\033\270A\340\014\022\220!\2209\230G\2401\240A\340\010\017\210w\220a\220w\230h\240f\250G\2607\270!\260q";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 101; i++) {
+    for (int i = 0; i < 118; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 15) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 18) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -8372,7 +8869,7 @@ const char* const bytes = "0400px50%55%60%800px.?{a} <br/>{b}: {c} ({d}%)disable
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 101; i < 106; i++) {
+    for (int i = 118; i < 123; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -8383,14 +8880,14 @@ const char* const bytes = "0400px50%55%60%800px.?{a} <br/>{b}: {c} ({d}%)disable
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 106; i++) {
+    for (Py_ssize_t i = 0; i < 123; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 101;
+      PyObject **table = stringtab + 118;
       for (Py_ssize_t i=0; i<5; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -8410,8 +8907,8 @@ const char* const bytes = "0400px50%55%60%800px.?{a} <br/>{b}: {c} ({d}%)disable
   }
   {
     PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 0;
-    int8_t const cint_constants_1[] = {0,1};
-    for (int i = 0; i < 2; i++) {
+    int8_t const cint_constants_1[] = {0,1,30,40,90};
+    for (int i = 0; i < 5; i++) {
       numbertab[i] = PyLong_FromLong(cint_constants_1[i - 0]);
       if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
     }
@@ -8419,7 +8916,7 @@ const char* const bytes = "0400px50%55%60%800px.?{a} <br/>{b}: {c} ({d}%)disable
   #if CYTHON_IMMORTAL_CONSTANTS
   {
     PyObject **table = __pyx_mstate->__pyx_number_tab;
-    for (Py_ssize_t i=0; i<2; ++i) {
+    for (Py_ssize_t i=0; i<5; ++i) {
       #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
       #if PY_VERSION_HEX < 0x030E0000
       if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -8473,7 +8970,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_plot_py, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_kp_b_iso88591_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_GENERATOR), 160};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_GENERATOR), 162};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_item};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_plot_py, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_kp_b_iso88591_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
@@ -8488,12 +8985,12 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_plot_py, __pyx_mstate->__pyx_n_u_bar, __pyx_mstate->__pyx_kp_b_iso88591_N_7_5_q_z_D_U_D_WA_1G6_7q_Qc_XQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {12, 0, 0, 21, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 130};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_x_label, __pyx_mstate->__pyx_n_u_y_label, __pyx_mstate->__pyx_n_u_title, __pyx_mstate->__pyx_n_u_color, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_grid, __pyx_mstate->__pyx_n_u_legend, __pyx_mstate->__pyx_n_u_scatter_data, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_min_len, __pyx_mstate->__pyx_n_u_option, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_n_u_item};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_plot_py, __pyx_mstate->__pyx_n_u_scatter, __pyx_mstate->__pyx_kp_b_iso88591_hhk_Q_Q_q_5_q_z_E_fA_q_a_1G6_7q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {14, 0, 0, 28, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 130};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_x_label, __pyx_mstate->__pyx_n_u_y_label, __pyx_mstate->__pyx_n_u_title, __pyx_mstate->__pyx_n_u_color, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_grid, __pyx_mstate->__pyx_n_u_legend, __pyx_mstate->__pyx_n_u_hue, __pyx_mstate->__pyx_n_u_hue_data, __pyx_mstate->__pyx_n_u_scatter_data, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_min_len, __pyx_mstate->__pyx_n_u_option, __pyx_mstate->__pyx_n_u_colors, __pyx_mstate->__pyx_n_u_categories, __pyx_mstate->__pyx_n_u_category, __pyx_mstate->__pyx_n_u_points, __pyx_mstate->__pyx_n_u_series, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_n_u_item};
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_plot_py, __pyx_mstate->__pyx_n_u_scatter, __pyx_mstate->__pyx_kp_b_iso88591_hhk_Q_R_q_5_q_z_E_fA_q_a_1G6_7q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {8, 0, 0, 13, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 202};
+    const __Pyx_PyCode_New_function_description descr = {8, 0, 0, 13, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 246};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_labels, __pyx_mstate->__pyx_n_u_values, __pyx_mstate->__pyx_n_u_title, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_height, __pyx_mstate->__pyx_n_u_legend, __pyx_mstate->__pyx_n_u_pie_data, __pyx_mstate->__pyx_n_u_label, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_item, __pyx_mstate->__pyx_n_u_option};
     __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_plot_py, __pyx_mstate->__pyx_n_u_pie, __pyx_mstate->__pyx_kp_b_iso88591_N_q_1_1_5_q_z_G9D_a_G2XWIQ_1G6_H, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
@@ -10662,6 +11159,76 @@ static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject *key) {
 }
 #endif
 
+/* PyObjectCall2Args (used by PyObjectCallMethod1) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
+    PyObject *args[3] = {NULL, arg1, arg2};
+    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* PyObjectCallMethod1 (used by append) */
+#if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
+static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
+    PyObject *result = __Pyx_PyObject_CallOneArg(method, arg);
+    Py_DECREF(method);
+    return result;
+}
+#endif
+static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
+#if CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000))
+    PyObject *args[2] = {obj, arg};
+    (void) __Pyx_PyObject_CallOneArg;
+    (void) __Pyx_PyObject_Call2Args;
+    return PyObject_VectorcallMethod(method_name, args, 2 | PY_VECTORCALL_ARGUMENTS_OFFSET, NULL);
+#else
+    PyObject *method = NULL, *result;
+    int is_method = __Pyx_PyObject_GetMethod(obj, method_name, &method);
+    if (likely(is_method)) {
+        result = __Pyx_PyObject_Call2Args(method, obj, arg);
+        Py_DECREF(method);
+        return result;
+    }
+    if (unlikely(!method)) return NULL;
+    return __Pyx__PyObject_CallMethod1(method, arg);
+#endif
+}
+
+/* append */
+static CYTHON_INLINE int __Pyx_PyObject_Append(PyObject* L, PyObject* x) {
+    if (likely(PyList_CheckExact(L))) {
+        if (unlikely(__Pyx_PyList_Append(L, x) < 0)) return -1;
+    } else {
+        PyObject* retval = __Pyx_PyObject_CallMethod1(L, __pyx_mstate_global->__pyx_n_u_append, x);
+        if (unlikely(!retval))
+            return -1;
+        Py_DECREF(retval);
+    }
+    return 0;
+}
+
+/* DictGetItem */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
+    PyObject *value;
+    if (unlikely(__Pyx_PyDict_GetItemRef(d, key, &value) == 0)) { // no value, no error
+        if (unlikely(PyTuple_Check(key))) {
+            PyObject* args = PyTuple_Pack(1, key);
+            if (likely(args)) {
+                PyErr_SetObject(PyExc_KeyError, args);
+                Py_DECREF(args);
+            }
+        } else {
+            PyErr_SetObject(PyExc_KeyError, key);
+        }
+    }
+    return value;
+}
+#endif
+
+/* py_dict_keys */
+static CYTHON_INLINE PyObject* __Pyx_PyDict_Keys(PyObject* d) {
+    return __Pyx_CallUnboundCMethod0(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_keys, d);
+}
+
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {
     if (is_final || likely(!__Pyx_PyType_HasFeature(t, Py_TPFLAGS_IS_ABSTRACT))) {
@@ -12612,12 +13179,6 @@ static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bas
     return (PyObject*) metaclass;
 }
 
-/* PyObjectCall2Args (used by Py3ClassCreate) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
-    PyObject *args[3] = {NULL, arg1, arg2};
-    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
-}
-
 /* PyObjectLookupSpecial (used by Py3ClassCreate) */
 #if CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PyObject* __Pyx__PyObject_LookupSpecial(PyObject* obj, PyObject* attr_name, int with_error) {
@@ -14002,33 +14563,6 @@ static CYTHON_INLINE PyObject *__Pyx_PyIter_Next_Plain(PyObject *iterator) {
     iternextfunc iternext = __Pyx_PyObject_GetIterNextFunc(iterator);
     assert(iternext);
     return iternext(iterator);
-#endif
-}
-
-/* PyObjectCallMethod1 (used by CoroutineBase) */
-#if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
-static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
-    PyObject *result = __Pyx_PyObject_CallOneArg(method, arg);
-    Py_DECREF(method);
-    return result;
-}
-#endif
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
-#if CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000))
-    PyObject *args[2] = {obj, arg};
-    (void) __Pyx_PyObject_CallOneArg;
-    (void) __Pyx_PyObject_Call2Args;
-    return PyObject_VectorcallMethod(method_name, args, 2 | PY_VECTORCALL_ARGUMENTS_OFFSET, NULL);
-#else
-    PyObject *method = NULL, *result;
-    int is_method = __Pyx_PyObject_GetMethod(obj, method_name, &method);
-    if (likely(is_method)) {
-        result = __Pyx_PyObject_Call2Args(method, obj, arg);
-        Py_DECREF(method);
-        return result;
-    }
-    if (unlikely(!method)) return NULL;
-    return __Pyx__PyObject_CallMethod1(method, arg);
 #endif
 }
 

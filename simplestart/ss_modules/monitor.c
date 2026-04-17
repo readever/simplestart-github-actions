@@ -1523,7 +1523,6 @@ struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexp
 */
 struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct__notify_frontend {
   PyObject_HEAD
-  PyObject *__pyx_v_client_id;
   PyObject *__pyx_v_json;
   PyObject *__pyx_v_send_data;
   PyObject *__pyx_v_websocket;
@@ -2690,7 +2689,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[11];
-  PyObject *__pyx_string_tab[156];
+  PyObject *__pyx_string_tab[155];
   PyObject *__pyx_number_tab[1];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -2767,159 +2766,158 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_ __pyx_string_tab[0]
 #define __pyx_kp_u_Error_reloading __pyx_string_tab[1]
 #define __pyx_kp_u__10 __pyx_string_tab[2]
-#define __pyx_kp_u__11 __pyx_string_tab[3]
-#define __pyx_kp_u__2 __pyx_string_tab[4]
-#define __pyx_kp_u__3 __pyx_string_tab[5]
-#define __pyx_kp_u__4 __pyx_string_tab[6]
-#define __pyx_kp_u__5 __pyx_string_tab[7]
-#define __pyx_kp_u__6 __pyx_string_tab[8]
-#define __pyx_kp_u__7 __pyx_string_tab[9]
-#define __pyx_kp_u_disable __pyx_string_tab[10]
-#define __pyx_kp_u_enable __pyx_string_tab[11]
-#define __pyx_kp_u_file_created __pyx_string_tab[12]
-#define __pyx_kp_u_file_deleted __pyx_string_tab[13]
-#define __pyx_kp_u_file_modified __pyx_string_tab[14]
-#define __pyx_kp_u_gc __pyx_string_tab[15]
-#define __pyx_kp_u_ipynb_checkpoints __pyx_string_tab[16]
-#define __pyx_kp_u_isenabled __pyx_string_tab[17]
-#define __pyx_kp_u_py __pyx_string_tab[18]
-#define __pyx_kp_u_simplestart_ss_modules_monitor_p __pyx_string_tab[19]
-#define __pyx_kp_u_this_is_module_monitor_py __pyx_string_tab[20]
-#define __pyx_n_u_Event __pyx_string_tab[21]
-#define __pyx_n_u_FileSystemEventHandler __pyx_string_tab[22]
-#define __pyx_n_u_Observer __pyx_string_tab[23]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[24]
-#define __pyx_n_u_ReloadOnChangeHandler __pyx_string_tab[25]
-#define __pyx_n_u_ReloadOnChangeHandler___init __pyx_string_tab[26]
-#define __pyx_n_u_ReloadOnChangeHandler__is_hidden __pyx_string_tab[27]
-#define __pyx_n_u_ReloadOnChangeHandler__is_hidden_2 __pyx_string_tab[28]
-#define __pyx_n_u_ReloadOnChangeHandler__is_valid __pyx_string_tab[29]
-#define __pyx_n_u_ReloadOnChangeHandler_notify_fro __pyx_string_tab[30]
-#define __pyx_n_u_ReloadOnChangeHandler_notify_fro_2 __pyx_string_tab[31]
-#define __pyx_n_u_ReloadOnChangeHandler_on_created __pyx_string_tab[32]
-#define __pyx_n_u_ReloadOnChangeHandler_on_deleted __pyx_string_tab[33]
-#define __pyx_n_u_ReloadOnChangeHandler_on_modifie __pyx_string_tab[34]
-#define __pyx_n_u_Thread __pyx_string_tab[35]
+#define __pyx_kp_u__2 __pyx_string_tab[3]
+#define __pyx_kp_u__3 __pyx_string_tab[4]
+#define __pyx_kp_u__4 __pyx_string_tab[5]
+#define __pyx_kp_u__5 __pyx_string_tab[6]
+#define __pyx_kp_u__6 __pyx_string_tab[7]
+#define __pyx_kp_u__9 __pyx_string_tab[8]
+#define __pyx_kp_u_disable __pyx_string_tab[9]
+#define __pyx_kp_u_enable __pyx_string_tab[10]
+#define __pyx_kp_u_file_created __pyx_string_tab[11]
+#define __pyx_kp_u_file_deleted __pyx_string_tab[12]
+#define __pyx_kp_u_file_modified __pyx_string_tab[13]
+#define __pyx_kp_u_gc __pyx_string_tab[14]
+#define __pyx_kp_u_ipynb_checkpoints __pyx_string_tab[15]
+#define __pyx_kp_u_isenabled __pyx_string_tab[16]
+#define __pyx_kp_u_py __pyx_string_tab[17]
+#define __pyx_kp_u_simplestart_ss_modules_monitor_p __pyx_string_tab[18]
+#define __pyx_kp_u_this_is_module_monitor_py __pyx_string_tab[19]
+#define __pyx_n_u_Event __pyx_string_tab[20]
+#define __pyx_n_u_FileSystemEventHandler __pyx_string_tab[21]
+#define __pyx_n_u_Observer __pyx_string_tab[22]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[23]
+#define __pyx_n_u_ReloadOnChangeHandler __pyx_string_tab[24]
+#define __pyx_n_u_ReloadOnChangeHandler___init __pyx_string_tab[25]
+#define __pyx_n_u_ReloadOnChangeHandler__is_hidden __pyx_string_tab[26]
+#define __pyx_n_u_ReloadOnChangeHandler__is_hidden_2 __pyx_string_tab[27]
+#define __pyx_n_u_ReloadOnChangeHandler__is_valid __pyx_string_tab[28]
+#define __pyx_n_u_ReloadOnChangeHandler_notify_fro __pyx_string_tab[29]
+#define __pyx_n_u_ReloadOnChangeHandler_notify_fro_2 __pyx_string_tab[30]
+#define __pyx_n_u_ReloadOnChangeHandler_on_created __pyx_string_tab[31]
+#define __pyx_n_u_ReloadOnChangeHandler_on_deleted __pyx_string_tab[32]
+#define __pyx_n_u_ReloadOnChangeHandler_on_modifie __pyx_string_tab[33]
+#define __pyx_n_u_Thread __pyx_string_tab[34]
+#define __pyx_n_u__7 __pyx_string_tab[35]
 #define __pyx_n_u__8 __pyx_string_tab[36]
-#define __pyx_n_u__9 __pyx_string_tab[37]
-#define __pyx_n_u_absolute_test __pyx_string_tab[38]
-#define __pyx_n_u_abspath __pyx_string_tab[39]
-#define __pyx_n_u_asyncio __pyx_string_tab[40]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[41]
-#define __pyx_n_u_await __pyx_string_tab[42]
-#define __pyx_n_u_class_getitem __pyx_string_tab[43]
-#define __pyx_n_u_client_id __pyx_string_tab[44]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[45]
-#define __pyx_n_u_close __pyx_string_tab[46]
-#define __pyx_n_u_doc __pyx_string_tab[47]
-#define __pyx_n_u_dumps __pyx_string_tab[48]
-#define __pyx_n_u_e __pyx_string_tab[49]
-#define __pyx_n_u_endswith __pyx_string_tab[50]
-#define __pyx_n_u_event __pyx_string_tab[51]
-#define __pyx_n_u_event_handler __pyx_string_tab[52]
-#define __pyx_n_u_file __pyx_string_tab[53]
-#define __pyx_n_u_filepath __pyx_string_tab[54]
-#define __pyx_n_u_find_module_reload __pyx_string_tab[55]
-#define __pyx_n_u_func __pyx_string_tab[56]
-#define __pyx_n_u_func_2 __pyx_string_tab[57]
-#define __pyx_n_u_genexpr __pyx_string_tab[58]
-#define __pyx_n_u_getcwd __pyx_string_tab[59]
-#define __pyx_n_u_importlib __pyx_string_tab[60]
-#define __pyx_n_u_init __pyx_string_tab[61]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[62]
-#define __pyx_n_u_is_directory __pyx_string_tab[63]
-#define __pyx_n_u_is_hidden_directory __pyx_string_tab[64]
-#define __pyx_n_u_is_set __pyx_string_tab[65]
-#define __pyx_n_u_is_valid_file __pyx_string_tab[66]
-#define __pyx_n_u_items __pyx_string_tab[67]
-#define __pyx_n_u_join __pyx_string_tab[68]
-#define __pyx_n_u_json __pyx_string_tab[69]
-#define __pyx_n_u_keys __pyx_string_tab[70]
-#define __pyx_n_u_loop __pyx_string_tab[71]
-#define __pyx_n_u_main __pyx_string_tab[72]
-#define __pyx_n_u_metaclass __pyx_string_tab[73]
-#define __pyx_n_u_module __pyx_string_tab[74]
-#define __pyx_n_u_module_2 __pyx_string_tab[75]
-#define __pyx_n_u_module_name __pyx_string_tab[76]
-#define __pyx_n_u_module_names __pyx_string_tab[77]
-#define __pyx_n_u_modules __pyx_string_tab[78]
-#define __pyx_n_u_mro_entries __pyx_string_tab[79]
-#define __pyx_n_u_msg __pyx_string_tab[80]
-#define __pyx_n_u_myprint __pyx_string_tab[81]
-#define __pyx_n_u_mysocket __pyx_string_tab[82]
-#define __pyx_n_u_name __pyx_string_tab[83]
-#define __pyx_n_u_new_event_loop __pyx_string_tab[84]
-#define __pyx_n_u_next __pyx_string_tab[85]
-#define __pyx_n_u_notify_frontend __pyx_string_tab[86]
-#define __pyx_n_u_observer __pyx_string_tab[87]
-#define __pyx_n_u_on_created __pyx_string_tab[88]
-#define __pyx_n_u_on_deleted __pyx_string_tab[89]
-#define __pyx_n_u_on_modified __pyx_string_tab[90]
-#define __pyx_n_u_os __pyx_string_tab[91]
-#define __pyx_n_u_part __pyx_string_tab[92]
-#define __pyx_n_u_path __pyx_string_tab[93]
-#define __pyx_n_u_path_to_watch __pyx_string_tab[94]
-#define __pyx_n_u_pop __pyx_string_tab[95]
-#define __pyx_n_u_prepare __pyx_string_tab[96]
-#define __pyx_n_u_print __pyx_string_tab[97]
-#define __pyx_n_u_project_root __pyx_string_tab[98]
-#define __pyx_n_u_qualname __pyx_string_tab[99]
-#define __pyx_n_u_reboot __pyx_string_tab[100]
-#define __pyx_n_u_recursive __pyx_string_tab[101]
-#define __pyx_n_u_reload __pyx_string_tab[102]
-#define __pyx_n_u_result __pyx_string_tab[103]
-#define __pyx_n_u_run_until_complete __pyx_string_tab[104]
-#define __pyx_n_u_schedule __pyx_string_tab[105]
-#define __pyx_n_u_script_name __pyx_string_tab[106]
-#define __pyx_n_u_self __pyx_string_tab[107]
-#define __pyx_n_u_send __pyx_string_tab[108]
-#define __pyx_n_u_send_data __pyx_string_tab[109]
-#define __pyx_n_u_send_message __pyx_string_tab[110]
-#define __pyx_n_u_send_text __pyx_string_tab[111]
-#define __pyx_n_u_server_command __pyx_string_tab[112]
-#define __pyx_n_u_server_timestamp __pyx_string_tab[113]
-#define __pyx_n_u_set_event_loop __pyx_string_tab[114]
-#define __pyx_n_u_set_name __pyx_string_tab[115]
-#define __pyx_n_u_setdefault __pyx_string_tab[116]
-#define __pyx_n_u_simplestart_ss_modules_monitor __pyx_string_tab[117]
-#define __pyx_n_u_simplestream __pyx_string_tab[118]
-#define __pyx_n_u_sleep __pyx_string_tab[119]
-#define __pyx_n_u_socket_pools __pyx_string_tab[120]
-#define __pyx_n_u_split __pyx_string_tab[121]
-#define __pyx_n_u_src_path __pyx_string_tab[122]
-#define __pyx_n_u_ss __pyx_string_tab[123]
-#define __pyx_n_u_ss_core_print __pyx_string_tab[124]
-#define __pyx_n_u_start __pyx_string_tab[125]
-#define __pyx_n_u_start_file_watcher __pyx_string_tab[126]
-#define __pyx_n_u_startswith __pyx_string_tab[127]
-#define __pyx_n_u_stop __pyx_string_tab[128]
-#define __pyx_n_u_stop_event __pyx_string_tab[129]
-#define __pyx_n_u_sys __pyx_string_tab[130]
-#define __pyx_n_u_system __pyx_string_tab[131]
-#define __pyx_n_u_test __pyx_string_tab[132]
-#define __pyx_n_u_test_2 __pyx_string_tab[133]
-#define __pyx_n_u_threading __pyx_string_tab[134]
-#define __pyx_n_u_throw __pyx_string_tab[135]
-#define __pyx_n_u_time __pyx_string_tab[136]
-#define __pyx_n_u_type __pyx_string_tab[137]
-#define __pyx_n_u_uuid __pyx_string_tab[138]
-#define __pyx_n_u_uuid4 __pyx_string_tab[139]
-#define __pyx_n_u_value __pyx_string_tab[140]
-#define __pyx_n_u_values __pyx_string_tab[141]
-#define __pyx_n_u_watch_path __pyx_string_tab[142]
-#define __pyx_n_u_watchdog_events __pyx_string_tab[143]
-#define __pyx_n_u_watchdog_observers __pyx_string_tab[144]
-#define __pyx_n_u_websocket __pyx_string_tab[145]
-#define __pyx_kp_b_iso88591_1 __pyx_string_tab[146]
-#define __pyx_kp_b_iso88591_2WA_4q_85_q_HAQ_7_d_vZt6_Qa_r_e __pyx_string_tab[147]
-#define __pyx_kp_b_iso88591_A_1_q __pyx_string_tab[148]
-#define __pyx_kp_b_iso88591_A_4_aq_1E_auA __pyx_string_tab[149]
-#define __pyx_kp_b_iso88591_A_4_aq_5 __pyx_string_tab[150]
-#define __pyx_kp_b_iso88591_A_5_1_4uIYaq_1_t4_AU __pyx_string_tab[151]
-#define __pyx_kp_b_iso88591_A_O1 __pyx_string_tab[152]
-#define __pyx_kp_b_iso88591_A_wat1_3at6_1_A_A_1_K_Bm6_z_A_7 __pyx_string_tab[153]
-#define __pyx_kp_b_iso88591__12 __pyx_string_tab[154]
-#define __pyx_kp_b_iso88591_xq_5Q_IQoU_j_F_d_G1_aq_Qa_Q_Q_Q __pyx_string_tab[155]
+#define __pyx_n_u_absolute_test __pyx_string_tab[37]
+#define __pyx_n_u_abspath __pyx_string_tab[38]
+#define __pyx_n_u_asyncio __pyx_string_tab[39]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[40]
+#define __pyx_n_u_await __pyx_string_tab[41]
+#define __pyx_n_u_class_getitem __pyx_string_tab[42]
+#define __pyx_n_u_client_id __pyx_string_tab[43]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[44]
+#define __pyx_n_u_close __pyx_string_tab[45]
+#define __pyx_n_u_doc __pyx_string_tab[46]
+#define __pyx_n_u_dumps __pyx_string_tab[47]
+#define __pyx_n_u_e __pyx_string_tab[48]
+#define __pyx_n_u_endswith __pyx_string_tab[49]
+#define __pyx_n_u_event __pyx_string_tab[50]
+#define __pyx_n_u_event_handler __pyx_string_tab[51]
+#define __pyx_n_u_file __pyx_string_tab[52]
+#define __pyx_n_u_filepath __pyx_string_tab[53]
+#define __pyx_n_u_find_module_reload __pyx_string_tab[54]
+#define __pyx_n_u_func __pyx_string_tab[55]
+#define __pyx_n_u_func_2 __pyx_string_tab[56]
+#define __pyx_n_u_genexpr __pyx_string_tab[57]
+#define __pyx_n_u_getcwd __pyx_string_tab[58]
+#define __pyx_n_u_importlib __pyx_string_tab[59]
+#define __pyx_n_u_init __pyx_string_tab[60]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[61]
+#define __pyx_n_u_is_directory __pyx_string_tab[62]
+#define __pyx_n_u_is_hidden_directory __pyx_string_tab[63]
+#define __pyx_n_u_is_set __pyx_string_tab[64]
+#define __pyx_n_u_is_valid_file __pyx_string_tab[65]
+#define __pyx_n_u_items __pyx_string_tab[66]
+#define __pyx_n_u_join __pyx_string_tab[67]
+#define __pyx_n_u_json __pyx_string_tab[68]
+#define __pyx_n_u_keys __pyx_string_tab[69]
+#define __pyx_n_u_loop __pyx_string_tab[70]
+#define __pyx_n_u_main __pyx_string_tab[71]
+#define __pyx_n_u_metaclass __pyx_string_tab[72]
+#define __pyx_n_u_module __pyx_string_tab[73]
+#define __pyx_n_u_module_2 __pyx_string_tab[74]
+#define __pyx_n_u_module_name __pyx_string_tab[75]
+#define __pyx_n_u_module_names __pyx_string_tab[76]
+#define __pyx_n_u_modules __pyx_string_tab[77]
+#define __pyx_n_u_mro_entries __pyx_string_tab[78]
+#define __pyx_n_u_msg __pyx_string_tab[79]
+#define __pyx_n_u_myprint __pyx_string_tab[80]
+#define __pyx_n_u_mysocket __pyx_string_tab[81]
+#define __pyx_n_u_name __pyx_string_tab[82]
+#define __pyx_n_u_new_event_loop __pyx_string_tab[83]
+#define __pyx_n_u_next __pyx_string_tab[84]
+#define __pyx_n_u_notify_frontend __pyx_string_tab[85]
+#define __pyx_n_u_observer __pyx_string_tab[86]
+#define __pyx_n_u_on_created __pyx_string_tab[87]
+#define __pyx_n_u_on_deleted __pyx_string_tab[88]
+#define __pyx_n_u_on_modified __pyx_string_tab[89]
+#define __pyx_n_u_os __pyx_string_tab[90]
+#define __pyx_n_u_part __pyx_string_tab[91]
+#define __pyx_n_u_path __pyx_string_tab[92]
+#define __pyx_n_u_path_to_watch __pyx_string_tab[93]
+#define __pyx_n_u_pop __pyx_string_tab[94]
+#define __pyx_n_u_prepare __pyx_string_tab[95]
+#define __pyx_n_u_print __pyx_string_tab[96]
+#define __pyx_n_u_project_root __pyx_string_tab[97]
+#define __pyx_n_u_qualname __pyx_string_tab[98]
+#define __pyx_n_u_reboot __pyx_string_tab[99]
+#define __pyx_n_u_recursive __pyx_string_tab[100]
+#define __pyx_n_u_reload __pyx_string_tab[101]
+#define __pyx_n_u_result __pyx_string_tab[102]
+#define __pyx_n_u_run_until_complete __pyx_string_tab[103]
+#define __pyx_n_u_schedule __pyx_string_tab[104]
+#define __pyx_n_u_script_name __pyx_string_tab[105]
+#define __pyx_n_u_self __pyx_string_tab[106]
+#define __pyx_n_u_send __pyx_string_tab[107]
+#define __pyx_n_u_send_data __pyx_string_tab[108]
+#define __pyx_n_u_send_message __pyx_string_tab[109]
+#define __pyx_n_u_send_text __pyx_string_tab[110]
+#define __pyx_n_u_server_command __pyx_string_tab[111]
+#define __pyx_n_u_server_timestamp __pyx_string_tab[112]
+#define __pyx_n_u_set_event_loop __pyx_string_tab[113]
+#define __pyx_n_u_set_name __pyx_string_tab[114]
+#define __pyx_n_u_setdefault __pyx_string_tab[115]
+#define __pyx_n_u_simplestart_ss_modules_monitor __pyx_string_tab[116]
+#define __pyx_n_u_simplestream __pyx_string_tab[117]
+#define __pyx_n_u_sleep __pyx_string_tab[118]
+#define __pyx_n_u_socket_pools __pyx_string_tab[119]
+#define __pyx_n_u_split __pyx_string_tab[120]
+#define __pyx_n_u_src_path __pyx_string_tab[121]
+#define __pyx_n_u_ss __pyx_string_tab[122]
+#define __pyx_n_u_ss_core_print __pyx_string_tab[123]
+#define __pyx_n_u_start __pyx_string_tab[124]
+#define __pyx_n_u_start_file_watcher __pyx_string_tab[125]
+#define __pyx_n_u_startswith __pyx_string_tab[126]
+#define __pyx_n_u_stop __pyx_string_tab[127]
+#define __pyx_n_u_stop_event __pyx_string_tab[128]
+#define __pyx_n_u_sys __pyx_string_tab[129]
+#define __pyx_n_u_system __pyx_string_tab[130]
+#define __pyx_n_u_test __pyx_string_tab[131]
+#define __pyx_n_u_test_2 __pyx_string_tab[132]
+#define __pyx_n_u_threading __pyx_string_tab[133]
+#define __pyx_n_u_throw __pyx_string_tab[134]
+#define __pyx_n_u_time __pyx_string_tab[135]
+#define __pyx_n_u_type __pyx_string_tab[136]
+#define __pyx_n_u_uuid __pyx_string_tab[137]
+#define __pyx_n_u_uuid4 __pyx_string_tab[138]
+#define __pyx_n_u_value __pyx_string_tab[139]
+#define __pyx_n_u_values __pyx_string_tab[140]
+#define __pyx_n_u_watch_path __pyx_string_tab[141]
+#define __pyx_n_u_watchdog_events __pyx_string_tab[142]
+#define __pyx_n_u_watchdog_observers __pyx_string_tab[143]
+#define __pyx_n_u_websocket __pyx_string_tab[144]
+#define __pyx_kp_b_iso88591_1 __pyx_string_tab[145]
+#define __pyx_kp_b_iso88591_2WA_4q_85_q_HAQ_7_d_vZt6_Qa_r_e __pyx_string_tab[146]
+#define __pyx_kp_b_iso88591_A_1_q __pyx_string_tab[147]
+#define __pyx_kp_b_iso88591_A_4_aq_1_Qe1_auA __pyx_string_tab[148]
+#define __pyx_kp_b_iso88591_A_4_aq_5 __pyx_string_tab[149]
+#define __pyx_kp_b_iso88591_A_5_1_4uIYaq_1_t4_AU __pyx_string_tab[150]
+#define __pyx_kp_b_iso88591_A_O1 __pyx_string_tab[151]
+#define __pyx_kp_b_iso88591_A_wat1_3at6_1_A_A_1_K_Bm6_z_A_7 __pyx_string_tab[152]
+#define __pyx_kp_b_iso88591__11 __pyx_string_tab[153]
+#define __pyx_kp_b_iso88591_xq_5Q_IQoU_j_F_d_G1_aq_Qa_Q_Q_Q __pyx_string_tab[154]
 #define __pyx_int_1 __pyx_number_tab[0]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
@@ -2942,7 +2940,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
   for (int i=0; i<11; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<156; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<155; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -2980,7 +2978,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
   for (int i=0; i<11; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<156; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<155; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -3882,6 +3880,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   int __pyx_t_4;
   PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3891,7 +3890,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *     def on_modified(self, event):
  *         """"""
  *         if self._is_valid_file(event):             # <<<<<<<<<<<<<<
- *             print(f'file modified: {event.src_path}')
+ *             myprint(f'file modified: {event.src_path}')
  * 
 */
   __pyx_t_2 = __pyx_v_self;
@@ -3911,24 +3910,38 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     /* "simplestart/ss_modules/monitor.py":70
  *         """"""
  *         if self._is_valid_file(event):
- *             print(f'file modified: {event.src_path}')             # <<<<<<<<<<<<<<
+ *             myprint(f'file modified: {event.src_path}')             # <<<<<<<<<<<<<<
  * 
  *             #
 */
     __pyx_t_2 = NULL;
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_src_path); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_myprint); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_src_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_file_modified, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_t_6, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_file_modified, __pyx_t_7); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_3 = 1;
+    #if CYTHON_UNPACK_METHODS
+    if (unlikely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
+      assert(__pyx_t_2);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+      __pyx_t_3 = 0;
+    }
+    #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_6};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
@@ -3943,28 +3956,28 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *             #
 */
     __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_find_module_reload); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_src_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_find_module_reload); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_src_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
+    if (unlikely(PyMethod_Check(__pyx_t_6))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_6);
       assert(__pyx_t_5);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
       __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
       __pyx_t_3 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_t_6};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_t_2};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
@@ -3977,13 +3990,13 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  * 
  *     def notify_frontend(self):
 */
-    __pyx_t_2 = __pyx_v_self;
-    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_6 = __pyx_v_self;
+    __Pyx_INCREF(__pyx_t_6);
     __pyx_t_3 = 0;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_notify_frontend, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
@@ -3993,7 +4006,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *     def on_modified(self, event):
  *         """"""
  *         if self._is_valid_file(event):             # <<<<<<<<<<<<<<
- *             print(f'file modified: {event.src_path}')
+ *             myprint(f'file modified: {event.src_path}')
  * 
 */
   }
@@ -4014,6 +4027,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("simplestart.ss_modules.monitor.ReloadOnChangeHandler.on_modified", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -4225,7 +4239,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *                             async def send_message():
  *                                 try:             # <<<<<<<<<<<<<<
  *                                     await websocket.send_text(json.dumps(send_data))
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
 */
   {
     __Pyx_ExceptionSave(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3);
@@ -4238,7 +4252,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *                             async def send_message():
  *                                 try:
  *                                     await websocket.send_text(json.dumps(send_data))             # <<<<<<<<<<<<<<
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
  *                                 except Exception as e:
 */
       if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_websocket)) { __Pyx_RaiseClosureNameError("websocket"); __PYX_ERR(0, 103, __pyx_L4_error) }
@@ -4300,37 +4314,12 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         __PYX_ERR(0, 103, __pyx_L4_error)
       }
 
-      /* "simplestart/ss_modules/monitor.py":104
- *                                 try:
- *                                     await websocket.send_text(json.dumps(send_data))
- *                                     print(f": {client_id}")             # <<<<<<<<<<<<<<
- *                                 except Exception as e:
- *                                     print(f": {e}")
-*/
-      __pyx_t_6 = NULL;
-      if (unlikely(!__pyx_cur_scope->__pyx_outer_scope->__pyx_v_client_id)) { __Pyx_RaiseClosureNameError("client_id"); __PYX_ERR(0, 104, __pyx_L4_error) }
-      __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_outer_scope->__pyx_v_client_id, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 104, __pyx_L4_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_7 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__2, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 104, __pyx_L4_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_8 = 1;
-      {
-        PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_t_7};
-        __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L4_error)
-        __Pyx_GOTREF(__pyx_t_4);
-      }
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
       /* "simplestart/ss_modules/monitor.py":102
  *                             #
  *                             async def send_message():
  *                                 try:             # <<<<<<<<<<<<<<
  *                                     await websocket.send_text(json.dumps(send_data))
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
 */
     }
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4345,7 +4334,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
 
     /* "simplestart/ss_modules/monitor.py":105
  *                                     await websocket.send_text(json.dumps(send_data))
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
  *                                 except Exception as e:             # <<<<<<<<<<<<<<
  *                                     print(f": {e}")
  * 
@@ -4353,17 +4342,17 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     __pyx_t_10 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_Exception))));
     if (__pyx_t_10) {
       __Pyx_AddTraceback("simplestart.ss_modules.monitor.ReloadOnChangeHandler.notify_frontend.send_message", __pyx_clineno, __pyx_lineno, __pyx_filename);
-      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_7, &__pyx_t_6) < 0) __PYX_ERR(0, 105, __pyx_L6_except_error)
+      if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_6, &__pyx_t_5) < 0) __PYX_ERR(0, 105, __pyx_L6_except_error)
       __Pyx_XGOTREF(__pyx_t_4);
-      __Pyx_XGOTREF(__pyx_t_7);
       __Pyx_XGOTREF(__pyx_t_6);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_GIVEREF(__pyx_t_7);
-      __pyx_cur_scope->__pyx_v_e = __pyx_t_7;
+      __Pyx_XGOTREF(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_6);
+      __Pyx_GIVEREF(__pyx_t_6);
+      __pyx_cur_scope->__pyx_v_e = __pyx_t_6;
       /*try:*/ {
 
         /* "simplestart/ss_modules/monitor.py":106
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
  *                                 except Exception as e:
  *                                     print(f": {e}")             # <<<<<<<<<<<<<<
  * 
@@ -4372,24 +4361,24 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         __pyx_t_11 = NULL;
         __pyx_t_12 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_e, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 106, __pyx_L16_error)
         __Pyx_GOTREF(__pyx_t_12);
-        __pyx_t_13 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__3, __pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 106, __pyx_L16_error)
+        __pyx_t_13 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__2, __pyx_t_12); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 106, __pyx_L16_error)
         __Pyx_GOTREF(__pyx_t_13);
         __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
         __pyx_t_8 = 1;
         {
           PyObject *__pyx_callargs[2] = {__pyx_t_11, __pyx_t_13};
-          __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+          __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L16_error)
-          __Pyx_GOTREF(__pyx_t_5);
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 106, __pyx_L16_error)
+          __Pyx_GOTREF(__pyx_t_7);
         }
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
 
       /* "simplestart/ss_modules/monitor.py":105
  *                                     await websocket.send_text(json.dumps(send_data))
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
  *                                 except Exception as e:             # <<<<<<<<<<<<<<
  *                                     print(f": {e}")
  * 
@@ -4407,7 +4396,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
           __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
           __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
-          __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+          __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
            __Pyx_ExceptionSwap(&__pyx_t_19, &__pyx_t_20, &__pyx_t_21);
           if ( unlikely(__Pyx_GetException(&__pyx_t_16, &__pyx_t_17, &__pyx_t_18) < 0)) __Pyx_ErrFetch(&__pyx_t_16, &__pyx_t_17, &__pyx_t_18);
           __Pyx_XGOTREF(__pyx_t_16);
@@ -4436,8 +4425,8 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         __pyx_L17:;
       }
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       goto __pyx_L5_exception_handled;
     }
     goto __pyx_L6_except_error;
@@ -4447,7 +4436,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *                             async def send_message():
  *                                 try:             # <<<<<<<<<<<<<<
  *                                     await websocket.send_text(json.dumps(send_data))
- *                                     print(f": {client_id}")
+ *                                     ## print(f": {client_id}")
 */
     __pyx_L6_except_error:;
     __Pyx_XGIVEREF(__pyx_t_1);
@@ -4509,6 +4498,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
 static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_4notify_frontend(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
   struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct__notify_frontend *__pyx_cur_scope;
   CYTHON_UNUSED PyObject *__pyx_v_server_timestamp = NULL;
+  PyObject *__pyx_v_client_id = NULL;
   PyObject *__pyx_v_loop = NULL;
   PyObject *__pyx_v_send_message = 0;
   PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_15notify_frontend_2generator = 0;
@@ -4673,9 +4663,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
           if (unlikely(__pyx_t_13 == -1)) __PYX_ERR(0, 91, __pyx_L3_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_client_id);
-          __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_client_id, __pyx_t_8);
-          __Pyx_GIVEREF(__pyx_t_8);
+          __Pyx_XDECREF_SET(__pyx_v_client_id, __pyx_t_8);
           __pyx_t_8 = 0;
           __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_websocket);
           __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_websocket, __pyx_t_6);
@@ -4689,7 +4677,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *                         try:
  *                             # send_message
 */
-          __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_cur_scope->__pyx_v_client_id, __pyx_mstate_global->__pyx_n_u_mysocket, Py_NE)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 92, __pyx_L3_error)
+          __pyx_t_5 = (__Pyx_PyUnicode_Equals(__pyx_v_client_id, __pyx_mstate_global->__pyx_n_u_mysocket, Py_NE)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 92, __pyx_L3_error)
           if (__pyx_t_5) {
 
             /* "simplestart/ss_modules/monitor.py":93
@@ -4893,7 +4881,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
                   __pyx_t_19 = NULL;
                   __pyx_t_20 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 111, __pyx_L26_error)
                   __Pyx_GOTREF(__pyx_t_20);
-                  __pyx_t_21 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__3, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 111, __pyx_L26_error)
+                  __pyx_t_21 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__2, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 111, __pyx_L26_error)
                   __Pyx_GOTREF(__pyx_t_21);
                   __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
                   __pyx_t_9 = 1;
@@ -5053,7 +5041,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         __pyx_t_8 = NULL;
         __pyx_t_21 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 113, __pyx_L37_error)
         __Pyx_GOTREF(__pyx_t_21);
-        __pyx_t_19 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__4, __pyx_t_21); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 113, __pyx_L37_error)
+        __pyx_t_19 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u__3, __pyx_t_21); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 113, __pyx_L37_error)
         __Pyx_GOTREF(__pyx_t_19);
         __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
         __pyx_t_9 = 1;
@@ -5168,6 +5156,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_server_timestamp);
+  __Pyx_XDECREF(__pyx_v_client_id);
   __Pyx_XDECREF(__pyx_v_loop);
   __Pyx_XDECREF(__pyx_v_send_message);
   __Pyx_XDECREF(__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_15notify_frontend_2generator);
@@ -6048,7 +6037,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     __Pyx_INCREF(__pyx_t_6);
     __pyx_t_7 = 0;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_mstate_global->__pyx_kp_u__5};
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_mstate_global->__pyx_kp_u__4};
       __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
@@ -6145,7 +6134,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_3 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u__6};
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u__5};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_split, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
@@ -6413,8 +6402,8 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_2start_file_watche
     __Pyx_INCREF(__pyx_v_path_to_watch);
     __pyx_t_1 = __pyx_v_path_to_watch;
   } else {
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u__7);
-    __pyx_t_1 = __pyx_mstate_global->__pyx_kp_u__7;
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u__6);
+    __pyx_t_1 = __pyx_mstate_global->__pyx_kp_u__6;
   }
   __pyx_v_watch_path = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6597,7 +6586,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_2start_file_watche
         __pyx_t_12 = NULL;
         __pyx_t_4 = 1;
         {
-          PyObject *__pyx_callargs[2] = {__pyx_t_12, __pyx_mstate_global->__pyx_n_u__8};
+          PyObject *__pyx_callargs[2] = {__pyx_t_12, __pyx_mstate_global->__pyx_n_u__7};
           __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
           if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L8_except_error)
@@ -6680,7 +6669,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_2start_file_watche
       __pyx_t_2 = NULL;
       __pyx_t_4 = 1;
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__9};
+        PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__8};
         __pyx_t_9 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 169, __pyx_L1_error)
@@ -6755,7 +6744,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_2start_file_watche
         __pyx_t_2 = NULL;
         __pyx_t_4 = 1;
         {
-          PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__9};
+          PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__8};
           __pyx_t_9 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 169, __pyx_L17_error)
@@ -6853,7 +6842,6 @@ static void __pyx_tp_dealloc_11simplestart_10ss_modules_7monitor___pyx_scope_str
   }
   #endif
   PyObject_GC_UnTrack(o);
-  Py_CLEAR(p->__pyx_v_client_id);
   Py_CLEAR(p->__pyx_v_json);
   Py_CLEAR(p->__pyx_v_send_data);
   Py_CLEAR(p->__pyx_v_websocket);
@@ -6886,9 +6874,6 @@ static int __pyx_tp_traverse_11simplestart_10ss_modules_7monitor___pyx_scope_str
     e = __Pyx_call_type_traverse(o, 1, v, a);
     if (e) return e;
   }
-  if (p->__pyx_v_client_id) {
-    e = (*v)(p->__pyx_v_client_id, a); if (e) return e;
-  }
   if (p->__pyx_v_json) {
     e = (*v)(p->__pyx_v_json, a); if (e) return e;
   }
@@ -6904,9 +6889,6 @@ static int __pyx_tp_traverse_11simplestart_10ss_modules_7monitor___pyx_scope_str
 static int __pyx_tp_clear_11simplestart_10ss_modules_7monitor___pyx_scope_struct__notify_frontend(PyObject *o) {
   PyObject* tmp;
   struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct__notify_frontend *p = (struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct__notify_frontend *)o;
-  tmp = ((PyObject*)p->__pyx_v_client_id);
-  p->__pyx_v_client_id = Py_None; Py_INCREF(Py_None);
-  Py_XDECREF(tmp);
   tmp = ((PyObject*)p->__pyx_v_json);
   p->__pyx_v_json = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
@@ -8013,7 +7995,7 @@ __Pyx_RefNannySetupContext("PyInit_monitor", 0);
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_2, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor, __pyx_mstate_global->__pyx_kp_u__10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_2, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor, __pyx_mstate_global->__pyx_kp_u__9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   if (__pyx_t_2 != __pyx_t_5) {
     if (unlikely((PyDict_SetItemString(__pyx_t_7, "__orig_bases__", __pyx_t_5) < 0))) __PYX_ERR(0, 58, __pyx_L1_error)
@@ -8256,34 +8238,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{2},{16},{126},{1},{20},{20},{20},{2},{1},{1},{7},{6},{14},{14},{15},{2},{18},{9},{3},{33},{25},{5},{22},{8},{20},{21},{30},{59},{42},{36},{59},{37},{32},{32},{33},{6},{21},{27},{13},{7},{7},{18},{9},{17},{9},{18},{5},{7},{5},{1},{8},{5},{13},{8},{8},{18},{4},{8},{7},{6},{9},{8},{13},{12},{20},{6},{14},{5},{4},{4},{4},{4},{8},{13},{10},{6},{11},{12},{7},{15},{3},{7},{8},{8},{14},{4},{15},{8},{10},{10},{11},{2},{4},{4},{13},{3},{11},{5},{12},{12},{6},{9},{6},{6},{18},{8},{11},{4},{4},{9},{12},{9},{14},{16},{14},{12},{10},{30},{12},{5},{12},{5},{8},{2},{13},{5},{18},{10},{4},{10},{3},{6},{4},{8},{9},{5},{4},{4},{4},{5},{5},{6},{10},{15},{18},{9},{2},{158},{15},{48},{27},{50},{9},{161},{2},{119}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1569 bytes) */
-const char* const cstring = "BZh91AY&SY\264\221\232\271\000\000\235\377\377\377\177\376\357\376\375\377\327\277\355\376\260\277\377\377\363\365\377\355\336\366\312\365\376\300\000@@O\340\300\000P\005>aP\n\000R`t\032$\246@\004\323#\031\252`&&\324\3656SF\365& \321\215!\246\214\021\240\364L'\2412`\023i4h=Cj?Rx\231#L#\324y3$\032\230\220\310\t\246\223\324\323\324bM\001\240\000\000\000\000\000\000\000h\001\240\r\000\000\000\000\000\000\n\251\370\246P\310\032h\323 \302\006\215\r\003@14d\032\006 \320\032\006\214\206\201\221\202\014\231\000\000\000\014\203F\214@\310\321\240\3202\032i\223@\311\204\320bb2h\3202\030\214\004\321\210\000h\301\r\014#\023&M2214\320d`L\022\232@\204\310\023\324\032\021\251\246\324di\240\000\000\000\000\000\000\000\r\007\251\241\351\000\000\000\000\r\032\000)K\255\332@\214^\035\357V\317\356\374{\365\364?\252\360\202\363\t{|\016\003\030\302\263\376\005=\010\023bc$$\2642\373;6N,Q\350\206\241\035I\216LM\240I\375:7\354\210\022\242\315I\034r\212\350&K\177\201\264OP@$y\260\010\302\230\036v+\211\305\365\327\315\255\002,\002\302\t\310\304\313e)\222\205\001{Vq\322\335\202U\203\"\273\2440\256]\0258\227\n&\036kD\006q`\254\347\250\221\3021\202\026\223\363\240C\207\014\3472\352\240\034l\314\372]\365\016\205\222\250&\023\274\212\327\214H\262%q0\246\206iP\031\2326\033\225,\022\306P\231r\264g\237\200\325@\231\360\344\202\026XX\204.54a\006\035\366\00652-\211_\221\353\322`\212\266H\307\310S6p\304\342\"u\347\223\t$(\032\302\212\021\002\270\206q5\257\223T\3778\324 CQKP\312Xk<f'\342\267\225*\212\336\t\323\247#%V\3675V\231P:\231\301\327\263m%\027}\006EQL\256\203a$\242\320\231`\236\202h\321'\305\261\030\004^PhM\361N\242d\356\323\214V\376\312\262\275\001\252J\206vM\361\276\3069h\325\325\341\263\030\253C\027\311\222m\002\350\347\\\305mA\265o\314i\266\251\265Z^~[6\354\267\230\307\201\303BF\243\221\275\260\351\27122j\237Z\227\354\270kk\271\203\025c[k\3016\001\210;(\010&\341*@\261\251kh\271\020\301[\014\372F\006\224Z\214\020\226\014\271\364\314\031s\206\035,\210\323\212-\203eQ\033h\262c\331\203\022\231\205""\t\nP\261l^\370\023\264b1STJ\327&\323\313\001\301'\302k5\251\263\221e\223L\304\022\013\225L@\271Uc\333\2014\031A\237\267\252\325\023\217#\240\032.\303\254\214ET\342U\3318\3139E%\025\001\212\017\222\244\230\335S\364\024q\214\330f\367\275\362\315\216>(\303\301\204A\220\353z\203\017\217\236\344\36246\355\033r\265A\020\336 s\013G\025\222\252d\210\231k\022\302,\222\013\262\322\364\333\224K\r\370\225\324\326 \330\247\211Cu\214\035h\2415\351\220-\3114\360W\0038j\265\254\225\330J\310\274Xo\020\263\0319\030k\034z\022\332\304g-\327S\276\"\215\010\005\221\343\264jj\226\013*+u\266\307\273\334\014UXM\220\365\300\257E\006h\210\213\022X\001\220\223\264\234\276\021\030MS%ql\306\203*\344:\020\265%\201\206\206\205J\006V\274\032\007\013uv\317@\256*\211T\322\213R\266}*\342\255J(\261\224PN\271\346eF\341\3341`\332'\2578\277\020J\232\362\252[\270*>Z\344Y]\362H\237\rvm\323\233\203t\365\330\300\204h \273,u2\221\322l8\302\017\255]\232JI\251\234\362\327j\264\256-\336>\326\206&\202k`\304\003&L\204MR\016\320\0352\020!\311au\313U\365\322\255\013\246\031*\251\271D\306H\021\244\353\302\274g#J!\035\351\361+\226P\254)\2028\027JM)c|\002\252&\261\265\322\317j\362PzPt+U$\350k\006sE\335$\241X\250\320\277<\202\2315\215Cl\361W4\345\302`,\303,S\270\261\260\204\347)>\2230\215\217\030\"m\275\025\322\275\343D\202\314(GL\341\254%\246\312a\330d\215\340\227V\001\205@\251\210<\221GjM\021\232\242z\253\024\016g\3716\2472\210\033E\265\2624\327\313%\262\322\013!F\200\351\310;\364\314.\"\231)\032:\004\001\2734\305\214\000/<D0\n\364{G\233\316+\014\003\022\242\031\201`\014E\373}\312x\2340\003R\364\260\000um\252\227NH_\033C\0269;\030\203\327\337\310\265gD\312\322\327\005\006\267\344\262\204d\231\246E\000\037\355\276\247Z\361\226\216y\273s\262\253\241$\363,\351v\203\272\200\310*i=d(\207\\\214\277\r\320_\254\"\270}\232\212\314\315z\376\226}\372\250\224{N\220QK\264\037\221\363\333\024\303\315\273\217\3532\2108\013t\234Z?B\252x\362\237\363;\247\n\3517\307`\377\250\024\020n[\013c#\241\206U\360m\3713\363\260\241|`\325\354\266""\304kK@\220\307\021B\343\225\034\010\360\350F`\330\323\250\354*\307\213\320\201L\270\022\022\234r\346\237\347\303S]F`\316\006d\231\373\252\021\216\224\"\020u\024O\214\022 $d\214\021a\030\224\0200\307\022\020\204$\021\202!\224\020\21126\010\340\341i\264\230\013\370i\004\022a\2564pM\304f\362\202\231h\235\003\256\200\333\210\242MyVPF\233b\267i\022\263x\263\353\033\302\220\274\301I\310\017\251%\356e\247\235\241\255[J\326\247\317\025\274b\356H\247\n\022\026\2223W ";
-    PyObject *data = __Pyx_DecompressString(cstring, 1569, 2);
+    const struct { const unsigned int length: 8; } index[] = {{2},{16},{1},{20},{20},{2},{1},{1},{126},{7},{6},{14},{14},{15},{2},{18},{9},{3},{33},{25},{5},{22},{8},{20},{21},{30},{59},{42},{36},{59},{37},{32},{32},{33},{6},{21},{27},{13},{7},{7},{18},{9},{17},{9},{18},{5},{7},{5},{1},{8},{5},{13},{8},{8},{18},{4},{8},{7},{6},{9},{8},{13},{12},{20},{6},{14},{5},{4},{4},{4},{4},{8},{13},{10},{6},{11},{12},{7},{15},{3},{7},{8},{8},{14},{4},{15},{8},{10},{10},{11},{2},{4},{4},{13},{3},{11},{5},{12},{12},{6},{9},{6},{6},{18},{8},{11},{4},{4},{9},{12},{9},{14},{16},{14},{12},{10},{30},{12},{5},{12},{5},{8},{2},{13},{5},{18},{10},{4},{10},{3},{6},{4},{8},{9},{5},{4},{4},{4},{5},{5},{6},{10},{15},{18},{9},{2},{158},{15},{48},{27},{50},{9},{161},{2},{119}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1561 bytes) */
+const char* const cstring = "BZh91AY&SYQ\005\274\347\000\000\234\377\377\377\177\376\357\376\375\377\327\277\355\376\260\277\377\377\363\365\377\355\336\366\312\365\376\300\000@@O\340\300\000P\005;\325\022\200\001B\230\032\rM%\036\243Pa1\030\3022\020\3651=\0324e\030\t\214\204\302`\230\217H\323\r\0012hi\264F\002\017Sz\214L\211\240\311\351<\231\222\210\031\0324\032\006CM2h\0310\232\014LFM\032\006C\021\200\2321\000\r\030!\241\204bd\311\246FF&\232\014\214\t\203SL\232M\023MI\346\251\352=#A\243C \3204\003@\320\000\000\000\000\000\017P\000\000\000\000\006\2324\000 dh\320h\031\r4\311\240d\302h11\0314h\031\014F\002h\304\0004`\206\206\021\211\223&\231\031\030\232h20&\014HL@\214\211\211\240\322\230\215\250\320\000\000\000\000\000\000\000\001\35244= \000\000\000\000\000\003\337-\013\003\010\215\335j\034@\273\336K\242\364\267\254\3232\345\007w.\356\330+\200\200\377\000KP\302\260P\nA%\222\377_n\232\036DZ(\030\207\352P\030P\021\310 \336\214O\354\203\204\036\215\007F\215\340_\216\231\340.aRq#&XH(\206D\307\254\2665\005\222\306\330@\n8d\0062&\030\237,8\235\234\201\271<\365\035\373w\301\035\206K{p\342!}\216\255\316\342qi\2703Y\274\313Ryh\013aRX\312C0m\241j\356v\376\230\034\213\326\233\201U\301\t\225I\344\265\257\271\336\214\022\\\241X\323\245:\031\242\00434\216[6 $\026\345\025\232\034^\256\024\030\335\000I\204\217\240\202@X\322b\031\2605\265\203\005z\225js>\027\266\000\205#\210S\266}ZA\201P\020X,\355\210\237\201UL\325\225\212\316\3235s\235*f\235\266\"\2471Wbeuz\321f\032^<\367\320\220\23392d\301\360R\337n\345X\275\000\312\201\270\236\335q\203\331\262\024$\364U\2166\207\0220\324F\t\257\004\304y\023f\254\206\0025\306\303V\314\261\005\013-z!]G\025&\210\006IDb\273~7\370C\n\301\234\274\022F\t\240F8\024\216Ac\361XD\314A\325\307\2463\235Q\256\263y\267\323\271+k\010g\016\021\320\032\214\037\214\333\235\205\001\3602m\021\307\266\300h\3350\253\004\301\256\266r5\002\034\3058 (`!\027\nLk9X<\013&Al\302\243\007\230\220\035\n\257\322\216\230\027\342\0042W!\235\350V\343zx:\312\354;n\"\024\013PH(:\225\345cj\223\027\274\021#!\n""\330Ph\275\301\200I\255\032\rh\342B\232hD\207$\005\212D8X\245KWR.)\306\235\2159\225\010\272\200\031\317\321D\255\026gk\016\365BYu\257\027\025\252&EH\341\306\324\032\265\004X\021\237\005\r\244\332P\317s\3740C8\204\034Pe\276@[\342\344aE\305\333\222\372\3572\001\340m \030Z_\202\230J\201\000\361|\302V\205t\000\262\370\343Ge\010[\217\002\262;\001\307\005\030\023\267\230@e\225\004q\242\200[\"\204\316V\000X\rcYJ\313D\303\331\344\037\010S\204Q\001l\303\006\210\206\207\202\302\276\005Q\215\341>!\300R\376/,\214\225T\310M\226\343\017\r\262\010\224\300\240\240\323p\236T\006\233\302\017\"\n\240\n\t1\203\014nx!\031\024\254\025\320\013\212\234\003 \202\324\205D\027d\222p\274\343\000\270n\354\235td\023z\212R0y\214\313f\233\325i=\nJz\002\210-V\023\331h\320&\222\300\233\nby\200s\354\235\023\261&Om(8G\t\334D\026\322Z\270v\033#e\247I\001\0042 ,\275\372\227\207\3466\341\001\315\242t\346PF8\232\033\243,\326\n\366\233^#\001r5\270\207\001u\327\007\215P\346.\014\212\010\004\030B\326}\331\251~\035j\350a+\215\360\317\211\223\203\246\250\210\327\265\260MX-\340)\027CJ\267\203!k\205\220\201\2040\265AI\343@\327\315\244gtCF!\220U\250\301\2204\202\303+2DG\000Oa\317y\006J\024\253\210\360-B\225\212\353)\004t]2\312#e\020\025\\\350\317\024\223J,\022\236\306}wk\357\3460\014\240\213oj\365\205\327\312\361Ex-\210w\201\24005\034HE\326[\250\246-cdsH\206\305O\227\250\330\212\r1\253\252\351\263\374\304\371i\325\24440u\212\013\001i\005\004B\rb\3068~9e\021E\370\027\270F\030&\276\037 \347\0301 \010*\204F\253\004\"}\367\304\311\234H\201\251|l\003:\264\325B\252@\327\345HA\266f\317\250|/2\354\226N\253\255\262\3039'\310l\321\025\005\213A\237\202\374\263\324\257\275W\355\366\023\274_\262N\204\206\366y/\340\016\350B\260\221 \361X\235\026\000\215\302\314\343\361\3503w\272'c\241\361\251i~\226\234\233\312\004\003V\245w\271\347z\363\301\330\\\021\342o\375Xhc\3709L\342\265\361\322k\210\371u\301A\361\255z\300\365O\233\n\261\001\3050\263 S\220\205D\013I\231\251\2100w 1x\317\277?\332\306\031\002 Pvc\001\032\024\340\317\331""\367Q4I\036\234\223\206\n\001\035\tg.h>|\324T\363\304\271\320\307\230_qfgjMiq\256 b`\246\246\036F\333\207\031PR\"';\\\323F\265I\204\346\334\374\3518\026\200\246\014\374\001#\2564\332\023x\254\344\303\004\341\262*g\364\375&\207\267\346M\264YTS\263:\251\\y\244\313xGS\254$\243\216\025\375UY\216\316\311\215\030dT\242\217\376.\344\212p\241 \242\013y\316";
+    PyObject *data = __Pyx_DecompressString(cstring, 1561, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1432 bytes) */
-const char* const cstring = "x\332\215U\377o\024E\024\357i\333\234r\320\036-i\t\005\356(\006\005r\365\244\200i\024r*\010\321\200E\211\321_&{\273swS\366v\366f\346z=\023\3640DN\005Y\242\201\rjX\r\304M\214\341$\246\224*\221?\341~\334\037\233\350\366\350O\366O\360\315\356\225\026m\0236\267o\337{\363\346\315\373\362ysc\211#\214Q\226`X\247\212F\214|b\376\352\205\277\177\237\366/\333\376\305\253\376\315\363-\353\263\226\373\245?{\371\331\004<\001\361\357\177\335\372\366\312\374W?\265\256\237_\262\276\322\372\346F\270g\376\332\364?\177\\\\\270pi\376j\303\377\302yx\377\276\177\373\236?\373\2154v\177\360\277\277\346\337\233^\250]o\335\270\345\177~\251\365\363m\277~\027,\377\252}\032\370>\374\377\245\261\004\270_\250\235\233\237\256\317\237\273\355\337\374\365\341o\267\306\022\217\331\265u\251\217GR\032\341JV\307\330\2204Gt\234P\031V\004\326\306\022\201\244a\035/KE\252\221\034\221b^M\021\263jd\221Z\300\352\031\223\022Cp\302C7Z\312\254rR4u\314\205\302\304\010\347\0106\226A\034)R\203\010\312\300@\024\010O\300/\\I,/\034\231\304\2068\n\247\275[\345\002\027\003\361\230bh:f'\263\034\263I\314\020z\247:\005\357\033D\025\350\004\236\022\247p\356T\320\221\223\306\353\005\305\310\343\366\206U\225)\204\010\034\206\320\032\253\204\243\002\3214l \2150\254BT\325\324+:U\025\235\037J\345\261\201\247L\366\344[\327\266\234Tt\242!Y\327\325m\014*H\256\212r\214\032\002\033\332r\014Pf\r\0251\347J\376\311\266\256nD\r\324\356\365\232\353\355\356\257\271\276\204\207\367\n\340H\013\301\035b\335\277{\307?\367\335\374/?\256T\266f\377\224\303q\367\316B\255\346_\230U\262\234\352e\201\221\220@\311rS\021\005\205W\r\225\320\366'\245RF\313\202\030\230#\244T\024\3315\204T]\001H\345\261 \200\017)\022\200\010\"\0320\006\206\336\"\301\024\025g\025\365\214\252S\216\021\322\250\n\244\\49\000]\343\025\"\nX\302* \250\020\346\203\202V\204TF\222#\262\312\001:Q8\356\271\262\001~B\332\306\001\004\241V4\300:eB'\331%d\311\366>\n\035\370GhX\r!\240\342X<\216\010\231\031\237\200\251\232\340\3248\203\253\\\247\324D\250\250@v\360\024\261P\302*H!\214\261\375m""K\206R\\\311\362\366\000\202\025\243\010\262f$\020x\276X5\031\014o\261\312\251z\006\302\010\314\201\342\n\n\313#O\206\\\305\1770E\333\263\270\214\242e\274\254@\006\205\2562!\353)_$(\252(B-\2302\033\223A\241\031\226\014D`2:\001\005A\214R\210\242TV\3640\022\206\263\240\201Z\225\031'p`\320\n\206yY\027\254l\240\262!\210\016\305\226\327\r\340\010\256\243 Q\225\021S\204\251c=''&\230\032M\021\312\312\361\tx\001\331\265/\026\360ST\244m \tR\224\310\224\270\021+\252\201\202~\205\321\001\247\341\234\002\301\254\270\361R\3137^\252}\261-\255B\251\212\034\356[\263]n\223R\235sS'\2023\025\311\032qx$xp*(K\3400 !>\203\362a\026\252%\222\271\240\246|\303\000y\225\363\340\336\2243\205P\233\006\343\t\377V\300\320\212\314JTM\\.\023M\276\243\000\2732\016\010\017\274\007a\004\234F\363\251\320\355#q\251\357\274\202\263a\016n\272\026Y\214ut\365[/Y\357\333\031\257\263\317\032\265J\366\323\366\313\316~72\327\031\255\367X%/\032\267\372\254cv\306\036\367\242\353\352\007\255]\366&[sv\271q\367\371F\322\213\365\324'\255\017m\341\034p77\366\314\214\317(^\357\200\305\300\006;i\347\004X\364&\234\247\234\347\234)\267\324\210x\275}\326!\247\3179\352&\275\376M\336`\322\031p#n\334\353\337b\277\352F\274\301\255\366xs\333\213\215Hc\333L\351A\244\226\231\213\3667\373\367\270i/\332S/Iq]}\264\376\211\255\330%/\026\267\342\315\215\303p\310\0217\276\330\335\261~;\250\313NF\262\361&\034\032Y\315~\207\223\224\271\205K\373\255\210\027\353\263\322\241Y\331:n\177\340(N\251\255\353\251\013k\2649\260\327\315\270\247\033\311Z\306\213\306\352'\355\264\334\372\314\034\244]\261\024K\330i\257w\330\331\007\333\204{\240\261\261\001\"d3\004\305\014\311\026;\275\030\355\210o\262\336\262\317\272\257\271\305\231\003\017`}\300\372\010\212\220\361\0067\317\r\357\234\033\032v\016\272#3q\017\230\303\215d#\r)\014\357\\\334\320\2615\331L\354k\244\033o?\210xC\t\247\333Q\274\301\355\340'\343\r%\235\270\263\033\"\033\227\2259\013'\311\364\254\335\262KN\022\272\272\241\243\253\317Jz\235P\276\027\240S\300\365\324\247\254\022x\356\332\330""\214\357h\356\330\337\030\367:c\365\343\326\270E\235\323\356\336\306\004\034\002\212\243V\022\002\356\352\366\242\033\352\0328|\323I{\261^\253\033\222-y\353b^t}}\274\256\314E{\255.\013\016o\177\002\345\277\342\370\367#";
-    PyObject *data = __Pyx_DecompressString(cstring, 1432, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1430 bytes) */
+const char* const cstring = "x\332\215U\377o\024E\024\357i\333\234Rh\217\226\264\204\002w\024\202\002\271zR\300\020\205\234\nB4\340\241\304\350/\223\271\335\271\273i\367v\366v\346\332\236\tz\030\"\247\202,\221\300\0065\254\006\342&\306p\022SJ\225\310\237p?\356\217Mt{\364'\373'\370f\367\372\005\322&ln\337\2767\363\346\315{\237\367\231\271\303\361c\246\311\314\270I4\206U\252\347\343G\375+W\347\253\347\347\246js\347\357\372\267\177\177\374\307\235\303\361\371\352\315\346\255;\376W\227\233\277.\215%?\033N\316]\277\370\357\237S\376\025\333\277t\335\277}\241i}\331t\277\361g\256\274\030\207'\020\376\303\357\232\337_\235\373\366\227\346\315\013\213\336W\233\327n\205k\346nL\375\367\327\245\371\213\227\347\256\327\375\257\235\307\017\037\372w\037\3703\327\244\263\373\223\377\343\r\377\301\324\023{\327\356\203\347?\325/\202\330*\3458\253\021\242K\231\243\032\211+&\301\202\250\207\343\201\245\022\215,[E\246\322\034\225f^IR\243\242g\221R \312\230\301\250.8\345a\0305iT8-\032\032\341\002\233b\230s\004\013\313`\016\027\231N\0053\301A\024(\217\303/\234\211/O\034\033'\2728\016\273}P\341\202\024\003\363\004\326U\215\230\247\263\234\230\343\304D\350\375\312$\274oSE\240SdR\234!\2713\001\372\247\365\267\nX\317\223\326\202U\007\223\010Q\330\014\2415f)G\005\252\252DG*5\211\002YU\222\257kL\301\032?\222\314\023\235L\032\346\263/]\333s\034kTE\022\327\325}t&h\256\202r&\323\005\321\325\345\034\000f\025\025\t\3478\377lKWwb:j\365z\315\371V\367\327\234_\344\303\207\005\010\244\206\334\014\251\352\337\277\347\237\377a\356\267\237W\0166g\376\226\334\276\177o\276Z\365/\316\340,gZY\020$$Q\262\334\300\242\200yEW(k}\222\n3YYP\235p\204\360\004\226]CH\3210P*O\004\005~H\223\002E\020UA\321\t\364\026\t\023+$\213\2251Ec\234 \2442\005D\271hp \272\312'\250(\020I\253@\240BX\017\nZ\021J\231I\216J\224\003v\242\360h\347\312:\304\te\213\007\220\2042\241\002\327\231)4\232]d\226l\357R\352\240/\261a5\206\300\020'\342IF\310\312\370(\234\252Q\316\3641R\341\032c\006BE\014\325\301S$\002\207(H#\314\261\365mY:.\256Ty\353\000\202\227\311\020Tm\322\300""\340\371b\3050\341\360\026+\234)c\220F\340\016\222L\240\020\036\2713\324*\236\342\024k\235\305e\026-\363e\0053\030t\325\024\022O\371\"\301\320\004\026J\301\220\325\030&\000m\022\251@\006\206\311F\001\020d2\006Y\224\312X\01331I\026F\000\253\262\311)l\030\264\302$\274\254\t\263\254\243\262.\250\006`\313\353\006x\004\327QP\250bRC\204\245\023-'OLpjT,\360\312\343\023\350\002\252k],\020\247\210\245o`\tZ\224\314\224\274\021+\320@A\277\302\354@SI\016C2+n\274\344\362\215\227l]l\213\263\000U\221\303}k\264\3406\030\323874*\270\251 \211\021\207G\222\207$\003X\202\200\201\010\371\031\300G\314pX2\231\013f\3107L\220W8\017\356My\246\020j\311\340x\302?\023(lBV%*\006)\227\251*\337\021\240]\231\004\202\007\321\2034\002Me\371d\030v\311\\\354;\237 \331\260\0067U\215,t\265u\364Y\257Z\037\331i\257\275\327\032\261J\366\363\366k\316\00172\333\036\255u[%/\032\263z\255\023v\332\316x\321u\265C\326n{\223\255:\273\335\230\373R=\341uu\327\306\255Ol\341\034t7\327\367Ng\246\261\327\323o\231\340C\234\224s\n<z\342\316s\316.g\322-\325#^O\257u\304\351u\216\273\t\257o\2237\220p\372\335\210\033\363\372\266\330o\270\021o`\253\235il{\245\036\251o\233.=\212T\323\263\321\276F\337^7\345E\273k%i\256\253\215\324>\267\261]\362\272z\255T\243o\227\223q\210\233Z\350l[\277\035\206\313NZ\252\261\006l\032y\312?f\305\032\033w8\tY[8u\300\212\004aB\267\262u\322\376\330\301N\2515\326]\023\326H\243\177\237\233v\317\326\023\325\264\027\355\252\235\266Sr\351\013\263P\366\204\205-a\247\274\236!g?,\023\356\301\372\306:\230P\315 \200\031\212-vj!\332\026\333d\275k\237s\337t\213\323\007\037\301|\277\365)\200\220\366\0066\317\016\355\234\035\034r\016\271\303\3231\017\224\243\365D]V3\264saC\333\326D#\276\277\236\252\277\367(\342\r\306\235N\007{\003\333!N\332\033L81g\017d\226\221\310\234\203\235dy\326\036\331%'\001]\335\320\326\321k%\274v\200\357e\350\024h\335\265I\253\004\221;66b;\032;\016\3243^{W\355\244\225\261\230s\326\335W\037\205M`\340\270\225\200\204;:\275\350\206\232\n\001\337qR^W\217\325\t\305\226\274u]^t}-S\303\263\321""\036\253\303\202\315[\237`\360\177uw\352\225";
+    PyObject *data = __Pyx_DecompressString(cstring, 1430, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2403 bytes) */
-const char* const bytes = ": Error reloading \346\226\207\344\273\266\345\217\230\345\214\226\345\244\204\347\220\206\347\250\213\345\272\217\n    \n    \345\275\223\347\233\221\346\216\247\347\232\204\346\226\207\344\273\266\345\217\221\347\224\237\345\217\230\345\214\226\346\227\266\357\274\214\351\207\215\346\226\260\345\212\240\350\275\275\345\257\271\345\272\224\347\232\204\346\250\241\345\235\227\345\271\266\351\200\232\347\237\245\345\211\215\347\253\257\345\210\267\346\226\260\343\200\202\n    ?\351\200\232\347\237\245\345\211\215\347\253\257\345\210\267\346\226\260: \345\217\221\351\200\201\346\266\210\346\201\257\345\244\261\350\264\245: \351\200\232\347\237\245\345\211\215\347\253\257\345\244\261\350\264\245: .~/.disableenablefile created: file deleted: file modified: gc.ipynb_checkpointsisenabled.pysimplestart/ss_modules/monitor.pythis is module monitor.pyEventFileSystemEventHandlerObserver__Pyx_PyDict_NextRefReloadOnChangeHandlerReloadOnChangeHandler.__init__ReloadOnChangeHandler._is_hidden_directory.<locals>.genexprReloadOnChangeHandler._is_hidden_directoryReloadOnChangeHandler._is_valid_fileReloadOnChangeHandler.notify_frontend.<locals>.send_messageReloadOnChangeHandler.notify_frontendReloadOnChangeHandler.on_createdReloadOnChangeHandler.on_deletedReloadOnChangeHandler.on_modifiedThread\346\226\207\344\273\266\347\233\221\346\216\247\345\267\262\345\201\234\346\255\242\346\226\207\344\273\266\347\233\221\346\216\247\347\272\277\347\250\213\345\267\262\351\200\200\345\207\272absolute_testabspathasyncioasyncio.coroutines__await____class_getitem__client_idcline_in_tracebackclose__doc__dumpseendswitheventevent_handler__file__filepathfind_module_reloadfunc__func__genexprgetcwdimportlib__init___is_coroutineis_directory_is_hidden_directoryis_set_is_valid_fileitemsjoinjsonkeysloop__main____metaclass____module__modulemodule_namemodule_namesmodules__mro_entries__msgmyprintmysocket__name__new_event_loopnextnotify_frontendobserveron_createdon_deletedon_modifiedospartpathpath_to_watchpop__p""repare__printproject_root__qualname__rebootrecursivereloadresultrun_until_completeschedulescript_nameselfsendsend_datasend_messagesend_textserver_commandserver_timestampset_event_loop__set_name__setdefaultsimplestart.ss_modules.monitorsimplestreamsleepsocket_poolssplitsrc_pathssss_core.printstartstart_file_watcherstartswithstopstop_eventsyssystemtest__test__threadingthrowtimetypeuuiduuid4valuevalueswatch_pathwatchdog.eventswatchdog.observerswebsocket\2501\200\001\360\014\000\005\024\2202\220W\230A\330\004\023\2204\220q\230\003\2308\2405\250\001\340\004\010\210\017\220q\330\010\021\220\023\220H\230A\230Q\330\010\013\2107\220'\230\025\230d\240'\250\021\250(\260!\330\014\017\210v\220Z\230t\2406\250\031\260+\270Q\270a\330\020\027\220r\230\025\230e\2401\240N\260!\330\020 \240\002\240%\240x\250q\260\001\330\020\023\220>\240\023\240F\250!\330\024\025\330\030!\240\027\250\001\250\021\330\024\033\230=\250\001\330\030\035\230Q\320\0360\260\001\260\036\270q\300\001\200A\340\010\024\320\024+\2501\330\010\017\210q\200A\340\010\013\2104\210\177\230a\230q\330\014\021\220\021\320\022#\2401\240E\250\021\360\006\000\r\037\230a\230u\240A\360\006\000\r\021\320\020 \240\001\200A\340\010\013\2104\210\177\230a\230q\330\014\021\220\021\320\022\"\240!\2405\250\001\200A\340\010\013\2105\220\001\330\014\023\2201\340\010\013\2104\210u\220I\230Y\240a\240q\330\014\023\2201\340\010\017\210t\2204\320\027,\250A\250U\260!\200A\330\010\014\210O\2301\200A\340\010\t\340\014\017\210w\220a\220t\2301\330\020#\2403\240a\240t\2506\260\022\2601\330\020\021\330\024\034\230A\330\024\034\230A\330\024\033\2301\360\010\000\021\025\220K\230}\250B\250m\2706\300\021\330\024\027\220z\240\023\240A\330\030\031\340#$\340\034#\2407\250/\270\021\330\034#\240?\260!\2601\360\006\000#$\360\016\000\035!\320 3\2601\260L\300\001\330\034 \240\006\240a\330\030\037\230}\250A\330\034!\240\021\240*\250A\250Q\330\010\017\210}\230A\330\014\021\220\021\220*\230A\230Q\240!\200\001\360\016\000\005\023\220!\330\004\024\320\024)\250\021""\250!\330\004\017\210x\220q\360\006\000\005\022\320\021\"\320\"5\260Q\330\004\014\210I\220Q\220o\240U\250,\260j\300\001\330\004\014\210F\220!\360\010\000\005\006\330\010\016\210d\220*\230G\2401\330\014\020\220\006\220a\220q\330\013\014\330\010\r\210Q\210a\340\010\020\220\005\220Q\330\010\020\220\005\220Q\330\010\r\210Q\210a";
+    #else /* compression: none (2383 bytes) */
+const char* const bytes = ": Error reloading ?\345\217\221\351\200\201\346\266\210\346\201\257\345\244\261\350\264\245: \351\200\232\347\237\245\345\211\215\347\253\257\345\244\261\350\264\245: .~/.\346\226\207\344\273\266\345\217\230\345\214\226\345\244\204\347\220\206\347\250\213\345\272\217\n    \n    \345\275\223\347\233\221\346\216\247\347\232\204\346\226\207\344\273\266\345\217\221\347\224\237\345\217\230\345\214\226\346\227\266\357\274\214\351\207\215\346\226\260\345\212\240\350\275\275\345\257\271\345\272\224\347\232\204\346\250\241\345\235\227\345\271\266\351\200\232\347\237\245\345\211\215\347\253\257\345\210\267\346\226\260\343\200\202\n    disableenablefile created: file deleted: file modified: gc.ipynb_checkpointsisenabled.pysimplestart/ss_modules/monitor.pythis is module monitor.pyEventFileSystemEventHandlerObserver__Pyx_PyDict_NextRefReloadOnChangeHandlerReloadOnChangeHandler.__init__ReloadOnChangeHandler._is_hidden_directory.<locals>.genexprReloadOnChangeHandler._is_hidden_directoryReloadOnChangeHandler._is_valid_fileReloadOnChangeHandler.notify_frontend.<locals>.send_messageReloadOnChangeHandler.notify_frontendReloadOnChangeHandler.on_createdReloadOnChangeHandler.on_deletedReloadOnChangeHandler.on_modifiedThread\346\226\207\344\273\266\347\233\221\346\216\247\345\267\262\345\201\234\346\255\242\346\226\207\344\273\266\347\233\221\346\216\247\347\272\277\347\250\213\345\267\262\351\200\200\345\207\272absolute_testabspathasyncioasyncio.coroutines__await____class_getitem__client_idcline_in_tracebackclose__doc__dumpseendswitheventevent_handler__file__filepathfind_module_reloadfunc__func__genexprgetcwdimportlib__init___is_coroutineis_directory_is_hidden_directoryis_set_is_valid_fileitemsjoinjsonkeysloop__main____metaclass____module__modulemodule_namemodule_namesmodules__mro_entries__msgmyprintmysocket__name__new_event_loopnextnotify_frontendobserveron_createdon_deletedon_modifiedospartpathpath_to_watchpop__prepare__printproject_root__qualname__rebootrecursivereloadresultrun_until_""completeschedulescript_nameselfsendsend_datasend_messagesend_textserver_commandserver_timestampset_event_loop__set_name__setdefaultsimplestart.ss_modules.monitorsimplestreamsleepsocket_poolssplitsrc_pathssss_core.printstartstart_file_watcherstartswithstopstop_eventsyssystemtest__test__threadingthrowtimetypeuuiduuid4valuevalueswatch_pathwatchdog.eventswatchdog.observerswebsocket\2501\200\001\360\014\000\005\024\2202\220W\230A\330\004\023\2204\220q\230\003\2308\2405\250\001\340\004\010\210\017\220q\330\010\021\220\023\220H\230A\230Q\330\010\013\2107\220'\230\025\230d\240'\250\021\250(\260!\330\014\017\210v\220Z\230t\2406\250\031\260+\270Q\270a\330\020\027\220r\230\025\230e\2401\240N\260!\330\020 \240\002\240%\240x\250q\260\001\330\020\023\220>\240\023\240F\250!\330\024\025\330\030!\240\027\250\001\250\021\330\024\033\230=\250\001\330\030\035\230Q\320\0360\260\001\260\036\270q\300\001\200A\340\010\024\320\024+\2501\330\010\017\210q\200A\340\010\013\2104\210\177\230a\230q\330\014\023\2201\320\024%\240Q\240e\2501\360\006\000\r\037\230a\230u\240A\360\006\000\r\021\320\020 \240\001\200A\340\010\013\2104\210\177\230a\230q\330\014\021\220\021\320\022\"\240!\2405\250\001\200A\340\010\013\2105\220\001\330\014\023\2201\340\010\013\2104\210u\220I\230Y\240a\240q\330\014\023\2201\340\010\017\210t\2204\320\027,\250A\250U\260!\200A\330\010\014\210O\2301\200A\340\010\t\340\014\017\210w\220a\220t\2301\330\020#\2403\240a\240t\2506\260\022\2601\330\020\021\330\024\034\230A\330\024\034\230A\330\024\033\2301\360\010\000\021\025\220K\230}\250B\250m\2706\300\021\330\024\027\220z\240\023\240A\330\030\031\340#$\340\034#\2407\250/\270\021\330\034#\240?\260!\2601\360\006\000#$\360\016\000\035!\320 3\2601\260L\300\001\330\034 \240\006\240a\330\030\037\230}\250A\330\034!\240\021\240*\250A\250Q\330\010\017\210}\230A\330\014\021\220\021\220*\230A\230Q\240!\200\001\360\016\000\005\023\220!\330\004\024\320\024)\250\021\250!\330\004\017\210x\220q\360\006\000\005\022\320\021\"\320\"5\260Q\330\004\014""\210I\220Q\220o\240U\250,\260j\300\001\330\004\014\210F\220!\360\010\000\005\006\330\010\016\210d\220*\230G\2401\330\014\020\220\006\220a\220q\330\013\014\330\010\r\210Q\210a\340\010\020\220\005\220Q\330\010\020\220\005\220Q\330\010\r\210Q\210a";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 146; i++) {
+    for (int i = 0; i < 145; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 21) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 20) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -8291,7 +8273,7 @@ const char* const bytes = ": Error reloading \346\226\207\344\273\266\345\217\23
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 146; i < 156; i++) {
+    for (int i = 145; i < 155; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -8302,14 +8284,14 @@ const char* const bytes = ": Error reloading \346\226\207\344\273\266\345\217\23
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 156; i++) {
+    for (Py_ssize_t i = 0; i < 155; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 146;
+      PyObject **table = stringtab + 145;
       for (Py_ssize_t i=0; i<10; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -8384,7 +8366,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_COROUTINE), 101};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_e};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_send_message, __pyx_mstate->__pyx_kp_b_iso88591__12, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_send_message, __pyx_mstate->__pyx_kp_b_iso88591__11, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_GENERATOR), 137};
@@ -8404,7 +8386,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 67};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_on_modified, __pyx_mstate->__pyx_kp_b_iso88591_A_4_aq_1E_auA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_on_modified, __pyx_mstate->__pyx_kp_b_iso88591_A_4_aq_1_Qe1_auA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 10, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 78};
@@ -14219,7 +14201,7 @@ bad:
           if (unlikely(!module_name_str)) { goto modbad; }
           module_name = PyUnicode_FromString(module_name_str);
           if (unlikely(!module_name)) { goto modbad; }
-          module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__7);
+          module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__6);
           if (unlikely(!module_dot)) { goto modbad; }
           full_name = PyUnicode_Concat(module_dot, name);
           if (unlikely(!full_name)) { goto modbad; }
@@ -14793,7 +14775,7 @@ bad:
           result = name;
           name = NULL;
       } else {
-          result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__11);
+          result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__10);
       }
       goto done;
   }

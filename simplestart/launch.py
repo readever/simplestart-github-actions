@@ -45,7 +45,7 @@ def start():
 
     # 添加端口参数
     parser.add_argument('--port', type=int, default=8000, help='port number to use')
-    parser.add_argument('-V', '--version', action='version', version='SimpleStart 0.01')
+    parser.add_argument('-V', '--version', action='version', version='SimpleStart 0.50')
     parser.add_argument('--basepath', type=str, default='', help='application base path relative to host')
     parser.add_argument('--allow-origins', type=str, nargs='*', default=['http://localhost:3000', 'http://localhost:8080', 'http://localhost'], help='allowed origins for CORS (e.g., "http://localhost:3000" "https://frontend.example.com"). Default includes localhost variants for development. Use empty list to disable all cross-origin. Use "*" to allow all origins (not recommended for production)')
 
