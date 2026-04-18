@@ -204,4 +204,8 @@ timer = LazyLoader('ss_ui.timer')
 # 特殊处理 plot，因为 line 等方法是 Plot 类的实例方法
 plot = LazyLoader('ss_ui.plot', 'plot')
 space = LazyLoader('ss_ui.space')
-icon = bootstrap_icon = icon_with_bg = LazyLoader('ss_ui.icon')
+
+# 正确写法 - 需要分别懒加载每个函数
+icon = LazyLoader('ss_ui.icon', 'icon')
+bootstrap_icon = LazyLoader('ss_ui.icon', 'bootstrap_icon')
+icon_with_bg = LazyLoader('ss_ui.icon', 'icon_with_bg')
