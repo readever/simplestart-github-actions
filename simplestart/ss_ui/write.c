@@ -2242,7 +2242,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[29];
+  PyObject *__pyx_string_tab[31];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2294,24 +2294,26 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_args __pyx_string_tab[8]
 #define __pyx_n_u_asyncio_coroutines __pyx_string_tab[9]
 #define __pyx_n_u_cline_in_traceback __pyx_string_tab[10]
-#define __pyx_n_u_func __pyx_string_tab[11]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[12]
-#define __pyx_n_u_items __pyx_string_tab[13]
-#define __pyx_n_u_kwargs __pyx_string_tab[14]
-#define __pyx_n_u_main __pyx_string_tab[15]
-#define __pyx_n_u_markdown __pyx_string_tab[16]
-#define __pyx_n_u_module __pyx_string_tab[17]
-#define __pyx_n_u_name __pyx_string_tab[18]
-#define __pyx_n_u_qualname __pyx_string_tab[19]
-#define __pyx_n_u_res __pyx_string_tab[20]
-#define __pyx_n_u_set_name __pyx_string_tab[21]
-#define __pyx_n_u_setdefault __pyx_string_tab[22]
-#define __pyx_n_u_simplestart_ss_ui_write __pyx_string_tab[23]
-#define __pyx_n_u_test __pyx_string_tab[24]
-#define __pyx_n_u_values __pyx_string_tab[25]
-#define __pyx_n_u_write __pyx_string_tab[26]
-#define __pyx_n_u_x __pyx_string_tab[27]
-#define __pyx_kp_b_iso88591_Q_Qc_1A_q_1_1A_q_1_1A_q_1_1Cr_q __pyx_string_tab[28]
+#define __pyx_n_u_dedent __pyx_string_tab[11]
+#define __pyx_n_u_func __pyx_string_tab[12]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[13]
+#define __pyx_n_u_items __pyx_string_tab[14]
+#define __pyx_n_u_kwargs __pyx_string_tab[15]
+#define __pyx_n_u_main __pyx_string_tab[16]
+#define __pyx_n_u_markdown __pyx_string_tab[17]
+#define __pyx_n_u_module __pyx_string_tab[18]
+#define __pyx_n_u_name __pyx_string_tab[19]
+#define __pyx_n_u_qualname __pyx_string_tab[20]
+#define __pyx_n_u_res __pyx_string_tab[21]
+#define __pyx_n_u_set_name __pyx_string_tab[22]
+#define __pyx_n_u_setdefault __pyx_string_tab[23]
+#define __pyx_n_u_simplestart_ss_ui_write __pyx_string_tab[24]
+#define __pyx_n_u_test __pyx_string_tab[25]
+#define __pyx_n_u_textwrap __pyx_string_tab[26]
+#define __pyx_n_u_values __pyx_string_tab[27]
+#define __pyx_n_u_write __pyx_string_tab[28]
+#define __pyx_n_u_x __pyx_string_tab[29]
+#define __pyx_kp_b_iso88591_Q_Qc_1A_q_1_1A_q_1_1A_q_1_1Cr_q __pyx_string_tab[30]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2327,7 +2329,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   __Pyx_State_RemoveModule(NULL);
   #endif
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<29; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<31; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2351,7 +2353,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_bytes);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<29; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<31; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2365,8 +2367,8 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_ui/write.py":3
- * from .markdown import markdown
+/* "simplestart/ss_ui/write.py":4
+ * from textwrap import dedent ### Python
  * 
  * def write(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     res = ""
@@ -2431,7 +2433,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("write", 0);
 
-  /* "simplestart/ss_ui/write.py":4
+  /* "simplestart/ss_ui/write.py":5
  * 
  * def write(*args, **kwargs):
  *     res = ""             # <<<<<<<<<<<<<<
@@ -2441,7 +2443,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
   __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
   __pyx_v_res = __pyx_mstate_global->__pyx_kp_u_;
 
-  /* "simplestart/ss_ui/write.py":6
+  /* "simplestart/ss_ui/write.py":7
  *     res = ""
  * 
  *     for x in args:             # <<<<<<<<<<<<<<
@@ -2454,7 +2456,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     {
       Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_SIZE
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 6, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 7, __pyx_L1_error)
       #endif
       if (__pyx_t_2 >= __pyx_temp) break;
     }
@@ -2464,12 +2466,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2);
     #endif
     ++__pyx_t_2;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 6, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 7, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_x, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "simplestart/ss_ui/write.py":7
+    /* "simplestart/ss_ui/write.py":8
  * 
  *     for x in args:
  *         if isinstance(x, list):             # <<<<<<<<<<<<<<
@@ -2479,19 +2481,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     __pyx_t_4 = PyList_Check(__pyx_v_x); 
     if (__pyx_t_4) {
 
-      /* "simplestart/ss_ui/write.py":10
+      /* "simplestart/ss_ui/write.py":11
  *             #xtuple x = [(1,2),(2,1), (3,3)]
  *             #x = "[" + ",".join(x) + "]"
  *             x = str(x)             # <<<<<<<<<<<<<<
  * 
  *         elif isinstance(x, tuple):
 */
-      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 10, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "simplestart/ss_ui/write.py":7
+      /* "simplestart/ss_ui/write.py":8
  * 
  *     for x in args:
  *         if isinstance(x, list):             # <<<<<<<<<<<<<<
@@ -2501,7 +2503,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
       goto __pyx_L5;
     }
 
-    /* "simplestart/ss_ui/write.py":12
+    /* "simplestart/ss_ui/write.py":13
  *             x = str(x)
  * 
  *         elif isinstance(x, tuple):             # <<<<<<<<<<<<<<
@@ -2511,19 +2513,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     __pyx_t_4 = PyTuple_Check(__pyx_v_x); 
     if (__pyx_t_4) {
 
-      /* "simplestart/ss_ui/write.py":13
+      /* "simplestart/ss_ui/write.py":14
  * 
  *         elif isinstance(x, tuple):
  *             x = str(x)             # <<<<<<<<<<<<<<
  *         elif isinstance(x, int):
  *             x = str(x)
 */
-      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 13, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 14, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "simplestart/ss_ui/write.py":12
+      /* "simplestart/ss_ui/write.py":13
  *             x = str(x)
  * 
  *         elif isinstance(x, tuple):             # <<<<<<<<<<<<<<
@@ -2533,7 +2535,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
       goto __pyx_L5;
     }
 
-    /* "simplestart/ss_ui/write.py":14
+    /* "simplestart/ss_ui/write.py":15
  *         elif isinstance(x, tuple):
  *             x = str(x)
  *         elif isinstance(x, int):             # <<<<<<<<<<<<<<
@@ -2543,19 +2545,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     __pyx_t_4 = PyLong_Check(__pyx_v_x); 
     if (__pyx_t_4) {
 
-      /* "simplestart/ss_ui/write.py":15
+      /* "simplestart/ss_ui/write.py":16
  *             x = str(x)
  *         elif isinstance(x, int):
  *             x = str(x)             # <<<<<<<<<<<<<<
  *         elif isinstance(x, dict):
  *             #
 */
-      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 15, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "simplestart/ss_ui/write.py":14
+      /* "simplestart/ss_ui/write.py":15
  *         elif isinstance(x, tuple):
  *             x = str(x)
  *         elif isinstance(x, int):             # <<<<<<<<<<<<<<
@@ -2565,7 +2567,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
       goto __pyx_L5;
     }
 
-    /* "simplestart/ss_ui/write.py":16
+    /* "simplestart/ss_ui/write.py":17
  *         elif isinstance(x, int):
  *             x = str(x)
  *         elif isinstance(x, dict):             # <<<<<<<<<<<<<<
@@ -2575,22 +2577,22 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     __pyx_t_4 = PyDict_Check(__pyx_v_x); 
     if (__pyx_t_4) {
 
-      /* "simplestart/ss_ui/write.py":18
+      /* "simplestart/ss_ui/write.py":19
  *         elif isinstance(x, dict):
  *             #
  *             x = str(x) + "\u200B"             # <<<<<<<<<<<<<<
  *         elif isinstance(x, str) is False:
  *             #x = type(x).__name__
 */
-      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_3, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_3, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "simplestart/ss_ui/write.py":16
+      /* "simplestart/ss_ui/write.py":17
  *         elif isinstance(x, int):
  *             x = str(x)
  *         elif isinstance(x, dict):             # <<<<<<<<<<<<<<
@@ -2600,7 +2602,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
       goto __pyx_L5;
     }
 
-    /* "simplestart/ss_ui/write.py":19
+    /* "simplestart/ss_ui/write.py":20
  *             #
  *             x = str(x) + "\u200B"
  *         elif isinstance(x, str) is False:             # <<<<<<<<<<<<<<
@@ -2611,19 +2613,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     __pyx_t_6 = (__pyx_t_4 == 0);
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_ui/write.py":21
+      /* "simplestart/ss_ui/write.py":22
  *         elif isinstance(x, str) is False:
  *             #x = type(x).__name__
  *             x = str(x)             # <<<<<<<<<<<<<<
  * 
- *         res = res + " " + str(x)
+ *         # dedent
 */
-      __pyx_t_5 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "simplestart/ss_ui/write.py":19
+      /* "simplestart/ss_ui/write.py":20
  *             #
  *             x = str(x) + "\u200B"
  *         elif isinstance(x, str) is False:             # <<<<<<<<<<<<<<
@@ -2633,25 +2635,77 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
     }
     __pyx_L5:;
 
-    /* "simplestart/ss_ui/write.py":23
- *             x = str(x)
+    /* "simplestart/ss_ui/write.py":25
+ * 
+ *         # dedent
+ *         if isinstance(x, str):             # <<<<<<<<<<<<<<
+ *             x = dedent(x)
+ * 
+*/
+    __pyx_t_6 = PyUnicode_Check(__pyx_v_x); 
+    if (__pyx_t_6) {
+
+      /* "simplestart/ss_ui/write.py":26
+ *         # dedent
+ *         if isinstance(x, str):
+ *             x = dedent(x)             # <<<<<<<<<<<<<<
+ * 
+ *         res = res + " " + str(x)
+*/
+      __pyx_t_3 = NULL;
+      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_dedent); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 26, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_8 = 1;
+      #if CYTHON_UNPACK_METHODS
+      if (unlikely(PyMethod_Check(__pyx_t_7))) {
+        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_7);
+        assert(__pyx_t_3);
+        PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+        __Pyx_INCREF(__pyx_t_3);
+        __Pyx_INCREF(__pyx__function);
+        __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+        __pyx_t_8 = 0;
+      }
+      #endif
+      {
+        PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_x};
+        __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_5);
+      }
+      __Pyx_DECREF_SET(__pyx_v_x, __pyx_t_5);
+      __pyx_t_5 = 0;
+
+      /* "simplestart/ss_ui/write.py":25
+ * 
+ *         # dedent
+ *         if isinstance(x, str):             # <<<<<<<<<<<<<<
+ *             x = dedent(x)
+ * 
+*/
+    }
+
+    /* "simplestart/ss_ui/write.py":28
+ *             x = dedent(x)
  * 
  *         res = res + " " + str(x)             # <<<<<<<<<<<<<<
  * 
  *     return markdown(res, **kwargs)
 */
-    __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_v_res, __pyx_mstate_global->__pyx_kp_u__3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyUnicode_Concat(__pyx_v_res, __pyx_mstate_global->__pyx_kp_u__3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 28, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 28, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_3 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF_SET(__pyx_v_res, ((PyObject*)__pyx_t_7));
-    __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF_SET(__pyx_v_res, ((PyObject*)__pyx_t_3));
+    __pyx_t_3 = 0;
 
-    /* "simplestart/ss_ui/write.py":6
+    /* "simplestart/ss_ui/write.py":7
  *     res = ""
  * 
  *     for x in args:             # <<<<<<<<<<<<<<
@@ -2661,44 +2715,44 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5write_write(CYTHON_UNUSED PyObje
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/write.py":25
+  /* "simplestart/ss_ui/write.py":30
  *         res = res + " " + str(x)
  * 
  *     return markdown(res, **kwargs)             # <<<<<<<<<<<<<<
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_markdown); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_t_3 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_markdown); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_8 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_3);
-    assert(__pyx_t_7);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
-    __Pyx_INCREF(__pyx_t_7);
+  if (unlikely(PyMethod_Check(__pyx_t_7))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_7);
+    assert(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+    __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
     __pyx_t_8 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_res};
-    __pyx_t_1 = __Pyx_PyObject_FastCallDict((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_res};
+    __pyx_t_1 = __Pyx_PyObject_FastCallDict((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/write.py":3
- * from .markdown import markdown
+  /* "simplestart/ss_ui/write.py":4
+ * from textwrap import dedent ### Python
  * 
  * def write(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     res = ""
@@ -3073,8 +3127,8 @@ __Pyx_RefNannySetupContext("PyInit_write", 0);
 
   /* "simplestart/ss_ui/write.py":1
  * from .markdown import markdown             # <<<<<<<<<<<<<<
+ * from textwrap import dedent ### Python
  * 
- * def write(*args, **kwargs):
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_markdown};
@@ -3093,25 +3147,48 @@ __Pyx_RefNannySetupContext("PyInit_write", 0);
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/write.py":3
+  /* "simplestart/ss_ui/write.py":2
  * from .markdown import markdown
+ * from textwrap import dedent ### Python             # <<<<<<<<<<<<<<
+ * 
+ * def write(*args, **kwargs):
+*/
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_dedent};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_textwrap, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  }
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_dedent};
+    __pyx_t_3 = 0; {
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 2, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 2, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    }
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/write.py":4
+ * from textwrap import dedent ### Python
  * 
  * def write(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     res = ""
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5write_1write, 0, __pyx_mstate_global->__pyx_n_u_write, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_write, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5write_1write, 0, __pyx_mstate_global->__pyx_n_u_write, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_write, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_write, __pyx_t_2) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_write, __pyx_t_2) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/write.py":1
  * from .markdown import markdown             # <<<<<<<<<<<<<<
+ * from textwrap import dedent ### Python
  * 
- * def write(*args, **kwargs):
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3177,31 +3254,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{0},{3},{1},{1},{1},{26},{26},{20},{4},{18},{18},{8},{13},{5},{6},{8},{8},{10},{8},{12},{3},{12},{10},{23},{8},{6},{5},{1},{144}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (347 bytes) */
-const char* const cstring = "BZh91AY&SY1\250^\271\000\000\314\177\363\377_`\200x\001\242P\254\201p\000\277\257\377\340@H@@@\000\000@P\000@\0000\001\031m`\324\324\3114z\232\r\030\200\000\320\320\000\321\240z\006\240\322\t<P\362\2324\304\r\000\000\000\000\320\000\323SB\232`\243\324\361G\250\320\031\014\200i\223\321=L\217)\345\017\3147[j\002\005\327\336\177\177\225eN\025\n#,E\234\n!\004\014!\215\274\326W\257\3600\227\204x\230\244\003+P`E(\\\350\032\016\014G\221\010\256\305\273\3549\204@\306\234\2009\000\204\031\211}*i\3325\0222\022d\235\306\332Q\0235\235}\344\270.>y\254\031\206\336\363\351\t\214\347QD\370\360\230\005%\211\205*\212\233\314Xj\026\030d\030)\237\t,A\224!:2\224\306j=\322:\016w#\315\021\tD\341RH\252\002h\370\004HG (\353\346\226tT,K678tQ\t\364J\334\rx\304g\023M\010<_Lr\212u\250Bl\234P}\265\\'\300\206-.\036\361\010\274u\362h\311\370\314$Q\207\342\225j\002\216\031\200\202\t\0332\312t\320y\317\\,:\270N\200D\217\342\356H\247\n\022\0065\013\327 ";
-    PyObject *data = __Pyx_DecompressString(cstring, 347, 2);
+    const struct { const unsigned int length: 8; } index[] = {{0},{3},{1},{1},{1},{26},{26},{20},{4},{18},{18},{6},{8},{13},{5},{6},{8},{8},{10},{8},{12},{3},{12},{10},{23},{8},{8},{6},{5},{1},{166}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (367 bytes) */
+const char* const cstring = "BZh91AY&SY\023\361V\206\000\000\335\377\363\377\177`\200x\001\242P\254\201p\000\277\257\377\340@H@@@\000\000@P\000@\0000\001\031\213\006\246\212z\2004\365\006@i\240\006\200\003F\201\221\342\203D\320\025==)\2656B\030\206 `A\211\200\324\364F\030\251\205OSd\365L'\251\210\3100\t\243F\0040L\236S<_\033\371r!\001\316y\327\367\370{[\t\020\250\320\320\252\271\214-\355\"iJ\002\211do\206\335\232\277DI<\027\212\310\306o4\212\020\356(9\321\264*\"/B\220\330\346s\342\030\243\013R\320\300C \265\225[)\345\315\244\317\352Z:\212\t4\321\207\0236\313b\207\212\244\202\205\253+\345\326J\215\025Th\265N\210\342\2630\245bQ\330\360\322\342\342\235\220x\212<@\320\303\241\314\227\0047\n\024J\240\240v\317\316,}\306\023\\\251\344\022\213\001\n\264cl\204\322A\342\"\205\200\213\247\204+\22621\306\225\210@m\352\"Z\247\316\274t\336\212\201\246\024\302'\247\260\3503\324\340t\\\300qf\275\205]\254e\320\230u6\036\261k(\273s\356##Z\214\302Y\014>\027\321\345\242@ f\374\240i\204\245p\315%\322b\026\205\007Z\t\252q!$I\376.\344\212p\241 '\342\255\014";
+    PyObject *data = __Pyx_DecompressString(cstring, 367, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (285 bytes) */
-const char* const cstring = "x\332u\217\273N\3030\024\206\201\004\024Q\212\350\304\312eO\225\001\t\261\240\212Jl\210\360\002G\306q\221\025\307i}!\311\326\321\022\213G\217}\254\214\021O\300#`\322\213\220\020\303\361\371\365\375\347\034\375\376\\~\\\304\367\222\026sF\244BB\305R\202\246q\201D\236\225\025\377\345\214{g\\\t\252H<o\000\236\233\332\327\224b\005O\244V/d\206\304\233D\262\341\230\2261.E\251\025\345Db\346_\240\034\224@\230\274\"\234\003\3144\307\000@%\354\346\374\331B\346\325\317\r\200\002\371y\330\246\360\252\3144#~\0038*\372\276\320\210\255\265 ~A\022\265\261\274\312|\024\315\324\337o\365\341\001\224\207\000\357\210i\"{T/\367\333\360\330\\vad\016M\332F\003sgS\213\335\350\353ho8\262\201M\354\244\033\236\333\205\013\\\322\236\234\255I\373?\3516\344\301\n7\332\322\233U\260\3329\223.:5\231\275\262Sw\340\256]\352P\027\016\314\255w\036]\362\r8\246\237\035";
-    PyObject *data = __Pyx_DecompressString(cstring, 285, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (305 bytes) */
+const char* const cstring = "x\332uO\273N\303@\020\004\034\242@\022\204+Z\036\275\243\024H\210\006ED\242C\204\037X-\347\013:\305>\333\367\300N\227\322\022\315\225W\346\263\\Z|\001\237\300\305\211#$Dq{\243\231\235\331\335\257\325\347e\360 Y\234FT*\024*\220\0224\013b\024\2130\311\371/e\324(\243\\0E\203t\t\360\262,\334\2332\242\340\231\026\352\225\316Q\274K\224KNX\022\220D$Z1N%\211\\\005\306A\t$\364\r\311\"\244!\345\n`\2569\001\000&a\337\355\302c\271\3107I\0001:\027\264\2738\224\204:\242\316\001\034\343\346\3174F[,\2503H\252v\222C\241[HG\352\357q\315\t\000\312\221\233Z\250\\`\372\201\221\246\262\221\212\325a\3259-\257\352N\257<.gU\257_\336\233\231!\326\377\356\036\014}\343\231\261\231\324\303\013\223Y\317\216\253\301\371\226\251\376g\352\035\363h\204\365[\366v\355\255\367\312\304E\237\014\3329\233\204\256A\223\325\275\26324\327fj\217\354\215\235Y\254;\375\362\316\365?\331\361\017\021\216\254\326";
+    PyObject *data = __Pyx_DecompressString(cstring, 305, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (408 bytes) */
-const char* const bytes = "\342\200\213 .?simplestart.ss_ui.markdownsimplestart/ss_ui/write.py__Pyx_PyDict_NextRefargsasyncio.coroutinescline_in_traceback__func___is_coroutineitemskwargs__main__markdown__module____name____qualname__res__set_name__setdefaultsimplestart.ss_ui.write__test__valueswritex\200\001\330\004\n\210!\340\004\010\210\005\210Q\330\010\013\210:\220Q\220c\230\021\360\006\000\r\021\220\003\2201\220A\340\r\027\220q\230\003\2301\330\014\020\220\003\2201\220A\330\r\027\220q\230\003\2301\330\014\020\220\003\2201\220A\330\r\027\220q\230\003\2301\340\014\020\220\003\2201\220C\220r\230\021\330\r\027\220q\230\003\2305\240\003\2401\340\014\020\220\003\2201\220A\340\010\016\210d\220\"\220D\230\002\230#\230Q\230a\340\004\013\2108\2201\220G\2301";
+    #else /* compression: none (444 bytes) */
+const char* const bytes = "\342\200\213 .?simplestart.ss_ui.markdownsimplestart/ss_ui/write.py__Pyx_PyDict_NextRefargsasyncio.coroutinescline_in_tracebackdedent__func___is_coroutineitemskwargs__main__markdown__module____name____qualname__res__set_name__setdefaultsimplestart.ss_ui.write__test__textwrapvalueswritex\200\001\330\004\n\210!\340\004\010\210\005\210Q\330\010\013\210:\220Q\220c\230\021\360\006\000\r\021\220\003\2201\220A\340\r\027\220q\230\003\2301\330\014\020\220\003\2201\220A\330\r\027\220q\230\003\2301\330\014\020\220\003\2201\220A\330\r\027\220q\230\003\2301\340\014\020\220\003\2201\220C\220r\230\021\330\r\027\220q\230\003\2305\240\003\2401\340\014\020\220\003\2201\220A\360\006\000\t\014\210:\220Q\220c\230\021\330\014\020\220\006\220a\220q\340\010\016\210d\220\"\220D\230\002\230#\230Q\230a\340\004\013\2108\2201\220G\2301";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 28; i++) {
+    for (int i = 0; i < 30; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 7) PyUnicode_InternInPlace(&string);
@@ -3212,7 +3289,7 @@ const char* const bytes = "\342\200\213 .?simplestart.ss_ui.markdownsimplestart/
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 28; i < 29; i++) {
+    for (int i = 30; i < 31; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3223,14 +3300,14 @@ const char* const bytes = "\342\200\213 .?simplestart.ss_ui.markdownsimplestart/
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 29; i++) {
+    for (Py_ssize_t i = 0; i < 31; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 28;
+      PyObject **table = stringtab + 30;
       for (Py_ssize_t i=0; i<1; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3259,7 +3336,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 3;
     unsigned int flags : 10;
-    unsigned int first_line : 2;
+    unsigned int first_line : 3;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -3276,7 +3353,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 3};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 4};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_x};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_write_py, __pyx_mstate->__pyx_n_u_write, __pyx_mstate->__pyx_kp_b_iso88591_Q_Qc_1A_q_1_1A_q_1_1A_q_1_1Cr_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }

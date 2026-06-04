@@ -2278,7 +2278,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[31];
+  PyObject *__pyx_string_tab[32];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2342,14 +2342,15 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_overlay __pyx_string_tab[20]
 #define __pyx_n_u_pop __pyx_string_tab[21]
 #define __pyx_n_u_qualname __pyx_string_tab[22]
-#define __pyx_n_u_set_name __pyx_string_tab[23]
-#define __pyx_n_u_setdefault __pyx_string_tab[24]
-#define __pyx_n_u_simplestart_ss_ui_overlay __pyx_string_tab[25]
-#define __pyx_n_u_ss_core __pyx_string_tab[26]
-#define __pyx_n_u_template __pyx_string_tab[27]
+#define __pyx_n_u_res __pyx_string_tab[23]
+#define __pyx_n_u_set_name __pyx_string_tab[24]
+#define __pyx_n_u_setdefault __pyx_string_tab[25]
+#define __pyx_n_u_simplestart_ss_ui_overlay __pyx_string_tab[26]
+#define __pyx_n_u_ss_core __pyx_string_tab[27]
 #define __pyx_n_u_test __pyx_string_tab[28]
 #define __pyx_n_u_values __pyx_string_tab[29]
-#define __pyx_kp_b_iso88591_q_AQ_q __pyx_string_tab[30]
+#define __pyx_n_u_vuetify __pyx_string_tab[30]
+#define __pyx_kp_b_iso88591_q_q_1 __pyx_string_tab[31]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2366,7 +2367,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<31; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<32; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2391,7 +2392,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<31; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<32; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2406,7 +2407,7 @@ return 0;
 /* #### Code section: module_code ### */
 
 /* "simplestart/ss_ui/overlay.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def overlay(activator, msg="hello"):             # <<<<<<<<<<<<<<
  *     """
@@ -2516,6 +2517,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_activator, PyObject *__pyx_v_msg) {
   PyObject *__pyx_v_id = NULL;
+  PyObject *__pyx_v_res = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2546,12 +2548,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED Py
   /* "simplestart/ss_ui/overlay.py":16
  *     #activator css queryselector, #id button
  * 
- *     template(f'''             # <<<<<<<<<<<<<<
+ *     res = vuetify(f'''             # <<<<<<<<<<<<<<
  *       <div class="d-flex justify-center">
  *           <v-overlay
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "simplestart/ss_ui/overlay.py":20
@@ -2582,7 +2584,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED Py
   /* "simplestart/ss_ui/overlay.py":16
  *     #activator css queryselector, #id button
  * 
- *     template(f'''             # <<<<<<<<<<<<<<
+ *     res = vuetify(f'''             # <<<<<<<<<<<<<<
  *       <div class="d-flex justify-center">
  *           <v-overlay
 */
@@ -2596,6 +2598,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED Py
  *       </div>
  * 
  *       ''', data=None)             # <<<<<<<<<<<<<<
+ * 
+ *     return res
 */
   __pyx_t_8 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -2622,10 +2626,21 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED Py
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_res = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/overlay.py":30
+ *       ''', data=None)
+ * 
+ *     return res             # <<<<<<<<<<<<<<
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_res);
+  __pyx_r = __pyx_v_res;
+  goto __pyx_L0;
 
   /* "simplestart/ss_ui/overlay.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def overlay(activator, msg="hello"):             # <<<<<<<<<<<<<<
  *     """
@@ -2633,8 +2648,6 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED Py
 */
 
   /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
@@ -2646,6 +2659,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7overlay_overlay(CYTHON_UNUSED Py
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_id);
+  __Pyx_XDECREF(__pyx_v_res);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -3002,18 +3016,18 @@ __Pyx_RefNannySetupContext("PyInit_overlay", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/overlay.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * def overlay(activator, msg="hello"):
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -3024,7 +3038,7 @@ __Pyx_RefNannySetupContext("PyInit_overlay", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/overlay.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def overlay(activator, msg="hello"):             # <<<<<<<<<<<<<<
  *     """
@@ -3040,7 +3054,7 @@ __Pyx_RefNannySetupContext("PyInit_overlay", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/overlay.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * def overlay(activator, msg="hello"):
 */
@@ -3104,7 +3118,7 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "simplestart/ss_ui/overlay.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def overlay(activator, msg="hello"):             # <<<<<<<<<<<<<<
  *     """
@@ -3143,31 +3157,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{1},{1},{130},{76},{28},{66},{20},{9},{18},{18},{4},{8},{5},{2},{13},{5},{8},{10},{3},{8},{7},{3},{12},{12},{10},{25},{7},{8},{8},{6},{44}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (411 bytes) */
-const char* const cstring = "BZh91AY&SY\016\320p[\000\000;\177\342\363V\340\260x\023\220\027\244\001p\000\277\377\377`\000@@@@\000@\0000\001Z\2466\032\223\321\006SFL\3214\320\000\000\000\003\032A\251\246\232\2315=\251O\322\236M\t\352i\240\36524h\032hi\240\006\247\2454\323T\375P~T\375B~\250\315#\r#L@\014\2143TuA\2276\301lT\3214Q \021\34029\004\255DDd\032KoFk\023\355j\200\001\363\030^g\032\342!\246\235\004e\253\212D\214I\307\3544{u\335\347\"\0336g\311\230\210\243M\303\251\037\026\035x\251\261H\364\007\271\025\322E\375\275\233_G\351\264\207,4Q\004R\310\034\324\202q\021{_\312\253\271`\320\004\206\005Z\"C\201(0\201\351\306\010\310\034\261\010\347X\237\n\235\020>wN\333\"\305\346\031T\320n\025\264T\312G\250\203m\\0A<&\220Bz#\037n\315#\310k\021\365b\316\003,*AI^\354V\007\013\350g5\214\023\231\210\2452\316\2575&l\242 \235Y\207\230~\016\310B\207\265\374\204\331UXk&.\274\252\321-\022g\023\223\rs\202\221Z\032l\004&c0\304FA1\305!\337\000\253:\342\313\270\336j\203M\246\344hkL\233\tA\216\014\250\020\265\312f\201]8\247!\321dIF\220\265\007\3375\271\307\310\335\004\t7\326~\243\2755)\025\3278\376.\344\212p\241 \035\240\340\266";
-    PyObject *data = __Pyx_DecompressString(cstring, 411, 2);
+    const struct { const unsigned int length: 8; } index[] = {{1},{1},{130},{76},{28},{66},{20},{9},{18},{18},{4},{8},{5},{2},{13},{5},{8},{10},{3},{8},{7},{3},{12},{3},{12},{10},{25},{7},{8},{6},{7},{51}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (416 bytes) */
+const char* const cstring = "BZh91AY&SY\216\003\001\210\000\000=\177\343\367\\\340\260x\223\260\027\204\001P\000\277\377\377`\000@@@@\000@\000@\0000\001Z\246 \324\3111\032)\355(\364\332\215F\324\320\r\003G\250\001\35262\240\324\311\244\365\021\350i4\003P\323!\243F#\0014\311\20052I\246\3114\321\215C@\000\000\000\000z#\357\n-VO\321\242e\t\322\202 \010b\030\3371+L\314\335\210D\240\2462\t\350\t\354\255\000\001J\020.\205\361h1\337\227q\242\312'\275\241\360jF\377\034pc/I\230\237v\355\275=fg\"\346\020\235H\335-\316eD$R\230\244R3\264\035\374\223I$\026a\340\230M\016\020D\312\006\2718p\257\3678\276t8L \033IH\2612\220\035-\242\352\314$\366\n\355\320-\345k\003\250K\022\250ql\302\251\236\211j\320R\344\363Nf\242\322\200\305&a\252\300G\225c\033uX#se\220s\245\342\021\213\261\314\341!T\225\351\010*\211\224\260O?\220\254\351\037\343*\266Rfj\301R\206\203R_D\270B%5\276F\371\250\006\310\013u\024\330\037\201\342tv?\230G)\025\220q#\001\210 \274+\270\320\201\304\021r\250{\347\204\214\265A\253\3341\322\3278\301\265\256}K[B\330\010)O\211s\310.^\270\351\024\365VDr\220\221\002\207XZ\347\234\266\224X`\344\267x\376\306%\357\234\035\005Dr\017\361w$S\205\t\010\3400\030\200";
+    PyObject *data = __Pyx_DecompressString(cstring, 416, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (351 bytes) */
-const char* const cstring = "x\332UQ\301N\3030\014-\007\020\232@\300\t\301\251\224\033R[\211#\332\206\2208#\340\007,\223\272[ M\272\332\255\326?\330qG>\213O\351'\020m\335\264ZJ\342X\357\305\317/\311\363(\334\3048\323M\250\0142O\242,\316\r-\303\357\232E\347m\254\310\nU\321\264Gn\320M\354\032\252\014\266\007\30504N\241hgc\226\n\205f\355$R\316ZRBY4@\242\022\335\240\270j\022\335\207\017O\271\256Xb5\327f\200\233\0168\276\251\302*\333\251,1~\214\206\2100d]\224\206X\260\222\224\031j\235\366:\223r(u\234n_\033L\225\356\307\332\225\307\251\367e:\352o\000\357\355\322\257W\255\004\336h)\237\224\357'An\255\322.Q\256r\265hK\254\214\337A[\360n(\372B\365\223\241 @^[\0050'c\234\316@3\354)Z\250`\200\002=\311G\341\262\332\220?y\006`\261\360i\257\257t%\300\242F\263\255\0020I\217\360Y\346e\325F\016\314H6f$=\2337-\3117+\215\377'\000\361(\200\006MM\374\027\\\257\027\335ep<Z\335\254\357\272Qp|\276zY}t\247\301\315\355\357Uw\022\\\\\256\026\276|v\265>\372\007\264(\270\312";
-    PyObject *data = __Pyx_DecompressString(cstring, 351, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (365 bytes) */
+const char* const cstring = "x\332UQ\301n\3330\014\365\200\245\030\222\002kNCwr\275C\201\002\266\261\035\207$\273\364<\014\375\001\202\223\351T\253,9\"e\304\177\220c\216\373\254~B?!\237P5u\203\232\200$\212z$\037\237\212_\323\364h\213Jw\2512\310\274\314\252\2746\264M\377\005\026]\367\271\"+\344\263\325\200<\242\273\334u\344\r\366\357\202ij\234B\321\316\346,\036\205\326\3752S\316ZRBU6B\242\022\335\2418\277\314\276\2457?k\355Yru\257\315\010\267\032\345\304\246\n}\365\306\262\305\374G6F\244)\353\2465\304\202^Jf\010\272\034x\026\355\230\352\242|\2556\232\252<\215\365\026^\224Q\227\325t\270\001\374\351\267q\335j%\360\233\266rG\365i\022\344\336*\355\n\345\274\013\242-\2612q\007m!\252\241\350/\252\207\n\005\001\352`\025\300=\031\343t\005\232\341\224\242\205\032\006h0&Ek\\\025\014\305\223\327\000\026\233\350\016\374Z\327\002l\002\232\327\250\247\230\305$\003(zUd\026\214\274\323\2438\352Q\014\005\370\3305b%\276\002th\002q\027\350\345\307\037\223/\373\315\341\"\231Lw\227\373\253\3034\231\314v\327\373yt?%\227_\377\317\017g\311\347\213\335&>\234\317\367\037\236>\316v\337\237\001U\325\273\311";
+    PyObject *data = __Pyx_DecompressString(cstring, 365, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (575 bytes) */
-const char* const bytes = ".?\n      <div class=\"d-flex justify-center\">\n          <v-overlay\n            location-strategy=\"connected\"\n            activator=\"# *:first-child\"\n          >\n            <v-card class=\"pa-2\">\n              simplestart/ss_ui/overlay.py\n            </v-card>\n          </v-overlay>\n      </div>\n\n      __Pyx_PyDict_NextRefactivatorasyncio.coroutinescline_in_tracebackdata__func__helloid_is_coroutineitems__main____module__msg__name__overlaypop__qualname____set_name__setdefaultsimplestart.ss_ui.overlayss_coretemplate__test__values\320\000\027\220q\360\020\000\005\n\210\031\220!\360\n\000\005\r\210A\210Q\360\010\000\031\032\230\021\360\006\000\017\020\210q\360\n\000\014\021\220\001";
+    #else /* compression: none (584 bytes) */
+const char* const bytes = ".?\n      <div class=\"d-flex justify-center\">\n          <v-overlay\n            location-strategy=\"connected\"\n            activator=\"# *:first-child\"\n          >\n            <v-card class=\"pa-2\">\n              simplestart/ss_ui/overlay.py\n            </v-card>\n          </v-overlay>\n      </div>\n\n      __Pyx_PyDict_NextRefactivatorasyncio.coroutinescline_in_tracebackdata__func__helloid_is_coroutineitems__main____module__msg__name__overlaypop__qualname__res__set_name__setdefaultsimplestart.ss_ui.overlayss_core__test__valuesvuetify\320\000\027\220q\360\020\000\005\n\210\031\220!\360\n\000\005\013\210'\220\021\220!\360\010\000\031\032\230\021\360\006\000\017\020\210q\360\n\000\014\021\220\001\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 31; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 6) PyUnicode_InternInPlace(&string);
@@ -3178,7 +3192,7 @@ const char* const bytes = ".?\n      <div class=\"d-flex justify-center\">\n    
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 30; i < 31; i++) {
+    for (int i = 31; i < 32; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3189,14 +3203,14 @@ const char* const bytes = ".?\n      <div class=\"d-flex justify-center\">\n    
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 31; i++) {
+    for (Py_ssize_t i = 0; i < 32; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 30;
+      PyObject **table = stringtab + 31;
       for (Py_ssize_t i=0; i<1; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3223,7 +3237,7 @@ typedef struct {
     unsigned int argcount : 2;
     unsigned int num_posonly_args : 1;
     unsigned int num_kwonly_args : 1;
-    unsigned int nlocals : 2;
+    unsigned int nlocals : 3;
     unsigned int flags : 10;
     unsigned int first_line : 2;
 } __Pyx_PyCode_New_function_description;
@@ -3242,9 +3256,9 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_activator, __pyx_mstate->__pyx_n_u_msg, __pyx_mstate->__pyx_n_u_id};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_overlay_py, __pyx_mstate->__pyx_n_u_overlay, __pyx_mstate->__pyx_kp_b_iso88591_q_AQ_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_activator, __pyx_mstate->__pyx_n_u_msg, __pyx_mstate->__pyx_n_u_id, __pyx_mstate->__pyx_n_u_res};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_overlay_py, __pyx_mstate->__pyx_n_u_overlay, __pyx_mstate->__pyx_kp_b_iso88591_q_q_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

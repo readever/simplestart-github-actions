@@ -1513,7 +1513,7 @@ static const char* const __pyx_f[] = {
 struct __pyx_obj_11simplestart_5ss_ui_4rate___pyx_scope_struct__rate;
 
 /* "simplestart/ss_ui/rate.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def rate(**kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -2333,7 +2333,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[2];
-  PyObject *__pyx_string_tab[58];
+  PyObject *__pyx_string_tab[59];
   PyObject *__pyx_number_tab[1];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -2401,43 +2401,44 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_cline_in_traceback __pyx_string_tab[18]
 #define __pyx_n_u_colors __pyx_string_tab[19]
 #define __pyx_n_u_data __pyx_string_tab[20]
-#define __pyx_n_u_disabled __pyx_string_tab[21]
-#define __pyx_n_u_disabled_void_icon __pyx_string_tab[22]
-#define __pyx_n_u_event __pyx_string_tab[23]
-#define __pyx_n_u_func __pyx_string_tab[24]
-#define __pyx_n_u_get __pyx_string_tab[25]
-#define __pyx_n_u_handlers __pyx_string_tab[26]
-#define __pyx_n_u_icons __pyx_string_tab[27]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[28]
-#define __pyx_n_u_items __pyx_string_tab[29]
-#define __pyx_n_u_kwargs __pyx_string_tab[30]
-#define __pyx_n_u_main __pyx_string_tab[31]
-#define __pyx_n_u_module __pyx_string_tab[32]
-#define __pyx_n_u_myonchange __pyx_string_tab[33]
-#define __pyx_n_u_name __pyx_string_tab[34]
-#define __pyx_n_u_onchange __pyx_string_tab[35]
-#define __pyx_n_u_pop __pyx_string_tab[36]
-#define __pyx_n_u_qualname __pyx_string_tab[37]
-#define __pyx_n_u_rate __pyx_string_tab[38]
-#define __pyx_n_u_rate_locals_myonchange __pyx_string_tab[39]
-#define __pyx_n_u_res __pyx_string_tab[40]
-#define __pyx_n_u_score_template __pyx_string_tab[41]
-#define __pyx_n_u_set_name __pyx_string_tab[42]
-#define __pyx_n_u_setdefault __pyx_string_tab[43]
-#define __pyx_n_u_show_score __pyx_string_tab[44]
-#define __pyx_n_u_show_text __pyx_string_tab[45]
-#define __pyx_n_u_simplestart_ss_ui_rate __pyx_string_tab[46]
-#define __pyx_n_u_size __pyx_string_tab[47]
-#define __pyx_n_u_ss_core __pyx_string_tab[48]
-#define __pyx_n_u_style __pyx_string_tab[49]
-#define __pyx_n_u_template __pyx_string_tab[50]
+#define __pyx_n_u_data_2 __pyx_string_tab[21]
+#define __pyx_n_u_disabled __pyx_string_tab[22]
+#define __pyx_n_u_disabled_void_icon __pyx_string_tab[23]
+#define __pyx_n_u_event __pyx_string_tab[24]
+#define __pyx_n_u_func __pyx_string_tab[25]
+#define __pyx_n_u_get __pyx_string_tab[26]
+#define __pyx_n_u_handlers __pyx_string_tab[27]
+#define __pyx_n_u_icons __pyx_string_tab[28]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[29]
+#define __pyx_n_u_items __pyx_string_tab[30]
+#define __pyx_n_u_kwargs __pyx_string_tab[31]
+#define __pyx_n_u_main __pyx_string_tab[32]
+#define __pyx_n_u_module __pyx_string_tab[33]
+#define __pyx_n_u_myonchange __pyx_string_tab[34]
+#define __pyx_n_u_name __pyx_string_tab[35]
+#define __pyx_n_u_onchange __pyx_string_tab[36]
+#define __pyx_n_u_pop __pyx_string_tab[37]
+#define __pyx_n_u_qualname __pyx_string_tab[38]
+#define __pyx_n_u_rate __pyx_string_tab[39]
+#define __pyx_n_u_rate_locals_myonchange __pyx_string_tab[40]
+#define __pyx_n_u_res __pyx_string_tab[41]
+#define __pyx_n_u_score_template __pyx_string_tab[42]
+#define __pyx_n_u_set_name __pyx_string_tab[43]
+#define __pyx_n_u_setdefault __pyx_string_tab[44]
+#define __pyx_n_u_show_score __pyx_string_tab[45]
+#define __pyx_n_u_show_text __pyx_string_tab[46]
+#define __pyx_n_u_simplestart_ss_ui_rate __pyx_string_tab[47]
+#define __pyx_n_u_size __pyx_string_tab[48]
+#define __pyx_n_u_ss_core __pyx_string_tab[49]
+#define __pyx_n_u_style __pyx_string_tab[50]
 #define __pyx_n_u_test __pyx_string_tab[51]
 #define __pyx_n_u_texts __pyx_string_tab[52]
 #define __pyx_n_u_value __pyx_string_tab[53]
 #define __pyx_n_u_values __pyx_string_tab[54]
 #define __pyx_n_u_void_icon __pyx_string_tab[55]
-#define __pyx_kp_b_iso88591_0_A_6_Qha_t1N_d_vT_a_t1_B_V4q_k __pyx_string_tab[56]
-#define __pyx_kp_b_iso88591_A_5_E_1_1 __pyx_string_tab[57]
+#define __pyx_n_u_vuetify __pyx_string_tab[56]
+#define __pyx_kp_b_iso88591_0_A_6_Qha_t1N_d_vT_a_t1_B_V4q_k __pyx_string_tab[57]
+#define __pyx_kp_b_iso88591_A_6_U_1_1 __pyx_string_tab[58]
 #define __pyx_int_0 __pyx_number_tab[0]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
@@ -2456,7 +2457,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_4rate___pyx_scope_struct__rate);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_4rate___pyx_scope_struct__rate);
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<58; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<59; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -2483,7 +2484,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_4rate___pyx_scope_struct__rate);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_4rate___pyx_scope_struct__rate);
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<58; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<59; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -2499,7 +2500,7 @@ return 0;
 /* #### Code section: module_code ### */
 
 /* "simplestart/ss_ui/rate.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def rate(**kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -2564,7 +2565,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  *     onchange = kwargs.get("onchange", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         if onchange:
 */
 
@@ -2673,7 +2674,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
   /* "simplestart/ss_ui/rate.py":48
  * 
  *     def myonchange(event):
- *         res.data["value"] = event.value             # <<<<<<<<<<<<<<
+ *         res._data["value"] = event.value             # <<<<<<<<<<<<<<
  *         if onchange:
  *           onchange(event)
 */
@@ -2688,7 +2689,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
 
   /* "simplestart/ss_ui/rate.py":49
  *     def myonchange(event):
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         if onchange:             # <<<<<<<<<<<<<<
  *           onchange(event)
  * 
@@ -2698,11 +2699,11 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
   if (__pyx_t_3) {
 
     /* "simplestart/ss_ui/rate.py":50
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = template('''
+ *     res = vuetify('''
 */
     __pyx_t_2 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 50, __pyx_L1_error) }
@@ -2732,7 +2733,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
 
     /* "simplestart/ss_ui/rate.py":49
  *     def myonchange(event):
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         if onchange:             # <<<<<<<<<<<<<<
  *           onchange(event)
  * 
@@ -2743,7 +2744,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
  *     onchange = kwargs.get("onchange", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         if onchange:
 */
 
@@ -2763,7 +2764,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
 }
 
 /* "simplestart/ss_ui/rate.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def rate(**kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -2815,7 +2816,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_rate(CYTHON_UNUSED PyObject
 */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_data = __pyx_t_2;
@@ -3033,7 +3034,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_rate(CYTHON_UNUSED PyObject
  *     onchange = kwargs.get("onchange", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         if onchange:
 */
   __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_4rate_4rate_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_rate_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_rate, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
@@ -3044,12 +3045,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_rate(CYTHON_UNUSED PyObject
   /* "simplestart/ss_ui/rate.py":52
  *           onchange(event)
  * 
- *     res = template('''             # <<<<<<<<<<<<<<
+ *     res = vuetify('''             # <<<<<<<<<<<<<<
  *         <el-rate v-model="data.value"
  *         :allow-half = "data.allow_half"
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
   /* "simplestart/ss_ui/rate.py":69
@@ -3078,7 +3079,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_rate(CYTHON_UNUSED PyObject
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_el_rate_v_model_data_value_allo};
     __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 52, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 52, __pyx_L1_error)
     if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_4, __pyx_t_6, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 52, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3103,7 +3104,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_rate(CYTHON_UNUSED PyObject
   goto __pyx_L0;
 
   /* "simplestart/ss_ui/rate.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def rate(**kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -3681,18 +3682,18 @@ __Pyx_RefNannySetupContext("PyInit_rate", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/rate.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * def rate(**kwargs):
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -3703,7 +3704,7 @@ __Pyx_RefNannySetupContext("PyInit_rate", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/rate.py":3
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def rate(**kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -3718,7 +3719,7 @@ __Pyx_RefNannySetupContext("PyInit_rate", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/rate.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * def rate(**kwargs):
 */
@@ -3790,31 +3791,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{0},{1},{1},{7},{640},{6},{7},{2},{9},{25},{10},{14},{20},{4},{10},{10},{18},{9},{18},{6},{4},{8},{18},{5},{8},{3},{8},{5},{13},{5},{6},{8},{10},{10},{8},{8},{3},{12},{4},{24},{3},{14},{12},{10},{10},{9},{22},{4},{7},{5},{8},{8},{5},{5},{6},{9},{324},{27}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (843 bytes) */
-const char* const cstring = "BZh91AY&SYo\204EV\000\000\240\377\377\347z\365?\374\347\367\237\367\001}\016\277\357\377\373@@@@@@@@@\000@@@\000@\000@\002\334\265b!1\014\244\024\315OL\232\236\215G\241=L 4\006\2002\032h\320\003@\320\036\240\331\023M\244\032\010 M\242\233\325O\323)\247\252=@\304\032\036\246@\032\000\032\003 \003&\232i\264Lp\304i\246\203@\032\000\000\000\032\014\203M\003@\006\215\000b\032\001\"\211\240S\323B\215\352\215\221=&\217P\031\000\000h\000\000\000\001\241\265\017IG\007\036.\327\341\006\327\356\010\333 \337\353>q\r\246\335 \026\026\346R %\235\033\222\233\251~\226\013\322\377\327W\275\034\035\327\245\270\343\2430G\022\270&\214\"\364Z\274\200\261\000\200#\220\007\001\007\360[i+o\244\230\270\213\212m\213\026]\301\032\253\202[\205\312.\243\n'\263\031\360\3079b\304\021\3725l\264\0023Ld}\347\3633_\311u\007\337t\270\2408+\034\037\305\224\330\226_7PZ\244\254\n\000\272\010\317M<\232R\3324RN;j\250\024zj\344\031\253%\314\241\005\227\022b\364_\215\217\333[\341\326\301\245n\034\221,\265\021\204f\225\316\304\326\231\327b\355\313&d\031\307\317f\3531\254\314&\"Ne2\204\246\231I\251\014\230p\0352''I~c\204\223\200\241\010\315\347\315\266\271\332\265\377pk\212\305@\2530,\0204\252\000\313\201\261\214\2131-<\216\036\352\370\200\257k\302\037\026\031\243u\330\251\366\351\312_\311\271((\024\344\243@\306\301\227@\210s\265\020=\226\325\334\3011\235\320\256G\304\256\023[\302\212\250\274\246X\201\255\n\303\310\024\316f\206\226C 7\351o\351\036C\307\036m\006\304\225\222N\332Q\032\022\227\005z\275\300o\030%h\373aC\320\344HA'\275\004\270H`\005\322\263\000xy]s\327w<\026\363\004\033]!\326\325-$\243\272\251A\366\"l\006\300a\235@V2\231\034\313T\371`\031/\212\245\032\330\255kG%\241P\345\206\240\230\230\232\247T\202\312\350Q\202\030Q\030:7\346\250\257\337\021\327\256\307\020\3419RA\003\rA\362\0060\263@T^\301\241\251\307\240\226\024c\272=:j\264\244Rt\263hj1\034*%\254\3340o!\227$e\002\tSm\355kgY\337\"\207\007Lr\275ok[\023J\320\203\216\254\240J\017\025\024\253\234\000\037\340\300\252ET\002\324\300\2548g\300!\250}\341'""*\"\202\213J\336\026\202x\262\031n\030\341\250\2251\022N\271-\205\221\032\260\247 \201Q\325\311\r\013\357-<e\2510\274[Z\233\326:\2016\210\035\344xx\371Cw\023\326\214\003\347\350\277\265\366\217\350!8\030\204\3270E\"B\367\277M{\306M\373\347D\325\306\213#\336\261oT\312T\346\031>\314\263P\320\273\212\263\261\3376\216\n\033\373\221a`\211\222\247c\311U\010\010\234\204\220\236\266\033\224#s18\305\334\221N\024$\033\341\021U\200";
-    PyObject *data = __Pyx_DecompressString(cstring, 843, 2);
+    const struct { const unsigned int length: 10; } index[] = {{0},{1},{1},{7},{640},{6},{7},{2},{9},{25},{10},{14},{20},{4},{10},{10},{18},{9},{18},{6},{5},{4},{8},{18},{5},{8},{3},{8},{5},{13},{5},{6},{8},{10},{10},{8},{8},{3},{12},{4},{24},{3},{14},{12},{10},{10},{9},{22},{4},{7},{5},{8},{5},{5},{6},{9},{7},{324},{27}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (848 bytes) */
+const char* const cstring = "BZh91AY&SY\273\273\035\216\000\000\241\177\377\347z\365?\374\357\365\237\365\001\177\016\277\357\377\373@@@@@@@@@\000@@@\000@\000@\002\335\333\247\030\216\333\216\031D\322\r\030\201\220'\250h\311\240\000\003M\r\000\000\032h4\321\3510\230\203BL@\247\251\247\247\252`\021\240\000\000\000\000\000\000\000\032\r\000jzDS\365!\265\r=\020\003##\020\r\003@10\214L\215\006\201\240\014\200\221D\324\3652\014\224d\330\232\236\220z\200\3104\000\000\000\000h\000h\332\207\250\236lx\273_t\037\246\215\302\r\355\350\320!\264\333\230\005\302\366u\"\002Z\021\376q\223^i\001V\r\347\357\342\002\205\373\301\347\177\230\306\000\314\205C\001\n\027\312\240\250\001\202A\000B \n\244\037\301^2k\331J\301\364>\255\241[\226f\0105\035\224\341r\204\304bB\240d4\350\246\272U9\344\016\354Z\247P\000\214\322\231\036\225G\356~\355\231\031\313\246\310]0X\224X\256\250M\344\363Y7\020ce/m@DA\024\326Y\351\016\3064\023\nB\226\013\275:!\006t4\364(\202\323\211`\364\275=Pm,\363z\254\323\231\223$\3536P\022\3459\260%\256\270B#\272\265\250p\277\222$\"\222\237V5\235\205\004U\2431\230%E\nMHe\003\200\355\310\264ZIm\307\001'\001B\021\240\364g\334\\\335j\277\226k\212\352\230\252,V@\303J\0035\215\215\221f%\253\225\303j\256 +\332\360\207\301\206x\351\351\342\267\265\253)~\350\344\240\230\255\022\214\3066\014\260\010\205\336\"\006D\272\0234$\210\316\213m\037k\212\210\206\207\342)H\253w\247 Z\302\236:\301F\250V\020\253\031\001\361\"\374\221\3606(\335Fo$\017?\022\344DXI\030\032\201\254\002\271\202SGt\324:\025'@AQ\325A\013\210H\013\n|\201\241\245J\223U\355L\024U\326,\331,\213W\351\226$\243\273\245A\366\"l-\200\301\2635\021^e6\213\352Z\220\014\265\212\332\215LW\332\322\313}R9`\244(((\245\323 \256\251\250\301\014'\0309\357\215aWX\216\265W\\C\204\345l\202\006\031\007\310\030\302\355\304N\365\2272q\346K\002\0310\3275\260\036\r\np\264\217`T\265\202\220\003\221\211L8\211\0375n\272\260\265)\257A\215#\024\306\240X\\&\374\n\252\265\255\306\226\210A\2073 \010\001\317\216E1\204\000\371\017\005DVVY\022\021u\343\254\203\2113zB\342\273\245\002""\356\025\207\373 \312\313f\245\2338\314\221\264\223\035\254)\232\353\214\303D\031U\006s$\rY\261I\021\305\354v2E\0259<\343\231LgE\255\326\t\357 x\221\345\347\351\245pX\260\037\263\364~s\355\"\373\366\317\364[g\204\263\206#\027\256\336<WKw\357\235\003R<\277z\207\014\215C&\001\242[\367i\254\303J\343\020\362!Y=\347\005\n\273xq2D\3313\335mt \034\242\205+!ua\031u\304\377\027rE8P\220\273\273\035\216";
+    PyObject *data = __Pyx_DecompressString(cstring, 848, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (732 bytes) */
-const char* const cstring = "x\332uS\317O\3330\024\246\022LP4m\235\020\322\306\306\322n\022Ej\303:1&1\n\353\264qDcC\\\306d\231\304m-\334\244\304N!\2336q\3541G\037}\354\261\307\035\371\023z\354\221?\201?a\266\323&\201B\244\374x\337\373\236\237\337\347/\346\216\215)<&(k\214\256-D\312\036d\310\350\224[\256\215H\265`C\006\315\016$>*\0301m\023\022\342\236\225\233\220\324\215\252\021q4\004\024THx\026A\320S\035bZ\214\244Y.q=\232Pt\230\312\217vi\307\2141p\007\247\334q\261]\306\226\353L\260\201J\001\225J\325\2510i\255\243T\2266\345\230\014\235\263\230\241\020\240\220\333,j\271\036\272I\323P\232\247b\271\\\253M\224\3061W\301`\014\247\371\370W\212%\203TNm\241\254\225\212\031\n\002\032\272\305\323\363\325<\017\006&\246\372]\214\013\350\252\261c$\221\261i\374\370\231*\237T\363\016\021\217>ZM\3504P\265P\324NY5\252\333\206\024\022y\035\344\025W\\'J\257\224\214(\235T\256m\353O\344\250\003zU\177\177\014\337\302\206\205i\004\330\024KM\020e\320ck\224\002\037\257)s\232\355 \231\376\267^\362\217\321v\261\303(\000_\203sy\177\306\026\003{\222\364\r\325\277\313ru\357b\"\227Ll\ni\340X\330\225v\363\\\237a\007\321\330\233\026\221!\300\016`\036\264\3201\264N\"O*\001\306n\232t\025\352 \207\001P\367\035\013\200\006brh\233 \217jS\001LA\334\t\313\303\246'g\320k\310\035\267\240l$/\371\303\371\004\311w0\026\014\000\007\266\344s\034\267\3356\000\247>$\021\254\264\320zl\021\327\202\204n\233I\251\207\350M[\001@\021\033\255'\277lT\207>a\211Mc_\24747\265\346\246\352\241\334G\365\0042\025\020\224,+s\014D\225\372(\364\203\306\242\\d\256\337L\315<\354\326\206\323\363\335\215p!\334\017\233\034^M\317v3\203\271\247|\2213Q\021{\375\374P!\335\227\374\001\267E^T\373\231\010X\016;\374@\344D\251\007\207QM^,\n\326\253\014J\237.GE\317\303C\276\316OE\266\227\357}\350\237\\\346\"x)\334\345\2579\344A/\323[\356\377\275\334\217\340g\341\006_\340\373\274)\340\335='\2675\230{\301\017\305\2728\035\0247\377\345\357!\245\373\3353L\212q5\375\250\333\t\017x\216\227\204Tc\346:;53\337-\206\371\260r]\230\312>\226\311#\261\324\253]I\325*\027\265\341\354|\367]""\230\t\227\370\027\221SAe\230}\242\310\377\001\244\263\000\273";
-    PyObject *data = __Pyx_DecompressString(cstring, 732, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (737 bytes) */
+const char* const cstring = "x\332uS\317O\3330\024\246\022LP4m\235\020\322\306\306\222n\022Ek\313:!&1\n\3534qDcc\\\306d\231\304m-\334\244\304N \2336q\3541G\037s\314\261\307\035\371\023z\354\221?\201?a\266\323&\201B\244\374x\337\373\236\237\337\347/\325\035\023SxLP^\033][\210T\034\310\220\346U:\266\211H\275hB\006\253\036$.*j\tm\023\022b\237U\332\2204\265\272\026s\024\004$TLy\006A\320\221\035\022Z\202dY6\261\035\232RT\230\311\217vi&\2141p\007\247\342\331\330\254`\303\266&\330@\246\200Le\352d\230\266VQ&K\333bL\206\316Y\302\220\010\220\310m\0265l\007\335\244)(\313\223\261X\256\323%R\343\204+a0\206\263|\374+\303\022A&'\267PQJ%\014\t\001\005\335\342\251\371\032\216\003\375*\246\352]J\n\350\252\266\243\245\221\266\251\375\370\231)\237T\363\016\021\217>\032mh\265P\275XRNY\325\352\333\232\020\0229\036rJ+\266\025\247W\312Z\234N+\327\266\325'\262\344\001\275j\276?\206\357`\313\3004\006L\212\205&\2102\350\2605J\201\213\327\2449\253]?\235\376\267Z\362\217\326\265\261\305(\000_\374sq\177\306\006\003{\202\364\0255\277\211ry\357b\"\226Lm\n\251o\031\330\026vsl\227a\013\321\304\233\006\021!\300\026`\0164\32014NbO\002\251\200\272G\226\232\264\026\362\220\305\000h\272\226\001@\01311\271I\220C\225\263\000\246 i\207\305\211\323\2233\350\264\304\266;Pt\023\227\370\353\\\202\304\333\037\253\006\200\005;\3429\216\273v\027\200S\027\222\030\226\202(Q\266\210m@B\267\253i\251\203\350Mo\001@\021\033\255'\276L\324\204.a\251W\023sg\204\257*\341\253\262\207\264 U\023\210\224/\267)0\006\342\nu\016\352A\0231<\0271\334\364/r\327o\247f\036\366\032\303\351\371\336F\260\020\354\007m\016\257\246g{\271\301\334S\276\310YX\013\367\372\372P\"\275\227\374\0017C=\254\367s1\260\034x\374 ,\204\345\010\016\343\032=\\\014YT\033\224?]\216\212\236\007\207|\235\237\206\371H\217>\364O.\0131\274\024\354\362\327\034r?\312E\313\375\277\227\3731\374,\330\340\013|\237\267Cxw\317\311m\r\346^\360\303p=<\035\2246\377\351\367\220\262\375\356\031&\303\270\232~\324\363\202\003^\340\345P\2501s\235\237\232\231\357\255\004\205@\277.N\345\037\213\344Q\270\0245""\256\204j\265\213\306pV\212W\010\336\360\357\241.\203\3320\377$\320\203\332\177\324\006\002\204";
+    PyObject *data = __Pyx_DecompressString(cstring, 737, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1475 bytes) */
-const char* const bytes = ".?disable\n        <el-rate v-model=\"data.value\" \n        :allow-half = \"data.allow_half\"\n        :clearable = \"data.clearable\"\n        :colors = \"data.colors\"\n        :disabled = \"data.disabled\"\n        :disabled-void-icon = \"data.disabled_void_icon\"\n        :icons = \"data.icons\"\n        :show-text = \"data.show_text\"\n        :show-score = \"data.show_score\"\n        :score-template = \"data.score_template\"\n        :size = \"data.size\"\n        :text-color = \"data.text_color\"\n        :texts = \"Array.isArray(data.texts) ? data.texts : []\"\n        :void-icon = \"data.void_icon\"\n        \\@change=\"(value) => onserver('onchange', value)\"\n        />\n    enable#f7ba2agcisenabledsimplestart/ss_ui/rate.pytext-color{value} points__Pyx_PyDict_NextRefStarStarFilledallow_halfasyncio.coroutinesclearablecline_in_tracebackcolorsdatadisableddisabled_void_iconevent__func__gethandlersicons_is_coroutineitemskwargs__main____module__myonchange__name__onchangepop__qualname__raterate.<locals>.myonchangeresscore_template__set_name__setdefaultshow_scoreshow_textsimplestart.ss_ui.ratesizess_corestyletemplate__test__textsvaluevaluesvoid_icon\200\001\3600\000\005\r\210A\330\004\013\2106\220\024\220Q\220h\230a\340\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\320\t!\240\026\240t\2501\320,B\300!\330\004\010\210\001\210\034\220V\2304\230q\240\n\250!\250;\260k\300\021\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\250\036\260~\300Q\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\330\004\010\210\001\320\t\035\230V\2404\240q\320(:\270!\330\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\037\230\006\230d""\240!\240=\260\001\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\340\004\017\210v\220T\230\021\230,\240a\340\004\005\360\n\000\005\013\210(\220!\2201\360\"\000\n\020\210v\220\\\240\033\250A\340\004\013\2101\200A\330\010\013\2105\220\001\220\033\230E\240\021\330\010\013\2101\330\n\022\220!\2201";
+    #else /* compression: none (1479 bytes) */
+const char* const bytes = ".?disable\n        <el-rate v-model=\"data.value\" \n        :allow-half = \"data.allow_half\"\n        :clearable = \"data.clearable\"\n        :colors = \"data.colors\"\n        :disabled = \"data.disabled\"\n        :disabled-void-icon = \"data.disabled_void_icon\"\n        :icons = \"data.icons\"\n        :show-text = \"data.show_text\"\n        :show-score = \"data.show_score\"\n        :score-template = \"data.score_template\"\n        :size = \"data.size\"\n        :text-color = \"data.text_color\"\n        :texts = \"Array.isArray(data.texts) ? data.texts : []\"\n        :void-icon = \"data.void_icon\"\n        \\@change=\"(value) => onserver('onchange', value)\"\n        />\n    enable#f7ba2agcisenabledsimplestart/ss_ui/rate.pytext-color{value} points__Pyx_PyDict_NextRefStarStarFilledallow_halfasyncio.coroutinesclearablecline_in_tracebackcolors_datadatadisableddisabled_void_iconevent__func__gethandlersicons_is_coroutineitemskwargs__main____module__myonchange__name__onchangepop__qualname__raterate.<locals>.myonchangeresscore_template__set_name__setdefaultshow_scoreshow_textsimplestart.ss_ui.ratesizess_corestyle__test__textsvaluevaluesvoid_iconvuetify\200\001\3600\000\005\r\210A\330\004\013\2106\220\024\220Q\220h\230a\340\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\320\t!\240\026\240t\2501\320,B\300!\330\004\010\210\001\210\034\220V\2304\230q\240\n\250!\250;\260k\300\021\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\250\036\260~\300Q\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\330\004\010\210\001\320\t\035\230V\2404\240q\320(:\270!\330\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\037\230\006""\230d\240!\240=\260\001\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\340\004\017\210v\220T\230\021\230,\240a\340\004\005\360\n\000\005\013\210'\220\021\220!\360\"\000\n\020\210v\220\\\240\033\250A\340\004\013\2101\200A\330\010\013\2106\220\021\220+\230U\240!\330\010\013\2101\330\n\022\220!\2201";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 56; i++) {
+    for (int i = 0; i < 57; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 12) PyUnicode_InternInPlace(&string);
@@ -3825,7 +3826,7 @@ const char* const bytes = ".?disable\n        <el-rate v-model=\"data.value\" \n
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 56; i < 58; i++) {
+    for (int i = 57; i < 59; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3836,14 +3837,14 @@ const char* const bytes = ".?disable\n        <el-rate v-model=\"data.value\" \n
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 58; i++) {
+    for (Py_ssize_t i = 0; i < 59; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 56;
+      PyObject **table = stringtab + 57;
       for (Py_ssize_t i=0; i<2; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3918,11 +3919,11 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 47};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_rate_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_5_E_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_rate_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_6_U_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 3};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_res};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_res};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_rate_py, __pyx_mstate->__pyx_n_u_rate, __pyx_mstate->__pyx_kp_b_iso88591_0_A_6_Qha_t1N_d_vT_a_t1_B_V4q_k, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);

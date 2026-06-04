@@ -2348,13 +2348,13 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_simplestart_ss_ui_avatar __pyx_string_tab[28]
 #define __pyx_n_u_src __pyx_string_tab[29]
 #define __pyx_n_u_ss_core __pyx_string_tab[30]
-#define __pyx_n_u_template __pyx_string_tab[31]
-#define __pyx_n_u_test __pyx_string_tab[32]
-#define __pyx_n_u_text __pyx_string_tab[33]
-#define __pyx_n_u_value __pyx_string_tab[34]
-#define __pyx_n_u_values __pyx_string_tab[35]
-#define __pyx_n_u_vue_key __pyx_string_tab[36]
-#define __pyx_kp_b_iso88591_a_YfF_XQe1_q_1_Kq_AWA_6_Qha_a_E __pyx_string_tab[37]
+#define __pyx_n_u_test __pyx_string_tab[31]
+#define __pyx_n_u_text __pyx_string_tab[32]
+#define __pyx_n_u_value __pyx_string_tab[33]
+#define __pyx_n_u_values __pyx_string_tab[34]
+#define __pyx_n_u_vue_key __pyx_string_tab[35]
+#define __pyx_n_u_vuetify __pyx_string_tab[36]
+#define __pyx_kp_b_iso88591_a_YfF_XQe1_q_1_Kq_AWA_6_Qha_a_5 __pyx_string_tab[37]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2608,11 +2608,11 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6avatar_avatar(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/avatar.py":39
  *     '''
  * 
- *     res = template(avatar_template, data=data)             # <<<<<<<<<<<<<<
+ *     res = vuetify(avatar_template, data=data)             # <<<<<<<<<<<<<<
  *     return res
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_8 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -2643,7 +2643,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6avatar_avatar(CYTHON_UNUSED PyOb
 
   /* "simplestart/ss_ui/avatar.py":40
  * 
- *     res = template(avatar_template, data=data)
+ *     res = vuetify(avatar_template, data=data)
  *     return res             # <<<<<<<<<<<<<<
 */
   __Pyx_XDECREF(__pyx_r);
@@ -3031,18 +3031,18 @@ __Pyx_RefNannySetupContext("PyInit_avatar", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/avatar.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * 
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -3068,7 +3068,7 @@ __Pyx_RefNannySetupContext("PyInit_avatar", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/avatar.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * 
 */
@@ -3171,25 +3171,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{1},{0},{1},{1},{150},{27},{1},{20},{18},{6},{15},{18},{4},{8},{3},{13},{5},{3},{6},{8},{10},{8},{7},{12},{7},{3},{12},{10},{24},{3},{7},{8},{8},{4},{5},{6},{7},{113}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (468 bytes) */
-const char* const cstring = "BZh91AY&SY\253\227\271w\000\000.\377\363\347]\274\260}\347\241\007\347\tp\344\277\357\377\352@@@@@@@@@\000@\0000\001fP\203Q4\322=\t\251\345<\232\207\212=A\243A\243C\3222z\20044\320\323\323LeC\214\2314h\r\032b241\014\t\243LA\210\320a\000\006\r\010\236\240\004\233I\2653M&\215\000\320\000\000\000\001\240\365\033Q\0200\370\230\026\201E\200%z\231#\na\213\204\253\006\000\310x\365\225\006}%V\262\356\004\000\371HA\t\005\364\271G-/)\355X\231)\357\0276\026\235yq\206m\002\271\264S\364\324\013/9\233\273#\334\"\307\2651Mo\223\322\010k4\217\021 \224\345n\323\201\312\320\023\325ee\343\300\30330\362\007C\030h\206B\311\207\\\r&\321\216\254\227\300x\252\017\020\254\312\253\304\240\240\014\316\3608\344\242{\267-Zv\020\\\305YxB\032\337b]\333.\336\262 Xc!\320}\263j\214\374Q\034\216\311n3Z;a\253\212\025\216}\035\201\2418\236\210\202?\030X\007\304B\353\271\366$\017\230llu\230Z2\024&\026\006\030\ne\252\242\220f\022\027\026\210\024\007\203\t(\304\202\234\327\343+BG\200|*\341\236'L\2469\225\2574\301\222Ot\321e0\214t=j9%\226\363\340G\246\240\326'\003\204\002\004@p\306o\236X\234$\360V\202\371\206\214\020\351[\0276\016[j\nk8)R\252\3128e\261O\340\335\271\311\354:F^\377q\024\0379\376\377\177\025^\232\\\202Ui\251!2)9T\255\224_Vps\t\177\305\334\221N\024$*\345\356]\300";
-    PyObject *data = __Pyx_DecompressString(cstring, 468, 2);
+    const struct { const unsigned int length: 8; } index[] = {{1},{0},{1},{1},{150},{27},{1},{20},{18},{6},{15},{18},{4},{8},{3},{13},{5},{3},{6},{8},{10},{8},{7},{12},{7},{3},{12},{10},{24},{3},{7},{8},{4},{5},{6},{7},{7},{113}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (459 bytes) */
+const char* const cstring = "BZh91AY&SY\030a\025\334\000\000.\377\363\347]\264\260y\347\243\007\345\tp\344\277\357\377\352@@@@@@@@@\000@\0000\001z\200\204E= \321\210\321\246\201\240\000\r\r\000\323@h\003C&\236P\343#L\230\232\014\2310\232d\014\206\200\320\032d\320\300\t\2400\320\206\210\323DdeM\344F\246&\203 \000\000\000\036\246\217\324\315Rk\026\261\341\007\374\030\364\356\003{\272\242O\311V\222\352\350\350\023\212\335\270\346f\206\344\224\266B\000X1\010\025\020Y*>\356:i\017e<rk\217\242\351\240\231\300\273\016\003\3548\357X\252@9\222#-a\247`f\374\353\242\313|\377x\307$\2279 \250\352o}\301\331 '\343\237N\335\21433\020@\360\306\032!\220\254\303\334\032M\303n;\370@\201b C#,u\022\202\235\235\177\231\312\234.\277\203C\363Z\017\354h\333D\321\343^-\233\264\362\356\274\035\270\024gv\270\177\260w5\356\020\325\014\030\367P#%\010\033\322y\207-\302\353p\2402T\207\304m\214\205\360\343\316\3411\206\322\307\263\221\243x\211\205\235\206\002\231v\32783\t\027.\023\250\020\014$\303\235\006\276)\244Z\0050)\202\257%\324<\312\303\262\017sX\014\222\353\315\026\243\010\307\210h\2255U\252`%\331PkC\203\210\004\010\221\221\314m\322.\014\272|\220p\231\233F\310\363Z8;\247+T\025\225\352\330jX\326\216\031\020\314\313H\236\310\233\014a\311\256a>\336\236\376\034\362g\376<\222\212\231\327\312\005\242\221\2331f\037in\300b\001?\213\271\"\234(H\0140\212\356\000";
+    PyObject *data = __Pyx_DecompressString(cstring, 459, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (405 bytes) */
-const char* const cstring = "x\332MPMK#A\020\215\220,\301\210\262\273\202\350i\034\027\315\302fB.\236\214\037\340z\021D\275\250\260P\264\235Jl2\351I\272{\306\004\021<\316\261\217s\234\343\376\034\2179\372\023\362\023\254Lk\260\240\253\353\343\325\253\327\335\010\216\226=\262\003\014\033,a\206)/i\334\013\331i\373\035\312\202hhD$\265\357\025\250/\366\357\230?0\331\303\266_OX\030\343o\257}\350\021\022U\202\252\276\027I\327\336\373\343\271\266\177\270`xz\362\nn\203c\343=?\273\375\315\205\000\007\324b0\014QSn\232ZC,\232\256\033\014'\000p9\031\3239\025\334\300\005\261\\c\227\351\211\344\"\nx\244\242\330\010\211\332\341\235\007\203D\307\014\362\220Z $\030\3058\3363\336\237K\001\350\306\222\003\364\320\200\320\260\340\0204\246\3738\351?2\325\323\000\003F\223d\203\250\023\2078\217$\033\320\375\361K\000\243\230\205\256\244\220\366qTHUM\264\256JQ\207\264\306\241\371\362\276\240x_\340\224j\305u\241\000?%\003\211\327f\356\307\246\370\313\302\351$F i/K3\277TYK\331\264\\M+\351\235\355fg\371\366[\365\207\335\261\267\331U\206ykZ]KG\266\226\265\336\312+\351\271\035\315\221K\351\246\335\315\312\331Iv\223\237\270\302\226\335\317\326i\342!g\263o\245\312\206e\263\325R\245\226\326\355\366\353\317_\371\337\377\337\247\345Z\332z\007K\276\3148";
-    PyObject *data = __Pyx_DecompressString(cstring, 405, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (407 bytes) */
+const char* const cstring = "x\332MP\301J#A\020M \221`\026E\021\304=\315\216`\\0\023r\320\223q7 {Y\020\365\262+,\024m\247\022\233Lz\222\356\236\331\014\"x\234c\037\3478\307\375\234=\346\230O\310'X\231\226`AWu\327{\365\372u\267\203o\333\036\305%\206m\2260\303\224\227\264\037\205\034\364\374\001\235\202hjD$\265\357\225\254\017\361\347;\177br\204=\3774aa\214_\275\336\225GLT\t\252\323V$\035\334:\363\034\354_m\024\236\237\275R\333\340\334x//\356\376\316\306\200#j1\231\206\250\351l:ZC,:\016\r\246)\000\334\246sZ\327\202\033\270!\225{\0342\235J.\242\200G*\212\215\220\250\035\337e0Hr\314 \017\t\002!\301(\306\361\221\361\361\332\n\3000\226\034`\204\006\204\206\215\206\2401=\306t\374\227\251\221\006\2300\232\244\230D\2038\304\365N\262\t\325\367_\002\230\305,t-\205t\037G\205\324\325$\353\272\264\033\220\32784\037\336\027\224\357\013\234S\255\270.\035\020\333\020\276\316sS\376a\231t\022#\220%*F\014\323\327\352\312\257\324w3\266\2505\262z\366`\207\371\217\342\313\262\261o\217\355\357\374.\307\242\273h\354f3\333\314\273\313\332\247\354\247\235\255\231\325\354\310\236\344\265\274\237\377*\372\256\361\331^\344\0074\361T\260\325V\245~h\331j\247Rof-\273\367\177\377\2708\377W]\324\232Y\367\r\203\025\313\265";
+    PyObject *data = __Pyx_DecompressString(cstring, 407, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (562 bytes) */
-const char* const bytes = "-.?\n    <el-avatar v-bind=\"data.options\" \n               \\@change=\"(value) => onserver('onchange', value)\">\n        {{ data.text }}\n    </el-avatar>\n    simplestart/ss_ui/avatar.py___Pyx_PyDict_NextRefasyncio.coroutinesavataravatar_templatecline_in_tracebackdata__func__get_is_coroutineitemskeykwargs__main____module____name__options__qualname__replaceres__set_name__setdefaultsimplestart.ss_ui.avatarsrcss_coretemplate__test__textvaluevaluesvue_key\200\001\360\"\000\005\017\210a\330\004\010\210\005\210Y\220f\230F\240!\340\010\022\220#\220X\230Q\230e\2401\330\010\017\210q\220\013\2301\340\004\014\210K\220q\330\004\010\210\001\210\031\220&\230\004\230A\230W\240A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\360\006\000\005\027\220a\360\016\000\005\013\210(\220!\320\023$\240E\250\021\330\004\013\2101";
+    #else /* compression: none (561 bytes) */
+const char* const bytes = "-.?\n    <el-avatar v-bind=\"data.options\" \n               \\@change=\"(value) => onserver('onchange', value)\">\n        {{ data.text }}\n    </el-avatar>\n    simplestart/ss_ui/avatar.py___Pyx_PyDict_NextRefasyncio.coroutinesavataravatar_templatecline_in_tracebackdata__func__get_is_coroutineitemskeykwargs__main____module____name__options__qualname__replaceres__set_name__setdefaultsimplestart.ss_ui.avatarsrcss_core__test__textvaluevaluesvue_keyvuetify\200\001\360\"\000\005\017\210a\330\004\010\210\005\210Y\220f\230F\240!\340\010\022\220#\220X\230Q\230e\2401\330\010\017\210q\220\013\2301\340\004\014\210K\220q\330\004\010\210\001\210\031\220&\230\004\230A\230W\240A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\360\006\000\005\027\220a\360\016\000\005\013\210'\220\021\320\022#\2405\250\001\330\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -3272,7 +3272,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 4};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_options, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_vue_key, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_avatar_template, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_avatar_py, __pyx_mstate->__pyx_n_u_avatar, __pyx_mstate->__pyx_kp_b_iso88591_a_YfF_XQe1_q_1_Kq_AWA_6_Qha_a_E, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_avatar_py, __pyx_mstate->__pyx_n_u_avatar, __pyx_mstate->__pyx_kp_b_iso88591_a_YfF_XQe1_q_1_Kq_AWA_6_Qha_a_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

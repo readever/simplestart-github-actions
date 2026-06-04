@@ -1513,7 +1513,7 @@ static const char* const __pyx_f[] = {
 struct __pyx_obj_11simplestart_5ss_ui_5input___pyx_scope_struct__input;
 
 /* "simplestart/ss_ui/input.py":4
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -1805,8 +1805,230 @@ static CYTHON_INLINE int __Pyx_ParseKeywords(
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
 
+/* PySequenceContains.proto */
+static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
+    int result = PySequence_Contains(seq, item);
+    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
+}
+
+/* pybytes_as_double.proto (used by pynumber_float) */
+static double __Pyx_SlowPyString_AsDouble(PyObject *obj);
+static double __Pyx__PyBytes_AsDouble(PyObject *obj, const char* start, Py_ssize_t length);
+static CYTHON_INLINE double __Pyx_PyBytes_AsDouble(PyObject *obj) {
+    char* as_c_string;
+    Py_ssize_t size;
+#if CYTHON_ASSUME_SAFE_MACROS && CYTHON_ASSUME_SAFE_SIZE
+    as_c_string = PyBytes_AS_STRING(obj);
+    size = PyBytes_GET_SIZE(obj);
+#else
+    if (PyBytes_AsStringAndSize(obj, &as_c_string, &size) < 0) {
+        return (double)-1;
+    }
+#endif
+    return __Pyx__PyBytes_AsDouble(obj, as_c_string, size);
+}
+static CYTHON_INLINE double __Pyx_PyByteArray_AsDouble(PyObject *obj) {
+    char* as_c_string;
+    Py_ssize_t size;
+#if CYTHON_ASSUME_SAFE_MACROS && CYTHON_ASSUME_SAFE_SIZE
+    as_c_string = PyByteArray_AS_STRING(obj);
+    size = PyByteArray_GET_SIZE(obj);
+#else
+    as_c_string = PyByteArray_AsString(obj);
+    if (as_c_string == NULL) {
+        return (double)-1;
+    }
+    size = PyByteArray_Size(obj);
+#endif
+    return __Pyx__PyBytes_AsDouble(obj, as_c_string, size);
+}
+
+/* pyunicode_as_double.proto (used by pynumber_float) */
+#if !CYTHON_COMPILING_IN_PYPY && CYTHON_ASSUME_SAFE_MACROS
+static const char* __Pyx__PyUnicode_AsDouble_Copy(const void* data, const int kind, char* buffer, Py_ssize_t start, Py_ssize_t end) {
+    int last_was_punctuation;
+    Py_ssize_t i;
+    last_was_punctuation = 1;
+    for (i=start; i <= end; i++) {
+        Py_UCS4 chr = PyUnicode_READ(kind, data, i);
+        int is_punctuation = (chr == '_') | (chr == '.');
+        *buffer = (char)chr;
+        buffer += (chr != '_');
+        if (unlikely(chr > 127)) goto parse_failure;
+        if (unlikely(last_was_punctuation & is_punctuation)) goto parse_failure;
+        last_was_punctuation = is_punctuation;
+    }
+    if (unlikely(last_was_punctuation)) goto parse_failure;
+    *buffer = '\0';
+    return buffer;
+parse_failure:
+    return NULL;
+}
+static double __Pyx__PyUnicode_AsDouble_inf_nan(const void* data, int kind, Py_ssize_t start, Py_ssize_t length) {
+    int matches = 1;
+    Py_UCS4 chr;
+    Py_UCS4 sign = PyUnicode_READ(kind, data, start);
+    int is_signed = (sign == '-') | (sign == '+');
+    start += is_signed;
+    length -= is_signed;
+    switch (PyUnicode_READ(kind, data, start)) {
+        #ifdef Py_NAN
+        case 'n':
+        case 'N':
+            if (unlikely(length != 3)) goto parse_failure;
+            chr = PyUnicode_READ(kind, data, start+1);
+            matches &= (chr == 'a') | (chr == 'A');
+            chr = PyUnicode_READ(kind, data, start+2);
+            matches &= (chr == 'n') | (chr == 'N');
+            if (unlikely(!matches)) goto parse_failure;
+            return (sign == '-') ? -Py_NAN : Py_NAN;
+        #endif
+        case 'i':
+        case 'I':
+            if (unlikely(length < 3)) goto parse_failure;
+            chr = PyUnicode_READ(kind, data, start+1);
+            matches &= (chr == 'n') | (chr == 'N');
+            chr = PyUnicode_READ(kind, data, start+2);
+            matches &= (chr == 'f') | (chr == 'F');
+            if (likely(length == 3 && matches))
+                return (sign == '-') ? -Py_HUGE_VAL : Py_HUGE_VAL;
+            if (unlikely(length != 8)) goto parse_failure;
+            chr = PyUnicode_READ(kind, data, start+3);
+            matches &= (chr == 'i') | (chr == 'I');
+            chr = PyUnicode_READ(kind, data, start+4);
+            matches &= (chr == 'n') | (chr == 'N');
+            chr = PyUnicode_READ(kind, data, start+5);
+            matches &= (chr == 'i') | (chr == 'I');
+            chr = PyUnicode_READ(kind, data, start+6);
+            matches &= (chr == 't') | (chr == 'T');
+            chr = PyUnicode_READ(kind, data, start+7);
+            matches &= (chr == 'y') | (chr == 'Y');
+            if (unlikely(!matches)) goto parse_failure;
+            return (sign == '-') ? -Py_HUGE_VAL : Py_HUGE_VAL;
+        case '.': case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+            break;
+        default:
+            goto parse_failure;
+    }
+    return 0.0;
+parse_failure:
+    return -1.0;
+}
+static double __Pyx_PyUnicode_AsDouble_WithSpaces(PyObject *obj) {
+    double value;
+    const char *last;
+    char *end;
+    Py_ssize_t start, length = PyUnicode_GET_LENGTH(obj);
+    const int kind = PyUnicode_KIND(obj);
+    const void* data = PyUnicode_DATA(obj);
+    start = 0;
+    while (Py_UNICODE_ISSPACE(PyUnicode_READ(kind, data, start)))
+        start++;
+    while (start < length - 1 && Py_UNICODE_ISSPACE(PyUnicode_READ(kind, data, length - 1)))
+        length--;
+    length -= start;
+    if (unlikely(length <= 0)) goto fallback;
+    value = __Pyx__PyUnicode_AsDouble_inf_nan(data, kind, start, length);
+    if (unlikely(value == -1.0)) goto fallback;
+    if (value != 0.0) return value;
+    if (length < 40) {
+        char number[40];
+        last = __Pyx__PyUnicode_AsDouble_Copy(data, kind, number, start, start + length);
+        if (unlikely(!last)) goto fallback;
+        value = PyOS_string_to_double(number, &end, NULL);
+    } else {
+        char *number = (char*) PyMem_Malloc((length + 1) * sizeof(char));
+        if (unlikely(!number)) goto fallback;
+        last = __Pyx__PyUnicode_AsDouble_Copy(data, kind, number, start, start + length);
+        if (unlikely(!last)) {
+            PyMem_Free(number);
+            goto fallback;
+        }
+        value = PyOS_string_to_double(number, &end, NULL);
+        PyMem_Free(number);
+    }
+    if (likely(end == last) || (value == (double)-1 && PyErr_Occurred())) {
+        return value;
+    }
+fallback:
+    return __Pyx_SlowPyString_AsDouble(obj);
+}
+#endif
+static CYTHON_INLINE double __Pyx_PyUnicode_AsDouble(PyObject *obj) {
+#if !CYTHON_COMPILING_IN_PYPY && CYTHON_ASSUME_SAFE_MACROS
+    if (unlikely(__Pyx_PyUnicode_READY(obj) == -1))
+        return (double)-1;
+    if (likely(PyUnicode_IS_ASCII(obj))) {
+        const char *s;
+        Py_ssize_t length;
+        s = PyUnicode_AsUTF8AndSize(obj, &length);
+        return __Pyx__PyBytes_AsDouble(obj, s, length);
+    }
+    return __Pyx_PyUnicode_AsDouble_WithSpaces(obj);
+#else
+    return __Pyx_SlowPyString_AsDouble(obj);
+#endif
+}
+
+/* pynumber_float.proto */
+static CYTHON_INLINE PyObject* __Pyx__PyNumber_Float(PyObject* obj);
+#define __Pyx_PyNumber_Float(x) (PyFloat_CheckExact(x) ? __Pyx_NewRef(x) : __Pyx__PyNumber_Float(x))
+
 /* RaiseClosureNameError.proto */
 static void __Pyx_RaiseClosureNameError(const char *varname);
+
+/* GetTopmostException.proto (used by SaveResetException) */
+#if CYTHON_USE_EXC_INFO_STACK && CYTHON_FAST_THREAD_STATE
+static _PyErr_StackItem * __Pyx_PyErr_GetTopmostException(PyThreadState *tstate);
+#endif
+
+/* PyThreadStateGet.proto (used by SaveResetException) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
+#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
+#if PY_VERSION_HEX >= 0x030C00A6
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
+#else
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
+#endif
+#else
+#define __Pyx_PyThreadState_declare
+#define __Pyx_PyThreadState_assign
+#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
+#endif
+
+/* SaveResetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_ExceptionSave(type, value, tb)  __Pyx__ExceptionSave(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#define __Pyx_ExceptionReset(type, value, tb)  __Pyx__ExceptionReset(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+#else
+#define __Pyx_ExceptionSave(type, value, tb)   PyErr_GetExcInfo(type, value, tb)
+#define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
+#endif
+
+/* PyValueError_Check.proto */
+#define __Pyx_PyExc_ValueError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_ValueError)
+
+/* PyErrExceptionMatches.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
+#endif
+
+/* GetException.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_GetException(type, value, tb)  __Pyx__GetException(__pyx_tstate, type, value, tb)
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
+#endif
 
 /* dict_getitem_default.proto */
 static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
@@ -1821,6 +2043,57 @@ static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObje
 static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
 #else
 #define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
+#endif
+
+/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
+#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
+#else
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#endif
+#else
+#define __Pyx_PyErr_Clear() PyErr_Clear()
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
+#endif
+
+/* PyObjectGetAttrStrNoError.proto (used by HasAttr) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
+
+/* HasAttr.proto */
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
+#else
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
+#endif
+
+/* PyObjectDelAttr.proto (used by PyObjectSetAttrStr) */
+#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030d0000
+#define __Pyx_PyObject_DelAttr(o, n) PyObject_SetAttr(o, n, NULL)
+#else
+#define __Pyx_PyObject_DelAttr(o, n) PyObject_DelAttr(o, n)
+#endif
+
+/* PyObjectSetAttrStr.proto */
+#if CYTHON_USE_TYPE_SLOTS
+#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o, n, NULL)
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value);
+#else
+#define __Pyx_PyObject_DelAttrStr(o,n)   __Pyx_PyObject_DelAttr(o,n)
+#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
 #endif
 
 /* GetItemInt.proto */
@@ -1853,11 +2126,68 @@ static CYTHON_INLINE PyObject* __Pyx_PyLong_AddObjC(PyObject *op1, PyObject *op2
     (inplace ? PyNumber_InPlaceAdd(op1, op2) : PyNumber_Add(op1, op2))
 #endif
 
-/* PySequenceContains.proto */
-static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
-    int result = PySequence_Contains(seq, item);
-    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
-}
+/* DictGetItem.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
+#define __Pyx_PyObject_Dict_GetItem(obj, name)\
+    (likely(PyDict_CheckExact(obj)) ?\
+     __Pyx_PyDict_GetItem(obj, name) : PyObject_GetItem(obj, name))
+#else
+#define __Pyx_PyDict_GetItem(d, key) PyObject_GetItem(d, key)
+#define __Pyx_PyObject_Dict_GetItem(obj, name)  PyObject_GetItem(obj, name)
+#endif
+
+/* PyObjectFormatSimple.proto */
+#if CYTHON_COMPILING_IN_PYPY
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#elif CYTHON_USE_TYPE_SLOTS
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        likely(PyLong_CheckExact(s)) ? PyLong_Type.tp_repr(s) :\
+        likely(PyFloat_CheckExact(s)) ? PyFloat_Type.tp_repr(s) :\
+        PyObject_Format(s, f))
+#else
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#endif
+
+/* UnicodeConcatInPlace.proto */
+# if CYTHON_COMPILING_IN_CPYTHON
+    #if CYTHON_REFNANNY
+        #define __Pyx_PyUnicode_ConcatInPlace(left, right, unsafe_shared) __Pyx_PyUnicode_ConcatInPlaceImpl(&left, right, unsafe_shared, __pyx_refnanny)
+    #else
+        #define __Pyx_PyUnicode_ConcatInPlace(left, right, unsafe_shared) __Pyx_PyUnicode_ConcatInPlaceImpl(&left, right, unsafe_shared)
+    #endif
+    #define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_DefinitelyUniqueInPlace(left, right) __Pyx_PyUnicode_ConcatInPlace(left, right, __Pyx_ReferenceSharing_DefinitelyUnique)
+    #define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(left, right) __Pyx_PyUnicode_ConcatInPlace(left, right, __Pyx_ReferenceSharing_OwnStrongReference)
+    #define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_FunctionArgumentInPlace(left, right) __Pyx_PyUnicode_ConcatInPlace(left, right, __Pyx_ReferenceSharing_DefinitelyUnique)
+    #define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_SharedReferenceInPlace(left, right) __Pyx_PyUnicode_ConcatInPlace(left, right, __Pyx_ReferenceSharing_SharedReference)
+    static CYTHON_INLINE PyObject *__Pyx_PyUnicode_ConcatInPlaceImpl(PyObject **p_left, PyObject *right, int unsafe_shared
+        #if CYTHON_REFNANNY
+        , void* __pyx_refnanny
+        #endif
+    );
+#else
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_DefinitelyUniqueInPlace __Pyx_PyUnicode_Concat
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace __Pyx_PyUnicode_Concat
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_FunctionArgumentInPlace __Pyx_PyUnicode_Concat
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_SharedReferenceInPlace __Pyx_PyUnicode_Concat
+#endif
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_DefinitelyUniqueInPlaceSafe(left, right)\
+    ((unlikely((left) == Py_None) || unlikely((right) == Py_None)) ?\
+    PyNumber_InPlaceAdd(left, right) : __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_DefinitelyUniqueInPlace(left, right))
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlaceSafe(left, right)\
+    ((unlikely((left) == Py_None) || unlikely((right) == Py_None)) ?\
+    PyNumber_InPlaceAdd(left, right) : __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(left, right))
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_FunctionArgumentInPlaceSafe(left, right)\
+    ((unlikely((left) == Py_None) || unlikely((right) == Py_None)) ?\
+    PyNumber_InPlaceAdd(left, right) : __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_FunctionArgumentInPlace(left, right))
+#define __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_SharedReferenceInPlaceSafe(left, right)\
+    ((unlikely((left) == Py_None) || unlikely((right) == Py_None)) ?\
+    PyNumber_InPlaceAdd(left, right) : __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_SharedReferenceInPlace(left, right))
 
 /* dict_setdefault.proto (used by FetchCommonType) */
 static CYTHON_INLINE PyObject *__Pyx_PyDict_SetDefault(PyObject *d, PyObject *key, PyObject *default_value);
@@ -2004,60 +2334,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
 
-/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
-
-/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
-#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
-#if PY_VERSION_HEX >= 0x030C00A6
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
-#else
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
-#endif
-#else
-#define __Pyx_PyThreadState_declare
-#define __Pyx_PyThreadState_assign
-#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
-#endif
-
-/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
-#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
-#else
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#endif
-#else
-#define __Pyx_PyErr_Clear() PyErr_Clear()
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
-#endif
-
-/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
-
 /* GetBuiltinName.proto (used by GetModuleGlobalName) */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
@@ -2161,13 +2437,6 @@ static int __Pyx_validate_bases_tuple(const char *type_name, Py_ssize_t dictoffs
 
 /* PyType_Ready.proto */
 CYTHON_UNUSED static int __Pyx_PyType_Ready(PyTypeObject *t);
-
-/* HasAttr.proto (used by ImportImpl) */
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
-#else
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
-#endif
 
 /* ImportImpl.export */
 static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level);
@@ -2344,6 +2613,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_myonchange(PyObject
 static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonsubmit(PyObject *__pyx_self, PyObject *__pyx_v_event); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_4textarea(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_tp_new_11simplestart_5ss_ui_5input___pyx_scope_struct__input(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -2371,9 +2641,9 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
-  PyObject *__pyx_codeobj_tab[4];
-  PyObject *__pyx_string_tab[69];
-  PyObject *__pyx_number_tab[2];
+  PyObject *__pyx_codeobj_tab[5];
+  PyObject *__pyx_string_tab[80];
+  PyObject *__pyx_number_tab[3];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2424,72 +2694,84 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u__2 __pyx_string_tab[2]
 #define __pyx_kp_u__3 __pyx_string_tab[3]
 #define __pyx_kp_u_disable __pyx_string_tab[4]
-#define __pyx_kp_u_el_input_v_model_data_value_sty __pyx_string_tab[5]
+#define __pyx_kp_u_div_class_input_container_style __pyx_string_tab[5]
 #define __pyx_kp_u_enable __pyx_string_tab[6]
 #define __pyx_kp_u_gc __pyx_string_tab[7]
 #define __pyx_kp_u_isenabled __pyx_string_tab[8]
 #define __pyx_kp_u_simplestart_ss_ui_input_py __pyx_string_tab[9]
-#define __pyx_kp_u_width_240px __pyx_string_tab[10]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[11]
-#define __pyx_n_u_args __pyx_string_tab[12]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[13]
-#define __pyx_n_u_autosize __pyx_string_tab[14]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[15]
-#define __pyx_n_u_data __pyx_string_tab[16]
-#define __pyx_n_u_default __pyx_string_tab[17]
-#define __pyx_n_u_disabled __pyx_string_tab[18]
-#define __pyx_n_u_event __pyx_string_tab[19]
-#define __pyx_n_u_func __pyx_string_tab[20]
-#define __pyx_n_u_get __pyx_string_tab[21]
-#define __pyx_n_u_handlers __pyx_string_tab[22]
-#define __pyx_n_u_input __pyx_string_tab[23]
-#define __pyx_n_u_input_locals_myonchange __pyx_string_tab[24]
-#define __pyx_n_u_input_locals_myonsubmit __pyx_string_tab[25]
-#define __pyx_n_u_inside __pyx_string_tab[26]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[27]
-#define __pyx_n_u_items __pyx_string_tab[28]
-#define __pyx_n_u_kwargs __pyx_string_tab[29]
-#define __pyx_n_u_large __pyx_string_tab[30]
-#define __pyx_n_u_main __pyx_string_tab[31]
-#define __pyx_n_u_maxRows __pyx_string_tab[32]
-#define __pyx_n_u_maxlength __pyx_string_tab[33]
-#define __pyx_n_u_minRows __pyx_string_tab[34]
-#define __pyx_n_u_module __pyx_string_tab[35]
-#define __pyx_n_u_myonchange __pyx_string_tab[36]
-#define __pyx_n_u_myonsubmit __pyx_string_tab[37]
-#define __pyx_n_u_name __pyx_string_tab[38]
-#define __pyx_n_u_onchange __pyx_string_tab[39]
-#define __pyx_n_u_onsubmit __pyx_string_tab[40]
-#define __pyx_n_u_placeholder __pyx_string_tab[41]
-#define __pyx_n_u_pop __pyx_string_tab[42]
-#define __pyx_n_u_prefix_icon __pyx_string_tab[43]
-#define __pyx_n_u_qualname __pyx_string_tab[44]
-#define __pyx_n_u_res __pyx_string_tab[45]
-#define __pyx_n_u_rows __pyx_string_tab[46]
-#define __pyx_n_u_set_name __pyx_string_tab[47]
-#define __pyx_n_u_setdefault __pyx_string_tab[48]
-#define __pyx_n_u_show_password __pyx_string_tab[49]
-#define __pyx_n_u_show_word_limit __pyx_string_tab[50]
-#define __pyx_n_u_simplestart_ss_ui_input __pyx_string_tab[51]
-#define __pyx_n_u_size __pyx_string_tab[52]
-#define __pyx_n_u_small __pyx_string_tab[53]
-#define __pyx_n_u_ss_core __pyx_string_tab[54]
-#define __pyx_n_u_style __pyx_string_tab[55]
-#define __pyx_n_u_suffix_icon __pyx_string_tab[56]
-#define __pyx_n_u_template __pyx_string_tab[57]
-#define __pyx_n_u_test __pyx_string_tab[58]
-#define __pyx_n_u_text __pyx_string_tab[59]
-#define __pyx_n_u_text_input __pyx_string_tab[60]
-#define __pyx_n_u_type __pyx_string_tab[61]
-#define __pyx_n_u_valid_sizes __pyx_string_tab[62]
-#define __pyx_n_u_value __pyx_string_tab[63]
-#define __pyx_n_u_values __pyx_string_tab[64]
-#define __pyx_n_u_word_limit_position __pyx_string_tab[65]
-#define __pyx_kp_b_iso88591_0_6_Qha_vT_a_6_Qha_z_F_c_Cq_A_K __pyx_string_tab[66]
-#define __pyx_kp_b_iso88591_5 __pyx_string_tab[67]
-#define __pyx_kp_b_iso88591_A_5_E_1_1 __pyx_string_tab[68]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[10]
+#define __pyx_n_u_args __pyx_string_tab[11]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[12]
+#define __pyx_n_u_autosize __pyx_string_tab[13]
+#define __pyx_n_u_autosize_val __pyx_string_tab[14]
+#define __pyx_n_u_block __pyx_string_tab[15]
+#define __pyx_n_u_clearable __pyx_string_tab[16]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[17]
+#define __pyx_n_u_custom_style __pyx_string_tab[18]
+#define __pyx_n_u_custom_width __pyx_string_tab[19]
+#define __pyx_n_u_data __pyx_string_tab[20]
+#define __pyx_n_u_data_2 __pyx_string_tab[21]
+#define __pyx_n_u_default __pyx_string_tab[22]
+#define __pyx_n_u_disabled __pyx_string_tab[23]
+#define __pyx_n_u_event __pyx_string_tab[24]
+#define __pyx_n_u_func __pyx_string_tab[25]
+#define __pyx_n_u_get __pyx_string_tab[26]
+#define __pyx_n_u_handlers __pyx_string_tab[27]
+#define __pyx_n_u_icon __pyx_string_tab[28]
+#define __pyx_n_u_input __pyx_string_tab[29]
+#define __pyx_n_u_input_locals_myonchange __pyx_string_tab[30]
+#define __pyx_n_u_input_locals_myonsubmit __pyx_string_tab[31]
+#define __pyx_n_u_inside __pyx_string_tab[32]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[33]
+#define __pyx_n_u_items __pyx_string_tab[34]
+#define __pyx_n_u_kwargs __pyx_string_tab[35]
+#define __pyx_n_u_label __pyx_string_tab[36]
+#define __pyx_n_u_main __pyx_string_tab[37]
+#define __pyx_n_u_maxRows __pyx_string_tab[38]
+#define __pyx_n_u_maxlength __pyx_string_tab[39]
+#define __pyx_n_u_minRows __pyx_string_tab[40]
+#define __pyx_n_u_module __pyx_string_tab[41]
+#define __pyx_n_u_myonchange __pyx_string_tab[42]
+#define __pyx_n_u_myonsubmit __pyx_string_tab[43]
+#define __pyx_n_u_name __pyx_string_tab[44]
+#define __pyx_n_u_onchange __pyx_string_tab[45]
+#define __pyx_n_u_onsubmit __pyx_string_tab[46]
+#define __pyx_n_u_placeholder __pyx_string_tab[47]
+#define __pyx_n_u_pop __pyx_string_tab[48]
+#define __pyx_n_u_prefix_icon __pyx_string_tab[49]
+#define __pyx_n_u_px __pyx_string_tab[50]
+#define __pyx_n_u_qualname __pyx_string_tab[51]
+#define __pyx_n_u_res __pyx_string_tab[52]
+#define __pyx_n_u_rows __pyx_string_tab[53]
+#define __pyx_n_u_rows_val __pyx_string_tab[54]
+#define __pyx_n_u_set_name __pyx_string_tab[55]
+#define __pyx_n_u_setdefault __pyx_string_tab[56]
+#define __pyx_n_u_show_password __pyx_string_tab[57]
+#define __pyx_n_u_show_word_limit __pyx_string_tab[58]
+#define __pyx_n_u_simplestart_ss_ui_input __pyx_string_tab[59]
+#define __pyx_n_u_size __pyx_string_tab[60]
+#define __pyx_n_u_ss_core __pyx_string_tab[61]
+#define __pyx_n_u_style __pyx_string_tab[62]
+#define __pyx_n_u_suffix_icon __pyx_string_tab[63]
+#define __pyx_n_u_test __pyx_string_tab[64]
+#define __pyx_n_u_text __pyx_string_tab[65]
+#define __pyx_n_u_text_input __pyx_string_tab[66]
+#define __pyx_n_u_textarea __pyx_string_tab[67]
+#define __pyx_n_u_title __pyx_string_tab[68]
+#define __pyx_n_u_type __pyx_string_tab[69]
+#define __pyx_n_u_value __pyx_string_tab[70]
+#define __pyx_n_u_values __pyx_string_tab[71]
+#define __pyx_n_u_vuetify __pyx_string_tab[72]
+#define __pyx_n_u_width __pyx_string_tab[73]
+#define __pyx_n_u_width_val __pyx_string_tab[74]
+#define __pyx_n_u_word_limit_position __pyx_string_tab[75]
+#define __pyx_kp_b_iso88591_4_Qha_Qiq_Qha_5 __pyx_string_tab[76]
+#define __pyx_kp_b_iso88591_5 __pyx_string_tab[77]
+#define __pyx_kp_b_iso88591_A_Qe81_4s_q_vQk_auA_vQk_AU_6_U_v __pyx_string_tab[78]
+#define __pyx_kp_b_iso88591_F_ay_d_9A_F_ay_wawa_5_s_6_Qha_A __pyx_string_tab[79]
 #define __pyx_int_2 __pyx_number_tab[0]
-#define __pyx_int_5 __pyx_number_tab[1]
+#define __pyx_int_3 __pyx_number_tab[1]
+#define __pyx_int_5 __pyx_number_tab[2]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2506,9 +2788,9 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_5input___pyx_scope_struct__input);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_5input___pyx_scope_struct__input);
-  for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<69; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<5; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<80; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2533,9 +2815,9 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_5input___pyx_scope_struct__input);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_5input___pyx_scope_struct__input);
-  for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<69; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<5; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<80; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2550,7 +2832,7 @@ return 0;
 /* #### Code section: module_code ### */
 
 /* "simplestart/ss_ui/input.py":4
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -2559,7 +2841,7 @@ return 0;
 
 /* Python wrapper */
 static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_1input(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_5input_input, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\n    \n    \345\217\202\346\225\260:\n        value: \351\273\230\350\256\244\345\200\274\n        disabled: \346\230\257\345\220\246\347\246\201\347\224\250\n        maxlength: \346\234\200\345\244\247\350\276\223\345\205\245\351\225\277\345\272\246\n        placeholder: \345\215\240\344\275\215\346\226\207\346\234\254\n        prefix_icon: \345\211\215\347\274\200\345\233\276\346\240\207\n        rows: \350\241\214\346\225\260\357\274\210\347\224\250\344\272\216\345\244\232\350\241\214\350\276\223\345\205\245\357\274\211\n        show_password: \346\230\257\345\220\246\346\230\276\347\244\272\345\257\206\347\240\201\345\210\207\346\215\242\346\214\211\351\222\256\n        show_word_limit: \346\230\257\345\220\246\346\230\276\347\244\272\345\255\227\346\225\260\347\273\237\350\256\241\n        size: \347\273\204\344\273\266\345\244\247\345\260\217\n        suffix_icon: \345\220\216\347\274\200\345\233\276\346\240\207\n        type: \350\276\223\345\205\245\347\261\273\345\236\213\n        word_limit_position: \345\255\227\346\225\260\347\273\237\350\256\241\344\275\215\347\275\256\n        style: \350\207\252\345\256\232\344\271\211\346\240\267\345\274\217\n        autosize: \346\230\257\345\220\246\350\207\252\345\212\250\350\260\203\346\225\264\351\253\230\345\272\246\357\274\210\345\270\203\345\260\224\345\200\274\346\210\226\346\225\260\347\273\204\346\240\274\345\274\217 [min, max]\357\274\211\n        onchange: \350\276\223\345\205\245\345\200\274\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\347\232\204props\345\257\271\350\261\241\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_5input_input, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\n    \n    \345\217\202\346\225\260:\n        value: \351\273\230\350\256\244\345\200\274\n        disabled: \346\230\257\345\220\246\347\246\201\347\224\250\n        maxlength: \346\234\200\345\244\247\350\276\223\345\205\245\351\225\277\345\272\246\n        placeholder: \345\215\240\344\275\215\346\226\207\346\234\254\n        icon: \345\211\215\347\274\200\345\233\276\346\240\207\357\274\210\344\270\216 prefix_icon \345\220\214\344\271\211\357\274\211\n        prefix_icon: \345\211\215\347\274\200\345\233\276\346\240\207\n        rows: \350\241\214\346\225\260\357\274\210\347\224\250\344\272\216\345\244\232\350\241\214\350\276\223\345\205\245\357\274\211\n        show_password: \346\230\257\345\220\246\346\230\276\347\244\272\345\257\206\347\240\201\345\210\207\346\215\242\346\214\211\351\222\256\n        show_word_limit: \346\230\257\345\220\246\346\230\276\347\244\272\345\255\227\346\225\260\347\273\237\350\256\241\n        size: \347\273\204\344\273\266\345\244\247\345\260\217\n        suffix_icon: \345\220\216\347\274\200\345\233\276\346\240\207\n        clearable: \346\230\257\345\220\246\346\230\276\347\244\272\346\270\205\351\231\244\346\214\211\351\222\256\357\274\214\351\273\230\350\256\244True\n        type: \350\276\223\345\205\245\347\261\273\345\236\213\n        word_limit_position: \345\255\227\346\225\260\347\273\237\350\256\241\344\275\215\347\275\256\n        style: \350\207\252\345\256\232\344\271\211\346\240\267\345\274\217\n        autosize: \346\230\257\345\220\246\350\207\252\345\212\250\350\260\203\346\225\264\351\253\230\345\272\246\357\274\210\345\270\203\345\260\224\345\200\274\346\210\226\346\225\260\347\273\204\346\240\274\345\274\217 [min, max]\357\274\211\n        label: \346\240\207\347\255\276\346\240\207\351\242\230\n        title: \346\240\207\347\255\276\346\240\207\351\242\230\357\274\210\344\270\216 label \345""\220\214\344\271\211\357\274\214\344\272\214\350\200\205\351\203\275\346\224\257\346\214\201\357\274\211\n        block: \346\230\257\345\220\246\344\270\272\345\235\227\347\272\247\350\276\223\345\205\245\346\241\206\357\274\210\345\215\240\346\215\256\346\225\264\350\241\214\357\274\211\357\274\214\351\273\230\350\256\244False\n        onchange: \350\276\223\345\205\245\345\200\274\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\347\232\204props\345\257\271\350\261\241\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_5input_1input = {"input", (PyCFunction)(void(*)(void))(PyCFunctionWithKeywords)__pyx_pw_11simplestart_5ss_ui_5input_1input, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_5input_input};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_1input(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED PyObject *__pyx_v_args = 0;
@@ -2598,12 +2880,12 @@ static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_1input(PyObject *__pyx_sel
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":66
+/* "simplestart/ss_ui/input.py":109
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
- *         if onchange:
+ *         #  slider
+ *         if isinstance(event.value, str):
 */
 
 /* Python wrapper */
@@ -2645,32 +2927,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 66, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 109, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 66, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 109, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 66, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 109, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 66, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 109, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 66, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 109, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 66, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 109, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2697,10 +2979,16 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_myonchange(PyObject
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_t_3;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  size_t __pyx_t_5;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  size_t __pyx_t_11;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2708,81 +2996,261 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_myonchange(PyObject
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_5input___pyx_scope_struct__input *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/input.py":67
- * 
+  /* "simplestart/ss_ui/input.py":111
  *     def myonchange(event):
- *         res.data["value"] = event.value             # <<<<<<<<<<<<<<
+ *         #  slider
+ *         if isinstance(event.value, str):             # <<<<<<<<<<<<<<
+ *             try:
+ *                 if '.' in event.value:
+*/
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyUnicode_Check(__pyx_t_1); 
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__pyx_t_2) {
+
+    /* "simplestart/ss_ui/input.py":112
+ *         #  slider
+ *         if isinstance(event.value, str):
+ *             try:             # <<<<<<<<<<<<<<
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)
+*/
+    {
+      __Pyx_PyThreadState_declare
+      __Pyx_PyThreadState_assign
+      __Pyx_ExceptionSave(&__pyx_t_3, &__pyx_t_4, &__pyx_t_5);
+      __Pyx_XGOTREF(__pyx_t_3);
+      __Pyx_XGOTREF(__pyx_t_4);
+      __Pyx_XGOTREF(__pyx_t_5);
+      /*try:*/ {
+
+        /* "simplestart/ss_ui/input.py":113
+ *         if isinstance(event.value, str):
+ *             try:
+ *                 if '.' in event.value:             # <<<<<<<<<<<<<<
+ *                     res._data["value"] = float(event.value)
+ *                 else:
+*/
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L4_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_, __pyx_t_1, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 113, __pyx_L4_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        if (__pyx_t_2) {
+
+          /* "simplestart/ss_ui/input.py":114
+ *             try:
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     res._data["value"] = int(event.value)
+*/
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_6 = __Pyx_PyNumber_Float(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 114, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 114, __pyx_L4_error) }
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_6) < 0))) __PYX_ERR(0, 114, __pyx_L4_error)
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+          /* "simplestart/ss_ui/input.py":113
+ *         if isinstance(event.value, str):
+ *             try:
+ *                 if '.' in event.value:             # <<<<<<<<<<<<<<
+ *                     res._data["value"] = float(event.value)
+ *                 else:
+*/
+          goto __pyx_L10;
+        }
+
+        /* "simplestart/ss_ui/input.py":116
+ *                     res._data["value"] = float(event.value)
+ *                 else:
+ *                     res._data["value"] = int(event.value)             # <<<<<<<<<<<<<<
+ *             except ValueError:
+ *                 res._data["value"] = event.value
+*/
+        /*else*/ {
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 116, __pyx_L4_error) }
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 116, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          if (unlikely((PyObject_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < 0))) __PYX_ERR(0, 116, __pyx_L4_error)
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        }
+        __pyx_L10:;
+
+        /* "simplestart/ss_ui/input.py":112
+ *         #  slider
+ *         if isinstance(event.value, str):
+ *             try:             # <<<<<<<<<<<<<<
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)
+*/
+      }
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      goto __pyx_L9_try_end;
+      __pyx_L4_error:;
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+      /* "simplestart/ss_ui/input.py":117
+ *                 else:
+ *                     res._data["value"] = int(event.value)
+ *             except ValueError:             # <<<<<<<<<<<<<<
+ *                 res._data["value"] = event.value
+ *         else:
+*/
+      __pyx_t_7 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_ValueError))));
+      if (__pyx_t_7) {
+        __Pyx_AddTraceback("simplestart.ss_ui.input.input.myonchange", __pyx_clineno, __pyx_lineno, __pyx_filename);
+        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_6, &__pyx_t_8) < 0) __PYX_ERR(0, 117, __pyx_L6_except_error)
+        __Pyx_XGOTREF(__pyx_t_1);
+        __Pyx_XGOTREF(__pyx_t_6);
+        __Pyx_XGOTREF(__pyx_t_8);
+
+        /* "simplestart/ss_ui/input.py":118
+ *                     res._data["value"] = int(event.value)
+ *             except ValueError:
+ *                 res._data["value"] = event.value             # <<<<<<<<<<<<<<
+ *         else:
+ *             res._data["value"] = event.value
+*/
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L6_except_error)
+        __Pyx_GOTREF(__pyx_t_9);
+        if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 118, __pyx_L6_except_error) }
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L6_except_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        if (unlikely((PyObject_SetItem(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_9) < 0))) __PYX_ERR(0, 118, __pyx_L6_except_error)
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+        goto __pyx_L5_exception_handled;
+      }
+      goto __pyx_L6_except_error;
+
+      /* "simplestart/ss_ui/input.py":112
+ *         #  slider
+ *         if isinstance(event.value, str):
+ *             try:             # <<<<<<<<<<<<<<
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)
+*/
+      __pyx_L6_except_error:;
+      __Pyx_XGIVEREF(__pyx_t_3);
+      __Pyx_XGIVEREF(__pyx_t_4);
+      __Pyx_XGIVEREF(__pyx_t_5);
+      __Pyx_ExceptionReset(__pyx_t_3, __pyx_t_4, __pyx_t_5);
+      goto __pyx_L1_error;
+      __pyx_L5_exception_handled:;
+      __Pyx_XGIVEREF(__pyx_t_3);
+      __Pyx_XGIVEREF(__pyx_t_4);
+      __Pyx_XGIVEREF(__pyx_t_5);
+      __Pyx_ExceptionReset(__pyx_t_3, __pyx_t_4, __pyx_t_5);
+      __pyx_L9_try_end:;
+    }
+
+    /* "simplestart/ss_ui/input.py":111
+ *     def myonchange(event):
+ *         #  slider
+ *         if isinstance(event.value, str):             # <<<<<<<<<<<<<<
+ *             try:
+ *                 if '.' in event.value:
+*/
+    goto __pyx_L3;
+  }
+
+  /* "simplestart/ss_ui/input.py":120
+ *                 res._data["value"] = event.value
+ *         else:
+ *             res._data["value"] = event.value             # <<<<<<<<<<<<<<
  *         if onchange:
  *           onchange(event)
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 67, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < 0))) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  /*else*/ {
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 120, __pyx_L1_error) }
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (unlikely((PyObject_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_8) < 0))) __PYX_ERR(0, 120, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  }
+  __pyx_L3:;
 
-  /* "simplestart/ss_ui/input.py":68
- *     def myonchange(event):
- *         res.data["value"] = event.value
+  /* "simplestart/ss_ui/input.py":121
+ *         else:
+ *             res._data["value"] = event.value
  *         if onchange:             # <<<<<<<<<<<<<<
  *           onchange(event)
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 68, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 68, __pyx_L1_error)
-  if (__pyx_t_3) {
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 121, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 121, __pyx_L1_error)
+  if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":69
- *         res.data["value"] = event.value
+    /* "simplestart/ss_ui/input.py":122
+ *             res._data["value"] = event.value
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
  *     def myonsubmit(event):
 */
-    __pyx_t_2 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 69, __pyx_L1_error) }
+    __pyx_t_6 = NULL;
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 122, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
-    __pyx_t_4 = __pyx_cur_scope->__pyx_v_onchange; 
-    __pyx_t_5 = 1;
+    __pyx_t_1 = __pyx_cur_scope->__pyx_v_onchange; 
+    __pyx_t_11 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_2);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_2);
+    if (unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_1);
+      assert(__pyx_t_6);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_6);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_5 = 0;
+      __Pyx_DECREF_SET(__pyx_t_1, __pyx__function);
+      __pyx_t_11 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_event};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_v_event};
+      __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_11, (2-__pyx_t_11) | (__pyx_t_11*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 122, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_8);
     }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "simplestart/ss_ui/input.py":68
- *     def myonchange(event):
- *         res.data["value"] = event.value
+    /* "simplestart/ss_ui/input.py":121
+ *         else:
+ *             res._data["value"] = event.value
  *         if onchange:             # <<<<<<<<<<<<<<
  *           onchange(event)
  * 
 */
   }
 
-  /* "simplestart/ss_ui/input.py":66
+  /* "simplestart/ss_ui/input.py":109
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
- *         if onchange:
+ *         #  slider
+ *         if isinstance(event.value, str):
 */
 
   /* function exit code */
@@ -2790,8 +3258,10 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_myonchange(PyObject
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("simplestart.ss_ui.input.input.myonchange", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2800,12 +3270,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_myonchange(PyObject
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":71
+/* "simplestart/ss_ui/input.py":124
  *           onchange(event)
  * 
  *     def myonsubmit(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
- *         if onsubmit:
+ *         #  slider
+ *         if isinstance(event.value, str):
 */
 
 /* Python wrapper */
@@ -2847,32 +3317,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 71, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 124, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 71, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 124, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonsubmit", 0) < (0)) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonsubmit", 0) < (0)) __PYX_ERR(0, 124, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, i); __PYX_ERR(0, 71, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, i); __PYX_ERR(0, 124, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 124, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 71, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 124, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2899,10 +3369,16 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonsubmit(PyObjec
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_t_3;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  size_t __pyx_t_5;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  size_t __pyx_t_11;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2910,81 +3386,261 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonsubmit(PyObjec
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_5input___pyx_scope_struct__input *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/input.py":72
- * 
+  /* "simplestart/ss_ui/input.py":126
  *     def myonsubmit(event):
- *         res.data["value"] = event.value             # <<<<<<<<<<<<<<
+ *         #  slider
+ *         if isinstance(event.value, str):             # <<<<<<<<<<<<<<
+ *             try:
+ *                 if '.' in event.value:
+*/
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyUnicode_Check(__pyx_t_1); 
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__pyx_t_2) {
+
+    /* "simplestart/ss_ui/input.py":127
+ *         #  slider
+ *         if isinstance(event.value, str):
+ *             try:             # <<<<<<<<<<<<<<
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)
+*/
+    {
+      __Pyx_PyThreadState_declare
+      __Pyx_PyThreadState_assign
+      __Pyx_ExceptionSave(&__pyx_t_3, &__pyx_t_4, &__pyx_t_5);
+      __Pyx_XGOTREF(__pyx_t_3);
+      __Pyx_XGOTREF(__pyx_t_4);
+      __Pyx_XGOTREF(__pyx_t_5);
+      /*try:*/ {
+
+        /* "simplestart/ss_ui/input.py":128
+ *         if isinstance(event.value, str):
+ *             try:
+ *                 if '.' in event.value:             # <<<<<<<<<<<<<<
+ *                     res._data["value"] = float(event.value)
+ *                 else:
+*/
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 128, __pyx_L4_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_, __pyx_t_1, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 128, __pyx_L4_error)
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        if (__pyx_t_2) {
+
+          /* "simplestart/ss_ui/input.py":129
+ *             try:
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)             # <<<<<<<<<<<<<<
+ *                 else:
+ *                     res._data["value"] = int(event.value)
+*/
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_6 = __Pyx_PyNumber_Float(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 129, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 129, __pyx_L4_error) }
+          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_6) < 0))) __PYX_ERR(0, 129, __pyx_L4_error)
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+          /* "simplestart/ss_ui/input.py":128
+ *         if isinstance(event.value, str):
+ *             try:
+ *                 if '.' in event.value:             # <<<<<<<<<<<<<<
+ *                     res._data["value"] = float(event.value)
+ *                 else:
+*/
+          goto __pyx_L10;
+        }
+
+        /* "simplestart/ss_ui/input.py":131
+ *                     res._data["value"] = float(event.value)
+ *                 else:
+ *                     res._data["value"] = int(event.value)             # <<<<<<<<<<<<<<
+ *             except ValueError:
+ *                 res._data["value"] = event.value
+*/
+        /*else*/ {
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 131, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          __pyx_t_1 = __Pyx_PyNumber_Int(__pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 131, __pyx_L4_error) }
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 131, __pyx_L4_error)
+          __Pyx_GOTREF(__pyx_t_6);
+          if (unlikely((PyObject_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < 0))) __PYX_ERR(0, 131, __pyx_L4_error)
+          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        }
+        __pyx_L10:;
+
+        /* "simplestart/ss_ui/input.py":127
+ *         #  slider
+ *         if isinstance(event.value, str):
+ *             try:             # <<<<<<<<<<<<<<
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)
+*/
+      }
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      goto __pyx_L9_try_end;
+      __pyx_L4_error:;
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+      /* "simplestart/ss_ui/input.py":132
+ *                 else:
+ *                     res._data["value"] = int(event.value)
+ *             except ValueError:             # <<<<<<<<<<<<<<
+ *                 res._data["value"] = event.value
+ *         else:
+*/
+      __pyx_t_7 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_ValueError))));
+      if (__pyx_t_7) {
+        __Pyx_AddTraceback("simplestart.ss_ui.input.input.myonsubmit", __pyx_clineno, __pyx_lineno, __pyx_filename);
+        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_6, &__pyx_t_8) < 0) __PYX_ERR(0, 132, __pyx_L6_except_error)
+        __Pyx_XGOTREF(__pyx_t_1);
+        __Pyx_XGOTREF(__pyx_t_6);
+        __Pyx_XGOTREF(__pyx_t_8);
+
+        /* "simplestart/ss_ui/input.py":133
+ *                     res._data["value"] = int(event.value)
+ *             except ValueError:
+ *                 res._data["value"] = event.value             # <<<<<<<<<<<<<<
+ *         else:
+ *             res._data["value"] = event.value
+*/
+        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 133, __pyx_L6_except_error)
+        __Pyx_GOTREF(__pyx_t_9);
+        if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 133, __pyx_L6_except_error) }
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 133, __pyx_L6_except_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        if (unlikely((PyObject_SetItem(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_9) < 0))) __PYX_ERR(0, 133, __pyx_L6_except_error)
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+        goto __pyx_L5_exception_handled;
+      }
+      goto __pyx_L6_except_error;
+
+      /* "simplestart/ss_ui/input.py":127
+ *         #  slider
+ *         if isinstance(event.value, str):
+ *             try:             # <<<<<<<<<<<<<<
+ *                 if '.' in event.value:
+ *                     res._data["value"] = float(event.value)
+*/
+      __pyx_L6_except_error:;
+      __Pyx_XGIVEREF(__pyx_t_3);
+      __Pyx_XGIVEREF(__pyx_t_4);
+      __Pyx_XGIVEREF(__pyx_t_5);
+      __Pyx_ExceptionReset(__pyx_t_3, __pyx_t_4, __pyx_t_5);
+      goto __pyx_L1_error;
+      __pyx_L5_exception_handled:;
+      __Pyx_XGIVEREF(__pyx_t_3);
+      __Pyx_XGIVEREF(__pyx_t_4);
+      __Pyx_XGIVEREF(__pyx_t_5);
+      __Pyx_ExceptionReset(__pyx_t_3, __pyx_t_4, __pyx_t_5);
+      __pyx_L9_try_end:;
+    }
+
+    /* "simplestart/ss_ui/input.py":126
+ *     def myonsubmit(event):
+ *         #  slider
+ *         if isinstance(event.value, str):             # <<<<<<<<<<<<<<
+ *             try:
+ *                 if '.' in event.value:
+*/
+    goto __pyx_L3;
+  }
+
+  /* "simplestart/ss_ui/input.py":135
+ *                 res._data["value"] = event.value
+ *         else:
+ *             res._data["value"] = event.value             # <<<<<<<<<<<<<<
  *         if onsubmit:
  *           onsubmit(event)
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 72, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < 0))) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  /*else*/ {
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 135, __pyx_L1_error) }
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (unlikely((PyObject_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_8) < 0))) __PYX_ERR(0, 135, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  }
+  __pyx_L3:;
 
-  /* "simplestart/ss_ui/input.py":73
- *     def myonsubmit(event):
- *         res.data["value"] = event.value
+  /* "simplestart/ss_ui/input.py":136
+ *         else:
+ *             res._data["value"] = event.value
  *         if onsubmit:             # <<<<<<<<<<<<<<
  *           onsubmit(event)
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 73, __pyx_L1_error) }
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onsubmit); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 73, __pyx_L1_error)
-  if (__pyx_t_3) {
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 136, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onsubmit); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":74
- *         res.data["value"] = event.value
+    /* "simplestart/ss_ui/input.py":137
+ *             res._data["value"] = event.value
  *         if onsubmit:
  *           onsubmit(event)             # <<<<<<<<<<<<<<
  * 
- *     res = template('''
+ *     #  label/title
 */
-    __pyx_t_2 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 74, __pyx_L1_error) }
+    __pyx_t_6 = NULL;
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 137, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onsubmit);
-    __pyx_t_4 = __pyx_cur_scope->__pyx_v_onsubmit; 
-    __pyx_t_5 = 1;
+    __pyx_t_1 = __pyx_cur_scope->__pyx_v_onsubmit; 
+    __pyx_t_11 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_2);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_2);
+    if (unlikely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_1);
+      assert(__pyx_t_6);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_6);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_5 = 0;
+      __Pyx_DECREF_SET(__pyx_t_1, __pyx__function);
+      __pyx_t_11 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_event};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_v_event};
+      __pyx_t_8 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_11, (2-__pyx_t_11) | (__pyx_t_11*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 137, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_8);
     }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "simplestart/ss_ui/input.py":73
- *     def myonsubmit(event):
- *         res.data["value"] = event.value
+    /* "simplestart/ss_ui/input.py":136
+ *         else:
+ *             res._data["value"] = event.value
  *         if onsubmit:             # <<<<<<<<<<<<<<
  *           onsubmit(event)
  * 
 */
   }
 
-  /* "simplestart/ss_ui/input.py":71
+  /* "simplestart/ss_ui/input.py":124
  *           onchange(event)
  * 
  *     def myonsubmit(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
- *         if onsubmit:
+ *         #  slider
+ *         if isinstance(event.value, str):
 */
 
   /* function exit code */
@@ -2992,8 +3648,10 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonsubmit(PyObjec
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("simplestart.ss_ui.input.input.myonsubmit", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -3003,7 +3661,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonsubmit(PyObjec
 }
 
 /* "simplestart/ss_ui/input.py":4
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -3012,11 +3670,17 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonsubmit(PyObjec
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs) {
   struct __pyx_obj_11simplestart_5ss_ui_5input___pyx_scope_struct__input *__pyx_cur_scope;
+  PyObject *__pyx_v_label = NULL;
+  PyObject *__pyx_v_block = NULL;
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_v_autosize = NULL;
   PyObject *__pyx_v_rows = NULL;
+  PyObject *__pyx_v_autosize_val = NULL;
+  PyObject *__pyx_v_rows_val = NULL;
   PyObject *__pyx_v_size = NULL;
-  PyObject *__pyx_v_valid_sizes = NULL;
+  PyObject *__pyx_v_width = NULL;
+  PyObject *__pyx_v_style = NULL;
+  PyObject *__pyx_v_width_val = NULL;
   PyObject *__pyx_v_myonchange = 0;
   PyObject *__pyx_v_myonsubmit = 0;
   PyObject *__pyx_r = NULL;
@@ -3026,10 +3690,11 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   int __pyx_t_3;
   int __pyx_t_4;
   Py_ssize_t __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_6;
   PyObject *__pyx_t_7 = NULL;
-  size_t __pyx_t_8;
-  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  size_t __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3043,132 +3708,267 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
 
-  /* "simplestart/ss_ui/input.py":28
- *         props
+  /* "simplestart/ss_ui/input.py":34
  *     """
+ *     #  label/title
+ *     label = kwargs.get("label", kwargs.get("title", ""))             # <<<<<<<<<<<<<<
+ * 
+ *     # block
+*/
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_label = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":37
+ * 
+ *     # block
+ *     block = kwargs.get("block", False)             # <<<<<<<<<<<<<<
+ * 
+ *     #  StateValue
+*/
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_block, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_block = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":40
+ * 
+ *     #  StateValue
+ *     if hasattr(block, 'value'):             # <<<<<<<<<<<<<<
+ *         if block.value == "default":
+ *             block.value = ""
+*/
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_block, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 40, __pyx_L1_error)
+  if (__pyx_t_3) {
+
+    /* "simplestart/ss_ui/input.py":41
+ *     #  StateValue
+ *     if hasattr(block, 'value'):
+ *         if block.value == "default":             # <<<<<<<<<<<<<<
+ *             block.value = ""
+ * 
+*/
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_block, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_default, Py_EQ)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 41, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__pyx_t_3) {
+
+      /* "simplestart/ss_ui/input.py":42
+ *     if hasattr(block, 'value'):
+ *         if block.value == "default":
+ *             block.value = ""             # <<<<<<<<<<<<<<
+ * 
+ *     data = kwargs.get("data", {})
+*/
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_block, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u__2) < (0)) __PYX_ERR(0, 42, __pyx_L1_error)
+
+      /* "simplestart/ss_ui/input.py":41
+ *     #  StateValue
+ *     if hasattr(block, 'value'):
+ *         if block.value == "default":             # <<<<<<<<<<<<<<
+ *             block.value = ""
+ * 
+*/
+    }
+
+    /* "simplestart/ss_ui/input.py":40
+ * 
+ *     #  StateValue
+ *     if hasattr(block, 'value'):             # <<<<<<<<<<<<<<
+ *         if block.value == "default":
+ *             block.value = ""
+*/
+  }
+
+  /* "simplestart/ss_ui/input.py":44
+ *             block.value = ""
+ * 
  *     data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
+ *     data["label"] = label
+ *     data["block"] = block
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_data = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":45
+ * 
+ *     data = kwargs.get("data", {})
+ *     data["label"] = label             # <<<<<<<<<<<<<<
+ *     data["block"] = block
+ * 
+*/
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_label, __pyx_v_label) < 0))) __PYX_ERR(0, 45, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/input.py":46
+ *     data = kwargs.get("data", {})
+ *     data["label"] = label
+ *     data["block"] = block             # <<<<<<<<<<<<<<
  * 
  *     # autosize
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_data = __pyx_t_2;
-  __pyx_t_2 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_block, __pyx_v_block) < 0))) __PYX_ERR(0, 46, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":31
+  /* "simplestart/ss_ui/input.py":49
  * 
  *     # autosize
  *     autosize = kwargs.get("autosize", False)             # <<<<<<<<<<<<<<
  *     rows = kwargs.get("rows", 2)
- *     if isinstance(autosize, list) and len(autosize) == 2:
+ * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_autosize, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_autosize = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_autosize, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_autosize = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":32
+  /* "simplestart/ss_ui/input.py":50
  *     # autosize
  *     autosize = kwargs.get("autosize", False)
  *     rows = kwargs.get("rows", 2)             # <<<<<<<<<<<<<<
- *     if isinstance(autosize, list) and len(autosize) == 2:
- *         #  [min, max] Vue { minRows: min, maxRows: max }
+ * 
+ *     #
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_rows = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_rows = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":33
- *     autosize = kwargs.get("autosize", False)
- *     rows = kwargs.get("rows", 2)
- *     if isinstance(autosize, list) and len(autosize) == 2:             # <<<<<<<<<<<<<<
- *         #  [min, max] Vue { minRows: min, maxRows: max }
- *         data["autosize"] = {"minRows": autosize[0], "maxRows": autosize[1]}
+  /* "simplestart/ss_ui/input.py":53
+ * 
+ *     #
+ *     autosize_val = autosize.value if hasattr(autosize, 'value') else autosize             # <<<<<<<<<<<<<<
+ *     rows_val = rows.value if hasattr(rows, 'value') else rows
+ * 
 */
-  __pyx_t_4 = PyList_Check(__pyx_v_autosize); 
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_autosize, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (__pyx_t_3) {
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_autosize, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_2 = 0;
+  } else {
+    __Pyx_INCREF(__pyx_v_autosize);
+    __pyx_t_1 = __pyx_v_autosize;
+  }
+  __pyx_v_autosize_val = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":54
+ *     #
+ *     autosize_val = autosize.value if hasattr(autosize, 'value') else autosize
+ *     rows_val = rows.value if hasattr(rows, 'value') else rows             # <<<<<<<<<<<<<<
+ * 
+ *     if isinstance(autosize_val, list) and len(autosize_val) == 2:
+*/
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_rows, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (__pyx_t_3) {
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_rows, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_2 = 0;
+  } else {
+    __Pyx_INCREF(__pyx_v_rows);
+    __pyx_t_1 = __pyx_v_rows;
+  }
+  __pyx_v_rows_val = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":56
+ *     rows_val = rows.value if hasattr(rows, 'value') else rows
+ * 
+ *     if isinstance(autosize_val, list) and len(autosize_val) == 2:             # <<<<<<<<<<<<<<
+ *         #  [min, max] Vue { minRows: min, maxRows: max }
+ *         data["autosize"] = {"minRows": autosize_val[0], "maxRows": autosize_val[1]}
+*/
+  __pyx_t_4 = PyList_Check(__pyx_v_autosize_val); 
   if (__pyx_t_4) {
   } else {
     __pyx_t_3 = __pyx_t_4;
-    goto __pyx_L4_bool_binop_done;
+    goto __pyx_L6_bool_binop_done;
   }
-  __pyx_t_5 = PyObject_Length(__pyx_v_autosize); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_5 = PyObject_Length(__pyx_v_autosize_val); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 56, __pyx_L1_error)
   __pyx_t_4 = (__pyx_t_5 == 2);
   __pyx_t_3 = __pyx_t_4;
-  __pyx_L4_bool_binop_done:;
+  __pyx_L6_bool_binop_done:;
   if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/input.py":35
- *     if isinstance(autosize, list) and len(autosize) == 2:
+    /* "simplestart/ss_ui/input.py":58
+ *     if isinstance(autosize_val, list) and len(autosize_val) == 2:
  *         #  [min, max] Vue { minRows: min, maxRows: max }
- *         data["autosize"] = {"minRows": autosize[0], "maxRows": autosize[1]}             # <<<<<<<<<<<<<<
- *     elif autosize is True:
+ *         data["autosize"] = {"minRows": autosize_val[0], "maxRows": autosize_val[1]}             # <<<<<<<<<<<<<<
+ *     elif autosize_val is True:
  *         # autosizeTruerowsrowsminRows
 */
-    __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_autosize_val, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_autosize, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_minRows, __pyx_t_1) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_autosize, 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_maxRows, __pyx_t_1) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_autosize, __pyx_t_2) < 0))) __PYX_ERR(0, 35, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_minRows, __pyx_t_2) < (0)) __PYX_ERR(0, 58, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_autosize_val, 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_maxRows, __pyx_t_2) < (0)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_autosize, __pyx_t_1) < 0))) __PYX_ERR(0, 58, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/input.py":33
- *     autosize = kwargs.get("autosize", False)
- *     rows = kwargs.get("rows", 2)
- *     if isinstance(autosize, list) and len(autosize) == 2:             # <<<<<<<<<<<<<<
+    /* "simplestart/ss_ui/input.py":56
+ *     rows_val = rows.value if hasattr(rows, 'value') else rows
+ * 
+ *     if isinstance(autosize_val, list) and len(autosize_val) == 2:             # <<<<<<<<<<<<<<
  *         #  [min, max] Vue { minRows: min, maxRows: max }
- *         data["autosize"] = {"minRows": autosize[0], "maxRows": autosize[1]}
+ *         data["autosize"] = {"minRows": autosize_val[0], "maxRows": autosize_val[1]}
 */
-    goto __pyx_L3;
+    goto __pyx_L5;
   }
 
-  /* "simplestart/ss_ui/input.py":36
+  /* "simplestart/ss_ui/input.py":59
  *         #  [min, max] Vue { minRows: min, maxRows: max }
- *         data["autosize"] = {"minRows": autosize[0], "maxRows": autosize[1]}
- *     elif autosize is True:             # <<<<<<<<<<<<<<
+ *         data["autosize"] = {"minRows": autosize_val[0], "maxRows": autosize_val[1]}
+ *     elif autosize_val is True:             # <<<<<<<<<<<<<<
  *         # autosizeTruerowsrowsminRows
- *         data["autosize"] = {"minRows": rows, "maxRows": rows + 5}  # +5
+ *         data["autosize"] = {"minRows": rows_val, "maxRows": rows_val + 5}  # +5
 */
-  __pyx_t_3 = (__pyx_v_autosize == Py_True);
+  __pyx_t_3 = (__pyx_v_autosize_val == Py_True);
   if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/input.py":38
- *     elif autosize is True:
+    /* "simplestart/ss_ui/input.py":61
+ *     elif autosize_val is True:
  *         # autosizeTruerowsrowsminRows
- *         data["autosize"] = {"minRows": rows, "maxRows": rows + 5}  # +5             # <<<<<<<<<<<<<<
+ *         data["autosize"] = {"minRows": rows_val, "maxRows": rows_val + 5}  # +5             # <<<<<<<<<<<<<<
  *     else:
  *         #
 */
-    __pyx_t_2 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_minRows, __pyx_v_rows) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyLong_AddObjC(__pyx_v_rows, __pyx_mstate_global->__pyx_int_5, 5, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_maxRows, __pyx_t_1) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_autosize, __pyx_t_2) < 0))) __PYX_ERR(0, 38, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_minRows, __pyx_v_rows_val) < (0)) __PYX_ERR(0, 61, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyLong_AddObjC(__pyx_v_rows_val, __pyx_mstate_global->__pyx_int_5, 5, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_maxRows, __pyx_t_2) < (0)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_autosize, __pyx_t_1) < 0))) __PYX_ERR(0, 61, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/input.py":36
+    /* "simplestart/ss_ui/input.py":59
  *         #  [min, max] Vue { minRows: min, maxRows: max }
- *         data["autosize"] = {"minRows": autosize[0], "maxRows": autosize[1]}
- *     elif autosize is True:             # <<<<<<<<<<<<<<
+ *         data["autosize"] = {"minRows": autosize_val[0], "maxRows": autosize_val[1]}
+ *     elif autosize_val is True:             # <<<<<<<<<<<<<<
  *         # autosizeTruerowsrowsminRows
- *         data["autosize"] = {"minRows": rows, "maxRows": rows + 5}  # +5
+ *         data["autosize"] = {"minRows": rows_val, "maxRows": rows_val + 5}  # +5
 */
-    goto __pyx_L3;
+    goto __pyx_L5;
   }
 
-  /* "simplestart/ss_ui/input.py":41
+  /* "simplestart/ss_ui/input.py":64
  *     else:
  *         #
  *         data["autosize"] = autosize             # <<<<<<<<<<<<<<
@@ -3176,332 +3976,508 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
  *     data["disabled"] = kwargs.get("disabled", False)
 */
   /*else*/ {
-    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_autosize, __pyx_v_autosize) < 0))) __PYX_ERR(0, 41, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_autosize, __pyx_v_autosize) < 0))) __PYX_ERR(0, 64, __pyx_L1_error)
   }
-  __pyx_L3:;
+  __pyx_L5:;
 
-  /* "simplestart/ss_ui/input.py":43
+  /* "simplestart/ss_ui/input.py":66
  *         data["autosize"] = autosize
  * 
  *     data["disabled"] = kwargs.get("disabled", False)             # <<<<<<<<<<<<<<
  *     data["value"] = kwargs.get("value", "")
  *     data["maxlength"] = kwargs.get("maxlength", "")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_2) < 0))) __PYX_ERR(0, 43, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_1) < 0))) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":44
+  /* "simplestart/ss_ui/input.py":67
  * 
  *     data["disabled"] = kwargs.get("disabled", False)
  *     data["value"] = kwargs.get("value", "")             # <<<<<<<<<<<<<<
  *     data["maxlength"] = kwargs.get("maxlength", "")
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_2) < 0))) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < 0))) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":45
+  /* "simplestart/ss_ui/input.py":68
  *     data["disabled"] = kwargs.get("disabled", False)
  *     data["value"] = kwargs.get("value", "")
  *     data["maxlength"] = kwargs.get("maxlength", "")             # <<<<<<<<<<<<<<
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")
- *     data["prefix_icon"] = kwargs.get("prefix_icon", "")
+ *     #  icon  prefix_icon
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_t_2) < 0))) __PYX_ERR(0, 45, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_t_1) < 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":46
+  /* "simplestart/ss_ui/input.py":69
  *     data["value"] = kwargs.get("value", "")
  *     data["maxlength"] = kwargs.get("maxlength", "")
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")             # <<<<<<<<<<<<<<
- *     data["prefix_icon"] = kwargs.get("prefix_icon", "")
- *     data["rows"] = kwargs.get("rows", 2)
+ *     #  icon  prefix_icon
+ *     data["prefix_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_mstate_global->__pyx_kp_u_Please_input); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_t_2) < 0))) __PYX_ERR(0, 46, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_mstate_global->__pyx_kp_u_Please_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_t_1) < 0))) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":47
- *     data["maxlength"] = kwargs.get("maxlength", "")
+  /* "simplestart/ss_ui/input.py":71
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")
- *     data["prefix_icon"] = kwargs.get("prefix_icon", "")             # <<<<<<<<<<<<<<
+ *     #  icon  prefix_icon
+ *     data["prefix_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))             # <<<<<<<<<<<<<<
  *     data["rows"] = kwargs.get("rows", 2)
  *     data["show_password"] = kwargs.get("show_password", False)
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_icon, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_t_2) < 0))) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_t_2) < 0))) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":48
- *     data["placeholder"] = kwargs.get("placeholder", "Please input")
- *     data["prefix_icon"] = kwargs.get("prefix_icon", "")
+  /* "simplestart/ss_ui/input.py":72
+ *     #  icon  prefix_icon
+ *     data["prefix_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))
  *     data["rows"] = kwargs.get("rows", 2)             # <<<<<<<<<<<<<<
  *     data["show_password"] = kwargs.get("show_password", False)
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_rows, __pyx_t_2) < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_rows, __pyx_t_2) < 0))) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":49
- *     data["prefix_icon"] = kwargs.get("prefix_icon", "")
+  /* "simplestart/ss_ui/input.py":73
+ *     data["prefix_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))
  *     data["rows"] = kwargs.get("rows", 2)
  *     data["show_password"] = kwargs.get("show_password", False)             # <<<<<<<<<<<<<<
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
- *     #  size  Element Plus
+ *     data["clearable"] = kwargs.get("clearable", True)
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_password, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_password, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_password, __pyx_t_2) < 0))) __PYX_ERR(0, 49, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_password, __pyx_t_2) < 0))) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":50
+  /* "simplestart/ss_ui/input.py":74
  *     data["rows"] = kwargs.get("rows", 2)
  *     data["show_password"] = kwargs.get("show_password", False)
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)             # <<<<<<<<<<<<<<
+ *     data["clearable"] = kwargs.get("clearable", True)
+ *     #  size  Element Plus
+*/
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_word_limit, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_word_limit, __pyx_t_2) < 0))) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":75
+ *     data["show_password"] = kwargs.get("show_password", False)
+ *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
+ *     data["clearable"] = kwargs.get("clearable", True)             # <<<<<<<<<<<<<<
  *     #  size  Element Plus
  *     size = kwargs.get("size", "")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_word_limit, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_clearable, Py_True); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_word_limit, __pyx_t_2) < 0))) __PYX_ERR(0, 50, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_clearable, __pyx_t_2) < 0))) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":52
- *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
+  /* "simplestart/ss_ui/input.py":77
+ *     data["clearable"] = kwargs.get("clearable", True)
  *     #  size  Element Plus
  *     size = kwargs.get("size", "")             # <<<<<<<<<<<<<<
- *     valid_sizes = ["", "default", "small", "large"]
- *     if size not in valid_sizes:
+ * 
+ *     #  StateValue
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_size = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":53
- *     #  size  Element Plus
- *     size = kwargs.get("size", "")
- *     valid_sizes = ["", "default", "small", "large"]             # <<<<<<<<<<<<<<
- *     if size not in valid_sizes:
- *         #
+  /* "simplestart/ss_ui/input.py":80
+ * 
+ *     #  StateValue
+ *     if hasattr(size, 'value'):             # <<<<<<<<<<<<<<
+ *         if size.value == "default":
+ *             size.value = ""
 */
-  __pyx_t_2 = PyList_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
-  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_kp_u_);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_mstate_global->__pyx_kp_u_) != (0)) __PYX_ERR(0, 53, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_default);
-  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_default);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 1, __pyx_mstate_global->__pyx_n_u_default) != (0)) __PYX_ERR(0, 53, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_small);
-  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_small);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 2, __pyx_mstate_global->__pyx_n_u_small) != (0)) __PYX_ERR(0, 53, __pyx_L1_error);
-  __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_large);
-  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_large);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 3, __pyx_mstate_global->__pyx_n_u_large) != (0)) __PYX_ERR(0, 53, __pyx_L1_error);
-  __pyx_v_valid_sizes = ((PyObject*)__pyx_t_2);
-  __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/input.py":54
- *     size = kwargs.get("size", "")
- *     valid_sizes = ["", "default", "small", "large"]
- *     if size not in valid_sizes:             # <<<<<<<<<<<<<<
- *         #
- *         size = ""
-*/
-  __pyx_t_3 = (__Pyx_PySequence_ContainsTF(__pyx_v_size, __pyx_v_valid_sizes, Py_NE)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_size, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 80, __pyx_L1_error)
   if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/input.py":56
- *     if size not in valid_sizes:
- *         #
- *         size = ""             # <<<<<<<<<<<<<<
- *     data["size"] = size
- *     data["suffix_icon"] = kwargs.get("suffix_icon", "")
+    /* "simplestart/ss_ui/input.py":81
+ *     #  StateValue
+ *     if hasattr(size, 'value'):
+ *         if size.value == "default":             # <<<<<<<<<<<<<<
+ *             size.value = ""
+ * 
 */
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
-    __Pyx_DECREF_SET(__pyx_v_size, __pyx_mstate_global->__pyx_kp_u_);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_size, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_default, Py_EQ)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 81, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/input.py":54
- *     size = kwargs.get("size", "")
- *     valid_sizes = ["", "default", "small", "large"]
- *     if size not in valid_sizes:             # <<<<<<<<<<<<<<
- *         #
- *         size = ""
+      /* "simplestart/ss_ui/input.py":82
+ *     if hasattr(size, 'value'):
+ *         if size.value == "default":
+ *             size.value = ""             # <<<<<<<<<<<<<<
+ * 
+ *     data["size"] = size
+*/
+      if (__Pyx_PyObject_SetAttrStr(__pyx_v_size, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u__2) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
+
+      /* "simplestart/ss_ui/input.py":81
+ *     #  StateValue
+ *     if hasattr(size, 'value'):
+ *         if size.value == "default":             # <<<<<<<<<<<<<<
+ *             size.value = ""
+ * 
+*/
+    }
+
+    /* "simplestart/ss_ui/input.py":80
+ * 
+ *     #  StateValue
+ *     if hasattr(size, 'value'):             # <<<<<<<<<<<<<<
+ *         if size.value == "default":
+ *             size.value = ""
 */
   }
 
-  /* "simplestart/ss_ui/input.py":57
- *         #
- *         size = ""
+  /* "simplestart/ss_ui/input.py":84
+ *             size.value = ""
+ * 
  *     data["size"] = size             # <<<<<<<<<<<<<<
  *     data["suffix_icon"] = kwargs.get("suffix_icon", "")
- *     data["type"] = kwargs.get("type", "text")
+ *     #  suffix_icon  icon prefix_icon
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_size, __pyx_v_size) < 0))) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_size, __pyx_v_size) < 0))) __PYX_ERR(0, 84, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":58
- *         size = ""
+  /* "simplestart/ss_ui/input.py":85
+ * 
  *     data["size"] = size
  *     data["suffix_icon"] = kwargs.get("suffix_icon", "")             # <<<<<<<<<<<<<<
+ *     #  suffix_icon  icon prefix_icon
+ *     if not data["prefix_icon"] and data["suffix_icon"]:
+*/
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_suffix_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_suffix_icon, __pyx_t_2) < 0))) __PYX_ERR(0, 85, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":87
+ *     data["suffix_icon"] = kwargs.get("suffix_icon", "")
+ *     #  suffix_icon  icon prefix_icon
+ *     if not data["prefix_icon"] and data["suffix_icon"]:             # <<<<<<<<<<<<<<
+ *         data["prefix_icon"] = kwargs.get("icon", "")
+ *     data["type"] = kwargs.get("type", "text")
+*/
+  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prefix_icon); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = (!__pyx_t_4);
+  if (__pyx_t_6) {
+  } else {
+    __pyx_t_3 = __pyx_t_6;
+    goto __pyx_L11_bool_binop_done;
+  }
+  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_suffix_icon); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __pyx_t_6;
+  __pyx_L11_bool_binop_done:;
+  if (__pyx_t_3) {
+
+    /* "simplestart/ss_ui/input.py":88
+ *     #  suffix_icon  icon prefix_icon
+ *     if not data["prefix_icon"] and data["suffix_icon"]:
+ *         data["prefix_icon"] = kwargs.get("icon", "")             # <<<<<<<<<<<<<<
  *     data["type"] = kwargs.get("type", "text")
  *     data["word_limit_position"] = kwargs.get("word_limit_position", "inside")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_suffix_icon, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_suffix_icon, __pyx_t_2) < 0))) __PYX_ERR(0, 58, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_t_2) < 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":59
- *     data["size"] = size
+    /* "simplestart/ss_ui/input.py":87
  *     data["suffix_icon"] = kwargs.get("suffix_icon", "")
+ *     #  suffix_icon  icon prefix_icon
+ *     if not data["prefix_icon"] and data["suffix_icon"]:             # <<<<<<<<<<<<<<
+ *         data["prefix_icon"] = kwargs.get("icon", "")
+ *     data["type"] = kwargs.get("type", "text")
+*/
+  }
+
+  /* "simplestart/ss_ui/input.py":89
+ *     if not data["prefix_icon"] and data["suffix_icon"]:
+ *         data["prefix_icon"] = kwargs.get("icon", "")
  *     data["type"] = kwargs.get("type", "text")             # <<<<<<<<<<<<<<
  *     data["word_limit_position"] = kwargs.get("word_limit_position", "inside")
- *     data["style"] = kwargs.get("style", "width: 240px;")
-*/
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_type, __pyx_t_2) < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/input.py":60
- *     data["suffix_icon"] = kwargs.get("suffix_icon", "")
- *     data["type"] = kwargs.get("type", "text")
- *     data["word_limit_position"] = kwargs.get("word_limit_position", "inside")             # <<<<<<<<<<<<<<
- *     data["style"] = kwargs.get("style", "width: 240px;")
  * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_word_limit_position, __pyx_mstate_global->__pyx_n_u_inside); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_text); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_word_limit_position, __pyx_t_2) < 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_type, __pyx_t_2) < 0))) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":61
+  /* "simplestart/ss_ui/input.py":90
+ *         data["prefix_icon"] = kwargs.get("icon", "")
  *     data["type"] = kwargs.get("type", "text")
- *     data["word_limit_position"] = kwargs.get("word_limit_position", "inside")
- *     data["style"] = kwargs.get("style", "width: 240px;")             # <<<<<<<<<<<<<<
+ *     data["word_limit_position"] = kwargs.get("word_limit_position", "inside")             # <<<<<<<<<<<<<<
+ * 
+ *     #  width
+*/
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_word_limit_position, __pyx_mstate_global->__pyx_n_u_inside); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_word_limit_position, __pyx_t_2) < 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":93
+ * 
+ *     #  width
+ *     width = kwargs.get("width", "")             # <<<<<<<<<<<<<<
+ *     style = kwargs.get("style", "")
+ * 
+*/
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_width = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":94
+ *     #  width
+ *     width = kwargs.get("width", "")
+ *     style = kwargs.get("style", "")             # <<<<<<<<<<<<<<
+ * 
+ *     #
+*/
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_style, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_style = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":97
+ * 
+ *     #
+ *     width_val = width.value if hasattr(width, 'value') else width             # <<<<<<<<<<<<<<
+ *     if width_val:
+ *         if isinstance(width_val, (int)):
+*/
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_v_width, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 97, __pyx_L1_error)
+  if (__pyx_t_3) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_width, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __pyx_t_1;
+    __pyx_t_1 = 0;
+  } else {
+    __Pyx_INCREF(__pyx_v_width);
+    __pyx_t_2 = __pyx_v_width;
+  }
+  __pyx_v_width_val = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":98
+ *     #
+ *     width_val = width.value if hasattr(width, 'value') else width
+ *     if width_val:             # <<<<<<<<<<<<<<
+ *         if isinstance(width_val, (int)):
+ *             width_val = f"{width_val}px"
+*/
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_width_val); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (__pyx_t_3) {
+
+    /* "simplestart/ss_ui/input.py":99
+ *     width_val = width.value if hasattr(width, 'value') else width
+ *     if width_val:
+ *         if isinstance(width_val, (int)):             # <<<<<<<<<<<<<<
+ *             width_val = f"{width_val}px"
+ * 
+*/
+    __pyx_t_3 = PyLong_Check(__pyx_v_width_val); 
+    if (__pyx_t_3) {
+
+      /* "simplestart/ss_ui/input.py":100
+ *     if width_val:
+ *         if isinstance(width_val, (int)):
+ *             width_val = f"{width_val}px"             # <<<<<<<<<<<<<<
+ * 
+ *     # widthwidthblock
+*/
+      __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_width_val, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_1 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_px); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF_SET(__pyx_v_width_val, __pyx_t_1);
+      __pyx_t_1 = 0;
+
+      /* "simplestart/ss_ui/input.py":99
+ *     width_val = width.value if hasattr(width, 'value') else width
+ *     if width_val:
+ *         if isinstance(width_val, (int)):             # <<<<<<<<<<<<<<
+ *             width_val = f"{width_val}px"
+ * 
+*/
+    }
+
+    /* "simplestart/ss_ui/input.py":98
+ *     #
+ *     width_val = width.value if hasattr(width, 'value') else width
+ *     if width_val:             # <<<<<<<<<<<<<<
+ *         if isinstance(width_val, (int)):
+ *             width_val = f"{width_val}px"
+*/
+  }
+
+  /* "simplestart/ss_ui/input.py":103
+ * 
+ *     # widthwidthblock
+ *     data["custom_width"] = width_val             # <<<<<<<<<<<<<<
+ *     data["custom_style"] = style
+ * 
+*/
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_custom_width, __pyx_v_width_val) < 0))) __PYX_ERR(0, 103, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/input.py":104
+ *     # widthwidthblock
+ *     data["custom_width"] = width_val
+ *     data["custom_style"] = style             # <<<<<<<<<<<<<<
  * 
  *     onchange = kwargs.get("onchange", None)
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_style, __pyx_mstate_global->__pyx_kp_u_width_240px); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_style, __pyx_t_2) < 0))) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_custom_style, __pyx_v_style) < 0))) __PYX_ERR(0, 104, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":63
- *     data["style"] = kwargs.get("style", "width: 240px;")
+  /* "simplestart/ss_ui/input.py":106
+ *     data["custom_style"] = style
  * 
  *     onchange = kwargs.get("onchange", None)             # <<<<<<<<<<<<<<
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_cur_scope->__pyx_v_onchange = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_cur_scope->__pyx_v_onchange = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":64
+  /* "simplestart/ss_ui/input.py":107
  * 
  *     onchange = kwargs.get("onchange", None)
  *     onsubmit = kwargs.get("onsubmit", None)             # <<<<<<<<<<<<<<
  * 
  *     def myonchange(event):
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onsubmit, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_cur_scope->__pyx_v_onsubmit = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onsubmit, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_cur_scope->__pyx_v_onsubmit = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":66
+  /* "simplestart/ss_ui/input.py":109
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
- *         if onchange:
+ *         #  slider
+ *         if isinstance(event.value, str):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_myonchange = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_myonchange = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":71
+  /* "simplestart/ss_ui/input.py":124
  *           onchange(event)
  * 
  *     def myonsubmit(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
- *         if onsubmit:
+ *         #  slider
+ *         if isinstance(event.value, str):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_3myonsubmit, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonsubmit, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_3myonsubmit, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonsubmit, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_myonsubmit = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":140
+ * 
+ *     #  label/title
+ *     label = kwargs.get("label", kwargs.get("title", ""))             # <<<<<<<<<<<<<<
+ * 
+ *     res = vuetify('''
+*/
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_myonsubmit = __pyx_t_2;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF_SET(__pyx_v_label, __pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":76
- *           onsubmit(event)
+  /* "simplestart/ss_ui/input.py":142
+ *     label = kwargs.get("label", kwargs.get("title", ""))
  * 
- *     res = template('''             # <<<<<<<<<<<<<<
- *         <el-input v-model="data.value" :style="data.style" :placeholder="data.placeholder"
- *         :autosize = "data.autosize"
+ *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *         <div class="input-container" :style="data.block ? 'display: block; margin-bottom: 16px; width: 100%;' : 'display: block; margin-bottom: 16px;'"><div v-if="data.label" style="margin-bottom: 8px; font-weight: normal; font-size: smaller; color: #606266;">
+ *                 {{ data.label }}
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 76, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
 
-  /* "simplestart/ss_ui/input.py":92
- *         \@keyup.enter="(e) => onserver('onsubmit', data.value)"
- *          />
+  /* "simplestart/ss_ui/input.py":165
+ *              />
+ *         </div>
  *     ''', data= data, handlers = {"onchange":myonchange, "onsubmit":myonsubmit})             # <<<<<<<<<<<<<<
  *     return res
  * 
 */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 92, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_onsubmit, __pyx_v_myonsubmit) < (0)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __pyx_t_8 = 1;
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 165, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_onsubmit, __pyx_v_myonsubmit) < (0)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __pyx_t_9 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_6))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_6);
+  if (unlikely(PyMethod_Check(__pyx_t_7))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
     assert(__pyx_t_1);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
-    __pyx_t_8 = 0;
+    __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+    __pyx_t_9 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_el_input_v_model_data_value_sty};
-    __pyx_t_9 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 76, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_9, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_7, __pyx_t_9, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_9);
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_div_class_input_container_style};
+    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 142, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_10, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_8, __pyx_t_10, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_10);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_cur_scope->__pyx_v_res = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":93
- *          />
+  /* "simplestart/ss_ui/input.py":166
+ *         </div>
  *     ''', data= data, handlers = {"onchange":myonchange, "onsubmit":myonsubmit})
  *     return res             # <<<<<<<<<<<<<<
  * 
@@ -3513,7 +4489,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   goto __pyx_L0;
 
   /* "simplestart/ss_ui/input.py":4
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -3524,17 +4500,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("simplestart.ss_ui.input.input", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_label);
+  __Pyx_XDECREF(__pyx_v_block);
   __Pyx_XDECREF(__pyx_v_data);
   __Pyx_XDECREF(__pyx_v_autosize);
   __Pyx_XDECREF(__pyx_v_rows);
+  __Pyx_XDECREF(__pyx_v_autosize_val);
+  __Pyx_XDECREF(__pyx_v_rows_val);
   __Pyx_XDECREF(__pyx_v_size);
-  __Pyx_XDECREF(__pyx_v_valid_sizes);
+  __Pyx_XDECREF(__pyx_v_width);
+  __Pyx_XDECREF(__pyx_v_style);
+  __Pyx_XDECREF(__pyx_v_width_val);
   __Pyx_XDECREF(__pyx_v_myonchange);
   __Pyx_XDECREF(__pyx_v_myonsubmit);
   __Pyx_DECREF((PyObject *)__pyx_cur_scope);
@@ -3543,7 +4525,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":95
+/* "simplestart/ss_ui/input.py":168
  *     return res
  * 
  * def text_input(*args, **kwargs):             # <<<<<<<<<<<<<<
@@ -3603,17 +4585,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("text_input", 0);
 
-  /* "simplestart/ss_ui/input.py":105
+  /* "simplestart/ss_ui/input.py":178
  *         props
  *     """
  *     return input(*args, **kwargs)             # <<<<<<<<<<<<<<
+ * 
+ * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3621,7 +4605,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/input.py":95
+  /* "simplestart/ss_ui/input.py":168
  *     return res
  * 
  * def text_input(*args, **kwargs):             # <<<<<<<<<<<<<<
@@ -3635,6 +4619,138 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("simplestart.ss_ui.input.text_input", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_ui/input.py":181
+ * 
+ * 
+ * def textarea(*args, **kwargs):             # <<<<<<<<<<<<<<
+ *     """
+ *     textarea
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_5textarea(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_5input_4textarea, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\232\350\241\214\346\226\207\346\234\254\350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\357\274\210textarea\357\274\211\n    \n    \350\277\231\346\230\257 input \347\273\204\344\273\266\347\232\204\344\276\277\346\215\267\345\214\205\350\243\205\357\274\214\350\207\252\345\212\250\350\256\276\347\275\256 textarea \347\233\270\345\205\263\345\217\202\346\225\260\343\200\202\n    \347\255\211\344\273\267\344\272\216: input(type=\"textarea\", rows=rows, autosize=autosize, ...)\n    \n    \345\217\202\346\225\260:\n        value: \351\273\230\350\256\244\345\200\274\n        disabled: \346\230\257\345\220\246\347\246\201\347\224\250\n        maxlength: \346\234\200\345\244\247\350\276\223\345\205\245\351\225\277\345\272\246\n        placeholder: \345\215\240\344\275\215\346\226\207\346\234\254\n        rows: \350\241\214\346\225\260\357\274\214\351\273\230\350\256\2443\n        show_word_limit: \346\230\257\345\220\246\346\230\276\347\244\272\345\255\227\346\225\260\347\273\237\350\256\241\n        size: \347\273\204\344\273\266\345\244\247\345\260\217\n        style: \350\207\252\345\256\232\344\271\211\346\240\267\345\274\217\n        autosize: \346\230\257\345\220\246\350\207\252\345\212\250\350\260\203\346\225\264\351\253\230\345\272\246\357\274\210\345\270\203\345\260\224\345\200\274\346\210\226\346\225\260\347\273\204\346\240\274\345\274\217 [min, max]\357\274\211\n        label: \346\240\207\347\255\276\346\240\207\351\242\230\n        title: \346\240\207\347\255\276\346\240\207\351\242\230\357\274\210\344\270\216 label \345\220\214\344\271\211\357\274\214\344\272\214\350\200\205\351\203\275\346\224\257\346\214\201\357\274\211\n        block: \346\230\257\345\220\246\344\270\272\345\235\227\347\272\247\350\276\223\345\205\245\346\241\206\357\274\210\345\215\240\346\215\256\346\225\264\350\241\214\357\274\211\357\274\214\351\273\230\350\256\244True\n        onchange: \350\276\223\345\205""\245\345\200\274\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \346\226\207\346\234\254\345\237\237\347\273\204\344\273\266\347\232\204props\345\257\271\350\261\241\n    ");
+static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_5input_5textarea = {"textarea", (PyCFunction)(void(*)(void))(PyCFunctionWithKeywords)__pyx_pw_11simplestart_5ss_ui_5input_5textarea, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_5input_4textarea};
+static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_5textarea(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_args = 0;
+  PyObject *__pyx_v_kwargs = 0;
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("textarea (wrapper)", 0);
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_VARARGS(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (__pyx_kwds_len > 0) {
+    if (unlikely(__Pyx_CheckKeywordStrings("textarea", __pyx_kwds) == -1)) return NULL;
+    __pyx_v_kwargs = __Pyx_KwargsAsDict_VARARGS(__pyx_kwds, __pyx_kwvalues);
+    if (unlikely(!__pyx_v_kwargs)) return NULL;
+    __Pyx_GOTREF(__pyx_v_kwargs);
+  } else {
+    __pyx_v_kwargs = PyDict_New();
+    if (unlikely(!__pyx_v_kwargs)) return NULL;
+    __Pyx_GOTREF(__pyx_v_kwargs);
+  }
+  __Pyx_INCREF(__pyx_args);
+  __pyx_v_args = __pyx_args;
+  __pyx_r = __pyx_pf_11simplestart_5ss_ui_5input_4textarea(__pyx_self, __pyx_v_args, __pyx_v_kwargs);
+
+  /* function exit code */
+  __Pyx_DECREF(__pyx_v_args);
+  __Pyx_DECREF(__pyx_v_kwargs);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_4textarea(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("textarea", 0);
+
+  /* "simplestart/ss_ui/input.py":207
+ *     """
+ *     # 3
+ *     kwargs.setdefault("type", "textarea")             # <<<<<<<<<<<<<<
+ *     kwargs.setdefault("block", True)
+ *     kwargs.setdefault("rows", 3)
+*/
+  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_textarea); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":208
+ *     # 3
+ *     kwargs.setdefault("type", "textarea")
+ *     kwargs.setdefault("block", True)             # <<<<<<<<<<<<<<
+ *     kwargs.setdefault("rows", 3)
+ * 
+*/
+  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_block, Py_True); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":209
+ *     kwargs.setdefault("type", "textarea")
+ *     kwargs.setdefault("block", True)
+ *     kwargs.setdefault("rows", 3)             # <<<<<<<<<<<<<<
+ * 
+ *     return input(*args, **kwargs)
+*/
+  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/input.py":211
+ *     kwargs.setdefault("rows", 3)
+ * 
+ *     return input(*args, **kwargs)             # <<<<<<<<<<<<<<
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_ui/input.py":181
+ * 
+ * 
+ * def textarea(*args, **kwargs):             # <<<<<<<<<<<<<<
+ *     """
+ *     textarea
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("simplestart.ss_ui.input.textarea", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4201,19 +5317,19 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/input.py":2
- * # coretemplate
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * # coretemplatevuetify
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * def input(*args, **kwargs):
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 2, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -4224,7 +5340,7 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/input.py":4
- * from ss_core import template
+ * from ss_core import vuetify
  * 
  * def input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
@@ -4238,24 +5354,39 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_input, __pyx_t_2) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":95
+  /* "simplestart/ss_ui/input.py":168
  *     return res
  * 
  * def text_input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
  *     input
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_3text_input, 0, __pyx_mstate_global->__pyx_n_u_text_input, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_3text_input, 0, __pyx_mstate_global->__pyx_n_u_text_input, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_text_input, __pyx_t_2) < (0)) __PYX_ERR(0, 95, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_text_input, __pyx_t_2) < (0)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/input.py":181
+ * 
+ * 
+ * def textarea(*args, **kwargs):             # <<<<<<<<<<<<<<
+ *     """
+ *     textarea
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5textarea, 0, __pyx_mstate_global->__pyx_n_u_textarea, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_textarea, __pyx_t_2) < (0)) __PYX_ERR(0, 181, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/input.py":1
- * # coretemplate             # <<<<<<<<<<<<<<
- * from ss_core import template
+ * # coretemplatevuetify             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify
  * 
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -4326,34 +5457,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{0},{12},{1},{1},{7},{658},{6},{2},{9},{26},{13},{20},{4},{18},{8},{18},{4},{7},{8},{5},{8},{3},{8},{5},{25},{25},{6},{13},{5},{6},{5},{8},{7},{9},{7},{10},{10},{10},{8},{8},{8},{11},{3},{11},{12},{3},{4},{12},{10},{13},{15},{23},{4},{5},{7},{5},{11},{8},{8},{4},{10},{4},{11},{5},{6},{19},{457},{15},{27}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1027 bytes) */
-const char* const cstring = "BZh91AY&SY!\353\356)\000\000\357\377\377\367\376\364\035\375\367\367_\357\215t\r\277\357\377\370@@@@@@@@@@@@@\000@\000P\003lE\347`[;\243\t%\t\252{&\251\3552\rI\230\243\321=@\000\323F\215\0004\323M\2444\036\223\324l\232Oj4\305\006P\243\322\237\244\323Q\352~\250\375S4\203\322\000\036\240\003!\240\000\000\000\000\000\003M\t2M\251\211O\320\207\251\014\236\243L@\000\320\000\000\0004\000\320\320\r\016\000\006\203CA\240\003L\203C i\240\000\003 \003 2\000\tDS\325?I2z\231=@z\217P\000\r4\032\000\000\000\000\000\0004\010\t.\3214\2164\261\260\262\023\362\345vq\374\371\322f@\303\020\ts\247\340\215\017C\272\334\037\334\2140\n\221P$\233p$C7SY\020l\224\246Z \211\260a\273.\033B\353\022\353\213\321+\"\221\031Q\320\206\21310\270\000\022@\001\325@:v\013v}\337u\333q\265\316\034\366\317\020k\256K\266\343\202uS7\203\2230\242\301\211\010 \020I\307<#\010\311\251t,\354\221\222\226 |\037\242\356\226\311I=C)\216\251\315\226\2432\342\235\271r9hb\203\0030\265^v\346\345Z\365\234\320\355gMO\223\217!\211\256]O\262\031\224\315\361.<\202\335\246\325q\254\274[\334\326:\2448\211\023\352\277x\260\335\376\343\231\237\335\323\351\014B\303\360\362o0\372\240\035,\227\341t\204\257\rT\243O\231\266\357\236Ur\305\210e\024\010\200\356x@:\006:\343\006\003T{\307\025$H\364D\224\016$\221=\335O\r\177'\r\022\004\272\022\017\250e\223\350$5\200\017yJ\345\325a\031\022\306\300b\254\312\002D\023\350\215\006u\250Sj\361A\244!L\351\221\241\004\253$\203\204\217\2652\204.,\354t\365\330O[\354k\377\242:\t\tS\262\035\202\025\211\320J\353\321},\n\007\351\306$h%1\370\321Hz\372\322L\331!\026\021Q\010\212p\316\210\005-e\002\234MO\342\221~rA\016\370\222t\263\232\301aGP\251 1\2400J\302k$\206\001H\342\2026\256\216\242\204Q~\235\0171#<\334\312o\225\026\224\\\2404\321)1B1\204TG\324X\014\364S\246\232\334\201\223\362\3108\211\206\"\214\230\355%+a\230\021\226aBB\263\301\310\316\234=Qi$\020g+\230\0312\255\301\034\022\301\346g\000,\252(PE\024\000\340\220\024\222\261\031D\321\255\004\246\305\"\253\3030\3015m\244@QI\214\310'\002\201|\204D\330D""\005\256dE\217<\032\267\240\246\000\331R\345\311\243K\"\301\t\325H\023R[,\321Hf\311\000\341K\022\320RTj(`\272\241\261\023\014\003\006\023\247\006\\\265\201A\240\3029\323\235f\311jX\216\215R\326\002\263\013A0\266\362\204\013Fm\356\010E\344\302@\000\341\246\324@\333\210\332.\222\341H\200P\302\225j\215J8\351gx(\211\224\004T\316\265\271\2210\317&<\232\325i\370\035q\330\232b\320v\365\342\024\260\327\013\2676\t\211C\304Q\021X\261@$\327\230$\301\242_\246\002J\337\233(|\233F\346I\327x\333B\336K|>\2147\325\213\270\327\007\335\206\304mq\250o\366\030\375_\223\206w\007\014\006\005\207l2\254<\030\271\324\205Nb%\032\317O\222\177\021!S!\272\262KT\327'Ur\376\375\265\213\372+\331\300\276\035u,\247\3719\230\341\365\222\336\213\014V\364\351^\303\277\323]J9\263h\321\305?\366\306\324\321\323\361\212\353Y\3533\260R\345\325\211R\231\356\356\345\233V\207\202\317^\210\037\370\273\222)\302\204\201\017_qH";
-    PyObject *data = __Pyx_DecompressString(cstring, 1027, 2);
+    const struct { const unsigned int length: 11; } index[] = {{1},{12},{0},{1},{7},{1267},{6},{2},{9},{26},{20},{4},{18},{8},{12},{5},{9},{18},{12},{12},{5},{4},{7},{8},{5},{8},{3},{8},{4},{5},{25},{25},{6},{13},{5},{6},{5},{8},{7},{9},{7},{10},{10},{10},{8},{8},{8},{11},{3},{11},{2},{12},{3},{4},{8},{12},{10},{13},{15},{23},{4},{7},{5},{11},{8},{4},{10},{8},{5},{4},{5},{6},{7},{5},{9},{19},{48},{15},{104},{743}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1486 bytes) */
+const char* const cstring = "BZh91AY&SY?\250xH\000\0018\177\377\367\376\377\375\377\357\367\177\355-w\325\277\357\377\377@@@@@@@@@@@@@\000@\000P\005L\326\331\265\203l\320kU`l%\021F\211\352\231\251\264\215\231LbSA\265\014\312=\023Ce4\032m&\214OSF\215\036\246A\247\242mOS1Fj\006\2044S\310*{CJ\037\242d\324\362\236\240h4\000h\000\000\000\000\000\000\000\002E\0044\246\323@\024\362h\2316\251\264OD\r=F\200\006\200\000\000\000\000\003L\232=C\200\000\000\000\000\0002\000\000\000\000\000\000\000\003 \001\300\000\000\000\000\000\031\000\000\000\000\000\000\000\001\220\002s\211O\246\302\016\363\003\266\333\250\027\224\005/\340\300\326\260\274\227\314\030p\252*\n\242\250\233M4\335\245J\314hU\346\346AB\245\242JtV\266;D\023&\001Is\0019\3279\366\017\247\276\n\332\033]\311A;U\036\360\333L\312R\346\250\256%\237A\240h\264\314S\033A\330\325\r\302\240*\255 a\360\312+\256\333f\221@g\232\027\357\027\306\275ji\246U\212\027Kl`G8\221\244i$dI\036\200\217<\356\025\265\232\242\2148+x\2260\2121\332'\331\317\3339#\027$\037\231\n\351{k\033\232\303GTr\220t\302w\253\307\307 \320=\001\210\"bF7\355\030^\271y\225\265\030gY#\347\326\212ux\030\0146\306\r\266\316|/\275\030\262z\304\002\024\251\246:\031.\344\232\365\006\272\030\210(\352.(X\031!J\302\212\351\r]<\252\356\331\257>\202\035\271\247\266\007\263\372\007e\242\375\346&X\243\212\n\250L\241\341\034\217@t\334\254\363\340\357U_\303\037)\250\344\236\226\343\204\231\030\214.\264\353\t\303\212\005\023\226\034\243]\235H\307\340\031\376\305\334\274 AL\t\204\323GG&\330\034\277q-\243\325\361V&y\nT%\210J\310L\014\244K\247\035\302\"\226\352\346\324$\014\206BO\344(+Bd\037\231\276\372+\260\3639K\206\302_%\021WB\266[\331\353n\300\251\004\302x#\371b\325\3039\252\357\261\270@\214w\310a\245\233\230\343\332\331w;d\335\216nr\231\322\241XU7\312\022D_)\002\001\335\246R\212\272MV\\c(\2220+8SV\220\212\355L\243|#\356c\"\225\212\341aU\326\266\337\022[\236\022\303\221\002\225g\215\2623\264,2\232Q\257>\267\010@\203QpVx`\2556\224\320\034+?\\\254!\366\260\377$\211YTt\346n\370\212X\202\260\302\230[`\361\031""\221l\200\340\210\232!\221\003;SD\360Qp\235\361\343\312r\251\244T2e\342c b\274>\222\271\325h\302\321\252\255\2379^R3c\204)*\214\344\027\303\272\210\277\231\223Q\222\333K8\314\366CL\361{\026\256\226\271\331l\211\331\"\026\023\272\372\246E\343\250\244\"\362\323\370\261qqk\335V'\322l{N)\357\022\310\211K\032\"\267\0225\204\rJ\240U2r\021\023\211\014\300\336~\364\260\200l#x\023\204\213\016h\271\3548k\341N,\3316[VV\241\250\"\313\222\243\275U\002A\244R\003=b\343\214t\024X\330\360\023\335V2[W\001\324\033Z\352]\354\244\321\325Z\261\332O.\254\355\253n6\233\210\303\023\010\322\313\024\025\357\343\324n\313\247\236t]^\022\346\330\307\212\310\034\353#\010\\\022Lcq%\241\342\230f\334\254\032+R\276H \233\024[}B4Kx\302\263\350A8\r\256L\006\030\230\tH\301\276N\275X:\010%\300\311,\001\235j/\021JJ\253\2237 \307I\257\272\3710\304\223$zD\231X\350\0345\2156\307\223R\236\207\373?3Et[\020ckj\323\024\020\310\256\214P\326[\364\226\023\031\276G\236B\034\014\204\003\253:\243xHDFs\330\330\255e\000)\255\210\035\202|\324\316\016\232N:L&\0260V\305\002\3227\020J\310\231\025\2353\005\254n\302\013)\305\016N\214\352\244\255\211j\0059L\236\232\247\2070;\367L\314\023\321\022bx\0227\224A4\006B(\311\035d\244UU,\030\360\377^\006\004u\234\026\023\0363\247\307\240\\\361c\034\301\234\231\315\203-2\362\312\031\211=\205\371\202\302S\202\323\311\001\244$i\216\344B\330\352/\243\244\n\301@\263atV\005\372\021\2000\257\001J\221\242D\305\353\003\021\311\356<\206+\240J\306\261\352\3272\210\333l\315\267K\316\315\323\304*\202k\250|\0206\276*)5N\212\211e\210\242\251q3\315\253D[\254\025\215\3437\2266\206u\2154s}n\241\364\030\365\273B\226\246p\246\203~b\213\246\325\r\345\343A\343\361y\003-\376\022\334\3648\256\017\337K\024\225\246\251;J\344\014\234\220\004\354+\rm\273\272\205\022\004\212\035d?D\342\020\257o;\014Z\251\310\212zh\354}\354\2330\332\203*\245\003\237\2116\n\272T\025*\301\001t\345X\222\254\357\341\300O\257\004\363Ry\314\263Nz\357\277\235\312\366\025\2311\376\314\313\245o.E\231}\323\373\276\2730\323\314\303F+\326""\177W\273\376\373e|\334\335\177\336\234`pl\2040\267\326\224\\\241\232\0160sqq\337\200\334\243\031\013\234v8\210\370ZP\364\014u\246\265\312\346*\253\t\030\344\352m\336\301\377\027rE8P\220?\250xH";
+    PyObject *data = __Pyx_DecompressString(cstring, 1486, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (888 bytes) */
-const char* const cstring = "x\332\215T=o\333F\030\266\n\311\365G\212T\201\247\270Hi7\210\345\300\222\303\"\r\n\327v+\324M\207\024EldK\320\303\231<I\007\037?\304;JT\272x\344x\343\215\0349j\324\350\261\243G\215\372\t\376\t\275#E\352\254\244@\005\360\300{\236\367\343y?\250\267\004A\212\014\354\372!k\375lc\n/\t\3320\346\277cD\232\031e\014\232\216g#r\262kC\006[\003HB\264k\034Q6\"h\216e\357\022\363\t\264P\317#6\n\346\214\206\354\226\241\217`\310<\212?\"\343\304\310\315\n@\263\231\353\261K\233\002\320l\034\030\021\344vY\2574*\021\315\312\017P\007GMlyn\241*C\200B4\273\300\033\3222\220\272h\034\355y\303\346\320\013\354&\301\016f\245\231\302\201\302A\206/{\370\220R\305\336\267/P\335Z\357\306R'h\330Y\322\237#\313\372\331\310_\304P\027\215[Ho\372\262\323\014{ni\272\220\017\nn\341\371\341\027\253\007\335\256\234t#\233\374\276qrjx.E\301\000\005\215=\317\315\351\275\003#\247u\317+4\n\375\026r\231Z\207\306\247\2564\274\224I\245\353b\2614\177\343\3604{G\256\032{\327\3024\177\263)v|\202(\203\001;\244\024\204\3700_a\1774\3046\353\035\031\337\277|\341G?\001\360v\024\311\347\014[\014\374\211\"v\201:0\350RHG\256\205\275\226\345\005^\310\260\213h\261}\026\2217\200]\300\002\271\265\227\320\272R\302l\351\026\022V\254\037\032\310\202\000\350\204\256\005@\0271Y\276MP@3\r\271\220c\342Y\220\320\323\2263*\372\363\031\"\257\036\273\024\3332)\005\245\036\314\220C\257\206J+\221\007\002\300\201R\224<\243\013\271\225\345\212;\330UwIxvH\224Y\231n\021\037\000\027:\222+\230\002\327>L\337\363\265\017\002\200~\010I\356\024 \032d\031(b\3638\362m\336\220{\253\274\364\035h#je#je\rPM\226\372\t\241Y\271(\373\337\320\226Y\026.u1\231\206IN\235\021S\017\310\274\325J\313%\3016\310\342d\373\222\035\3643\033|]\271{\261R{\020\277\342[\374\234\367\004\274[]\251}\035\017\370;Q\027\007\t\234V7\027\334\264\372\345\365G^\347\317\305\353\344ib\245\365\364\371\370\327q\177\266\366 n\307@\274I\242\264?\256\216\337L\242\233\376?\225\351\372#\376\035?_\260\203\364\375\2446\271\230\364e\216\365\257$\370\2270g\325\265\270\022?\341\003\361.\251'\007\251""\314\241\200m\376Z<\025P\214\322J\016|+V\205\235\354$'\343\034\270]\177,\236%\325\244\235\200q\373?\220\3701\177%\266\304\271\350%pn\362M\246\034\336\356\3758)\342<\021\235\344,\255\334\356\037O\332\263\373\325>\342;\374%\377;\331OMUz\030\377\316\315\331\332\303\270_\2047\377\177\346\335\344YZM\333\267\315\263\233\366'5\316\252\017\365\226k\227Y\265v\267\261R[U\307f\334\220\202\314;ceCM\350C\262\235\3761\331\2741\325\214L9\310-5\310\037\370\027\274!v\256\333\323\265My\251\360m\361[RW\027s\272\241\n2\377\005\227\030q'";
-    PyObject *data = __Pyx_DecompressString(cstring, 888, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1365 bytes) */
+const char* const cstring = "x\332\215U\313o\032G\030\267#\374\306rh\2346\215\253t \017l9`\0239\310\305\330)\252\025)jU\305Q\036U\024u4^\006\263\362\262\013;\263<\362\250|\344\270\3079\356q\217\0349\372\330\243\217\034\371\023\374'\364\233\205]`C\253\"-\314\374\276\327\357{-\351\227\032%\214\"U\257Z\374YQe\344T\243\313h\370\311\027\325:R4\302\330a\302\323H)\206\316\211\252S3\201r\214\2674z\230(\022N\322\247\232\241\234\243g(\t.\252\032i\345\220\207\034\240\n1\317T=ujpnTr(\223\2556\017PC-\3622\\vw\037\036$Q\356\377Y%\023G\036\237zJ-\r\243j\344\224j\t4$\0222\332\227\221J\3007\325\240\352Y\231\347\220n\230\025\242\rA\246~\2449\304\000\320\250y\200\024C3\314\034\272\237\335\315>\311f\017\022GA\021\374\317\247Oh\024\024}\3712\241\220\337\001j\2236y\252\245\274\242\001\343\212Q\244\332\220t\235h\026M\240\t\335\351\265\234,\3236\332\364\304\212\305 ?\354Y\240\317\237Q2\271\005%\334\234\020z\226c.\244\365\327\362m\224\034\224\177\250\365doW\326y\353\277Bm\205\231C\337\024Z6\264\"5\207\374\307\220\304\244.\261\270!\353\216\016\321@\325\007Bz\3039,\006z>\020\322\253\220\246F\3653H\305W\014\220\220f\325\244%\265\231Ra~}\226\036\202%\022\3225\215\006\013\034\312KH\316\312F#\3250\314bJS+*\017T%\216%\216=<d\245\300\242\2312\211@?@\246\371\257\302\322I_\223\336}4l1^\323)\365dV)\224\375\000\231\226=oUG\276\344%$\037%\236\252B\357\270j\350\201\372(y\354\313&\255?\374\254\224\211~\006\223\276\351\255\301\026:<B\206\316\250Y\247\346f\322\320\007\342\344c4\020\207\255\317i\313\252\246\251\316\345\260m~m\316\254S\010\016\346\243M\013\371@;\243-\035[Z\252\313F\234)*\033\234\212L\255T5\31281\371\016c\330Rw\274]NW[\030\277l5\3419V\025\216\177\247M\376\212\226\340\315\303\010k\351\212j\244\025\3034,\016\357H\346O\267\377\213\201\220\267\334A\347\025\r\364\260\252cn\302\316\234\022\020\215\255\334\370\262b\231\221\367@4K\343\376F\320:T\003\343\222\245+\030\237Q\016\365+\302\013\215\311\316z\214\007\264\363\020\226h\354(]i\371E\236\"\030\224O\325\231Z\004V\014\007\251\250\234V\330yC\246\351\275\3760\256\300\277\200\374n""\276\202\005\t\266\256\242\352\362\016\002\243hi\024~\203p#\377\030\353\244\0022_\342\343c\357\215\252Q\035\333\317j\023\343\232E\264\201\231I\231\\J\371\310\202b\314(\037z\204\323\260<\023\333\022Z\314\261\326\246\275\326\246\275R\310\0161/g\352U\177lE0\346\200\311\357&\227\017\366\014\344\211\230\224p\225kTn\2127o\336\027\253[\224\253\245\226\327\272A\377\000\237\262\036\027\263\327{3s+\355m\373\304.\013\322\213,{GU\324\374#\240\375\310J\373\251}\303\336\024q\320_\237\231\213\006\327B\177q\245\235\0035*\366\235L/\272\332\273y\313\336\263\231x\010\036\326\277\263\353\342D\234\273\267]\342Z\235B?\000n\271\005\367M'\336\273\265.\365\263\"&\266\2357n\274\037]k\327\301\331\271s\333!=\360\234\351-\177c\307\355\014\204\315\317\314\255\266\237\333\017lb\267\234y\247\350\306\335\237:\205\353\371qxV^\027/\032m\322n\330\236\203\247\366\002\220\211\367\2421\373{\021\227\211d\355u?\327\305\366l{\303.\004\007i}\023\010\274\006>\217\201\300\270\266\224\255\333\373\"\347\274\003\356\357;\177]\236\364\"kmn\347\304;\247\340\274u\217\272\261~d\341\342\243\035\263\323\036\277\373\356\211\253w\177\351\326\372\213\321v\241\215\305\257\316\347N\246s\334]\271\314\377]\273zy\322[\372\326VDl$\376\330\331\350\276\270|uY\203`K\253\000\376)2}\217\334=\250\333k'\346<v\003\332\317\305\003AD\313\235\035\000?\212yQt\342\316ag\000\\-\335\025\217\234\010P\303P\370I\344\017\367mg\257S\353\256]\326\006\306w\241\005\353\320\230\262C\206\306?\210\347\316\003\207\\%\367\273\276\277{\242\344\034\273\263W[\371n\341\253\230\375p\255\006]\200f\312.\354A; \323^\364\246\275\004\t\017cf\246\021]\270\340\240^\263\327\004w\366\234\032\244'\313s\265:\214\356\336\351\304\376\215s\302y\344F\334\302U\352\3702<\027\275HtrHb\366\234\375^4\034\3424\240I\220\317\302E\2557\034e\315\201y\271#n\210\270\310H\335%\351|C\370t7dS\326\306\307d\354\322\217\314]\337\233\231\233\277FS\307\265\017K\225\204\t\211_\247g\226\345\250}p6\334\337`\"2r\3302\377\000l5\326f";
+    PyObject *data = __Pyx_DecompressString(cstring, 1365, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1744 bytes) */
-const char* const bytes = "Please input.?disable\n        <el-input v-model=\"data.value\" :style=\"data.style\" :placeholder=\"data.placeholder\"\n        :autosize = \"data.autosize\"\n        :disabled = \"data.disabled\"\n        :maxlength = \"data.maxlength\"\n        :prefix-icon=\"data.prefix_icon\"\n        :rows = \"data.rows\"\n        :show-word-limit = \"data.show_word_limit\"\n        :show-password = \"data.show_password\"\n        :size = \"data.size\"\n        :suffix-icon=\"data.suffix_icon\"\n        :type = \"data.type\"\n        :word-limit-position = \"data.word_limit_position\"\n        \\@change=\"(value) => onserver('onchange', value)\"\n        \\@keyup.enter=\"(e) => onserver('onsubmit', data.value)\"\n         />\n    enablegcisenabledsimplestart/ss_ui/input.pywidth: 240px;__Pyx_PyDict_NextRefargsasyncio.coroutinesautosizecline_in_tracebackdatadefaultdisabledevent__func__gethandlersinputinput.<locals>.myonchangeinput.<locals>.myonsubmitinside_is_coroutineitemskwargslarge__main__maxRowsmaxlengthminRows__module__myonchangemyonsubmit__name__onchangeonsubmitplaceholderpopprefix_icon__qualname__resrows__set_name__setdefaultshow_passwordshow_word_limitsimplestart.ss_ui.inputsizesmallss_corestylesuffix_icontemplate__test__texttext_inputtypevalid_sizesvaluevaluesword_limit_position\200\001\3600\000\005\014\2106\220\024\220Q\220h\230a\360\006\000\005\020\210v\220T\230\021\230,\240a\330\004\013\2106\220\024\220Q\220h\230a\330\004\007\200z\220\021\220*\230F\240$\240c\250\021\250*\260C\260q\340\010\014\210A\210_\230K\240x\250q\260\004\260K\270x\300q\310\001\330\t\022\220#\220Q\340\010\014\210A\210_\230K\240v\250[\270\005\270R\270q\360\006\000\t\r\210A\210^\2301\340\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\330\004\010\210\001\210\032\2206""\230\024\230Q\230h\240a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\320\t\036\230f\240D\250\001\320)<\270A\340\004\013\2106\220\024\220Q\220h\230a\330\004\022\220!\2204\220{\240)\2501\330\004\007\200u\210G\2201\340\010\017\210q\330\004\010\210\001\210\032\2201\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\320\t\"\240&\250\004\250A\320-D\300A\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\340\004\017\210v\220T\230\021\230,\240a\330\004\017\210v\220T\230\021\230,\240a\340\004\005\360\n\000\005\006\360\n\000\005\013\210(\220!\2201\360 \000\n\020\210v\220\\\240\033\250L\270\013\3001\330\004\013\2101\200\001\360\024\000\005\014\2105\220\002\220(\230!\200A\330\010\013\2105\220\001\220\033\230E\240\021\330\010\013\2101\330\n\022\220!\2201";
+    #else /* compression: none (2830 bytes) */
+const char* const bytes = ".Please input?disable\n        <div class=\"input-container\" :style=\"data.block ? 'display: block; margin-bottom: 16px; width: 100%;' : 'display: block; margin-bottom: 16px;'\"><div v-if=\"data.label\" style=\"margin-bottom: 8px; font-weight: normal; font-size: smaller; color: #606266;\">\n                {{ data.label }}\n            </div>\n            <el-input v-model=\"data.value\" \n            :style=\"data.block ? 'width: 100%;' + (data.custom_style || '') : ((data.custom_width ? 'width: ' + data.custom_width + ';' : 'width: 240px;') + (data.custom_style || ''))\" \n            :placeholder=\"data.placeholder\"\n            :autosize = \"data.autosize\"\n            :disabled = \"data.disabled\"\n            :maxlength = \"data.maxlength\"\n            :prefix-icon=\"data.prefix_icon\"\n            :rows = \"data.rows\"\n            :show-word-limit = \"data.show_word_limit\"\n            :clearable = \"data.clearable\"\n            :show-password = \"data.show_password\"\n            :size = \"data.size\"\n            :suffix-icon=\"data.suffix_icon\"\n            :type = \"data.type\"\n            :word-limit-position = \"data.word_limit_position\"\n            \\@change=\"(value) => onserver('onchange', value)\"\n            \\@keyup.enter=\"(e) => onserver('onsubmit', data.value)\"\n             />\n        </div>\n    enablegcisenabledsimplestart/ss_ui/input.py__Pyx_PyDict_NextRefargsasyncio.coroutinesautosizeautosize_valblockclearablecline_in_tracebackcustom_stylecustom_width_datadatadefaultdisabledevent__func__gethandlersiconinputinput.<locals>.myonchangeinput.<locals>.myonsubmitinside_is_coroutineitemskwargslabel__main__maxRowsmaxlengthminRows__module__myonchangemyonsubmit__name__onchangeonsubmitplaceholderpopprefix_iconpx__qualname__resrowsrows_val__set_name__setdefaultshow_passwordshow_word_limitsimplestart.ss_ui.inputsizess_corestylesuffix_icon__test__texttext_inputtextareatitletypevaluevaluesvuetifywidthwidth_valword_limit_position\200\001\3604""\000\005\013\210+\220Q\220h\230a\330\004\n\210+\220Q\220i\230q\330\004\n\210+\220Q\220h\230a\340\004\013\2105\220\002\220(\230!\200\001\360\024\000\005\014\2105\220\002\220(\230!\200A\340\010\013\210:\220Q\220e\2308\2401\330\014\r\330\020\023\2204\220s\230%\230q\330\024\027\220v\230Q\230k\250\025\250a\250u\260A\340\024\027\220v\230Q\230k\250\023\250A\250U\260!\330\023\024\330\020\023\2206\230\021\230+\240U\250!\340\014\017\210v\220Q\220k\240\025\240a\330\010\013\2101\330\n\022\220!\2201\200\001\360<\000\005\r\210F\220$\220a\220y\240\006\240d\250!\2509\260A\360\006\000\005\r\210F\220$\220a\220y\240\001\360\006\000\005\010\200w\210a\210w\220a\330\010\013\2105\220\007\220s\230!\330\014\021\220\031\230!\340\004\013\2106\220\024\220Q\220h\230a\330\004\010\210\001\210\033\220A\330\004\010\210\001\210\033\220A\360\006\000\005\020\210v\220T\230\021\230,\240a\330\004\013\2106\220\024\220Q\220h\230a\360\006\000\005\024\2208\230:\240W\250A\250Z\260~\300Q\330\004\017\210t\220:\230W\240A\240V\250>\270\021\340\004\007\200z\220\021\220.\240\006\240d\250#\250Q\250n\270C\270q\340\010\014\210A\210_\230K\240|\2601\260D\270\013\300<\310q\320PQ\330\t\026\220c\230\021\340\010\014\210A\210_\230K\240z\260\033\270I\300R\300q\360\006\000\t\r\210A\210^\2301\340\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\340\004\010\210\001\320\t\032\230&\240\004\240A\240X\250V\2604\260q\270\017\300q\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\320\t\036\230f\240D\250\001\320)<\270A\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\340\004\013\2106\220\024\220Q\220h\230a\360\006\000\005\010\200w\210a\210v\220Q\330\010\013\2104\210w\220c\230\021\330\014\020\220\t\230\021\340\004\010\210\001\210\032\2201\330\004\010\210\001\320\t\032""\230&\240\004\240A\240_\260A\340\004\007\200t\2104\210q\220\017\230t\2404\240q\250\001\330\010\014\210A\320\r\036\230f\240D\250\001\250\030\260\021\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\320\t\"\240&\250\004\250A\320-D\300A\360\006\000\005\r\210F\220$\220a\220y\240\001\330\004\014\210F\220$\220a\220y\240\001\360\006\000\005\021\220\005\220Z\230w\240a\240w\250n\270A\330\004\007\200q\330\010\013\210:\220Q\220l\240!\330\014\030\230\002\230!\2301\360\006\000\005\t\210\001\320\t\033\2301\330\004\010\210\001\320\t\033\2301\340\004\017\210v\220T\230\021\230,\240a\330\004\017\210v\220T\230\021\230,\240a\340\004\005\360\036\000\005\006\360 \000\005\r\210F\220$\220a\220y\240\006\240d\250!\2509\260A\340\004\n\210'\220\021\220!\360.\000\n\020\210v\220\\\240\033\250L\270\013\3001\330\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 66; i++) {
+    for (int i = 0; i < 76; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 11) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 10) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -4361,7 +5492,7 @@ const char* const bytes = "Please input.?disable\n        <el-input v-model=\"da
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 66; i < 69; i++) {
+    for (int i = 76; i < 80; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -4372,15 +5503,15 @@ const char* const bytes = "Please input.?disable\n        <el-input v-model=\"da
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 69; i++) {
+    for (Py_ssize_t i = 0; i < 80; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 66;
-      for (Py_ssize_t i=0; i<3; ++i) {
+      PyObject **table = stringtab + 76;
+      for (Py_ssize_t i=0; i<4; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
         if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -4399,8 +5530,8 @@ const char* const bytes = "Please input.?disable\n        <el-input v-model=\"da
   }
   {
     PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 0;
-    int8_t const cint_constants_1[] = {2,5};
-    for (int i = 0; i < 2; i++) {
+    int8_t const cint_constants_1[] = {2,3,5};
+    for (int i = 0; i < 3; i++) {
       numbertab[i] = PyLong_FromLong(cint_constants_1[i - 0]);
       if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
     }
@@ -4408,7 +5539,7 @@ const char* const bytes = "Please input.?disable\n        <el-input v-model=\"da
   #if CYTHON_IMMORTAL_CONSTANTS
   {
     PyObject **table = __pyx_mstate->__pyx_number_tab;
-    for (Py_ssize_t i=0; i<2; ++i) {
+    for (Py_ssize_t i=0; i<3; ++i) {
       #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
       #if PY_VERSION_HEX < 0x030E0000
       if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -4433,9 +5564,9 @@ typedef struct {
     unsigned int argcount : 1;
     unsigned int num_posonly_args : 1;
     unsigned int num_kwonly_args : 1;
-    unsigned int nlocals : 4;
+    unsigned int nlocals : 5;
     unsigned int flags : 10;
-    unsigned int first_line : 7;
+    unsigned int first_line : 8;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -4452,24 +5583,29 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 66};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 109};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_5_E_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_Qe81_4s_q_vQk_auA_vQk_AU_6_U_v, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 71};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 124};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_kp_b_iso88591_A_5_E_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_kp_b_iso88591_A_Qe81_4s_q_vQk_auA_vQk_AU_6_U_v, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 14, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 4};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_autosize, __pyx_mstate->__pyx_n_u_rows, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_n_u_valid_sizes, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_onsubmit, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_input, __pyx_mstate->__pyx_kp_b_iso88591_0_6_Qha_vT_a_6_Qha_z_F_c_Cq_A_K, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 20, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 4};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_label, __pyx_mstate->__pyx_n_u_block, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_autosize, __pyx_mstate->__pyx_n_u_rows, __pyx_mstate->__pyx_n_u_autosize_val, __pyx_mstate->__pyx_n_u_rows_val, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_width_val, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_onsubmit, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_n_u_res};
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_input, __pyx_mstate->__pyx_kp_b_iso88591_F_ay_d_9A_F_ay_wawa_5_s_6_Qha_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 95};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 168};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_text_input, __pyx_mstate->__pyx_kp_b_iso88591_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 181};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs};
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_textarea, __pyx_mstate->__pyx_kp_b_iso88591_4_Qha_Qiq_Qha_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -5630,9 +6766,374 @@ static void __Pyx_RaiseArgtupleInvalid(
                  (num_expected == 1) ? "" : "s", num_found);
 }
 
+/* pybytes_as_double (used by pynumber_float) */
+static double __Pyx_SlowPyString_AsDouble(PyObject *obj) {
+    PyObject *float_value = PyFloat_FromString(obj);
+    if (likely(float_value)) {
+        double value = __Pyx_PyFloat_AS_DOUBLE(float_value);
+        Py_DECREF(float_value);
+        return value;
+    }
+    return (double)-1;
+}
+static const char* __Pyx__PyBytes_AsDouble_Copy(const char* start, char* buffer, Py_ssize_t length) {
+    int last_was_punctuation = 1;
+    int parse_error_found = 0;
+    Py_ssize_t i;
+    for (i=0; i < length; i++) {
+        char chr = start[i];
+        int is_punctuation = (chr == '_') | (chr == '.') | (chr == 'e') | (chr == 'E');
+        *buffer = chr;
+        buffer += (chr != '_');
+        parse_error_found |= last_was_punctuation & is_punctuation;
+        last_was_punctuation = is_punctuation;
+    }
+    parse_error_found |= last_was_punctuation;
+    *buffer = '\0';
+    return unlikely(parse_error_found) ? NULL : buffer;
+}
+static double __Pyx__PyBytes_AsDouble_inf_nan(const char* start, Py_ssize_t length) {
+    int matches = 1;
+    char sign = start[0];
+    int is_signed = (sign == '+') | (sign == '-');
+    start += is_signed;
+    length -= is_signed;
+    switch (start[0]) {
+        #ifdef Py_NAN
+        case 'n':
+        case 'N':
+            if (unlikely(length != 3)) goto parse_failure;
+            matches &= (start[1] == 'a' || start[1] == 'A');
+            matches &= (start[2] == 'n' || start[2] == 'N');
+            if (unlikely(!matches)) goto parse_failure;
+            return (sign == '-') ? -Py_NAN : Py_NAN;
+        #endif
+        case 'i':
+        case 'I':
+            if (unlikely(length < 3)) goto parse_failure;
+            matches &= (start[1] == 'n' || start[1] == 'N');
+            matches &= (start[2] == 'f' || start[2] == 'F');
+            if (likely(length == 3 && matches))
+                return (sign == '-') ? -Py_HUGE_VAL : Py_HUGE_VAL;
+            if (unlikely(length != 8)) goto parse_failure;
+            matches &= (start[3] == 'i' || start[3] == 'I');
+            matches &= (start[4] == 'n' || start[4] == 'N');
+            matches &= (start[5] == 'i' || start[5] == 'I');
+            matches &= (start[6] == 't' || start[6] == 'T');
+            matches &= (start[7] == 'y' || start[7] == 'Y');
+            if (unlikely(!matches)) goto parse_failure;
+            return (sign == '-') ? -Py_HUGE_VAL : Py_HUGE_VAL;
+        case '.': case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+            break;
+        default:
+            goto parse_failure;
+    }
+    return 0.0;
+parse_failure:
+    return -1.0;
+}
+static CYTHON_INLINE int __Pyx__PyBytes_AsDouble_IsSpace(char ch) {
+    return (ch == 0x20) | !((ch < 0x9) | (ch > 0xd));
+}
+CYTHON_UNUSED static double __Pyx__PyBytes_AsDouble(PyObject *obj, const char* start, Py_ssize_t length) {
+    double value;
+    Py_ssize_t i, digits;
+    const char *last = start + length;
+    char *end;
+    while (__Pyx__PyBytes_AsDouble_IsSpace(*start))
+        start++;
+    while (start < last - 1 && __Pyx__PyBytes_AsDouble_IsSpace(last[-1]))
+        last--;
+    length = last - start;
+    if (unlikely(length <= 0)) goto fallback;
+    value = __Pyx__PyBytes_AsDouble_inf_nan(start, length);
+    if (unlikely(value == -1.0)) goto fallback;
+    if (value != 0.0) return value;
+    digits = 0;
+    for (i=0; i < length; digits += start[i++] != '_');
+    if (likely(digits == length)) {
+        value = PyOS_string_to_double(start, &end, NULL);
+    } else if (digits < 40) {
+        char number[40];
+        last = __Pyx__PyBytes_AsDouble_Copy(start, number, length);
+        if (unlikely(!last)) goto fallback;
+        value = PyOS_string_to_double(number, &end, NULL);
+    } else {
+        char *number = (char*) PyMem_Malloc((digits + 1) * sizeof(char));
+        if (unlikely(!number)) goto fallback;
+        last = __Pyx__PyBytes_AsDouble_Copy(start, number, length);
+        if (unlikely(!last)) {
+            PyMem_Free(number);
+            goto fallback;
+        }
+        value = PyOS_string_to_double(number, &end, NULL);
+        PyMem_Free(number);
+    }
+    if (likely(end == last) || (value == (double)-1 && PyErr_Occurred())) {
+        return value;
+    }
+fallback:
+    return __Pyx_SlowPyString_AsDouble(obj);
+}
+
+/* pynumber_float */
+static CYTHON_INLINE PyObject* __Pyx__PyNumber_Float(PyObject* obj) {
+    double val;
+    if (PyLong_CheckExact(obj)) {
+#if CYTHON_USE_PYLONG_INTERNALS
+        if (likely(__Pyx_PyLong_IsCompact(obj))) {
+            val = (double) __Pyx_PyLong_CompactValue(obj);
+            goto no_error;
+        }
+#endif
+        val = PyLong_AsDouble(obj);
+    } else if (PyUnicode_CheckExact(obj)) {
+        val = __Pyx_PyUnicode_AsDouble(obj);
+    } else if (PyBytes_CheckExact(obj)) {
+        val = __Pyx_PyBytes_AsDouble(obj);
+    } else if (PyByteArray_CheckExact(obj)) {
+        val = __Pyx_PyByteArray_AsDouble(obj);
+    } else {
+        return PyNumber_Float(obj);
+    }
+    if (unlikely(val == -1 && PyErr_Occurred())) {
+        return NULL;
+    }
+#if CYTHON_USE_PYLONG_INTERNALS
+no_error:
+#endif
+    return PyFloat_FromDouble(val);
+}
+
 /* RaiseClosureNameError */
 static void __Pyx_RaiseClosureNameError(const char *varname) {
     PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
+}
+
+/* GetTopmostException (used by SaveResetException) */
+#if CYTHON_USE_EXC_INFO_STACK && CYTHON_FAST_THREAD_STATE
+static _PyErr_StackItem *
+__Pyx_PyErr_GetTopmostException(PyThreadState *tstate)
+{
+    _PyErr_StackItem *exc_info = tstate->exc_info;
+    while ((exc_info->exc_value == NULL || exc_info->exc_value == Py_None) &&
+           exc_info->previous_item != NULL)
+    {
+        exc_info = exc_info->previous_item;
+    }
+    return exc_info;
+}
+#endif
+
+/* SaveResetException */
+#if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx__ExceptionSave(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+  #if CYTHON_USE_EXC_INFO_STACK && PY_VERSION_HEX >= 0x030B00a4
+    _PyErr_StackItem *exc_info = __Pyx_PyErr_GetTopmostException(tstate);
+    PyObject *exc_value = exc_info->exc_value;
+    if (exc_value == NULL || exc_value == Py_None) {
+        *value = NULL;
+        *type = NULL;
+        *tb = NULL;
+    } else {
+        *value = exc_value;
+        Py_INCREF(*value);
+        *type = (PyObject*) Py_TYPE(exc_value);
+        Py_INCREF(*type);
+        *tb = PyException_GetTraceback(exc_value);
+    }
+  #elif CYTHON_USE_EXC_INFO_STACK
+    _PyErr_StackItem *exc_info = __Pyx_PyErr_GetTopmostException(tstate);
+    *type = exc_info->exc_type;
+    *value = exc_info->exc_value;
+    *tb = exc_info->exc_traceback;
+    Py_XINCREF(*type);
+    Py_XINCREF(*value);
+    Py_XINCREF(*tb);
+  #else
+    *type = tstate->exc_type;
+    *value = tstate->exc_value;
+    *tb = tstate->exc_traceback;
+    Py_XINCREF(*type);
+    Py_XINCREF(*value);
+    Py_XINCREF(*tb);
+  #endif
+}
+static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+  #if CYTHON_USE_EXC_INFO_STACK && PY_VERSION_HEX >= 0x030B00a4
+    _PyErr_StackItem *exc_info = tstate->exc_info;
+    PyObject *tmp_value = exc_info->exc_value;
+    exc_info->exc_value = value;
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(type);
+    Py_XDECREF(tb);
+  #else
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    #if CYTHON_USE_EXC_INFO_STACK
+    _PyErr_StackItem *exc_info = tstate->exc_info;
+    tmp_type = exc_info->exc_type;
+    tmp_value = exc_info->exc_value;
+    tmp_tb = exc_info->exc_traceback;
+    exc_info->exc_type = type;
+    exc_info->exc_value = value;
+    exc_info->exc_traceback = tb;
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = type;
+    tstate->exc_value = value;
+    tstate->exc_traceback = tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+  #endif
+}
+#endif
+
+/* PyErrExceptionMatches */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    int result;
+    PyObject *exc_type;
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *current_exception = tstate->current_exception;
+    if (unlikely(!current_exception)) return 0;
+    exc_type = (PyObject*) Py_TYPE(current_exception);
+    if (exc_type == err) return 1;
+#else
+    exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+#endif
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_INCREF(exc_type);
+    #endif
+    if (unlikely(PyTuple_Check(err))) {
+        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    } else {
+        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+    }
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_DECREF(exc_type);
+    #endif
+    return result;
+}
+#endif
+
+/* GetException */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb)
+#else
+static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb)
+#endif
+{
+    PyObject *local_type = NULL, *local_value, *local_tb = NULL;
+#if CYTHON_FAST_THREAD_STATE
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+  #if PY_VERSION_HEX >= 0x030C0000
+    local_value = tstate->current_exception;
+    tstate->current_exception = 0;
+  #else
+    local_type = tstate->curexc_type;
+    local_value = tstate->curexc_value;
+    local_tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+  #endif
+#elif __PYX_LIMITED_VERSION_HEX > 0x030C0000
+    local_value = PyErr_GetRaisedException();
+#else
+    PyErr_Fetch(&local_type, &local_value, &local_tb);
+#endif
+#if __PYX_LIMITED_VERSION_HEX > 0x030C0000
+    if (likely(local_value)) {
+        local_type = (PyObject*) Py_TYPE(local_value);
+        Py_INCREF(local_type);
+        local_tb = PyException_GetTraceback(local_value);
+    }
+#else
+    PyErr_NormalizeException(&local_type, &local_value, &local_tb);
+#if CYTHON_FAST_THREAD_STATE
+    if (unlikely(tstate->curexc_type))
+#else
+    if (unlikely(PyErr_Occurred()))
+#endif
+        goto bad;
+    if (local_tb) {
+        if (unlikely(PyException_SetTraceback(local_value, local_tb) < 0))
+            goto bad;
+    }
+#endif // __PYX_LIMITED_VERSION_HEX > 0x030C0000
+    Py_XINCREF(local_tb);
+    Py_XINCREF(local_type);
+    Py_XINCREF(local_value);
+    *type = local_type;
+    *value = local_value;
+    *tb = local_tb;
+#if CYTHON_FAST_THREAD_STATE
+    #if CYTHON_USE_EXC_INFO_STACK
+    {
+        _PyErr_StackItem *exc_info = tstate->exc_info;
+      #if PY_VERSION_HEX >= 0x030B00a4
+        tmp_value = exc_info->exc_value;
+        exc_info->exc_value = local_value;
+        tmp_type = NULL;
+        tmp_tb = NULL;
+        Py_XDECREF(local_type);
+        Py_XDECREF(local_tb);
+      #else
+        tmp_type = exc_info->exc_type;
+        tmp_value = exc_info->exc_value;
+        tmp_tb = exc_info->exc_traceback;
+        exc_info->exc_type = local_type;
+        exc_info->exc_value = local_value;
+        exc_info->exc_traceback = local_tb;
+      #endif
+    }
+    #else
+    tmp_type = tstate->exc_type;
+    tmp_value = tstate->exc_value;
+    tmp_tb = tstate->exc_traceback;
+    tstate->exc_type = local_type;
+    tstate->exc_value = local_value;
+    tstate->exc_traceback = local_tb;
+    #endif
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#elif __PYX_LIMITED_VERSION_HEX >= 0x030b0000
+    PyErr_SetHandledException(local_value);
+    Py_XDECREF(local_value);
+    Py_XDECREF(local_type);
+    Py_XDECREF(local_tb);
+#else
+    PyErr_SetExcInfo(local_type, local_value, local_tb);
+#endif
+    return 0;
+#if __PYX_LIMITED_VERSION_HEX <= 0x030C0000
+bad:
+    *type = 0;
+    *value = 0;
+    *tb = 0;
+    Py_XDECREF(local_type);
+    Py_XDECREF(local_value);
+    Py_XDECREF(local_tb);
+    return -1;
+#endif
 }
 
 /* PyObjectCall2Args (used by CallUnboundCMethod1) */
@@ -5723,6 +7224,123 @@ static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObjec
     }
     return value;
 }
+
+/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *tmp_value;
+    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
+    if (value) {
+        #if CYTHON_COMPILING_IN_CPYTHON
+        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
+        #endif
+            PyException_SetTraceback(value, tb);
+    }
+    tmp_value = tstate->current_exception;
+    tstate->current_exception = value;
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(type);
+    Py_XDECREF(tb);
+#else
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject* exc_value;
+    exc_value = tstate->current_exception;
+    tstate->current_exception = 0;
+    *value = exc_value;
+    *type = NULL;
+    *tb = NULL;
+    if (exc_value) {
+        *type = (PyObject*) Py_TYPE(exc_value);
+        Py_INCREF(*type);
+        #if CYTHON_COMPILING_IN_CPYTHON
+        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
+        Py_XINCREF(*tb);
+        #else
+        *tb = PyException_GetTraceback(exc_value);
+        #endif
+    }
+#else
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#endif
+}
+#endif
+
+/* PyObjectGetAttrStrNoError (used by HasAttr) */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
+        __Pyx_PyErr_Clear();
+}
+#endif
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
+    PyObject *result;
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
+    return result;
+#else
+#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
+        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
+    }
+#endif
+    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
+    if (unlikely(!result)) {
+        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
+    }
+    return result;
+#endif
+}
+
+/* HasAttr */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
+    PyObject *r;
+    if (unlikely(!PyUnicode_Check(n))) {
+        PyErr_SetString(PyExc_TypeError,
+                        "hasattr(): attribute name must be string");
+        return -1;
+    }
+    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
+    if (!r) {
+        return (unlikely(PyErr_Occurred())) ? -1 : 0;
+    } else {
+        Py_DECREF(r);
+        return 1;
+    }
+}
+#endif
+
+/* PyObjectSetAttrStr */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_setattro))
+        return tp->tp_setattro(obj, attr_name, value);
+    return PyObject_SetAttr(obj, attr_name, value);
+}
+#endif
 
 /* GetItemInt */
 static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
@@ -5924,6 +7542,93 @@ static CYTHON_INLINE PyObject* __Pyx_PyLong_AddObjC(PyObject *op1, PyObject *op2
     }
     return __Pyx_Fallback___Pyx_PyLong_AddObjC(op1, op2, inplace);
 }
+#endif
+
+/* DictGetItem */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
+    PyObject *value;
+    if (unlikely(__Pyx_PyDict_GetItemRef(d, key, &value) == 0)) { // no value, no error
+        if (unlikely(PyTuple_Check(key))) {
+            PyObject* args = PyTuple_Pack(1, key);
+            if (likely(args)) {
+                PyErr_SetObject(PyExc_KeyError, args);
+                Py_DECREF(args);
+            }
+        } else {
+            PyErr_SetObject(PyExc_KeyError, key);
+        }
+    }
+    return value;
+}
+#endif
+
+/* UnicodeConcatInPlace */
+# if CYTHON_COMPILING_IN_CPYTHON
+static int
+__Pyx_unicode_modifiable(PyObject *unicode, int unsafe_shared)
+{
+    if (!__Pyx_IS_UNIQUELY_REFERENCED(unicode, unsafe_shared))
+        return 0;
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX > 0x030F0000
+    if (PyUnstable_Unicode_GET_CACHED_HASH(unicode) != -1)
+        return 0;
+#endif
+    if (!PyUnicode_CheckExact(unicode))
+        return 0;
+    if (PyUnicode_CHECK_INTERNED(unicode))
+        return 0;
+    return 1;
+}
+static CYTHON_INLINE PyObject *__Pyx_PyUnicode_ConcatInPlaceImpl(PyObject **p_left, PyObject *right, int unsafe_shared
+        #if CYTHON_REFNANNY
+        , void* __pyx_refnanny
+        #endif
+    ) {
+    PyObject *left = *p_left;
+    Py_ssize_t left_len, right_len, new_len;
+    if (unlikely(__Pyx_PyUnicode_READY(left) == -1))
+        return NULL;
+    if (unlikely(__Pyx_PyUnicode_READY(right) == -1))
+        return NULL;
+    left_len = PyUnicode_GET_LENGTH(left);
+    if (left_len == 0) {
+        Py_INCREF(right);
+        return right;
+    }
+    right_len = PyUnicode_GET_LENGTH(right);
+    if (right_len == 0) {
+        Py_INCREF(left);
+        return left;
+    }
+    if (unlikely(left_len > PY_SSIZE_T_MAX - right_len)) {
+        PyErr_SetString(PyExc_OverflowError,
+                        "strings are too large to concat");
+        return NULL;
+    }
+    new_len = left_len + right_len;
+    if (__Pyx_unicode_modifiable(left, unsafe_shared)
+            && PyUnicode_CheckExact(right)
+            && PyUnicode_KIND(right) <= PyUnicode_KIND(left)
+            && !(PyUnicode_IS_ASCII(left) && !PyUnicode_IS_ASCII(right))) {
+        int ret;
+        __Pyx_GIVEREF(*p_left);
+        ret = PyUnicode_Resize(p_left, new_len);
+        __Pyx_GOTREF(*p_left);
+        if (unlikely(ret != 0))
+            return NULL;
+        #if PY_VERSION_HEX >= 0x030d0000
+        if (unlikely(PyUnicode_CopyCharacters(*p_left, left_len, right, 0, right_len) < 0)) return NULL;
+        #else
+        _PyUnicode_FastCopyCharacters(*p_left, left_len, right, 0, right_len);
+        #endif
+        __Pyx_INCREF(*p_left);
+        __Pyx_GIVEREF(*p_left);
+        return *p_left;
+    } else {
+        return __Pyx_PyUnicode_Concat(left, right);
+    }
+  }
 #endif
 
 /* dict_setdefault (used by FetchCommonType) */
@@ -7465,135 +9170,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
     return op;
 }
 
-/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    int result;
-    PyObject *exc_type;
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *current_exception = tstate->current_exception;
-    if (unlikely(!current_exception)) return 0;
-    exc_type = (PyObject*) Py_TYPE(current_exception);
-    if (exc_type == err) return 1;
-#else
-    exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-#endif
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_INCREF(exc_type);
-    #endif
-    if (unlikely(PyTuple_Check(err))) {
-        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    } else {
-        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-    }
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_DECREF(exc_type);
-    #endif
-    return result;
-}
-#endif
-
-/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *tmp_value;
-    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
-    if (value) {
-        #if CYTHON_COMPILING_IN_CPYTHON
-        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
-        #endif
-            PyException_SetTraceback(value, tb);
-    }
-    tmp_value = tstate->current_exception;
-    tstate->current_exception = value;
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(type);
-    Py_XDECREF(tb);
-#else
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject* exc_value;
-    exc_value = tstate->current_exception;
-    tstate->current_exception = 0;
-    *value = exc_value;
-    *type = NULL;
-    *tb = NULL;
-    if (exc_value) {
-        *type = (PyObject*) Py_TYPE(exc_value);
-        Py_INCREF(*type);
-        #if CYTHON_COMPILING_IN_CPYTHON
-        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
-        Py_XINCREF(*tb);
-        #else
-        *tb = PyException_GetTraceback(exc_value);
-        #endif
-    }
-#else
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#endif
-}
-#endif
-
-/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
-        __Pyx_PyErr_Clear();
-}
-#endif
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
-    PyObject *result;
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
-    return result;
-#else
-#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
-        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
-    }
-#endif
-    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
-    if (unlikely(!result)) {
-        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
-    }
-    return result;
-#endif
-}
-
 /* GetBuiltinName (used by GetModuleGlobalName) */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
@@ -8011,25 +9587,6 @@ static int __Pyx_PyType_Ready(PyTypeObject *t) {
 #endif
 }
 
-/* HasAttr (used by ImportImpl) */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
-    PyObject *r;
-    if (unlikely(!PyUnicode_Check(n))) {
-        PyErr_SetString(PyExc_TypeError,
-                        "hasattr(): attribute name must be string");
-        return -1;
-    }
-    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
-    if (!r) {
-        return (unlikely(PyErr_Occurred())) ? -1 : 0;
-    } else {
-        Py_DECREF(r);
-        return 1;
-    }
-}
-#endif
-
 /* ImportImpl (used by Import) */
 static int __Pyx__Import_GetModule(PyObject *qualname, PyObject **module) {
     PyObject *imported_module = PyImport_GetModule(qualname);
@@ -8162,7 +9719,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         if (unlikely(!module_name_str)) { goto modbad; }
         module_name = PyUnicode_FromString(module_name_str);
         if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__2);
+        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u_);
         if (unlikely(!module_dot)) { goto modbad; }
         full_name = PyUnicode_Concat(module_dot, name);
         if (unlikely(!full_name)) { goto modbad; }

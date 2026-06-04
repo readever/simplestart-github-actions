@@ -1,10 +1,11 @@
 from .card import card, section, container
 ## from .rate import rate, 通过懒加载加载
-from .button import button, button_group
+from .button import button, button_group, button_toggle
 ## from .link import link, 通过懒加载加载
-## from .icon import icon, bootstrap_icon, icon_with_bg
+## from .icon import icon, icon_with_bg
 ## from .space import space
 ## from .splitter import splitter, 通过懒加载加载
+## from .tag import tag, 通过懒加载加载
 ## from .text import text, 通过懒加载加载
 ## from .checkbox import checkbox, checkboxes 通过懒加载加载
 ## from .autocomplete import autocomplete, 通过懒加载加载
@@ -44,7 +45,7 @@ from .markdown import markdown, md
 from .write import write
 ## from .colorpicker import colorpicker, 通过懒加载加载
 ## from .popconfirm import popconfirm, 通过懒加载加载
-from .layout import row, col ###, 通过懒加载加载
+from .layout import row, col, center ###, 通过懒加载加载
 ## from .timer import timer, 通过懒加载加载
 ## from .plot import plot, 通过懒加载加载
 from ss_core.print import myprint
@@ -55,15 +56,15 @@ from ss_core.print import myprint
 __all__ = [
     'card', 'section', 'container',
     'rate',
-    'button', 'button_group',
+    'button', 'button_group', 'button_toggle',
     'link',
-    'icon', 'bootstrap_icon', 'icon_with_bg',
+    'icon', 'icon_with_bg',
     'space',
     'splitter',
     'text',
     'checkbox', 'checkboxes',
     'autocomplete',
-    'input', 'text_input',
+    'input', 'text_input', 'textarea',
     'radio',
     'selectbox',
     'slider',
@@ -77,8 +78,10 @@ __all__ = [
     'empty',
     'image',
     'table',
+    'table_v1',
     'grid',
     'columns',
+    'panes',
     'alert',
     'dialog',
     'messagebox',
@@ -93,14 +96,16 @@ __all__ = [
     'menu',
     'video',
     'audio',
-    'overlay',
+	'wave_audio',
+	'overlay',
     'markdown', 'md',
     'write',
     'colorpicker',
     'popconfirm',
-    'row', 'col',
+    'row', 'col', 'center',
     'timer',
-    'plot'
+    'plot',
+    'tag'
 ]
 
 import importlib
@@ -157,8 +162,11 @@ class LazyLoader:
 
 # 1. 将直接导入改为懒加载代理
 # 例如，text 组件
+# 注意：当同一个模块导出多个函数时，需要使用第二个参数(attr_name)指定要调用的函数名称
+# 例如：checkboxes 和 checkbox 在同一个模块中，需要明确指定调用 checkboxes 函数
+
 checkbox = LazyLoader('ss_ui.checkbox')
-checkboxes = LazyLoader('ss_ui.checkbox')
+checkboxes = LazyLoader('ss_ui.checkbox', 'checkboxes')  # attr_name='checkboxes' 指定调用的函数
 rate = LazyLoader('ss_ui.rate')
 link = LazyLoader('ss_ui.link')
 splitter = LazyLoader('ss_ui.splitter')
@@ -169,8 +177,15 @@ table = LazyLoader('ss_ui.table')
 menu = LazyLoader('ss_ui.menu')
 video = LazyLoader('ss_ui.video')
 audio = LazyLoader('ss_ui.audio')
+# 将 wave_audio 映射到 audio(show_wave=True)
+def wave_audio(*args, **kwargs):
+    # 确保 show_wave 为 True
+    kwargs['show_wave'] = True
+    from .audio import audio
+    return audio(*args, **kwargs)
 input = LazyLoader('ss_ui.input')
 text_input = LazyLoader('ss_ui.input')
+textarea = LazyLoader('ss_ui.input', 'textarea')
 input_number = LazyLoader('ss_ui.input_number')
 radio = LazyLoader('ss_ui.radio')
 selectbox = LazyLoader('ss_ui.selectbox')
@@ -204,8 +219,12 @@ timer = LazyLoader('ss_ui.timer')
 # 特殊处理 plot，因为 line 等方法是 Plot 类的实例方法
 plot = LazyLoader('ss_ui.plot', 'plot')
 space = LazyLoader('ss_ui.space')
+table_v1 = LazyLoader('ss_ui.table_v1', 'table')
 
 # 正确写法 - 需要分别懒加载每个函数
 icon = LazyLoader('ss_ui.icon', 'icon')
-bootstrap_icon = LazyLoader('ss_ui.icon', 'bootstrap_icon')
 icon_with_bg = LazyLoader('ss_ui.icon', 'icon_with_bg')
+# 添加panes的懒加载
+panes = LazyLoader('ss_ui.panes')
+# 添加tag的懒加载
+tag = LazyLoader('ss_ui.tag')

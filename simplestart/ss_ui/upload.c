@@ -2466,12 +2466,12 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_setdefault __pyx_string_tab[33]
 #define __pyx_n_u_simplestart_ss_ui_upload __pyx_string_tab[34]
 #define __pyx_n_u_ss_core __pyx_string_tab[35]
-#define __pyx_n_u_template __pyx_string_tab[36]
-#define __pyx_n_u_test __pyx_string_tab[37]
-#define __pyx_n_u_upload __pyx_string_tab[38]
-#define __pyx_n_u_upload_locals_myuploaded __pyx_string_tab[39]
-#define __pyx_n_u_value __pyx_string_tab[40]
-#define __pyx_n_u_values __pyx_string_tab[41]
+#define __pyx_n_u_test __pyx_string_tab[36]
+#define __pyx_n_u_upload __pyx_string_tab[37]
+#define __pyx_n_u_upload_locals_myuploaded __pyx_string_tab[38]
+#define __pyx_n_u_value __pyx_string_tab[39]
+#define __pyx_n_u_values __pyx_string_tab[40]
+#define __pyx_n_u_vuetify __pyx_string_tab[41]
 #define __pyx_n_u_width __pyx_string_tab[42]
 #define __pyx_kp_b_iso88591_6_Qha_F_ay_vS_Qha_Baq_A_6_Qha_v __pyx_string_tab[43]
 #define __pyx_kp_b_iso88591_A_1_1A __pyx_string_tab[44]
@@ -2719,7 +2719,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_6upload_myuploaded(PyObje
  *         if onsuccess:
  *           onsuccess(event)             # <<<<<<<<<<<<<<
  * 
- *     res = template('''
+ *     res = vuetify('''
 */
     __pyx_t_3 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onsuccess)) { __Pyx_RaiseClosureNameError("onsuccess"); __PYX_ERR(0, 25, __pyx_L1_error) }
@@ -2971,12 +2971,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/upload.py":27
  *           onsuccess(event)
  * 
- *     res = template('''             # <<<<<<<<<<<<<<
+ *     res = vuetify('''             # <<<<<<<<<<<<<<
  *         <el-upload v-model:file-list="data.value"
  *             action="/upload"
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
   /* "simplestart/ss_ui/upload.py":44
@@ -3601,18 +3601,18 @@ __Pyx_RefNannySetupContext("PyInit_upload", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/upload.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * 
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -3638,7 +3638,7 @@ __Pyx_RefNannySetupContext("PyInit_upload", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/upload.py":1
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * 
 */
@@ -3710,25 +3710,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{0},{1},{1},{7},{661},{6},{2},{9},{27},{20},{18},{18},{4},{4},{5},{8},{3},{8},{13},{5},{6},{8},{10},{8},{10},{8},{11},{9},{3},{2},{12},{3},{12},{10},{24},{7},{8},{8},{6},{26},{5},{6},{5},{166},{14}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (722 bytes) */
-const char* const cstring = "BZh91AY&SY\320\3058{\000\000u\177\363\347\336l\031t\347\241\027\275\001|\004\277\357\377\340@@@@@@\000@@\000@\000@\002\\\335\327m\334N\006\246\232$\302i\265'\204\324\332\236\246\236\221\246\236\241\240\323@\0324\0324z\236\232\232\rF\215\"z4\223\364\322'\352e\0314\032\0004\000h\000\017P\001\246\204\251\351\036\201\251\352z\232b\036\246OP\000\310\006\201\243 \007\250h$\220M$\364\321\241\224C4\324<\232\217@CF\004dd4oPd\231W\213\345\336\0366\370y\032t\214\3034\352\205L\315\251D\210\017\010\277x\374^\007\00320MS4\323\242\025\265\367k\323\253\010FI\002\231\001\300\272\273\355\354\303\243\375\345l,o`v\215\365\211\360UU\216:$\017\202U\364\177\306\014\006\264\362\336tg\031pC\344E\244\202av\346\"\035\266\275\222\343\315\366\363w r$\204\223\022N\315b\032\364uhX\007F\253\326\341\243EP\301\276$\\\326\316\365\244\333\254\341QN\357\211\206\231\020\345+\273\321@#^D\020\332\211I5>e\025\016\213\323$\261\232\205\210h0\210:\2521D\211\201\n\3003\013\364\334\234\000\231\210\005zi\366+\213\317U\302Y\014\230\020\344:\262\316<\356,\314\263\227\261a!\204\2058\202\261\014\027\324\211\205\ti\362A\020\000\213\016\202\034\306\006\3334\323\216\353\272_\016\031>\342N\335\324\275X-\242\230Xi4\350\325\355\274\350M%^YN\232\251Xj\263\347\204\212>\232\005\013[\347\240Ja\354\014\304\244\235\261\2764\254\247\025h2)\256H\232\3067\013\241\250\370\310Y-\t(\304Sz\345%l\017\331|0<z\223\3208\310\215\rc2\301<\010N\305\262*\236\230\2101\272\212\001\311\3053=K\034Q\001\275Yd\367eJ#\017!Sko\321%\"X\207\316\220f*\203]\213\337\307w\035{\025\276d\362\233\367QBb\241\006\304skA\330v\331U/\000\230\273\3270\250\032\302S:/\343Z\237\002\004\243-9\203\235\te\230-\372\313jQd\305&\355\001\245\026)\214@ D\201\242\032\024\333\240\235\020\327\242\261H\221F\027\261\360\244,7\n.Q\014\004\306\215\340\256\264\245\311\310\244L\243\010\216\322\tq\274R\345\351\301\222K\230\033\r\326k\232P\247)\344\253\3270\032\000\366@\367\313\361g\315tf\325\341\371\005U\027j_\327\256\273\007E\204\314l\201\347\235\276\035s\203\373d\215j]l\236\247BRW""\215=\302\3035\177\213\271\"\234(Hhb\234=\200";
-    PyObject *data = __Pyx_DecompressString(cstring, 722, 2);
+    const struct { const unsigned int length: 10; } index[] = {{0},{1},{1},{7},{661},{6},{2},{9},{27},{20},{18},{18},{4},{4},{5},{8},{3},{8},{13},{5},{6},{8},{10},{8},{10},{8},{11},{9},{3},{2},{12},{3},{12},{10},{24},{7},{8},{6},{26},{5},{6},{7},{5},{166},{14}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (720 bytes) */
+const char* const cstring = "BZh91AY&SY|\013;\364\000\000u\377\363\347\336l\031t\347\241\027\275\001|\004\277\357\377\340@@@@@@\000@@\000@\000@\002\\\335\327m\334N\006\246\232Dm\t\211\223)\350\232=OI\352z\2322\003@\0324\321\243G\251\351\251\240\324h\322\0324S\364\324\236\247\246Q\223A\240\003@44\000\017P\001\246\204\246\221\264\203i\240F\236\246\217B\003\023@\0002\000z\200%\023D\322\233M\032\032@4\320\311\240\000\000\000\001\221\246I\022\233\\XC\367\027\3463&ATU\225&I\344\\\251\002\0000A\267N\372\300\340UB\304\224*\311*\017\245f\256\331\255\226\310B(\200\222 \033\351\341\207\027\245\235\277\254x\237m>\300\356\034\013\023_\205\353\\s\304\037\004\253\350\377\214\030\0224\362WT\363\014\227\341\362+i \251\027n2!\327g\325.<\277O/b\007#R\025\245 \355\325!\257T\216u\200th\372\0342h\252\027\261\010\330\300\341\311i.Vp\250\260\257\310\303/\3042\024\023D\360\274\306T\020\273\022\222j\177\345\024\315g\243VJ\206\231b\032\014\"\016\252\214Q\"`B\260\014\303j\213\223\000\022(\360\247$\372)\230\237\331s\010\335.\330A\300\352K|\270\034[\276\230\n\326\254\217\262?\035\001T\r\373\352F\001\300\226]$\021\000\010\247\320C\230\300\225\375X\351\201z\235\r\031:\322N\336\262^\252\026\311N&\025\332d\245\245m\346Bh*\362Hl*\225\206\273<h\"\217\232q:\327<\323\210\314=\203\t\004\256\352\352\032v\323\204\354C\024TI\032l\030\234(\022\243\343\031E\216\341I\255\023\326\251\022\225\006\322g\330a\222,\200\342\350m\255*\251bW\217\225LQ(\226x\010\027\0354\300\344q<\214\221\271\000x\271\367\242\316\274\211\001F\037B\324\336\232)\0226\206\225\020/\224=j\301\233\226\255\312s\251i\021\211\353\325\t\221J\004\014\350k6\016\301\270\313\324\274\002S3\344\300\260k\tL\310\253\022\324\370\020%\031jJ\034\350G\034\241o\327[R\213e(\267\247\r*\330\2461\000\201\020\032A\241\264\003rk\rz,\024\210\224a[]\n\024\223!q!\351\342|\240d\334\n\354JZ\336\"\2212\214B;H&#l\245\207\253\246l\267\004\326\305\272\315\255\335\301#\013\344\311W\266`4\001\245\003\336\177\213>y\353Nm\177\227*\250\273R\346\315\225\330:,'\251{Km\256\370[T\177m\274\316\266+\177\rK\tIHi""\360\026\031\335\377\027rE8P\220|\013;\364";
+    PyObject *data = __Pyx_DecompressString(cstring, 720, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (640 bytes) */
-const char* const cstring = "x\332\205SAO\3330\024\246\022l\210n\322\3208\201\204B\204\004\223h\253^8\240&\023\033\3428\215m\307I\226q^[\013\307\016\266\023\310\215c\216>\346\330c\177R\217\374\004~\302\2348-\205u\232\245$\316{\337{\337\367\374\236\273\237#\252\3605\203-\257Y\003`\2354a\002G^\326\211E\004\354lH\031t\030U:\360#\254q7\303,\005\177\021Q-L4\025<\360{.\364\245\363,\222x\344\005\236\213\256~^\371\343\224i\2320X`\346\206W8\301;*%\004\224\252\220\307\216\353\322\252\373\344\005\241'\270\002\231\201<>\022\0349\037DG'\336\022\3549_\370\"\363@C\2340\254\301\326L\207\201\177\360\254\364%p~B\327\251\326\202{:O \360\023Ic,s?\374\312(\271\361\264h(\007\275\005\362\025]o\316\367o\031\300\024\254\346\246\3042\023\206\225\n\374\346\267\323\264\314\017\007n\323\261=c\020y\275\260\026QaV$\213h\266\224\310E\"\244\341^\257(\373B\212\304\253F\301\033\203\004OH+&\016\311_%\307+\210z\226\351\377GPKuy\234\021x5\232#B\225\333E\212\332\030P\032K\335S\n\245\264\231\267n\222#\364=\277\267\317\005%\032}\263%\374\200!V9'Tt\211\220\"\325\224\203\262r9 \312\221\226\230\3005&7U\247\253FC\006\\#4L9Ah\004z\214y\304@*D\025Z\304S+Z\335\334a9R\010\305\330\346\261\313^\222\224\201\3756C\033\347\363\341C\210\343\330z\226\346\321\016\251\233\340D$\311=B\267)f\016$\301\346T\240\233\030\273\213l\0056\347R\321\335\272\350\256K\246ja0?\307\252q\312V\340\234\315\271\014\230 \230\251\260\373,\252\276\275\365K\335\321H\217\037Z\263\365vqjv\314\225\031\227\370ism\343}qi\016\r6\371\304\372\336>d\305O\323\232m\266\2133\007\231\275\3331_\254\373\366q}\263h\025{\346|Vov\315i\271S^\225\343\tv\206}\223\225\277&\333\223\223ic\3303\227\345a\211\313|\332\252x\266\315\033\023\225\007e0m=\256oT\226vql\016L\377\311_\333\372Pd\346\367d\177jY\332E\377\341\274\022\320\237m}4}s\376\007?\252\211\376";
-    PyObject *data = __Pyx_DecompressString(cstring, 640, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (643 bytes) */
+const char* const cstring = "x\332\205SAO\3330\024\246\022l\210n\322\3208\r\t\205\010\t&\321T\\v@M&6\304q\032\333\216\223,\343\274\266\026\216\035l'\220\033\307\034}\314\261\307\376\244\036\371\t\374\2049qZ\n\3534KI\234\367\276\367\276\357\371=\007\237c\252\360\025\203-\257]\003`\275,e\002\307^\336KD\014\354tH\031\364\030U:\364c\254q\220c\226\201\277\210\250\027&\232\n\036\372}\027\372\334y\032K<\362B\317E\327?/\374I\3064M\031,0s\303\013\234\340=\225\021\002J\325\310#\307ua\325}\364\302\310\023\\\201\314A\036\035\n\216\234\017\342\303co\t\366\224/z\226y\240!I\031\326`k\246\303\320\337\177R\372\0348?\241\253Lk\301=]\244\020\372\251\244\t\226\205\037}e\224\\{Z\264\224\203\376\002\371\202\256?\347\373\267\014`\nVsSb\231\t\303J\205~\373\333k[\346G\003\267\351\331\2361\210\275~\324\210\2501+\222\3054_J\344\"\021\322p\247W\224}.E\352\325\243\340\215A\202'\244\025\223D\344\257\222\223\025D}\313\364\377#h\244\272<\316\010\274\036\315\021\241\312\355bEm\014(\215\245\356+\2052\332\316[\220\026\010}/\356\354sN\211F\337l\t?`\210U\301\t\025\001\021Rd\232rPV.\007D9\322\022\023\270\302\344\272\356t\335h\310\201k\204\206\031'\010\215@\2171\217\031H\205\250B\213xjE\253\353[,G\n\241\004\333<v\331K\2221\260\337vh\223b>|\010q\234X\317\322<\332!u\023\234\2124\275C\350&\303\314\201$\330\234\nt\033cw\261\255\300\346\\*:h\212\016\\2\325\010\203\272a\312*w\306\366<\006L\020\314T\024<\211inm\363Ry\006\232\016\213[\032\353\361}g\266\336-?\231\035si\306\025~\334\\\333x[^\230\003\203M1\261\276\327\367y\371\323tf\233\335\362\324Afov\314\027\353\276yX\337,;\345\2569\2335\233\017\346S\265S]V\343\tv\206=\223W\277&\333\223\343ik\3305\027\325A\205\253b\332\251y\266\315+\023W\373U8\355<\254o\324\226nyh\266\315\376\243\277\266\365\256\314\315\357\311\336\324\262t\313\223\373\263Z\300\311l\353\27591g\177\000\263B\211\215";
+    PyObject *data = __Pyx_DecompressString(cstring, 643, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1207 bytes) */
-const char* const bytes = ".?disable\n        <el-upload v-model:file-list=\"data.value\"\n            action=\"/upload\"\n            :drag = \"data.drag\"\n            :multiple = \"data.multiple\"\n            :on-success = \"(uploadFile) => onserver('on_uploaded', uploadFile)\"\n        >\n            <template v-if=\"!data.drag\">\n                <el-button type=\"primary\">Click to upload</el-button>\n            </template>\n            <template v-else>\n                <el-icon class=\"el-icon--upload\"><upload-filled /></el-icon>\n                <div class=\"el-upload__text\">\n                Drop file here or <em>click to upload</em>\n                </div>\n            </template>\n        </el-upload>\n    enablegcisenabledsimplestart/ss_ui/upload.py__Pyx_PyDict_NextRefasyncio.coroutinescline_in_tracebackdatadragevent__func__gethandlers_is_coroutineitemskwargs__main____module__multiplemyuploaded__name__on_uploadedonsuccesspoppx__qualname__res__set_name__setdefaultsimplestart.ss_ui.uploadss_coretemplate__test__uploadupload.<locals>.myuploadedvaluevalueswidth\200\001\330\004\013\2106\220\024\220Q\220h\230a\360\010\000\005\r\210F\220$\220a\220y\240\001\330\004\007\200v\210S\220\001\330\010\013\210:\220Q\220h\230a\330\014\024\220B\220a\220q\340\004\010\210\001\210\033\220A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\360\010\000\005\021\220\006\220d\230!\230=\250\001\340\004\005\360\010\000\005\013\210(\220!\2201\360\"\000\n\020\210v\220\\\240\036\250q\340\004\013\2101\200A\330\010\013\2101\330\n\023\2201\220A";
+    #else /* compression: none (1206 bytes) */
+const char* const bytes = ".?disable\n        <el-upload v-model:file-list=\"data.value\"\n            action=\"/upload\"\n            :drag = \"data.drag\"\n            :multiple = \"data.multiple\"\n            :on-success = \"(uploadFile) => onserver('on_uploaded', uploadFile)\"\n        >\n            <template v-if=\"!data.drag\">\n                <el-button type=\"primary\">Click to upload</el-button>\n            </template>\n            <template v-else>\n                <el-icon class=\"el-icon--upload\"><upload-filled /></el-icon>\n                <div class=\"el-upload__text\">\n                Drop file here or <em>click to upload</em>\n                </div>\n            </template>\n        </el-upload>\n    enablegcisenabledsimplestart/ss_ui/upload.py__Pyx_PyDict_NextRefasyncio.coroutinescline_in_tracebackdatadragevent__func__gethandlers_is_coroutineitemskwargs__main____module__multiplemyuploaded__name__on_uploadedonsuccesspoppx__qualname__res__set_name__setdefaultsimplestart.ss_ui.uploadss_core__test__uploadupload.<locals>.myuploadedvaluevaluesvuetifywidth\200\001\330\004\013\2106\220\024\220Q\220h\230a\360\010\000\005\r\210F\220$\220a\220y\240\001\330\004\007\200v\210S\220\001\330\010\013\210:\220Q\220h\230a\330\014\024\220B\220a\220q\340\004\010\210\001\210\033\220A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\360\010\000\005\021\220\006\220d\230!\230=\250\001\340\004\005\360\010\000\005\013\210'\220\021\220!\360\"\000\n\020\210v\220\\\240\036\250q\340\004\013\2101\200A\330\010\013\2101\330\n\023\2201\220A";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif

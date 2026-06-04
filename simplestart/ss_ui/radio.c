@@ -2394,7 +2394,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[2];
-  PyObject *__pyx_string_tab[54];
+  PyObject *__pyx_string_tab[55];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2455,45 +2455,46 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_border __pyx_string_tab[12]
 #define __pyx_n_u_cline_in_traceback __pyx_string_tab[13]
 #define __pyx_n_u_data __pyx_string_tab[14]
-#define __pyx_n_u_disabled __pyx_string_tab[15]
-#define __pyx_n_u_event __pyx_string_tab[16]
-#define __pyx_n_u_eventData __pyx_string_tab[17]
-#define __pyx_n_u_event_data __pyx_string_tab[18]
-#define __pyx_n_u_first_arg __pyx_string_tab[19]
-#define __pyx_n_u_func __pyx_string_tab[20]
-#define __pyx_n_u_get __pyx_string_tab[21]
-#define __pyx_n_u_handle_event_data __pyx_string_tab[22]
-#define __pyx_n_u_handlers __pyx_string_tab[23]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[24]
-#define __pyx_n_u_item __pyx_string_tab[25]
-#define __pyx_n_u_items __pyx_string_tab[26]
-#define __pyx_n_u_kwargs __pyx_string_tab[27]
-#define __pyx_n_u_label __pyx_string_tab[28]
-#define __pyx_n_u_main __pyx_string_tab[29]
-#define __pyx_n_u_module __pyx_string_tab[30]
-#define __pyx_n_u_myonchange __pyx_string_tab[31]
-#define __pyx_n_u_name __pyx_string_tab[32]
-#define __pyx_n_u_onchange __pyx_string_tab[33]
-#define __pyx_n_u_options __pyx_string_tab[34]
-#define __pyx_n_u_pop __pyx_string_tab[35]
-#define __pyx_n_u_props __pyx_string_tab[36]
-#define __pyx_n_u_qualname __pyx_string_tab[37]
-#define __pyx_n_u_radio __pyx_string_tab[38]
-#define __pyx_n_u_radio_locals_myonchange __pyx_string_tab[39]
-#define __pyx_n_u_res __pyx_string_tab[40]
-#define __pyx_n_u_set_name __pyx_string_tab[41]
-#define __pyx_n_u_setdefault __pyx_string_tab[42]
-#define __pyx_n_u_simplestart_ss_ui_radio __pyx_string_tab[43]
-#define __pyx_n_u_size __pyx_string_tab[44]
-#define __pyx_n_u_ss_core __pyx_string_tab[45]
-#define __pyx_n_u_ss_core_utils __pyx_string_tab[46]
-#define __pyx_n_u_style __pyx_string_tab[47]
-#define __pyx_n_u_template __pyx_string_tab[48]
+#define __pyx_n_u_data_2 __pyx_string_tab[15]
+#define __pyx_n_u_disabled __pyx_string_tab[16]
+#define __pyx_n_u_event __pyx_string_tab[17]
+#define __pyx_n_u_eventData __pyx_string_tab[18]
+#define __pyx_n_u_event_data __pyx_string_tab[19]
+#define __pyx_n_u_first_arg __pyx_string_tab[20]
+#define __pyx_n_u_func __pyx_string_tab[21]
+#define __pyx_n_u_get __pyx_string_tab[22]
+#define __pyx_n_u_handle_event_data __pyx_string_tab[23]
+#define __pyx_n_u_handlers __pyx_string_tab[24]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[25]
+#define __pyx_n_u_item __pyx_string_tab[26]
+#define __pyx_n_u_items __pyx_string_tab[27]
+#define __pyx_n_u_kwargs __pyx_string_tab[28]
+#define __pyx_n_u_label __pyx_string_tab[29]
+#define __pyx_n_u_main __pyx_string_tab[30]
+#define __pyx_n_u_module __pyx_string_tab[31]
+#define __pyx_n_u_myonchange __pyx_string_tab[32]
+#define __pyx_n_u_name __pyx_string_tab[33]
+#define __pyx_n_u_onchange __pyx_string_tab[34]
+#define __pyx_n_u_options __pyx_string_tab[35]
+#define __pyx_n_u_pop __pyx_string_tab[36]
+#define __pyx_n_u_props __pyx_string_tab[37]
+#define __pyx_n_u_qualname __pyx_string_tab[38]
+#define __pyx_n_u_radio __pyx_string_tab[39]
+#define __pyx_n_u_radio_locals_myonchange __pyx_string_tab[40]
+#define __pyx_n_u_res __pyx_string_tab[41]
+#define __pyx_n_u_set_name __pyx_string_tab[42]
+#define __pyx_n_u_setdefault __pyx_string_tab[43]
+#define __pyx_n_u_simplestart_ss_ui_radio __pyx_string_tab[44]
+#define __pyx_n_u_size __pyx_string_tab[45]
+#define __pyx_n_u_ss_core __pyx_string_tab[46]
+#define __pyx_n_u_ss_core_utils __pyx_string_tab[47]
+#define __pyx_n_u_style __pyx_string_tab[48]
 #define __pyx_n_u_test __pyx_string_tab[49]
 #define __pyx_n_u_value __pyx_string_tab[50]
 #define __pyx_n_u_values __pyx_string_tab[51]
-#define __pyx_kp_b_iso88591_A_5_E_1_1 __pyx_string_tab[52]
+#define __pyx_n_u_vuetify __pyx_string_tab[52]
 #define __pyx_kp_b_iso88591_A_6_Qha_a_s_6_1_D_Qk_t_T_1IQdRS __pyx_string_tab[53]
+#define __pyx_kp_b_iso88591_A_6_U_1_1 __pyx_string_tab[54]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2511,7 +2512,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_5radio___pyx_scope_struct__radio);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_5radio___pyx_scope_struct__radio);
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<54; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<55; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2537,7 +2538,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_5radio___pyx_scope_struct__radio);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_5radio___pyx_scope_struct__radio);
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<54; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<55; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2604,7 +2605,7 @@ static PyObject *__pyx_pw_11simplestart_5ss_ui_5radio_1radio(PyObject *__pyx_sel
  *     event_data = kwargs.get("eventData", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         # eventData
 */
 
@@ -2714,7 +2715,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_5radio_myonchange(PyObject
   /* "simplestart/ss_ui/radio.py":60
  * 
  *     def myonchange(event):
- *         res.data["value"] = event.value             # <<<<<<<<<<<<<<
+ *         res._data["value"] = event.value             # <<<<<<<<<<<<<<
  *         # eventData
  *         event = handle_event_data(event, event_data)
 */
@@ -2728,7 +2729,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_5radio_myonchange(PyObject
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "simplestart/ss_ui/radio.py":62
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         # eventData
  *         event = handle_event_data(event, event_data)             # <<<<<<<<<<<<<<
  *         if onchange:
@@ -2777,7 +2778,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_5radio_myonchange(PyObject
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = template('''
+ *     res = vuetify('''
 */
     __pyx_t_3 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 64, __pyx_L1_error) }
@@ -2818,7 +2819,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_5radio_myonchange(PyObject
  *     event_data = kwargs.get("eventData", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         # eventData
 */
 
@@ -2898,7 +2899,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_radio(CYTHON_UNUSED PyObje
 */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_data = __pyx_t_2;
@@ -3270,7 +3271,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_radio(CYTHON_UNUSED PyObje
  *     event_data = kwargs.get("eventData", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         res.data["value"] = event.value
+ *         res._data["value"] = event.value
  *         # eventData
 */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5radio_5radio_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_radio_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_radio, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
@@ -3281,12 +3282,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_radio(CYTHON_UNUSED PyObje
   /* "simplestart/ss_ui/radio.py":66
  *           onchange(event)
  * 
- *     res = template('''             # <<<<<<<<<<<<<<
+ *     res = vuetify('''             # <<<<<<<<<<<<<<
  *         <el-radio-group v-model="data.value" :options="data.options"
  *         :border = "data.border"
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
 
   /* "simplestart/ss_ui/radio.py":73
@@ -3315,7 +3316,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_radio(CYTHON_UNUSED PyObje
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_el_radio_group_v_model_data_val};
     __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_10, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 66, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_10, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 66, __pyx_L1_error)
     if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_8, __pyx_t_10, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 66, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_10);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3928,19 +3929,19 @@ __Pyx_RefNannySetupContext("PyInit_radio", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/radio.py":2
- * # coretemplate
- * from ss_core import template             # <<<<<<<<<<<<<<
+ * # corevuetify
+ * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
  * # core.componentprops
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_template};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 2, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -4014,8 +4015,8 @@ __Pyx_RefNannySetupContext("PyInit_radio", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/radio.py":1
- * # coretemplate             # <<<<<<<<<<<<<<
- * from ss_core import template
+ * # corevuetify             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify
  * 
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -4086,31 +4087,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{1},{1},{7},{239},{6},{2},{9},{26},{20},{4},{18},{6},{18},{4},{8},{5},{9},{10},{9},{8},{3},{17},{8},{13},{4},{5},{6},{5},{8},{10},{10},{8},{8},{7},{3},{5},{12},{5},{25},{3},{12},{10},{23},{4},{7},{13},{5},{8},{8},{5},{6},{39},{293}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (742 bytes) */
-const char* const cstring = "BZh91AY&SYg|_I\000\000a\177\377\347\377\365_q\347\267\027\346c}\014\277\357\377\360@@@@@@@@@@@@@\000@\000@\002]\234\314R\343\206\251\241#\004\364\230\332&\241\3454\311\350\023\004\3042\032\007\2504\365\030\0011\220e=\003B\rF@\246O\010\2154G\251\220\014O@@\014\231\031\000\000\304h\323B&\322S\311#\304\236\240=L\214\232\000\000b\003\0200\203 \000\006#\3104\321ML\206B4\321\351\006\203!\246\200\000\000\000\000\0004\320\321\221\350cU4w=\300\370\256+\332\264\010$\222\370G\245\201\025\264ep\220\010&k\000\277\265M\236\260\034f\345Z\301\234$\0260\2350\212+\372nV6X\017\341\">\362\350#\263\302>\3531\3649\315\031\207i\002\023\021n\225\177\237u\332\330\177\035\350\3203lE\344\214b'\244\031\235\214\313\210\330\037\220T\032\317\237\337\201\305\342\017 \307\270\374\301\023\326\267\261\336\210#\340\226\212\r,SHEE\251\330`J\260\255\236\230\004N\236\273\251\205\375)\016\001\262\244!\030\032\315\362Z\343u\rX\302Kb\005\t\263\365b:)vI\022B\241\n\370,\250\304#\354\025\2209\200xS\260P8\013?\322\252 },\242K\263jH\207$'\251\023dGy\201R0K\3241\221<i\305sU\313\350@\316f\032\312N\304Gp\207C\205\263HO\224\207\332\230\262p\345\323\267\244c\314124\364J\206CE\000\323\304\215\373\263\252\245\203\313\220\t\236\020\322WO\003\246W\n^\021X\333\366\303\365Xkb\311\2103\350\321#\357\220\307\216a\221\365\005\205M\024\210\032\021\214\216@\033M\322\223\016v\222n\333D\n\200\260\253\004\312'\022\005A\021IwW\253 \027R`\301\247\230)\001\014\240\372\024\014\002\200\300\026\360\331YM\303)\325\202}(\2734\257\200\217*\247*\352\211\201\032,\302',\026.U\221\355\000\316\302\206\203\003jpLB\345e!\367\220 \022\265\026\"\214\353(\242\374$\200t\351\2550\211\223\227>\263\204\234\270\340\014\037\201\000`\253=L\3674iA\036\212\010\353[y\003\340\234>\204\312@\251\275\306\304~@\021(B\204\227\3226\242\261U\007\250e\223\331`\300\310\007~\001\230\203\344\013\255\201}r0\323a\230x\271\320@\342=\375\224\312\255\370i&p\323\241\243\232\363\334e\215\310\245\306\222\361\377]\330\272rK\262\372NZq\025\212\355|\305\035Zx\226\373q\355\\\312?""\233\021nW\244Ra@\232\246\224\336\003\334\3118\315\215<\360\341\243\206\t\"c/\213\271\"\234(H3\276/\244\200";
-    PyObject *data = __Pyx_DecompressString(cstring, 742, 2);
+    const struct { const unsigned int length: 9; } index[] = {{0},{1},{1},{7},{239},{6},{2},{9},{26},{20},{4},{18},{6},{18},{5},{4},{8},{5},{9},{10},{9},{8},{3},{17},{8},{13},{4},{5},{6},{5},{8},{10},{10},{8},{8},{7},{3},{5},{12},{5},{25},{3},{12},{10},{23},{4},{7},{13},{5},{8},{5},{6},{7},{293},{39}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (744 bytes) */
+const char* const cstring = "BZh91AY&SY\205\363:(\000\000a\377\377\347\377\365_q\357\265\027\344c\177\014\277\357\377\360@@@@@@@@@@@@@\000@\000@\002]\3351Fq\303Q 4\2316\206\322h'\351M\007\242\030\203A\223\004mA\204\300&\215\246\211\2656\201\242\022yM5?S\324\236\246\365O\325\000\014\206\200\036\240\000\001\243M\000\000h\0005O\nb\232zS\02356\241\240\000\000\000\000\000\000h\032\000\033PJjh\200$\365&\311=\245\017\324\206&\200\0002\000\000\000\006\200\321\223\322F\314\260\202\277\273\367\017\311\370\317\234BI)\206\215Af\373<$L!,N\020\3764\364p@\347(Z\332\200\212'\t\022\010^'\233Y5V\242\375\210\247\217\310\r\252\333\263Z\300\327\007\340~)\"\221\334\220!!\026\261S\364\351\206u\337\234\324)\\=\0166z\311$\201\256\006f\364\315\034\367R\204?A\314\365\371\364=\212\346UH\354\037\303\316\371V:1\331D\2645H\r\242\241$\247\266\260>ZI\271*\263\306 \036Y/J?\264\005%\313\201\001\314g\220\332\352\263\023\320\240\220\3476\311\213\026\356\347\357-\355\246\222) \337\330\017@\243\006t5\016A\330\231\302&\266\344\240\302\r\337\365z\354N\333\314\325\357g\244\263\232\315\366D\262\345\303^\361(\344\330f\371\353Y\243\312\2246\320p\336\374mG.\263\236\304fFJ\350i\244\306\336*\236\302S\36257\314.E\220\212\324h\024\336\030\030u\215l%\3751.\356\000\017`29\320\307\021P\235\010\240\300\323\013N\254_\022\005[\207\306\326#\365\211L\370\330\303\013MY\213\211\352\321\211qR\203#VP\010\350_K:\266-\016\r\273\024;\013h\243\026e\222\2101jj\361\346\230y`\343\217\244\250\3004*'d\303\204\340\341?\000\353OJ\221\324W_o\032\271cm \204\315u\246K\253A^-<\305\255t\365\314\266NP\006o(\357\322\024\350\202/\204\026\232\"u\272\002\000\236\244.\200m\343\332\331cdb'QKL4\335\237Z!?.\014\t\014` \220\211D\261$@\251\222\255\227\n\337\312\003\234\257B\260\271\025P\240\350y \223\362\200hj\004\272\346=\221\374e\2218w\022I\021\247u\202\013\240#x\014\345\037\000_h\014+\225\212-\022\3468(\010.\234\317\230\235\255uh/\340e\260\313\246ln'{\234FI5\343^o\225C\247\263^\005\033\250\332k\033\2736\343\016\235\020\216\276\307\032\227\265\374\350kKqY\354H\021\316\204\206""\305u\271LLia\033\211\034\344\013e\031\376.\344\212p\241!\013\346tP";
+    PyObject *data = __Pyx_DecompressString(cstring, 744, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (661 bytes) */
-const char* const cstring = "x\332MQ\277O\333@\024&RBCB!F\021\252\240EN\206\002\022\030\271j\031\"B\033\211J\355\320\252\241\210\245H\247\213}\004\213\213\355\370\316)\351\224\321\343\2157z\314\330\261###\243\307\374\t\374\t}>\347\007\226|~\357}\237\277\367\336w\306G\333a\270CII\237>'\204\036\006\330v\274\303n\340\205\276>8\354y6\241\315\272\21596\006\230\206\244\2567<\237;\236\313\246\325iV\237\2134:^`\223@o\352\031!K\237\341\323\256\366\2341+<\3430\347\017\231\343i\262\300\256>Y7\330\355\222f}OM\264\2577Ou\230\200\004\003\022\354\355zn\006\357\036\350\031\274\370\363\350T\205\304M\273u-\207e\221\315\234\236O\t\3438\340G\214\241\3209R&\030\376\020\241\037\303;x\317\034\213\243\357\344\216\237\223k\034t\031fC\327\002\206\345\201O\334q\t\313\266\264(\304\310q\021\017\260E:\330\272M\027\230\355G\006\304\345\3528\203\252\nP\212_;\001\343\010t\021\272\016]\013\241.\341\260\203M\tZ\220\262B\300\220\303\320\274\255\303I/}\331\355\357t,\212;\204\"\324\3030\001<py!h\240\336pf\nB.\356\3019\313\247\227\347{\276\037x>C\250\037b\232Q\224\005\231\017'\324\2630e\247\306B( @f\204O\365 \262\301\231\220\362g^\032\312KCi\244W\310\324\340\263\217\001\013P\306\370\220\022X\300\247\230\203\016\207?\021R\367\246\0166j%\305r\364A\344\304\266\374\034k\223b\345\261R\213\265xw\254\245\200\231\2246DM\230\243\334\323\316R\341e\324J\362\345\350XTE[\334H\374\264\274TX\217p\222\1771bQ\r\352\033\302L\212Uq&s\022\244\312Q\003x\267\361f\314\307\215\277\027\377\266\356\315\373\257\017\355\007\373\361\374g\262\272)p\242m\311\267\361\n\264\252T\305\027\331\002\275\265W\242/\313\261\251\360I\276\030\345\2427B5*\216\356\"&jIq5jE\277\344\262\304\262\237\254\244\311\245x'\332\263z^\266d{2Mr\231\302kq)\337\313~\\\032\327\022U\330\021\003y\001[\036\214qV\330\022\307\262*\333\362&\206\246\353\321@\\HM\036\304\200jbSpi\312ocm\222/<\255-\025\312\321^j\t\204\245\n0\257\342\355qk\002\266\230\377\001hbo\275";
-    PyObject *data = __Pyx_DecompressString(cstring, 661, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (663 bytes) */
+const char* const cstring = "x\332MQ\277o\332@\024\016\022\244\004\322\004G(\252\3226\262\031J\252\022\"\252*\003\ni\2212\264C\253\222\246Y\032\351t\330\007\261bl\343;\273\241\023\243\307\033o\364\310\330\261c\306\214\031=\362'\344O\350\363\331@,\335\371\375\370\356{\357}\257\371\3210)\356[\244\244f\337\t\261\016=l\230\316\341\320s|W\r\016G\216A\254N\315\300\0147\003l\371\244\246\266\035\227\231\216M\263h\346\325\226$\355\276\343\031\304S;j\nH\335'\371\254\252\261D,\002O0\324\374C\226\371\304Y\345\256>\351\327\330\036\222N\355@v\364V\355\234\252\320\001\361\002\342\035\324\035;M\327\033j\232^\275<:\225&\261\223jC\335\244\251ePs\344Z\2042\354\261#J\221o\036I\021\232\356\004\241\357\223[8g\246\316\3207r\313\316\311\000{C\212\351\304\326\001\241;\240\0233mB\323)u\013ld\332\210yX'}\254\337\240d\002y\262!I@l&\2573\210JCb\006\246G\031\002r\204\006\276\255#4$\014\0061,\202V\2404\340QdR\264\254m22J\016\275\371\235\364f\341>\261\020\032ah\003>\330\240\017\034h4Y(\203\220\215Gp/\374l\203\256\343\272\236\343R\204\306>\266R\210\324!\025\343\304rtl\321\323\346\212\310#\000\246\204e|`\031 \217o\261'\2026\245\240M\311\221\354\221\312\306\027\277&\014`Q\312&I\207\014^ $\227&/\032\370\204\231\203\3114\367\270\277Vx\036v\343|9<\346U\336\343\327\002?\256\257\025\266C\034\347\237Mi\250A|\207\267\342b\225\237\211\234P\346\305r\330\006\334M\264\033\261Y\373\357\305\277\275\273\326\335\227\373\336\275\361p\376#\336\334\3458V\366\304\233hc\246\304\225*\377,\272\300\267\365\202\217E9j\311\374<_\014s\341k.\013\025\247\267!\345Z\\\334\014\273\341/\261.\260\030\307\033\211s\311\337\363\336\"\236\027]\321\233gN.ex\305/\305\0071\216J3-\226\201}\036\210\213H\211\0323\234\006\366\370\261\250\212\236\270\216\240\350v\030\360\013\241\210F\004Y\205\357r&Z\342\353L\231\347\013\217[k\205rX\347\n\327\300,U\000y\025\275\234u\347 Kk\332\215\213\211:\n\177'~F\332\274Xy\250hP\245\016\003B\242\025\227v\270\306[\377\001}\357q\206";
+    PyObject *data = __Pyx_DecompressString(cstring, 663, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1008 bytes) */
-const char* const bytes = ".?disable\n        <el-radio-group v-model=\"data.value\" :options=\"data.options\"\n        :border = \"data.border\"\n        :disabled = \"data.disabled\"\n        :size = \"data.size\"\n        \\@change=\"(value) => onserver('onchange', value)\"\n        />\n    enablegcisenabledsimplestart/ss_ui/radio.py__Pyx_PyDict_NextRefargsasyncio.coroutinesbordercline_in_tracebackdatadisabledeventeventDataevent_datafirst_arg__func__gethandle_event_datahandlers_is_coroutineitemitemskwargslabel__main____module__myonchange__name__onchangeoptionspopprops__qualname__radioradio.<locals>.myonchangeres__set_name__setdefaultsimplestart.ss_ui.radiosizess_coress_core.utilsstyletemplate__test__valuevalues\200A\330\010\013\2105\220\001\220\033\230E\240\021\340\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\330\n\022\220!\2201\200\001\360\036\000\005\r\210A\330\004\013\2106\220\024\220Q\220h\230a\360\006\000\005\017\210a\330\004\007\200s\210!\2106\220\022\2201\330\010\024\220D\230\001\230\021\340\010\013\210:\220Q\220k\240\026\240t\250:\260T\270\032\3001\300I\310Q\310d\320RS\330\014\026\220a\330\021\032\230&\240\t\250\021\330\020\024\220H\230A\360\006\000\016\030\220q\230\013\2401\330\014\026\220a\340\004\010\210\001\210\035\220a\360\006\000\005\010\200x\210s\220!\330\010\014\210A\210[\230\006\230a\230q\330\t\014\210A\210V\2202\220Q\330\010\014\210A\210[\230\004\230A\230Q\340\010\014\210A\210[\230\001\340\004\010\210\001\210\034\220V\2304\230q\240\n\250!\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\340\004\017\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\340\004\005\360\016\000\005\013\210(\220!\2201\360\016\000\n\020\210v\220\\\240\033\250A\340\004\013\2101";
+    #else /* compression: none (1012 bytes) */
+const char* const bytes = ".?disable\n        <el-radio-group v-model=\"data.value\" :options=\"data.options\"\n        :border = \"data.border\"\n        :disabled = \"data.disabled\"\n        :size = \"data.size\"\n        \\@change=\"(value) => onserver('onchange', value)\"\n        />\n    enablegcisenabledsimplestart/ss_ui/radio.py__Pyx_PyDict_NextRefargsasyncio.coroutinesbordercline_in_traceback_datadatadisabledeventeventDataevent_datafirst_arg__func__gethandle_event_datahandlers_is_coroutineitemitemskwargslabel__main____module__myonchange__name__onchangeoptionspopprops__qualname__radioradio.<locals>.myonchangeres__set_name__setdefaultsimplestart.ss_ui.radiosizess_coress_core.utilsstyle__test__valuevaluesvuetify\200\001\360\036\000\005\r\210A\330\004\013\2106\220\024\220Q\220h\230a\360\006\000\005\017\210a\330\004\007\200s\210!\2106\220\022\2201\330\010\024\220D\230\001\230\021\340\010\013\210:\220Q\220k\240\026\240t\250:\260T\270\032\3001\300I\310Q\310d\320RS\330\014\026\220a\330\021\032\230&\240\t\250\021\330\020\024\220H\230A\360\006\000\016\030\220q\230\013\2401\330\014\026\220a\340\004\010\210\001\210\035\220a\360\006\000\005\010\200x\210s\220!\330\010\014\210A\210[\230\006\230a\230q\330\t\014\210A\210V\2202\220Q\330\010\014\210A\210[\230\004\230A\230Q\340\010\014\210A\210[\230\001\340\004\010\210\001\210\034\220V\2304\230q\240\n\250!\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\340\004\017\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\340\004\005\360\016\000\005\013\210'\220\021\220!\360\016\000\n\020\210v\220\\\240\033\250A\340\004\013\2101\200A\330\010\013\2106\220\021\220+\230U\240!\340\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\330\n\022\220!\2201";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 52; i++) {
+    for (int i = 0; i < 53; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 9) PyUnicode_InternInPlace(&string);
@@ -4121,7 +4122,7 @@ const char* const bytes = ".?disable\n        <el-radio-group v-model=\"data.val
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 52; i < 54; i++) {
+    for (int i = 53; i < 55; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -4132,14 +4133,14 @@ const char* const bytes = ".?disable\n        <el-radio-group v-model=\"data.val
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 54; i++) {
+    for (Py_ssize_t i = 0; i < 55; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 52;
+      PyObject **table = stringtab + 53;
       for (Py_ssize_t i=0; i<2; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -4187,11 +4188,11 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 59};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_radio_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_5_E_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_radio_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_6_U_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 12, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 10};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_options, __pyx_mstate->__pyx_n_u_first_arg, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_item};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_options, __pyx_mstate->__pyx_n_u_first_arg, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_item};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_radio_py, __pyx_mstate->__pyx_n_u_radio, __pyx_mstate->__pyx_kp_b_iso88591_A_6_Qha_a_s_6_1_D_Qk_t_T_1IQdRS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);

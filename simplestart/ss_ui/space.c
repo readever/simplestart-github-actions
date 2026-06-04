@@ -2426,7 +2426,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyList_Type_pop;
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[6];
-  PyObject *__pyx_string_tab[87];
+  PyObject *__pyx_string_tab[86];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2542,18 +2542,17 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_ss_core __pyx_string_tab[72]
 #define __pyx_n_u_start __pyx_string_tab[73]
 #define __pyx_n_u_style __pyx_string_tab[74]
-#define __pyx_n_u_template __pyx_string_tab[75]
-#define __pyx_n_u_test __pyx_string_tab[76]
-#define __pyx_n_u_values __pyx_string_tab[77]
-#define __pyx_n_u_vertical __pyx_string_tab[78]
-#define __pyx_n_u_vuetify __pyx_string_tab[79]
-#define __pyx_n_u_wrap __pyx_string_tab[80]
-#define __pyx_kp_b_iso88591_A_D __pyx_string_tab[81]
-#define __pyx_kp_b_iso88591_A_R_t1 __pyx_string_tab[82]
-#define __pyx_kp_b_iso88591_A_R_wat1_t1 __pyx_string_tab[83]
-#define __pyx_kp_b_iso88591_A_q_vT_q_q_AXQ_q_AXQ_q_d_q_6_Qiq __pyx_string_tab[84]
-#define __pyx_kp_b_iso88591_A_t6 __pyx_string_tab[85]
-#define __pyx_kp_b_iso88591_t3a_wc_Qe1_d_z_A_1_q_AQ_q_81_33 __pyx_string_tab[86]
+#define __pyx_n_u_test __pyx_string_tab[75]
+#define __pyx_n_u_values __pyx_string_tab[76]
+#define __pyx_n_u_vertical __pyx_string_tab[77]
+#define __pyx_n_u_vuetify __pyx_string_tab[78]
+#define __pyx_n_u_wrap __pyx_string_tab[79]
+#define __pyx_kp_b_iso88591_A_D __pyx_string_tab[80]
+#define __pyx_kp_b_iso88591_A_R_t1 __pyx_string_tab[81]
+#define __pyx_kp_b_iso88591_A_R_wat1_t1 __pyx_string_tab[82]
+#define __pyx_kp_b_iso88591_A_q_vT_q_q_AXQ_q_AXQ_q_d_q_6_Qiq __pyx_string_tab[83]
+#define __pyx_kp_b_iso88591_A_t6 __pyx_string_tab[84]
+#define __pyx_kp_b_iso88591_t3a_wc_Qe1_d_z_A_1_q_AQ_q_7_22B __pyx_string_tab[85]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2570,7 +2569,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<6; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<87; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<86; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2595,7 +2594,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<6; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<87; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<86; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -3835,7 +3834,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
  *             else:
  *                 style = f"margin: 0 {cls}px;"             # <<<<<<<<<<<<<<
  *                 display_type = "inline-flex"
- *             return template(f'<div style="display:{display_type}; {style}"></div>')
+ *             return vuetify(f'<div style="display:{display_type}; {style}"></div>')
 */
       /*else*/ {
         __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
@@ -3854,7 +3853,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
  *             else:
  *                 style = f"margin: 0 {cls}px;"
  *                 display_type = "inline-flex"             # <<<<<<<<<<<<<<
- *             return template(f'<div style="display:{display_type}; {style}"></div>')
+ *             return vuetify(f'<div style="display:{display_type}; {style}"></div>')
  * 
 */
         __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_inline_flex);
@@ -3865,13 +3864,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
       /* "simplestart/ss_ui/space.py":59
  *                 style = f"margin: 0 {cls}px;"
  *                 display_type = "inline-flex"
- *             return template(f'<div style="display:{display_type}; {style}"></div>')             # <<<<<<<<<<<<<<
+ *             return vuetify(f'<div style="display:{display_type}; {style}"></div>')             # <<<<<<<<<<<<<<
  * 
  *         #
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_3 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_6[0] = __pyx_mstate_global->__pyx_kp_u_div_style_display;
       __pyx_t_6[1] = __pyx_v_display_type;
@@ -3931,7 +3930,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
  *         wrap = kwargs.get("wrap", False)
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):             # <<<<<<<<<<<<<<
- *             return template(f'<div class="{cls}"></div>')
+ *             return vuetify(f'<div class="{cls}"></div>')
  *         # inline-flex
 */
     __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_wrap); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 64, __pyx_L1_error)
@@ -3954,13 +3953,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
       /* "simplestart/ss_ui/space.py":65
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):
- *             return template(f'<div class="{cls}"></div>')             # <<<<<<<<<<<<<<
+ *             return vuetify(f'<div class="{cls}"></div>')             # <<<<<<<<<<<<<<
  *         # inline-flex
  *         else:
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_2 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 65, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 65, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
@@ -4000,7 +3999,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
  *         wrap = kwargs.get("wrap", False)
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):             # <<<<<<<<<<<<<<
- *             return template(f'<div class="{cls}"></div>')
+ *             return vuetify(f'<div class="{cls}"></div>')
  *         # inline-flex
 */
     }
@@ -4008,12 +4007,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_space(CYTHON_UNUSED PyObje
     /* "simplestart/ss_ui/space.py":68
  *         # inline-flex
  *         else:
- *             return template(f'<div style="display:inline-flex" class="{cls}"></div>')             # <<<<<<<<<<<<<<
+ *             return vuetify(f'<div style="display:inline-flex" class="{cls}"></div>')             # <<<<<<<<<<<<<<
 */
     /*else*/ {
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_7 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_template); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 68, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
@@ -4429,19 +4428,19 @@ __Pyx_RefNannySetupContext("PyInit_space", 0);
   /*--- Execution code ---*/
 
   /* "simplestart/ss_ui/space.py":1
- * from ss_core import getcm, template, vuetify, inner_context             # <<<<<<<<<<<<<<
+ * from ss_core import getcm, vuetify, inner_context             # <<<<<<<<<<<<<<
  * 
  * 
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_getcm,__pyx_mstate_global->__pyx_n_u_template,__pyx_mstate_global->__pyx_n_u_vuetify,__pyx_mstate_global->__pyx_n_u_inner_context};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 4, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_getcm,__pyx_mstate_global->__pyx_n_u_vuetify,__pyx_mstate_global->__pyx_n_u_inner_context};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 3, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_getcm,__pyx_mstate_global->__pyx_n_u_template,__pyx_mstate_global->__pyx_n_u_vuetify,__pyx_mstate_global->__pyx_n_u_inner_context};
-    for (__pyx_t_3=0; __pyx_t_3 < 4; __pyx_t_3++) {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_getcm,__pyx_mstate_global->__pyx_n_u_vuetify,__pyx_mstate_global->__pyx_n_u_inner_context};
+    for (__pyx_t_3=0; __pyx_t_3 < 3; __pyx_t_3++) {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -4568,7 +4567,7 @@ __Pyx_RefNannySetupContext("PyInit_space", 0);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/space.py":1
- * from ss_core import getcm, template, vuetify, inner_context             # <<<<<<<<<<<<<<
+ * from ss_core import getcm, vuetify, inner_context             # <<<<<<<<<<<<<<
  * 
  * 
 */
@@ -4675,31 +4674,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{0},{2},{1},{1},{8},{12},{20},{40},{10},{11},{8},{10},{3},{3},{3},{5},{26},{20},{13},{5},{6},{18},{5},{10},{9},{18},{3},{15},{7},{10},{7},{9},{12},{7},{3},{9},{6},{8},{7},{8},{8},{3},{5},{10},{2},{8},{13},{13},{5},{7},{6},{8},{13},{10},{8},{7},{3},{11},{12},{8},{4},{12},{10},{23},{4},{5},{7},{17},{16},{16},{11},{13},{7},{5},{5},{8},{8},{6},{8},{7},{4},{9},{14},{25},{176},{11},{165}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (826 bytes) */
-const char* const cstring = "BZh91AY&SY\032\261\264\303\000\000_\177\377\347\376\374D\375\303\357_\255\005}@\277\377\377\361@@@@@@@@@@@@@\000@\000@\002\274\355\264\220\2260\322L\2224\323\324\332\236\324e\036\243\323I\223\365F\236\240\000\3104\321\265\000\320\000\311\264\324\362OP\340i\246\232\r\r\r\014\215\000\310\003C@i\243 \000\006\023\020\032\rLMOT\304\311\242i\220\304\000\000\000\000\000\000\000\r\001\240J\021\r\032Shi\242f\212d\323M6\221\241\241\240\000\000\321\240\0006\246\236\211,\211\335\003\363\373\342\344s\216.TV\213\2449TQ\025UV)\242\004)n=3@[\362\223N\347\020\345\030C\013\210AI%\201A\310\323\3165WuY\371\n\0052\033\373\377\335\033i\234\201\242\023\nv\222\035}\222u&jh\020\272\307O\314+\226\256\366!\343\001\356\242(\226|n\376\320\240\2724\216\352wg-? \305\204c\010\215.\365\207\236\221\300f\021S6\342\t\235b\027Yd59\272O\335\237\013\023MJ*\360\3334\r\026\301\360\025I\300\233U\220.(\016\311f\023\215\343zT\365_\244y>\006o\262\262AH)\303\000\214\000\244\345\"C\000>\023\216z('\320\004\253\265\0025\266U?\315=\"O<\306\230!y\013\253\021R\274\374\374s\340\236\274\365bM\275\010\027\325\3621\234]4\013F8\271\222\330\313.h\275lZ%\224\332\037\321N\030\325\257\212R\270u\313\251\327\252\347\211 4\013j\0134\203U\204KQ\225\357\020\230AxS\303\343Y\002^\307/\341\251\274\304w\365L%\230\253\"\273\272\350\266\254\006\206\200B\241 _h\314\024\302aw\023\334\256W\035Vl\014cr\246\301\210\255\301\242\233\266f\351>\224\334\251\220\314\01600\331\323RR\3413eh\0166/\355V\257B\331\226\213H6W\003\361\320^\311\251zt\242p[\254\210\310\341TV\325\243.J\244\261[YGT\332T\273iK jTB\227\242\242\340\242n\345\234\35171n\t\320\326m\355w\227\203\026\356X\343\301~\373\321QH*V\231\226eG\332\263\021\261\330e5\266v9\204\251\023\256\344td\3668\030\205\302\235\021x'#IX^\330\224\t\221\214\2508\334%D*Q\033=\312I\013\034\201\"\267V\211B9\006\205as_NvC\014\n#\n\305\251\214`\t\212\250\271p\352l\271\325\330+\330\013\207Y\355VD\212\215&\315\304\214w\270#\351\373\252\3738\030\275t\241+p\220\020\230Z\301X\027\224t\007\240\365\363\347\261fO\271>K""\024\273=4]\017\376\224\017%\373\370_\301c\360\252\203x\277\020\271M\264\332\216\266,f\203L6\251T\014\024\332\245\263M#\335\252\365\302Z\023MT\314?\027\362\234\274\274Y\233T\256L\203\317\242\240\344\003\212\372\307i\305\216\331\262\227EE\220\2709\034\303\215\352\363\r\376.\344\212p\241 5ci\206";
-    PyObject *data = __Pyx_DecompressString(cstring, 826, 2);
+    const struct { const unsigned int length: 8; } index[] = {{0},{2},{1},{1},{8},{12},{20},{40},{10},{11},{8},{10},{3},{3},{3},{5},{26},{20},{13},{5},{6},{18},{5},{10},{9},{18},{3},{15},{7},{10},{7},{9},{12},{7},{3},{9},{6},{8},{7},{8},{8},{3},{5},{10},{2},{8},{13},{13},{5},{7},{6},{8},{13},{10},{8},{7},{3},{11},{12},{8},{4},{12},{10},{23},{4},{5},{7},{17},{16},{16},{11},{13},{7},{5},{5},{8},{6},{8},{7},{4},{9},{14},{25},{176},{11},{165}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (828 bytes) */
+const char* const cstring = "BZh91AY&SYg(J\263\000\000_\177\377\347\376\374H\375\303\377\237\267\005}@\277\377\377\361@@@@@@@@@@@@@\000@\000@\002\234\355\264\220\230\206\2124\240z\236S\324\360P\365\036\247\224\315A\352\000\007\242\0324\323M\r\000\006\230\324i\352z\236\241\301\243F\201\240\320\0311\001\221\241\220\000\032i\220\000\000\301\000\006\246\nh\236\251\341F'\2516\231\001\014!\202a\030\000 \310\3654\304z\217S\003\324\203M\"2h\2154\311\241\221M\032\036\247\222hh\030\203@\000\000\000\036\223h\324\216$\356\200?_\315<\214`\323\255\n\312\310\206\262\010BI2\247\013\303\346^.7<\033\361\207H\306\007\353\n\020V\300\367\221\024o\020NE\222@\263\336\304\255\260@\021`\335\335\377p\347M4\017\226\002\203\026*ZZ\033[\204\350\326;(\020\256\217\267t\215\356g\177HvD|\010\214'\307\243;\031\013=\270\332\017\021C)D\341\036\314\275h>\374\316\203Y\031\353\344\363(I\306B\303\0144ma\340gJ\262\"\212na\n}\366\335\220i\266F\274\022 \000v5@' \006[^\021\304\320\177\272o7r),O\177y_ \304\030\344\210@\000\304\346\"C\000,\207\014\004`[\\\240\007\034\322\t\252\\\244jX\\\t$\216\034oA}\005\022\205J\264c}O\247E\334)\237\240\200P[\022\214\340\352\2000\307+\025-\2268\362\312\323Q\204q\214\301\273I\354\226~]q\213A\330\216\261j\227(V4\rTW\360\203\351\301\233\r\354\252$0\202\341`\005\203J\023\036\023x\031#\010d\322a/\326\264\214\353\270\245\267l>I\302\024\362\206\275\003\005@\240\\\254\256d,\033\212\265(\306\302\233#\010\245\200i\232\366\014\273m\2316\247T\031Q\202\242\243:\\\214]\016\\\212\360\301\263\1775%\250-q\264:\\\214\001\270\340(\262\345\371\022\022\000o*\"\243\001 \256(d\262x\260\025\330!\223\256\242/Z&T\002\344\341\354I\220\325\007o\340\346\305^\200\231\271K\271\260\321x\n\366\355\206*h\241\250P\207\224\276\231\013\2126\302\341-L\301\032\305Jh0\226k:\334\256\201+\316'\220\245\217\004\\\021\243\345\305\030\370\323\001B<\312w\033\204\310\205\205\0229Ic\210\345\t%\226|\214\021\3105m\017F5Q\347\274eW\031\226\352\240\305\200\036'\254\272\343f\232i\264\3404$\000\\n\241,\207\211S\t)\022\344\252\273v\325\265\360g\331mn\333\005""\320W,\220\026LIv\220/\014\n\217!\347\343[RI\256M\356__\273\025\360\023\031\242\035W\3577v\374\027\243\276P\203\356\202Q]\307Y\253\367I\231\316:a\310\246\210\030\211\330\246\221\317\226\3030\350\030i\232(\204\326\202Y\363)\372\265\023{+\356\325\347,(\364\212k\216\337\327\301c\3044\210\245e\270j\301\034\204>*\312\301\377\361w$S\205\t\006r\204\2530";
+    PyObject *data = __Pyx_DecompressString(cstring, 828, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (736 bytes) */
-const char* const cstring = "x\332mR\273N\033A\024\005\211\020\203m\331\216)(\"a\033\224\244\261\301\"A\021\257\010\005\271\212\020&(J7\032v\307d\302\276\2743\353\007\005\242\334r\313)\247\334\322\245K\227\224.]\372\023\370\204\334\231\265\221\243d\265;s\357\231\3738\367\314\036\225j_*\247\307\273&\355\234\036\303R2,\314\330IE\333\214\367-rR1)\363,\334?\374\037F\035\213:\244\332\262H\2572\317UN\225q\354\363\205S\033\373\267\3249,\315\367\275\222}S\265y\325\353\035y\275\322\336\021\243\266g\021\235\265\313\030\n\350.\363\260Aj^\037\241\313~\017\276sjptAz\374\212\264\260i\"\303\265=\327!\016\307\026\275u\260\347\021\307\304\254\357\030\324\255\031\256\357\006\320\236\260\033\3135\35641\344`\233h+1\340\024Q\007q\037\332\334`\025\304\014\027\252\001\356# \002\010\270P\337\010\030w\355\357\364\236\230\3209\260\270I}bp\352:3\025\020\357{\004!\3235\020\002\022j\341P\003\221\236\201\370\215^!@\355\035l)\230r\004O+p \341\226px\r\373\227\353\323{WO\003\025\250\243b\250\243\270h\032=\216(C/sQNl\366\033\210\321V\377\256\013\2322\204l\240\256\352\332\004\310\353\211\225\343\232\201E\224\245\246F\310\365\024q\346\271\036B\236O<\354\353\303v\200\255$\300'\314\r|\2030b\265\020b\204\317\022\301\232\215\277pU5}U5}U\014\004\322\006\304.l\265\0279\026\200\231\002s?\231v\356k\t\023S7az\356\244\241\376\375`v\220\235C\007\016(R\252\006\204u\010\374p\006\266:\001Q\252t}\354=\236MS\231\360<ZVF6\274\032\347\266\004\227\365\005\257+\261\344q}\222\312\205<\322\007o\242\262\362\332QNt\344u\\\210\253\203v\002\254\213wrE\236\311\237q\363\037`\252\200q\276$W\245\031\227\343\323a!\tI\213\003\271!\233\222\306\263\"Y\361C~\224\3558=\250\377\335\346\375\2408h\014w\206x\370\360\364}|\331|^]Z\313\206\337\304+q%\036\342fL\007\375Q\372\t\2222a#\332\211\250hK=\226\"~ \n\217\353ay\272\362\372\221\207\373!V\225\273\221!\n\317\251\245\265Lx\0305#\"\352\323\314\246X\025\246,\313\223\301\3624\223\013\357EQ\234M\362\233b\035\260\372$\277%\332S\36020RS{\223L1\372,\352\343\267\373\343\375\257\243\272\242\224\017;\321\265(\210\017\262<M\245""\303O\321J\324\020\333\342Z\026e#\336\006e\222\024q\001*\250\204\354FR\2411\302\243\366\037V\352\300\341";
-    PyObject *data = __Pyx_DecompressString(cstring, 736, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (732 bytes) */
+const char* const cstring = "x\332mR=O\0331\030\006\211R \211H\n\003R\007\222\200\332.\t\204\266T\342#\025\025\315TU\004P\325\315r\356\034\352r_9\373\222\034\003b\274\361F\217\036o\314\310\230\2211c\306\374\004~B_\373\002J\325\236\356\354\367y\375~<\317\353;,V?\227\353G;&\355\326\217`)\032\026f\354\270\254m\306C\213\034\227M\312<\013\207\007\377\363Q\307\242\016\251\264-\322/?\345*Pa\034\373|\346\324\306\376\025u\016\212O\373n\321nUl^\361\372\207^\277\270{\310\250\355YDg\3550\206\002\272\303<l\220\252\027\"t\026\366\341;\245\006G\337I\237\237\22366Md\270\266\347:\304\341\330\242W\016\366<\342\230\230\205\216A\335\252\341\372n\000\355\tkY\256q\255\211!\007\333D[\251\001\247\210:\210\373\320\246\205U\0203\\\250\006~\037\001\021\360\000\204\372F\300\270k_\320\033bB\347\300\342&\365\211\301\251\353L\247\200x\350\021\204L\327@\010H\250\205C\rD\372\006\342-\275B\200\332\273\330Rn\312\021<\355\300\201\204+\302\3415\354_\256Oo\\\255\006*PG\305PGq\3214\372\034Q\206\236uQNl\366\033\210\321vx\335\203\2312\204l\240\256\352\332\004\310k\305\n\270f`\021e)\325\010\271\236\"\316<\327C\310\363\211\207}}\330\t\260\225\006\370\204\271\201o\020F\2546B\214\360i\"XS\3713WU\325WU\325W\305`@\332\200\330\231\255\372<\216\031\307t\002O8U\373\204\365\010SS7aZw\332P\377~\010q@HM3 \254K\340G3\260\325\r\210\232F\317\307\336\335\311d)\033\235\306\363\312\310E\347\243\325M\301em\006\365$\226<\251\215\227V#\036\353\203WqI\241N\274*\272\3622)$\225A'u\254\2107rA\236\310\237I\363\037\307D9F\371\242\\\224fRJ\352\367\2054$#\366\345\272lJ\232L\213\344\304\017\371Av\222\314\240\366w\233\267\203\265A\343~\373\036\337\337>\\\214\316\232\217\213s\313\271\350\233x!\316\305m\322L\350 \034f\036 )\0335\342\355\230\212\216\324\262\024\361}Q\270[\211J\223\205\227w<z\037aU\271\027\033\242\360\2704\267\234\215\016\342fLDm\222\335\020\213\302\224%y<\230\237dW\243\033\261&N\306\371\r\261\002\276\3328\277):\023@Y\220\324\324h\234]\213?\211\322\350\365\336h\357\313\260\244(\345\243n|)\n\342\235,M\2262\321\307x!n\210-q)\327d#\331\202\311\244)\242""\016\222TBn=\255\360u\330\034\342?\365\352\274\354";
+    PyObject *data = __Pyx_DecompressString(cstring, 732, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1134 bytes) */
-const char* const bytes = "; .?\"></div><div class=\"<div style=\"display:<div style=\"display:inline-flex\" class=\"flex-startinline-flexmargin: margin: 0 mb-mt-px;px 0;simplestart/ss_ui/space.py__Pyx_PyDict_NextRefadd_componentalignappendasyncio.coroutinesblockclass_nameclassnamecline_in_tracebackclscontainer_stackcontentcustomSizedefaultdirectiondisplay_type__doc__end__enter__exc_tbexc_typeexc_val__exit____func__getgetcmhorizontalid__init__inner_context_is_coroutineitemsjustifykwargs__main____metaclass____module____name__optionspop__prepare____qualname__resourceself__set_name__setdefaultsimplestart.ss_ui.spacesizespace__space__space.__enter____space.__exit____space.__init____space.end__space.startss_corestartstyletemplate__test__valuesverticalvuetifywrap\200A\340\010\014\210D\220\001\200A\340\010\r\210R\320\017\037\230t\2401\200A\340\010\r\210R\320\017\037\230w\240a\240t\2501\330\010\017\210t\2201\200A\340\010\022\220!\330\010\017\210q\220\017\230v\240T\250\021\250-\260q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\340\010\017\210q\320\020 \240\006\240d\250!\250>\270\021\330\010\017\210q\220\013\2306\240\024\240Q\240i\250q\330\010\017\210q\220\r\230V\2404\240q\250\013\2601\330\010\017\210q\220\017\230v\240T\250\021\250'\260\023\260F\270$\270a\270~\310S\320PQ\360\006\000\t\r\210L\230\005\230R\230~\250Q\250i\260y\300\013\3101\330\010\014\210F\220$\220i\230q\240\001\200A\340\010\017\210t\2206\230\021\200\n\210!\340\004\007\200t\2103\210a\330\010\017\210w\220c\230\021\360\010\000\t\014\210:\220Q\220e\2301\340\014\030\230\006\230d\240!\240=\260\001\340\014\017\210z\230\023\230A\330\020\030\230\n\240!\2401\330\020\037\230q\340\020\030\230\014\240A\240Q\330\020\037\230q\330\014\023\2208\2301\320\0343\3203C\3001\360\006\000\t\020\210v\220T\230\021\230(\240!\340\010\013\2105\220\004\220F\230#\230T\240\023\240F\250#\250Q\330\014\023\2208\2301\230N\250!\2501\360\006\000\r\024\2208\2301\320\034F\300a\300q";
+    #else /* compression: none (1126 bytes) */
+const char* const bytes = "; .?\"></div><div class=\"<div style=\"display:<div style=\"display:inline-flex\" class=\"flex-startinline-flexmargin: margin: 0 mb-mt-px;px 0;simplestart/ss_ui/space.py__Pyx_PyDict_NextRefadd_componentalignappendasyncio.coroutinesblockclass_nameclassnamecline_in_tracebackclscontainer_stackcontentcustomSizedefaultdirectiondisplay_type__doc__end__enter__exc_tbexc_typeexc_val__exit____func__getgetcmhorizontalid__init__inner_context_is_coroutineitemsjustifykwargs__main____metaclass____module____name__optionspop__prepare____qualname__resourceself__set_name__setdefaultsimplestart.ss_ui.spacesizespace__space__space.__enter____space.__exit____space.__init____space.end__space.startss_corestartstyle__test__valuesverticalvuetifywrap\200A\340\010\014\210D\220\001\200A\340\010\r\210R\320\017\037\230t\2401\200A\340\010\r\210R\320\017\037\230w\240a\240t\2501\330\010\017\210t\2201\200A\340\010\022\220!\330\010\017\210q\220\017\230v\240T\250\021\250-\260q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\340\010\017\210q\320\020 \240\006\240d\250!\250>\270\021\330\010\017\210q\220\013\2306\240\024\240Q\240i\250q\330\010\017\210q\220\r\230V\2404\240q\250\013\2601\330\010\017\210q\220\017\230v\240T\250\021\250'\260\023\260F\270$\270a\270~\310S\320PQ\360\006\000\t\r\210L\230\005\230R\230~\250Q\250i\260y\300\013\3101\330\010\014\210F\220$\220i\230q\240\001\200A\340\010\017\210t\2206\230\021\200\n\210!\340\004\007\200t\2103\210a\330\010\017\210w\220c\230\021\360\010\000\t\014\210:\220Q\220e\2301\340\014\030\230\006\230d\240!\240=\260\001\340\014\017\210z\230\023\230A\330\020\030\230\n\240!\2401\330\020\037\230q\340\020\030\230\014\240A\240Q\330\020\037\230q\330\014\023\2207\230!\320\0332\3202B\300!\360\006\000\t\020\210v\220T\230\021\230(\240!\340\010\013\2105\220\004\220F\230#\230T\240\023\240F\250#\250Q\330\014\023\2207\230!\230>\250\021\250!\360\006\000\r\024\2207\230!\320\033E\300Q\300a";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 81; i++) {
+    for (int i = 0; i < 80; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 17) PyUnicode_InternInPlace(&string);
@@ -4710,7 +4709,7 @@ const char* const bytes = "; .?\"></div><div class=\"<div style=\"display:<div s
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 81; i < 87; i++) {
+    for (int i = 80; i < 86; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -4721,14 +4720,14 @@ const char* const bytes = "; .?\"></div><div class=\"<div style=\"display:<div s
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 87; i++) {
+    for (Py_ssize_t i = 0; i < 86; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 81;
+      PyObject **table = stringtab + 80;
       for (Py_ssize_t i=0; i<6; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -4801,7 +4800,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 42};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_direction, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_display_type, __pyx_mstate->__pyx_n_u_wrap};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_space_py, __pyx_mstate->__pyx_n_u_space, __pyx_mstate->__pyx_kp_b_iso88591_t3a_wc_Qe1_d_z_A_1_q_AQ_q_81_33, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_space_py, __pyx_mstate->__pyx_n_u_space, __pyx_mstate->__pyx_kp_b_iso88591_t3a_wc_Qe1_d_z_A_1_q_AQ_q_7_22B, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
