@@ -41,6 +41,8 @@ from .button import button, button_group, button_toggle
 ## from .video import video, 通过懒加载加载
 ## from .audio import audio, 通过懒加载加载
 ## from .overlay import overlay, 通过懒加载加载
+# Web Audio API 组件
+from .web_audio import web_audio
 from .markdown import markdown, md
 from .write import write
 ## from .colorpicker import colorpicker, 通过懒加载加载
