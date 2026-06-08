@@ -51,7 +51,7 @@ __all__ = [
     'clear_components_by_clientid', 'update_all_components', 'getProperty',
     
     # utils.py
-    'message_queue', 'background_send_task', 'send_message',
+    'message_queue', 'background_send_task', 'send_message', 'send_binary_message',
     
     # storage.py
     'get_storage',
