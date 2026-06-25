@@ -3738,7 +3738,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_4menu_list_item(CYTHON_UNUS
   /* "simplestart/ss_modules/menu.py":43
  * 
  *     #
- *     row1 = ss.vuetify('''             # <<<<<<<<<<<<<<
+ *     row1 = ss.vuetify(r'''             # <<<<<<<<<<<<<<
  *           <el-row :style="data.style" type="flex" :align="data.align || undefined" class="myitem"
  *           \@click="onserver('onclick')"
 */
