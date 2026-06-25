@@ -2814,7 +2814,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10popconfirm_popconfirm(CYTHON_UN
   /* "simplestart/ss_ui/popconfirm.py":43
  * 
  *     #  - header-class, body-class, footer-class
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <div style="display: contents">
  *         <el-popconfirm
 */

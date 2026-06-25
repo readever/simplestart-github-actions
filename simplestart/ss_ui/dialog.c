@@ -3040,7 +3040,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/dialog.py":32
  * 
  *     # div
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  * <div :style="{ display: data.dialogInited ? 'contents' : 'none' }">
  *   <!--  -->
 */

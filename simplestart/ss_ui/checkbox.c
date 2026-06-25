@@ -2953,7 +2953,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_handle_change
  *         if onchange:
  *             onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_3 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 37, __pyx_L1_error) }
@@ -3158,7 +3158,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED 
   /* "simplestart/ss_ui/checkbox.py":39
  *             onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <el-checkbox
  *           :label="data.label"
 */
@@ -4017,7 +4017,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_2handle_ch
  *         if onchange:
  *             onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_3 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 125, __pyx_L1_error) }
@@ -4325,7 +4325,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUS
   /* "simplestart/ss_ui/checkbox.py":127
  *             onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <el-checkbox-group
  *           v-model="data.model_value"
 */

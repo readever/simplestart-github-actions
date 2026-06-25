@@ -3346,7 +3346,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_3tag_tag(CYTHON_UNUSED PyObject *
  * 
  *     # checkedel-tagel-check-tag
  *     if checked:             # <<<<<<<<<<<<<<
- *         tag_template = '''
+ *         tag_template = r'''
  *             <el-check-tag v-bind="data.options"
 */
   __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_checked); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 72, __pyx_L1_error)
@@ -3355,7 +3355,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_3tag_tag(CYTHON_UNUSED PyObject *
     /* "simplestart/ss_ui/tag.py":73
  *     # checkedel-tagel-check-tag
  *     if checked:
- *         tag_template = '''             # <<<<<<<<<<<<<<
+ *         tag_template = r'''             # <<<<<<<<<<<<<<
  *             <el-check-tag v-bind="data.options"
  *                     :class="['mytag', data.css_name]"
 */
@@ -3366,7 +3366,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_3tag_tag(CYTHON_UNUSED PyObject *
  * 
  *     # checkedel-tagel-check-tag
  *     if checked:             # <<<<<<<<<<<<<<
- *         tag_template = '''
+ *         tag_template = r'''
  *             <el-check-tag v-bind="data.options"
 */
     goto __pyx_L3;
@@ -3375,7 +3375,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_3tag_tag(CYTHON_UNUSED PyObject *
   /* "simplestart/ss_ui/tag.py":83
  *         '''
  *     else:
- *         tag_template = '''             # <<<<<<<<<<<<<<
+ *         tag_template = r'''             # <<<<<<<<<<<<<<
  *             <el-tag v-bind="data.options"
  *                     :class="['mytag', data.css_name]"
 */

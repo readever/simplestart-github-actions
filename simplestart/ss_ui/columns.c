@@ -2401,7 +2401,7 @@ typedef struct {
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[1];
   PyObject *__pyx_string_tab[87];
-  PyObject *__pyx_number_tab[4];
+  PyObject *__pyx_number_tab[5];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2450,23 +2450,23 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u__5 __pyx_string_tab[5]
 #define __pyx_kp_u__6 __pyx_string_tab[6]
 #define __pyx_kp_u_background_color_2 __pyx_string_tab[7]
-#define __pyx_kp_u_border_1px_solid_dcdfe6 __pyx_string_tab[8]
-#define __pyx_kp_u_border_none __pyx_string_tab[9]
-#define __pyx_kp_u_class_col_container_data_align __pyx_string_tab[10]
-#define __pyx_kp_u_column __pyx_string_tab[11]
-#define __pyx_kp_u_column_container_width_100_box __pyx_string_tab[12]
-#define __pyx_kp_u_div __pyx_string_tab[13]
-#define __pyx_kp_u_div_class_column_container_data __pyx_string_tab[14]
-#define __pyx_kp_u_div_class_column_divider_style __pyx_string_tab[15]
-#define __pyx_kp_u_div_id __pyx_string_tab[16]
-#define __pyx_kp_u_el_col __pyx_string_tab[17]
-#define __pyx_kp_u_el_col_class_mycol_span __pyx_string_tab[18]
-#define __pyx_kp_u_el_row_div __pyx_string_tab[19]
-#define __pyx_kp_u_el_row_type_flex_justify __pyx_string_tab[20]
-#define __pyx_kp_u_gutter_2 __pyx_string_tab[21]
-#define __pyx_kp_u_simplestart_ss_ui_columns_py __pyx_string_tab[22]
-#define __pyx_kp_u_style_2 __pyx_string_tab[23]
-#define __pyx_kp_u_style_min_width_0 __pyx_string_tab[24]
+#define __pyx_kp_u_border_1px_solid_dcdfe6_border_r __pyx_string_tab[8]
+#define __pyx_kp_u_class_col_container_data_align __pyx_string_tab[9]
+#define __pyx_kp_u_column __pyx_string_tab[10]
+#define __pyx_kp_u_column_container_width_100_box __pyx_string_tab[11]
+#define __pyx_kp_u_data_border __pyx_string_tab[12]
+#define __pyx_kp_u_div_class_column_container_data __pyx_string_tab[13]
+#define __pyx_kp_u_div_class_column_divider_style __pyx_string_tab[14]
+#define __pyx_kp_u_div_id __pyx_string_tab[15]
+#define __pyx_kp_u_el_col __pyx_string_tab[16]
+#define __pyx_kp_u_el_col_span __pyx_string_tab[17]
+#define __pyx_kp_u_el_row_div __pyx_string_tab[18]
+#define __pyx_kp_u_el_row_type_flex_justify __pyx_string_tab[19]
+#define __pyx_kp_u_gutter_2 __pyx_string_tab[20]
+#define __pyx_kp_u_simplestart_ss_ui_columns_py __pyx_string_tab[21]
+#define __pyx_kp_u_style_2 __pyx_string_tab[22]
+#define __pyx_kp_u_style_height_100_position_relat __pyx_string_tab[23]
+#define __pyx_kp_u_xs_24_class_mycol_is_guttered_s __pyx_string_tab[24]
 #define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[25]
 #define __pyx_n_u_align __pyx_string_tab[26]
 #define __pyx_n_u_allocated __pyx_string_tab[27]
@@ -2532,7 +2532,8 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_1 __pyx_number_tab[1]
 #define __pyx_int_2 __pyx_number_tab[2]
-#define __pyx_int_24 __pyx_number_tab[3]
+#define __pyx_int_20 __pyx_number_tab[3]
+#define __pyx_int_24 __pyx_number_tab[4]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2550,7 +2551,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
   for (int i=0; i<87; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<5; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2576,7 +2577,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
   for (int i=0; i<87; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<5; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2737,8 +2738,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   PyObject *__pyx_t_13 = NULL;
   PyObject *__pyx_t_14 = NULL;
   PyObject *__pyx_t_15 = NULL;
-  PyObject *__pyx_t_16[11];
-  PyObject *__pyx_t_17 = NULL;
+  PyObject *__pyx_t_16 = NULL;
+  PyObject *__pyx_t_17[13];
+  PyObject *__pyx_t_18 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3055,7 +3057,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
  * 
  *     #
  *     border = kwargs.get("border", True)  #             # <<<<<<<<<<<<<<
- *     show_divider = kwargs.get("show_divider", True)  #
+ *     show_divider = kwargs.get("show_divider", False)  #
  *     align = kwargs.get("align", "top")
 */
   __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_border, Py_True); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 50, __pyx_L1_error)
@@ -3066,21 +3068,21 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   /* "simplestart/ss_ui/columns.py":51
  *     #
  *     border = kwargs.get("border", True)  #
- *     show_divider = kwargs.get("show_divider", True)  #             # <<<<<<<<<<<<<<
+ *     show_divider = kwargs.get("show_divider", False)  #             # <<<<<<<<<<<<<<
  *     align = kwargs.get("align", "top")
  *     justify = kwargs.get("justify", "start")
 */
-  __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_divider, Py_True); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_divider, Py_False); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_v_show_divider = __pyx_t_7;
   __pyx_t_7 = 0;
 
   /* "simplestart/ss_ui/columns.py":52
  *     border = kwargs.get("border", True)  #
- *     show_divider = kwargs.get("show_divider", True)  #
+ *     show_divider = kwargs.get("show_divider", False)  #
  *     align = kwargs.get("align", "top")             # <<<<<<<<<<<<<<
  *     justify = kwargs.get("justify", "start")
- *     gutter = kwargs.get("gutter", 0)
+ *     gutter = kwargs.get("gutter", 20)
 */
   __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_align, __pyx_mstate_global->__pyx_n_u_top); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
@@ -3088,10 +3090,10 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   __pyx_t_7 = 0;
 
   /* "simplestart/ss_ui/columns.py":53
- *     show_divider = kwargs.get("show_divider", True)  #
+ *     show_divider = kwargs.get("show_divider", False)  #
  *     align = kwargs.get("align", "top")
  *     justify = kwargs.get("justify", "start")             # <<<<<<<<<<<<<<
- *     gutter = kwargs.get("gutter", 0)
+ *     gutter = kwargs.get("gutter", 20)
  *     background_color = kwargs.get("background_color", "")  #
 */
   __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_justify, __pyx_mstate_global->__pyx_n_u_start); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 53, __pyx_L1_error)
@@ -3102,18 +3104,18 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   /* "simplestart/ss_ui/columns.py":54
  *     align = kwargs.get("align", "top")
  *     justify = kwargs.get("justify", "start")
- *     gutter = kwargs.get("gutter", 0)             # <<<<<<<<<<<<<<
+ *     gutter = kwargs.get("gutter", 20)             # <<<<<<<<<<<<<<
  *     background_color = kwargs.get("background_color", "")  #
  *     style = kwargs.get("style", "")  #  style
 */
-  __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_gutter, __pyx_mstate_global->__pyx_int_0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_gutter, __pyx_mstate_global->__pyx_int_20); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_v_gutter = __pyx_t_7;
   __pyx_t_7 = 0;
 
   /* "simplestart/ss_ui/columns.py":55
  *     justify = kwargs.get("justify", "start")
- *     gutter = kwargs.get("gutter", 0)
+ *     gutter = kwargs.get("gutter", 20)
  *     background_color = kwargs.get("background_color", "")  #             # <<<<<<<<<<<<<<
  *     style = kwargs.get("style", "")  #  style
  * 
@@ -3124,7 +3126,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   __pyx_t_7 = 0;
 
   /* "simplestart/ss_ui/columns.py":56
- *     gutter = kwargs.get("gutter", 0)
+ *     gutter = kwargs.get("gutter", 20)
  *     background_color = kwargs.get("background_color", "")  #
  *     style = kwargs.get("style", "")  #  style             # <<<<<<<<<<<<<<
  * 
@@ -3290,7 +3292,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
  *         if i > 0 and show_divider:
  *             cols_html.append(f"<div class='column-divider' style='width: 1px; background-color: #dcdfe6;'></div>")             # <<<<<<<<<<<<<<
  * 
- *         cols_html.append(f"<el-col class='mycol' :span='{col_widths[i]}' style='min-width:0;\'>")
+ *         cols_html.append(f"<el-col :span='{col_widths[i]}' :xs='24' class='mycol is-guttered' style='min-width:0; position: relative;\'>")
 */
       __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_cols_html, __pyx_mstate_global->__pyx_kp_u_div_class_column_divider_style); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 73, __pyx_L1_error)
 
@@ -3306,7 +3308,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
     /* "simplestart/ss_ui/columns.py":75
  *             cols_html.append(f"<div class='column-divider' style='width: 1px; background-color: #dcdfe6;'></div>")
  * 
- *         cols_html.append(f"<el-col class='mycol' :span='{col_widths[i]}' style='min-width:0;\'>")             # <<<<<<<<<<<<<<
+ *         cols_html.append(f"<el-col :span='{col_widths[i]}' :xs='24' class='mycol is-guttered' style='min-width:0; position: relative;\'>")             # <<<<<<<<<<<<<<
  * 
  *         #
 */
@@ -3315,48 +3317,48 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
     __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_10[0] = __pyx_mstate_global->__pyx_kp_u_el_col_class_mycol_span;
+    __pyx_t_10[0] = __pyx_mstate_global->__pyx_kp_u_el_col_span;
     __pyx_t_10[1] = __pyx_t_7;
-    __pyx_t_10[2] = __pyx_mstate_global->__pyx_kp_u_style_min_width_0;
-    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_10, 3, 29 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7) + 23, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_7));
+    __pyx_t_10[2] = __pyx_mstate_global->__pyx_kp_u_xs_24_class_mycol_is_guttered_s;
+    __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_10, 3, 15 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7) + 78, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_7));
     if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_cols_html, __pyx_t_2); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 75, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "simplestart/ss_ui/columns.py":79
+    /* "simplestart/ss_ui/columns.py":78
+ * 
  *         #
- *         # blockCSS
- *         cols_html.append(f"<div id='{col_id}' class='col-container' data-align='{align}'></div>")             # <<<<<<<<<<<<<<
+ *         cols_html.append(f"<div id='{col_id}' class='col-container' data-align='{align}' style='height:100%; position: relative;'></div>")             # <<<<<<<<<<<<<<
  * 
  *         cols_html.append(f"</el-col>")
 */
-    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_col_id, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_col_id, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_v_align, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_v_align, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_12[0] = __pyx_mstate_global->__pyx_kp_u_div_id;
     __pyx_t_12[1] = __pyx_t_2;
     __pyx_t_12[2] = __pyx_mstate_global->__pyx_kp_u_class_col_container_data_align;
     __pyx_t_12[3] = __pyx_t_7;
-    __pyx_t_12[4] = __pyx_mstate_global->__pyx_kp_u_div;
-    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_12, 5, 9 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + 36 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7) + 8, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_7));
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_12[4] = __pyx_mstate_global->__pyx_kp_u_style_height_100_position_relat;
+    __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_12, 5, 9 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + 36 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7) + 49, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_7));
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_cols_html, __pyx_t_3); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_cols_html, __pyx_t_3); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 78, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "simplestart/ss_ui/columns.py":81
- *         cols_html.append(f"<div id='{col_id}' class='col-container' data-align='{align}'></div>")
+    /* "simplestart/ss_ui/columns.py":80
+ *         cols_html.append(f"<div id='{col_id}' class='col-container' data-align='{align}' style='height:100%; position: relative;'></div>")
  * 
  *         cols_html.append(f"</el-col>")             # <<<<<<<<<<<<<<
  * 
  *     # CSSVue
 */
-    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_cols_html, __pyx_mstate_global->__pyx_kp_u_el_col); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_cols_html, __pyx_mstate_global->__pyx_kp_u_el_col); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 80, __pyx_L1_error)
 
     /* "simplestart/ss_ui/columns.py":65
  *     col_ids = []
@@ -3368,34 +3370,43 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "simplestart/ss_ui/columns.py":85
+  /* "simplestart/ss_ui/columns.py":84
  *     # CSSVue
  *     data = {
  *         "align": align,             # <<<<<<<<<<<<<<
  *         "justify": justify,
  *         "show_divider": show_divider,
 */
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_align, __pyx_v_align) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_align, __pyx_v_align) < (0)) __PYX_ERR(0, 84, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/columns.py":86
+  /* "simplestart/ss_ui/columns.py":85
  *     data = {
  *         "align": align,
  *         "justify": justify,             # <<<<<<<<<<<<<<
  *         "show_divider": show_divider,
- *         # Vuejustifyshow_dividerdata
+ *         "border": border,
 */
-  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_justify, __pyx_v_justify) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_justify, __pyx_v_justify) < (0)) __PYX_ERR(0, 84, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/columns.py":87
+  /* "simplestart/ss_ui/columns.py":86
  *         "align": align,
  *         "justify": justify,
  *         "show_divider": show_divider,             # <<<<<<<<<<<<<<
+ *         "border": border,
+ *         # Vuejustifyshow_dividerdata
+*/
+  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_show_divider, __pyx_v_show_divider) < (0)) __PYX_ERR(0, 84, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/columns.py":87
+ *         "justify": justify,
+ *         "show_divider": show_divider,
+ *         "border": border,             # <<<<<<<<<<<<<<
  *         # Vuejustifyshow_dividerdata
  *     }
 */
-  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_show_divider, __pyx_v_show_divider) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_border, __pyx_v_border) < (0)) __PYX_ERR(0, 84, __pyx_L1_error)
   __pyx_v_data = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
@@ -3408,40 +3419,65 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
 */
   if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css, __pyx_mstate_global->__pyx_kp_u_column_container_width_100_box) < 0))) __PYX_ERR(0, 90, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/columns.py":157
+  /* "simplestart/ss_ui/columns.py":150
  * 
  *     #
- *     border_style = "border: 1px solid #dcdfe6;" if border else "border: none;"             # <<<<<<<<<<<<<<
+ *     if border:             # <<<<<<<<<<<<<<
+ *         border_style = "border: 1px solid #dcdfe6; border-radius: 4px; padding: 16px;"
+ *     else:
+*/
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_border); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "simplestart/ss_ui/columns.py":151
+ *     #
+ *     if border:
+ *         border_style = "border: 1px solid #dcdfe6; border-radius: 4px; padding: 16px;"             # <<<<<<<<<<<<<<
+ *     else:
+ *         border_style = ""
+*/
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_border_1px_solid_dcdfe6_border_r);
+    __pyx_v_border_style = __pyx_mstate_global->__pyx_kp_u_border_1px_solid_dcdfe6_border_r;
+
+    /* "simplestart/ss_ui/columns.py":150
+ * 
+ *     #
+ *     if border:             # <<<<<<<<<<<<<<
+ *         border_style = "border: 1px solid #dcdfe6; border-radius: 4px; padding: 16px;"
+ *     else:
+*/
+    goto __pyx_L16;
+  }
+
+  /* "simplestart/ss_ui/columns.py":153
+ *         border_style = "border: 1px solid #dcdfe6; border-radius: 4px; padding: 16px;"
+ *     else:
+ *         border_style = ""             # <<<<<<<<<<<<<<
  *     background_style = f"background-color: {background_color};" if background_color else ""
  *     combined_style = f"{border_style} {background_style} {style}".strip()
 */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_border); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 157, __pyx_L1_error)
-  if (__pyx_t_1) {
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_border_1px_solid_dcdfe6);
-    __pyx_t_6 = __pyx_mstate_global->__pyx_kp_u_border_1px_solid_dcdfe6;
-  } else {
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_border_none);
-    __pyx_t_6 = __pyx_mstate_global->__pyx_kp_u_border_none;
+  /*else*/ {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
+    __pyx_v_border_style = __pyx_mstate_global->__pyx_kp_u_;
   }
-  __pyx_v_border_style = ((PyObject*)__pyx_t_6);
-  __pyx_t_6 = 0;
+  __pyx_L16:;
 
-  /* "simplestart/ss_ui/columns.py":158
- *     #
- *     border_style = "border: 1px solid #dcdfe6;" if border else "border: none;"
+  /* "simplestart/ss_ui/columns.py":154
+ *     else:
+ *         border_style = ""
  *     background_style = f"background-color: {background_color};" if background_color else ""             # <<<<<<<<<<<<<<
  *     combined_style = f"{border_style} {background_style} {style}".strip()
  *     res = vuetify(f'''
 */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_background_color); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_background_color); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 154, __pyx_L1_error)
   if (__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_background_color, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_background_color, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_10[0] = __pyx_mstate_global->__pyx_kp_u_background_color_2;
     __pyx_t_10[1] = __pyx_t_3;
     __pyx_t_10[2] = __pyx_mstate_global->__pyx_kp_u__2;
     __pyx_t_7 = __Pyx_PyUnicode_Join(__pyx_t_10, 3, 18 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 1, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3));
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 158, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 154, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_6 = __pyx_t_7;
@@ -3453,123 +3489,134 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   __pyx_v_background_style = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "simplestart/ss_ui/columns.py":159
- *     border_style = "border: 1px solid #dcdfe6;" if border else "border: none;"
+  /* "simplestart/ss_ui/columns.py":155
+ *         border_style = ""
  *     background_style = f"background-color: {background_color};" if background_color else ""
  *     combined_style = f"{border_style} {background_style} {style}".strip()             # <<<<<<<<<<<<<<
  *     res = vuetify(f'''
- *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" style="{combined_style}">
+ *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" data-border="{'true' if border else 'false'}" style="{combined_style}">
 */
-  __pyx_t_3 = __Pyx_PyUnicode_Unicode(__pyx_v_border_style); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyUnicode_Unicode(__pyx_v_background_style); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyUnicode_Unicode(__pyx_v_background_style); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_style, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_13 = __Pyx_PyObject_FormatSimple(__pyx_v_style, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 159, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_12[0] = __pyx_t_3;
+  __pyx_t_12[0] = __pyx_v_border_style;
   __pyx_t_12[1] = __pyx_mstate_global->__pyx_kp_u__3;
-  __pyx_t_12[2] = __pyx_t_2;
+  __pyx_t_12[2] = __pyx_t_3;
   __pyx_t_12[3] = __pyx_mstate_global->__pyx_kp_u__3;
-  __pyx_t_12[4] = __pyx_t_13;
-  __pyx_t_14 = __Pyx_PyUnicode_Join(__pyx_t_12, 5, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_13), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_13));
-  if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 159, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_14);
+  __pyx_t_12[4] = __pyx_t_2;
+  __pyx_t_13 = __Pyx_PyUnicode_Join(__pyx_t_12, 5, __Pyx_PyUnicode_GET_LENGTH(__pyx_v_border_style) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_v_border_style) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
+  if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_13);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_t_7 = __pyx_t_14;
+  __pyx_t_7 = __pyx_t_13;
   __Pyx_INCREF(__pyx_t_7);
   __pyx_t_4 = 0;
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_7, NULL};
     __pyx_t_6 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_strip, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 159, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 155, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   }
   __pyx_v_combined_style = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "simplestart/ss_ui/columns.py":160
+  /* "simplestart/ss_ui/columns.py":156
  *     background_style = f"background-color: {background_color};" if background_color else ""
  *     combined_style = f"{border_style} {background_style} {style}".strip()
  *     res = vuetify(f'''             # <<<<<<<<<<<<<<
- *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" style="{combined_style}">
+ *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" data-border="{'true' if border else 'false'}" style="{combined_style}">
  *         <el-row type="flex" justify="{justify}" :gutter="{gutter}">
 */
-  __pyx_t_14 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_13 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
 
-  /* "simplestart/ss_ui/columns.py":161
+  /* "simplestart/ss_ui/columns.py":157
  *     combined_style = f"{border_style} {background_style} {style}".strip()
  *     res = vuetify(f'''
- *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" style="{combined_style}">             # <<<<<<<<<<<<<<
+ *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" data-border="{'true' if border else 'false'}" style="{combined_style}">             # <<<<<<<<<<<<<<
  *         <el-row type="flex" justify="{justify}" :gutter="{gutter}">
  *             {''.join(cols_html)}
 */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_show_divider); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_show_divider); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 157, __pyx_L1_error)
   if (__pyx_t_1) {
     __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_true);
-    __pyx_t_13 = __pyx_mstate_global->__pyx_n_u_true;
+    __pyx_t_2 = __pyx_mstate_global->__pyx_n_u_true;
   } else {
     __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_false);
-    __pyx_t_13 = __pyx_mstate_global->__pyx_n_u_false;
+    __pyx_t_2 = __pyx_mstate_global->__pyx_n_u_false;
   }
-  __pyx_t_2 = __Pyx_PyUnicode_Unicode(__pyx_t_13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+  __pyx_t_3 = __Pyx_PyUnicode_Unicode(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_border); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 157, __pyx_L1_error)
+  if (__pyx_t_1) {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_true);
+    __pyx_t_2 = __pyx_mstate_global->__pyx_n_u_true;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_false);
+    __pyx_t_2 = __pyx_mstate_global->__pyx_n_u_false;
+  }
+  __pyx_t_14 = __Pyx_PyUnicode_Unicode(__pyx_t_2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_14);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/columns.py":162
+  /* "simplestart/ss_ui/columns.py":158
  *     res = vuetify(f'''
- *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" style="{combined_style}">
+ *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" data-border="{'true' if border else 'false'}" style="{combined_style}">
  *         <el-row type="flex" justify="{justify}" :gutter="{gutter}">             # <<<<<<<<<<<<<<
  *             {''.join(cols_html)}
  *         </el-row>
 */
-  __pyx_t_13 = __Pyx_PyObject_FormatSimple(__pyx_v_justify, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 162, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_gutter, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_justify, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_15 = __Pyx_PyObject_FormatSimple(__pyx_v_gutter, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_15);
 
-  /* "simplestart/ss_ui/columns.py":163
- *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" style="{combined_style}">
+  /* "simplestart/ss_ui/columns.py":159
+ *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" data-border="{'true' if border else 'false'}" style="{combined_style}">
  *         <el-row type="flex" justify="{justify}" :gutter="{gutter}">
  *             {''.join(cols_html)}             # <<<<<<<<<<<<<<
  *         </el-row>
  *     </div>
 */
-  __pyx_t_15 = PyUnicode_Join(__pyx_mstate_global->__pyx_kp_u_, __pyx_v_cols_html); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 163, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_16[0] = __pyx_mstate_global->__pyx_kp_u_div_class_column_container_data;
-  __pyx_t_16[1] = __pyx_t_2;
-  __pyx_t_16[2] = __pyx_mstate_global->__pyx_kp_u_style_2;
-  __pyx_t_16[3] = __pyx_v_combined_style;
-  __pyx_t_16[4] = __pyx_mstate_global->__pyx_kp_u_el_row_type_flex_justify;
-  __pyx_t_16[5] = __pyx_t_13;
-  __pyx_t_16[6] = __pyx_mstate_global->__pyx_kp_u_gutter_2;
-  __pyx_t_16[7] = __pyx_t_3;
-  __pyx_t_16[8] = __pyx_mstate_global->__pyx_kp_u__4;
-  __pyx_t_16[9] = __pyx_t_15;
-  __pyx_t_16[10] = __pyx_mstate_global->__pyx_kp_u_el_row_div;
+  __pyx_t_16 = PyUnicode_Join(__pyx_mstate_global->__pyx_kp_u_, __pyx_v_cols_html); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_16);
+  __pyx_t_17[0] = __pyx_mstate_global->__pyx_kp_u_div_class_column_container_data;
+  __pyx_t_17[1] = __pyx_t_3;
+  __pyx_t_17[2] = __pyx_mstate_global->__pyx_kp_u_data_border;
+  __pyx_t_17[3] = __pyx_t_14;
+  __pyx_t_17[4] = __pyx_mstate_global->__pyx_kp_u_style_2;
+  __pyx_t_17[5] = __pyx_v_combined_style;
+  __pyx_t_17[6] = __pyx_mstate_global->__pyx_kp_u_el_row_type_flex_justify;
+  __pyx_t_17[7] = __pyx_t_2;
+  __pyx_t_17[8] = __pyx_mstate_global->__pyx_kp_u_gutter_2;
+  __pyx_t_17[9] = __pyx_t_15;
+  __pyx_t_17[10] = __pyx_mstate_global->__pyx_kp_u__4;
+  __pyx_t_17[11] = __pyx_t_16;
+  __pyx_t_17[12] = __pyx_mstate_global->__pyx_kp_u_el_row_div;
 
-  /* "simplestart/ss_ui/columns.py":160
+  /* "simplestart/ss_ui/columns.py":156
  *     background_style = f"background-color: {background_color};" if background_color else ""
  *     combined_style = f"{border_style} {background_style} {style}".strip()
  *     res = vuetify(f'''             # <<<<<<<<<<<<<<
- *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" style="{combined_style}">
+ *     <div class="column-container" data-show-divider="{'true' if show_divider else 'false'}" data-border="{'true' if border else 'false'}" style="{combined_style}">
  *         <el-row type="flex" justify="{justify}" :gutter="{gutter}">
 */
-  __pyx_t_17 = __Pyx_PyUnicode_Join(__pyx_t_16, 11, 54 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + 9 + __Pyx_PyUnicode_GET_LENGTH(__pyx_v_combined_style) + 40 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_13) + 11 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 15 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_15) + 34, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_v_combined_style) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_13) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_15));
-  if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 160, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_17);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+  __pyx_t_18 = __Pyx_PyUnicode_Join(__pyx_t_17, 13, 54 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 15 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_14) + 9 + __Pyx_PyUnicode_GET_LENGTH(__pyx_v_combined_style) + 40 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + 11 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_15) + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_16) + 34, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_14) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_v_combined_style) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_15) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_16));
+  if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_18);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+  __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
 
-  /* "simplestart/ss_ui/columns.py":166
+  /* "simplestart/ss_ui/columns.py":162
  *         </el-row>
  *     </div>
  *     ''', data=data)             # <<<<<<<<<<<<<<
@@ -3579,44 +3626,44 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   __pyx_t_4 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_7);
-    assert(__pyx_t_14);
+    __pyx_t_13 = PyMethod_GET_SELF(__pyx_t_7);
+    assert(__pyx_t_13);
     PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
-    __Pyx_INCREF(__pyx_t_14);
+    __Pyx_INCREF(__pyx_t_13);
     __Pyx_INCREF(__pyx__function);
     __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
     __pyx_t_4 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_14, __pyx_t_17};
-    __pyx_t_15 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 160, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_15);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_15, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_15);
-    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_13, __pyx_t_18};
+    __pyx_t_16 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_16);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_16, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_16);
+    __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+    __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+    __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 160, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 156, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   }
   __pyx_v_res = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "simplestart/ss_ui/columns.py":169
+  /* "simplestart/ss_ui/columns.py":165
  * 
  *     #
  *     column_references = []             # <<<<<<<<<<<<<<
  *     for col_id in col_ids:
  *         # ss.inner_context
 */
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_v_column_references = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "simplestart/ss_ui/columns.py":170
+  /* "simplestart/ss_ui/columns.py":166
  *     #
  *     column_references = []
  *     for col_id in col_ids:             # <<<<<<<<<<<<<<
@@ -3629,63 +3676,63 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_6);
       #if !CYTHON_ASSUME_SAFE_SIZE
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 170, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 166, __pyx_L1_error)
       #endif
       if (__pyx_t_8 >= __pyx_temp) break;
     }
     __pyx_t_7 = __Pyx_PyList_GetItemRefFast(__pyx_t_6, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
     ++__pyx_t_8;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 170, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 166, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_XDECREF_SET(__pyx_v_col_id, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "simplestart/ss_ui/columns.py":172
+    /* "simplestart/ss_ui/columns.py":168
  *     for col_id in col_ids:
  *         # ss.inner_context
  *         col_ref = inner_context(res.id, col_id, col_id)             # <<<<<<<<<<<<<<
  *         column_references.append(col_ref)
  * 
 */
-    __pyx_t_15 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_17, __pyx_mstate_global->__pyx_n_u_inner_context); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 172, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_17);
-    __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 172, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_14);
+    __pyx_t_16 = NULL;
+    __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_mstate_global->__pyx_n_u_inner_context); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_18);
+    __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_13);
     __pyx_t_4 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_17))) {
-      __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_17);
-      assert(__pyx_t_15);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_17);
-      __Pyx_INCREF(__pyx_t_15);
+    if (unlikely(PyMethod_Check(__pyx_t_18))) {
+      __pyx_t_16 = PyMethod_GET_SELF(__pyx_t_18);
+      assert(__pyx_t_16);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_18);
+      __Pyx_INCREF(__pyx_t_16);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_17, __pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_18, __pyx__function);
       __pyx_t_4 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[4] = {__pyx_t_15, __pyx_t_14, __pyx_v_col_id, __pyx_v_col_id};
-      __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_17, __pyx_callargs+__pyx_t_4, (4-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
-      __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-      __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 172, __pyx_L1_error)
+      PyObject *__pyx_callargs[4] = {__pyx_t_16, __pyx_t_13, __pyx_v_col_id, __pyx_v_col_id};
+      __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_18, __pyx_callargs+__pyx_t_4, (4-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
+      __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
+      __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
     }
     __Pyx_XDECREF_SET(__pyx_v_col_ref, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "simplestart/ss_ui/columns.py":173
+    /* "simplestart/ss_ui/columns.py":169
  *         # ss.inner_context
  *         col_ref = inner_context(res.id, col_id, col_id)
  *         column_references.append(col_ref)             # <<<<<<<<<<<<<<
  * 
  *     #
 */
-    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_column_references, __pyx_v_col_ref); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 173, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_column_references, __pyx_v_col_ref); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 169, __pyx_L1_error)
 
-    /* "simplestart/ss_ui/columns.py":170
+    /* "simplestart/ss_ui/columns.py":166
  *     #
  *     column_references = []
  *     for col_id in col_ids:             # <<<<<<<<<<<<<<
@@ -3695,7 +3742,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "simplestart/ss_ui/columns.py":176
+  /* "simplestart/ss_ui/columns.py":172
  * 
  *     #
  *     return column_references             # <<<<<<<<<<<<<<
@@ -3722,7 +3769,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_7columns_columns(CYTHON_UNUSED Py
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_14);
   __Pyx_XDECREF(__pyx_t_15);
-  __Pyx_XDECREF(__pyx_t_17);
+  __Pyx_XDECREF(__pyx_t_16);
+  __Pyx_XDECREF(__pyx_t_18);
   __Pyx_AddTraceback("simplestart.ss_ui.columns.columns", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -4267,25 +4315,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 11; } index[] = {{0},{4},{1},{1},{15},{1},{1},{18},{26},{13},{36},{8},{1726},{8},{54},{81},{9},{9},{29},{34},{40},{11},{28},{9},{23},{20},{5},{9},{18},{16},{16},{6},{12},{17},{18},{6},{7},{7},{10},{4},{9},{8},{17},{7},{14},{16},{4},{4},{5},{8},{3},{6},{1},{2},{13},{13},{5},{7},{6},{10},{8},{10},{8},{3},{12},{9},{3},{12},{10},{12},{25},{10},{7},{5},{5},{5},{3},{8},{3},{5},{4},{4},{5},{6},{7},{5},{581}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1560 bytes) */
-const char* const cstring = "BZh91AY&SY0\017\r\033\000\002\020\377\377\377w\377\375\177\237\377\377\357\001\177\272\277\377\377\372OhD\360\300M|~\300\000@@G\240@\000P\005\\wR\353\263u\331\266\2336\305\270\03452\020\212{T\3654z\233S4\302\236iG\224\032=OI\243G\2506\247\224\3654z\200\3654z\206\203\324\36516\246M4\3654i\246ji\241\241\345\036\247\244\375Pd\2024L\230\215\003D\3212i\246&\232\000\000\320\000\000\000\000\003@\003&\200\000\000\000\224M\023Q\252~\222z\236\215O\023LS\021\246\231\032\000h\320h\000\000\000\000\000\006\230\232\000\000\001\240\004\212\"&j4O\032\200\020h\3204hh\000\036\246\200\032\000\000\000\000\006\232\000\000\001\240\0104\310\302h\323\0101\014M0\004di\210b`\004\311\200\002d\0320\000\004d\302d\300\023\010\312\027l\265r\262gM\227\241\214wr\027\227\337\003\"0\365\270ma\017D\261\216NL\3001\r$UA7\371\005\303\224\240\3066\306\333\033(\010\t.\t\254\2024q\343\264\256\310\201Ej\032c4\370\222\342\240l1\323\030\301\261\r\246\334\264i\024D\266\265\223^#]\272\nF\214\224\226\n\025\010\\\225\\\312\345\226\003e\271%\221\230\244\267\304\014\017#Z\034\241\371s\315.S\234\325>\271)>\"~\321$\200i\220@\032\323\016\343\243\271[\177m\234\274j\352\n\244@1,w\037\213\217B(d\305b\300\323\234\210\36782\202)\203)\350U\324\nZ\014\030\205s}D\341-\251bvG\004\231|1q1\"\311\357\260\210\342i\214]\303A\010]\353\247\242Y\221\217\244\215\n\"\376\t\361M3\221\007\201y&#L\346\305\327\200\014(\251T\254\014Ys\2220I\317G\333b\337\314\030(\013\215\220\340\312\317\356\363\251\024\2171\002\331\021QQ\022\362T\204C$\r\324\331',\220\265\235#\206\220\276\014\256\022\033\\\256\372\351\367\034\217\027K\332\205\274G\215YV\324\021\355 -\362\027\317zI\032e9dY\361JM\313]\033A\220h\r<\203\034\264\341\026\350\337\274=)W\00272\021\261^\225\265\255h\302,\253!#zi\334\304\345@\236!\325\303\211\032 9\006n8\302EX\006\332\3074\205\010\255-#~\226[\r\226ZA\202Tw\241>l\303\027\314\255\tf\276\204A\200\037\207\322M\021\310F\210'\026\224\243\323)\004\267\255\007\033`>qc\027\244\371\317W\272+\n\016F\2368h\013$\212\022c\2410\346\230P\014<T\310\203-""M\303\0140\005\227J\243\0202\003UF\004\"\3217/\261\022\355\321c\003\257f\304\3146\002m\037\0330J\311S_M62\276\242\262\014\026\014\t\302\232#\tF\312\226\225w\223\232\272\264P-\235)\202\276\312\214\256\212J\263)\251\036\276@\272\201Tm\262&A1K\242\250\025\304\255UB\311(\202\025b\346\213B\345\002\202 \3105K\rO+\234\010\270\235\352-\234#(^\022\001Z\331eF\t\300]hca\305\r\253ru)M.H\024\034\271\342`\212\022C\310\024\006Up8\243E\354N\204\232\010JAZ\213.#*\274D\306\222}\232\3129\024\273\274\013\366\232,\357n\321\203\224DH\2224`\0041m3\354U\335\3114\344g&\204\347v\270S\355\274\242\320\0233\030\200\374$X\020\221R\230\353\032FJ)#\370\360\254\000\022\330\314.x\245g\020\262h\214\365*)\022\2214_\305^\226\360\303\231\030X(\246\232\032h\212%\212\301Ey\250\253v\273\362\220\264\022\246VD\314\236*F\242Y2\010F\246\313\250B\341\324\236\370\243\357`aS\221\00466P\211~IM\004yaI\221\030\221G\221#V\213[\246\247I\325T\024\201\320\204\004\014\024\000Q\021x\304^\004\005$\017B\365bM\240\204\20324\234(\226H\026Z\343z@a`,]\320k\240\300}J`5%,\312\315\025\013V\244P\265\241\254V\035\216\334/(\337,K\030\321WI\004\314m\004\370,\312\201l\023\312\227H\350T\222s]\n\353@\362Ty\001\221a\2051b\325Z\301=eK\300\201y\305\335[\232\311\204\221\315\2011a\216\245Q\215JR'\002D\265\217\177Q\255CX\010fCP\331hz\303\356\234W\n#U\024\252\201P\020\320\000\254\342\302\320\331\213\306AMM\262@|\005F\"\001\305p\030\341\206D\200Y\021\322\024\330L\331\217\014w\334\034%\216\t\234D0&\014\327\224\036\305b}\275\210\211B\361\311\025\t\252\227l\3614\327\301\203w)\1775\311PT\223P\034\030A@rS\220\215bt<,\005\013\344\252\270IUR\\k\364\0354\001\032\006\324\255o\250\275>\016SC/\305\224\006i\013'\345\3162\260T\001\266\007\373k\367\353\317\227E#\022\200=\022\327-\346x5\017gV\260\367\025\240\\\352Y\250\342\331\007\254zd\217MD\352\005\035lq\033\031\025\207\300\364\t\021\335\303\n\036\022\261a\253C\264\216\004\231\214\235SH\237\251%\3076;1\204j\203\010u\341\362!\017\356\0054A\372@\357]\230/\362o\346Z\0368\023\235\021\354\334\334l\354\274\301""\255\205n\025\270y\034\251a6\330\027?\037\221\027\2064Zv\353\301z\242\266\335\305\352Q\307\233Je\364-\336$\356\213\333\023\3535C_\324\373\031\350|\221\320\272K~\307\361\372\324\313\345<$\254)\245\265\234\263Sl(\230jE|]C\027\252\346^g\"\276\305\311\264v\335x\3556!B('\203\005VUC\312\265\377\027rE8P\2200\017\r\033";
-    PyObject *data = __Pyx_DecompressString(cstring, 1560, 2);
+    const struct { const unsigned int length: 11; } index[] = {{0},{4},{1},{1},{15},{1},{1},{18},{61},{36},{8},{1493},{15},{54},{81},{9},{9},{15},{34},{40},{11},{28},{9},{49},{78},{20},{5},{9},{18},{16},{16},{6},{12},{17},{18},{6},{7},{7},{10},{4},{9},{8},{17},{7},{14},{16},{4},{4},{5},{8},{3},{6},{1},{2},{13},{13},{5},{7},{6},{10},{8},{10},{8},{3},{12},{9},{3},{12},{10},{12},{25},{10},{7},{5},{5},{5},{3},{8},{3},{5},{4},{4},{5},{6},{7},{5},{613}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1567 bytes) */
+const char* const cstring = "BZh91AY&SY\306\001\nl\000\002\001\177\377\377w\377\375\177\237\377\277\357\001\177\272\277\377\377\372OhD\360\300M|~\300\000@@G\240@\000P\005Nn\326\335\305u\331I\242\303wB\032\232L$OS(\3654\321\372\247\344\247\246\230\204\375(\323j\0002=M4\310\321\210\3652z\217B\033Q\350&\236\220\036\241\246L\217Q\241\3457\252zO\325\006H)\215M2\236#M\004\324<(b\r\000\000\320\000\000\000\000\000\003@\320\000\000\000\032\004*m2\215'\232\024\366\251\341G\251\220\321\220\000\321\240\000\320\000\003A\241\240\000\365\036\220\000\000\032\000H\241\004\312mS\365S\306F\244\361O&\241\372\246h&\201\246\324\302b\r\000hdh`\230&\230'\3525\030L\010\304\032\031\031\006L\000\230\023\t\211\241\243\023\023\000\230\004\310\032\0324\304`&\206\000\206\004\0310\000\000& 2\330p\343|Fh\200\216\002\306@*\236oUck\220\367\234\343h\375~\342\030\330\311JV\245>\374P\030\206\222,A\215xF\t\211\330\30666\330\306\247HQ0\026R\021\243\024o{\246\312@R\264\332c6\276\264\376\332\006\314I\214`\330\004\010\215\222a 1\336\311\276\360^\0055\003\322R\231\032\200P\033\361\026\024\264R9\245hg;1D\365\200Rs0\202\014\310<=\345\004\211\234\220[\347\210\337X\020\"!z\010\222\307\343|\026\3673\177\314X\0306N\221\235\316\314r\336t\356\320\2335(n\000\351 \224i\213\211\210a\032\274\256\276$\312\010\246-\306+\325\277\242\022\32213r$\320EC-\302ct\335\257\013\021R\026\212\2035\275.\013\334\277n\317\006Ir\352\244 JE\001\274\351\363\2063\264\331\301\222\316\300\020\233\212\303Bp\"1\257,\314\010\232\020\374\342S:\2712\225\276\346\225\320\330\240x\265 \030\317d\336\231f^y\202d\232\211\270\360\301\020\021\310\010\263\t\3423i?\205N0\025{|\360i7\224\223\311\222\315\301r\311*\312s8\231\254\200v\310[R\017\203\251\025Ig\305F\023\212\213\260\321\312AX*\261\204>y\272df=6\224Q\264\265X,\224\240\222QTS\013@\303\003=L\261\nAd\007\241L\214*\030\366-X\t2&z\0102%K\327\001\274\257\006Q]_<O\335\247]\202\002\222\253aON6R\315\030\360\226d3\347\253t\034\021\204Ig4\242\027wC\004\275\227\307\254S\t0\331\027\222<G\202\340\243\000N\274cd\201\272D%\234\020+\201\275\346A""\367\010F\213\0300\000\322\344\037\004\034\0057\0300\3000\230a\0062fQ\017\241\026\t\303\275y.\\\013\257\203\257Ez\354!M_^\2511S\305\24463\232\231\251\005\0038!\204\014\360\306!\205\273\025\375f\027\213X\326\010-w+\014\217f\211\235\t,\206T\244\375\211\006\010C\034\203l\201\250V\256r\211\312\251Ze\n\001D\016VX1Q\201`\207\365\206R\303'\225\367\310\026\222\213\002\371\211\002\357\241\023X-\221\202R\0277~\243\016 l\326\252\251Ji\017\244\n\017\256\254,\020\270\221I\003\024X\340\020!m\260\211L\323\341\232\242g\033b\364\342\334\204\261O\233\201\225\214\317\264\006\032\024\"\033vH\301 \013\013&\350\r\310\257\026\"\021Y\027~\031\303'\020\252q\335\256\247\233r\325\220%f0\001\347\021@q\023h#\024\305\247%,\354\013\000\004\267\224Ru\220+\210c\334\202%~\313\250\222RCG\231\025\243nqT\265\367\254F\226\024]M\r4E\023\305\030Q~\312\003)\254S\020\264J\253\350\255\231qRj%,\202\020\327ZI\035Q\025^K\201K;U\344\010k%\020\032'\234\244\t\255\234d\002\207\230a\031\315\027\030\323\345Y]9\020 \312jb\017=\245Z\231H@\335\022\246l\224\226[HV\271\220z\020H2\245B\320\002JH\224s\305y\236m\020\204\205w;\030\307h\260\325T\246!\252\243L>\035\316\t\363\r\237\321\016\003\014\264\202\246\332\013\330c\026\005\320\204\341R\370\202-7\336-\203K\0000\210\2308\235\211\030\216\275\212\225u\246Q\033\316\2700\270+ap5\222\210\342\226\364\2440\3055\\\365<\"+\001\032Y\307\273+Z\206p\035\"\001)\260\321J\207\237\252'PJ!\302T\n\200\032@\001Ye\201\222\026\230\314Jm\000\007\200UAL\007\310\\\004B\347F\220\n\004t\314L\000I\344\301\224\370\307\201\301\302X\351\314\371\004b\304\004\321\000\305\213&\n\267\036\006\245\345\020\362\001\r\201ul\007C\2318\267\\3p\360\355\306\013\212\03048&\246\257FbW\214\244=\177\234\241\236\006K\204\262UK\016\202\017i\006\215\363\277\335\330\256-Oo9\221\217K4\r\"\024\017\237\246r\324)\340\366\340\177\267?\225uf\342\2609\330\200\372\305\262\\\005\364\205A\340\362\\\031g\352\007\263\307\312,;\241.e\250\036\216:\371\303&N\334v\361A\236H\363\"\231I\202\374 f\226\262\375\037\021@\024\311s\226zG`a\351K""\225+o\275 H\314\016\014\247g8?\255\344\033\207\363\270\361?\200.h\334\340m\017%\306\014\002\357\333f\263U\353\311\266v\247\026\304{\0221\363\236Y\"\302\305\237\320\232\023\003\352\026\273\350\336\203\233\205\330\277\233\032$\356\206\026&\254\375\006hl\350)\256|0\323\002c\344\230\252\335\212\265$\366\350\204\311\320\240\224%\227\222tDR\tL\246E>V\271\305\2525-/\026\236\335\236O[z\010PvT\330\252\353dN\273\3046\232\263\3357\374]\311\024\341BC\030\004)\260";
+    PyObject *data = __Pyx_DecompressString(cstring, 1567, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1422 bytes) */
-const char* const cstring = "x\332\305V[o\033E\024N\322\244r\"\367\342&i\232\202\320z\241\265Tp\022\3234@n`\265\364\261\212S.*\010\2556\336\2613\355^\234\235\331$.B\252T\212\026\365e\036\220\272\360\302>Z\002\241\000}H)\250\371\t\373\270\217y\250k\361\226\237\300\231\331\215\3538\227\006\001b\245\335\035\2379\227\357;s\366\034_\263L4%\311\263}R\3135\362\356\202Z\274U\266-\307\324\262EK\267\354Ii\301\2625\004\357\\eU\"\226\2165\351U\255\250\225\320\304\324\366\216\311]e\244\242\256\0222\223\001305\251\212Mdg$M\245jV\325q\331\234\311p\227\216af\2331G/Hu\367A}\375n\375\347;\365\237\036\325\277\255I\027F\233\273#\261z\323\233\364\371\016\264+X\243\213\000ll\354\334\324\216\215\005k5K\360ml\226\267\341gA\324\256\263\037\255=\324\262\266\252a\207LJ\343\22567\3262\262K\272\2652)-bMC\346\363\335/\232\253V\272\357\353\310@&\225\346t\207<\363\357=\363\177o\374\372\270\361\370\373\203y\317J#H\317\332\326J[\0064L*\272Z\235\224J:j\003&R\236\305\024\031\000\233P\033\321\342\342\324~\351\223\322\330\250X6UM\272S\307P\35526'\245\261=5\366\240\270\033;G\016\3026\344\2079\242\212E0\305\026\204\267\221\256R\274\214\332\366UM\023\016\306\366\305\177@\202\270$\253a\033\025\243\030\021\360\277K\316\250\356\346\366\"\334\0066\263\213\010\227\027\251(\277\335\260@\374\277\320\230\025[\373~o\273\240\355]\342\360E?}t\377\317\007\017\033\337}Yw\277\252\177\375K\343\267'RVz\372\307\223\3067\265\306\375\037\033?\334\207-\r/\327\357\335m<\364\017.\375m\t\250cm\337\026\320\232\305\3031>\210\350a\212s\337\346\263\347\001\036\272\224s\023\355\005\321Z-\027\307\376!\321O[\332\261l@\307\322\221\374\331\341\233\312\213\212\215_7\035Bq\251*bB\247\003%x\"\373\337\203\275`Qj\031\3779la\204L\255\025\270Xff\247G\241\032\243\3119\r\253x\362\311\355$\344h\370\221Eke\273|g\344\026\203\314\316\322\316@\233\256\352h&\323R\324\322\356y\274=\246\266a\010\207X\233\311L\217F\235vv:\356\270q\024\361mg\244IRQa\0067\331\010u\030)1\217\347\224Z\376\023L\307S\207V+hF\346\031\221\267\0235#\313\322d\331\241\224\223\"\320~uD\250j\323QB\024\007\217F""\324\310H\245*\307\264\344&?^\321\021\3071`\241(s\325U\270\257\340\"U\256\241U:\217J\342\244U]\267\212*E\232J\252f\021[P\022\220\010\n\231%\317\263\242\210\254\264\374\0261\242\2176zF\022E\021\331P\312\210\362\231\310\177\202#\005\233\n\265\325\"\342\016\300\223\202\265\350I\370\313F%\376\022P\271@\334\312\"5t\2610\035#b\311\025\221\215\314\"\"1\355\242e,\200\373\030M\263 \224\nh\342U\245H\010\257\014\240I\000X\3111\213\n\007\026e\023c\350\004\\YT\342*U0Q\232\314\305<\217O\340\326\n\014g\002\254h\004QQ\014\210\242\300eX\232\303)+\212\251\032\360\256X\025EYrT=\372i#\256\010\251\261\021Q\024\202h\254\006+\rr\357\350\224\227\254\022\227e\313\331\216\210\263\215?V\302\353IYVu\007\021\2010\322\201\277\032\270\"h\023\007\322LA\nO\253B-\252\352\324v\220\343`\215\337\343\221\351\262\2038\031\301\340N\322\315o\275\334\321\223\270s\233\245\330y\2573L\364\263\334fb\220]\367\216x\271\020\026\005\246\373\262\237\337L\014\260\313\314\366Ra\"\351\276\317\006\231\312\226\302\344ix-{\205M\260\272\310%\233\211\223\354\010\313\261\274\260\014\301&\277u\264\243\367XlQ\365\273\374t\230\214<\rx\005\257\350\237\362\337\252\311\265<wU\006\201\032&\207\275\024\2679\r\020\272\274t\2308\3052^\312Ko\235\354\3509\356~\304\306\331\222\327\007^\272\373\331\004\367\021\2742RS\303\356\244{\225\275&Bt\206\335\307\335\022\273\342uz/\371\371\260\373X\253\321\020\300\375\300O\005\362\304\332N#\010\331s\206\021/\355\215{\313\376\365ZW-\315E)&\334\251\233\335\t\267\307\375\220\245\031$%\305\372\203\201l\255\000q\023'\334\025N|\253\257\2437\351\276\351\316\2736\033\000\346\311A\366\261\227\347\231I\261!\2573\030~{\275s\375\354Fn#\277\225\350\350=\305e\034]pn.\230+\004\205\371XOP\3579\312C\244\304Q\204\2113\236\300\326\353v\272gYn\353jWG\317@\320\177qmz}\t\350\004C\257\327r\301\033\227\203\3137\202\033\237\204\335\203l\036\250\036\367\325 \363\316zj=\263qz\003\324\372\334\014\034o:\2744\261v3xo>\230\327\002\r\205\347\316\007\347\271\022\234\3101\000\356\260<+@\250\276\023\256\312#\016C5\000\353>\226\336""\2043\310zK\376\021\377R-\261\00652\354\r\371\235\276\300\232ts\177\001e\312\037\347";
-    PyObject *data = __Pyx_DecompressString(cstring, 1422, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1428 bytes) */
+const char* const cstring = "x\332\305V\335o\333T\024o\272v\312\252\354#]\267\256\200\220c\330\"\r\322\256\243+\"m\n\3216\036\247\246\035\240\201\220\345\3327\351\355\034;\365\275n\223!\244Ic\310h/\367\001i\206\027\374\030\t\204\312\330\303\306@\333\237\340G?\366aY\304[\377\004\316\275v\263\264]\273\202@D\262\257}\356\371\370\375\3169>7W,\023MI\362\314\200\324\365\033}\177A\325\256Wl\3131\365\234f\031\226\235\227\026,[G\260\216\327\352\022\261\014\254Ko\350\232^F\223S\361V\316Vu\354\220\2744Q\253OI5U\327\261Y\001\375Ix\315J\232\241\022R\310\2023phR\025\233\310\316J\272J\325\234j\340\212Y\310\362@N\325\314u\220\214\235\225Z\356\335\326\203[\255_n\266~~\330\372\256)\235\035\353\354\216\306\352\035o\322\027[8\254b\235.B\370s\347NOm\331X\260\3529\202o\010p1r\020m\325\261V\220]6\254\325\274\264\210u\035\231\317w\277\354<u\343\274l\240*2\2514k8\344\231\177\373\231\377{\373\327G\355G?\354\rxF\032EF\316\266V\267A\3271\251\031j#/\225\r\264\r\230\310U\016ST\205D\023j#\252-\356\tngT\036\023\204\333b\356'+5\213`\212-3/\331\310P)^AS\373\305\315%9\035\333H\213\034D\250\376.\362jc'\360\227\201\252b3\267\210pe\221\212\336\335\t\013\304\377\013\215\031\261\265k\377\356\200\366\342\316\203/\344\351\303;\177\336\275\337\376\376\253\226\373u\353\233{\355\337\036K9\351\351\037\217\333\3376\333w~j\377x\007\266t\274\322\272}\253}\337\337\273#7%\240\216\365]?\251\356,\356\217\361^D\367\323y\273~\314/,\340^-\361\017\360~\3265\245\344*\314\003\003\311\237\357\377\223}Y\317\360\337\222C(.7DL\230#\240\004wd\377{\260\027,J\255\352\177\016[\030!S\357\006.\036\345h\324G\365-\310B6\r]\026\237\013\362v.\261>Y\264V7\233\261 w\031d\2676j\026fa\303@\205lW\213J;\317\260\315\023+;3=\006\2263\302!\326\013\331\351\261h(\316L\307\3031Oj*\234I\035\032B\001&utNF\326\021\261\347'\347t<\314i\243\206\n2O\205\274\231\241\202,K\371\212C)\247Ap\265f BU\233\216\021\2428x,\"CFk\r9&\"w\030\305\263K\264\376\213:{\223KV\312\327!/\347':gm4f0\311E\201\221\336\361\311gb\224\251s\273\370T\224\331F\035\256KX\243\312\025T\247s\250,ZI5\014KS)\322U\32205l""A\317A\212)\324\214<\317\267\"\362\335\365.\342F\305\217\356\221DQ\004T\245\202(?\322\370+8R\260\251P[\325\020w\000\236\024\254Gw\302\027\033\225\371\"\340s\201\270\224EZ5\304\203\351T\243lrE mj\210\304\351\325\254\352\002\270\217\321tZM\251\201&\256+\032!\274\347\200&\001`e\307\324\024\016,J\036\306\360o\206+\213V\257S\005\023\245\303\\\034\307q\245\257\257\252v\205\000+\032AT\224*DQ\340W\265t\207SV\024S\255\302Z\263j\212\262\354\250F\364j#\256\010\251\261\021Q\024\202h\254\006O:\344\3361(\377\030\224\270\341\273zhT\364P<\r\010\357[eE5\034D\004\302H\007\376)\340\232\240M\034H3\005)\334\255\032\265\250jP\333A\216\203u~MD\246+\016\342d\004\203\233)\267\270\361ZO\177\362\346\r\226fg\274D\230<\316\306\327\223'\330\274w\300\033\017\341\241\304\014_\366\213\353\311!v\221\331^:L\246\334\313\354\004S\331r\230:\t\313\212WZ\007\253w\270d=y\214\035`\343\254(,C\260)n\034\3549t8\266h\370\275~&LE\236\206\274\222\247\371\203\376\273M\271Y\344\256* P\303\324\210\227\3466'\001B\257\227\t\223\203,\353\245\275\314\306\261\236\376#\356\307l\202-{\003\340\245\3578\233\344>\202\327G\233j\330\227r?do\212\020\211\260\357\210[f\227\274\204\367\252_\014\373\016w\033\r\003\334\253~:\220'\327\266\032A\310\376S\214x\031o\302[\361\347\233\275\315\014\027\245\231p\247\256\367%\335~\367#\226a\220\2244;\036\014\345\232%\210\233<\352\256r\342\033\003=\207R\356yw\316\265\331\0200O\235`\237xE\236\2314\033\366\022\301\310\331f\246\231_+\255\251\234\333 \227qt\301\351\331`\266\024\224\346b=A\275\377 \017\221\026\245\010\223\247xQ\006\231@s\310M\270\257\260\361\215z\202\227l9L\016\363\224\303\r\210\005\303o5\307\203\267/\006\027\257\005\327>\r\373x\t\217\370j\220}\357A\372A\366\311\311'\2404\340f\241\314\231\360\302\344\332R\360\301\\0\207\003\274\024,\321\215\236\036'Q\354\205\245\330;\317\227\371\336\253\275\341\3513\301\031n\014\025;\014\304\034Vd%@1p\324\345$\372G\000\030de\200e\326\001_\316[\366\017\370\027\232\3115\200;\342\r\373\t_pI\271\343\177\001N\237\025\313";
+    PyObject *data = __Pyx_DecompressString(cstring, 1428, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3289 bytes) */
-const char* const bytes = "None; \">\n            .?background-color: border: 1px solid #dcdfe6;border: none;' class='col-container' data-align='-column-\n        /* \345\210\227\345\270\203\345\261\200\345\256\271\345\231\250 */\n        .column-container {\n            width: 100%;\n            box-sizing: border-box;\n            border: 1px solid #dcdfe6;\n            border-radius: 4px;\n            overflow: hidden;\n        }\n        \n        /* Element Plus\346\240\205\346\240\274\347\263\273\347\273\237 */\n        .column-container > .el-row {\n            display: flex;\n            align-items: stretch;\n            width: 100% !important;\n            margin: 0 !important;\n        }\n        \n        .column-container .el-col {\n            box-sizing: border-box;\n            position: relative;\n            padding: 0 !important;\n            display: flex;\n            flex-direction: column;\n        }\n        \n        .column-container .mycol {\n            position: relative;\n            min-height: 1px;\n            flex: 1;\n            display: flex;\n            flex-direction: column;\n        }\n        \n        .column-container .mycol > .col-container {\n            flex: 1;\n        }\n        \n        /* \345\210\227\344\271\213\351\227\264\347\232\204\345\210\206\345\211\262\347\272\277 - \344\275\277\347\224\250\347\213\254\347\253\213\347\232\204div\345\205\203\347\264\240 */\n        .column-container .column-divider {\n            width: 1px;\n        }\n        \n        .column-container .col-container {\n            box-sizing: border-box;\n            width: 100%;\n            flex: 1;\n            position: relative;\n            padding: 16px;\n            min-height: 30px;\n        }\n        \n        .column-container .col-container[data-align=\"middle\"] {\n            display: flex;\n            flex-direction: column;\n            justify-content: center;\n        }\n        \n        .column-container .col-container[data-align=\"bottom""\"] {\n            display: flex;\n            flex-direction: column;\n            justify-content: flex-end;\n        }\n\n    '></div>\n    <div class=\"column-container\" data-show-divider=\"<div class='column-divider' style='width: 1px; background-color: #dcdfe6;'></div><div id='</el-col><el-col class='mycol' :span='\n        </el-row>\n    </div>\n    \">\n        <el-row type=\"flex\" justify=\"\" :gutter=\"simplestart/ss_ui/columns.py\" style=\"' style='min-width:0;'>__Pyx_PyDict_NextRefalignallocatedasyncio.coroutinesbackground_colorbackground_styleborderborder_style__class_getitem__cline_in_tracebackcol_idcol_idscol_refcol_widthscolscols_htmlcols_numcolumn_referencescolumnscombined_stylecontainer_prefix_cssdatafalse__func__getgutteriidinner_context_is_coroutineitemsjustifykwargslast_width__main____module____name__pop__qualname__remainderres__set_name__setdefaultshow_dividersimplestart.ss_ui.columnsspan_valuess_corestartstripstylesum__test__toptotaltrueuuiduuid4valuesvuetifywidth\200\014\210A\360\034\000\005\010\200z\220\021\220&\230\001\330\010\023\2201\340\010\025\220S\230\003\2301\330\010\025\220Q\220l\240\"\240A\340\010\024\220C\220r\230\021\330\010\014\210E\220\025\220a\220q\330\014\026\220a\220v\230Q\340\010\023\2203\220a\220q\340\010\020\220\003\2201\220A\330\010\025\220Q\330\010\024\220A\360\006\000\t\r\210E\220\025\220a\220y\240\002\240!\330\014\024\220C\220r\230\024\230Q\230c\240\022\2407\250\"\250A\330\014\026\220g\230Q\230a\330\014\031\230\021\360\006\000\t\026\220S\230\002\230!\330\010\022\220'\230\021\230!\360\020\000\005\016\210V\2204\220q\230\n\240!\330\004\023\2206\230\024\230Q\320\036.\250a\330\004\014\210F\220$\220a\220y\240\001\330\004\016\210f\220D\230\001\230\033\240A\330\004\r\210V\2204\220q\230\n\240!\330\004\027\220v\230T\240\021\320\"6\260a\330\004\014\210F\220$\220a\220y\240\001\360\006\000\005\030\220s\230!\2304\230v\240S\250\002\250!\360\006\000\005\021\220\001\330\004\016\210a\340\004\010\210\005\210U\220!\2201\330\010\021\220""\023\320\024-\250Q\250a\330\010\017\210w\220a\220q\360\n\000\t\014\2102\210R\210r\220\024\220Q\330\014\025\220W\230A\230Q\340\010\021\220\027\230\001\320\0318\270\001\270\032\3001\300A\360\010\000\t\022\220\027\230\001\230\033\240A\320%P\320PQ\320QR\340\010\021\220\027\230\001\230\021\360\006\000\005\006\330\010\021\220\021\330\010\023\2201\330\010\030\230\001\360\006\000\005\t\210\001\210\032\2201\360F\002\000\005\024\320\0233\260<\270q\330\004\027\320\027+\2501\320,C\320CY\320YZ\330\004\025\220R\220q\230\016\240a\320'9\270\021\270'\300\026\300q\330\004\n\210'\220\021\220!\33056\260j\320@R\320Rd\320de\330%&\320&9\270\021\270!\330\014\r\210R\210u\220A\220Q\360\006\000\n\017\210a\360\006\000\005\031\230\001\330\004\010\210\n\220!\340\010\022\220-\230q\240\003\2405\250\010\260\001\330\010\031\230\027\240\001\240\021\360\006\000\005\014\2101";
+    #else /* compression: none (3207 bytes) */
+const char* const bytes = "None; \">\n            .?background-color: border: 1px solid #dcdfe6; border-radius: 4px; padding: 16px;' class='col-container' data-align='-column-\n        /* \345\210\227\345\270\203\345\261\200\345\256\271\345\231\250 */\n        .column-container {\n            width: 100%;\n            box-sizing: border-box;\n            overflow: hidden;\n        }\n        \n        /* Element Plus\346\240\205\346\240\274\347\263\273\347\273\237 */\n        .column-container > .el-row {\n            display: flex;\n            align-items: stretch;\n        }\n        \n        .column-container .el-col {\n            box-sizing: border-box;\n            position: relative;\n            display: flex;\n            flex-direction: column;\n        }\n        \n        .column-container .mycol {\n            position: relative;\n            min-height: 1px;\n            flex: 1;\n            display: flex;\n            flex-direction: column;\n        }\n        \n        .column-container .mycol > .col-container {\n            flex: 1;\n        }\n        \n        /* \345\210\227\344\271\213\351\227\264\347\232\204\345\210\206\345\211\262\347\272\277 - \344\275\277\347\224\250\347\213\254\347\253\213\347\232\204div\345\205\203\347\264\240 */\n        .column-container .column-divider {\n            width: 1px;\n        }\n        \n        .column-container .col-container {\n            box-sizing: border-box;\n            width: 100%;\n            flex: 1;\n            position: relative;\n        }\n        \n        .column-container .col-container[data-align=\"middle\"] {\n            display: flex;\n            flex-direction: column;\n            justify-content: center;\n        }\n        \n        .column-container .col-container[data-align=\"bottom\"] {\n            display: flex;\n            flex-direction: column;\n            justify-content: flex-end;\n        }\n\n    \" data-border=\"\n    <div class=\"column-container\" data-show-divider=\"<div class='colu""mn-divider' style='width: 1px; background-color: #dcdfe6;'></div><div id='</el-col><el-col :span='\n        </el-row>\n    </div>\n    \">\n        <el-row type=\"flex\" justify=\"\" :gutter=\"simplestart/ss_ui/columns.py\" style=\"' style='height:100%; position: relative;'></div>' :xs='24' class='mycol is-guttered' style='min-width:0; position: relative;'>__Pyx_PyDict_NextRefalignallocatedasyncio.coroutinesbackground_colorbackground_styleborderborder_style__class_getitem__cline_in_tracebackcol_idcol_idscol_refcol_widthscolscols_htmlcols_numcolumn_referencescolumnscombined_stylecontainer_prefix_cssdatafalse__func__getgutteriidinner_context_is_coroutineitemsjustifykwargslast_width__main____module____name__pop__qualname__remainderres__set_name__setdefaultshow_dividersimplestart.ss_ui.columnsspan_valuess_corestartstripstylesum__test__toptotaltrueuuiduuid4valuesvuetifywidth\200\014\210A\360\034\000\005\010\200z\220\021\220&\230\001\330\010\023\2201\340\010\025\220S\230\003\2301\330\010\025\220Q\220l\240\"\240A\340\010\024\220C\220r\230\021\330\010\014\210E\220\025\220a\220q\330\014\026\220a\220v\230Q\340\010\023\2203\220a\220q\340\010\020\220\003\2201\220A\330\010\025\220Q\330\010\024\220A\360\006\000\t\r\210E\220\025\220a\220y\240\002\240!\330\014\024\220C\220r\230\024\230Q\230c\240\022\2407\250\"\250A\330\014\026\220g\230Q\230a\330\014\031\230\021\360\006\000\t\026\220S\230\002\230!\330\010\022\220'\230\021\230!\360\020\000\005\016\210V\2204\220q\230\n\240!\330\004\023\2206\230\024\230Q\320\036.\250a\330\004\014\210F\220$\220a\220y\240\001\330\004\016\210f\220D\230\001\230\033\240A\330\004\r\210V\2204\220q\230\n\240!\330\004\027\220v\230T\240\021\320\"6\260a\330\004\014\210F\220$\220a\220y\240\001\360\006\000\005\030\220s\230!\2304\230v\240S\250\002\250!\360\006\000\005\021\220\001\330\004\016\210a\340\004\010\210\005\210U\220!\2201\330\010\021\220\023\320\024-\250Q\250a\330\010\017\210w\220a\220q\360\n\000\t\014\2102\210R\210r\220\024\220Q\330\014\025\220W\230A\230Q""\340\010\021\220\027\230\001\320\031*\250!\250:\260Q\260a\360\006\000\t\022\220\027\230\001\230\033\240A\320%P\320PQ\320QR\340\010\021\220\027\230\001\230\021\360\006\000\005\006\330\010\021\220\021\330\010\023\2201\330\010\030\230\001\330\010\022\220!\360\006\000\005\t\210\001\210\032\2201\360x\001\000\005\010\200q\330\010\027\220q\340\010\027\220q\330\004\027\320\027+\2501\320,C\320CY\320YZ\330\004\025\220S\230\016\240a\320'9\270\021\270'\300\026\300q\330\004\n\210'\220\021\220!\33056\260j\320@R\320Ri\320ij\320jt\360\000\000u\001A\002\360\000\000A\002S\002\360\000\000S\002T\002\330%&\320&9\270\021\270!\330\014\r\210R\210u\220A\220Q\360\006\000\n\017\210a\360\006\000\005\031\230\001\330\004\010\210\n\220!\340\010\022\220-\230q\240\003\2405\250\010\260\001\330\010\031\230\027\240\001\240\021\360\006\000\005\014\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -4340,8 +4388,8 @@ const char* const bytes = "None; \">\n            .?background-color: border: 1p
   }
   {
     PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 0;
-    int8_t const cint_constants_1[] = {0,1,2,24};
-    for (int i = 0; i < 4; i++) {
+    int8_t const cint_constants_1[] = {0,1,2,20,24};
+    for (int i = 0; i < 5; i++) {
       numbertab[i] = PyLong_FromLong(cint_constants_1[i - 0]);
       if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
     }
@@ -4349,7 +4397,7 @@ const char* const bytes = "None; \">\n            .?background-color: border: 1p
   #if CYTHON_IMMORTAL_CONSTANTS
   {
     PyObject **table = __pyx_mstate->__pyx_number_tab;
-    for (Py_ssize_t i=0; i<4; ++i) {
+    for (Py_ssize_t i=0; i<5; ++i) {
       #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
       #if PY_VERSION_HEX < 0x030E0000
       if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)

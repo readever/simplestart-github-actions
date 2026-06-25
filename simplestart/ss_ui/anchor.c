@@ -2551,7 +2551,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6anchor_anchor(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/anchor.py":33
  * 
  *      #  Element Plus
- *      res = vuetify(dedent('''             # <<<<<<<<<<<<<<
+ *      res = vuetify(dedent(r'''             # <<<<<<<<<<<<<<
  *         <el-anchor :offset="70">
  *             <el-anchor-link
 */

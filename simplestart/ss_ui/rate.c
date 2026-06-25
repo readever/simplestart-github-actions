@@ -2703,7 +2703,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_4rate_myonchange(PyObject *
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_2 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 50, __pyx_L1_error) }
@@ -3045,7 +3045,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4rate_rate(CYTHON_UNUSED PyObject
   /* "simplestart/ss_ui/rate.py":52
  *           onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <el-rate v-model="data.value"
  *         :allow-half = "data.allow_half"
 */

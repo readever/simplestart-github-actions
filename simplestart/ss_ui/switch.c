@@ -2748,7 +2748,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6switch_6switch_myonchange(PyObje
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_2 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 34, __pyx_L1_error) }
@@ -3092,7 +3092,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6switch_switch(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/switch.py":36
  *           onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <el-switch v-model="data.value"
  *         :active-text = "data.active_text"
 */

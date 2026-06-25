@@ -4414,7 +4414,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
  *     #  label/title
  *     label = kwargs.get("label", kwargs.get("title", ""))             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
   __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4427,7 +4427,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   /* "simplestart/ss_ui/input.py":142
  *     label = kwargs.get("label", kwargs.get("title", ""))
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <div class="input-container" :style="data.block ? 'display: block; margin-bottom: 16px; width: 100%;' : 'display: block; margin-bottom: 16px;'"><div v-if="data.label" style="margin-bottom: 8px; font-weight: normal; font-size: smaller; color: #606266;">
  *                 {{ data.label }}
 */

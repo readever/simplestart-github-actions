@@ -2882,7 +2882,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_
   /* "simplestart/ss_ui/colorpicker.py":41
  *     # v-runtime-template
  *     #  div v-runtime-template  div
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <div display:contents>
  *         <el-color-picker v-model="data.color"
 */

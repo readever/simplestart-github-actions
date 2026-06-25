@@ -2879,7 +2879,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6slider_6slider_myonchange(PyObje
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_3 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 61, __pyx_L1_error) }
@@ -3746,7 +3746,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6slider_slider(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/slider.py":63
  *           onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <div style="display: block;">
  *             <div v-if="data.label" style="font-weight: normal; font-size: smaller; color: #606266; margin: 0; padding: 0;">
 */

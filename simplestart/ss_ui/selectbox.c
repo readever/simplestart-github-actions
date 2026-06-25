@@ -5139,7 +5139,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_9selectbox_9selectbox_6handle_all
  *             # value_label
  *             update_value_label([])             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -6718,7 +6718,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_9selectbox_selectbox(CYTHON_UNUSE
   /* "simplestart/ss_ui/selectbox.py":238
  *             update_value_label([])
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <div class="selectbox-container"
  *                 :style="data.container_style">
 */

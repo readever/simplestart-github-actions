@@ -5162,7 +5162,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6button_button(CYTHON_UNUSED PyOb
   /* "simplestart/ss_ui/button.py":94
  * 
  *     #  Element UI  Bootstrap Icons
- *     button_template = '''             # <<<<<<<<<<<<<<
+ *     button_template = r'''             # <<<<<<<<<<<<<<
  *         <el-button :type="data.type" :size="data.size" :plain="data.plain" :text="data.text" :bg="data.bg" :link="data.link" :round="data.round" :circle="data.circle" :dashed="data.dashed" :color="data.color" :dark="data.dark" :disabled="data.disabled" :loading="data.loading"
  *                    :class="['mybutton', data._unique_class, data._css_class, {'is-active': data.active}]"
 */

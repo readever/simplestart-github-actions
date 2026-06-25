@@ -2778,7 +2778,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_5radio_myonchange(PyObject
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_3 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 64, __pyx_L1_error) }
@@ -3282,7 +3282,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5radio_radio(CYTHON_UNUSED PyObje
   /* "simplestart/ss_ui/radio.py":66
  *           onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <el-radio-group v-model="data.value" :options="data.options"
  *         :border = "data.border"
 */

@@ -2998,7 +2998,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_4link_link(CYTHON_UNUSED PyObject
   /* "simplestart/ss_ui/link.py":106
  * 
  *     # Vue
- *     template = '''             # <<<<<<<<<<<<<<
+ *     template = r'''             # <<<<<<<<<<<<<<
  *         <el-link \@click="invoke_js('handleLinkClick')" :type="data.type || undefined" :href="data.href" :target="data.target" :disabled="data.disabled" :underline="data.underline" :style="data.style">
  *             <el-icon v-if="data.icon" :color="data.typeColor" style="margin-right: 5px;">
 */

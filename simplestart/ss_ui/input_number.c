@@ -2780,7 +2780,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_4 = NULL;
     if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 86, __pyx_L1_error) }
@@ -3239,7 +3239,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
   /* "simplestart/ss_ui/input_number.py":88
  *           onchange(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
  *         <el-input-number v-model="data.value"
  *         :disabled = "data.disabled"
 */
