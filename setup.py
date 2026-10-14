@@ -48,7 +48,7 @@ for file in system_files:
 
 setup(
     name="simplestart",
-    version="0.0.1.60",
+    version="0.0.1.61",
     author="readever",
     description="Build interactive web apps with pure Python - reactive UI without HTML/CSS/JavaScript",
     ext_modules=extensions,
