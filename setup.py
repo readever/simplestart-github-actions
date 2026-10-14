@@ -48,9 +48,9 @@ for file in system_files:
 
 setup(
     name="simplestart",
-    version="0.0.1.57",
-    author="wy",
-    description="build web app using python",
+    version="0.0.1.60",
+    author="readever",
+    description="Build interactive web apps with pure Python - reactive UI without HTML/CSS/JavaScript",
     ext_modules=extensions,
     packages=["simplestart", "simplestart.ss_api", "simplestart.ss_core", "simplestart.ss_modules", "simplestart.ss_ui", "simplestart.ss_system"],
     package_dir={"simplestart": "simplestart"},
