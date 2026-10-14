@@ -12,6 +12,7 @@ from .reactive import *
 ###导出核心对象
 from .vuetify import vuetify, loadvue
 from .storage import get_storage
+from .phaser import Phaser
 
 
 __all__ = [
@@ -22,6 +23,7 @@ __all__ = [
     # config.py
     'default_config', 'config', 'tag', 'temp', 'cp',
     'ss_css_temp', 'urlinfo', 'batch_data', 'force_cm',
+    'TYPE_COLOR_MAP',
     
     # state.py
     'serialise', 'get_diff', 'StreamsyncState',
@@ -33,7 +35,8 @@ __all__ = [
     'Event',
     
     # session.py
-    'page_vars', 'store', 'mysession_state', 'session',
+    'page_vars', 'store', 'app', 'mysession_state', 'session',
+    'SESSION_SCHEMA', 'STORE_SCHEMA', 'APP_VARS_SCHEMA',
     
     # container.py
     'PlaceHolder', 'inner_context',
@@ -42,7 +45,7 @@ __all__ = [
     'vuetify', 'loadvue',
 
     # reactive.py
-    'State',
+    'State', 'STATE_SCHEMA', 'STATE_PROP_BINDING_SCHEMA',
     
     # main.py
     'cm', 'initial_state', 'cm_pools', 'socket_pools', 'tasks', 'localStorage_pools',
@@ -55,4 +58,7 @@ __all__ = [
     
     # storage.py
     'get_storage',
+    
+    # phaser.py
+    'Phaser',
 ]

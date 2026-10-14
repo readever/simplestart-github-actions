@@ -1546,7 +1546,7 @@ struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct_1_send_m
 };
 
 
-/* "simplestart/ss_modules/monitor.py":234
+/* "simplestart/ss_modules/monitor.py":240
  *     def _is_hidden_directory(self, path):
  *         """"""
  *         result = any(part.startswith('.~') or part.startswith('.ipynb_checkpoints') for part in path.split('/'))             # <<<<<<<<<<<<<<
@@ -2758,7 +2758,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_slice[1];
   PyObject *__pyx_codeobj_tab[15];
-  PyObject *__pyx_string_tab[207];
+  PyObject *__pyx_string_tab[209];
   PyObject *__pyx_number_tab[2];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -2910,135 +2910,137 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_event __pyx_string_tab[75]
 #define __pyx_n_u_event_handler __pyx_string_tab[76]
 #define __pyx_n_u_exec_module __pyx_string_tab[77]
-#define __pyx_n_u_file __pyx_string_tab[78]
-#define __pyx_n_u_filename __pyx_string_tab[79]
-#define __pyx_n_u_filepath __pyx_string_tab[80]
-#define __pyx_n_u_find_module_reload __pyx_string_tab[81]
-#define __pyx_n_u_func __pyx_string_tab[82]
-#define __pyx_n_u_func_2 __pyx_string_tab[83]
-#define __pyx_n_u_genexpr __pyx_string_tab[84]
-#define __pyx_n_u_get __pyx_string_tab[85]
-#define __pyx_n_u_get_hot_reload_mode __pyx_string_tab[86]
-#define __pyx_n_u_get_main_script_name __pyx_string_tab[87]
-#define __pyx_n_u_getcwd __pyx_string_tab[88]
-#define __pyx_n_u_hot_reload __pyx_string_tab[89]
-#define __pyx_n_u_ignore __pyx_string_tab[90]
-#define __pyx_n_u_ignore_pattern __pyx_string_tab[91]
-#define __pyx_n_u_importlib __pyx_string_tab[92]
-#define __pyx_n_u_importlib_util __pyx_string_tab[93]
-#define __pyx_n_u_init __pyx_string_tab[94]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[95]
-#define __pyx_n_u_is_directory __pyx_string_tab[96]
-#define __pyx_n_u_is_hidden_directory __pyx_string_tab[97]
-#define __pyx_n_u_is_set __pyx_string_tab[98]
-#define __pyx_n_u_is_valid_file __pyx_string_tab[99]
-#define __pyx_n_u_items __pyx_string_tab[100]
-#define __pyx_n_u_join __pyx_string_tab[101]
-#define __pyx_n_u_json __pyx_string_tab[102]
-#define __pyx_n_u_keys __pyx_string_tab[103]
-#define __pyx_n_u_loader __pyx_string_tab[104]
-#define __pyx_n_u_loop __pyx_string_tab[105]
-#define __pyx_n_u_main __pyx_string_tab[106]
-#define __pyx_n_u_main_script __pyx_string_tab[107]
-#define __pyx_n_u_metaclass __pyx_string_tab[108]
-#define __pyx_n_u_mode __pyx_string_tab[109]
-#define __pyx_n_u_module __pyx_string_tab[110]
-#define __pyx_n_u_module_2 __pyx_string_tab[111]
-#define __pyx_n_u_module_from_spec __pyx_string_tab[112]
-#define __pyx_n_u_module_name __pyx_string_tab[113]
-#define __pyx_n_u_module_names __pyx_string_tab[114]
-#define __pyx_n_u_modules __pyx_string_tab[115]
-#define __pyx_n_u_mro_entries __pyx_string_tab[116]
-#define __pyx_n_u_msg __pyx_string_tab[117]
-#define __pyx_n_u_myprint __pyx_string_tab[118]
-#define __pyx_n_u_mysocket __pyx_string_tab[119]
-#define __pyx_n_u_name __pyx_string_tab[120]
-#define __pyx_n_u_new_event_loop __pyx_string_tab[121]
-#define __pyx_n_u_next __pyx_string_tab[122]
-#define __pyx_n_u_none __pyx_string_tab[123]
-#define __pyx_n_u_notify_frontend __pyx_string_tab[124]
-#define __pyx_n_u_observer __pyx_string_tab[125]
-#define __pyx_n_u_on_created __pyx_string_tab[126]
-#define __pyx_n_u_on_deleted __pyx_string_tab[127]
-#define __pyx_n_u_on_modified __pyx_string_tab[128]
-#define __pyx_n_u_os __pyx_string_tab[129]
-#define __pyx_n_u_part __pyx_string_tab[130]
-#define __pyx_n_u_path __pyx_string_tab[131]
-#define __pyx_n_u_path_to_watch __pyx_string_tab[132]
-#define __pyx_n_u_pathlib __pyx_string_tab[133]
-#define __pyx_n_u_pop __pyx_string_tab[134]
-#define __pyx_n_u_prepare __pyx_string_tab[135]
-#define __pyx_n_u_print __pyx_string_tab[136]
-#define __pyx_n_u_project_root __pyx_string_tab[137]
-#define __pyx_n_u_pycache __pyx_string_tab[138]
-#define __pyx_n_u_qualname __pyx_string_tab[139]
-#define __pyx_n_u_reboot __pyx_string_tab[140]
-#define __pyx_n_u_recursive __pyx_string_tab[141]
-#define __pyx_n_u_register_handlers __pyx_string_tab[142]
-#define __pyx_n_u_reload __pyx_string_tab[143]
-#define __pyx_n_u_reload_api_points __pyx_string_tab[144]
-#define __pyx_n_u_result __pyx_string_tab[145]
-#define __pyx_n_u_run_until_complete __pyx_string_tab[146]
-#define __pyx_n_u_schedule __pyx_string_tab[147]
-#define __pyx_n_u_script_name __pyx_string_tab[148]
-#define __pyx_n_u_self __pyx_string_tab[149]
-#define __pyx_n_u_send __pyx_string_tab[150]
-#define __pyx_n_u_send_data __pyx_string_tab[151]
-#define __pyx_n_u_send_message __pyx_string_tab[152]
-#define __pyx_n_u_send_text __pyx_string_tab[153]
-#define __pyx_n_u_server __pyx_string_tab[154]
-#define __pyx_n_u_server_command __pyx_string_tab[155]
-#define __pyx_n_u_server_timestamp __pyx_string_tab[156]
-#define __pyx_n_u_set_event_loop __pyx_string_tab[157]
-#define __pyx_n_u_set_name __pyx_string_tab[158]
-#define __pyx_n_u_setdefault __pyx_string_tab[159]
-#define __pyx_n_u_simplestart_ss_modules_monitor __pyx_string_tab[160]
-#define __pyx_n_u_simplestream __pyx_string_tab[161]
-#define __pyx_n_u_sleep __pyx_string_tab[162]
-#define __pyx_n_u_socket_pools __pyx_string_tab[163]
-#define __pyx_n_u_spec __pyx_string_tab[164]
-#define __pyx_n_u_spec_from_file_location __pyx_string_tab[165]
-#define __pyx_n_u_split __pyx_string_tab[166]
-#define __pyx_n_u_src_path __pyx_string_tab[167]
-#define __pyx_n_u_ss __pyx_string_tab[168]
-#define __pyx_n_u_ss_core_print __pyx_string_tab[169]
-#define __pyx_n_u_start __pyx_string_tab[170]
-#define __pyx_n_u_start_file_watcher __pyx_string_tab[171]
-#define __pyx_n_u_startswith __pyx_string_tab[172]
-#define __pyx_n_u_stop __pyx_string_tab[173]
-#define __pyx_n_u_stop_event __pyx_string_tab[174]
-#define __pyx_n_u_sys __pyx_string_tab[175]
-#define __pyx_n_u_system __pyx_string_tab[176]
-#define __pyx_n_u_test __pyx_string_tab[177]
-#define __pyx_n_u_test_2 __pyx_string_tab[178]
-#define __pyx_n_u_threading __pyx_string_tab[179]
-#define __pyx_n_u_throw __pyx_string_tab[180]
-#define __pyx_n_u_time __pyx_string_tab[181]
-#define __pyx_n_u_type __pyx_string_tab[182]
-#define __pyx_n_u_util __pyx_string_tab[183]
-#define __pyx_n_u_uuid __pyx_string_tab[184]
-#define __pyx_n_u_uuid4 __pyx_string_tab[185]
-#define __pyx_n_u_value __pyx_string_tab[186]
-#define __pyx_n_u_values __pyx_string_tab[187]
-#define __pyx_n_u_watch __pyx_string_tab[188]
-#define __pyx_n_u_watch_path __pyx_string_tab[189]
-#define __pyx_n_u_watchdog_events __pyx_string_tab[190]
-#define __pyx_n_u_watchdog_observers __pyx_string_tab[191]
-#define __pyx_n_u_websocket __pyx_string_tab[192]
-#define __pyx_kp_b_iso88591_1 __pyx_string_tab[193]
-#define __pyx_kp_b_iso88591_2WA_4q_85_q_HAQ_7_d_vZt6_Qa_r_e __pyx_string_tab[194]
-#define __pyx_kp_b_iso88591_7_2YnA_D_8 __pyx_string_tab[195]
-#define __pyx_kp_b_iso88591_A_1_q __pyx_string_tab[196]
-#define __pyx_kp_b_iso88591_A_4_aq_1E_auA_c_a_auA __pyx_string_tab[197]
-#define __pyx_kp_b_iso88591_A_4_aq_5 __pyx_string_tab[198]
-#define __pyx_kp_b_iso88591_A_5_1_4uIYaq_1_4_AU_1_t_q_Q __pyx_string_tab[199]
-#define __pyx_kp_b_iso88591_A_A_4vQa_1_fAQ_c_q_war_1_a_3e3j __pyx_string_tab[200]
-#define __pyx_kp_b_iso88591_A_O1 __pyx_string_tab[201]
-#define __pyx_kp_b_iso88591_A_q_E_9Cq_9E_9_q_WX_uD_A_8_G_q_7 __pyx_string_tab[202]
-#define __pyx_kp_b_iso88591_A_wat1_3at6_1_A_A_1_K_Bm6_z_A_7 __pyx_string_tab[203]
-#define __pyx_kp_b_iso88591_I_A_q_2U_1A_89AQ_xs_r_1 __pyx_string_tab[204]
-#define __pyx_kp_b_iso88591__13 __pyx_string_tab[205]
-#define __pyx_kp_b_iso88591_xq_5Q_IQoU_j_F_d_G1_aq_Qa_Q_Q_Q __pyx_string_tab[206]
+#define __pyx_n_u_extra_pattern __pyx_string_tab[78]
+#define __pyx_n_u_file __pyx_string_tab[79]
+#define __pyx_n_u_filename __pyx_string_tab[80]
+#define __pyx_n_u_filepath __pyx_string_tab[81]
+#define __pyx_n_u_find_module_reload __pyx_string_tab[82]
+#define __pyx_n_u_func __pyx_string_tab[83]
+#define __pyx_n_u_func_2 __pyx_string_tab[84]
+#define __pyx_n_u_genexpr __pyx_string_tab[85]
+#define __pyx_n_u_get __pyx_string_tab[86]
+#define __pyx_n_u_get_hot_reload_mode __pyx_string_tab[87]
+#define __pyx_n_u_get_main_script_name __pyx_string_tab[88]
+#define __pyx_n_u_getcwd __pyx_string_tab[89]
+#define __pyx_n_u_hot_reload __pyx_string_tab[90]
+#define __pyx_n_u_hot_reload_watch __pyx_string_tab[91]
+#define __pyx_n_u_ignore __pyx_string_tab[92]
+#define __pyx_n_u_ignore_pattern __pyx_string_tab[93]
+#define __pyx_n_u_importlib __pyx_string_tab[94]
+#define __pyx_n_u_importlib_util __pyx_string_tab[95]
+#define __pyx_n_u_init __pyx_string_tab[96]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[97]
+#define __pyx_n_u_is_directory __pyx_string_tab[98]
+#define __pyx_n_u_is_hidden_directory __pyx_string_tab[99]
+#define __pyx_n_u_is_set __pyx_string_tab[100]
+#define __pyx_n_u_is_valid_file __pyx_string_tab[101]
+#define __pyx_n_u_items __pyx_string_tab[102]
+#define __pyx_n_u_join __pyx_string_tab[103]
+#define __pyx_n_u_json __pyx_string_tab[104]
+#define __pyx_n_u_keys __pyx_string_tab[105]
+#define __pyx_n_u_loader __pyx_string_tab[106]
+#define __pyx_n_u_loop __pyx_string_tab[107]
+#define __pyx_n_u_main __pyx_string_tab[108]
+#define __pyx_n_u_main_script __pyx_string_tab[109]
+#define __pyx_n_u_metaclass __pyx_string_tab[110]
+#define __pyx_n_u_mode __pyx_string_tab[111]
+#define __pyx_n_u_module __pyx_string_tab[112]
+#define __pyx_n_u_module_2 __pyx_string_tab[113]
+#define __pyx_n_u_module_from_spec __pyx_string_tab[114]
+#define __pyx_n_u_module_name __pyx_string_tab[115]
+#define __pyx_n_u_module_names __pyx_string_tab[116]
+#define __pyx_n_u_modules __pyx_string_tab[117]
+#define __pyx_n_u_mro_entries __pyx_string_tab[118]
+#define __pyx_n_u_msg __pyx_string_tab[119]
+#define __pyx_n_u_myprint __pyx_string_tab[120]
+#define __pyx_n_u_mysocket __pyx_string_tab[121]
+#define __pyx_n_u_name __pyx_string_tab[122]
+#define __pyx_n_u_new_event_loop __pyx_string_tab[123]
+#define __pyx_n_u_next __pyx_string_tab[124]
+#define __pyx_n_u_none __pyx_string_tab[125]
+#define __pyx_n_u_notify_frontend __pyx_string_tab[126]
+#define __pyx_n_u_observer __pyx_string_tab[127]
+#define __pyx_n_u_on_created __pyx_string_tab[128]
+#define __pyx_n_u_on_deleted __pyx_string_tab[129]
+#define __pyx_n_u_on_modified __pyx_string_tab[130]
+#define __pyx_n_u_os __pyx_string_tab[131]
+#define __pyx_n_u_part __pyx_string_tab[132]
+#define __pyx_n_u_path __pyx_string_tab[133]
+#define __pyx_n_u_path_to_watch __pyx_string_tab[134]
+#define __pyx_n_u_pathlib __pyx_string_tab[135]
+#define __pyx_n_u_pop __pyx_string_tab[136]
+#define __pyx_n_u_prepare __pyx_string_tab[137]
+#define __pyx_n_u_print __pyx_string_tab[138]
+#define __pyx_n_u_project_root __pyx_string_tab[139]
+#define __pyx_n_u_pycache __pyx_string_tab[140]
+#define __pyx_n_u_qualname __pyx_string_tab[141]
+#define __pyx_n_u_reboot __pyx_string_tab[142]
+#define __pyx_n_u_recursive __pyx_string_tab[143]
+#define __pyx_n_u_register_handlers __pyx_string_tab[144]
+#define __pyx_n_u_reload __pyx_string_tab[145]
+#define __pyx_n_u_reload_api_points __pyx_string_tab[146]
+#define __pyx_n_u_result __pyx_string_tab[147]
+#define __pyx_n_u_run_until_complete __pyx_string_tab[148]
+#define __pyx_n_u_schedule __pyx_string_tab[149]
+#define __pyx_n_u_script_name __pyx_string_tab[150]
+#define __pyx_n_u_self __pyx_string_tab[151]
+#define __pyx_n_u_send __pyx_string_tab[152]
+#define __pyx_n_u_send_data __pyx_string_tab[153]
+#define __pyx_n_u_send_message __pyx_string_tab[154]
+#define __pyx_n_u_send_text __pyx_string_tab[155]
+#define __pyx_n_u_server __pyx_string_tab[156]
+#define __pyx_n_u_server_command __pyx_string_tab[157]
+#define __pyx_n_u_server_timestamp __pyx_string_tab[158]
+#define __pyx_n_u_set_event_loop __pyx_string_tab[159]
+#define __pyx_n_u_set_name __pyx_string_tab[160]
+#define __pyx_n_u_setdefault __pyx_string_tab[161]
+#define __pyx_n_u_simplestart_ss_modules_monitor __pyx_string_tab[162]
+#define __pyx_n_u_simplestream __pyx_string_tab[163]
+#define __pyx_n_u_sleep __pyx_string_tab[164]
+#define __pyx_n_u_socket_pools __pyx_string_tab[165]
+#define __pyx_n_u_spec __pyx_string_tab[166]
+#define __pyx_n_u_spec_from_file_location __pyx_string_tab[167]
+#define __pyx_n_u_split __pyx_string_tab[168]
+#define __pyx_n_u_src_path __pyx_string_tab[169]
+#define __pyx_n_u_ss __pyx_string_tab[170]
+#define __pyx_n_u_ss_core_print __pyx_string_tab[171]
+#define __pyx_n_u_start __pyx_string_tab[172]
+#define __pyx_n_u_start_file_watcher __pyx_string_tab[173]
+#define __pyx_n_u_startswith __pyx_string_tab[174]
+#define __pyx_n_u_stop __pyx_string_tab[175]
+#define __pyx_n_u_stop_event __pyx_string_tab[176]
+#define __pyx_n_u_sys __pyx_string_tab[177]
+#define __pyx_n_u_system __pyx_string_tab[178]
+#define __pyx_n_u_test __pyx_string_tab[179]
+#define __pyx_n_u_test_2 __pyx_string_tab[180]
+#define __pyx_n_u_threading __pyx_string_tab[181]
+#define __pyx_n_u_throw __pyx_string_tab[182]
+#define __pyx_n_u_time __pyx_string_tab[183]
+#define __pyx_n_u_type __pyx_string_tab[184]
+#define __pyx_n_u_util __pyx_string_tab[185]
+#define __pyx_n_u_uuid __pyx_string_tab[186]
+#define __pyx_n_u_uuid4 __pyx_string_tab[187]
+#define __pyx_n_u_value __pyx_string_tab[188]
+#define __pyx_n_u_values __pyx_string_tab[189]
+#define __pyx_n_u_watch __pyx_string_tab[190]
+#define __pyx_n_u_watch_path __pyx_string_tab[191]
+#define __pyx_n_u_watchdog_events __pyx_string_tab[192]
+#define __pyx_n_u_watchdog_observers __pyx_string_tab[193]
+#define __pyx_n_u_websocket __pyx_string_tab[194]
+#define __pyx_kp_b_iso88591_1 __pyx_string_tab[195]
+#define __pyx_kp_b_iso88591_2WA_4q_85_q_HAQ_7_d_vZt6_Qa_r_e __pyx_string_tab[196]
+#define __pyx_kp_b_iso88591_7_2YnA_D_8 __pyx_string_tab[197]
+#define __pyx_kp_b_iso88591_A_1_q __pyx_string_tab[198]
+#define __pyx_kp_b_iso88591_A_4_aq_1E_auA_c_a_auA __pyx_string_tab[199]
+#define __pyx_kp_b_iso88591_A_4_aq_5 __pyx_string_tab[200]
+#define __pyx_kp_b_iso88591_A_5_1_4uIYaq_1_4_AU_1_t_q_Q __pyx_string_tab[201]
+#define __pyx_kp_b_iso88591_A_A_4vQa_1_WARy0DA_S_q_fAQ_c_q_w __pyx_string_tab[202]
+#define __pyx_kp_b_iso88591_A_O1 __pyx_string_tab[203]
+#define __pyx_kp_b_iso88591_A_q_E_9Cq_9E_9_q_WX_uD_A_8_G_q_7 __pyx_string_tab[204]
+#define __pyx_kp_b_iso88591_A_wat1_3at6_1_A_A_1_K_Bm6_z_A_7 __pyx_string_tab[205]
+#define __pyx_kp_b_iso88591_I_A_q_2U_1A_89AQ_xs_r_1 __pyx_string_tab[206]
+#define __pyx_kp_b_iso88591__13 __pyx_string_tab[207]
+#define __pyx_kp_b_iso88591_xq_5Q_IQoU_j_F_d_G1_aq_Qa_Q_Q_Q __pyx_string_tab[208]
 #define __pyx_int_1 __pyx_number_tab[0]
 #define __pyx_int_neg_3 __pyx_number_tab[1]
 /* #### Code section: module_state_clear ### */
@@ -3063,7 +3065,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<15; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<207; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<209; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -3102,7 +3104,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<15; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<207; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<209; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -7041,6 +7043,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 
 static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_14_check_path_pattern(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
   PyObject *__pyx_v_config = NULL;
+  PyObject *__pyx_v_extra_pattern = NULL;
   PyObject *__pyx_v_ignore_pattern = NULL;
   PyObject *__pyx_v_current_mode = NULL;
   PyObject *__pyx_v_main_script = NULL;
@@ -7111,7 +7114,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *         if not config["watch"]:
  *             return False             # <<<<<<<<<<<<<<
  * 
- *         #
+ *         # ss.config.hot_reload_watch ["core/"]
 */
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(Py_False);
@@ -7127,59 +7130,172 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
 */
   }
 
-  /* "simplestart/ss_modules/monitor.py":215
+  /* "simplestart/ss_modules/monitor.py":216
+ *         # ss.config.hot_reload_watch ["core/"]
+ *         #  ignoredefault  core/models/
+ *         for extra_pattern in getattr(ss.config, 'hot_reload_watch', []):             # <<<<<<<<<<<<<<
+ *             if extra_pattern in path:
+ *                 return True
+*/
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_ss); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_config); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_GetAttr3(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_hot_reload_watch, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
+    __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1);
+    __pyx_t_7 = 0;
+    __pyx_t_8 = NULL;
+  } else {
+    __pyx_t_7 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_8 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 216, __pyx_L1_error)
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  for (;;) {
+    if (likely(!__pyx_t_8)) {
+      if (likely(PyList_CheckExact(__pyx_t_1))) {
+        {
+          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
+          #if !CYTHON_ASSUME_SAFE_SIZE
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+          #endif
+          if (__pyx_t_7 >= __pyx_temp) break;
+        }
+        __pyx_t_2 = __Pyx_PyList_GetItemRefFast(__pyx_t_1, __pyx_t_7, __Pyx_ReferenceSharing_OwnStrongReference);
+        ++__pyx_t_7;
+      } else {
+        {
+          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
+          #if !CYTHON_ASSUME_SAFE_SIZE
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+          #endif
+          if (__pyx_t_7 >= __pyx_temp) break;
+        }
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_2 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_7));
+        #else
+        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_7);
+        #endif
+        ++__pyx_t_7;
+      }
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
+    } else {
+      __pyx_t_2 = __pyx_t_8(__pyx_t_1);
+      if (unlikely(!__pyx_t_2)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 216, __pyx_L1_error)
+          PyErr_Clear();
+        }
+        break;
+      }
+    }
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_XDECREF_SET(__pyx_v_extra_pattern, __pyx_t_2);
+    __pyx_t_2 = 0;
+
+    /* "simplestart/ss_modules/monitor.py":217
+ *         #  ignoredefault  core/models/
+ *         for extra_pattern in getattr(ss.config, 'hot_reload_watch', []):
+ *             if extra_pattern in path:             # <<<<<<<<<<<<<<
+ *                 return True
+ * 
+*/
+    __pyx_t_6 = (__Pyx_PySequence_ContainsTF(__pyx_v_extra_pattern, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 217, __pyx_L1_error)
+    if (__pyx_t_6) {
+
+      /* "simplestart/ss_modules/monitor.py":218
+ *         for extra_pattern in getattr(ss.config, 'hot_reload_watch', []):
+ *             if extra_pattern in path:
+ *                 return True             # <<<<<<<<<<<<<<
+ * 
+ *         #
+*/
+      __Pyx_XDECREF(__pyx_r);
+      __Pyx_INCREF(Py_True);
+      __pyx_r = Py_True;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+
+      /* "simplestart/ss_modules/monitor.py":217
+ *         #  ignoredefault  core/models/
+ *         for extra_pattern in getattr(ss.config, 'hot_reload_watch', []):
+ *             if extra_pattern in path:             # <<<<<<<<<<<<<<
+ *                 return True
+ * 
+*/
+    }
+
+    /* "simplestart/ss_modules/monitor.py":216
+ *         # ss.config.hot_reload_watch ["core/"]
+ *         #  ignoredefault  core/models/
+ *         for extra_pattern in getattr(ss.config, 'hot_reload_watch', []):             # <<<<<<<<<<<<<<
+ *             if extra_pattern in path:
+ *                 return True
+*/
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_modules/monitor.py":221
  * 
  *         #
  *         for ignore_pattern in config["ignore"]:             # <<<<<<<<<<<<<<
  *             if ignore_pattern in path:
  *                 return False
 */
-  __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_config, __pyx_mstate_global->__pyx_n_u_ignore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Dict_GetItem(__pyx_v_config, __pyx_mstate_global->__pyx_n_u_ignore); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
-    __pyx_t_3 = __pyx_t_1; __Pyx_INCREF(__pyx_t_3);
+    __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
   } else {
-    __pyx_t_7 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __pyx_t_7 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_8 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 221, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
     if (likely(!__pyx_t_8)) {
-      if (likely(PyList_CheckExact(__pyx_t_3))) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
         {
-          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
+          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 215, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
           #endif
           if (__pyx_t_7 >= __pyx_temp) break;
         }
-        __pyx_t_1 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_7, __Pyx_ReferenceSharing_OwnStrongReference);
+        __pyx_t_1 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_7, __Pyx_ReferenceSharing_OwnStrongReference);
         ++__pyx_t_7;
       } else {
         {
-          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_3);
+          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 215, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
           #endif
           if (__pyx_t_7 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_1 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_7));
+        __pyx_t_1 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_7));
         #else
-        __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_7);
+        __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_7);
         #endif
         ++__pyx_t_7;
       }
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
     } else {
-      __pyx_t_1 = __pyx_t_8(__pyx_t_3);
+      __pyx_t_1 = __pyx_t_8(__pyx_t_2);
       if (unlikely(!__pyx_t_1)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 215, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 221, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -7189,17 +7305,17 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     __Pyx_XDECREF_SET(__pyx_v_ignore_pattern, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "simplestart/ss_modules/monitor.py":216
+    /* "simplestart/ss_modules/monitor.py":222
  *         #
  *         for ignore_pattern in config["ignore"]:
  *             if ignore_pattern in path:             # <<<<<<<<<<<<<<
  *                 return False
  * 
 */
-    __pyx_t_6 = (__Pyx_PySequence_ContainsTF(__pyx_v_ignore_pattern, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+    __pyx_t_6 = (__Pyx_PySequence_ContainsTF(__pyx_v_ignore_pattern, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 222, __pyx_L1_error)
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_modules/monitor.py":217
+      /* "simplestart/ss_modules/monitor.py":223
  *         for ignore_pattern in config["ignore"]:
  *             if ignore_pattern in path:
  *                 return False             # <<<<<<<<<<<<<<
@@ -7209,10 +7325,10 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
       __Pyx_XDECREF(__pyx_r);
       __Pyx_INCREF(Py_False);
       __pyx_r = Py_False;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       goto __pyx_L0;
 
-      /* "simplestart/ss_modules/monitor.py":216
+      /* "simplestart/ss_modules/monitor.py":222
  *         #
  *         for ignore_pattern in config["ignore"]:
  *             if ignore_pattern in path:             # <<<<<<<<<<<<<<
@@ -7221,7 +7337,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
 */
     }
 
-    /* "simplestart/ss_modules/monitor.py":215
+    /* "simplestart/ss_modules/monitor.py":221
  * 
  *         #
  *         for ignore_pattern in config["ignore"]:             # <<<<<<<<<<<<<<
@@ -7229,37 +7345,37 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *                 return False
 */
   }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":220
+  /* "simplestart/ss_modules/monitor.py":226
  * 
  *         #
  *         current_mode = getattr(ss.config, 'hot_reload', 'default')             # <<<<<<<<<<<<<<
  * 
  *         # default  pages/ api_points/
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_ss); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_ss); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_config); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_GetAttr3(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_hot_reload, __pyx_mstate_global->__pyx_n_u_default); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_GetAttr3(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_hot_reload, __pyx_mstate_global->__pyx_n_u_default); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_current_mode = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __pyx_v_current_mode = __pyx_t_2;
+  __pyx_t_2 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":223
+  /* "simplestart/ss_modules/monitor.py":229
  * 
  *         # default  pages/ api_points/
  *         if current_mode == "default":             # <<<<<<<<<<<<<<
  *             main_script = get_main_script_name()
  *             if main_script in path or "/pages/" in path or "/api_points/" in path:
 */
-  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_current_mode, __pyx_mstate_global->__pyx_n_u_default, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_current_mode, __pyx_mstate_global->__pyx_n_u_default, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 229, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "simplestart/ss_modules/monitor.py":224
+    /* "simplestart/ss_modules/monitor.py":230
  *         # default  pages/ api_points/
  *         if current_mode == "default":
  *             main_script = get_main_script_name()             # <<<<<<<<<<<<<<
@@ -7267,56 +7383,56 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
  *                 return True
 */
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get_main_script_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get_main_script_name); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (unlikely(PyMethod_Check(__pyx_t_3))) {
+      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
       assert(__pyx_t_1);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
       __pyx_t_4 = 0;
     }
     #endif
     {
       PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
-      __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 224, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
     }
-    __pyx_v_main_script = __pyx_t_3;
-    __pyx_t_3 = 0;
+    __pyx_v_main_script = __pyx_t_2;
+    __pyx_t_2 = 0;
 
-    /* "simplestart/ss_modules/monitor.py":225
+    /* "simplestart/ss_modules/monitor.py":231
  *         if current_mode == "default":
  *             main_script = get_main_script_name()
  *             if main_script in path or "/pages/" in path or "/api_points/" in path:             # <<<<<<<<<<<<<<
  *                 return True
  *             return False
 */
-    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_main_script, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_main_script, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 231, __pyx_L1_error)
     if (!__pyx_t_5) {
     } else {
       __pyx_t_6 = __pyx_t_5;
-      goto __pyx_L10_bool_binop_done;
+      goto __pyx_L14_bool_binop_done;
     }
-    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_pages, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_pages, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 231, __pyx_L1_error)
     if (!__pyx_t_5) {
     } else {
       __pyx_t_6 = __pyx_t_5;
-      goto __pyx_L10_bool_binop_done;
+      goto __pyx_L14_bool_binop_done;
     }
-    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_api_points, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
+    __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_api_points, __pyx_v_path, Py_EQ)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 231, __pyx_L1_error)
     __pyx_t_6 = __pyx_t_5;
-    __pyx_L10_bool_binop_done:;
+    __pyx_L14_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_modules/monitor.py":226
+      /* "simplestart/ss_modules/monitor.py":232
  *             main_script = get_main_script_name()
  *             if main_script in path or "/pages/" in path or "/api_points/" in path:
  *                 return True             # <<<<<<<<<<<<<<
@@ -7328,7 +7444,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
       __pyx_r = Py_True;
       goto __pyx_L0;
 
-      /* "simplestart/ss_modules/monitor.py":225
+      /* "simplestart/ss_modules/monitor.py":231
  *         if current_mode == "default":
  *             main_script = get_main_script_name()
  *             if main_script in path or "/pages/" in path or "/api_points/" in path:             # <<<<<<<<<<<<<<
@@ -7337,7 +7453,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
 */
     }
 
-    /* "simplestart/ss_modules/monitor.py":227
+    /* "simplestart/ss_modules/monitor.py":233
  *             if main_script in path or "/pages/" in path or "/api_points/" in path:
  *                 return True
  *             return False             # <<<<<<<<<<<<<<
@@ -7349,7 +7465,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "simplestart/ss_modules/monitor.py":223
+    /* "simplestart/ss_modules/monitor.py":229
  * 
  *         # default  pages/ api_points/
  *         if current_mode == "default":             # <<<<<<<<<<<<<<
@@ -7358,7 +7474,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
 */
   }
 
-  /* "simplestart/ss_modules/monitor.py":230
+  /* "simplestart/ss_modules/monitor.py":236
  * 
  *         # all  .py
  *         return True             # <<<<<<<<<<<<<<
@@ -7387,6 +7503,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_config);
+  __Pyx_XDECREF(__pyx_v_extra_pattern);
   __Pyx_XDECREF(__pyx_v_ignore_pattern);
   __Pyx_XDECREF(__pyx_v_current_mode);
   __Pyx_XDECREF(__pyx_v_main_script);
@@ -7395,7 +7512,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   return __pyx_r;
 }
 
-/* "simplestart/ss_modules/monitor.py":232
+/* "simplestart/ss_modules/monitor.py":238
  *         return True
  * 
  *     def _is_hidden_directory(self, path):             # <<<<<<<<<<<<<<
@@ -7444,39 +7561,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_path,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 232, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 238, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 232, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 238, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 232, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 238, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_is_hidden_directory", 0) < (0)) __PYX_ERR(0, 232, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_is_hidden_directory", 0) < (0)) __PYX_ERR(0, 238, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_is_hidden_directory", 1, 2, 2, i); __PYX_ERR(0, 232, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_is_hidden_directory", 1, 2, 2, i); __PYX_ERR(0, 238, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 232, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 238, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 232, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 238, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_path = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_is_hidden_directory", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 232, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_is_hidden_directory", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 238, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7498,7 +7615,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 }
 static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_20_is_hidden_directory_2generator1(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "simplestart/ss_modules/monitor.py":234
+/* "simplestart/ss_modules/monitor.py":240
  *     def _is_hidden_directory(self, path):
  *         """"""
  *         result = any(part.startswith('.~') or part.startswith('.ipynb_checkpoints') for part in path.split('/'))             # <<<<<<<<<<<<<<
@@ -7518,7 +7635,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 234, __pyx_L1_error)
+    __PYX_ERR(0, 240, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
@@ -7526,7 +7643,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   __Pyx_INCREF(__pyx_cur_scope->__pyx_genexpr_arg_0);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_genexpr_arg_0);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_20_is_hidden_directory_2generator1, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1]), (PyObject *) __pyx_cur_scope, __pyx_mstate_global->__pyx_n_u_genexpr, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler__is_hidden, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor); if (unlikely(!gen)) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_20_is_hidden_directory_2generator1, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1]), (PyObject *) __pyx_cur_scope, __pyx_mstate_global->__pyx_n_u_genexpr, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler__is_hidden, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor); if (unlikely(!gen)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -7566,16 +7683,16 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 234, __pyx_L1_error)
-  if (unlikely(!__pyx_cur_scope->__pyx_genexpr_arg_0)) { __Pyx_RaiseUnboundLocalError(".0"); __PYX_ERR(0, 234, __pyx_L1_error) }
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_genexpr_arg_0)) { __Pyx_RaiseUnboundLocalError(".0"); __PYX_ERR(0, 240, __pyx_L1_error) }
   if (likely(PyList_CheckExact(__pyx_cur_scope->__pyx_genexpr_arg_0)) || PyTuple_CheckExact(__pyx_cur_scope->__pyx_genexpr_arg_0)) {
     __pyx_t_1 = __pyx_cur_scope->__pyx_genexpr_arg_0; __Pyx_INCREF(__pyx_t_1);
     __pyx_t_2 = 0;
     __pyx_t_3 = NULL;
   } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_cur_scope->__pyx_genexpr_arg_0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_cur_scope->__pyx_genexpr_arg_0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_t_3 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_3)) {
@@ -7583,7 +7700,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 234, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
           #endif
           if (__pyx_t_2 >= __pyx_temp) break;
         }
@@ -7593,7 +7710,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 234, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
           #endif
           if (__pyx_t_2 >= __pyx_temp) break;
         }
@@ -7604,13 +7721,13 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
         #endif
         ++__pyx_t_2;
       }
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
     } else {
       __pyx_t_4 = __pyx_t_3(__pyx_t_1);
       if (unlikely(!__pyx_t_4)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 234, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 240, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -7628,10 +7745,10 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
       PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_mstate_global->__pyx_kp_u__6};
       __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (!__pyx_t_8) {
     } else {
@@ -7645,10 +7762,10 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
       PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_mstate_global->__pyx_kp_u_ipynb_checkpoints};
       __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
-    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_5 = __pyx_t_8;
     __pyx_L7_bool_binop_done:;
@@ -7690,7 +7807,7 @@ static PyObject *__pyx_gb_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   return __pyx_r;
 }
 
-/* "simplestart/ss_modules/monitor.py":232
+/* "simplestart/ss_modules/monitor.py":238
  *         return True
  * 
  *     def _is_hidden_directory(self, path):             # <<<<<<<<<<<<<<
@@ -7711,7 +7828,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_is_hidden_directory", 0);
 
-  /* "simplestart/ss_modules/monitor.py":234
+  /* "simplestart/ss_modules/monitor.py":240
  *     def _is_hidden_directory(self, path):
  *         """"""
  *         result = any(part.startswith('.~') or part.startswith('.ipynb_checkpoints') for part in path.split('/'))             # <<<<<<<<<<<<<<
@@ -7725,19 +7842,19 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u__7};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_split, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_2 = __pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_20_is_hidden_directory_genexpr(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_2 = __pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_20_is_hidden_directory_genexpr(NULL, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_Generator_GetInlinedResult(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Generator_GetInlinedResult(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_result = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":235
+  /* "simplestart/ss_modules/monitor.py":241
  *         """"""
  *         result = any(part.startswith('.~') or part.startswith('.ipynb_checkpoints') for part in path.split('/'))
  *         return result             # <<<<<<<<<<<<<<
@@ -7749,7 +7866,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "simplestart/ss_modules/monitor.py":232
+  /* "simplestart/ss_modules/monitor.py":238
  *         return True
  * 
  *     def _is_hidden_directory(self, path):             # <<<<<<<<<<<<<<
@@ -7771,7 +7888,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHa
   return __pyx_r;
 }
 
-/* "simplestart/ss_modules/monitor.py":240
+/* "simplestart/ss_modules/monitor.py":246
  * stop_event = Event()
  * 
  * def start_file_watcher(path_to_watch, script_name):             # <<<<<<<<<<<<<<
@@ -7820,39 +7937,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_path_to_watch,&__pyx_mstate_global->__pyx_n_u_script_name,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 240, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 246, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 240, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 240, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 246, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "start_file_watcher", 0) < (0)) __PYX_ERR(0, 240, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "start_file_watcher", 0) < (0)) __PYX_ERR(0, 246, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("start_file_watcher", 1, 2, 2, i); __PYX_ERR(0, 240, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("start_file_watcher", 1, 2, 2, i); __PYX_ERR(0, 246, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 240, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 246, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 240, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 246, __pyx_L3_error)
     }
     __pyx_v_path_to_watch = values[0];
     __pyx_v_script_name = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("start_file_watcher", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 240, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("start_file_watcher", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 246, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7902,7 +8019,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("start_file_watcher", 0);
 
-  /* "simplestart/ss_modules/monitor.py":247
+  /* "simplestart/ss_modules/monitor.py":253
  *         script_name:
  *     """
  *     module_name = "test"             # <<<<<<<<<<<<<<
@@ -7912,7 +8029,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
   __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_test);
   __pyx_v_module_name = __pyx_mstate_global->__pyx_n_u_test;
 
-  /* "simplestart/ss_modules/monitor.py":248
+  /* "simplestart/ss_modules/monitor.py":254
  *     """
  *     module_name = "test"
  *     event_handler = ReloadOnChangeHandler(module_name)             # <<<<<<<<<<<<<<
@@ -7920,7 +8037,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
  * 
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -7939,13 +8056,13 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_event_handler = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":249
+  /* "simplestart/ss_modules/monitor.py":255
  *     module_name = "test"
  *     event_handler = ReloadOnChangeHandler(module_name)
  *     observer = Observer()             # <<<<<<<<<<<<<<
@@ -7953,7 +8070,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
  *     # path_to_watch
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_Observer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_Observer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -7972,20 +8089,20 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_observer = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":252
+  /* "simplestart/ss_modules/monitor.py":258
  * 
  *     # path_to_watch
  *     watch_path = path_to_watch if path_to_watch else '.'             # <<<<<<<<<<<<<<
  *     observer.schedule(event_handler, path=watch_path, recursive=True)
  *     observer.start()
 */
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_path_to_watch); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_path_to_watch); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 258, __pyx_L1_error)
   if (__pyx_t_5) {
     __Pyx_INCREF(__pyx_v_path_to_watch);
     __pyx_t_1 = __pyx_v_path_to_watch;
@@ -7996,7 +8113,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
   __pyx_v_watch_path = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":253
+  /* "simplestart/ss_modules/monitor.py":259
  *     # path_to_watch
  *     watch_path = path_to_watch if path_to_watch else '.'
  *     observer.schedule(event_handler, path=watch_path, recursive=True)             # <<<<<<<<<<<<<<
@@ -8008,19 +8125,19 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
   __pyx_t_4 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_2, __pyx_v_event_handler};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_path, __pyx_v_watch_path, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 253, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_recursive, Py_True, __pyx_t_3, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 253, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_path, __pyx_v_watch_path, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_recursive, Py_True, __pyx_t_3, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 259, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_schedule, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 253, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":254
+  /* "simplestart/ss_modules/monitor.py":260
  *     watch_path = path_to_watch if path_to_watch else '.'
  *     observer.schedule(event_handler, path=watch_path, recursive=True)
  *     observer.start()             # <<<<<<<<<<<<<<
@@ -8034,12 +8151,12 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
     PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_start, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":258
+  /* "simplestart/ss_modules/monitor.py":264
  *     ##print(f": {watch_path}")
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -8056,7 +8173,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
       __Pyx_XGOTREF(__pyx_t_8);
       /*try:*/ {
 
-        /* "simplestart/ss_modules/monitor.py":259
+        /* "simplestart/ss_modules/monitor.py":265
  * 
  *     try:
  *         while not stop_event.is_set():             # <<<<<<<<<<<<<<
@@ -8065,9 +8182,9 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
 */
         while (1) {
           __pyx_t_3 = NULL;
-          __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_stop_event); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L6_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_stop_event); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_is_set); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 259, __pyx_L6_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_is_set); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 265, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __pyx_t_4 = 1;
@@ -8087,15 +8204,15 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
             __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
             __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L6_error)
+            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_1);
           }
-          __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 259, __pyx_L6_error)
+          __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 265, __pyx_L6_error)
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           __pyx_t_10 = (!__pyx_t_5);
           if (!__pyx_t_10) break;
 
-          /* "simplestart/ss_modules/monitor.py":260
+          /* "simplestart/ss_modules/monitor.py":266
  *     try:
  *         while not stop_event.is_set():
  *             time.sleep(1)  #  CPU             # <<<<<<<<<<<<<<
@@ -8103,9 +8220,9 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
  *         print("")
 */
           __pyx_t_9 = NULL;
-          __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L6_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_time); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 266, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_3);
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sleep); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L6_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sleep); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __pyx_t_4 = 1;
@@ -8125,13 +8242,13 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
             __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L6_error)
+            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 266, __pyx_L6_error)
             __Pyx_GOTREF(__pyx_t_1);
           }
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         }
 
-        /* "simplestart/ss_modules/monitor.py":258
+        /* "simplestart/ss_modules/monitor.py":264
  *     ##print(f": {watch_path}")
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -8149,7 +8266,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "simplestart/ss_modules/monitor.py":261
+      /* "simplestart/ss_modules/monitor.py":267
  *         while not stop_event.is_set():
  *             time.sleep(1)  #  CPU
  *     except KeyboardInterrupt:             # <<<<<<<<<<<<<<
@@ -8159,12 +8276,12 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
       __pyx_t_11 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(((PyTypeObject*)PyExc_KeyboardInterrupt))));
       if (__pyx_t_11) {
         __Pyx_AddTraceback("simplestart.ss_modules.monitor.start_file_watcher", __pyx_clineno, __pyx_lineno, __pyx_filename);
-        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_9) < 0) __PYX_ERR(0, 261, __pyx_L8_except_error)
+        if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_9) < 0) __PYX_ERR(0, 267, __pyx_L8_except_error)
         __Pyx_XGOTREF(__pyx_t_1);
         __Pyx_XGOTREF(__pyx_t_2);
         __Pyx_XGOTREF(__pyx_t_9);
 
-        /* "simplestart/ss_modules/monitor.py":262
+        /* "simplestart/ss_modules/monitor.py":268
  *             time.sleep(1)  #  CPU
  *     except KeyboardInterrupt:
  *         print("")             # <<<<<<<<<<<<<<
@@ -8177,7 +8294,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
           PyObject *__pyx_callargs[2] = {__pyx_t_12, __pyx_mstate_global->__pyx_n_u__8};
           __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L8_except_error)
+          if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 268, __pyx_L8_except_error)
           __Pyx_GOTREF(__pyx_t_3);
         }
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8188,7 +8305,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
       }
       goto __pyx_L8_except_error;
 
-      /* "simplestart/ss_modules/monitor.py":258
+      /* "simplestart/ss_modules/monitor.py":264
  *     ##print(f": {watch_path}")
  * 
  *     try:             # <<<<<<<<<<<<<<
@@ -8210,7 +8327,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
     }
   }
 
-  /* "simplestart/ss_modules/monitor.py":264
+  /* "simplestart/ss_modules/monitor.py":270
  *         print("")
  *     finally:
  *         observer.stop()  #             # <<<<<<<<<<<<<<
@@ -8226,12 +8343,12 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
         PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
         __pyx_t_9 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_stop, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 264, __pyx_L1_error)
+        if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 270, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
       }
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "simplestart/ss_modules/monitor.py":265
+      /* "simplestart/ss_modules/monitor.py":271
  *     finally:
  *         observer.stop()  #
  *         observer.join()  #             # <<<<<<<<<<<<<<
@@ -8244,12 +8361,12 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
         PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
         __pyx_t_9 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_join, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 265, __pyx_L1_error)
+        if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 271, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
       }
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "simplestart/ss_modules/monitor.py":266
+      /* "simplestart/ss_modules/monitor.py":272
  *         observer.stop()  #
  *         observer.join()  #
  *         print("")             # <<<<<<<<<<<<<<
@@ -8260,7 +8377,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
         PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__9};
         __pyx_t_9 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 266, __pyx_L1_error)
+        if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 272, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
       }
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -8287,7 +8404,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
       __pyx_t_11 = __pyx_lineno; __pyx_t_13 = __pyx_clineno; __pyx_t_14 = __pyx_filename;
       {
 
-        /* "simplestart/ss_modules/monitor.py":264
+        /* "simplestart/ss_modules/monitor.py":270
  *         print("")
  *     finally:
  *         observer.stop()  #             # <<<<<<<<<<<<<<
@@ -8301,12 +8418,12 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
           PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
           __pyx_t_9 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_stop, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 264, __pyx_L17_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 270, __pyx_L17_error)
           __Pyx_GOTREF(__pyx_t_9);
         }
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-        /* "simplestart/ss_modules/monitor.py":265
+        /* "simplestart/ss_modules/monitor.py":271
  *     finally:
  *         observer.stop()  #
  *         observer.join()  #             # <<<<<<<<<<<<<<
@@ -8319,12 +8436,12 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
           PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
           __pyx_t_9 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_join, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 265, __pyx_L17_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 271, __pyx_L17_error)
           __Pyx_GOTREF(__pyx_t_9);
         }
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-        /* "simplestart/ss_modules/monitor.py":266
+        /* "simplestart/ss_modules/monitor.py":272
  *         observer.stop()  #
  *         observer.join()  #
  *         print("")             # <<<<<<<<<<<<<<
@@ -8335,7 +8452,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
           PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__9};
           __pyx_t_9 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 266, __pyx_L17_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 272, __pyx_L17_error)
           __Pyx_GOTREF(__pyx_t_9);
         }
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -8365,7 +8482,7 @@ static PyObject *__pyx_pf_11simplestart_10ss_modules_7monitor_6start_file_watche
     __pyx_L5:;
   }
 
-  /* "simplestart/ss_modules/monitor.py":240
+  /* "simplestart/ss_modules/monitor.py":246
  * stop_event = Event()
  * 
  * def start_file_watcher(path_to_watch, script_name):             # <<<<<<<<<<<<<<
@@ -9008,15 +9125,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   }
   #endif
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr)) __PYX_ERR(0, 234, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr_spec, __pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr)) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr_spec, __pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr = &__pyx_type_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 234, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_10ss_modules_7monitor___pyx_scope_struct_2_genexpr);
@@ -9836,19 +9953,19 @@ __Pyx_RefNannySetupContext("PyInit_monitor", 0);
   if (__Pyx_SetNameInClass(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_check_path_pattern, __pyx_t_5) < (0)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":232
+  /* "simplestart/ss_modules/monitor.py":238
  *         return True
  * 
  *     def _is_hidden_directory(self, path):             # <<<<<<<<<<<<<<
  *         """"""
  *         result = any(part.startswith('.~') or part.startswith('.ipynb_checkpoints') for part in path.split('/'))
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_17_is_hidden_directory, 0, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler__is_hidden_2, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 232, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_10ss_modules_7monitor_21ReloadOnChangeHandler_17_is_hidden_directory, 0, __pyx_mstate_global->__pyx_n_u_ReloadOnChangeHandler__is_hidden_2, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_is_hidden_directory, __pyx_t_5) < (0)) __PYX_ERR(0, 232, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_is_hidden_directory, __pyx_t_5) < (0)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_modules/monitor.py":92
@@ -9869,7 +9986,7 @@ __Pyx_RefNannySetupContext("PyInit_monitor", 0);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":238
+  /* "simplestart/ss_modules/monitor.py":244
  * 
  * 
  * stop_event = Event()             # <<<<<<<<<<<<<<
@@ -9877,7 +9994,7 @@ __Pyx_RefNannySetupContext("PyInit_monitor", 0);
  * def start_file_watcher(path_to_watch, script_name):
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_Event); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 238, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_Event); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_6 = 1;
   {
@@ -9885,25 +10002,25 @@ __Pyx_RefNannySetupContext("PyInit_monitor", 0);
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stop_event, __pyx_t_2) < (0)) __PYX_ERR(0, 238, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_stop_event, __pyx_t_2) < (0)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_modules/monitor.py":240
+  /* "simplestart/ss_modules/monitor.py":246
  * stop_event = Event()
  * 
  * def start_file_watcher(path_to_watch, script_name):             # <<<<<<<<<<<<<<
  *     """
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_10ss_modules_7monitor_7start_file_watcher, 0, __pyx_mstate_global->__pyx_n_u_start_file_watcher, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_10ss_modules_7monitor_7start_file_watcher, 0, __pyx_mstate_global->__pyx_n_u_start_file_watcher, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_modules_monitor, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_start_file_watcher, __pyx_t_2) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_start_file_watcher, __pyx_t_2) < (0)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_modules/monitor.py":1
@@ -10015,31 +10132,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{2},{31},{23},{16},{1},{126},{1},{1},{1},{20},{20},{2},{1},{12},{11},{11},{6},{5},{7},{6},{14},{14},{15},{2},{18},{9},{7},{7},{6},{3},{4},{33},{25},{5},{22},{17},{8},{4},{20},{21},{30},{41},{59},{42},{36},{59},{37},{32},{32},{33},{39},{6},{21},{27},{13},{7},{3},{12},{11},{7},{18},{9},{8},{19},{17},{9},{18},{5},{6},{12},{7},{7},{5},{1},{8},{5},{13},{11},{8},{8},{8},{18},{4},{8},{7},{3},{19},{20},{6},{10},{6},{14},{9},{14},{8},{13},{12},{20},{6},{14},{5},{4},{4},{4},{6},{4},{8},{11},{13},{4},{10},{6},{16},{11},{12},{7},{15},{3},{7},{8},{8},{14},{4},{4},{15},{8},{10},{10},{11},{2},{4},{4},{13},{7},{3},{11},{5},{12},{11},{12},{6},{9},{17},{6},{17},{6},{18},{8},{11},{4},{4},{9},{12},{9},{6},{14},{16},{14},{12},{10},{30},{12},{5},{12},{4},{23},{5},{8},{2},{13},{5},{18},{10},{4},{10},{3},{6},{4},{8},{9},{5},{4},{4},{4},{4},{5},{5},{6},{5},{10},{15},{18},{9},{2},{158},{36},{15},{75},{27},{69},{134},{9},{159},{161},{71},{2},{119}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2125 bytes) */
-const char* const cstring = "BZh91AY&SY\010\316\302\021\000\001\n\377\377\377\377\377\377\377\377\377\367\277\355\376\372\277\377\377\367\365\377\355\336\366\312\365\376\300@@@O\340\300\000`\007<`\222\250\201RQT\250\332\003l\032\231$\246d\217(\032=L\233\324\236\246\324\323cI\251\352\003CF\236\220c$4\032\036D\007\250bz\206\203O)\3512l\243&\201\223\020\364\231=\010hhh\364i\212\r\023@A6\211\242z\002\r\002i\250\r\032z\236\246\232\032\000\000h\000\000\006\217(\032\014\232\007\250\000\000\000\000\000\000A\204\304\006L\232\006&\201\223C&\206\203L#F\200b\0312\014&A\246#A\220\320b\006\206F@\001\223M2bb\032\000\tM\020\215&(M\225=M\223D4\r4\000\000\000\000\000\000\003@\000\006\200\000\000\000\000\000\000\000\020a1\001\223&\201\211\240d\320\311\241\240\323\010\321\240\030\206L\203\t\220i\210\320d4\030\201\241\221\220\000d\323L\230\230\206\200\0100\230\200\311\223@\304\3202hd\320\320i\204h\320\014C&A\204\3104\304h2\032\014@\320\310\310\0002i\246LLC@\013l\305`\206\333\220\022\223\307k\322?\343\355\374)|\277Y'\364\324\347%\343\024w%\354\224\237\351\372\244\206\226\203\027\025\377\230\007\256\226\224\212\263U\230I4Z6\211\353\371\261\314Y\373Yc\t\n\262*\206i\352\223)\260\2533\222\264z#M\254N/K\366\2702 \261\025\031\317\017\2244\\BY\333\027+\270\033\0074\221\2267=j\220\236,\262\200\265\t\310MnI\347\017\"y?BW\007\303H1q\022i\310\245\224\353I\200\266\307,GV\001\360\264\241 \270j\027\256\275\357\267\\\214Ld\006\221l\364\020>\357\254\006\241\260\014\264Tg\342\360;\373\303Y\322^\242\373)]\372\370\367!\255hf\217x\334c\305}-N47\016\335\213C.a8\316]\0247\313hf5\325\256\3757\331x\206\034\031}O\200\266\005\231e\363\352\340s\212\017\362<+t\323\245?\234bc\234\302\241\311\273\226;\374e\362\274I\345\t\365\030\210vPn9\372\333B\210\231\311Z\365\327L\244\236\343\226$S\223\371\362mP?<[U\224\256\316\374;]\251\237kL\316!Dq\216\303\30438\347\033\343\203Si\272\341\r\233\027\302\\\247\260\314u\263^Gig\021\007\032\366F\372\010\343\337S\225\\\373;\355\215\214\320\nk\005U\211\005\027\332\"1\032\342ja\320\232\353}\331U\205X,\021\003\306""\212]\315\242\201\254\255\371\322o\r\030\367y\376dmQ\342I\361{\026\216\305\370Y\210\331y\026\360\266\331[D;\311:t\346\330P\266Z\310/I\253$\242\006\002\215\243u/\233;\231C\021(\265\204\220J\336\025\010H\032\302\2448\326\264HU\034w\304\272P\255\023L\242O\344\224\321i^\305(\n\021R\331\030\033$T\360pplp\344c\017\362\232\026\256\244\010\020\220\315\366\301\355\342\005\315\241\035\251\202\n\010\t\245\324 N(\030\005\177t/]\n\2422\021\230\250\334*\233*\240J.!\344\005FZ\"|\341\220\014\005\244\212\324<X\357O\004\334\222+mPE\215\3428,fdY7(\216B\274\204\362\322tgz\032[\031@\225V\273us#O91\212\3030\370\315\360L\201\241\331\307\201\016\213`1\222\235\217u\007\305\250i\303;H5n\000\252\215y\r95\031\210\236L\270Y\252\031L\360gK\"1[\t\246|\023B\320N\3116\252\320\325\335.g\314\274\3121m\367\032\010O\020E\261j\340(>.\2551\224\232\222\2402d\202*N\307!\251\225NC\202Q\236Wqk\321r\314\207\255\210\032\022\252\036\350h\204\260|\203FD\262>K\036\371\246\206P\3317-ulI=\"(\016D\264(\372\004\370\025<\3068\323l,\025\024I\212\302 \002\030ITB6\324\342{\260\010-\000-<\353\035\260\274\316\223\345\264\266\232h(\333\3504\001\0042\026/\013f\231\326a\264\013V\352\203\353$\321%\306R\201.(\201\000\3240*2B\250\266\3250\247l\256\013\200`\27300\001\322\032\242\270\320#u\3612\310a\221\303\021jg\346\205\224]\023M\016&\240Hz\205\216;i!$$\311\266\302\324\360\214\340\007\rk`\311be\317.&\344\330\013\220xf\216\222,\225\rfFq\360\220\345\032\355\272\214\020Q)\273c\244\340\314>CP\023\257F\364\n\006'\225\342\n;*\324\323\000\252\020\220\007\021\205\024\210$\272\234A\251!\020\304\325\340\010I\313\025 \313)\023\006UD2W\340b[$\314\231d\240\351\201\033}\221k\3403\021\226\252\033E\263\014\020ny\301\263\021v69\244\\\352\324\265%sR\373\032\267\263\352d\222\305)\"\245\302\036b\003\245v\000\342S\313n\364\002\370\267k(AH\251\226Aee\200\252\001$\221\240h\030\251\245\206\312J\257\233%\014.\314\323(\235\033\316\314\326n\006\300\335\372I\032\371\277\006\210\334\226\030\214 `]2\247)b\341\330\027\214\253\254\004{s\356cq$\270\247S\325\003)""I\000\2614\202&\255\267\230\354x+\tC\266\203@\232\370\032\003O6\\\374\245\226\033\203\2168\354\362D\207L\204\010\3021\025\331\357K\362\346yk6\027Q\357U\310\331e\257\261\324\021UK\014\373J\312\2229&\230\322\201\034\226\205\266^\212\301<A\005t\265\241\246\333i08\\`\2643\251\275\261\302\375\033\207\255]$$\246)\226\322\020\327\2639\255wI(\270V\262\300\227v\260\303G\020q\324az\nY\314R\274\333\246\240\310P\033N'\320%(\200\3471\223%F\n\nS\315\306\014\345)pV\254\314[R\nE\200\024(5M\214SP~\031\355\207\256qE\020\016\337\346\005\002\234\2532xJ1\n`\016&T:\273\360\004\211k\024\332jU\3025\002&\001UR\300\324\214JO\260\240E\010f`A\215\r\342\247V\271$\273\223o4h\020s/H\304\221\233\253\245>P\353\366\206\3213 \332\031\307o\325u\"[\300\206B{\277D\334@\217\343\336\367\314\315\314L\013\365\350oF\037\220\"\364\024\027\244\224\357\222\021\006\234\317\004\217\200fq9p\017\2740\020\244:\352P\252\257\"\327\020>\351\211\237TE\022\323\262h\021$\027\337\016\252\326\3405\215M\035\256/O\314\371t\212\205!)\016\343\022\0268\217\344E\322\351\343}zA\327\3108\3010\354b\305\220\2602s\216s\362\026\016\005\220$dV\230\373Bn\274\303N\306M\371\277R\025M\242\275\\7u\356\375\3706\316\237%,S\270P[\3422\261;\024\244\226\035\267-\233\343,\3717\225\213#\033*\007\361dJ\031\3035\026\226OM\350\331\261p\343*\243j\366\001\232li\362I\267\017\347y`\330\255j\007\177.\373\214\360Y\220&\231\343\211\230\250\363\321\322I\313\302\330\272\026\324o\352\243\331\233j\\+\241\020h\t\242\213H\r,\372A\032\2745cE\252*gX\032\352\233\236\216\243F\031\206\323@\234\235}\315\313v\371\0163\224[\231\032\372#5\210\n\273\2643\372\002u\274\353\376~\207\307\335\264\364\036\210jP?3{\271b\332wG\342\275\352\333\006\234^\21579\301\2255jS\351O\276\310\244\246\351)S\242x\223\216M\tMU[^\243\211\367\366A\376\367\033\277\324O\327=\016\t?\227[>*fJ\254.\026[\315\024J\347\367&XKe\246\231\3155\354\256\350f\024\201:n\234ON\031\215(\027\371}\306\335\313\202r\204\244\023\262\016\227.vF\034\377\305\334\221N\024$\0023\260\204@";
-    PyObject *data = __Pyx_DecompressString(cstring, 2125, 2);
+    const struct { const unsigned int length: 8; } index[] = {{2},{31},{23},{16},{1},{126},{1},{1},{1},{20},{20},{2},{1},{12},{11},{11},{6},{5},{7},{6},{14},{14},{15},{2},{18},{9},{7},{7},{6},{3},{4},{33},{25},{5},{22},{17},{8},{4},{20},{21},{30},{41},{59},{42},{36},{59},{37},{32},{32},{33},{39},{6},{21},{27},{13},{7},{3},{12},{11},{7},{18},{9},{8},{19},{17},{9},{18},{5},{6},{12},{7},{7},{5},{1},{8},{5},{13},{11},{13},{8},{8},{8},{18},{4},{8},{7},{3},{19},{20},{6},{10},{16},{6},{14},{9},{14},{8},{13},{12},{20},{6},{14},{5},{4},{4},{4},{6},{4},{8},{11},{13},{4},{10},{6},{16},{11},{12},{7},{15},{3},{7},{8},{8},{14},{4},{4},{15},{8},{10},{10},{11},{2},{4},{4},{13},{7},{3},{11},{5},{12},{11},{12},{6},{9},{17},{6},{17},{6},{18},{8},{11},{4},{4},{9},{12},{9},{6},{14},{16},{14},{12},{10},{30},{12},{5},{12},{4},{23},{5},{8},{2},{13},{5},{18},{10},{4},{10},{3},{6},{4},{8},{9},{5},{4},{4},{4},{4},{5},{5},{6},{5},{10},{15},{18},{9},{2},{158},{36},{15},{75},{27},{69},{169},{9},{159},{161},{71},{2},{119}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2144 bytes) */
+const char* const cstring = "BZh91AY&SYzU\326\004\000\001\020\377\377\377\377\377\377\377\377\377\367\277\355\376\372\277\377\377\367\365\377\355\336\366\312\365\376\300@@@O\340\300\000`\007\\\014\237l$\000\000\001\\\001@\324\311\0224\206\324\r\014M\2416\241\263S\320\204\r\017Q\202=FOH\320h\3016\241\372\246\214 \332\203M\250\332\215\224\321\24014z&\236\211\246CCF4\311\006\210Q\264\223\362\247\350S\3253\032\231\251\032\031\032\001\240\006@\000\000\000\000\000\032\000\000\017P\000\000\000\000\000\000\203\t\210\014\2314\014M\003&\206M\r\006\230F\215\000\3042d\030L\203LF\203!\240\304\r\014\214\200\003&\232d\304\3044\000\022\232$\302\004& &D\332\004e4\014\206\215\000\320\000\001\240\000\001\240h=A\220\321\352\000\000\000\000\r\006\200\0100\230\200\311\223@\304\3202hd\320\320i\204h\320\014C&A\204\3104\304h2\032\014@\320\310\310\0002i\246LLC@\002\242\215\251\352bh\320\321\210\0314\006!\243\020h\r4\000\001\240\000\311\243\023\021\265\003\0044\030F\232\000\000\003CC@\320\025\246k$B\016r\001\344\361\336z\267\360~\357\343K\363\376\322O\365U\305\322_(\233\271/\266N\357\353\375\222CKS\027\226\377\314\003\333{zMfk3\t&\212\263k>\317\317\217AO\n\224a!ZE\2233\\q\227\023\346\331\231\311\025\036h\341j'\021\365<+\303\004\305\021c\237R\270\0236\303Ik6\354\332N\324\233E\333\363\350I\357j\233\373\372\t9\223\030\353\277,\212\263U\253\321\302\205m\323.\226\222\376\245\357 \312Q\210k\272\2224\365\254V\331\271y\2659\301\273ZUk\331}\321\310\301\323o\203\350l\275\347\255\023\237\000M\322t\276?}\336\360\030W\247Pu\031\220\252\214xg\222jRL\322\265\213Zt\250\246\255\242\355j\365\270\253\022\2604]\024\347M\345\315\023)\252,:\354\327>\201\n\371%\321\357\0250(\312\\\3028\271T\005\361\367\325\220\303d\336q\206\033L!\377)N.\351\370\273n&\341$\362\204\374\300\205\t\224\035\r\\5\t\242\343\315U\355\307q9=\347\236$O\315\376\234:\350\037\323\025\262\332[\253\216]\347\\\323V\271\264\020\242<\257\221\206\"Rfp@\001#P\000!T\034\205\037x4`\215D\204\rx\2221bQ\221\024\344\240A\000P\307\014\005\303\340E\rtAx\242Cm\356.,@&P\021F'\007I4@%5@h""\230nN%K\255\252E$I<@\007\016\006)\233\274\272.:\317w]\335T\231\237{\247\261\035tw\322|\336\213_+\3671s\235_\231^\346t\265D;\311:t\346\3512\262\361\360p_\332\337\201d\016\246y,;\031R\355\027Dh\317\230\320a?\227\242\032\t\334\332\212)I\022\025\207\035\363!\357z\211\256&\223\370\005\332\333\266\273&)@D\"\362\3223W`\371\337B\204\347\253\217\241ZQ\177<e\243z,3\030#\\`\357P\001[PCQ\201!\304\003*\255\010\023\304\371\200R[\2125\301\016\202q\031\210\215\341\023+\242\"A_\226@D`Y\006\330\213\250\022\025\232Qht\251\320k\351\224\222\213\304A*;\250\241#\235\313&\236\363+\333\202\002\245K\246\316\3637\271e\002V\\\316\243\2305\332\023\031\254\266\217\235\317\222d\r\016\316<\010t*\300g\n\352=\363\0376\233p\3039 \343\274\002\3129\010k\244\323f\"\3546eN0\330i\006t\260Y\256m\311\237$\320\265'd\233\215j\343\351\336\317\265v&\305q\274\324\204\361\004V*\216\336c\346\352\246r\223NS\006@\220E\213\250\3444\366+\2448%\032Kt\033\024^\266\241\355D\r\tY\017|\004BY>\003F\t`\370Q\361\27142\206\303\243\314\265\022O8\211\203\221-S\256\203.'\313\024v\353U/\337!\264\265\317\314,\020\210\301\330\323\255\350\325\247\021i@7\016\212;e\211\242O\262\245g\302\202m\342\201\240\010!\235\307\314x]T\316\266\215\251\272\333\256WcGI\245\247\006\263KM \200\355\020n&\206\334n\317r\346\312x\320\226\005\306\356B\001j&\355\266a\236\355t\246\345E\332y\232L\361\257dI\264\323J\216\217\210\334\032\027\021G\035\267\223!&M\272V\036\035\032\000\0348\033&K3f\222\362\347.\030/A\362M{\310\244\246n`\316>R\034\233_\316\233\004\023J\347l\367\234J\267\247c)t\270,\326FXT\263\255\375\316\323\250\r\270\326\274(\310v\276\013\367S\2108\244\"\030\271b\000\204\234\242\234\033%\"\340edC%\216Fed\231\223,&:`GeH\253\344\314\304l\262\206\326\333F\010:Z\003\252\"\374\350\346\361{\252\245\305+\332x\321\255\213?\026\022Y\245$X\274C\334 \246\024\342j3\325\272\265\200\3415\347\274Y\341\361\220\322m\375\361\267\002/\276a\321F\344\312\035\234\225\237n\0232\277k\\M:;^\251\271\3179\247[\270\221\311s\367\t\243\242\262\314a\0107Sj7\244m[\344\271\033f""\300\212\317\241\267\222\201\030q\344\365{&\301\241\215\370\351\220\232\325\304\317\227\306\320\224;jh\023c\003@p\355\331\247aJ\034\367\034q\331\344\211\016\231\010\021\224f+\364\274\361\331\265\345\271\315\276o\212\266\r\262\\\224u\004YN\207C7\336\277O.8\250\320i\345\314\327w\006\231\rR\320l\3259\223S\327\030\212\333n39\372\261l\362\307]\343\332\316\222\022W\n\346\254\341\r\210\016p;\244\224^*\262\310%\273\260\271E\030\242\334D\272/%\213aU>\243\227[A=\\u\320`\332B\224\244\347\214\267\020\327;\325Q\t`\030I\032,)T\234!\023\300'\334he1\014Au\355\254\013SC\234\370{\201`\020\t\245\031\222\310\321\306j\263-)\264Sg\r\231\2423\343\307\250\357\265\223\211^rrE\357/\001J\266\277\006\230\033c@c\315\341\251j|5RJ\363.$\215\"\013\307\3241\030glY2\214\005\273\001\202B\010\006\003A\333\177l\010\227\004\204\020#\226\320$<\0044\276QD\302\037*\007\235\232\026\233\026D\010\275\004\305a%<\024\2041\2723\364\221\2743?\0276\310\357\006\n\024\275{:\032\265\250\202\364\220}\303\022>\310\202#\246z|\"0/\277\277\201ir\033`PCm\213m\023\224\254Z\025.\224\275\270\304\272\307\020\374\210\360+(u\260\210_\033\274\201E\204b\220b\370\342\256\014\234\343\234\254U\305\020\257\004\217\235Q\214\333\265\237\313$P[\344\340\235\232\227n\355g\230\303\245\254\245\370\341\\Q\276Je\323\275P\\\322b\353\353\216\271)'h\355:Z\213\031\313\344\337\3249F4<\253_\343\244h\214\361\234\216\2379\361\276\r\232.\276S\206\357\255L\323\313\241\372\022\317cB|\340\255\233\216\376^\007&\254t\210\024\376\200{\210\324`\315\316F\313\303\333\273\0273v\224\321,M\274\356\035\350\2024\204\2215\250\006\246\204\340\211X\033K\315l\n\201\326\026\321\314\007\372\355;\343\r\344\201\252\235\254\010\016\034d\255\325\317U{\010\220\304\031\225\310\007\227\350\231\314\004\356\253\251\365\257\304\205O([\273D'q}\036\357\307])\255\343\301\227wk\250\363Z\253\005)J\027k\224\242\"\263\237\361\234NJ\231\021(\312\310\322\241\203\n\220\"T\231\224\2537\364\371\013\001&\003\234\320\257\300{)\212\316=\\\250w#F\240\252s*\264\321\243cy\"\266;FR,\r\233HS\022\013$j""\311\326\211MQ\231?\254g\017\030\334.\261\032\340\222\n\214\203\245U\243 a\177\370\273\222)\302\204\203\322\256\260 ";
+    PyObject *data = __Pyx_DecompressString(cstring, 2144, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1956 bytes) */
-const char* const cstring = "x\332\215V\357o\333\306\031\216\2268Sj%\226b\271\261\0337\221\342tY\323N\236\226\337A\333@K\354\304X\021GY\213\256\033\206\303\211<It(\036\305;\331\326\260n\312P,\332\326\256,V\244D\267\241\334\320b\004\206!\\1$j\266`\371\230\217\372\310\217\0066\331\315\247\345O\330{G\332\2227\033\250!\036\357\307{\357=\357\363>\357\321\3473?(\\\233\313\\\243\232\301\331\0173\263X\323\211\232\3414c\021\235b\365\374\346\345\353r\222\300\364\214eQ+2\322\214J\346\370\352\355[\377\376\373\335\336{N\357\235\333\275O\336^\263\177\276\346\375\252w\377\275\2472\360'\233\336\203\337\254\375\366\375\325_\377i\355\243\267\327\255\337_\373\340\343p\317\352\207w\377\363\217w\036\337zw\365\266\337\373\245\373\305\203\007\275;\237\367\356\177 \214\275?\364~\377a\357\363\273\217[\037\255}\374i\357\027\357\256\375\371N\257}\017,\377\325\372\231\364}\341\251\0348{\334\272\271z\267\275z\363N\357\223\277~\361\267O\317g6m\210\346r?\231\236\306\246\206L\031\323@7\267i\326\314\231M\205ZdZ\325\030.\351\204\030\242-\003=\031\305\"\230\013\022\344H%:\351\217jT\325\312\232\030V\224\234f6\215\022R\252D\271\021\372\325X\350F\0053\242\263\351i\023W\010\213Z8\3608<L\253\231:a\034[|\2321\004\226\r\030N\327\250\241qj\201\001\257j,\003\277p%\323_\230Y$\006\237\005\024\337m2Njrx\005\033\252N\254+\363\257\241\3533\257\316\027.\241\213\363Wg\347.\317\227\030\261\026\211u\r\363*B\327\232\313\360\\\322\024\216\256\222e~\235\224\303L\317\033\027\253\330\250\220\310\313\226\2239\2044@\200\3206\2532|d\212s\240\341\3042\2661\324\030\252j\252J\014\244j\026Q \246f\356%\235*Xg\257\344*\304 \313\246\365\345\267no\271\210uME\"[[\333\030\224k\345&*[\324\340\304P\373\030 y*\252\021\306 ]_j\353\326F\324@\221\202\266]\2174\265\355\372\272\312\2666\010\253\022\365\345\374Z\025\316S\303\232\013K\260w\357\263\336\315\337\255\376\345\217\203\223k\367\377)j\366\336g\217[\255\336\255\373\270\304\250\336\340\004q\241\306\022\023)\304\272.\334V\303\223\030\224I\rk\206\340\022\263\246\241h4z\345\240th\203k\006a\010\341%,\364Q\302B\3755\262""\205\"\020Rt\014b\257\020\256\201r\305P\003\361\"M\205\216A@`\210[X!%\254\334Pt\312\210B\341\320\212\322\260,a&\252I%e\334\320\341\030\225*\3204j&\203\232U\331\222\306\253DT\202l\326\221\223e\242D\245\205\244\024\302V\300\023o\201\255\254\211l\207&!\243\345\206\001\256\3036\322#\000\206\037\252R\036\331H,bJ\360\202\230bi&G\302-\314)Kj\337P\253\030p\273\204\355:\rP\371\324\342\272V\332\350\344\200C}\275\300\204x7x\205\376\206\326\267\322?L1\200\261I\357\202[\266\000\222X`\324\270A\232L\336\346\226N\251\211B\300\233`\203\3269\016\023#\303B\033\214\205\357h\004j\257!f\022%\032\213h\007\272,\272\301`\227E\021\344\300\322\344\200UjM\323\002y\326\232\214*7\000\2534\207\226,\2410Y\002\030\320\314\rj\220\377)-\032\335_\375b\352\227\315@\201PP\255\305E:\245\3348EK\230+r\000\354\232\"n\323\202tC\016\220\004cZt\001\010D\026\205L!\370\004`P+P\217\352\r\254\207\370,R\202E\240\271a1\r \220\212\006\327\255\265Q\024a~\377\257\010-\302@\237V\303@\rC$U\241\342\236\207\332\202\003$A}\2550\242\227\305e#/\034\025s<x\363\310>\007VB\002\302Vx\253a\261C\216\270V\0235+j\200\017p\211\244$\302(\240\027\225\314\300\007'\327\377\340\344\242\357\312\372*\220\\c\360\0314\243d\231\224\352Ld]<\241\006d\035\211\313\222k\324`\246\256A\320\212\254s\006\177B\272$'I\226g\311&\334#s\002\241\310iQ\260\214SS<!v\326dL~\321\304E\204P\324\312;\r\376\365\200\016]\022\001\363\246ID\2714\032\232*\236\223 \374\006\221\r\223'\310F\342\221=\225Vr\241\377\215\341\272\252\330\022)\205qz\371V\354Ib\307P\332\376\226\375\206S\010v\215\332'\355\272\263\3239\353\236\362b+\273\342\355\021\273\036\304S\366\250}\305)8\305 >\334>c\037s\306\034\325=\346\245\274\257\373\331 1\322^\264\277\357p\367\2647\341\277\320)vp\220<`[`C\334\274{\025,\222\031\367+\356s\356\262W\367cAr\324~\305\035ug\275l\220\036\013\306\263\356\001/\346\245\202\364A\347e/\026\214?\353\024\273\207\276\351\307\374C\235\372\303X\0130\210\023\263\200\357M\307\360\000\341pwx\322\271\344\306\334\247\273\307\316vb\235T\253\260\022Ow\323/x\371 >\322\256\213\341p""\373d\373\247\016v\352Ov\357\330\273\337Nu\367O\001\224\031/%\306\207a\241\341\026D7\tV\212;\346\002b\360\3605\027\273\rO.\244\272\2009\266\311U\220H\tGG\334\254\240&\\:e\307\202\304\250\235\017\315\032\366\234\363&\370\250\367\347\272#G\335\202\373:\304*\246\300\363\236d\233wG\217\271uo\310+\n'\251n\352\250\004\263'\001.\026\355\242\2157l\367v\023\207\23428(\n\222\005\324\224\240VD\265g\334^\002T\226;\341\345:\261p\373\313\220\267|\220x\246\373L\316\303b\307\217\235\023\220\203\023\356\202\277\323?\325\331\331\271\360h\352QQz\030\200\003\204\005\361D{\336\311\0138{\202\321\264\210\364\260\033\203^H\337\241\220\307\203\316\021g\006\316\313z\347\374\213\276\234J\333\347\234\231n\366\\'\325\371\306\303\372\243\221\356\033\337\023\3476\354K\316.PSr\302\231p\237\213\322\004\024\333\227\235\227 r\0017\225\266\3178Y\220Y>H\003\340\027\275\202W\\I\216\331\305\356\323\323R&\220\312\267\300EH\372\t?\357\027$\274\025p\277dc\233C\244\311)\210\r\273\334;\355\357\367a\010\"\232\204-as\320\311?\211\357H\215\331\337q\336\362\276\355\325:\247\037\302\372\001\373G\240\275B0>\2612uter\312=\343M\0034\350\\\360\263\276`d\352\350\223};\236\315v3\342\314W\037\306\202\311\214\273\033\0042~\030\374\024\202\311\254\233r\217\013\264\203\010\355\343\2428Z\"\260\241Q(\217\024P5\347\"\037\344\372\325V}%>\n\362}\335y\0364X\020\025t\026h\023\305\2248`/;\314\315\nW\026x\311\202\272\333y7\013\216\366\tG0\006Y>\017u\006\275\221\366\262\314\374\320\376n\352H\367\310)\277\030\354J\264\347@0\024\004\366\242\277\000Xab\326\316B\334C\273\203\370\276\266\n\270.\003\303\211\244\275\0338\253\007\303\211 \276\267]l\343\225x\322\036\262!\206\350%'\377\013\330\317d\323";
-    PyObject *data = __Pyx_DecompressString(cstring, 1956, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1990 bytes) */
+const char* const cstring = "x\332\215V]o\033\307\0255k\313\245#\332\"M*\226b\331&-\247n\234\224\212\352o#\211\301Z\222-4\260L'\201\233\026\305`\270;$W^\356,w\206\222X4)]\0045\233&\315\006\r\234E\332\"\333\"A\027(\n\263Aa3n\215\352\321\217|\334G\001-\245\370\251\376\t\2753\273\022\251V\002\"pg\347\343\316\235s\357=gV\027\322?\312]\233M_\243\232\301\331\217\3233X\323\211\232\3464m\021\235b\365\302\346\345\353r\222\300\364\264eQ+4\322\214R\372\304\352\235\333\377\376\373\275\356\007N\367\275;\335\317\336Y\263\177\261\346\375\252\373\340\203\247\322\360'\233\356\303\337\254\375\366\303\325_\377i\355\223w\326\255?\\\373\350\323`\317\352\307\367\376\363\217\367\036\337~\177\365N\253\373\256\373\325\303\207\335\273_v\037|$\214\275?t\177\377q\367\313{\217\033\237\254}\372y\367\227\357\257\375\371n\267y\037,\377\325\370\271\364}\361\251,8{\334\270\265z\257\271z\353n\367\263\277~\365\267\317/\2447m\010\347\262oOL`SC\246\214\251\257\233\3354kf\315\272B-2\241j\014\027tB\014\321\026!=i\305\"\230\213$\310\221Jt\322\033U\250\252\02551,)Y\315\254\033\005\244\224\211r3\360\253\261\300\215\nfDg\023\023&.\021\026\266p\340\tx\230V1u\3028\266\370\004c\010,k0\234\250PC\343\324\002\003^\326X\032~\301J\272\2670\275@\014>\003(^\2533N*rx\005\033\252N\254+s\257\243\353\323\257\316\345\246\320\245\271\2533\263\227\347\n\214X\013\304\272\206y\031\241k\365%x\2464\205\243\253d\211_'\305\240\322s\306\24526J$\364\262\345d\026!\r\020 \264\315\252\014\037\231\342\034h8\261\214m\0145\206\312\232\252\022\003\251\232E\024\210\251\236}I\247\n\326\331+\331\0221\310\222i}\375\255\333[.`]S\221\250\326\3266\006\345Z\261\216\212\026581\324\036\006(\236\212*\2041(\327\327\332\272\265\0215P\310\240m\327CNm\273\276\316\262\255\r\002U\242\036\235_/\303yj\240\271@\202\335\373_to\375n\365/\177\354\237\\{\360O\241\331\373_<n4\272\267\037\340\002\243z\215\023\304\005\033\013L\224\020\353\272p[\016Nb \223\n\326\014\221K\314\352\206\242\321\360\225\005\351\320\032\327\014\302\020\302\213X\360\243\200\005\373+d\013F \244\350\030\310^\"\\\003\346""\212\241\006\344E\232\n\035\203\000\301\020\267\260B\nX\271\251\350\224\021\205\302\241%\245fY\302L\250I%E\\\323\341\030\225*\320\324*&\003\315\252lQ\343e\"\224 \233u\344d\211(\241\264\200\357\026\356\001\021\261\004\255\300*\336\002hQ\023\245\227\366(Ho\261f\3009A\033\222\023\320\303\017\225)\017m$01%\222\204\230bi&G\302-\314)\213j\317\260o\313\"\346JY+\031p\365\004\355:4\270\026\250\305u\255\260\321\311B\202\365u\365\tfo$\035\372\033B\330J\0340\305\000\326&1\210\304\263y\340\313<\243\306MRg\362\252\267tJM\024\004\260)\014\020\002\307A\325d\230h==\341;\034\201\024*\210\231D\t\307\"\372\276.\013\2577\330eQ\004\005\26249`\245J\335\264\200\273\225:\243\312M\300*\315\241%\213(\250\244\000\006i\347\0065\310\377\350\216\206\227[Oi=M\365\251\207\002\245-.\312+\271\310i\220|1\200\354\232\"n\323\202\362C\r\220\004cZt\036\022\210,\n\365B\360}\300@eH=\252\326\260\036\340\263H\001\026!\3155\213i\000\201\2244\270\213\255\r\305\004U\376?\205Z\204\001y\255\232\201j\206(\252B\305G\000\204\007\007\310\004\365\270\303\210^\0247\221\274\215T\314q\377\265$\373\034\262\022$ h\205\267\n\026;\344\210k\025!h!\020\336\227K$)\021D\001\275PO}_\243l\357k\224\r?:\353\253\220\344\n\003)\231a\261LJu&\252.\236\200\003RW\342&\345\0325\230\251k\020\264\"/\001\006\177\202\272$+\223,\317\222M\260G\326\004B\221\323B\315\214SS<\001vVgL~\356\304-\205P\330\312\013\017\376/\201\016]\024\001\363\272I\204\\j5M\025\317) ~\215\310\206\311\023d#\361\310\236JK\331\300\377\306p\235Ul\221\024\2028\275\311F\344Il\307@\312\376\256}\303\311\371\273\222\366)\273\352\354t\316\271\247\275\310\312\256hs\310\256\372\321\204\235\264\25789'\357G\007\233g\355\343\316\260\243\272\307\275\204\367\355V\306\217\r5\027\354\037:\334=\343\215\266\236o\347\333\330\217\037\260-\260!\356\244{\025,\342i\367\033\356\263\356\222WmE\374x\322~\305M\2723^\306O\r\373#\031\367\200\027\361\022~\352\240\363\262\027\361G\0169\371\316\341\027[\221\326\341vu9\322\000\014\342\304\014\340{\3231<@8\330\031\034s\246\334\210\373t\347\370\271v\244\235h""\344V\242\251N\352yo\322\217\0165\253b8\330<\325\374\231\203\235\352\223\335;\366\356\267\023\235\375\343\000e\332K\210\361\021X\250\2719\321\215\203\225\342\016\273\200\030<|\313\305n\315\223\013\211\016`\216lr\345\307\022\302\321Q7#R\023,\235\266#~,iO\006f5{\326y\023|T{s\235\241cn\316}\003b\025S\340yO\274\311;\311\343n\325\033\360\362\302I\242\2238&\301\354\211\201\213\005;o\343\3006\272c\317\336N\354\220s\003\034\\w\353\235\027\247\226s\"\327o;\257\271\021\221a\021\23409\354\024\301$/\326D4\211\215\265\021{\021\200[\356\250\227mG\202\023^\206\322N\372\261g:\317d=,v\374\3249\te:\351\316\267v\266N\267w\266/>\032\177\224\227\036\372\020CN\375h\2549\347L\n\304{\374dJ$\343\010\300H\246\202\014\037\016R}\3209\352L\303y\031\357|\353RKN\245\354\363\316t's\276\235h\177g\271\372h\250s\343\007\342\334\232=\345\354\002\302\305G\235Q\367\331\260\222P\005\373\262\363\022$G\300M\244\354\263N\006\2308\351\247\000\360\013^\316\313\257\304\207\355|\347\351\t\311$\250\366[\340\"\250\313\311\326d+'\341\255\200\373E\033\333\034\"\215\217Cl\330\345\336\231\326\376\026\014\201gc\260%h\016:\"\313\211a\373\373\316[\336\367\274J\373\3142\254\037\260\177\002\364\314\371#\243+\343\307V\306\306\335\263\336\004@\203\316\305V\246%22~\354\311\276\035\2072\235\2648\363\325\345\210?\226vw\003\207F\216\200\237\234?\226q\023\356\t\201\266\037\241}B\350\247!\002\033H\202\202\022\220\252Y\027\265\200\321\337lTW\242I`\370\033\316s@\323\234\020\3319H\233\320[\354\200\275\34407#\\Y\340%\003\002hN\272\031p\264O8\20210\3679\220\"\364\206\232K\262\362\003\373;\211\243\235\243\247[y\177W\2549\013\234\242\300\301\027Z\363\200\025&f\354\014\304=\260\333\217\356k\252\200\3532d8\026\267wC\316\252\376`\314\217\356m\346\233x%\032\267\007l\210!|\311\311\377\002\367\327~\227";
+    PyObject *data = __Pyx_DecompressString(cstring, 1990, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3373 bytes) */
-const char* const bytes = ": [API Points] Failed to reload: [API Points] Reloaded: Error reloading *\346\226\207\344\273\266\345\217\230\345\214\226\345\244\204\347\220\206\347\250\213\345\272\217\n    \n    \345\275\223\347\233\221\346\216\247\347\232\204\346\226\207\344\273\266\345\217\221\347\224\237\345\217\230\345\214\226\346\227\266\357\274\214\351\207\215\346\226\260\345\212\240\350\275\275\345\257\271\345\272\224\347\232\204\346\250\241\345\235\227\345\271\266\351\200\232\347\237\245\345\211\215\347\253\257\345\210\267\346\226\260\343\200\202\n    ?\n.\345\217\221\351\200\201\346\266\210\346\201\257\345\244\261\350\264\245: \351\200\232\347\237\245\345\211\215\347\253\257\345\244\261\350\264\245: .~//api_points/api_points.api_points/app.pycore/disableenablefile created: file deleted: file modified: gc.ipynb_checkpointsisenabledmodels//pages/pages/.py*.pysimplestart/ss_modules/monitor.pythis is module monitor.pyEventFileSystemEventHandlerHOT_RELOAD_CONFIGObserverPath__Pyx_PyDict_NextRefReloadOnChangeHandlerReloadOnChangeHandler.__init__ReloadOnChangeHandler._check_path_patternReloadOnChangeHandler._is_hidden_directory.<locals>.genexprReloadOnChangeHandler._is_hidden_directoryReloadOnChangeHandler._is_valid_fileReloadOnChangeHandler.notify_frontend.<locals>.send_messageReloadOnChangeHandler.notify_frontendReloadOnChangeHandler.on_createdReloadOnChangeHandler.on_deletedReloadOnChangeHandler.on_modifiedReloadOnChangeHandler.reload_api_pointsThread\346\226\207\344\273\266\347\233\221\346\216\247\345\267\262\345\201\234\346\255\242\346\226\207\344\273\266\347\233\221\346\216\247\347\272\277\347\250\213\345\267\262\351\200\200\345\207\272absolute_testabspathallapi_handlersappmainfileasyncioasyncio.coroutines__await__basename_check_path_pattern__class_getitem__client_idcline_in_tracebackcloseconfigcurrent_modedefault__doc__dumpseendswitheventevent_handlerexec_module__file__filenamefilepathfind_module_reloadfunc__func__genexprgetget_hot_reload_modeget_main_script_namegetcwdhot_reloadignoreigno""re_patternimportlibimportlib.util__init___is_coroutineis_directory_is_hidden_directoryis_set_is_valid_fileitemsjoinjsonkeysloaderloop__main__main_script__metaclass__mode__module__modulemodule_from_specmodule_namemodule_namesmodules__mro_entries__msgmyprintmysocket__name__new_event_loopnextnonenotify_frontendobserveron_createdon_deletedon_modifiedospartpathpath_to_watchpathlibpop__prepare__printproject_root__pycache____qualname__rebootrecursiveregister_handlersreloadreload_api_pointsresultrun_until_completeschedulescript_nameselfsendsend_datasend_messagesend_textserverserver_commandserver_timestampset_event_loop__set_name__setdefaultsimplestart.ss_modules.monitorsimplestreamsleepsocket_poolsspecspec_from_file_locationsplitsrc_pathssss_core.printstartstart_file_watcherstartswithstopstop_eventsyssystemtest__test__threadingthrowtimetypeutiluuiduuid4valuevalueswatchwatch_pathwatchdog.eventswatchdog.observerswebsocket\2501\200\001\360\014\000\005\024\2202\220W\230A\330\004\023\2204\220q\230\003\2308\2405\250\001\340\004\010\210\017\220q\330\010\021\220\023\220H\230A\230Q\330\010\013\2107\220'\230\025\230d\240'\250\021\250(\260!\330\014\017\210v\220Z\230t\2406\250\031\260+\270Q\270a\330\020\027\220r\230\025\230e\2401\240N\260!\330\020 \240\002\240%\240x\250q\260\001\330\020\023\220>\240\023\240F\250!\330\024\025\330\030!\240\027\250\001\250\021\330\024\033\230=\250\001\330\030\035\230Q\320\0360\260\001\260\036\270q\300\001\200\001\340\004\013\2107\220!\2202\220Y\230n\250A\330\004\013\320\013\034\230D\240\001\240\026\320'8\270\001\270\021\200A\340\010\024\320\024+\2501\330\010\017\210q\200A\340\010\013\2104\210\177\230a\230q\360\006\000\r\022\220\021\320\022#\2401\240E\250\021\360\006\000\r\037\230a\230u\240A\360\006\000\r\020\210\177\230c\240\025\240a\330\020\024\320\024&\240a\240u\250A\360\006\000\r\021\320\020 \240\001\200A\340\010\013\2104\210\177\230a\230q\330\014\021\220\021\320\022\"\240!\2405\250\001\200A\340\010\013\2105\220\001\330\014\023\2201\340\010\013\2104""\210u\220I\230Y\240a\240q\330\014\023\2201\340\010\013\2104\320\017$\240A\240U\250!\330\014\023\2201\360\006\000\t\020\210t\320\023'\240q\250\005\250Q\200A\340\010\021\320\021$\240A\360\006\000\t\014\2104\210v\220Q\220a\330\014\023\2201\360\006\000\t\r\320\014\036\230f\240A\240Q\330\014\017\210\177\230c\240\021\330\020\027\220q\360\006\000\t\030\220w\230a\230r\240\031\250.\270\001\360\006\000\t\014\210=\230\003\2301\330\014\032\320\032.\250a\330\014\017\210|\2303\230e\2403\240j\260\003\2605\270\003\270?\310#\310Q\330\020\027\220q\330\014\023\2201\360\006\000\t\020\210q\200A\330\010\014\210O\2301\200A\340\010\t\330\023\024\330\014\021\220\037\240\001\330\023\024\360\006\000\r\022\220\036\230q\360\006\000\r\033\230\"\230E\240\031\250!\2509\260C\260q\360\006\000\r\024\2209\230E\320!9\270\021\270-\300q\310\017\320WX\330\014\017\210u\220D\230\004\230A\330\020\031\230\031\240%\320'8\270\001\270\021\330\020\024\220G\230<\240q\250\001\360\006\000\021\024\2207\230!\2308\2401\330\024\032\320\032,\250A\250Q\340\020\025\220Q\320\026/\250q\260\001\330\010\017\210}\230A\330\014\021\220\021\320\0223\2601\260A\200A\340\010\t\340\014\017\210w\220a\220t\2301\330\020#\2403\240a\240t\2506\260\022\2601\330\020\021\330\024\034\230A\330\024\034\230A\330\024\033\2301\360\010\000\021\025\220K\230}\250B\250m\2706\300\021\330\024\027\220z\240\023\240A\330\030\031\340#$\340\034#\2407\250/\270\021\330\034#\240?\260!\2601\360\006\000#$\360\016\000\035!\320 3\2601\260L\300\001\330\034 \240\006\240a\330\030\037\230}\250A\330\034!\240\021\240*\250A\250Q\330\010\017\210}\230A\330\014\021\220\021\220*\230A\230Q\200\001\360\006\000\005\023\220'\230\021\230\"\230I\240_\260A\330\004\007\200q\340\010\023\2202\220U\230)\2401\240A\330\010\013\2108\2209\230A\230Q\330\014\027\220x\230s\240!\330\010\017\210r\220\021\220!\330\004\013\2101\240!\200\001\360\016\000\005\023\220!\330\004\024\320\024)\250\021\250!\330\004\017\210x\220q\360\006\000\005\022\320\021\"\320\"5\260Q\330\004\014\210I\220Q\220o\240U\250,""\260j\300\001\330\004\014\210F\220!\360\010\000\005\006\330\010\016\210d\220*\230G\2401\330\014\020\220\006\220a\220q\330\013\014\330\010\r\210Q\210a\340\010\020\220\005\220Q\330\010\020\220\005\220Q\330\010\r\210Q\210a";
+    #else /* compression: none (3437 bytes) */
+const char* const bytes = ": [API Points] Failed to reload: [API Points] Reloaded: Error reloading *\346\226\207\344\273\266\345\217\230\345\214\226\345\244\204\347\220\206\347\250\213\345\272\217\n    \n    \345\275\223\347\233\221\346\216\247\347\232\204\346\226\207\344\273\266\345\217\221\347\224\237\345\217\230\345\214\226\346\227\266\357\274\214\351\207\215\346\226\260\345\212\240\350\275\275\345\257\271\345\272\224\347\232\204\346\250\241\345\235\227\345\271\266\351\200\232\347\237\245\345\211\215\347\253\257\345\210\267\346\226\260\343\200\202\n    ?\n.\345\217\221\351\200\201\346\266\210\346\201\257\345\244\261\350\264\245: \351\200\232\347\237\245\345\211\215\347\253\257\345\244\261\350\264\245: .~//api_points/api_points.api_points/app.pycore/disableenablefile created: file deleted: file modified: gc.ipynb_checkpointsisenabledmodels//pages/pages/.py*.pysimplestart/ss_modules/monitor.pythis is module monitor.pyEventFileSystemEventHandlerHOT_RELOAD_CONFIGObserverPath__Pyx_PyDict_NextRefReloadOnChangeHandlerReloadOnChangeHandler.__init__ReloadOnChangeHandler._check_path_patternReloadOnChangeHandler._is_hidden_directory.<locals>.genexprReloadOnChangeHandler._is_hidden_directoryReloadOnChangeHandler._is_valid_fileReloadOnChangeHandler.notify_frontend.<locals>.send_messageReloadOnChangeHandler.notify_frontendReloadOnChangeHandler.on_createdReloadOnChangeHandler.on_deletedReloadOnChangeHandler.on_modifiedReloadOnChangeHandler.reload_api_pointsThread\346\226\207\344\273\266\347\233\221\346\216\247\345\267\262\345\201\234\346\255\242\346\226\207\344\273\266\347\233\221\346\216\247\347\272\277\347\250\213\345\267\262\351\200\200\345\207\272absolute_testabspathallapi_handlersappmainfileasyncioasyncio.coroutines__await__basename_check_path_pattern__class_getitem__client_idcline_in_tracebackcloseconfigcurrent_modedefault__doc__dumpseendswitheventevent_handlerexec_moduleextra_pattern__file__filenamefilepathfind_module_reloadfunc__func__genexprgetget_hot_reload_modeget_main_script_namegetcwdhot_rel""oadhot_reload_watchignoreignore_patternimportlibimportlib.util__init___is_coroutineis_directory_is_hidden_directoryis_set_is_valid_fileitemsjoinjsonkeysloaderloop__main__main_script__metaclass__mode__module__modulemodule_from_specmodule_namemodule_namesmodules__mro_entries__msgmyprintmysocket__name__new_event_loopnextnonenotify_frontendobserveron_createdon_deletedon_modifiedospartpathpath_to_watchpathlibpop__prepare__printproject_root__pycache____qualname__rebootrecursiveregister_handlersreloadreload_api_pointsresultrun_until_completeschedulescript_nameselfsendsend_datasend_messagesend_textserverserver_commandserver_timestampset_event_loop__set_name__setdefaultsimplestart.ss_modules.monitorsimplestreamsleepsocket_poolsspecspec_from_file_locationsplitsrc_pathssss_core.printstartstart_file_watcherstartswithstopstop_eventsyssystemtest__test__threadingthrowtimetypeutiluuiduuid4valuevalueswatchwatch_pathwatchdog.eventswatchdog.observerswebsocket\2501\200\001\360\014\000\005\024\2202\220W\230A\330\004\023\2204\220q\230\003\2308\2405\250\001\340\004\010\210\017\220q\330\010\021\220\023\220H\230A\230Q\330\010\013\2107\220'\230\025\230d\240'\250\021\250(\260!\330\014\017\210v\220Z\230t\2406\250\031\260+\270Q\270a\330\020\027\220r\230\025\230e\2401\240N\260!\330\020 \240\002\240%\240x\250q\260\001\330\020\023\220>\240\023\240F\250!\330\024\025\330\030!\240\027\250\001\250\021\330\024\033\230=\250\001\330\030\035\230Q\320\0360\260\001\260\036\270q\300\001\200\001\340\004\013\2107\220!\2202\220Y\230n\250A\330\004\013\320\013\034\230D\240\001\240\026\320'8\270\001\270\021\200A\340\010\024\320\024+\2501\330\010\017\210q\200A\340\010\013\2104\210\177\230a\230q\360\006\000\r\022\220\021\320\022#\2401\240E\250\021\360\006\000\r\037\230a\230u\240A\360\006\000\r\020\210\177\230c\240\025\240a\330\020\024\320\024&\240a\240u\250A\360\006\000\r\021\320\020 \240\001\200A\340\010\013\2104\210\177\230a\230q\330\014\021\220\021\320\022\"\240!\2405\250\001\200A\340\010\013\2105\220\001\330""\014\023\2201\340\010\013\2104\210u\220I\230Y\240a\240q\330\014\023\2201\340\010\013\2104\320\017$\240A\240U\250!\330\014\023\2201\360\006\000\t\020\210t\320\023'\240q\250\005\250Q\200A\340\010\021\320\021$\240A\360\006\000\t\014\2104\210v\220Q\220a\330\014\023\2201\360\010\000\t\r\320\014\035\230W\240A\240R\240y\3200D\300A\330\014\017\210~\230S\240\001\330\020\027\220q\360\006\000\t\r\320\014\036\230f\240A\240Q\330\014\017\210\177\230c\240\021\330\020\027\220q\360\006\000\t\030\220w\230a\230r\240\031\250.\270\001\360\006\000\t\014\210=\230\003\2301\330\014\032\320\032.\250a\330\014\017\210|\2303\230e\2403\240j\260\003\2605\270\003\270?\310#\310Q\330\020\027\220q\330\014\023\2201\360\006\000\t\020\210q\200A\330\010\014\210O\2301\200A\340\010\t\330\023\024\330\014\021\220\037\240\001\330\023\024\360\006\000\r\022\220\036\230q\360\006\000\r\033\230\"\230E\240\031\250!\2509\260C\260q\360\006\000\r\024\2209\230E\320!9\270\021\270-\300q\310\017\320WX\330\014\017\210u\220D\230\004\230A\330\020\031\230\031\240%\320'8\270\001\270\021\330\020\024\220G\230<\240q\250\001\360\006\000\021\024\2207\230!\2308\2401\330\024\032\320\032,\250A\250Q\340\020\025\220Q\320\026/\250q\260\001\330\010\017\210}\230A\330\014\021\220\021\320\0223\2601\260A\200A\340\010\t\340\014\017\210w\220a\220t\2301\330\020#\2403\240a\240t\2506\260\022\2601\330\020\021\330\024\034\230A\330\024\034\230A\330\024\033\2301\360\010\000\021\025\220K\230}\250B\250m\2706\300\021\330\024\027\220z\240\023\240A\330\030\031\340#$\340\034#\2407\250/\270\021\330\034#\240?\260!\2601\360\006\000#$\360\016\000\035!\320 3\2601\260L\300\001\330\034 \240\006\240a\330\030\037\230}\250A\330\034!\240\021\240*\250A\250Q\330\010\017\210}\230A\330\014\021\220\021\220*\230A\230Q\200\001\360\006\000\005\023\220'\230\021\230\"\230I\240_\260A\330\004\007\200q\340\010\023\2202\220U\230)\2401\240A\330\010\013\2108\2209\230A\230Q\330\014\027\220x\230s\240!\330\010\017\210r\220\021\220!\330\004\013\2101\240!\200\001\360\016\000\005\023\220!""\330\004\024\320\024)\250\021\250!\330\004\017\210x\220q\360\006\000\005\022\320\021\"\320\"5\260Q\330\004\014\210I\220Q\220o\240U\250,\260j\300\001\330\004\014\210F\220!\360\010\000\005\006\330\010\016\210d\220*\230G\2401\330\014\020\220\006\220a\220q\330\013\014\330\010\r\210Q\210a\340\010\020\220\005\220Q\330\010\020\220\005\220Q\330\010\r\210Q\210a";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 193; i++) {
+    for (int i = 0; i < 195; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 33) PyUnicode_InternInPlace(&string);
@@ -10050,7 +10167,7 @@ const char* const bytes = ": [API Points] Failed to reload: [API Points] Reloade
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 193; i < 207; i++) {
+    for (int i = 195; i < 209; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -10061,14 +10178,14 @@ const char* const bytes = ": [API Points] Failed to reload: [API Points] Reloade
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 207; i++) {
+    for (Py_ssize_t i = 0; i < 209; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 193;
+      PyObject **table = stringtab + 195;
       for (Py_ssize_t i=0; i<14; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -10146,7 +10263,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_send_message, __pyx_mstate->__pyx_kp_b_iso88591__13, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_GENERATOR), 234};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_GENERATOR), 240};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_part};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_kp_b_iso88591_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
@@ -10201,17 +10318,17 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_is_valid_file, __pyx_mstate->__pyx_kp_b_iso88591_A_5_1_4uIYaq_1_4_AU_1_t_q_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 206};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_path, __pyx_mstate->__pyx_n_u_config, __pyx_mstate->__pyx_n_u_ignore_pattern, __pyx_mstate->__pyx_n_u_current_mode, __pyx_mstate->__pyx_n_u_main_script};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_check_path_pattern, __pyx_mstate->__pyx_kp_b_iso88591_A_A_4vQa_1_fAQ_c_q_war_1_a_3e3j, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 206};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_path, __pyx_mstate->__pyx_n_u_config, __pyx_mstate->__pyx_n_u_extra_pattern, __pyx_mstate->__pyx_n_u_ignore_pattern, __pyx_mstate->__pyx_n_u_current_mode, __pyx_mstate->__pyx_n_u_main_script};
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_check_path_pattern, __pyx_mstate->__pyx_kp_b_iso88591_A_A_4vQa_1_WARy0DA_S_q_fAQ_c_q_w, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 232};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 238};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_path, __pyx_mstate->__pyx_n_u_result, __pyx_mstate->__pyx_n_u_genexpr, __pyx_mstate->__pyx_n_u_genexpr};
     __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_is_hidden_directory, __pyx_mstate->__pyx_kp_b_iso88591_A_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 240};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 246};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_path_to_watch, __pyx_mstate->__pyx_n_u_script_name, __pyx_mstate->__pyx_n_u_module_name, __pyx_mstate->__pyx_n_u_event_handler, __pyx_mstate->__pyx_n_u_observer, __pyx_mstate->__pyx_n_u_watch_path};
     __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_modules_monitor_p, __pyx_mstate->__pyx_n_u_start_file_watcher, __pyx_mstate->__pyx_kp_b_iso88591_xq_5Q_IQoU_j_F_d_G1_aq_Qa_Q_Q_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }

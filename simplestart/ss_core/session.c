@@ -1843,22 +1843,6 @@ static CYTHON_INLINE int __Pyx_ParseKeywords(
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
 
-/* PyObjectDelAttr.proto (used by PyObjectSetAttrStr) */
-#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030d0000
-#define __Pyx_PyObject_DelAttr(o, n) PyObject_SetAttr(o, n, NULL)
-#else
-#define __Pyx_PyObject_DelAttr(o, n) PyObject_DelAttr(o, n)
-#endif
-
-/* PyObjectSetAttrStr.proto */
-#if CYTHON_USE_TYPE_SLOTS
-#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o, n, NULL)
-static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value);
-#else
-#define __Pyx_PyObject_DelAttrStr(o,n)   __Pyx_PyObject_DelAttr(o,n)
-#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
-#endif
-
 /* PyDictVersioning.proto (used by GetModuleGlobalName) */
 #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
 #define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
@@ -1906,6 +1890,83 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
+/* HasAttr.proto (used by ImportImpl) */
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
+#else
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
+#endif
+
+/* ImportImpl.export */
+static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level);
+
+/* Import.proto */
+static CYTHON_INLINE PyObject *__Pyx_Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, int level);
+
+/* ImportFrom.proto */
+static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
+
+/* PyObjectFormatSimple.proto */
+#if CYTHON_COMPILING_IN_PYPY
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#elif CYTHON_USE_TYPE_SLOTS
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        likely(PyLong_CheckExact(s)) ? PyLong_Type.tp_repr(s) :\
+        likely(PyFloat_CheckExact(s)) ? PyFloat_Type.tp_repr(s) :\
+        PyObject_Format(s, f))
+#else
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#endif
+
+/* JoinPyUnicode.export */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char);
+
+/* PyObjectVectorCallKwBuilder.proto */
+CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
+#if CYTHON_VECTORCALL
+#if PY_VERSION_HEX >= 0x03090000
+#define __Pyx_Object_Vectorcall_CallFromBuilder PyObject_Vectorcall
+#else
+#define __Pyx_Object_Vectorcall_CallFromBuilder _PyObject_Vectorcall
+#endif
+#define __Pyx_MakeVectorcallBuilderKwds(n) PyTuple_New(n)
+static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
+static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n);
+#else
+#define __Pyx_Object_Vectorcall_CallFromBuilder __Pyx_PyObject_FastCallDict
+#define __Pyx_MakeVectorcallBuilderKwds(n) __Pyx_PyDict_NewPresized(n)
+#define __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n) PyDict_SetItem(builder, key, value)
+#define __Pyx_VectorcallBuilder_AddArgStr(key, value, builder, args, n) PyDict_SetItemString(builder, key, value)
+#endif
+
+/* PyAttributeError_Check.proto */
+#define __Pyx_PyExc_AttributeError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_AttributeError)
+
+/* RaiseException.export */
+static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
+
+/* PyObjectDelAttr.proto (used by PyObjectSetAttrStr) */
+#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030d0000
+#define __Pyx_PyObject_DelAttr(o, n) PyObject_SetAttr(o, n, NULL)
+#else
+#define __Pyx_PyObject_DelAttr(o, n) PyObject_DelAttr(o, n)
+#endif
+
+/* PyObjectSetAttrStr.proto */
+#if CYTHON_USE_TYPE_SLOTS
+#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o, n, NULL)
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value);
+#else
+#define __Pyx_PyObject_DelAttrStr(o,n)   __Pyx_PyObject_DelAttr(o,n)
+#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
+#endif
+
 /* PyLongCompare.proto */
 static CYTHON_INLINE int __Pyx_PyLong_BoolEqObjC(PyObject *op1, PyObject *op2, long intval, long inplace);
 
@@ -1915,12 +1976,6 @@ static CYTHON_INLINE int __Pyx_PyLong_BoolEqObjC(PyObject *op1, PyObject *op2, l
 #else
 static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *args, size_t nargsf);
 #endif
-
-/* PySequenceContains.proto */
-static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
-    int result = PySequence_Contains(seq, item);
-    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
-}
 
 /* GetItemInt.proto */
 #define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck, has_gil, unsafe_shared)\
@@ -1950,6 +2005,12 @@ static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject *k
 #else
 #define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
 #endif
+
+/* PySequenceContains.proto */
+static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
+    int result = PySequence_Contains(seq, item);
+    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
+}
 
 /* IterFinish.proto (used by dict_iter) */
 static CYTHON_INLINE int __Pyx_IterFinish(void);
@@ -1994,21 +2055,8 @@ static CYTHON_INLINE PyObject* __Pyx_dict_iterator(PyObject* dict, int is_dict, 
 static CYTHON_INLINE int __Pyx_dict_iter_next(PyObject* dict_or_iter, Py_ssize_t orig_length, Py_ssize_t* ppos,
                                               PyObject** pkey, PyObject** pvalue, PyObject** pitem, int is_dict);
 
-/* HasAttr.proto (used by ImportImpl) */
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
-#else
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
-#endif
-
-/* ImportImpl.export */
-static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level);
-
-/* Import.proto */
-static CYTHON_INLINE PyObject *__Pyx_Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, int level);
-
-/* ImportFrom.proto */
-static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
+/* PyLongCompare.proto */
+static CYTHON_INLINE int __Pyx_PyLong_BoolNeObjC(PyObject *op1, PyObject *op2, long intval, long inplace);
 
 /* dict_setdefault.proto (used by FetchCommonType) */
 static CYTHON_INLINE PyObject *__Pyx_PyDict_SetDefault(PyObject *d, PyObject *key, PyObject *default_value);
@@ -2155,6 +2203,9 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
 
+/* ListPack.proto */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...);
+
 /* SetNameInClass.proto */
 #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030d0000
 #define __Pyx_SetNameInClass(ns, name, value)\
@@ -2244,24 +2295,6 @@ typedef const char *__Pyx_TypeName;
 /* GCCDiagnostics.proto (used by CIntToPy) */
 #if !defined(__INTEL_COMPILER) && defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
 #define __Pyx_HAS_GCC_DIAGNOSTIC
-#endif
-
-/* PyObjectVectorCallKwBuilder.proto (used by CIntToPy) */
-CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
-#if CYTHON_VECTORCALL
-#if PY_VERSION_HEX >= 0x03090000
-#define __Pyx_Object_Vectorcall_CallFromBuilder PyObject_Vectorcall
-#else
-#define __Pyx_Object_Vectorcall_CallFromBuilder _PyObject_Vectorcall
-#endif
-#define __Pyx_MakeVectorcallBuilderKwds(n) PyTuple_New(n)
-static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
-static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n);
-#else
-#define __Pyx_Object_Vectorcall_CallFromBuilder __Pyx_PyObject_FastCallDict
-#define __Pyx_MakeVectorcallBuilderKwds(n) __Pyx_PyDict_NewPresized(n)
-#define __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n) PyDict_SetItem(builder, key, value)
-#define __Pyx_VectorcallBuilder_AddArgStr(key, value, builder, args, n) PyDict_SetItemString(builder, key, value)
 #endif
 
 /* CIntToPy.proto */
@@ -2372,6 +2405,7 @@ int __pyx_module_is_main_simplestart__ss_core__session = 0;
 static PyObject *__pyx_builtin_super;
 /* #### Code section: string_decls ### */
 /* #### Code section: decls ### */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session__warn_stateobj_misuse(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_owner, PyObject *__pyx_v_name); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2getclientid(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_4add(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_session_state_instance); /* proto */
@@ -2380,16 +2414,29 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_10__setitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_12__getattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__setattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_default); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_20init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclientid(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_8__getattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
 static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_default); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_16init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_2init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_4getclientid(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_6_ensure_client_data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_clientid); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_8__getitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_10__setitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_12__getattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_14__setattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_16update(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_18get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_default); /* proto */
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_20keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
 /* SmallCodeConfig */
@@ -2413,8 +2460,9 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
-  PyObject *__pyx_codeobj_tab[18];
-  PyObject *__pyx_string_tab[91];
+  PyObject *__pyx_tuple[1];
+  PyObject *__pyx_codeobj_tab[32];
+  PyObject *__pyx_string_tab[224];
   PyObject *__pyx_number_tab[1];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -2456,97 +2504,230 @@ static __pyx_mstatetype __pyx_mstate_global_static =
 static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_static;
 #endif
 /* #### Code section: constant_name_defines ### */
-#define __pyx_kp_u__2 __pyx_string_tab[0]
-#define __pyx_kp_u__3 __pyx_string_tab[1]
-#define __pyx_kp_u__4 __pyx_string_tab[2]
-#define __pyx_kp_u__5 __pyx_string_tab[3]
-#define __pyx_kp_u_simplestart_ss_core_base __pyx_string_tab[4]
-#define __pyx_kp_u_simplestart_ss_core_session_py __pyx_string_tab[5]
-#define __pyx_kp_u_this_is_module_session_py __pyx_string_tab[6]
-#define __pyx_n_u_ __pyx_string_tab[7]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[8]
-#define __pyx_n_u_add __pyx_string_tab[9]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[10]
-#define __pyx_n_u_base __pyx_string_tab[11]
-#define __pyx_n_u_class_getitem __pyx_string_tab[12]
-#define __pyx_n_u_clientid __pyx_string_tab[13]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[14]
-#define __pyx_n_u_ctx_clientid __pyx_string_tab[15]
-#define __pyx_n_u_doc __pyx_string_tab[16]
-#define __pyx_n_u_func __pyx_string_tab[17]
-#define __pyx_n_u_get_context_var __pyx_string_tab[18]
-#define __pyx_n_u_get_session_state __pyx_string_tab[19]
-#define __pyx_n_u_getattr __pyx_string_tab[20]
-#define __pyx_n_u_getclientid __pyx_string_tab[21]
-#define __pyx_n_u_getitem __pyx_string_tab[22]
-#define __pyx_n_u_init __pyx_string_tab[23]
-#define __pyx_n_u_init_2 __pyx_string_tab[24]
-#define __pyx_n_u_init_vars __pyx_string_tab[25]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[26]
-#define __pyx_n_u_items __pyx_string_tab[27]
-#define __pyx_n_u_key __pyx_string_tab[28]
-#define __pyx_n_u_keys __pyx_string_tab[29]
-#define __pyx_n_u_main __pyx_string_tab[30]
-#define __pyx_n_u_metaclass __pyx_string_tab[31]
-#define __pyx_n_u_module __pyx_string_tab[32]
-#define __pyx_n_u_myprint __pyx_string_tab[33]
-#define __pyx_n_u_mysession_state __pyx_string_tab[34]
-#define __pyx_n_u_mysession_state___getattr __pyx_string_tab[35]
-#define __pyx_n_u_mysession_state___getitem __pyx_string_tab[36]
-#define __pyx_n_u_mysession_state___init __pyx_string_tab[37]
-#define __pyx_n_u_mysession_state___setattr __pyx_string_tab[38]
-#define __pyx_n_u_mysession_state___setitem __pyx_string_tab[39]
-#define __pyx_n_u_mysession_state__session_state __pyx_string_tab[40]
-#define __pyx_n_u_mysession_state_add __pyx_string_tab[41]
-#define __pyx_n_u_mysession_state_get_session_stat __pyx_string_tab[42]
-#define __pyx_n_u_mysession_state_getclientid __pyx_string_tab[43]
-#define __pyx_n_u_mysession_state_init __pyx_string_tab[44]
-#define __pyx_n_u_mysession_state_keys __pyx_string_tab[45]
-#define __pyx_n_u_name __pyx_string_tab[46]
-#define __pyx_n_u_name_2 __pyx_string_tab[47]
-#define __pyx_n_u_page_vars __pyx_string_tab[48]
-#define __pyx_n_u_page_vars___getattr __pyx_string_tab[49]
-#define __pyx_n_u_page_vars___getitem __pyx_string_tab[50]
-#define __pyx_n_u_page_vars___init __pyx_string_tab[51]
-#define __pyx_n_u_page_vars___setattr __pyx_string_tab[52]
-#define __pyx_n_u_page_vars___setitem __pyx_string_tab[53]
-#define __pyx_n_u_page_vars__data __pyx_string_tab[54]
-#define __pyx_n_u_page_vars_getclientid __pyx_string_tab[55]
-#define __pyx_n_u_page_vars_init __pyx_string_tab[56]
-#define __pyx_n_u_page_vars_keys __pyx_string_tab[57]
-#define __pyx_n_u_pop __pyx_string_tab[58]
-#define __pyx_n_u_prepare __pyx_string_tab[59]
-#define __pyx_n_u_qualname __pyx_string_tab[60]
-#define __pyx_n_u_self __pyx_string_tab[61]
-#define __pyx_n_u_session __pyx_string_tab[62]
-#define __pyx_n_u_session_state_instance __pyx_string_tab[63]
-#define __pyx_n_u_set_name __pyx_string_tab[64]
-#define __pyx_n_u_setattr __pyx_string_tab[65]
-#define __pyx_n_u_setdefault __pyx_string_tab[66]
-#define __pyx_n_u_setitem __pyx_string_tab[67]
-#define __pyx_n_u_simplestart_ss_core_session __pyx_string_tab[68]
-#define __pyx_n_u_ss_core_print __pyx_string_tab[69]
-#define __pyx_n_u_startswith __pyx_string_tab[70]
-#define __pyx_n_u_store __pyx_string_tab[71]
-#define __pyx_n_u_super __pyx_string_tab[72]
-#define __pyx_n_u_test __pyx_string_tab[73]
-#define __pyx_n_u_uuid __pyx_string_tab[74]
-#define __pyx_n_u_value __pyx_string_tab[75]
-#define __pyx_n_u_values __pyx_string_tab[76]
-#define __pyx_kp_b_iso88591_A_1_9Cq_1_q __pyx_string_tab[77]
-#define __pyx_kp_b_iso88591_A_4_1_9Cq_1HA __pyx_string_tab[78]
-#define __pyx_kp_b_iso88591_A_4_1_9Cq_1_9G4q_1_5_t7_1_q_t7_9 __pyx_string_tab[79]
-#define __pyx_kp_b_iso88591_A_4_1_9Cq_1_t __pyx_string_tab[80]
-#define __pyx_kp_b_iso88591_A_4_1_9Cq_1_t_1 __pyx_string_tab[81]
-#define __pyx_kp_b_iso88591_A_4_1_9Cq_9G4q_q_A_G1IQha __pyx_string_tab[82]
-#define __pyx_kp_b_iso88591_A_4_1_9G4q_Ql __pyx_string_tab[83]
-#define __pyx_kp_b_iso88591_A_4_1_q_a_AV1 __pyx_string_tab[84]
-#define __pyx_kp_b_iso88591_A_4_1_t7_9E __pyx_string_tab[85]
-#define __pyx_kp_b_iso88591_A_4_1_t_q __pyx_string_tab[86]
-#define __pyx_kp_b_iso88591_A_A __pyx_string_tab[87]
-#define __pyx_kp_b_iso88591_A_Ja __pyx_string_tab[88]
-#define __pyx_kp_b_iso88591_A_L_E_6_AU __pyx_string_tab[89]
-#define __pyx_kp_b_iso88591_A_t_q __pyx_string_tab[90]
+#define __pyx_kp_u_ __pyx_string_tab[0]
+#define __pyx_kp_u_AI_localStorage_clientid_ss_loc __pyx_string_tab[1]
+#define __pyx_kp_u_API_ss_session_update_k1_None __pyx_string_tab[2]
+#define __pyx_kp_u_APIss_session_key_dict __pyx_string_tab[3]
+#define __pyx_kp_u_KeyError __pyx_string_tab[4]
+#define __pyx_kp_u_None __pyx_string_tab[5]
+#define __pyx_kp_u__12 __pyx_string_tab[6]
+#define __pyx_kp_u__2 __pyx_string_tab[7]
+#define __pyx_kp_u__23 __pyx_string_tab[8]
+#define __pyx_kp_u__25 __pyx_string_tab[9]
+#define __pyx_kp_u__3 __pyx_string_tab[10]
+#define __pyx_kp_u__8 __pyx_string_tab[11]
+#define __pyx_kp_u_api_2 __pyx_string_tab[12]
+#define __pyx_kp_u_app_2 __pyx_string_tab[13]
+#define __pyx_kp_u_app_py __pyx_string_tab[14]
+#define __pyx_kp_u_app_py_ss_app_init_is_logged_in __pyx_string_tab[15]
+#define __pyx_kp_u_clientid_2 __pyx_string_tab[16]
+#define __pyx_kp_u_clientid_3 __pyx_string_tab[17]
+#define __pyx_kp_u_clientid_4 __pyx_string_tab[18]
+#define __pyx_kp_u_clientid_5 __pyx_string_tab[19]
+#define __pyx_kp_u_core_state __pyx_string_tab[20]
+#define __pyx_kp_u_default_2 __pyx_string_tab[21]
+#define __pyx_kp_u_len_ss_session_keys __pyx_string_tab[22]
+#define __pyx_kp_u_localStorage __pyx_string_tab[23]
+#define __pyx_kp_u_localStorage_2 __pyx_string_tab[24]
+#define __pyx_kp_u_localStorage_API __pyx_string_tab[25]
+#define __pyx_kp_u_localStorage_API_session_localst __pyx_string_tab[26]
+#define __pyx_kp_u_localStorage_STORE_SCHEMA __pyx_string_tab[27]
+#define __pyx_kp_u_object_has_no_attribute __pyx_string_tab[28]
+#define __pyx_kp_u_session_2 __pyx_string_tab[29]
+#define __pyx_kp_u_session_3 __pyx_string_tab[30]
+#define __pyx_kp_u_simplestart_ss_core_base __pyx_string_tab[31]
+#define __pyx_kp_u_simplestart_ss_core_session_py __pyx_string_tab[32]
+#define __pyx_kp_u_ss_State __pyx_string_tab[33]
+#define __pyx_kp_u_ss_app __pyx_string_tab[34]
+#define __pyx_kp_u_ss_app_2 __pyx_string_tab[35]
+#define __pyx_kp_u_ss_app_init_k_v __pyx_string_tab[36]
+#define __pyx_kp_u_ss_app_k_ss_app_get_k_default __pyx_string_tab[37]
+#define __pyx_kp_u_ss_app_k_v_ss_app_k_v __pyx_string_tab[38]
+#define __pyx_kp_u_ss_app_update_k1_v1_k2_v2 __pyx_string_tab[39]
+#define __pyx_kp_u_ss_localStorage __pyx_string_tab[40]
+#define __pyx_kp_u_ss_localStorage_get_set_clear_lo __pyx_string_tab[41]
+#define __pyx_kp_u_ss_session_getItem_setItem_remov __pyx_string_tab[42]
+#define __pyx_kp_u_ss_session_get_key_default __pyx_string_tab[43]
+#define __pyx_kp_u_ss_session_get_key_default_ss_se __pyx_string_tab[44]
+#define __pyx_kp_u_ss_session_init __pyx_string_tab[45]
+#define __pyx_kp_u_ss_session_key_ss_session_key __pyx_string_tab[46]
+#define __pyx_kp_u_ss_session_key_v_ss_session_key __pyx_string_tab[47]
+#define __pyx_kp_u_ss_session_key_value __pyx_string_tab[48]
+#define __pyx_kp_u_ss_session_keys __pyx_string_tab[49]
+#define __pyx_kp_u_ss_session_keys_2 __pyx_string_tab[50]
+#define __pyx_kp_u_ss_store __pyx_string_tab[51]
+#define __pyx_kp_u_ss_store_get_key_default __pyx_string_tab[52]
+#define __pyx_kp_u_ss_store_init __pyx_string_tab[53]
+#define __pyx_kp_u_ss_store_key_ss_store_key __pyx_string_tab[54]
+#define __pyx_kp_u_ss_store_key_v_ss_store_get_key __pyx_string_tab[55]
+#define __pyx_kp_u_ss_store_key_v_ss_store_key_v __pyx_string_tab[56]
+#define __pyx_kp_u_ss_store_setItem_getItem __pyx_string_tab[57]
+#define __pyx_kp_u_this_is_module_session_py __pyx_string_tab[58]
+#define __pyx_n_u_APP_VARS_SCHEMA __pyx_string_tab[59]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[60]
+#define __pyx_n_u_SESSION_MISUSE_ATTRS __pyx_string_tab[61]
+#define __pyx_n_u_SESSION_SCHEMA __pyx_string_tab[62]
+#define __pyx_n_u_STORE_SCHEMA __pyx_string_tab[63]
+#define __pyx_n_u__10 __pyx_string_tab[64]
+#define __pyx_n_u__11 __pyx_string_tab[65]
+#define __pyx_n_u__13 __pyx_string_tab[66]
+#define __pyx_n_u__14 __pyx_string_tab[67]
+#define __pyx_n_u__15 __pyx_string_tab[68]
+#define __pyx_n_u__16 __pyx_string_tab[69]
+#define __pyx_n_u__17 __pyx_string_tab[70]
+#define __pyx_n_u__18 __pyx_string_tab[71]
+#define __pyx_n_u__19 __pyx_string_tab[72]
+#define __pyx_n_u__20 __pyx_string_tab[73]
+#define __pyx_n_u__21 __pyx_string_tab[74]
+#define __pyx_n_u__22 __pyx_string_tab[75]
+#define __pyx_n_u__24 __pyx_string_tab[76]
+#define __pyx_n_u__4 __pyx_string_tab[77]
+#define __pyx_n_u__5 __pyx_string_tab[78]
+#define __pyx_n_u__6 __pyx_string_tab[79]
+#define __pyx_n_u__7 __pyx_string_tab[80]
+#define __pyx_n_u__9 __pyx_string_tab[81]
+#define __pyx_n_u_add __pyx_string_tab[82]
+#define __pyx_n_u_anti_patterns __pyx_string_tab[83]
+#define __pyx_n_u_api __pyx_string_tab[84]
+#define __pyx_n_u_app __pyx_string_tab[85]
+#define __pyx_n_u_app_vars __pyx_string_tab[86]
+#define __pyx_n_u_app_vars___getattr __pyx_string_tab[87]
+#define __pyx_n_u_app_vars___getitem __pyx_string_tab[88]
+#define __pyx_n_u_app_vars___init __pyx_string_tab[89]
+#define __pyx_n_u_app_vars___setattr __pyx_string_tab[90]
+#define __pyx_n_u_app_vars___setitem __pyx_string_tab[91]
+#define __pyx_n_u_app_vars__ensure_client_data __pyx_string_tab[92]
+#define __pyx_n_u_app_vars_get __pyx_string_tab[93]
+#define __pyx_n_u_app_vars_getclientid __pyx_string_tab[94]
+#define __pyx_n_u_app_vars_init __pyx_string_tab[95]
+#define __pyx_n_u_app_vars_keys __pyx_string_tab[96]
+#define __pyx_n_u_app_vars_update __pyx_string_tab[97]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[98]
+#define __pyx_n_u_base __pyx_string_tab[99]
+#define __pyx_n_u_category __pyx_string_tab[100]
+#define __pyx_n_u_class_getitem __pyx_string_tab[101]
+#define __pyx_n_u_clear __pyx_string_tab[102]
+#define __pyx_n_u_clientid __pyx_string_tab[103]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[104]
+#define __pyx_n_u_ctx_clientid __pyx_string_tab[105]
+#define __pyx_n_u_data __pyx_string_tab[106]
+#define __pyx_n_u_data_2 __pyx_string_tab[107]
+#define __pyx_n_u_default __pyx_string_tab[108]
+#define __pyx_n_u_defaults __pyx_string_tab[109]
+#define __pyx_n_u_doc __pyx_string_tab[110]
+#define __pyx_n_u_ensure_client_data __pyx_string_tab[111]
+#define __pyx_n_u_fix __pyx_string_tab[112]
+#define __pyx_n_u_func __pyx_string_tab[113]
+#define __pyx_n_u_get __pyx_string_tab[114]
+#define __pyx_n_u_getItem __pyx_string_tab[115]
+#define __pyx_n_u_get_context_var __pyx_string_tab[116]
+#define __pyx_n_u_get_session_state __pyx_string_tab[117]
+#define __pyx_n_u_getattr __pyx_string_tab[118]
+#define __pyx_n_u_getattribute __pyx_string_tab[119]
+#define __pyx_n_u_getclientid __pyx_string_tab[120]
+#define __pyx_n_u_getitem __pyx_string_tab[121]
+#define __pyx_n_u_hint __pyx_string_tab[122]
+#define __pyx_n_u_identity __pyx_string_tab[123]
+#define __pyx_n_u_init __pyx_string_tab[124]
+#define __pyx_n_u_init_2 __pyx_string_tab[125]
+#define __pyx_n_u_init_vars __pyx_string_tab[126]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[127]
+#define __pyx_n_u_items __pyx_string_tab[128]
+#define __pyx_n_u_key __pyx_string_tab[129]
+#define __pyx_n_u_keys __pyx_string_tab[130]
+#define __pyx_n_u_kwargs __pyx_string_tab[131]
+#define __pyx_n_u_length __pyx_string_tab[132]
+#define __pyx_n_u_lifetime __pyx_string_tab[133]
+#define __pyx_n_u_main __pyx_string_tab[134]
+#define __pyx_n_u_metaclass __pyx_string_tab[135]
+#define __pyx_n_u_module __pyx_string_tab[136]
+#define __pyx_n_u_myprint __pyx_string_tab[137]
+#define __pyx_n_u_mysession_state __pyx_string_tab[138]
+#define __pyx_n_u_mysession_state___getattr __pyx_string_tab[139]
+#define __pyx_n_u_mysession_state___getitem __pyx_string_tab[140]
+#define __pyx_n_u_mysession_state___init __pyx_string_tab[141]
+#define __pyx_n_u_mysession_state___setattr __pyx_string_tab[142]
+#define __pyx_n_u_mysession_state___setitem __pyx_string_tab[143]
+#define __pyx_n_u_mysession_state__session_state __pyx_string_tab[144]
+#define __pyx_n_u_mysession_state_add __pyx_string_tab[145]
+#define __pyx_n_u_mysession_state_get __pyx_string_tab[146]
+#define __pyx_n_u_mysession_state_get_session_stat __pyx_string_tab[147]
+#define __pyx_n_u_mysession_state_getclientid __pyx_string_tab[148]
+#define __pyx_n_u_mysession_state_init __pyx_string_tab[149]
+#define __pyx_n_u_mysession_state_keys __pyx_string_tab[150]
+#define __pyx_n_u_name __pyx_string_tab[151]
+#define __pyx_n_u_name_2 __pyx_string_tab[152]
+#define __pyx_n_u_not_a __pyx_string_tab[153]
+#define __pyx_n_u_owner __pyx_string_tab[154]
+#define __pyx_n_u_page_vars __pyx_string_tab[155]
+#define __pyx_n_u_page_vars___getattr __pyx_string_tab[156]
+#define __pyx_n_u_page_vars___getitem __pyx_string_tab[157]
+#define __pyx_n_u_page_vars___init __pyx_string_tab[158]
+#define __pyx_n_u_page_vars___setattr __pyx_string_tab[159]
+#define __pyx_n_u_page_vars___setitem __pyx_string_tab[160]
+#define __pyx_n_u_page_vars__data __pyx_string_tab[161]
+#define __pyx_n_u_page_vars_get __pyx_string_tab[162]
+#define __pyx_n_u_page_vars_getclientid __pyx_string_tab[163]
+#define __pyx_n_u_page_vars_init __pyx_string_tab[164]
+#define __pyx_n_u_page_vars_keys __pyx_string_tab[165]
+#define __pyx_n_u_pop __pyx_string_tab[166]
+#define __pyx_n_u_prepare __pyx_string_tab[167]
+#define __pyx_n_u_qualname __pyx_string_tab[168]
+#define __pyx_n_u_related __pyx_string_tab[169]
+#define __pyx_n_u_removeItem __pyx_string_tab[170]
+#define __pyx_n_u_self __pyx_string_tab[171]
+#define __pyx_n_u_session __pyx_string_tab[172]
+#define __pyx_n_u_session_state_instance __pyx_string_tab[173]
+#define __pyx_n_u_setItem __pyx_string_tab[174]
+#define __pyx_n_u_set_name __pyx_string_tab[175]
+#define __pyx_n_u_setattr __pyx_string_tab[176]
+#define __pyx_n_u_setdefault __pyx_string_tab[177]
+#define __pyx_n_u_setitem __pyx_string_tab[178]
+#define __pyx_n_u_simplestart_ss_core_session __pyx_string_tab[179]
+#define __pyx_n_u_ss_core_print __pyx_string_tab[180]
+#define __pyx_n_u_ss_modules_errors __pyx_string_tab[181]
+#define __pyx_n_u_startswith __pyx_string_tab[182]
+#define __pyx_n_u_store __pyx_string_tab[183]
+#define __pyx_n_u_super __pyx_string_tab[184]
+#define __pyx_n_u_test __pyx_string_tab[185]
+#define __pyx_n_u_update __pyx_string_tab[186]
+#define __pyx_n_u_uuid __pyx_string_tab[187]
+#define __pyx_n_u_value __pyx_string_tab[188]
+#define __pyx_n_u_values __pyx_string_tab[189]
+#define __pyx_n_u_visible __pyx_string_tab[190]
+#define __pyx_n_u_warn __pyx_string_tab[191]
+#define __pyx_n_u_warn_stateobj_misuse __pyx_string_tab[192]
+#define __pyx_n_u_why __pyx_string_tab[193]
+#define __pyx_n_u_wrong __pyx_string_tab[194]
+#define __pyx_kp_b_iso88591_AQ_q_a_AWCq_A_a_nAS_B_qPQ __pyx_string_tab[195]
+#define __pyx_kp_b_iso88591_A_1_9Cq_1_q __pyx_string_tab[196]
+#define __pyx_kp_b_iso88591_A_1_9Cwa __pyx_string_tab[197]
+#define __pyx_kp_b_iso88591_A_4_1_5_1A_Qj_t_q __pyx_string_tab[198]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_1HA __pyx_string_tab[199]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_1_9G4q_1_5_t7_1_q_t7_9 __pyx_string_tab[200]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_1_t __pyx_string_tab[201]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_1_t_1 __pyx_string_tab[202]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_4z_QfA_t_q_5_5_5_q_1_t __pyx_string_tab[203]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_4z_a_t_q_t5_j __pyx_string_tab[204]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_81_t_q_5_q __pyx_string_tab[205]
+#define __pyx_kp_b_iso88591_A_4_1_9Cq_9G4q_q_A_G1IQha __pyx_string_tab[206]
+#define __pyx_kp_b_iso88591_A_4_1_a __pyx_string_tab[207]
+#define __pyx_kp_b_iso88591_A_4_1_q_a_AV1 __pyx_string_tab[208]
+#define __pyx_kp_b_iso88591_A_4_1_q_a_AV1_2 __pyx_string_tab[209]
+#define __pyx_kp_b_iso88591_A_4_1_t7_9E __pyx_string_tab[210]
+#define __pyx_kp_b_iso88591_A_4_1_t_q __pyx_string_tab[211]
+#define __pyx_kp_b_iso88591_A_9Cq_1_9G4q_a_1_Yd_F_F_9AWA_t6 __pyx_string_tab[212]
+#define __pyx_kp_b_iso88591_A_A __pyx_string_tab[213]
+#define __pyx_kp_b_iso88591_A_E_a_AU __pyx_string_tab[214]
+#define __pyx_kp_b_iso88591_A_Ja __pyx_string_tab[215]
+#define __pyx_kp_b_iso88591_A_JgQa __pyx_string_tab[216]
+#define __pyx_kp_b_iso88591_A_L_E_6_AU __pyx_string_tab[217]
+#define __pyx_kp_b_iso88591_A_M_IQ __pyx_string_tab[218]
+#define __pyx_kp_b_iso88591_A_Qk_t_q __pyx_string_tab[219]
+#define __pyx_kp_b_iso88591_A_Ql_t_q __pyx_string_tab[220]
+#define __pyx_kp_b_iso88591_q_4_1_9Cq_4z_Qe1_t_q_5_1_1_t4q __pyx_string_tab[221]
+#define __pyx_kp_b_iso88591_q_4_1_9Cr_IWD_1_t7_9D_a __pyx_string_tab[222]
+#define __pyx_kp_b_iso88591_q_4_1_9Cr_IWD_1_t_auA __pyx_string_tab[223]
 #define __pyx_int_0 __pyx_number_tab[0]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
@@ -2562,8 +2743,9 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   __Pyx_State_RemoveModule(NULL);
   #endif
-  for (int i=0; i<18; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<91; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
+  for (int i=0; i<32; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<224; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -2587,8 +2769,9 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_tuple);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_bytes);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
-  for (int i=0; i<18; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<91; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
+  for (int i=0; i<32; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<224; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -2603,8 +2786,330 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_core/session.py":11
+/* "simplestart/ss_core/session.py":19
  * 
+ * 
+ * def _warn_stateobj_misuse(owner, name):             # <<<<<<<<<<<<<<
+ *     """ localStorage """
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_1_warn_stateobj_misuse(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session__warn_stateobj_misuse, "\346\213\246\346\210\252 localStorage \351\243\216\346\240\274\350\207\206\351\200\240\350\260\203\347\224\250\357\274\214\350\277\220\350\241\214\346\227\266\347\273\231\345\207\272\346\255\243\347\241\256\347\255\211\344\273\267\345\206\231\346\263\225");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_1_warn_stateobj_misuse = {"_warn_stateobj_misuse", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_1_warn_stateobj_misuse, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session__warn_stateobj_misuse};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_1_warn_stateobj_misuse(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_owner = 0;
+  PyObject *__pyx_v_name = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[2] = {0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("_warn_stateobj_misuse (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_owner,&__pyx_mstate_global->__pyx_n_u_name,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 19, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 19, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 19, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_warn_stateobj_misuse", 0) < (0)) __PYX_ERR(0, 19, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_warn_stateobj_misuse", 1, 2, 2, i); __PYX_ERR(0, 19, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 2)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 19, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 19, __pyx_L3_error)
+    }
+    __pyx_v_owner = values[0];
+    __pyx_v_name = values[1];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("_warn_stateobj_misuse", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 19, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session._warn_stateobj_misuse", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session__warn_stateobj_misuse(__pyx_self, __pyx_v_owner, __pyx_v_name);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session__warn_stateobj_misuse(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_owner, PyObject *__pyx_v_name) {
+  PyObject *__pyx_v_hint = NULL;
+  PyObject *__pyx_v_warn = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  size_t __pyx_t_5;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  Py_ssize_t __pyx_t_8;
+  PyObject *__pyx_t_9[3];
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11[6];
+  PyObject *__pyx_t_12 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("_warn_stateobj_misuse", 0);
+
+  /* "simplestart/ss_core/session.py":21
+ * def _warn_stateobj_misuse(owner, name):
+ *     """ localStorage """
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)             # <<<<<<<<<<<<<<
+ *     if hint:
+ *         from ss_modules.errors import warn
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SESSION_MISUSE_ATTRS); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_hint = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":22
+ *     """ localStorage """
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)
+ *     if hint:             # <<<<<<<<<<<<<<
+ *         from ss_modules.errors import warn
+ *         warn(owner, f".{name}  localStorage", hint=hint)
+*/
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_hint); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (__pyx_t_6) {
+
+    /* "simplestart/ss_core/session.py":23
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)
+ *     if hint:
+ *         from ss_modules.errors import warn             # <<<<<<<<<<<<<<
+ *         warn(owner, f".{name}  localStorage", hint=hint)
+ *         raise AttributeError(f"'{owner}' object has no attribute '{name}'. : {hint}")
+*/
+    {
+      PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_warn};
+      __pyx_t_7 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_modules_errors, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 23, __pyx_L1_error)
+    }
+    __pyx_t_1 = __pyx_t_7;
+    __Pyx_GOTREF(__pyx_t_1);
+    {
+      PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_warn};
+      __pyx_t_8 = 0; {
+        __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_1, __pyx_imported_names[__pyx_t_8]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        switch (__pyx_t_8) {
+          case 0:
+          __Pyx_INCREF(__pyx_t_4);
+          __pyx_v_warn = __pyx_t_4;
+          break;
+          default:;
+        }
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      }
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_core/session.py":24
+ *     if hint:
+ *         from ss_modules.errors import warn
+ *         warn(owner, f".{name}  localStorage", hint=hint)             # <<<<<<<<<<<<<<
+ *         raise AttributeError(f"'{owner}' object has no attribute '{name}'. : {hint}")
+ * 
+*/
+    __pyx_t_4 = NULL;
+    __Pyx_INCREF(__pyx_v_warn);
+    __pyx_t_2 = __pyx_v_warn; 
+    __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_name, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_9[0] = __pyx_mstate_global->__pyx_kp_u_;
+    __pyx_t_9[1] = __pyx_t_3;
+    __pyx_t_9[2] = __pyx_mstate_global->__pyx_kp_u_localStorage;
+    __pyx_t_10 = __Pyx_PyUnicode_Join(__pyx_t_9, 3, 1 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 33, 65535 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3));
+    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 24, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_5 = 1;
+    #if CYTHON_UNPACK_METHODS
+    if (unlikely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
+      assert(__pyx_t_4);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
+      __pyx_t_5 = 0;
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_v_owner, __pyx_t_10};
+      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_hint, __pyx_v_hint, __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_core/session.py":25
+ *         from ss_modules.errors import warn
+ *         warn(owner, f".{name}  localStorage", hint=hint)
+ *         raise AttributeError(f"'{owner}' object has no attribute '{name}'. : {hint}")             # <<<<<<<<<<<<<<
+ * 
+ * 
+*/
+    __pyx_t_2 = NULL;
+    __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_owner, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 25, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_10 = __Pyx_PyObject_FormatSimple(__pyx_v_name, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 25, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
+    __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_hint, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 25, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_11[0] = __pyx_mstate_global->__pyx_kp_u__2;
+    __pyx_t_11[1] = __pyx_t_3;
+    __pyx_t_11[2] = __pyx_mstate_global->__pyx_kp_u_object_has_no_attribute;
+    __pyx_t_11[3] = __pyx_t_10;
+    __pyx_t_11[4] = __pyx_mstate_global->__pyx_kp_u__3;
+    __pyx_t_11[5] = __pyx_t_4;
+    __pyx_t_12 = __Pyx_PyUnicode_Join(__pyx_t_11, 6, 1 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 27 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_10) + 7 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4), 65535 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_10) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4));
+    if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 25, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_5 = 1;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_12};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_AttributeError)), __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __PYX_ERR(0, 25, __pyx_L1_error)
+
+    /* "simplestart/ss_core/session.py":22
+ *     """ localStorage """
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)
+ *     if hint:             # <<<<<<<<<<<<<<
+ *         from ss_modules.errors import warn
+ *         warn(owner, f".{name}  localStorage", hint=hint)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":19
+ * 
+ * 
+ * def _warn_stateobj_misuse(owner, name):             # <<<<<<<<<<<<<<
+ *     """ localStorage """
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_AddTraceback("simplestart.ss_core.session._warn_stateobj_misuse", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_hint);
+  __Pyx_XDECREF(__pyx_v_warn);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":66
+ *      SESSION_SCHEMA
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.__session_state_data = {}
@@ -2650,32 +3155,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 11, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 66, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 11, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 66, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 11, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 66, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 11, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 66, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 11, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 66, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 11, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 66, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2705,20 +3210,20 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state___in
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplestart/ss_core/session.py":12
+  /* "simplestart/ss_core/session.py":67
  *     """
  *     def __init__(self):
  *         self.__session_state_data = {}             # <<<<<<<<<<<<<<
  * 
  *     def getclientid(self):
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state, __pyx_t_1) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state, __pyx_t_1) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":11
- * 
+  /* "simplestart/ss_core/session.py":66
+ *      SESSION_SCHEMA
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.__session_state_data = {}
@@ -2738,7 +3243,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state___in
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":14
+/* "simplestart/ss_core/session.py":69
  *         self.__session_state_data = {}
  * 
  *     def getclientid(self):             # <<<<<<<<<<<<<<
@@ -2786,32 +3291,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 14, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 69, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 14, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 69, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "getclientid", 0) < (0)) __PYX_ERR(0, 14, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "getclientid", 0) < (0)) __PYX_ERR(0, 69, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, i); __PYX_ERR(0, 14, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, i); __PYX_ERR(0, 69, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 14, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 69, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 14, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 69, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2847,7 +3352,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getclientid", 0);
 
-  /* "simplestart/ss_core/session.py":21
+  /* "simplestart/ss_core/session.py":76
  *             ID
  *         """
  *         clientid = get_context_var(ctx_clientid)             # <<<<<<<<<<<<<<
@@ -2855,9 +3360,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
  *             return 0
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get_context_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get_context_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ctx_clientid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ctx_clientid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -2877,23 +3382,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":22
+  /* "simplestart/ss_core/session.py":77
  *         """
  *         clientid = get_context_var(ctx_clientid)
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return 0
  * 
 */
-  __pyx_t_6 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_6 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 77, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "simplestart/ss_core/session.py":23
+    /* "simplestart/ss_core/session.py":78
  *         clientid = get_context_var(ctx_clientid)
  *         if clientid == 0:
  *             return 0             # <<<<<<<<<<<<<<
@@ -2905,7 +3410,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
     __pyx_r = __pyx_mstate_global->__pyx_int_0;
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":22
+    /* "simplestart/ss_core/session.py":77
  *         """
  *         clientid = get_context_var(ctx_clientid)
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -2914,7 +3419,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
 */
   }
 
-  /* "simplestart/ss_core/session.py":25
+  /* "simplestart/ss_core/session.py":80
  *             return 0
  * 
  *         return clientid             # <<<<<<<<<<<<<<
@@ -2926,7 +3431,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
   __pyx_r = __pyx_v_clientid;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":14
+  /* "simplestart/ss_core/session.py":69
  *         self.__session_state_data = {}
  * 
  *     def getclientid(self):             # <<<<<<<<<<<<<<
@@ -2949,12 +3454,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_2get
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":28
+/* "simplestart/ss_core/session.py":83
  * 
  *     # serversocket
  *     def add(self, session_state_instance):             # <<<<<<<<<<<<<<
  *         """
- * 
+ *          clientid  socket
 */
 
 /* Python wrapper */
@@ -2965,7 +3470,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_4add, "\n        \346\267\273\345\212\240\344\274\232\350\257\235\347\212\266\346\200\201\345\256\236\344\276\213\n        \n        Args:\n            session_state_instance: \344\274\232\350\257\235\347\212\266\346\200\201\345\256\236\344\276\213\n        ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_4add, "\n        \346\267\273\345\212\240\344\274\232\350\257\235\347\212\266\346\200\201\345\256\236\344\276\213\357\274\210\345\271\202\347\255\211\357\274\232\345\220\214\344\270\200 clientid \351\207\215\345\244\215\350\277\236\346\216\245\346\227\266\350\246\206\347\233\226\357\274\214\347\241\256\344\277\235 socket \347\255\211\345\274\225\347\224\250\345\247\213\347\273\210\346\234\200\346\226\260\357\274\211\n        \n        Args:\n            session_state_instance: \344\274\232\350\257\235\347\212\266\346\200\201\345\256\236\344\276\213\n        ");
 static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_5add = {"add", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_5add, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_15mysession_state_4add};
 static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_5add(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2998,39 +3503,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_session_state_instance,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 28, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 28, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 28, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add", 0) < (0)) __PYX_ERR(0, 28, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add", 1, 2, 2, i); __PYX_ERR(0, 28, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add", 1, 2, 2, i); __PYX_ERR(0, 83, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 28, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 28, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_session_state_instance = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 28, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3058,18 +3563,17 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_4add
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   size_t __pyx_t_3;
-  int __pyx_t_4;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add", 0);
 
-  /* "simplestart/ss_core/session.py":35
+  /* "simplestart/ss_core/session.py":90
  *             session_state_instance:
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
- *         if clientid not in self.__session_state_data:
- *             self.__session_state_data[clientid] = session_state_instance
+ *         self.__session_state_data[clientid] = session_state_instance
+ * 
 */
   __pyx_t_2 = __pyx_v_self;
   __Pyx_INCREF(__pyx_t_2);
@@ -3078,52 +3582,30 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_4add
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":36
+  /* "simplestart/ss_core/session.py":91
  *         """
  *         clientid = self.getclientid()
- *         if clientid not in self.__session_state_data:             # <<<<<<<<<<<<<<
- *             self.__session_state_data[clientid] = session_state_instance
- * 
-*/
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 36, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__pyx_t_4) {
-
-    /* "simplestart/ss_core/session.py":37
- *         clientid = self.getclientid()
- *         if clientid not in self.__session_state_data:
- *             self.__session_state_data[clientid] = session_state_instance             # <<<<<<<<<<<<<<
+ *         self.__session_state_data[clientid] = session_state_instance             # <<<<<<<<<<<<<<
  * 
  *     #
 */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_v_clientid, __pyx_v_session_state_instance) < 0))) __PYX_ERR(0, 37, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_v_clientid, __pyx_v_session_state_instance) < 0))) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/session.py":36
- *         """
- *         clientid = self.getclientid()
- *         if clientid not in self.__session_state_data:             # <<<<<<<<<<<<<<
- *             self.__session_state_data[clientid] = session_state_instance
- * 
-*/
-  }
-
-  /* "simplestart/ss_core/session.py":28
+  /* "simplestart/ss_core/session.py":83
  * 
  *     # serversocket
  *     def add(self, session_state_instance):             # <<<<<<<<<<<<<<
  *         """
- * 
+ *          clientid  socket
 */
 
   /* function exit code */
@@ -3141,7 +3623,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_4add
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":40
+/* "simplestart/ss_core/session.py":94
  * 
  *     #
  *     def get_session_state(self):             # <<<<<<<<<<<<<<
@@ -3189,32 +3671,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 40, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 94, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 40, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_session_state", 0) < (0)) __PYX_ERR(0, 40, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_session_state", 0) < (0)) __PYX_ERR(0, 94, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_session_state", 1, 1, 1, i); __PYX_ERR(0, 40, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_session_state", 1, 1, 1, i); __PYX_ERR(0, 94, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 40, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_session_state", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 40, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_session_state", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3248,7 +3730,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_6get
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_session_state", 0);
 
-  /* "simplestart/ss_core/session.py":47
+  /* "simplestart/ss_core/session.py":101
  * 
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -3262,23 +3744,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_6get
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":48
+  /* "simplestart/ss_core/session.py":102
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return None
  *         return self.__session_state_data[clientid]
 */
-  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 102, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":49
+    /* "simplestart/ss_core/session.py":103
  *         clientid = self.getclientid()
  *         if clientid == 0:
  *             return None             # <<<<<<<<<<<<<<
@@ -3289,7 +3771,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_6get
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":48
+    /* "simplestart/ss_core/session.py":102
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -3298,7 +3780,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_6get
 */
   }
 
-  /* "simplestart/ss_core/session.py":50
+  /* "simplestart/ss_core/session.py":104
  *         if clientid == 0:
  *             return None
  *         return self.__session_state_data[clientid]             # <<<<<<<<<<<<<<
@@ -3306,16 +3788,16 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_6get
  *     def __getitem__(self, name):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":40
+  /* "simplestart/ss_core/session.py":94
  * 
  *     #
  *     def get_session_state(self):             # <<<<<<<<<<<<<<
@@ -3336,7 +3818,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_6get
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":52
+/* "simplestart/ss_core/session.py":106
  *         return self.__session_state_data[clientid]
  * 
  *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
@@ -3385,39 +3867,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 52, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 106, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 52, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 106, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 52, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 106, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getitem__", 0) < (0)) __PYX_ERR(0, 52, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getitem__", 0) < (0)) __PYX_ERR(0, 106, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, i); __PYX_ERR(0, 52, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, i); __PYX_ERR(0, 106, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 52, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 106, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 52, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 106, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 52, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 106, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3451,7 +3933,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "simplestart/ss_core/session.py":62
+  /* "simplestart/ss_core/session.py":116
  * 
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -3465,23 +3947,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":63
+  /* "simplestart/ss_core/session.py":117
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return None
  * 
 */
-  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 117, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":64
+    /* "simplestart/ss_core/session.py":118
  *         clientid = self.getclientid()
  *         if clientid == 0:
  *             return None             # <<<<<<<<<<<<<<
@@ -3492,7 +3974,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":63
+    /* "simplestart/ss_core/session.py":117
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -3501,7 +3983,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
 */
   }
 
-  /* "simplestart/ss_core/session.py":66
+  /* "simplestart/ss_core/session.py":120
  *             return None
  * 
  *         return self.__session_state_data[clientid][name]             # <<<<<<<<<<<<<<
@@ -3509,19 +3991,19 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
  *     def __setitem__(self, name, value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":52
+  /* "simplestart/ss_core/session.py":106
  *         return self.__session_state_data[clientid]
  * 
  *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
@@ -3542,7 +4024,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_8__g
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":68
+/* "simplestart/ss_core/session.py":122
  *         return self.__session_state_data[clientid][name]
  * 
  *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
@@ -3592,38 +4074,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 68, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 122, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 68, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 122, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 68, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 122, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 68, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 122, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setitem__", 0) < (0)) __PYX_ERR(0, 68, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setitem__", 0) < (0)) __PYX_ERR(0, 122, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, i); __PYX_ERR(0, 68, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, i); __PYX_ERR(0, 122, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 68, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 122, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 68, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 122, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 68, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 122, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
@@ -3631,7 +4113,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 68, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 122, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3665,7 +4147,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_10__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "simplestart/ss_core/session.py":76
+  /* "simplestart/ss_core/session.py":130
  *             value:
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -3679,23 +4161,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_10__
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":77
+  /* "simplestart/ss_core/session.py":131
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return
  * 
 */
-  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 131, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":78
+    /* "simplestart/ss_core/session.py":132
  *         clientid = self.getclientid()
  *         if clientid == 0:
  *             return             # <<<<<<<<<<<<<<
@@ -3706,7 +4188,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_10__
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":77
+    /* "simplestart/ss_core/session.py":131
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -3715,22 +4197,22 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_10__
 */
   }
 
-  /* "simplestart/ss_core/session.py":80
+  /* "simplestart/ss_core/session.py":134
  *             return
  * 
  *         self.__session_state_data[clientid][name] = value             # <<<<<<<<<<<<<<
  * 
  *     #
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_v_name, __pyx_v_value) < 0))) __PYX_ERR(0, 80, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_v_name, __pyx_v_value) < 0))) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_core/session.py":68
+  /* "simplestart/ss_core/session.py":122
  *         return self.__session_state_data[clientid][name]
  * 
  *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
@@ -3753,7 +4235,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_10__
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":83
+/* "simplestart/ss_core/session.py":137
  * 
  *     #
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
@@ -3802,39 +4284,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 137, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 137, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 137, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getattr__", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getattr__", 0) < (0)) __PYX_ERR(0, 137, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, i); __PYX_ERR(0, 83, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, i); __PYX_ERR(0, 137, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 137, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 137, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 137, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3860,35 +4342,68 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_12__
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  size_t __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
+  size_t __pyx_t_4;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getattr__", 0);
 
-  /* "simplestart/ss_core/session.py":93
+  /* "simplestart/ss_core/session.py":147
  * 
  *         """
+ *         _warn_stateobj_misuse("session", name)             # <<<<<<<<<<<<<<
+ *         return self.__getitem__(name)
+ * 
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_warn_stateobj_misuse); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_4 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_session, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":148
+ *         """
+ *         _warn_stateobj_misuse("session", name)
  *         return self.__getitem__(name)             # <<<<<<<<<<<<<<
  * 
  *     def __setattr__(self, name, value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_v_self;
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = 0;
+  __pyx_t_3 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_3);
+  __pyx_t_4 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_name};
-    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getitem, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getitem, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":83
+  /* "simplestart/ss_core/session.py":137
  * 
  *     #
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
@@ -3900,6 +4415,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_12__
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("simplestart.ss_core.session.mysession_state.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -3908,7 +4424,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_12__
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":95
+/* "simplestart/ss_core/session.py":150
  *         return self.__getitem__(name)
  * 
  *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
@@ -3958,38 +4474,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 95, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 150, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 95, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 150, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 95, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 150, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 150, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setattr__", 0) < (0)) __PYX_ERR(0, 95, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setattr__", 0) < (0)) __PYX_ERR(0, 150, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, i); __PYX_ERR(0, 95, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, i); __PYX_ERR(0, 150, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 150, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 95, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 150, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 95, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 150, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
@@ -3997,7 +4513,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 95, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 150, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4033,7 +4549,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setattr__", 0);
 
-  /* "simplestart/ss_core/session.py":103
+  /* "simplestart/ss_core/session.py":158
  *             value:
  *         """
  *         if name.startswith('_'):             # <<<<<<<<<<<<<<
@@ -4044,17 +4560,17 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_3 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_};
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__4};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 103, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":105
+    /* "simplestart/ss_core/session.py":160
  *         if name.startswith('_'):
  *             #
  *             super().__setattr__(name, value)             # <<<<<<<<<<<<<<
@@ -4063,7 +4579,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
 */
     __pyx_t_6 = NULL;
     __pyx_t_7 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-    if (!__pyx_t_7) { PyErr_SetString(PyExc_RuntimeError, "super(): empty __class__ cell"); __PYX_ERR(0, 105, __pyx_L1_error) }
+    if (!__pyx_t_7) { PyErr_SetString(PyExc_RuntimeError, "super(): empty __class__ cell"); __PYX_ERR(0, 160, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_t_7);
     __pyx_t_3 = 1;
     {
@@ -4071,7 +4587,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
       __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_super, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 105, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 160, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
     }
     __pyx_t_2 = __pyx_t_5;
@@ -4082,12 +4598,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setattr, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/session.py":103
+    /* "simplestart/ss_core/session.py":158
  *             value:
  *         """
  *         if name.startswith('_'):             # <<<<<<<<<<<<<<
@@ -4097,12 +4613,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
     goto __pyx_L3;
   }
 
-  /* "simplestart/ss_core/session.py":108
+  /* "simplestart/ss_core/session.py":163
  *         else:
  *             #  __setitem__
  *             self.__setitem__(name, value)             # <<<<<<<<<<<<<<
  * 
- *     def keys(self):
+ *     def get(self, key, default=None):
 */
   /*else*/ {
     __pyx_t_5 = __pyx_v_self;
@@ -4112,14 +4628,14 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
       PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_v_name, __pyx_v_value};
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setitem, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __pyx_L3:;
 
-  /* "simplestart/ss_core/session.py":95
+  /* "simplestart/ss_core/session.py":150
  *         return self.__getitem__(name)
  * 
  *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
@@ -4144,8 +4660,254 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":110
+/* "simplestart/ss_core/session.py":165
  *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_17get(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_16get, "\n        \350\216\267\345\217\226\344\274\232\350\257\235\347\212\266\346\200\201\345\200\274\357\274\214\351\224\256\344\270\215\345\255\230\345\234\250\346\227\266\350\277\224\345\233\236\351\273\230\350\256\244\345\200\274\357\274\210\345\205\274\345\256\271 Streamlit \344\271\240\346\203\257\357\274\211\n        \n        Args:\n            key: \347\212\266\346\200\201\351\224\256\n            default: \351\224\256\344\270\215\345\255\230\345\234\250\346\227\266\350\277\224\345\233\236\347\232\204\351\273\230\350\256\244\345\200\274\n            \n        Returns:\n            \347\212\266\346\200\201\345\200\274\346\210\226\351\273\230\350\256\244\345\200\274\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_17get = {"get", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_17get, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_15mysession_state_16get};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_17get(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_key = 0;
+  PyObject *__pyx_v_default = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_key,&__pyx_mstate_global->__pyx_n_u_default,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 165, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 165, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 165, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 165, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get", 0) < (0)) __PYX_ERR(0, 165, __pyx_L3_error)
+      if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, i); __PYX_ERR(0, 165, __pyx_L3_error) }
+      }
+    } else {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 165, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 165, __pyx_L3_error)
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 165, __pyx_L3_error)
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_key = values[1];
+    __pyx_v_default = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, __pyx_nargs); __PYX_ERR(0, 165, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.mysession_state.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16get(__pyx_self, __pyx_v_self, __pyx_v_key, __pyx_v_default);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_default) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("get", 0);
+
+  /* "simplestart/ss_core/session.py":176
+ * 
+ *         """
+ *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
+ *         if clientid == 0 or clientid not in self.__session_state_data:
+ *             return default
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":177
+ *         """
+ *         clientid = self.getclientid()
+ *         if clientid == 0 or clientid not in self.__session_state_data:             # <<<<<<<<<<<<<<
+ *             return default
+ *         return self.__session_state_data[clientid].get(key, default)
+*/
+  __pyx_t_5 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 177, __pyx_L1_error)
+  if (!__pyx_t_5) {
+  } else {
+    __pyx_t_4 = __pyx_t_5;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 177, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_4 = __pyx_t_5;
+  __pyx_L4_bool_binop_done:;
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":178
+ *         clientid = self.getclientid()
+ *         if clientid == 0 or clientid not in self.__session_state_data:
+ *             return default             # <<<<<<<<<<<<<<
+ *         return self.__session_state_data[clientid].get(key, default)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_v_default);
+    __pyx_r = __pyx_v_default;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":177
+ *         """
+ *         clientid = self.getclientid()
+ *         if clientid == 0 or clientid not in self.__session_state_data:             # <<<<<<<<<<<<<<
+ *             return default
+ *         return self.__session_state_data[clientid].get(key, default)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":179
+ *         if clientid == 0 or clientid not in self.__session_state_data:
+ *             return default
+ *         return self.__session_state_data[clientid].get(key, default)             # <<<<<<<<<<<<<<
+ * 
+ *     def keys(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v_clientid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_2 = __pyx_t_7;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_key, __pyx_v_default};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":165
+ *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("simplestart.ss_core.session.mysession_state.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":181
+ *         return self.__session_state_data[clientid].get(key, default)
  * 
  *     def keys(self):             # <<<<<<<<<<<<<<
  *         """
@@ -4153,16 +4915,16 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_14__
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_17keys(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_19keys(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_16keys, "\n        \350\216\267\345\217\226\345\275\223\345\211\215\344\274\232\350\257\235\347\212\266\346\200\201\347\232\204\346\211\200\346\234\211\351\224\256\n        \n        Returns:\n            \351\224\256\345\210\227\350\241\250\n        ");
-static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_17keys = {"keys", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_17keys, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_15mysession_state_16keys};
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_17keys(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_18keys, "\n        \350\216\267\345\217\226\345\275\223\345\211\215\344\274\232\350\257\235\347\212\266\346\200\201\347\232\204\346\211\200\346\234\211\351\224\256\n        \n        Returns:\n            \351\224\256\345\210\227\350\241\250\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_19keys = {"keys", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_19keys, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_15mysession_state_18keys};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_19keys(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4192,32 +4954,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 110, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 181, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 110, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 181, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "keys", 0) < (0)) __PYX_ERR(0, 110, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "keys", 0) < (0)) __PYX_ERR(0, 181, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, i); __PYX_ERR(0, 110, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, i); __PYX_ERR(0, 181, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 110, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 181, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 110, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 181, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4228,7 +4990,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16keys(__pyx_self, __pyx_v_self);
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18keys(__pyx_self, __pyx_v_self);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -4238,7 +5000,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_clientid = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4252,7 +5014,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16ke
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("keys", 0);
 
-  /* "simplestart/ss_core/session.py":117
+  /* "simplestart/ss_core/session.py":188
  * 
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -4266,13 +5028,13 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16ke
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":118
+  /* "simplestart/ss_core/session.py":189
  *         """
  *         clientid = self.getclientid()
  *         return self.__session_state_data[clientid].keys()             # <<<<<<<<<<<<<<
@@ -4280,9 +5042,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16ke
  *     def init(self, init_vars):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_mysession_state__session_state); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_clientid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_clientid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_5;
@@ -4293,15 +5055,15 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16ke
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_keys, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":110
- *             self.__setitem__(name, value)
+  /* "simplestart/ss_core/session.py":181
+ *         return self.__session_state_data[clientid].get(key, default)
  * 
  *     def keys(self):             # <<<<<<<<<<<<<<
  *         """
@@ -4323,7 +5085,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16ke
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":120
+/* "simplestart/ss_core/session.py":191
  *         return self.__session_state_data[clientid].keys()
  * 
  *     def init(self, init_vars):             # <<<<<<<<<<<<<<
@@ -4332,16 +5094,16 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_16ke
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_19init(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_21init(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_18init, "\n        \345\210\235\345\247\213\345\214\226\344\274\232\350\257\235\347\212\266\346\200\201\345\217\230\351\207\217\n        \n        Args:\n            init_vars: \345\214\205\345\220\253\345\210\235\345\247\213\345\217\230\351\207\217\347\232\204\345\255\227\345\205\270\n        ");
-static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_19init = {"init", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_19init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_15mysession_state_18init};
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_19init(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_15mysession_state_20init, "\n        \345\210\235\345\247\213\345\214\226\344\274\232\350\257\235\347\212\266\346\200\201\345\217\230\351\207\217\n        \n        Args:\n            init_vars: \345\214\205\345\220\253\345\210\235\345\247\213\345\217\230\351\207\217\347\232\204\345\255\227\345\205\270\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_21init = {"init", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_21init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_15mysession_state_20init};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_15mysession_state_21init(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -4372,39 +5134,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_init_vars,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 120, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 191, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 120, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 120, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "init", 0) < (0)) __PYX_ERR(0, 120, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "init", 0) < (0)) __PYX_ERR(0, 191, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, i); __PYX_ERR(0, 120, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, i); __PYX_ERR(0, 191, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 120, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 120, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 191, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_init_vars = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 120, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 191, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4415,7 +5177,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18init(__pyx_self, __pyx_v_self, __pyx_v_init_vars);
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_15mysession_state_20init(__pyx_self, __pyx_v_self, __pyx_v_init_vars);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -4425,7 +5187,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars) {
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_20init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars) {
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_r = NULL;
@@ -4443,7 +5205,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "simplestart/ss_core/session.py":127
+  /* "simplestart/ss_core/session.py":198
  *             init_vars:
  *         """
  *         self.getclientid()             # <<<<<<<<<<<<<<
@@ -4457,12 +5219,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":128
+  /* "simplestart/ss_core/session.py":199
  *         """
  *         self.getclientid()
  *         for key, value in init_vars.items():             # <<<<<<<<<<<<<<
@@ -4472,9 +5234,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
   __pyx_t_4 = 0;
   if (unlikely(__pyx_v_init_vars == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 128, __pyx_L1_error)
+    __PYX_ERR(0, 199, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_init_vars, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_5), (&__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_init_vars, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_5), (&__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_2;
@@ -4482,7 +5244,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
   while (1) {
     __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_5, &__pyx_t_4, &__pyx_t_2, &__pyx_t_7, NULL, __pyx_t_6);
     if (unlikely(__pyx_t_8 == 0)) break;
-    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 128, __pyx_L1_error)
+    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_2);
@@ -4490,7 +5252,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "simplestart/ss_core/session.py":129
+    /* "simplestart/ss_core/session.py":200
  *         self.getclientid()
  *         for key, value in init_vars.items():
  *             self.__setattr__(key, value)             # <<<<<<<<<<<<<<
@@ -4504,14 +5266,14 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
       PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_key, __pyx_v_value};
       __pyx_t_7 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setattr, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":120
+  /* "simplestart/ss_core/session.py":191
  *         return self.__session_state_data[clientid].keys()
  * 
  *     def init(self, init_vars):             # <<<<<<<<<<<<<<
@@ -4536,8 +5298,8 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_15mysession_state_18in
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":138
- * 
+/* "simplestart/ss_core/session.py":211
+ *       localStorage STORE_SCHEMA
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.__data = {}
@@ -4583,32 +5345,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 138, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 211, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 211, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 211, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 138, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 211, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 211, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 138, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 211, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4638,20 +5400,20 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars___init__(CY
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplestart/ss_core/session.py":139
+  /* "simplestart/ss_core/session.py":212
  *     """
  *     def __init__(self):
  *         self.__data = {}             # <<<<<<<<<<<<<<
  * 
  *     def getclientid(self):
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data, __pyx_t_1) < (0)) __PYX_ERR(0, 139, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data, __pyx_t_1) < (0)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":138
- * 
+  /* "simplestart/ss_core/session.py":211
+ *       localStorage STORE_SCHEMA
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.__data = {}
@@ -4671,7 +5433,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars___init__(CY
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":141
+/* "simplestart/ss_core/session.py":214
  *         self.__data = {}
  * 
  *     def getclientid(self):             # <<<<<<<<<<<<<<
@@ -4719,32 +5481,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 141, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 214, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 214, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "getclientid", 0) < (0)) __PYX_ERR(0, 141, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "getclientid", 0) < (0)) __PYX_ERR(0, 214, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, i); __PYX_ERR(0, 141, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, i); __PYX_ERR(0, 214, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 214, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 141, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 214, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4780,7 +5542,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getclientid", 0);
 
-  /* "simplestart/ss_core/session.py":148
+  /* "simplestart/ss_core/session.py":221
  *             ID
  *         """
  *         clientid = get_context_var(ctx_clientid)             # <<<<<<<<<<<<<<
@@ -4788,9 +5550,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
  *             return 0
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get_context_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get_context_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ctx_clientid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ctx_clientid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -4810,23 +5572,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":149
+  /* "simplestart/ss_core/session.py":222
  *         """
  *         clientid = get_context_var(ctx_clientid)
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return 0
  * 
 */
-  __pyx_t_6 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 149, __pyx_L1_error)
+  __pyx_t_6 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 222, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "simplestart/ss_core/session.py":150
+    /* "simplestart/ss_core/session.py":223
  *         clientid = get_context_var(ctx_clientid)
  *         if clientid == 0:
  *             return 0             # <<<<<<<<<<<<<<
@@ -4838,7 +5600,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
     __pyx_r = __pyx_mstate_global->__pyx_int_0;
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":149
+    /* "simplestart/ss_core/session.py":222
  *         """
  *         clientid = get_context_var(ctx_clientid)
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -4847,7 +5609,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
 */
   }
 
-  /* "simplestart/ss_core/session.py":152
+  /* "simplestart/ss_core/session.py":225
  *             return 0
  * 
  *         return clientid             # <<<<<<<<<<<<<<
@@ -4859,7 +5621,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
   __pyx_r = __pyx_v_clientid;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":141
+  /* "simplestart/ss_core/session.py":214
  *         self.__data = {}
  * 
  *     def getclientid(self):             # <<<<<<<<<<<<<<
@@ -4882,7 +5644,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_2getclienti
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":154
+/* "simplestart/ss_core/session.py":227
  *         return clientid
  * 
  *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
@@ -4931,39 +5693,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 154, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 227, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 154, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 227, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 154, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 227, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getitem__", 0) < (0)) __PYX_ERR(0, 154, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getitem__", 0) < (0)) __PYX_ERR(0, 227, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, i); __PYX_ERR(0, 154, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, i); __PYX_ERR(0, 227, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 154, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 227, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 154, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 227, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 154, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 227, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4997,7 +5759,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "simplestart/ss_core/session.py":164
+  /* "simplestart/ss_core/session.py":237
  *             None
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -5011,23 +5773,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":165
+  /* "simplestart/ss_core/session.py":238
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return None
  * 
 */
-  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 165, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 238, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":166
+    /* "simplestart/ss_core/session.py":239
  *         clientid = self.getclientid()
  *         if clientid == 0:
  *             return None             # <<<<<<<<<<<<<<
@@ -5038,7 +5800,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":165
+    /* "simplestart/ss_core/session.py":238
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -5047,20 +5809,20 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
 */
   }
 
-  /* "simplestart/ss_core/session.py":168
+  /* "simplestart/ss_core/session.py":241
  *             return None
  * 
  *         if clientid not in self.__data:             # <<<<<<<<<<<<<<
  *             return None
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":169
+    /* "simplestart/ss_core/session.py":242
  * 
  *         if clientid not in self.__data:
  *             return None             # <<<<<<<<<<<<<<
@@ -5071,7 +5833,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":168
+    /* "simplestart/ss_core/session.py":241
  *             return None
  * 
  *         if clientid not in self.__data:             # <<<<<<<<<<<<<<
@@ -5080,38 +5842,38 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
 */
   }
 
-  /* "simplestart/ss_core/session.py":171
+  /* "simplestart/ss_core/session.py":244
  *             return None
  * 
  *         if name not in self.__data[clientid]:             # <<<<<<<<<<<<<<
  *             self.__data[clientid][name] = None  #
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_2, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_t_2, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":172
+    /* "simplestart/ss_core/session.py":245
  * 
  *         if name not in self.__data[clientid]:
  *             self.__data[clientid][name] = None  #             # <<<<<<<<<<<<<<
  * 
  *         return self.__data[clientid][name]
 */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 245, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_clientid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_clientid); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_v_name, Py_None) < 0))) __PYX_ERR(0, 172, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_v_name, Py_None) < 0))) __PYX_ERR(0, 245, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/session.py":171
+    /* "simplestart/ss_core/session.py":244
  *             return None
  * 
  *         if name not in self.__data[clientid]:             # <<<<<<<<<<<<<<
@@ -5120,7 +5882,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
 */
   }
 
-  /* "simplestart/ss_core/session.py":174
+  /* "simplestart/ss_core/session.py":247
  *             self.__data[clientid][name] = None  #
  * 
  *         return self.__data[clientid][name]             # <<<<<<<<<<<<<<
@@ -5128,19 +5890,19 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
  *     def __setitem__(self, name, value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":154
+  /* "simplestart/ss_core/session.py":227
  *         return clientid
  * 
  *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
@@ -5161,7 +5923,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_4__getitem_
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":176
+/* "simplestart/ss_core/session.py":249
  *         return self.__data[clientid][name]
  * 
  *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
@@ -5211,38 +5973,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 176, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 249, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 176, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 249, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 176, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 249, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 176, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 249, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setitem__", 0) < (0)) __PYX_ERR(0, 176, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setitem__", 0) < (0)) __PYX_ERR(0, 249, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, i); __PYX_ERR(0, 176, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, i); __PYX_ERR(0, 249, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 176, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 249, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 176, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 249, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 176, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 249, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
@@ -5250,7 +6012,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 176, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 249, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5284,7 +6046,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "simplestart/ss_core/session.py":184
+  /* "simplestart/ss_core/session.py":257
  *             value:
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -5298,23 +6060,23 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem_
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":185
+  /* "simplestart/ss_core/session.py":258
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
  *             return
  * 
 */
-  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 258, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":186
+    /* "simplestart/ss_core/session.py":259
  *         clientid = self.getclientid()
  *         if clientid == 0:
  *             return             # <<<<<<<<<<<<<<
@@ -5325,7 +6087,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem_
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "simplestart/ss_core/session.py":185
+    /* "simplestart/ss_core/session.py":258
  *         """
  *         clientid = self.getclientid()
  *         if clientid == 0:             # <<<<<<<<<<<<<<
@@ -5334,35 +6096,35 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem_
 */
   }
 
-  /* "simplestart/ss_core/session.py":188
+  /* "simplestart/ss_core/session.py":261
  *             return
  * 
  *         if clientid not in self.__data:             # <<<<<<<<<<<<<<
  *             self.__data[clientid] = {}
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":189
+    /* "simplestart/ss_core/session.py":262
  * 
  *         if clientid not in self.__data:
  *             self.__data[clientid] = {}             # <<<<<<<<<<<<<<
  * 
  *         self.__data[clientid][name] = value
 */
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_v_clientid, __pyx_t_1) < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_v_clientid, __pyx_t_1) < 0))) __PYX_ERR(0, 262, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/session.py":188
+    /* "simplestart/ss_core/session.py":261
  *             return
  * 
  *         if clientid not in self.__data:             # <<<<<<<<<<<<<<
@@ -5371,22 +6133,22 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem_
 */
   }
 
-  /* "simplestart/ss_core/session.py":191
+  /* "simplestart/ss_core/session.py":264
  *             self.__data[clientid] = {}
  * 
  *         self.__data[clientid][name] = value             # <<<<<<<<<<<<<<
  * 
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_clientid); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_v_name, __pyx_v_value) < 0))) __PYX_ERR(0, 191, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_v_name, __pyx_v_value) < 0))) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_core/session.py":176
+  /* "simplestart/ss_core/session.py":249
  *         return self.__data[clientid][name]
  * 
  *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
@@ -5409,7 +6171,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_6__setitem_
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":195
+/* "simplestart/ss_core/session.py":268
  * 
  *     #
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
@@ -5458,39 +6220,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 195, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 268, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 195, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 268, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 195, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 268, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getattr__", 0) < (0)) __PYX_ERR(0, 195, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getattr__", 0) < (0)) __PYX_ERR(0, 268, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, i); __PYX_ERR(0, 195, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, i); __PYX_ERR(0, 268, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 195, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 268, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 195, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 268, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 195, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 268, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5516,35 +6278,68 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_8__getattr_
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  size_t __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
+  size_t __pyx_t_4;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getattr__", 0);
 
-  /* "simplestart/ss_core/session.py":205
+  /* "simplestart/ss_core/session.py":278
  * 
  *         """
+ *         _warn_stateobj_misuse("ss.store", name)             # <<<<<<<<<<<<<<
+ *         return self.__getitem__(name)
+ * 
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_warn_stateobj_misuse); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_4 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_ss_store, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":279
+ *         """
+ *         _warn_stateobj_misuse("ss.store", name)
  *         return self.__getitem__(name)             # <<<<<<<<<<<<<<
  * 
  *     def __setattr__(self, name, value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __pyx_v_self;
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = 0;
+  __pyx_t_3 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_3);
+  __pyx_t_4 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_name};
-    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getitem, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getitem, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":195
+  /* "simplestart/ss_core/session.py":268
  * 
  *     #
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
@@ -5556,6 +6351,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_8__getattr_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_AddTraceback("simplestart.ss_core.session.page_vars.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -5564,7 +6360,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_8__getattr_
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":207
+/* "simplestart/ss_core/session.py":281
  *         return self.__getitem__(name)
  * 
  *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
@@ -5614,38 +6410,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 207, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 281, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 207, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 281, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 207, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 281, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 207, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 281, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setattr__", 0) < (0)) __PYX_ERR(0, 207, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setattr__", 0) < (0)) __PYX_ERR(0, 281, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, i); __PYX_ERR(0, 207, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, i); __PYX_ERR(0, 281, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 207, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 281, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 207, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 281, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 207, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 281, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_name = values[1];
@@ -5653,7 +6449,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 207, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 281, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5689,7 +6485,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setattr__", 0);
 
-  /* "simplestart/ss_core/session.py":215
+  /* "simplestart/ss_core/session.py":289
  *             value:
  *         """
  *         if name.startswith('_'):             # <<<<<<<<<<<<<<
@@ -5700,17 +6496,17 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_3 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_};
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__4};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_4) {
 
-    /* "simplestart/ss_core/session.py":217
+    /* "simplestart/ss_core/session.py":291
  *         if name.startswith('_'):
  *             #
  *             super().__setattr__(name, value)             # <<<<<<<<<<<<<<
@@ -5719,7 +6515,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
 */
     __pyx_t_6 = NULL;
     __pyx_t_7 = __Pyx_CyFunction_GetClassObj(__pyx_self);
-    if (!__pyx_t_7) { PyErr_SetString(PyExc_RuntimeError, "super(): empty __class__ cell"); __PYX_ERR(0, 217, __pyx_L1_error) }
+    if (!__pyx_t_7) { PyErr_SetString(PyExc_RuntimeError, "super(): empty __class__ cell"); __PYX_ERR(0, 291, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_t_7);
     __pyx_t_3 = 1;
     {
@@ -5727,7 +6523,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
       __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_super, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 217, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 291, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
     }
     __pyx_t_2 = __pyx_t_5;
@@ -5738,12 +6534,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setattr, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_core/session.py":215
+    /* "simplestart/ss_core/session.py":289
  *             value:
  *         """
  *         if name.startswith('_'):             # <<<<<<<<<<<<<<
@@ -5753,12 +6549,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
     goto __pyx_L3;
   }
 
-  /* "simplestart/ss_core/session.py":220
+  /* "simplestart/ss_core/session.py":294
  *         else:
  *             #  __setitem__
  *             self.__setitem__(name, value)             # <<<<<<<<<<<<<<
  * 
- *     def keys(self):
+ *     def get(self, key, default=None):
 */
   /*else*/ {
     __pyx_t_5 = __pyx_v_self;
@@ -5768,14 +6564,14 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
       PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_v_name, __pyx_v_value};
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setitem, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __pyx_L3:;
 
-  /* "simplestart/ss_core/session.py":207
+  /* "simplestart/ss_core/session.py":281
  *         return self.__getitem__(name)
  * 
  *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
@@ -5800,8 +6596,254 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":222
+/* "simplestart/ss_core/session.py":296
  *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_13get(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_9page_vars_12get, "\n        \350\216\267\345\217\226\345\255\230\345\202\250\347\232\204\345\217\230\351\207\217\345\200\274\357\274\214\351\224\256\344\270\215\345\255\230\345\234\250\346\227\266\350\277\224\345\233\236\351\273\230\350\256\244\345\200\274\357\274\210\345\205\274\345\256\271 Streamlit \344\271\240\346\203\257\357\274\211\n        \n        Args:\n            key: \345\217\230\351\207\217\345\220\215\n            default: \351\224\256\344\270\215\345\255\230\345\234\250\346\227\266\350\277\224\345\233\236\347\232\204\351\273\230\350\256\244\345\200\274\n            \n        Returns:\n            \345\217\230\351\207\217\345\200\274\346\210\226\351\273\230\350\256\244\345\200\274\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_9page_vars_13get = {"get", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_9page_vars_13get, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_9page_vars_12get};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_13get(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_key = 0;
+  PyObject *__pyx_v_default = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_key,&__pyx_mstate_global->__pyx_n_u_default,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 296, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 296, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 296, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 296, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get", 0) < (0)) __PYX_ERR(0, 296, __pyx_L3_error)
+      if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, i); __PYX_ERR(0, 296, __pyx_L3_error) }
+      }
+    } else {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 296, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 296, __pyx_L3_error)
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 296, __pyx_L3_error)
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_key = values[1];
+    __pyx_v_default = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, __pyx_nargs); __PYX_ERR(0, 296, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.page_vars.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_9page_vars_12get(__pyx_self, __pyx_v_self, __pyx_v_key, __pyx_v_default);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_default) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("get", 0);
+
+  /* "simplestart/ss_core/session.py":307
+ * 
+ *         """
+ *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
+ *         if clientid == 0 or clientid not in self.__data:
+ *             return default
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":308
+ *         """
+ *         clientid = self.getclientid()
+ *         if clientid == 0 or clientid not in self.__data:             # <<<<<<<<<<<<<<
+ *             return default
+ *         return self.__data[clientid].get(key, default)
+*/
+  __pyx_t_5 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 308, __pyx_L1_error)
+  if (!__pyx_t_5) {
+  } else {
+    __pyx_t_4 = __pyx_t_5;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_1, Py_NE)); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 308, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_4 = __pyx_t_5;
+  __pyx_L4_bool_binop_done:;
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":309
+ *         clientid = self.getclientid()
+ *         if clientid == 0 or clientid not in self.__data:
+ *             return default             # <<<<<<<<<<<<<<
+ *         return self.__data[clientid].get(key, default)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_v_default);
+    __pyx_r = __pyx_v_default;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":308
+ *         """
+ *         clientid = self.getclientid()
+ *         if clientid == 0 or clientid not in self.__data:             # <<<<<<<<<<<<<<
+ *             return default
+ *         return self.__data[clientid].get(key, default)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":310
+ *         if clientid == 0 or clientid not in self.__data:
+ *             return default
+ *         return self.__data[clientid].get(key, default)             # <<<<<<<<<<<<<<
+ * 
+ *     def keys(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v_clientid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_2 = __pyx_t_7;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_key, __pyx_v_default};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":296
+ *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("simplestart.ss_core.session.page_vars.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":312
+ *         return self.__data[clientid].get(key, default)
  * 
  *     def keys(self):             # <<<<<<<<<<<<<<
  *         """
@@ -5809,16 +6851,16 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_10__setattr
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_13keys(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_15keys(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_9page_vars_12keys, "\n        \350\216\267\345\217\226\345\275\223\345\211\215\345\256\242\346\210\267\347\253\257\345\255\230\345\202\250\347\232\204\346\211\200\346\234\211\345\217\230\351\207\217\345\220\215\n        \n        Returns:\n            \345\217\230\351\207\217\345\220\215\345\210\227\350\241\250\n        ");
-static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_9page_vars_13keys = {"keys", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_9page_vars_13keys, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_9page_vars_12keys};
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_13keys(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_9page_vars_14keys, "\n        \350\216\267\345\217\226\345\275\223\345\211\215\345\256\242\346\210\267\347\253\257\345\255\230\345\202\250\347\232\204\346\211\200\346\234\211\345\217\230\351\207\217\345\220\215\n        \n        Returns:\n            \345\217\230\351\207\217\345\220\215\345\210\227\350\241\250\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_9page_vars_15keys = {"keys", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_9page_vars_15keys, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_9page_vars_14keys};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_15keys(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5848,32 +6890,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 222, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 312, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 222, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 312, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "keys", 0) < (0)) __PYX_ERR(0, 222, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "keys", 0) < (0)) __PYX_ERR(0, 312, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, i); __PYX_ERR(0, 222, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, i); __PYX_ERR(0, 312, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 222, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 312, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 222, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 312, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5884,7 +6926,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(__pyx_self, __pyx_v_self);
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_9page_vars_14keys(__pyx_self, __pyx_v_self);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -5894,7 +6936,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_v_clientid = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5908,7 +6950,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("keys", 0);
 
-  /* "simplestart/ss_core/session.py":229
+  /* "simplestart/ss_core/session.py":319
  * 
  *         """
  *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
@@ -5922,13 +6964,13 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTH
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_clientid = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":230
+  /* "simplestart/ss_core/session.py":320
  *         """
  *         clientid = self.getclientid()
  *         return self.__data[clientid].keys()             # <<<<<<<<<<<<<<
@@ -5936,9 +6978,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTH
  *     def init(self, init_vars):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_page_vars__data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_clientid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_clientid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_5;
@@ -5949,15 +6991,15 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTH
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_keys, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_core/session.py":222
- *             self.__setitem__(name, value)
+  /* "simplestart/ss_core/session.py":312
+ *         return self.__data[clientid].get(key, default)
  * 
  *     def keys(self):             # <<<<<<<<<<<<<<
  *         """
@@ -5979,7 +7021,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTH
   return __pyx_r;
 }
 
-/* "simplestart/ss_core/session.py":232
+/* "simplestart/ss_core/session.py":322
  *         return self.__data[clientid].keys()
  * 
  *     def init(self, init_vars):             # <<<<<<<<<<<<<<
@@ -5988,16 +7030,16 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_12keys(CYTH
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_15init(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_17init(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_9page_vars_14init, "\n        \345\210\235\345\247\213\345\214\226\345\255\230\345\202\250\345\217\230\351\207\217\n        \n        Args:\n            init_vars: \345\214\205\345\220\253\345\210\235\345\247\213\345\217\230\351\207\217\347\232\204\345\255\227\345\205\270\n        ");
-static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_9page_vars_15init = {"init", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_9page_vars_15init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_9page_vars_14init};
-static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_15init(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_9page_vars_16init, "\n        \345\210\235\345\247\213\345\214\226\345\255\230\345\202\250\345\217\230\351\207\217\n        \n        Args:\n            init_vars: \345\214\205\345\220\253\345\210\235\345\247\213\345\217\230\351\207\217\347\232\204\345\255\227\345\205\270\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_9page_vars_17init = {"init", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_9page_vars_17init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_9page_vars_16init};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_9page_vars_17init(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6028,39 +7070,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_init_vars,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 232, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 322, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 232, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 322, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 232, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 322, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "init", 0) < (0)) __PYX_ERR(0, 232, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "init", 0) < (0)) __PYX_ERR(0, 322, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, i); __PYX_ERR(0, 232, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, i); __PYX_ERR(0, 322, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 232, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 322, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 232, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 322, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_init_vars = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 232, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("init", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 322, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6071,7 +7113,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(__pyx_self, __pyx_v_self, __pyx_v_init_vars);
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_9page_vars_16init(__pyx_self, __pyx_v_self, __pyx_v_init_vars);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -6081,7 +7123,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars) {
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_16init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_init_vars) {
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_r = NULL;
@@ -6099,7 +7141,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("init", 0);
 
-  /* "simplestart/ss_core/session.py":239
+  /* "simplestart/ss_core/session.py":329
  *             init_vars:
  *         """
  *         self.getclientid()             # <<<<<<<<<<<<<<
@@ -6113,12 +7155,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":240
+  /* "simplestart/ss_core/session.py":330
  *         """
  *         self.getclientid()
  *         for key, value in init_vars.items():             # <<<<<<<<<<<<<<
@@ -6128,9 +7170,9 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
   __pyx_t_4 = 0;
   if (unlikely(__pyx_v_init_vars == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 240, __pyx_L1_error)
+    __PYX_ERR(0, 330, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_init_vars, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_5), (&__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_init_vars, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_5), (&__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_2;
@@ -6138,7 +7180,7 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
   while (1) {
     __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_5, &__pyx_t_4, &__pyx_t_2, &__pyx_t_7, NULL, __pyx_t_6);
     if (unlikely(__pyx_t_8 == 0)) break;
-    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 240, __pyx_L1_error)
+    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 330, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_2);
@@ -6146,12 +7188,12 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "simplestart/ss_core/session.py":241
+    /* "simplestart/ss_core/session.py":331
  *         self.getclientid()
  *         for key, value in init_vars.items():
  *             self.__setattr__(key, value)             # <<<<<<<<<<<<<<
  * 
- * #
+ * STORE_SCHEMA = {
 */
     __pyx_t_2 = __pyx_v_self;
     __Pyx_INCREF(__pyx_t_2);
@@ -6160,14 +7202,14 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
       PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_key, __pyx_v_value};
       __pyx_t_7 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setattr, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 241, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 331, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_core/session.py":232
+  /* "simplestart/ss_core/session.py":322
  *         return self.__data[clientid].keys()
  * 
  *     def init(self, init_vars):             # <<<<<<<<<<<<<<
@@ -6187,6 +7229,2523 @@ static PyObject *__pyx_pf_11simplestart_7ss_core_7session_9page_vars_14init(CYTH
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_key);
   __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":384
+ *         ss.app.update(x=1, y=2)        #
+ *     """
+ *     def __init__(self):             # <<<<<<<<<<<<<<
+ *         self._defaults = {}
+ *         self._data = {}
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_1__init__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_1__init__ = {"__init__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_1__init__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__init__ (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 384, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 384, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 384, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 384, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 384, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 384, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars___init__(__pyx_self, __pyx_v_self);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__init__", 0);
+
+  /* "simplestart/ss_core/session.py":385
+ *     """
+ *     def __init__(self):
+ *         self._defaults = {}             # <<<<<<<<<<<<<<
+ *         self._data = {}
+ * 
+*/
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 385, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults, __pyx_t_1) < (0)) __PYX_ERR(0, 385, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":386
+ *     def __init__(self):
+ *         self._defaults = {}
+ *         self._data = {}             # <<<<<<<<<<<<<<
+ * 
+ *     def init(self, **kwargs):
+*/
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1) < (0)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":384
+ *         ss.app.update(x=1, y=2)        #
+ *     """
+ *     def __init__(self):             # <<<<<<<<<<<<<<
+ *         self._defaults = {}
+ *         self._data = {}
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":388
+ *         self._data = {}
+ * 
+ *     def init(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         """
+ *          app.py
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_3init(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_8app_vars_2init, "\n        \345\256\232\344\271\211\345\272\224\347\224\250\347\272\247\345\217\230\351\207\217\347\232\204\345\210\235\345\247\213\345\200\274\357\274\210\345\234\250 app.py \346\250\241\345\235\227\345\212\240\350\275\275\346\227\266\350\260\203\347\224\250\357\274\211\343\200\202\n        \351\246\226\346\254\241\347\234\237\345\256\236\347\224\250\346\210\267\350\256\277\351\227\256\346\227\266\357\274\214\345\210\235\345\247\213\345\200\274\344\274\232\350\207\252\345\212\250\346\263\250\345\205\245\345\210\260\350\257\245\347\224\250\346\210\267\347\232\204\351\232\224\347\246\273\347\251\272\351\227\264\344\270\255\343\200\202\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_3init = {"init", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_3init, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_8app_vars_2init};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_3init(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_kwargs = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("init (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  __pyx_v_kwargs = PyDict_New(); if (unlikely(!__pyx_v_kwargs)) return NULL;
+  __Pyx_GOTREF(__pyx_v_kwargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 388, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 388, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "init", 1) < (0)) __PYX_ERR(0, 388, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("init", 1, 1, 1, i); __PYX_ERR(0, 388, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 388, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("init", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 388, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.init", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_2init(__pyx_self, __pyx_v_self, __pyx_v_kwargs);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_DECREF(__pyx_v_kwargs);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_2init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_kwargs) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  size_t __pyx_t_4;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("init", 0);
+
+  /* "simplestart/ss_core/session.py":393
+ * 
+ *         """
+ *         self._defaults.update(kwargs)             # <<<<<<<<<<<<<<
+ * 
+ *     def getclientid(self):
+*/
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __pyx_t_3;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_4 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_kwargs};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_update, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":388
+ *         self._data = {}
+ * 
+ *     def init(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         """
+ *          app.py
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.init", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":395
+ *         self._defaults.update(kwargs)
+ * 
+ *     def getclientid(self):             # <<<<<<<<<<<<<<
+ *         clientid = get_context_var(ctx_clientid)
+ *         return clientid if clientid != 0 else 0
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_5getclientid(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_5getclientid = {"getclientid", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_5getclientid, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_5getclientid(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  CYTHON_UNUSED PyObject *__pyx_v_self = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("getclientid (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 395, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 395, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "getclientid", 0) < (0)) __PYX_ERR(0, 395, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, i); __PYX_ERR(0, 395, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 395, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("getclientid", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 395, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.getclientid", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_4getclientid(__pyx_self, __pyx_v_self);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_4getclientid(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  size_t __pyx_t_5;
+  int __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("getclientid", 0);
+
+  /* "simplestart/ss_core/session.py":396
+ * 
+ *     def getclientid(self):
+ *         clientid = get_context_var(ctx_clientid)             # <<<<<<<<<<<<<<
+ *         return clientid if clientid != 0 else 0
+ * 
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get_context_var); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_ctx_clientid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":397
+ *     def getclientid(self):
+ *         clientid = get_context_var(ctx_clientid)
+ *         return clientid if clientid != 0 else 0             # <<<<<<<<<<<<<<
+ * 
+ *     def _ensure_client_data(self, clientid):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_6 = (__Pyx_PyLong_BoolNeObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 397, __pyx_L1_error)
+  if (__pyx_t_6) {
+    __Pyx_INCREF(__pyx_v_clientid);
+    __pyx_t_1 = __pyx_v_clientid;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_int_0);
+    __pyx_t_1 = __pyx_mstate_global->__pyx_int_0;
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":395
+ *         self._defaults.update(kwargs)
+ * 
+ *     def getclientid(self):             # <<<<<<<<<<<<<<
+ *         clientid = get_context_var(ctx_clientid)
+ *         return clientid if clientid != 0 else 0
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.getclientid", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":399
+ *         return clientid if clientid != 0 else 0
+ * 
+ *     def _ensure_client_data(self, clientid):             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             return None
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_7_ensure_client_data(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_7_ensure_client_data = {"_ensure_client_data", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_7_ensure_client_data, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_7_ensure_client_data(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_clientid = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[2] = {0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("_ensure_client_data (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_clientid,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 399, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 399, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 399, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_ensure_client_data", 0) < (0)) __PYX_ERR(0, 399, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_ensure_client_data", 1, 2, 2, i); __PYX_ERR(0, 399, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 2)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 399, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 399, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_clientid = values[1];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("_ensure_client_data", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 399, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars._ensure_client_data", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_6_ensure_client_data(__pyx_self, __pyx_v_self, __pyx_v_clientid);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_6_ensure_client_data(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_clientid) {
+  PyObject *__pyx_v_key = NULL;
+  PyObject *__pyx_v_value = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  Py_ssize_t __pyx_t_5;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_t_8;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("_ensure_client_data", 0);
+
+  /* "simplestart/ss_core/session.py":400
+ * 
+ *     def _ensure_client_data(self, clientid):
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         if clientid not in self._data:
+*/
+  __pyx_t_1 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 400, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "simplestart/ss_core/session.py":401
+ *     def _ensure_client_data(self, clientid):
+ *         if clientid == 0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         if clientid not in self._data:
+ *             self._data[clientid] = {}
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":400
+ * 
+ *     def _ensure_client_data(self, clientid):
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         if clientid not in self._data:
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":402
+ *         if clientid == 0:
+ *             return None
+ *         if clientid not in self._data:             # <<<<<<<<<<<<<<
+ *             self._data[clientid] = {}
+ *             for key, value in self._defaults.items():
+*/
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 402, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(__pyx_v_clientid, __pyx_t_2, Py_NE)); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 402, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__pyx_t_1) {
+
+    /* "simplestart/ss_core/session.py":403
+ *             return None
+ *         if clientid not in self._data:
+ *             self._data[clientid] = {}             # <<<<<<<<<<<<<<
+ *             for key, value in self._defaults.items():
+ *                 self._data[clientid][key] = value
+*/
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely((PyObject_SetItem(__pyx_t_3, __pyx_v_clientid, __pyx_t_2) < 0))) __PYX_ERR(0, 403, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "simplestart/ss_core/session.py":404
+ *         if clientid not in self._data:
+ *             self._data[clientid] = {}
+ *             for key, value in self._defaults.items():             # <<<<<<<<<<<<<<
+ *                 self._data[clientid][key] = value
+ *         return self._data[clientid]
+*/
+    __pyx_t_4 = 0;
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 404, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely(__pyx_t_3 == Py_None)) {
+      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
+      __PYX_ERR(0, 404, __pyx_L1_error)
+    }
+    __pyx_t_7 = __Pyx_dict_iterator(__pyx_t_3, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_5), (&__pyx_t_6)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 404, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_XDECREF(__pyx_t_2);
+    __pyx_t_2 = __pyx_t_7;
+    __pyx_t_7 = 0;
+    while (1) {
+      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_2, __pyx_t_5, &__pyx_t_4, &__pyx_t_7, &__pyx_t_3, NULL, __pyx_t_6);
+      if (unlikely(__pyx_t_8 == 0)) break;
+      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 404, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_7);
+      __pyx_t_7 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_3);
+      __pyx_t_3 = 0;
+
+      /* "simplestart/ss_core/session.py":405
+ *             self._data[clientid] = {}
+ *             for key, value in self._defaults.items():
+ *                 self._data[clientid][key] = value             # <<<<<<<<<<<<<<
+ *         return self._data[clientid]
+ * 
+*/
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_clientid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (unlikely((PyObject_SetItem(__pyx_t_7, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "simplestart/ss_core/session.py":402
+ *         if clientid == 0:
+ *             return None
+ *         if clientid not in self._data:             # <<<<<<<<<<<<<<
+ *             self._data[clientid] = {}
+ *             for key, value in self._defaults.items():
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":406
+ *             for key, value in self._defaults.items():
+ *                 self._data[clientid][key] = value
+ *         return self._data[clientid]             # <<<<<<<<<<<<<<
+ * 
+ *     def __getitem__(self, name):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_clientid); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 406, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_7;
+  __pyx_t_7 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":399
+ *         return clientid if clientid != 0 else 0
+ * 
+ *     def _ensure_client_data(self, clientid):             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             return None
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars._ensure_client_data", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_key);
+  __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":408
+ *         return self._data[clientid]
+ * 
+ *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_9__getitem__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_9__getitem__ = {"__getitem__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_9__getitem__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_9__getitem__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_name = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[2] = {0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 408, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 408, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 408, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getitem__", 0) < (0)) __PYX_ERR(0, 408, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, i); __PYX_ERR(0, 408, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 2)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 408, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 408, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_name = values[1];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__getitem__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 408, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_8__getitem__(__pyx_self, __pyx_v_self, __pyx_v_name);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_8__getitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__getitem__", 0);
+
+  /* "simplestart/ss_core/session.py":409
+ * 
+ *     def __getitem__(self, name):
+ *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             return self._defaults.get(name, None)
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":410
+ *     def __getitem__(self, name):
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return self._defaults.get(name, None)
+ *         data = self._ensure_client_data(clientid)
+*/
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 410, __pyx_L1_error)
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":411
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+ *             return self._defaults.get(name, None)             # <<<<<<<<<<<<<<
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None or name not in data:
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 411, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = __pyx_t_5;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_name, Py_None};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":410
+ *     def __getitem__(self, name):
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return self._defaults.get(name, None)
+ *         data = self._ensure_client_data(clientid)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":412
+ *         if clientid == 0:
+ *             return self._defaults.get(name, None)
+ *         data = self._ensure_client_data(clientid)             # <<<<<<<<<<<<<<
+ *         if data is None or name not in data:
+ *             return None
+*/
+  __pyx_t_5 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_5);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_v_clientid};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_ensure_client_data, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_data = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":413
+ *             return self._defaults.get(name, None)
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None or name not in data:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return data[name]
+*/
+  __pyx_t_6 = (__pyx_v_data == Py_None);
+  if (!__pyx_t_6) {
+  } else {
+    __pyx_t_4 = __pyx_t_6;
+    goto __pyx_L5_bool_binop_done;
+  }
+  __pyx_t_6 = (__Pyx_PySequence_ContainsTF(__pyx_v_name, __pyx_v_data, Py_NE)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_4 = __pyx_t_6;
+  __pyx_L5_bool_binop_done:;
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":414
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None or name not in data:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return data[name]
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":413
+ *             return self._defaults.get(name, None)
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None or name not in data:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return data[name]
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":415
+ *         if data is None or name not in data:
+ *             return None
+ *         return data[name]             # <<<<<<<<<<<<<<
+ * 
+ *     def __setitem__(self, name, value):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_data, __pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":408
+ *         return self._data[clientid]
+ * 
+ *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":417
+ *         return data[name]
+ * 
+ *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_11__setitem__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_11__setitem__ = {"__setitem__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_11__setitem__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_11__setitem__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_name = 0;
+  PyObject *__pyx_v_value = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__setitem__ (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_value,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 417, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 417, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 417, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 417, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setitem__", 0) < (0)) __PYX_ERR(0, 417, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, i); __PYX_ERR(0, 417, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 3)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 417, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 417, __pyx_L3_error)
+      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 417, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_name = values[1];
+    __pyx_v_value = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__setitem__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 417, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__setitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_10__setitem__(__pyx_self, __pyx_v_self, __pyx_v_name, __pyx_v_value);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_10__setitem__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__setitem__", 0);
+
+  /* "simplestart/ss_core/session.py":418
+ * 
+ *     def __setitem__(self, name, value):
+ *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             self._defaults[name] = value
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":419
+ *     def __setitem__(self, name, value):
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             self._defaults[name] = value
+ *             return
+*/
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 419, __pyx_L1_error)
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":420
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+ *             self._defaults[name] = value             # <<<<<<<<<<<<<<
+ *             return
+ *         data = self._ensure_client_data(clientid)
+*/
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_v_name, __pyx_v_value) < 0))) __PYX_ERR(0, 420, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_core/session.py":421
+ *         if clientid == 0:
+ *             self._defaults[name] = value
+ *             return             # <<<<<<<<<<<<<<
+ *         data = self._ensure_client_data(clientid)
+ *         if data is not None:
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":419
+ *     def __setitem__(self, name, value):
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             self._defaults[name] = value
+ *             return
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":422
+ *             self._defaults[name] = value
+ *             return
+ *         data = self._ensure_client_data(clientid)             # <<<<<<<<<<<<<<
+ *         if data is not None:
+ *             data[name] = value
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_clientid};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_ensure_client_data, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_data = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":423
+ *             return
+ *         data = self._ensure_client_data(clientid)
+ *         if data is not None:             # <<<<<<<<<<<<<<
+ *             data[name] = value
+ * 
+*/
+  __pyx_t_4 = (__pyx_v_data != Py_None);
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":424
+ *         data = self._ensure_client_data(clientid)
+ *         if data is not None:
+ *             data[name] = value             # <<<<<<<<<<<<<<
+ * 
+ *     def __getattr__(self, name):
+*/
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_v_name, __pyx_v_value) < 0))) __PYX_ERR(0, 424, __pyx_L1_error)
+
+    /* "simplestart/ss_core/session.py":423
+ *             return
+ *         data = self._ensure_client_data(clientid)
+ *         if data is not None:             # <<<<<<<<<<<<<<
+ *             data[name] = value
+ * 
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":417
+ *         return data[name]
+ * 
+ *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__setitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":426
+ *             data[name] = value
+ * 
+ *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
+ *         if name.startswith('_'):
+ *             return super().__getattribute__(name)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_13__getattr__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_13__getattr__ = {"__getattr__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_13__getattr__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_13__getattr__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_name = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[2] = {0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__getattr__ (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 426, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 426, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 426, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__getattr__", 0) < (0)) __PYX_ERR(0, 426, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, i); __PYX_ERR(0, 426, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 2)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 426, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 426, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_name = values[1];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__getattr__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 426, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_12__getattr__(__pyx_self, __pyx_v_self, __pyx_v_name);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_12__getattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__getattr__", 0);
+
+  /* "simplestart/ss_core/session.py":427
+ * 
+ *     def __getattr__(self, name):
+ *         if name.startswith('_'):             # <<<<<<<<<<<<<<
+ *             return super().__getattribute__(name)
+ *         _warn_stateobj_misuse("ss.app", name)
+*/
+  __pyx_t_2 = __pyx_v_name;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__4};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 427, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":428
+ *     def __getattr__(self, name):
+ *         if name.startswith('_'):
+ *             return super().__getattribute__(name)             # <<<<<<<<<<<<<<
+ *         _warn_stateobj_misuse("ss.app", name)
+ *         return self.__getitem__(name)
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_6 = NULL;
+    __pyx_t_7 = __Pyx_CyFunction_GetClassObj(__pyx_self);
+    if (!__pyx_t_7) { PyErr_SetString(PyExc_RuntimeError, "super(): empty __class__ cell"); __PYX_ERR(0, 428, __pyx_L1_error) }
+    __Pyx_INCREF(__pyx_t_7);
+    __pyx_t_3 = 1;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_6, __pyx_t_7, __pyx_v_self};
+      __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_super, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 428, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+    }
+    __pyx_t_2 = __pyx_t_5;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_name};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getattribute, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 428, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":427
+ * 
+ *     def __getattr__(self, name):
+ *         if name.startswith('_'):             # <<<<<<<<<<<<<<
+ *             return super().__getattribute__(name)
+ *         _warn_stateobj_misuse("ss.app", name)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":429
+ *         if name.startswith('_'):
+ *             return super().__getattribute__(name)
+ *         _warn_stateobj_misuse("ss.app", name)             # <<<<<<<<<<<<<<
+ *         return self.__getitem__(name)
+ * 
+*/
+  __pyx_t_5 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_warn_stateobj_misuse); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 429, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
+    assert(__pyx_t_5);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
+    __Pyx_INCREF(__pyx_t_5);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
+    __pyx_t_3 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_ss_app, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":430
+ *             return super().__getattribute__(name)
+ *         _warn_stateobj_misuse("ss.app", name)
+ *         return self.__getitem__(name)             # <<<<<<<<<<<<<<
+ * 
+ *     def __setattr__(self, name, value):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_name};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getitem, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 430, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":426
+ *             data[name] = value
+ * 
+ *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
+ *         if name.startswith('_'):
+ *             return super().__getattribute__(name)
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__getattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":432
+ *         return self.__getitem__(name)
+ * 
+ *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
+ *         if name.startswith('_'):
+ *             super().__setattr__(name, value)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_15__setattr__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_15__setattr__ = {"__setattr__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_15__setattr__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_15__setattr__(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_name = 0;
+  PyObject *__pyx_v_value = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__setattr__ (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_value,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 432, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 432, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 432, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 432, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__setattr__", 0) < (0)) __PYX_ERR(0, 432, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, i); __PYX_ERR(0, 432, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 3)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 432, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 432, __pyx_L3_error)
+      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 432, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_name = values[1];
+    __pyx_v_value = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("__setattr__", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 432, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__setattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_14__setattr__(__pyx_self, __pyx_v_self, __pyx_v_name, __pyx_v_value);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_14__setattr__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name, PyObject *__pyx_v_value) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__setattr__", 0);
+
+  /* "simplestart/ss_core/session.py":433
+ * 
+ *     def __setattr__(self, name, value):
+ *         if name.startswith('_'):             # <<<<<<<<<<<<<<
+ *             super().__setattr__(name, value)
+ *         else:
+*/
+  __pyx_t_2 = __pyx_v_name;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u__4};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_startswith, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 433, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 433, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":434
+ *     def __setattr__(self, name, value):
+ *         if name.startswith('_'):
+ *             super().__setattr__(name, value)             # <<<<<<<<<<<<<<
+ *         else:
+ *             self.__setitem__(name, value)
+*/
+    __pyx_t_6 = NULL;
+    __pyx_t_7 = __Pyx_CyFunction_GetClassObj(__pyx_self);
+    if (!__pyx_t_7) { PyErr_SetString(PyExc_RuntimeError, "super(): empty __class__ cell"); __PYX_ERR(0, 434, __pyx_L1_error) }
+    __Pyx_INCREF(__pyx_t_7);
+    __pyx_t_3 = 1;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_6, __pyx_t_7, __pyx_v_self};
+      __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_super, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+    }
+    __pyx_t_2 = __pyx_t_5;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_name, __pyx_v_value};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setattr, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_core/session.py":433
+ * 
+ *     def __setattr__(self, name, value):
+ *         if name.startswith('_'):             # <<<<<<<<<<<<<<
+ *             super().__setattr__(name, value)
+ *         else:
+*/
+    goto __pyx_L3;
+  }
+
+  /* "simplestart/ss_core/session.py":436
+ *             super().__setattr__(name, value)
+ *         else:
+ *             self.__setitem__(name, value)             # <<<<<<<<<<<<<<
+ * 
+ *     def update(self, **kwargs):
+*/
+  /*else*/ {
+    __pyx_t_5 = __pyx_v_self;
+    __Pyx_INCREF(__pyx_t_5);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_v_name, __pyx_v_value};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setitem, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+  __pyx_L3:;
+
+  /* "simplestart/ss_core/session.py":432
+ *         return self.__getitem__(name)
+ * 
+ *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
+ *         if name.startswith('_'):
+ *             super().__setattr__(name, value)
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.__setattr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":438
+ *             self.__setitem__(name, value)
+ * 
+ *     def update(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         """"""
+ *         for key, value in kwargs.items():
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_17update(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_8app_vars_16update, "\346\211\271\351\207\217\346\233\264\346\226\260\345\244\232\344\270\252\345\217\230\351\207\217");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_17update = {"update", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_17update, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_8app_vars_16update};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_17update(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_kwargs = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("update (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  __pyx_v_kwargs = PyDict_New(); if (unlikely(!__pyx_v_kwargs)) return NULL;
+  __Pyx_GOTREF(__pyx_v_kwargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 438, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 438, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "update", 1) < (0)) __PYX_ERR(0, 438, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("update", 1, 1, 1, i); __PYX_ERR(0, 438, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 438, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("update", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 438, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_DECREF(__pyx_v_kwargs); __pyx_v_kwargs = 0;
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.update", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_16update(__pyx_self, __pyx_v_self, __pyx_v_kwargs);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_DECREF(__pyx_v_kwargs);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_16update(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_kwargs) {
+  PyObject *__pyx_v_key = NULL;
+  PyObject *__pyx_v_value = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  Py_ssize_t __pyx_t_2;
+  Py_ssize_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
+  size_t __pyx_t_8;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("update", 0);
+
+  /* "simplestart/ss_core/session.py":440
+ *     def update(self, **kwargs):
+ *         """"""
+ *         for key, value in kwargs.items():             # <<<<<<<<<<<<<<
+ *             self.__setitem__(key, value)
+ * 
+*/
+  __pyx_t_2 = 0;
+  __pyx_t_5 = __Pyx_dict_iterator(__pyx_v_kwargs, 1, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_1);
+  __pyx_t_1 = __pyx_t_5;
+  __pyx_t_5 = 0;
+  while (1) {
+    __pyx_t_7 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, &__pyx_t_6, NULL, __pyx_t_4);
+    if (unlikely(__pyx_t_7 == 0)) break;
+    if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 440, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_5);
+    __pyx_t_5 = 0;
+    __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_6);
+    __pyx_t_6 = 0;
+
+    /* "simplestart/ss_core/session.py":441
+ *         """"""
+ *         for key, value in kwargs.items():
+ *             self.__setitem__(key, value)             # <<<<<<<<<<<<<<
+ * 
+ *     def get(self, key, default=None):
+*/
+    __pyx_t_5 = __pyx_v_self;
+    __Pyx_INCREF(__pyx_t_5);
+    __pyx_t_8 = 0;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_v_key, __pyx_v_value};
+      __pyx_t_6 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_setitem, __pyx_callargs+__pyx_t_8, (3-__pyx_t_8) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 441, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+    }
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":438
+ *             self.__setitem__(name, value)
+ * 
+ *     def update(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         """"""
+ *         for key, value in kwargs.items():
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.update", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_key);
+  __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":443
+ *             self.__setitem__(key, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_19get(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_11simplestart_7ss_core_7session_8app_vars_18get, "\n        \350\216\267\345\217\226\345\272\224\347\224\250\347\272\247\345\217\230\351\207\217\345\200\274\357\274\214\351\224\256\344\270\215\345\255\230\345\234\250\346\227\266\350\277\224\345\233\236\351\273\230\350\256\244\345\200\274\357\274\210\345\205\274\345\256\271 Streamlit \344\271\240\346\203\257\357\274\211\n        \n        Args:\n            key: \345\217\230\351\207\217\345\220\215\n            default: \351\224\256\344\270\215\345\255\230\345\234\250\346\227\266\350\277\224\345\233\236\347\232\204\351\273\230\350\256\244\345\200\274\n            \n        Returns:\n            \345\217\230\351\207\217\345\200\274\346\210\226\351\273\230\350\256\244\345\200\274\n        ");
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_19get = {"get", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_19get, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_7ss_core_7session_8app_vars_18get};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_19get(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_key = 0;
+  PyObject *__pyx_v_default = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("get (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_key,&__pyx_mstate_global->__pyx_n_u_default,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 443, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 443, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 443, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 443, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get", 0) < (0)) __PYX_ERR(0, 443, __pyx_L3_error)
+      if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
+      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, i); __PYX_ERR(0, 443, __pyx_L3_error) }
+      }
+    } else {
+      switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 443, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 443, __pyx_L3_error)
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 443, __pyx_L3_error)
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)Py_None));
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_key = values[1];
+    __pyx_v_default = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("get", 0, 2, 3, __pyx_nargs); __PYX_ERR(0, 443, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_18get(__pyx_self, __pyx_v_self, __pyx_v_key, __pyx_v_default);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_18get(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_default) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("get", 0);
+
+  /* "simplestart/ss_core/session.py":454
+ * 
+ *         """
+ *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             return self._defaults.get(key, default)
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 454, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":455
+ *         """
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return self._defaults.get(key, default)
+ *         data = self._ensure_client_data(clientid)
+*/
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 455, __pyx_L1_error)
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":456
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+ *             return self._defaults.get(key, default)             # <<<<<<<<<<<<<<
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None:
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = __pyx_t_5;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_key, __pyx_v_default};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":455
+ *         """
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return self._defaults.get(key, default)
+ *         data = self._ensure_client_data(clientid)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":457
+ *         if clientid == 0:
+ *             return self._defaults.get(key, default)
+ *         data = self._ensure_client_data(clientid)             # <<<<<<<<<<<<<<
+ *         if data is None:
+ *             return default
+*/
+  __pyx_t_5 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_5);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_v_clientid};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_ensure_client_data, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 457, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_data = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":458
+ *             return self._defaults.get(key, default)
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None:             # <<<<<<<<<<<<<<
+ *             return default
+ *         return data.get(key, default)
+*/
+  __pyx_t_4 = (__pyx_v_data == Py_None);
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":459
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None:
+ *             return default             # <<<<<<<<<<<<<<
+ *         return data.get(key, default)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_v_default);
+    __pyx_r = __pyx_v_default;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":458
+ *             return self._defaults.get(key, default)
+ *         data = self._ensure_client_data(clientid)
+ *         if data is None:             # <<<<<<<<<<<<<<
+ *             return default
+ *         return data.get(key, default)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":460
+ *         if data is None:
+ *             return default
+ *         return data.get(key, default)             # <<<<<<<<<<<<<<
+ * 
+ *     def keys(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_5 = __pyx_v_data;
+  __Pyx_INCREF(__pyx_t_5);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_v_key, __pyx_v_default};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":443
+ *             self.__setitem__(key, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.get", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_core/session.py":462
+ *         return data.get(key, default)
+ * 
+ *     def keys(self):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_21keys(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_7ss_core_7session_8app_vars_21keys = {"keys", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_7ss_core_7session_8app_vars_21keys, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_7ss_core_7session_8app_vars_21keys(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_self = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("keys (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 462, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 462, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "keys", 0) < (0)) __PYX_ERR(0, 462, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, i); __PYX_ERR(0, 462, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 462, __pyx_L3_error)
+    }
+    __pyx_v_self = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("keys", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 462, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.keys", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_7ss_core_7session_8app_vars_20keys(__pyx_self, __pyx_v_self);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_7ss_core_7session_8app_vars_20keys(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self) {
+  PyObject *__pyx_v_clientid = NULL;
+  PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("keys", 0);
+
+  /* "simplestart/ss_core/session.py":463
+ * 
+ *     def keys(self):
+ *         clientid = self.getclientid()             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             return self._defaults.keys()
+*/
+  __pyx_t_2 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_getclientid, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 463, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_clientid = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":464
+ *     def keys(self):
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return self._defaults.keys()
+ *         data = self._ensure_client_data(clientid)
+*/
+  __pyx_t_4 = (__Pyx_PyLong_BoolEqObjC(__pyx_v_clientid, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 464, __pyx_L1_error)
+  if (__pyx_t_4) {
+
+    /* "simplestart/ss_core/session.py":465
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+ *             return self._defaults.keys()             # <<<<<<<<<<<<<<
+ *         data = self._ensure_client_data(clientid)
+ *         return data.keys() if data else []
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_defaults); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 465, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = __pyx_t_5;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+      __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_keys, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 465, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
+    goto __pyx_L0;
+
+    /* "simplestart/ss_core/session.py":464
+ *     def keys(self):
+ *         clientid = self.getclientid()
+ *         if clientid == 0:             # <<<<<<<<<<<<<<
+ *             return self._defaults.keys()
+ *         data = self._ensure_client_data(clientid)
+*/
+  }
+
+  /* "simplestart/ss_core/session.py":466
+ *         if clientid == 0:
+ *             return self._defaults.keys()
+ *         data = self._ensure_client_data(clientid)             # <<<<<<<<<<<<<<
+ *         return data.keys() if data else []
+ * 
+*/
+  __pyx_t_5 = __pyx_v_self;
+  __Pyx_INCREF(__pyx_t_5);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_v_clientid};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_ensure_client_data, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 466, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_v_data = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_core/session.py":467
+ *             return self._defaults.keys()
+ *         data = self._ensure_client_data(clientid)
+ *         return data.keys() if data else []             # <<<<<<<<<<<<<<
+ * 
+ * 
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_data); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 467, __pyx_L1_error)
+  if (__pyx_t_4) {
+    __pyx_t_2 = __pyx_v_data;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_3 = 0;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+      __pyx_t_5 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_keys, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 467, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+    }
+    __pyx_t_1 = __pyx_t_5;
+    __pyx_t_5 = 0;
+  } else {
+    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 467, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_1 = __pyx_t_5;
+    __pyx_t_5 = 0;
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_core/session.py":462
+ *         return data.get(key, default)
+ * 
+ *     def keys(self):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("simplestart.ss_core.session.app_vars.keys", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_clientid);
+  __Pyx_XDECREF(__pyx_v_data);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -6458,6 +10017,8 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_session(PyObject *__pyx_pyinit_mod
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   size_t __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6608,7 +10169,7 @@ __Pyx_RefNannySetupContext("PyInit_session", 0);
  * from ss_core.print import myprint
  * myprint("this is module session.py")             # <<<<<<<<<<<<<<
  * 
- * class mysession_state:
+ * # ----------  Schema AI/"" *_SCHEMA  ----------
 */
   __pyx_t_4 = NULL;
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_myprint); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 5, __pyx_L1_error)
@@ -6624,378 +10185,942 @@ __Pyx_RefNannySetupContext("PyInit_session", 0);
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_core/session.py":7
- * myprint("this is module session.py")
+  /* "simplestart/ss_core/session.py":10
+ * 
+ * _SESSION_MISUSE_ATTRS = {
+ *     "getItem": "ss.session.get(key, default)  ss.session[key]",             # <<<<<<<<<<<<<<
+ *     "setItem": "ss.session[key] = value",
+ *     "removeItem": " APIss.session[key] = dict",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getItem, __pyx_mstate_global->__pyx_kp_u_ss_session_get_key_default_ss_se) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setItem, __pyx_mstate_global->__pyx_kp_u_ss_session_key_value) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_removeItem, __pyx_mstate_global->__pyx_kp_u_APIss_session_key_dict) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_clear, __pyx_mstate_global->__pyx_kp_u_API_ss_session_update_k1_None) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_key, __pyx_mstate_global->__pyx_kp_u_ss_session_keys) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_length, __pyx_mstate_global->__pyx_kp_u_len_ss_session_keys) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_SESSION_MISUSE_ATTRS, __pyx_t_2) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":19
+ * 
+ * 
+ * def _warn_stateobj_misuse(owner, name):             # <<<<<<<<<<<<<<
+ *     """ localStorage """
+ *     hint = _SESSION_MISUSE_ATTRS.get(name)
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_1_warn_stateobj_misuse, 0, __pyx_mstate_global->__pyx_n_u_warn_stateobj_misuse, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_warn_stateobj_misuse, __pyx_t_2) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":29
+ * 
+ * SESSION_SCHEMA = {
+ *     "name": "session",             # <<<<<<<<<<<<<<
+ *     "visible": False,
+ *     "category": "core-state",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(9); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_session) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":30
+ * SESSION_SCHEMA = {
+ *     "name": "session",
+ *     "visible": False,             # <<<<<<<<<<<<<<
+ *     "category": "core-state",
+ *     "identity": "(clientid)",
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_visible, Py_False) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_kp_u_core_state) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_identity, __pyx_mstate_global->__pyx_kp_u_clientid_2) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":33
+ *     "category": "core-state",
+ *     "identity": "(clientid)",
+ *     "not_a": [" localStorage", "", "", ""],             # <<<<<<<<<<<<<<
+ *     "lifetime": "",
+ *     "api": {
+*/
+  __pyx_t_5 = __Pyx_PyList_Pack(4, __pyx_mstate_global->__pyx_kp_u_localStorage_2, __pyx_mstate_global->__pyx_n_u__5, __pyx_mstate_global->__pyx_n_u__6, __pyx_mstate_global->__pyx_n_u__7); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_not_a, __pyx_t_5) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_lifetime, __pyx_mstate_global->__pyx_kp_u__8) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":36
+ *     "lifetime": "",
+ *     "api": {
+ *         "ss.session.init({...})": "",             # <<<<<<<<<<<<<<
+ *         "ss.session[key] = v / ss.session.key = v": "",
+ *         "ss.session.get(key, default)": " default",
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_ss_session_init, __pyx_mstate_global->__pyx_n_u__9) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_ss_session_key_v_ss_session_key, __pyx_mstate_global->__pyx_n_u__10) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_ss_session_get_key_default, __pyx_mstate_global->__pyx_kp_u_default_2) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_ss_session_key_ss_session_key, __pyx_mstate_global->__pyx_kp_u_KeyError) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_ss_session_keys_2, __pyx_mstate_global->__pyx_n_u__11) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_api, __pyx_t_5) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_core/session.py":43
+ *     },
+ *     "anti_patterns": [
+ *         {"wrong": "ss.session.getItem/setItem/removeItem/clear",             # <<<<<<<<<<<<<<
+ *          "why": "localStorage  API session  localstorage",
+ *          "fix": " api "},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_wrong, __pyx_mstate_global->__pyx_kp_u_ss_session_getItem_setItem_remov) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_why, __pyx_mstate_global->__pyx_kp_u_localStorage_API_session_localst) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_fix, __pyx_mstate_global->__pyx_kp_u_api_2) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":46
+ *          "why": "localStorage  API session  localstorage",
+ *          "fix": " api "},
+ *         {"wrong": "/",             # <<<<<<<<<<<<<<
+ *          "why": "session ", "fix": " ss.localStorage()"},
+ *         {"wrong": " session ",
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_wrong, __pyx_mstate_global->__pyx_kp_u__12) < (0)) __PYX_ERR(0, 46, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_why, __pyx_mstate_global->__pyx_kp_u_session_2) < (0)) __PYX_ERR(0, 46, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_fix, __pyx_mstate_global->__pyx_kp_u_ss_localStorage) < (0)) __PYX_ERR(0, 46, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":48
+ *         {"wrong": "/",
+ *          "why": "session ", "fix": " ss.localStorage()"},
+ *         {"wrong": " session ",             # <<<<<<<<<<<<<<
+ *          "why": " clientid ", "fix": " ss.app"},
+ *     ],
+*/
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_wrong, __pyx_mstate_global->__pyx_kp_u_session_3) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_why, __pyx_mstate_global->__pyx_kp_u_clientid_3) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_fix, __pyx_mstate_global->__pyx_kp_u_ss_app_2) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":42
+ *         "ss.session.keys()": "",
+ *     },
+ *     "anti_patterns": [             # <<<<<<<<<<<<<<
+ *         {"wrong": "ss.session.getItem/setItem/removeItem/clear",
+ *          "why": "localStorage  API session  localstorage",
+*/
+  __pyx_t_8 = __Pyx_PyList_Pack(3, __pyx_t_5, __pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_anti_patterns, __pyx_t_8) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":51
+ *          "why": " clientid ", "fix": " ss.app"},
+ *     ],
+ *     "related": {" localStorage": "ss.localStorage()get/set/clear localStorage.simplestart",             # <<<<<<<<<<<<<<
+ *                 "": "ss.store",
+ *                 "": "ss.app",
+*/
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_localStorage_2, __pyx_mstate_global->__pyx_kp_u_ss_localStorage_get_set_clear_lo) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u__13, __pyx_mstate_global->__pyx_kp_u_ss_store) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u__14, __pyx_mstate_global->__pyx_kp_u_ss_app) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u__15, __pyx_mstate_global->__pyx_kp_u_ss_State) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_related, __pyx_t_8) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_SESSION_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":57
+ * }
  * 
  * class mysession_state:             # <<<<<<<<<<<<<<
  *     """
  * 
 */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_mysession_state, __pyx_mstate_global->__pyx_n_u_mysession_state, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_kp_u__3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_mysession_state, __pyx_mstate_global->__pyx_n_u_mysession_state, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_kp_u_AI_localStorage_clientid_ss_loc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyList_New(0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
 
-  /* "simplestart/ss_core/session.py":11
- * 
+  /* "simplestart/ss_core/session.py":66
+ *      SESSION_SCHEMA
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.__session_state_data = {}
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_1__init__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_1__init__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_4) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_7) < (0)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":14
+  /* "simplestart/ss_core/session.py":69
  *         self.__session_state_data = {}
  * 
  *     def getclientid(self):             # <<<<<<<<<<<<<<
  *         """
  *         ID
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_3getclientid, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_getclientid, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_3getclientid, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_getclientid, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getclientid, __pyx_t_4) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getclientid, __pyx_t_7) < (0)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":28
+  /* "simplestart/ss_core/session.py":83
  * 
  *     # serversocket
  *     def add(self, session_state_instance):             # <<<<<<<<<<<<<<
  *         """
- * 
+ *          clientid  socket
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_5add, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_add, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_5add, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_add, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_add, __pyx_t_4) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_add, __pyx_t_7) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":40
+  /* "simplestart/ss_core/session.py":94
  * 
  *     #
  *     def get_session_state(self):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_7get_session_state, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_get_session_stat, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_7get_session_state, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_get_session_stat, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get_session_state, __pyx_t_4) < (0)) __PYX_ERR(0, 40, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get_session_state, __pyx_t_7) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":52
+  /* "simplestart/ss_core/session.py":106
  *         return self.__session_state_data[clientid]
  * 
  *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_9__getitem__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___getitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_9__getitem__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___getitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getitem, __pyx_t_4) < (0)) __PYX_ERR(0, 52, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getitem, __pyx_t_7) < (0)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":68
+  /* "simplestart/ss_core/session.py":122
  *         return self.__session_state_data[clientid][name]
  * 
  *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_11__setitem__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___setitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_11__setitem__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___setitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setitem, __pyx_t_4) < (0)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setitem, __pyx_t_7) < (0)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":83
+  /* "simplestart/ss_core/session.py":137
  * 
  *     #
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_13__getattr__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___getattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_13__getattr__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___getattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getattr, __pyx_t_4) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getattr, __pyx_t_7) < (0)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":95
+  /* "simplestart/ss_core/session.py":150
  *         return self.__getitem__(name)
  * 
  *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_15__setattr__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___setattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_15__setattr__, 0, __pyx_mstate_global->__pyx_n_u_mysession_state___setattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  PyList_Append(__pyx_t_5, __pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setattr, __pyx_t_4) < (0)) __PYX_ERR(0, 95, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  PyList_Append(__pyx_t_8, __pyx_t_7);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setattr, __pyx_t_7) < (0)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":110
+  /* "simplestart/ss_core/session.py":165
  *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_17get, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_get, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
+  #endif
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_7, __pyx_mstate_global->__pyx_tuple[0]);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get, __pyx_t_7) < (0)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "simplestart/ss_core/session.py":181
+ *         return self.__session_state_data[clientid].get(key, default)
  * 
  *     def keys(self):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_17keys, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_keys, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_19keys, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_keys, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_keys, __pyx_t_4) < (0)) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_keys, __pyx_t_7) < (0)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":120
+  /* "simplestart/ss_core/session.py":191
  *         return self.__session_state_data[clientid].keys()
  * 
  *     def init(self, init_vars):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_19init, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_15mysession_state_21init, 0, __pyx_mstate_global->__pyx_n_u_mysession_state_init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init_2, __pyx_t_4) < (0)) __PYX_ERR(0, 120, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init_2, __pyx_t_7) < (0)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":7
- * myprint("this is module session.py")
+  /* "simplestart/ss_core/session.py":57
+ * }
  * 
  * class mysession_state:             # <<<<<<<<<<<<<<
  *     """
  * 
 */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_mysession_state, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_mysession_state, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_CyFunction_InitClassCell(__pyx_t_5, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_mysession_state, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_CyFunction_InitClassCell(__pyx_t_8, __pyx_t_7) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_mysession_state, __pyx_t_7) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_core/session.py":131
+  /* "simplestart/ss_core/session.py":202
  *             self.__setattr__(key, value)
  * 
  * session = mysession_state()  #             # <<<<<<<<<<<<<<
  * 
  * 
 */
-  __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_mysession_state); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_7 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_mysession_state); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_6 = 1;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
-    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_7, NULL};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_session, __pyx_t_2) < (0)) __PYX_ERR(0, 131, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_session, __pyx_t_2) < (0)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_core/session.py":134
+  /* "simplestart/ss_core/session.py":205
  * 
  * 
  * class page_vars:             # <<<<<<<<<<<<<<
  *     """
  * 
 */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_page_vars, __pyx_mstate_global->__pyx_n_u_page_vars, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_kp_u__4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_page_vars, __pyx_mstate_global->__pyx_n_u_page_vars, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_kp_u_localStorage_STORE_SCHEMA); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyList_New(0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
 
-  /* "simplestart/ss_core/session.py":138
- * 
+  /* "simplestart/ss_core/session.py":211
+ *       localStorage STORE_SCHEMA
  *     """
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         self.__data = {}
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_1__init__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_1__init__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_4) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_7) < (0)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":141
+  /* "simplestart/ss_core/session.py":214
  *         self.__data = {}
  * 
  *     def getclientid(self):             # <<<<<<<<<<<<<<
  *         """
  *         ID
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_3getclientid, 0, __pyx_mstate_global->__pyx_n_u_page_vars_getclientid, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_3getclientid, 0, __pyx_mstate_global->__pyx_n_u_page_vars_getclientid, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getclientid, __pyx_t_4) < (0)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getclientid, __pyx_t_7) < (0)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":154
+  /* "simplestart/ss_core/session.py":227
  *         return clientid
  * 
  *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_5__getitem__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___getitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_5__getitem__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___getitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getitem, __pyx_t_4) < (0)) __PYX_ERR(0, 154, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getitem, __pyx_t_7) < (0)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":176
+  /* "simplestart/ss_core/session.py":249
  *         return self.__data[clientid][name]
  * 
  *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_7__setitem__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___setitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_7__setitem__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___setitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setitem, __pyx_t_4) < (0)) __PYX_ERR(0, 176, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setitem, __pyx_t_7) < (0)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":195
+  /* "simplestart/ss_core/session.py":268
  * 
  *     #
  *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_9__getattr__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___getattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 195, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_9__getattr__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___getattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getattr, __pyx_t_4) < (0)) __PYX_ERR(0, 195, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getattr, __pyx_t_7) < (0)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":207
+  /* "simplestart/ss_core/session.py":281
  *         return self.__getitem__(name)
  * 
  *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_11__setattr__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___setattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_11__setattr__, 0, __pyx_mstate_global->__pyx_n_u_page_vars___setattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  PyList_Append(__pyx_t_5, __pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setattr, __pyx_t_4) < (0)) __PYX_ERR(0, 207, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  PyList_Append(__pyx_t_8, __pyx_t_7);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setattr, __pyx_t_7) < (0)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":222
+  /* "simplestart/ss_core/session.py":296
  *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_13get, 0, __pyx_mstate_global->__pyx_n_u_page_vars_get, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
+  #endif
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_7, __pyx_mstate_global->__pyx_tuple[0]);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get, __pyx_t_7) < (0)) __PYX_ERR(0, 296, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "simplestart/ss_core/session.py":312
+ *         return self.__data[clientid].get(key, default)
  * 
  *     def keys(self):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_13keys, 0, __pyx_mstate_global->__pyx_n_u_page_vars_keys, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_15keys, 0, __pyx_mstate_global->__pyx_n_u_page_vars_keys, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_keys, __pyx_t_4) < (0)) __PYX_ERR(0, 222, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_keys, __pyx_t_7) < (0)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":232
+  /* "simplestart/ss_core/session.py":322
  *         return self.__data[clientid].keys()
  * 
  *     def init(self, init_vars):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_15init, 0, __pyx_mstate_global->__pyx_n_u_page_vars_init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 232, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_9page_vars_17init, 0, __pyx_mstate_global->__pyx_n_u_page_vars_init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 322, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init_2, __pyx_t_4) < (0)) __PYX_ERR(0, 232, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init_2, __pyx_t_7) < (0)) __PYX_ERR(0, 322, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "simplestart/ss_core/session.py":134
+  /* "simplestart/ss_core/session.py":205
  * 
  * 
  * class page_vars:             # <<<<<<<<<<<<<<
  *     """
  * 
 */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_page_vars, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_page_vars, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_7);
   #endif
-  if (__Pyx_CyFunction_InitClassCell(__pyx_t_5, __pyx_t_4) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_page_vars, __pyx_t_4) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_CyFunction_InitClassCell(__pyx_t_8, __pyx_t_7) < (0)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_page_vars, __pyx_t_7) < (0)) __PYX_ERR(0, 205, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_core/session.py":244
+  /* "simplestart/ss_core/session.py":334
+ * 
+ * STORE_SCHEMA = {
+ *     "name": "store",             # <<<<<<<<<<<<<<
+ *     "visible": False,
+ *     "category": "core-state",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_store) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":335
+ * STORE_SCHEMA = {
+ *     "name": "store",
+ *     "visible": False,             # <<<<<<<<<<<<<<
+ *     "category": "core-state",
+ *     "identity": " clientid",
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_visible, Py_False) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_kp_u_core_state) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_identity, __pyx_mstate_global->__pyx_kp_u_clientid_4) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":338
+ *     "category": "core-state",
+ *     "identity": " clientid",
+ *     "not_a": [" localStorage", ""],             # <<<<<<<<<<<<<<
+ *     "api": {
+ *         "ss.store[key] = v / ss.store.key = v": "",
+*/
+  __pyx_t_7 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_kp_u_localStorage_2, __pyx_mstate_global->__pyx_n_u__16); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_not_a, __pyx_t_7) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "simplestart/ss_core/session.py":340
+ *     "not_a": [" localStorage", ""],
+ *     "api": {
+ *         "ss.store[key] = v / ss.store.key = v": "",             # <<<<<<<<<<<<<<
+ *         "ss.store.get(key, default)": " default",
+ *         "ss.store[key] / ss.store.key": " None",
+*/
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_ss_store_key_v_ss_store_key_v, __pyx_mstate_global->__pyx_n_u__17) < (0)) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_ss_store_get_key_default, __pyx_mstate_global->__pyx_kp_u_default_2) < (0)) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_ss_store_key_ss_store_key, __pyx_mstate_global->__pyx_kp_u_None) < (0)) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_ss_store_init, __pyx_mstate_global->__pyx_n_u__18) < (0)) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_api, __pyx_t_7) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "simplestart/ss_core/session.py":346
+ *     },
+ *     "anti_patterns": [
+ *         {"wrong": "ss.store.setItem/getItem", "why": "localStorage  API ", "fix": "ss.store[key] = v / ss.store.get(key)"},             # <<<<<<<<<<<<<<
+ *     ],
+ * }
+*/
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 346, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_wrong, __pyx_mstate_global->__pyx_kp_u_ss_store_setItem_getItem) < (0)) __PYX_ERR(0, 346, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_why, __pyx_mstate_global->__pyx_kp_u_localStorage_API) < (0)) __PYX_ERR(0, 346, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_fix, __pyx_mstate_global->__pyx_kp_u_ss_store_key_v_ss_store_get_key) < (0)) __PYX_ERR(0, 346, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":345
+ *         "ss.store.init({...})": "",
+ *     },
+ *     "anti_patterns": [             # <<<<<<<<<<<<<<
+ *         {"wrong": "ss.store.setItem/getItem", "why": "localStorage  API ", "fix": "ss.store[key] = v / ss.store.get(key)"},
+ *     ],
+*/
+  __pyx_t_8 = __Pyx_PyList_Pack(1, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_anti_patterns, __pyx_t_8) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_STORE_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":352
+ * 
+ * APP_VARS_SCHEMA = {
+ *     "name": "app",             # <<<<<<<<<<<<<<
+ *     "visible": False,
+ *     "category": "core-state",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_app) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":353
+ * APP_VARS_SCHEMA = {
+ *     "name": "app",
+ *     "visible": False,             # <<<<<<<<<<<<<<
+ *     "category": "core-state",
+ *     "identity": " clientid ",
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_visible, Py_False) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_kp_u_core_state) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_identity, __pyx_mstate_global->__pyx_kp_u_clientid_5) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":356
+ *     "category": "core-state",
+ *     "identity": " clientid ",
+ *     "not_a": [" localStorage", ""],             # <<<<<<<<<<<<<<
+ *     "api": {
+ *         "ss.app.init(k=v, ...)": " app.py ",
+*/
+  __pyx_t_8 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_kp_u_localStorage_2, __pyx_mstate_global->__pyx_n_u__19); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 356, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_not_a, __pyx_t_8) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":358
+ *     "not_a": [" localStorage", ""],
+ *     "api": {
+ *         "ss.app.init(k=v, ...)": " app.py ",             # <<<<<<<<<<<<<<
+ *         "ss.app.k = v / ss.app[k] = v": "",
+ *         "ss.app.k / ss.app.get(k, default)": "",
+*/
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 358, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_ss_app_init_k_v, __pyx_mstate_global->__pyx_kp_u_app_py) < (0)) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_ss_app_k_v_ss_app_k_v, __pyx_mstate_global->__pyx_n_u__20) < (0)) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_ss_app_k_ss_app_get_k_default, __pyx_mstate_global->__pyx_n_u__21) < (0)) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_ss_app_update_k1_v1_k2_v2, __pyx_mstate_global->__pyx_n_u__22) < (0)) __PYX_ERR(0, 358, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_api, __pyx_t_8) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":364
+ *     },
+ *     "anti_patterns": [
+ *         {"wrong": " app ",             # <<<<<<<<<<<<<<
+ *          "why": "",
+ *          "fix": ""},
+*/
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_wrong, __pyx_mstate_global->__pyx_kp_u_app_2) < (0)) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_why, __pyx_mstate_global->__pyx_kp_u__23) < (0)) __PYX_ERR(0, 364, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_fix, __pyx_mstate_global->__pyx_n_u__24) < (0)) __PYX_ERR(0, 364, __pyx_L1_error)
+
+  /* "simplestart/ss_core/session.py":363
+ *         "ss.app.update(k1=v1, k2=v2)": "",
+ *     },
+ *     "anti_patterns": [             # <<<<<<<<<<<<<<
+ *         {"wrong": " app ",
+ *          "why": "",
+*/
+  __pyx_t_7 = __Pyx_PyList_Pack(1, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 363, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_anti_patterns, __pyx_t_7) < (0)) __PYX_ERR(0, 352, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_APP_VARS_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 351, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":371
+ * 
+ * 
+ * class app_vars:             # <<<<<<<<<<<<<<
+ *     """
+ * 
+*/
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_app_vars, __pyx_mstate_global->__pyx_n_u_app_vars, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_kp_u_app_py_ss_app_init_is_logged_in); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_7 = PyList_New(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+
+  /* "simplestart/ss_core/session.py":384
+ *         ss.app.update(x=1, y=2)        #
+ *     """
+ *     def __init__(self):             # <<<<<<<<<<<<<<
+ *         self._defaults = {}
+ *         self._data = {}
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_1__init__, 0, __pyx_mstate_global->__pyx_n_u_app_vars___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_8) < (0)) __PYX_ERR(0, 384, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":388
+ *         self._data = {}
+ * 
+ *     def init(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         """
+ *          app.py
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_3init, 0, __pyx_mstate_global->__pyx_n_u_app_vars_init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init_2, __pyx_t_8) < (0)) __PYX_ERR(0, 388, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":395
+ *         self._defaults.update(kwargs)
+ * 
+ *     def getclientid(self):             # <<<<<<<<<<<<<<
+ *         clientid = get_context_var(ctx_clientid)
+ *         return clientid if clientid != 0 else 0
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_5getclientid, 0, __pyx_mstate_global->__pyx_n_u_app_vars_getclientid, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 395, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getclientid, __pyx_t_8) < (0)) __PYX_ERR(0, 395, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":399
+ *         return clientid if clientid != 0 else 0
+ * 
+ *     def _ensure_client_data(self, clientid):             # <<<<<<<<<<<<<<
+ *         if clientid == 0:
+ *             return None
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_7_ensure_client_data, 0, __pyx_mstate_global->__pyx_n_u_app_vars__ensure_client_data, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_ensure_client_data, __pyx_t_8) < (0)) __PYX_ERR(0, 399, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":408
+ *         return self._data[clientid]
+ * 
+ *     def __getitem__(self, name):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_9__getitem__, 0, __pyx_mstate_global->__pyx_n_u_app_vars___getitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getitem, __pyx_t_8) < (0)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":417
+ *         return data[name]
+ * 
+ *     def __setitem__(self, name, value):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_11__setitem__, 0, __pyx_mstate_global->__pyx_n_u_app_vars___setitem, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 417, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setitem, __pyx_t_8) < (0)) __PYX_ERR(0, 417, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":426
+ *             data[name] = value
+ * 
+ *     def __getattr__(self, name):             # <<<<<<<<<<<<<<
+ *         if name.startswith('_'):
+ *             return super().__getattribute__(name)
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_13__getattr__, 0, __pyx_mstate_global->__pyx_n_u_app_vars___getattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 426, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  PyList_Append(__pyx_t_7, __pyx_t_8);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_getattr, __pyx_t_8) < (0)) __PYX_ERR(0, 426, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":432
+ *         return self.__getitem__(name)
+ * 
+ *     def __setattr__(self, name, value):             # <<<<<<<<<<<<<<
+ *         if name.startswith('_'):
+ *             super().__setattr__(name, value)
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_15__setattr__, 0, __pyx_mstate_global->__pyx_n_u_app_vars___setattr, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  PyList_Append(__pyx_t_7, __pyx_t_8);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_setattr, __pyx_t_8) < (0)) __PYX_ERR(0, 432, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":438
+ *             self.__setitem__(name, value)
+ * 
+ *     def update(self, **kwargs):             # <<<<<<<<<<<<<<
+ *         """"""
+ *         for key, value in kwargs.items():
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_17update, 0, __pyx_mstate_global->__pyx_n_u_app_vars_update, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_update, __pyx_t_8) < (0)) __PYX_ERR(0, 438, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":443
+ *             self.__setitem__(key, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_19get, 0, __pyx_mstate_global->__pyx_n_u_app_vars_get, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[30])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_8, __pyx_mstate_global->__pyx_tuple[0]);
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get, __pyx_t_8) < (0)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":462
+ *         return data.get(key, default)
+ * 
+ *     def keys(self):             # <<<<<<<<<<<<<<
+ *         clientid = self.getclientid()
+ *         if clientid == 0:
+*/
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_7ss_core_7session_8app_vars_21keys, 0, __pyx_mstate_global->__pyx_n_u_app_vars_keys, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_core_session, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[31])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_keys, __pyx_t_8) < (0)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+  /* "simplestart/ss_core/session.py":371
+ * 
+ * 
+ * class app_vars:             # <<<<<<<<<<<<<<
+ *     """
+ * 
+*/
+  __pyx_t_8 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_app_vars, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
+  #endif
+  if (__Pyx_CyFunction_InitClassCell(__pyx_t_7, __pyx_t_8) < (0)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_app_vars, __pyx_t_8) < (0)) __PYX_ERR(0, 371, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":471
  * 
  * #
  * store = page_vars()  #             # <<<<<<<<<<<<<<
+ * app = app_vars()     #
 */
-  __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_page_vars); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 244, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_page_vars); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_6 = 1;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
-    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 244, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_8, NULL};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 471, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_store, __pyx_t_2) < (0)) __PYX_ERR(0, 244, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_store, __pyx_t_2) < (0)) __PYX_ERR(0, 471, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_core/session.py":472
+ * #
+ * store = page_vars()  #
+ * app = app_vars()     #             # <<<<<<<<<<<<<<
+*/
+  __pyx_t_7 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_app_vars); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_6 = 1;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_7, NULL};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+  }
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_app, __pyx_t_2) < (0)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_core/session.py":1
@@ -7015,6 +11140,8 @@ __Pyx_RefNannySetupContext("PyInit_session", 0);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.ss_core.session", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -7046,7 +11173,7 @@ __Pyx_RefNannySetupContext("PyInit_session", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_super = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_super); if (!__pyx_builtin_super) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_builtin_super = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_super); if (!__pyx_builtin_super) __PYX_ERR(0, 160, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
@@ -7065,42 +11192,75 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannyDeclarations
   CYTHON_UNUSED_VAR(__pyx_mstate);
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
+
+  /* "simplestart/ss_core/session.py":165
+ *             self.__setitem__(name, value)
+ * 
+ *     def get(self, key, default=None):             # <<<<<<<<<<<<<<
+ *         """
+ *          Streamlit
+*/
+  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(1, Py_None); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[0]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[0]);
+  #if CYTHON_IMMORTAL_CONSTANTS
+  {
+    PyObject **table = __pyx_mstate->__pyx_tuple;
+    for (Py_ssize_t i=0; i<1; ++i) {
+      #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
+      #if PY_VERSION_HEX < 0x030E0000
+      if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
+      #else
+      if (PyUnstable_Object_IsUniquelyReferenced(table[i]))
+      #endif
+      {
+        Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
+      }
+      #else
+      Py_SET_REFCNT(table[i], _Py_IMMORTAL_INITIAL_REFCNT);
+      #endif
+    }
+  }
+  #endif
   __Pyx_RefNannyFinishContext();
   return 0;
+  __pyx_L1_error:;
+  __Pyx_RefNannyFinishContext();
+  return -1;
 }
 /* #### Code section: init_constants ### */
 
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 7; } index[] = {{1},{67},{82},{1},{24},{30},{25},{1},{20},{3},{18},{4},{17},{8},{18},{12},{7},{8},{15},{17},{11},{11},{11},{8},{4},{9},{13},{5},{3},{4},{8},{13},{10},{7},{15},{27},{27},{24},{27},{27},{36},{19},{33},{27},{20},{20},{4},{8},{9},{21},{21},{18},{21},{21},{16},{21},{14},{14},{3},{11},{12},{4},{7},{22},{12},{11},{10},{11},{27},{13},{10},{5},{5},{8},{4},{5},{6},{32},{41},{88},{39},{43},{62},{36},{41},{28},{29},{10},{9},{35},{15}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (858 bytes) */
-const char* const cstring = "BZh91AY&SYD\315\226S\000\000c\177\373\341\377\374 fa\247\244\256\365s\000\277\357\377\354g\335\364\326qI\347\274@@G\340\300\000@\003\034\000\000\2004IL\020\304\301\251\243FF!\243@\000\r\0324=@\r4\r2i\204\310z\200\3204\332i\016\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000p\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\001\"B\023\t\224\311\244\362\024\323\324\323@\000\001\241\241\240\032i\246G\224\365\003@\000\000\320\365\000_vPD\0144T\374\0013\344\372\027\305\377K\254\2719\004\333m\266\3067\200*\270\277nd\364\210\250U\264r\032\246\255-\202\271\3530\024\304\325s\230g6F$\255\251M\025\252\320N\206@\265\207L\350~7b\256\202VKd\270\025*{\326fm\266\333gI\220\333o\244>\240\335Y\261\302@C\030[\326\200!D\244JH\031\006\343\235S#\334\033\0051q\3277%c\203\226\247[\266\t\n8\340J\317S\253\216Y\022\033\217V\223\3408g\001uT\245s\213g\023\234N~\313U\223e*\224U{\213\021\\\200\206CN!)4\r\266\005\300\r\270\232\006\352\365\245\323\266\341\027q{E\301Z\244\201@Xq\030\251\t\026\352\3333\345\237w\003\252\331\240\265\262\350\025\\<L\234\310\250\252r\233\260y\350-\266\0146\357\224\344\243q\340\370DK\330\276\226T\"\324[\271J!\024\271S\225u\031{!\261\246\330\323\227R\275\240\322f\340\322#M\373p\014aa\277\321\204_\231\030,\325\312\205\262!\346\035\246\253\001\034]\2754\205\211c\307%e\234\027\02217\025\222\026Sf\364\322\276A\226w\255R\215\2056I\3457\274T\300\034\261{w\346\312\241\025\215\332\210V\356\220\010\307&\0303Qf|\341}\265\310\273\013\325s\303B\313\233\314\345\233\243\030\333W\212\367\210c\242\"\010!%\244\320\006/<\004\234\254\246/WB\301\023o\\G\006\230ZXt]\267\2025Y\203\3035\316\371X\204M\255\253@7\345*Fe\315\335\320\267\261\250)8\256m\202 D\tH\006[vy\3027H\251'*\342\361W;\363\n\375\213[\\x\230o\225\362\263\3540\312\250\005=\254\250p\357E5\303\004\311O\034\200\034.\033\363\232\221\355\344$\305\014\230W\013\325\311\242~K7\014t7\001\003(\312\026\231\227\033Q`\177!`\260j*4\034\346\354vL\220C\220\001\200RQ,\200\201:P\232\010\336\000\036\005_\240\223\177{>\030""\2458K\302L\236 A\024\"\010\263\303\242t\346\342\020\202\217\320\344JmKi\334!\337L\006&\001\322\241\n\344\323\242\245\013\247\216\377G\311\275\246X\323j\030I\306/\300T\376Z\025\362\342\263\016,@\373\321\3536\203\357\3625P\240]\221\217\345\005\220\221C\021\363I\351\023\354\000\202\310\006qL\0226\316\321\010L\305uFd\345\226_aj\354\3530\026\251Z\311\310\020\003T\254kD\262\331\255\206\352\0175Wge\312\342e\350\005\376.\344\212p\241 \211\233,\246";
-    PyObject *data = __Pyx_DecompressString(cstring, 858, 2);
+    const struct { const unsigned int length: 9; } index[] = {{1},{364},{61},{53},{39},{32},{49},{1},{60},{1},{11},{81},{35},{53},{26},{439},{91},{31},{90},{106},{10},{47},{26},{71},{22},{33},{66},{193},{27},{29},{45},{24},{30},{8},{6},{25},{21},{33},{28},{27},{60},{76},{43},{28},{48},{22},{32},{40},{23},{34},{17},{8},{26},{20},{28},{37},{36},{24},{25},{15},{20},{21},{14},{12},{33},{24},{18},{21},{21},{15},{6},{15},{39},{24},{6},{12},{45},{1},{24},{21},{9},{27},{3},{13},{3},{3},{8},{20},{20},{17},{20},{20},{28},{12},{20},{13},{13},{15},{18},{4},{8},{17},{5},{8},{18},{12},{5},{4},{7},{9},{7},{19},{3},{8},{3},{7},{15},{17},{11},{16},{11},{11},{4},{8},{8},{4},{9},{13},{5},{3},{4},{6},{6},{8},{8},{13},{10},{7},{15},{27},{27},{24},{27},{27},{36},{19},{19},{33},{27},{20},{20},{4},{8},{5},{5},{9},{21},{21},{18},{21},{21},{16},{13},{21},{14},{14},{3},{11},{12},{7},{10},{4},{7},{22},{7},{12},{11},{10},{11},{27},{13},{17},{10},{5},{5},{8},{6},{4},{5},{6},{7},{4},{21},{3},{5},{68},{32},{24},{47},{41},{88},{39},{43},{78},{56},{64},{62},{25},{41},{37},{28},{29},{79},{10},{26},{9},{15},{35},{16},{24},{24},{79},{59},{60}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2767 bytes) */
+const char* const cstring = "BZh91AY&SYP#<x\000\001U\177\377\377\377\377\363o\377\367\366\277\377\377\252\277\377\377\376\177\377\377\377\377\377\357\377\300@@@_\340\300\000`\n?\004lTE\000\000H\032\nR W\267\000\004\242$OQ2\031\014F\214\203FM3L\215C \r\001\352\036\202\032h\032\000\001\241\243G\244h=!\240=M1\006\200\321\2404h\320hh\323@d\204\000)\3444h\023F\2311&\232j=4M4\030\023i\006 \003\324\036\240\000\000\001\264\200\007\250\000\000\000\000=@\001\221\003FCL\2002d\3204b\032\032d\304\310dh4h\323 \r\014\231\030C\020dh\302d\000\000\321\202d\320\000\000\006\200\002\247\244\241\372\246\231\000\r\000\000\000\032\032\000h\000\000b\000\000\320d\000\000\001\240\320\000\000\014&\2004\000\004\r\031\r2\000\311\223@\321\210hi\223\023!\221\240\321\243L\20042da\014A\221\243\t\220\000\003F\t\223@\000\000\032\000\004\210\210\020\231\031\004\311\211\243Bd\236\246\010\323F\320!\243 \311\246\203C@1\032\000\321\2106\240\032h4\030\201\240\r\r2h0\322\014\2313b\313\003\320k(\0101m\235\212\032G\207\340\237f\021\003_}\237\300\356\246\313\010\3639\274\325T^\313,\364b(\265\244\"\344\\\304\230\333m6\r\203b\033\003:\002\313{\305\320=S\243q\344\367\321\246\373\337\010\257\366\213sg\336\0223\351\244j6\304\250\270uJ\300\324\205\236\265'}h\024!\r](6.|Y']:\030\214\000\252\025\351\272\227\206\000\267oW\363j\262\2541*\250\302\363e$\227o\250\013\231\301`\215\317\234{#\200\242\330r\\j\021\342\366\346K\242\347\307rU\365\255e\216t\340J \355\235\233^\336\250{\3345\215\227\222\252\032\n\252\276&#@\217\320o\311\234}\2246\364\234\"\314\270\362\223\r\270\232q\344\204t\231;@P\240?\030\224\217\345\230\260_\323G<\035\202\367t\376\020HdS\020\231\311\261\202\2410\306\017A/E\322U\350\033\264\244P\326D\241\224\236v\273\n\371\270\264Q\335\232\r0\333:\274\311\000\252<\340\241T6\306\306\306\333M\241>?A1;\003nF\333\222f[\2252\324\303\210\204\344\222RR\265H\0214\"\302\344\276\325\214\266!\362x\\\214\3579\247G\323\233\244\002\206\323\210!\0330\330;-\267\300U\020U@B\207cPH\000!\032\353#\004\204\2125\222\245x\022\336\273\303]\342\035\342w\334\3227-I""\246!gO\200\rQ\203sr\201/\201\314F\002U\310\355;\224T9\205q\226m]u!w\010\236\360\300\371\217' \204G\236\230:\026'N\360\211\325\341\225H\325\323\252$#l\373\202\222\242\210\205\204H\003\256\306\3502\303\304Q\236R\307$f\016\000\"7D.:\266\010\020R\220\343f^\235\020!\256\r\344\017\0216\255L\266.6\224\236U\r\0212\021\255\016\3061\345\347\006\2225*Dl;#\264\027|zvZ\356f\026\030Vb\372\021JE3\324\255\212\255Y3\005\211T\302q!\340\351Xw4\025aR\260\207*>\364@\254iul\206\330\215!\003\241\0218\355m\266\306\014m\266\342\"\233\364\307\367 \352\362AA\\\220\321&\204\300\217?\304R\314 :&\221W%H\211@\205L#\315i\264dt\2344\227\007\240P\001M\250}\376\203\212N$\025I9\315!.\366\006W\301\002\206\276\366\377\022g\241\211\351\030d\321\237\325\032\251\3544\212\353\310\315\203\256\031\250u\031\345\3562\206|q^\305\242qd\3441AlT\306\326\2722\224\241\200b\213&\232.\212;\356Q\254\315\3346{\364B\321\253\236D\323M\266\302\217pa\275A\332\324H\355v$UF\335\334J\224\345i\201\027_m\224IH\321y\246i!]J\352\305\372\367FLU\266\022A\025\t\315\215\025lm\246\314\255Cm\215\r\356\301\r\203e\265\266\234\232p\005\3371\006\345\331\035\366A\260\203Sk\036\213\345\001`\365\021\312w\356\352g\241xu\256\023\023.\016\t\245fc\211\273v5\306\335\332\227\300\274\357v\352#a\232\342N\300\300\314\351CL$\"!\232dq\361\033\227\244\202sV\335\376\036\276\250\214h5\265eO\013\216k\230\030,o\277\315BB@\315!\351\030E\272\251\026\232Z\304,,\236\000c\262\304-\016\351\344bX\013T\251\200\rc\264J\223\274\326\335)l\304\225\006\241\260\256y\332\"\216\273*\254\02446\200\331\207]G\265\223\r\027\\p\034`\341\013J\3701P\212\204]\tKC7vbn\313\221#)\264\240\325-B\r\363$\023\300\265\"\006\2066\320\312o<l\274\322\265\013+\005\243L0\256\224M\326f\235\002\264\300/\204%M\032\3670f\267\037[yp\021\304\010\363yp\2502\216\032\r@4\336\204\214\254I\352\031\270\272\271\254,-$\202\355\275b\302N\202\250\024\264tQ\220s\301\036\272\330\275!\241_\000@$\333\307\001c\230#eM\226n]\264\353o.Z %E\002\361\"tHT\253\354i\022\026\001m\010\242_\301m91$\014h.%$\022\016\025\204\337""\214Ja\203\337Pi\334\375F\014\331T\033\206\016\301\202\006\224\030\246\220X\232\204\254\275\273\322A\225\330\326\253\326\020}}\314\004r\253i\263\030b\347iF\301\227\0062F\305\322V\241\\\234;0)\n\333/\226\026\270\231I\035+\221-\332\244\233\027,,\001\2667\013#\323x\235\274.\025\325B\245\344\302\tq\026\230\220bm\"\265\300\n\263%\271\261\244f\267|G\025\2016\331\370\334-.J\274\0166\270if\016\204\32759\375\320\352\227\036\230\351z\005i|\256\216\226\024\256\367?\306\215\215\233MFrF\021\216zz \327\2621\356\3004&\254g\016\335\265\220\333\010Il\034/c\227s\327.\342\235U\035KUr\305\255c\327\214q\2610C\364\006\027\364\302K\376*\232\372P[\352k\020U`\304\010\340}u\353\014\177\357\226\006\313\270\003\262\017\332\212\341\221U\n\323\001\006\n{\216\334\355\230!\213\266\036\316\2573\353\303\020~\004\363\230\t\210cH\325B\250x\257\\\031@\252L9\272\307\217c,i\217\271\260\265\013\320\0250<\3574\203\002\373\204\\-yH\366c?\314\303\030lV\301\014\361v\262\010j\r\270\027`0\341\266\030V\350\370\376P\354+\205\215\010\3722#'\374B\202\037\364\357|1\203\032\347\233=/fu\037\276 \234\325\006\252F\025AEAZ\320-\207\034\244\365y\320G\025\033\263\270\364\333\253\354\361\0216\203\362\246D\240:\236\017(`q\372o?\227\344W\223R\234b\207\236\210m\336$\0358\251\3070,GR\224\211b\363\225\375m\022\3512L\0205\325B\363\n\231\022\263\245\361\271&\245T\213\353\213\260\037u\023\273\354\212\245\321\255J$\242\242j^\251]N\020J\270\036\213\262\216\251\n\317\202\346\232\361\321\321.\"7\220\037\247\214\"\016x\021\331.}\243\326\207B\203\222\227\376:\362\215\201\355\253q\214\212u\354%)`\233\242\023C.G\2609\340k)r\345+\r\357\271\244\0174\331\361H\307\200\240\200W\255\271>\203\252\200\267\254gF\362\037-_\252OT\nP\234I[\312\004\240-\002\236\243*\223\204\355\330\315Y\303\251\236\021\350\221\207\310\300y\010iN\304zAG\344\013\344\333\261\022D\001\300\252K\212\373eH\000\332\335\267>\251\201H_\375\301Q-$\034\276}\314\335\332v\220\177\210\362<\017\343\312\305\316\017(\363+Y\036I\270\035\245\211\005FX\325\222x\211\204\257-\326j[\005\334""\341E\274\217\226{G\277 p\300\251\345\215N\370#Mr2\3128\325 \254\321U.\303\342\304\237\236\313\021h\300\247\322^7tA6\367cS\250r\217\033\265\355\231\035g\211\326\317\225\363\240\372\335\233A\235h\321\260\267\200\330\240l\035MZ\271\373\301\300\352\205\323s\021\365;\256(NSI4\250\304\274/@\2754\227\2423'\n\000\317\243\3417\274\035\335U@\320\240\017?\235a26\274\363\254\323\300\t\to\351\236\t\206d\222cI\324\024EF\270\340\215#\330\314\010\031\206\314K\203&\2530')k\264\365s\261\253R4@*p\035c\262D\256\255C\021\204\366\264(\354\254\225\244\021])\246\026HJ\035\251\266\311\262d@A\200\024P\310X\310\004\020\306\264\004\016q,r\0216@\364\333\256d\210R\205\313y@R\361b\341,\362\370V\2300\344\007g\300v\037j\215\354\026\311\312\254 \223n\205\346-V\020CF\376\345e$m\206H\250D\364f\304*jC\273\335\3724\205\200\307\007\246C\302\026\002?\340\275\360\t\266hr<e\331\220\216\261\244[mp\251\244\355I\221S&S\264\334\250eK\225\036\370\r\"\204\013\212;\321S\267~\234\313V$\030P:=k\325\300v\252\350JV\242\005-\304\024qi>\376\353W\341\2379\242\217\230o\301M\277\236\216\013\234Zo)&\307\001\351\260\250\223x \036\312\363\350S\356A\307\337\313\305\000I\357AU'\240\200\310X\336m\334\213\232q\306sp\264\370\343\263bE9\217\034\330\372\010n\0072\336\210\013\246\030\203\352\267G\027E\273\342\243C`28\301\334\341\263\356i\317@\305$%v:\332u\362)\344\215F&{\350\033\031A,e\014\"H\342\212@\226\324^\013\271 \014\317A\r\336\237(l\200\275}&L\033{L\330m\365+p`&\340\245\n\257\205Y(\231\230s\032^\215`%\017\321\223\005\347\\\265\215>x\200\202\336\206\304\210\036^u\255/S\005\3077\030T`{eoj\326\321\006^\010\002\024\010\n\352\232\270\253S\034\240\320]\227Gq+\243pC\025kk\214\331\2461\334\273g\206,\274\272R\n\232#\005\327\356<\270\334X\321I-\231\340u\023\002M/\177B=\275\336\002w\347\377\027rE8P\220P#<x";
+    PyObject *data = __Pyx_DecompressString(cstring, 2767, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (793 bytes) */
-const char* const cstring = "x\332}SMO\023A\030\226\013\202\026m\205\0137\232H\002\227\222&(!1!\215\022\324\030#&z\235\014\273\003lh\267\333\316,\322\350\241$~l\224\310jH\334\020I\006\016f\023\023(\211b\020~\004\307\0369\320\256=\311O\360\235\331~,Ke\263;3\357\327\363>\317\273\273\211+\003p\235\034\256\377\331\331\360\336\357U\213\313\336\366\246g\277\365v\017\376\036\256xk\356\311\357\217\276\247\262\275U\265~y\337w\202\311\262Z.~j\345\253[\333\374Y\333\330:\331\377P\373\362\343\344\220\327\212\237+o\334\312n\261\262\352\324\336\255z\353\257}\350\352\332Nue\271\262\277WY\375\004\265\000][_\363\276\035H\260\t\252e\2144\241\014\347Y\202R\244d\363$1\203)\t\370G\352\376\021\360R-\253'\214\002\233\327\350\000\334\231\254j\246\311@+\200\020zRX\202\347\236\2460\364\230,\261\247d\026\253*\246\005]\321\262\t\300\311\232L\323\t\025M\020R\322\030\320\347\010\323\030\311\010S#:\323T\330u\2024\035\261<V\310\014V\026\024\266\324\214\"\244f\025\350\204fM\035v\250\006~:\203fh\021\347\205Y'\204\200?#2\0033\226\227\207\026H\263+\202N\032\363Wy\002\024\2124\251\332g+\362\350\002)\300M\021\312``\006W\006`}\001\302\220\243\200\275`\3445\235e\ng8\204\314D\200S\333\220O\354|\310'z\336O\377\217F\2332C1\024\032\223\212\031\016\227\303\253\013\273\316\315\267MBc\310\341\220\240\037\366\211\231\3528\003t\374\325\300sD\276\201\346!8\255\220\323W\026t\372\023\nzh\273\332\326T\232^$'\320J\n\350h9\005|\313\022\334\215\254\001 yb\340<\021\037B\316\304i_\t%\351\331\272\326\263\223\326t\330uE\246\260\272\354\000O8\250\360\327\230i\026\340\331\356Gm\200\327M\371\341\311\014\372Bc\363\224\201\223\232\006\001H\006\225\010\231\246\246.\342\264I\344B\213\251\323k\227\272\373\354\t\036\347\311r\327Uk\334\276k\347\312\221^;y\334u\335\312A<*\342\243\366\2533\361\236\343\256\310Q$\316c|\330M\272\367K)H\354k\227(\201\2045\345\214:-\373\226}\331f\316\230\354\032\211\202\221s\272\001l\310\215\213\266\314\036s\342\3168O\361\351\006\3016\270e\221y\324;\344v\270\261\013\3337\323\372K\361R\362\002I\001\236>\247\010O\201Pk\312N\332\017\234ig""\236\3436|\032\025G\321A>\315\323\245\270\337!b\215Z/AF\3628\022\263o\330w\234\034\357\344\370\264\363RO\314\2168)\3479O\206\300Z\302'\245\242P\254\241a\260\004\257\245,\346\177\223\247\344\311zh\327\211\365X\217\234\016\341\231\264\373\235a~\333\215\t)\242\3353\036\367\207\024\205.\202L\307?\366c\271\326";
-    PyObject *data = __Pyx_DecompressString(cstring, 793, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2647 bytes) */
+const char* const cstring = "x\332\225X\333s\023\327\031\307\r\001\003v\202\013\264Ig\332YO\322`\265T\256\031HJ'\236\214\n&qZ\010F$\231N\246\263\263Hk{cY\222\265+\0335\351\214 \030\326\027\241%\330f\261M\263&$l X\362p\363E\016<\366\321\217~\364\264\273+\351\311\374\t\375\3169\273\253\325JvS\215\255\335s\316w\375}\267c{wR\360\321r\223\205\314\315\374\360c#y>?;\223\227.\345\347\226\326s\243\3711U[\274Bv\364\331[\206\370$\177/\343$\376O\362\302N,\341\337\223\312\372|\232\362\2657\353\271\244\236\276ZH\016\032\017T\343bz=7iL\177\017\342\264\371\224!g\214G\351\302\035Q\277\241R\241H\200\t\371\205H\214\351bA\2141\2365R\263\372}\331\230N\351\3033@\241_\032\204%X\201\025\030\243CT \304\261a\201\013\256\347D[\016\230\010f\255\347\206\212\223c\371o\221\321\266\200\342\345\224.e\364\324\003c~0\377\335\"\262\025K\262X\215\321\363\332\302\240>:\0012(\236\367:-j\362\254\347\246\nOL\361\372\340\234\266x\317$c\242QK\224>;j\214?D4\017\306\013w\316\203\243\206:\243\337\274N\371\333\374\376\366\017N\322\376\243\357\265\235\360\331\232\257+\306\375\333\224\357T;\0107\245\361,\317s\221\2607\036\r2\002\333\324\323\322z2\022f\017P^\257\327C\025\223Rql\026\374\310/\317\2261\203Vm\371\032r\360\322\r@\270$\347\223\0366\3617\252\2252&\262A. \0242Kzz\002@\0011\020\000\300S\237V\365t\246\360\305\2621<E\375\231M\264\305b\221XU\262\302\3231}\352\237\0242\307\230\376\312\230\2362C4\255\332\010\352\342\023P\324l\244n\025f\177\320o_\326\245+\332R\n(\366\033\231\2646\177\227\240gL\017\345G\276\317\337\033\321\2072\000\021\250\321\026\277\314O\315\347\247G\22021\253g\026\214\211\205\374\344E\355\351\2541\266\360\316~/e\244\245\374\355\305?Rv0\013O\245\302\014\304\366\253\342\365\207 \320\030\0277\t5B\250\334F\224}\370\010\302D1Q\216\322\357_7f\037\351\342u\375\362\"h\316\337\037\322\226\236\000\232\020Icx\030H\242\224\236\226\213\227\323\372\3625c(\211|p\246\302\344\305\302\354\014\000\2022\360aF\037V\300i\304\344\215& +&\265\205!]\274\251\337\031\321\2239\222)\213c\300\237_\274C\370\211h\344\001\026]\234yT\274y\013\305\005\002""\201\":\212\200\221F]Y^\270|W\037VI\242\333\225\247-?E\247\023\013z\016\025\033\336\303\032K\006\025g\036\027\277P]f9iIV{\2710'4q<\035\212tu\261A\232\013\267\036gB<$c \302\205yZ\210\004\231D\353\357=;\235:\264\245%my\2348`Y_)\330!\023\222\363L,\316\242\323\327(miP_\236\323\257\245\000e}(\345\362\327\026\323\317\204\200\315\024\3460\306<~\215\"\tL\204\020^\210\220\205\275\303\020\263\312\316\265\266\034\240\022\255\007=\224-\301\030Z\200\210\030S\017!YH\261\342\334r\365;\324\3156nT\320\243\\\0364Y-\313\343\214\035\021\341\354h\2246\377\215\241\344\3101\001\023\362\\\313)z\372\002xb\333B\362\306\230S\210\266\037\331\021Q=c\033KYh\346\337$$\2316\237\264R[%\004\256,4O\245\213\340CE-\213enX*\207\002\221\030\373;^\000\2607\353-A\266\223\211\207\004$\345\212ZHI\300\210\332b\210\r79Z#\2644\276\311\343\241ln\260\273\360\364\006\232&\026.$:\320G\ns3\304\356\rgM\365]\347;U\374\372\n\004\003\265\332\222\316\377I\000N\230\006SD=\221\317\023\026\360\014g\025\231\250@N\202\254-\214\2208\027\223_\"\370\347\222$2\250#\341\tl\214e`L\351\013\217a\246\2228\270\312\337\034\274\245\014!\201\266\372\313fH@\227\334x\200\235\371\340t\233k|\355\247\"g?e\003\002\325\315\360T8B1\202\020\343\316\306\005\226\332oy\256\247\357VV\006\236t\026\001t\014GR\021\377IO$U\301s\275\321\020\013\231\023\023\274<O\243<\362\236e\200\275\264\337l\3567[\t\022M@\266\370Q\262\2212\337pn;\373\\Ok?\231\262\346f\017\325lu\211.\026\216\017X\331Y\"h\245\372m\242Oz\320\230\355/\357+0\275\373\241\263\364\034l\355?\350\371\321\367\214\321\202\264\234\237B0\231\275e\361Z\025*\021\254\002\217\205\346@\210eb\250\252\257.\353R\nF\032 X\026W\257\003+\310;G%\201\210v\201\355Eb\3603\306\366F\372Y\374\212\245\226\2236A\341\225\241\260\341\031e\210\023\224\353\022\342\240\307x\177\006X\377\303\343\276\2514S\256B\257\270\311\364W\320\230\270\273\351\230P\234u]\252H\347\240\320h\030Ta\004B\013\2528E\033\200\033k=\253{\216O\\~\240=\247\027\230\306\364\241tV\362\300)\335\263)\221\303I\274\266\342e\306O\350\346x\n~z#\301x\210\245Je""\340;u\212\376\310w\332o\026.M\237J\234\203\337cp\023\244O\262\347\204\323l'm]MO\264\373?\364\267\321\2763gN\373\313\257\253\316\332\2079\240\017~\343\032\254d\"\332\327#\347\221y\237\201Kk\331\020\303\224\325\256@\371\245\213\332\322ct\001X\034\203\013L~\351*\\S\354\202A\235\354\202Jl \003\332\274\276@-\301\225\364\376\327Uoff#M\215k?\214T\261\037\027\014\231J\316\241or\215e`\036\222:t\026$$\270~{\002\335\242\260I\264\375\327\220\313VW\353!\233%)\345>8qd\202A\006F(\035\205\256\312\306\302<\334Q\241\261\300\017\335\017ui=\2754\r9\200\032/M\227\357q\220\027e{(Y\3136\370*\214|%#\033\346\3431\226&#\235\206\266\306\330gH\265\343\335\232\372\366\036Ri/P!\330\013\322\037\031>\021\016p\021\270\301\305\"q\201\013\263<\352\354\0018\351\212\304\0224\350d\240\265\333\316\340\226d)\201g\230\005\247h!\306\004\330\263L\240' \234\243\255Sl'\376%5K\233O\236\246\203\221\000MW\361\252\223;G\323\235\361p\000\303gV\026<`\264\204\005\250\025d8Z\232\325E\343\313\214\003~\373\025\217@\274\262\255)\371\320\315\241\r\264+$\254\230\240o\374\206\240\2419<\314\010\036\210\207\007\340\020v=\003\240\237\207\253P\227\320\035\342:A`/h\351e\000\002\370\364\202n\002\027Z\340>\000\317D4\006\372z\023e6\273\226\316\024\252zD\014\257<\"\306W\356\363\033K\263\323\313}F\273`E\001q\263CE\270\267\300\272*[\364\246\356:\342\342>B\036\271\367\020\364a\006Am~G\004\232\211\014\204\331X\024F+\016\231\375\342\204\322\265I\334vn\022\370\234;|5\336\022d\366.\215\341)\021\201\370\262\205\345^i\023\351*\255\220K\321H\024$\306\330(\003U\000\237\2768\023\"\016\306\330\020\370\035,]\005x6\324ibR\036$\370\263K`\302\001\326\234F\330V\023%\2073\360b\025a\311\231j\267:K\207\271\304\251\013\013\222\314\274\227E\377\230\3401\013?\300\t\335dH\307\243,\350\200\213\036H'M%\036\347\202x\366\343/\276\237\343\271\263!\026\212'L\343/l;\\\\\351^\216\217\363\354@wb \026\tw%k\326\266\356Z\331E)[\025\237\322\261\272u{\262o\265\266~\245\376\r\205Y\255\255\023}\342\307\322Q\251o\345\025\337\263}\317`\347%1,\373d\277R\263\322\370\247g\215""\317\336\376W\337\312\251\216\244\357\371K[v\354\225\336Q\032\225\226\325\332]\342\021\304\263Z\267GjY\253}Y\354K\372Vk\367X\247/\213\237\313G\224\243\312\200\312\240\375]\342!\3613\271QnA\344\207\345\237\254\374\342\267j\213\n\007\277\224;\344O\325\032\304 Ho\313}J\r\250\331\215\324\034\222>/SS\277V[\267R\327\2504(\036`}/\353\003\302\275\325\010\261=h\365\256|H.\255\017K\333%A~\013\233W\267\033\026}\362\016\020\326\2446\256a\345o\201yG\020:\226\237U\344b3W\3664\2515j\303\246\352m\262W\263\215\331\026\202L%\341!\351\357\312^\245C\351DH`\226\375J\037\002\003Y\373\002\340\364\202|X\331\2568tK-\222o3i\373P<\235\222\020\317ay\033\302\270:\337ni'8\376\007\004J}\245\021\333\tI\215\364\212\334\260I`\034h\023d\353\024\037\204K|\027\354m\207\010w+\214\013U3\224\007Pz \261uV\202\254\3255H?\305\231\260Ma\236o\333R\337 \325A.~\244\264\270\362\310A\266\006Zm\24225\245\300\266\341\210\271\316\254\030\375:\333G\244;C]\346\3246\211\301\\\360\372\242\364W9\250\374F=\236m\\\335\275W:n\346\315\307f\020\2457\345\006\271\021\211\003\037_W \\\010\2116\351U\371\rd\353\252i\353\207\n\241\021\337\227\020\004;\267\354\250\207\327.\000\313\204\252^\374\213\\\263j\262z\2247\325\206\n\326\023r\003z\264K\035$\031\177\005\334=@WVL\346~Hmt\354\257l\375\271\324\367\374g\325\363\327JKVm\251\226\226-\216t<\004\261~Q\356\330H\\L\336#\267\0032\307\2625\016&\022\220c\200\374>\225\371\277X\255x\275\236e\262\361y\337\177\001\002\360z\212";
+    PyObject *data = __Pyx_DecompressString(cstring, 2647, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1679 bytes) */
-const char* const bytes = ".\n    \344\274\232\350\257\235\347\212\266\346\200\201\347\256\241\347\220\206\347\261\273\357\274\214\347\224\250\344\272\216\347\256\241\347\220\206\345\256\242\346\210\267\347\253\257\344\274\232\350\257\235\347\212\266\346\200\201\n    \n    \347\224\250\344\272\216\345\234\250\351\241\265\351\235\242\344\271\213\351\227\264\344\274\240\351\200\222\345\205\250\345\261\200\345\217\230\351\207\217\347\232\204\347\261\273\357\274\214\346\224\257\346\214\201\345\271\266\345\217\221\347\224\250\346\210\267\351\232\224\347\246\273\n    ?simplestart.ss_core.basesimplestart/ss_core/session.pythis is module session.py___Pyx_PyDict_NextRefaddasyncio.coroutinesbase__class_getitem__clientidcline_in_tracebackctx_clientid__doc____func__get_context_varget_session_state__getattr__getclientid__getitem____init__initinit_vars_is_coroutineitemskeykeys__main____metaclass____module__myprintmysession_statemysession_state.__getattr__mysession_state.__getitem__mysession_state.__init__mysession_state.__setattr__mysession_state.__setitem___mysession_state__session_state_datamysession_state.addmysession_state.get_session_statemysession_state.getclientidmysession_state.initmysession_state.keysname__name__page_varspage_vars.__getattr__page_vars.__getitem__page_vars.__init__page_vars.__setattr__page_vars.__setitem___page_vars__datapage_vars.getclientidpage_vars.initpage_vars.keyspop__prepare____qualname__selfsessionsession_state_instance__set_name____setattr__setdefault__setitem__simplestart.ss_core.sessionss_core.printstartswithstoresuper__test__uuidvaluevalues\200A\360\016\000\t\024\220?\240!\2401\330\010\013\2109\220C\220q\330\014\023\2201\340\010\017\210q\200A\360\020\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\r\340\010\014\320\014!\240\021\240)\2501\250H\260A\200A\360\024\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2201\340\010\013\2109\220G\2304\230q\330\014\023\2201\340\010\013\2105\220\007\220t\2307\240!\2401\330\014\020\220\007\220q\230\t\240""\021\240(\250!\340\010\017\210t\2207\230!\2309\240A\240Q\200A\360\016\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2201\330\010\017\210t\320\023(\250\001\250\021\200A\360\024\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2201\340\010\017\210t\320\023(\250\001\250\031\260!\2601\200A\360\020\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\r\340\010\013\2109\220G\2304\230q\330\014\020\220\007\220q\230\014\240A\340\010\014\210G\2201\220I\230Q\230h\240a\200A\360\016\000\t\024\2204\220|\2401\330\010\013\2109\220G\2304\230q\330\014\020\320\020%\240Q\240l\260!\200A\360\020\000\t\014\2104\210{\230!\2301\340\014\021\220\022\220<\230q\240\006\240a\360\006\000\r\021\220\014\230A\230V\2401\200A\360\016\000\t\024\2204\220|\2401\330\010\017\210t\2207\230!\2309\240E\250\021\200A\360\016\000\t\024\2204\220|\2401\330\010\017\210t\320\023(\250\001\250\031\260%\260q\200A\330\010\014\320\014$\240A\200A\330\010\014\210J\220a\200A\360\016\000\t\r\210L\230\001\330\010\014\210E\220\031\230)\2406\250\021\330\014\020\220\014\230A\230U\240!\200A\360\024\000\t\020\210t\220<\230q\240\001";
+    #else /* compression: none (6095 bytes) */
+const char* const bytes = ".\n    \344\274\232\350\257\235\347\212\266\346\200\201\347\256\241\347\220\206\347\261\273\357\274\214\347\224\250\344\272\216\347\256\241\347\220\206\345\256\242\346\210\267\347\253\257\344\274\232\350\257\235\347\212\266\346\200\201\343\200\202\n\n    \342\232\240\357\270\217 AI/\345\274\200\345\217\221\350\200\205\346\263\250\346\204\217\357\274\232\346\234\254\347\261\273\344\270\215\346\230\257\346\265\217\350\247\210\345\231\250 localStorage\343\200\202\346\225\260\346\215\256\345\255\230\346\234\215\345\212\241\345\231\250\345\206\205\345\255\230\357\274\214\n    \346\214\211 clientid\357\274\210\346\265\217\350\247\210\345\231\250\347\224\250\346\210\267\357\274\211\351\232\224\347\246\273\357\274\214\346\234\215\345\212\241\345\231\250\351\207\215\345\220\257\345\215\263\346\270\205\347\251\272\343\200\202\n    \346\265\217\350\247\210\345\231\250\346\214\201\344\271\205\345\214\226\347\224\250 ss.localStorage()\357\274\233\350\267\250\347\224\250\346\210\267\345\205\261\344\272\253\347\224\250 ss.app\343\200\202\n    \345\256\214\346\225\264\347\224\250\346\263\225\350\247\201\346\234\254\346\250\241\345\235\227 SESSION_SCHEMA\343\200\202\n    \346\227\240\346\255\244 API\357\274\233\347\224\250 ss.session.update(k1=None, ...) \351\200\220\351\224\256\351\207\215\347\275\256\346\227\240\346\255\244 API\357\274\233\346\225\264\344\275\223\351\207\215\345\206\231\357\274\232ss.session[key] = \346\226\260dict\350\257\273\345\217\226\357\274\214\351\224\256\344\270\215\345\255\230\345\234\250\345\217\257\350\203\275\346\212\233 KeyError\350\257\273\345\217\226\357\274\214\351\224\256\344\270\215\345\255\230\345\234\250\350\277\224\345\233\236 None\346\234\237\346\234\233\346\225\260\346\215\256\345\234\250\346\265\217\350\247\210\345\231\250\345\210\267\346\226\260/\346\215\242\350\256\276\345\244\207\345\220\216\344\273\215\345\234\250'\346\257\217\344\270\252\347\224\250\346\210\267\346\234\211\347\213\254\347\253\213\345\211\257\346\234\254\357\274\214""\344\272\222\347\233\270\347\234\213\344\270\215\345\210\260\345\257\271\346\226\271\347\232\204\344\277\256\346\224\271?'. \346\217\220\347\244\272: \346\234\215\345\212\241\345\231\250\350\277\220\350\241\214\346\234\237\351\227\264\346\234\211\346\225\210\357\274\214\346\234\215\345\212\241\345\231\250\351\207\215\345\220\257\345\215\263\346\270\205\347\251\272\357\274\233\346\265\217\350\247\210\345\231\250\345\210\267\346\226\260\344\270\215\346\270\205\347\251\272\350\247\201 api \345\255\227\346\256\265\345\210\227\345\207\272\347\232\204\347\255\211\344\273\267\345\206\231\346\263\225\346\212\212 app \345\217\230\351\207\217\345\275\223\346\211\200\346\234\211\347\224\250\346\210\267\345\205\261\344\272\253\347\232\204\350\256\241\346\225\260\345\231\250\347\264\257\345\212\240\345\234\250 app.py \345\256\232\344\271\211\345\210\235\345\247\213\345\200\274\n    \345\272\224\347\224\250\347\272\247\345\205\261\344\272\253\345\217\230\351\207\217\357\274\214\346\211\200\346\234\211\351\241\265\351\235\242\345\217\257\350\257\273\345\206\231\357\274\214\344\270\215\345\220\214\346\265\217\350\247\210\345\231\250\347\224\250\346\210\267\350\207\252\345\212\250\351\232\224\347\246\273\343\200\202\n\n    \344\275\277\347\224\250\346\226\271\345\274\217\357\274\232\n        \345\234\250 app.py \351\241\266\351\203\250\345\256\232\344\271\211\345\210\235\345\247\213\345\200\274\357\274\232\n        ss.app.init(is_logged_in=False, coins_today=0)\n\n        \345\234\250\344\273\273\344\275\225\351\241\265\351\235\242\350\257\273\345\206\231\357\274\232\n        ss.app.is_logged_in = True    # \344\273\205\345\275\261\345\223\215\345\275\223\345\211\215\346\265\217\350\247\210\345\231\250\347\224\250\346\210\267\n        val = ss.app.coins_today       # \350\257\273\345\217\226\345\275\223\345\211\215\347\224\250\346\210\267\347\232\204\345\200\274\n        ss.app.update(x=1, y=2)        # \346\211\271\351\207\217\346\233\264\346\226\260\n    \346\234\215\345\212\241""\347\253\257\344\274\232\350\257\235\347\212\266\346\200\201\357\274\232\346\225\260\346\215\256\345\255\230\346\234\215\345\212\241\345\231\250\345\206\205\345\255\230\357\274\214\346\214\211\346\265\217\350\247\210\345\231\250\347\224\250\346\210\267(clientid)\350\207\252\345\212\250\351\232\224\347\246\273\346\225\260\346\215\256\346\214\211 clientid \344\270\245\346\240\274\351\232\224\347\246\273\351\241\265\351\235\242\351\227\264\344\274\240\345\217\202\347\232\204\346\234\215\345\212\241\347\253\257\345\217\230\351\207\217\346\261\240\357\274\214\346\214\211 clientid\357\274\210\346\265\217\350\247\210\345\231\250\347\224\250\346\210\267\357\274\211\351\232\224\347\246\273\357\274\214\345\255\230\345\206\205\345\255\230\345\272\224\347\224\250\347\272\247\345\217\230\351\207\217\357\274\232\345\220\214\344\270\200\347\224\250\346\210\267\345\205\250\345\272\224\347\224\250\350\257\273\345\206\231\357\274\214\344\270\215\345\220\214\347\224\250\346\210\267\345\220\204\350\207\252\346\234\211\347\213\254\347\253\213\345\211\257\346\234\254\357\274\210\346\214\211 clientid \351\232\224\347\246\273\357\274\211core-state\350\257\273\345\217\226\357\274\214\351\224\256\344\270\215\345\255\230\345\234\250\350\277\224\345\233\236 default\357\274\210\346\216\250\350\215\220\357\274\211\347\224\250 len(ss.session.keys()) \344\270\215\345\255\230\345\234\250\357\274\232\350\277\231\346\230\257\346\234\215\345\212\241\347\253\257\347\212\266\346\200\201\345\257\271\350\261\241\357\274\214\344\270\215\346\230\257\346\265\217\350\247\210\345\231\250 localStorage\346\265\217\350\247\210\345\231\250 localStoragelocalStorage \351\243\216\346\240\274 API \344\270\215\345\255\230\345\234\250localStorage \351\243\216\346\240\274 API \344\270\215\345\255\230\345\234\250\357\274\210session \344\270\215\346\230\257 localstorage\357\274\211\n    \347\224\250\344\272\216\345\234\250\351\241\265\351\235\242\344\271\213\351\227\264\344\274\240\351\200\222\345\205\250\345\261\200\345""\217\230\351\207\217\347\232\204\347\261\273\357\274\214\346\224\257\346\214\201\345\271\266\345\217\221\347\224\250\346\210\267\351\232\224\347\246\273\343\200\202\n\n    \342\232\240\357\270\217 \346\234\215\345\212\241\347\253\257\345\206\205\345\255\230\345\217\230\351\207\217\357\274\214\344\270\215\346\230\257\346\265\217\350\247\210\345\231\250 localStorage\357\274\233\345\256\214\346\225\264\347\224\250\346\263\225\350\247\201\346\234\254\346\250\241\345\235\227 STORE_SCHEMA\343\200\202\n    ' object has no attribute 'session \345\217\252\345\255\230\346\234\215\345\212\241\345\231\250\345\206\205\345\255\230\347\224\250 session \345\234\250\344\270\215\345\220\214\347\224\250\346\210\267\344\271\213\351\227\264\345\205\261\344\272\253\346\225\260\346\215\256simplestart.ss_core.basesimplestart/ss_core/session.pyss.Statess.app\350\267\250\347\224\250\346\210\267\345\205\261\344\272\253\347\224\250 ss.appss.app.init(k=v, ...)ss.app.k / ss.app.get(k, default)ss.app.k = v / ss.app[k] = vss.app.update(k1=v1, k2=v2)\346\265\217\350\247\210\345\231\250\346\214\201\344\271\205\345\214\226\347\224\250 ss.localStorage()\357\274\214\350\220\275\347\233\230\347\224\250\346\225\260\346\215\256\345\272\223ss.localStorage()\357\274\210get/set/clear\357\274\214\345\221\275\345\220\215\347\251\272\351\227\264 localStorage.simplestart\357\274\211ss.session.getItem/setItem/removeItem/clearss.session.get(key, default)ss.session.get(key, default) \346\210\226 ss.session[key]ss.session.init({...})ss.session[key] / ss.session.keyss.session[key] = v / ss.session.key = vss.session[key] = value\347\224\250 ss.session.keys() \345\217\226\345\205\250\351\203\250\351\224\256ss.session.keys()ss.storess.store.get(key, default)ss.store.init({...})ss.store[key] / ss.store.keyss.store[key] = v / ss.store.get(key)ss.store[key] = v / ss.store.key = vss.store.setItem/getItemthis is module session.pyAPP_VARS_SCHEMA__Pyx_PyDict_NextRef_SESSION_MISUSE_ATTRSSESSION_SCHEMASTORE_SCHEMA\345\206\231""\345\205\245\345\275\223\345\211\215\347\224\250\346\210\267\347\232\204\344\274\232\350\257\235\345\217\230\351\207\217\345\275\223\345\211\215\347\224\250\346\210\267\347\232\204\346\211\200\346\234\211\351\224\256\351\241\265\351\235\242\351\227\264\344\274\240\345\217\230\351\207\217\345\272\224\347\224\250\347\272\247\345\205\261\344\272\253\345\217\230\351\207\217\347\273\204\344\273\266\345\223\215\345\272\224\345\274\217\347\273\221\345\256\232\346\214\201\344\271\205\345\214\226\345\255\230\345\202\250\345\206\231\345\205\245\346\211\271\351\207\217\345\210\235\345\247\213\345\214\226\347\234\237\346\255\243\346\211\200\346\234\211\347\224\250\346\210\267\345\205\261\344\272\253\347\232\204\345\205\250\345\261\200\345\215\225\344\276\213\345\206\231\345\205\245\345\275\223\345\211\215\347\224\250\346\210\267\347\251\272\351\227\264\350\257\273\345\217\226\346\211\271\351\207\217\346\233\264\346\226\260\345\205\250\345\261\200\345\224\257\344\270\200\346\225\260\346\215\256\347\224\250\346\225\260\346\215\256\345\272\223\346\210\226\345\244\226\351\203\250\345\255\230\345\202\250_\345\256\242\346\210\267\347\253\257\346\214\201\344\271\205\345\214\226\345\255\230\345\202\250\350\267\250\347\224\250\346\210\267\345\205\261\344\272\253\345\255\230\345\202\250\346\225\260\346\215\256\345\272\223\346\211\271\351\207\217\345\210\235\345\247\213\345\214\226\344\274\232\350\257\235\345\217\230\351\207\217addanti_patternsapiappapp_varsapp_vars.__getattr__app_vars.__getitem__app_vars.__init__app_vars.__setattr__app_vars.__setitem__app_vars._ensure_client_dataapp_vars.getapp_vars.getclientidapp_vars.initapp_vars.keysapp_vars.updateasyncio.coroutinesbasecategory__class_getitem__clearclientidcline_in_tracebackctx_clientid_datadatadefault_defaults__doc___ensure_client_datafix__func__getgetItemget_context_varget_session_state__getattr____getattribute__getclientid__getitem__hintidentity__init__initinit_vars_is_coroutineitemskeykeyskwargslengthlifetime__main____metaclass___""_module__myprintmysession_statemysession_state.__getattr__mysession_state.__getitem__mysession_state.__init__mysession_state.__setattr__mysession_state.__setitem___mysession_state__session_state_datamysession_state.addmysession_state.getmysession_state.get_session_statemysession_state.getclientidmysession_state.initmysession_state.keysname__name__not_aownerpage_varspage_vars.__getattr__page_vars.__getitem__page_vars.__init__page_vars.__setattr__page_vars.__setitem___page_vars__datapage_vars.getpage_vars.getclientidpage_vars.initpage_vars.keyspop__prepare____qualname__relatedremoveItemselfsessionsession_state_instancesetItem__set_name____setattr__setdefault__setitem__simplestart.ss_core.sessionss_core.printss_modules.errorsstartswithstoresuper__test__updateuuidvaluevaluesvisiblewarn_warn_stateobj_misusewhywrong\200\001\340\004\013\320\013 \240\004\240A\240Q\330\004\007\200q\330\010\r\320\r&\240a\330\010\014\210A\210W\220C\220q\320\030A\300\025\300a\330\010\016\210n\230A\230S\240\001\320!B\300!\300<\310q\320PQ\200A\360\016\000\t\024\220?\240!\2401\330\010\013\2109\220C\220q\330\014\023\2201\340\010\017\210q\200A\330\010\023\220?\240!\2401\330\010\017\210|\2309\240C\240w\250a\200A\330\010\013\2104\210{\230!\2301\330\014\023\2205\230\002\320\032+\2501\250A\330\010\035\230Q\230j\250\001\330\010\017\210t\220<\230q\240\001\200A\360\020\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\r\340\010\014\320\014!\240\021\240)\2501\250H\260A\200A\360\024\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2201\340\010\013\2109\220G\2304\230q\330\014\023\2201\340\010\013\2105\220\007\220t\2307\240!\2401\330\014\020\220\007\220q\230\t\240\021\240(\250!\340\010\017\210t\2207\230!\2309\240A\240Q\200A\360\016\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2201\330\010\017\210t\320\023(\250\001\250\021\200A\360\024\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2201\340\010\017\210t\320\023(\250\001\250\031\260!\2601\200A\330\010""\023\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2204\220z\240\024\240Q\240f\250A\330\010\017\210t\320\023'\240q\250\001\330\010\013\2105\220\003\2205\230\003\2305\240\007\240q\330\014\023\2201\330\010\017\210t\2201\220A\200A\330\010\023\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2204\220z\240\025\240a\330\010\017\210t\320\023'\240q\250\001\330\010\017\210t\2205\230\006\230j\250\001\200A\330\010\023\2204\220|\2401\330\010\013\2109\220C\220q\330\014\020\220\n\230!\2308\2401\330\014\r\330\010\017\210t\320\023'\240q\250\001\330\010\013\2105\220\007\220q\330\014\020\220\001\220\030\230\021\200A\360\020\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\r\340\010\013\2109\220G\2304\230q\330\014\020\220\007\220q\230\014\240A\340\010\014\210G\2201\220I\230Q\230h\240a\200A\360\016\000\t\024\2204\220|\2401\330\010\014\320\014!\240\021\240,\250a\200A\360\020\000\t\014\2104\210{\230!\2301\340\014\021\220\022\220<\230q\240\006\240a\360\006\000\r\021\220\014\230A\230V\2401\200A\330\010\013\2104\210{\230!\2301\330\014\021\220\022\220<\230q\240\006\240a\340\014\020\220\014\230A\230V\2401\200A\360\016\000\t\024\2204\220|\2401\330\010\017\210t\2207\230!\2309\240E\250\021\200A\360\016\000\t\024\2204\220|\2401\330\010\017\210t\320\023(\250\001\250\031\260%\260q\200A\330\010\013\2109\220C\220q\330\014\023\2201\330\010\013\2109\220G\2304\230q\330\014\020\220\006\220a\220|\2401\330\014\020\220\005\220Y\230d\240*\250F\260!\330\020\024\220F\230!\2309\240A\240W\250A\330\010\017\210t\2206\230\021\230!\200A\330\010\014\320\014$\240A\200A\340\010\014\210E\220\031\230&\240\006\240a\330\014\020\220\014\230A\230U\240!\200A\330\010\014\210J\220a\200A\360\n\000\t\r\210J\220g\230Q\230a\200A\360\016\000\t\r\210L\230\001\330\010\014\210E\220\031\230)\2406\250\021\330\014\020\220\014\230A\230U\240!\200A\330\010\014\210M\230\021\330\010\014\210I\220Q\200A\360\024\000\t\036\230Q\230k\250\021\330\010\017\210t\220<\230q\240\001\200A\360\024\000\t\036\230Q\230l\250!\330\010""\017\210t\220<\230q\240\001\320\004\027\220q\360\026\000\t\024\2204\220|\2401\330\010\013\2109\220C\220q\330\014\023\2204\220z\240\024\240Q\240e\2501\330\010\017\210t\320\023'\240q\250\001\330\010\013\2105\220\003\2201\330\014\023\2201\330\010\017\210t\2204\220q\230\005\230Q\320\004\027\220q\360\026\000\t\024\2204\220|\2401\330\010\013\2109\220C\220r\230\023\230I\240W\250D\260\001\330\014\023\2201\330\010\017\210t\2207\230!\2309\240D\250\001\250\025\250a\320\004\027\220q\360\026\000\t\024\2204\220|\2401\330\010\013\2109\220C\220r\230\023\230I\240W\250D\260\001\330\014\023\2201\330\010\017\210t\320\023(\250\001\250\031\260$\260a\260u\270A";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 77; i++) {
+    for (int i = 0; i < 195; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 7) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 59) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -7108,7 +11268,7 @@ const char* const bytes = ".\n    \344\274\232\350\257\235\347\212\266\346\200\2
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 77; i < 91; i++) {
+    for (int i = 195; i < 224; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -7119,15 +11279,15 @@ const char* const bytes = ".\n    \344\274\232\350\257\235\347\212\266\346\200\2
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 91; i++) {
+    for (Py_ssize_t i = 0; i < 224; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 77;
-      for (Py_ssize_t i=0; i<14; ++i) {
+      PyObject **table = stringtab + 195;
+      for (Py_ssize_t i=0; i<29; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
         if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -7182,7 +11342,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 3;
     unsigned int flags : 10;
-    unsigned int first_line : 8;
+    unsigned int first_line : 9;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -7199,94 +11359,164 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 11};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 19};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_owner, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_hint, __pyx_mstate->__pyx_n_u_warn};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_warn_stateobj_misuse, __pyx_mstate->__pyx_kp_b_iso88591_AQ_q_a_AWCq_A_a_nAS_B_qPQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 66};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 14};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 69};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getclientid, __pyx_mstate->__pyx_kp_b_iso88591_A_1_9Cq_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getclientid, __pyx_mstate->__pyx_kp_b_iso88591_A_1_9Cq_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 28};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_session_state_instance, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_add, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9G4q_Ql, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_add, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 40};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 94};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_get_session_state, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1_t, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_get_session_state, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1_t, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 52};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 106};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1_t_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1_t_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 68};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 122};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1HA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1HA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 137};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getattr, __pyx_mstate->__pyx_kp_b_iso88591_A_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getattr, __pyx_mstate->__pyx_kp_b_iso88591_A_Qk_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 95};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 150};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setattr, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_q_a_AV1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setattr, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_q_a_AV1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 110};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 165};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_default, __pyx_mstate->__pyx_n_u_clientid};
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_get, __pyx_mstate->__pyx_kp_b_iso88591_q_4_1_9Cr_IWD_1_t_auA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 181};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_keys, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_keys, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 120};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 191};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_init_vars, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init_2, __pyx_mstate->__pyx_kp_b_iso88591_A_L_E_6_AU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init_2, __pyx_mstate->__pyx_kp_b_iso88591_A_L_E_6_AU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 138};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 211};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_Ja, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_Ja, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 141};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 214};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getclientid, __pyx_mstate->__pyx_kp_b_iso88591_A_1_9Cq_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getclientid, __pyx_mstate->__pyx_kp_b_iso88591_A_1_9Cq_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 154};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 227};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1_9G4q_1_5_t7_1_q_t7_9, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_1_9G4q_1_5_t7_1_q_t7_9, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 176};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 249};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_9G4q_q_A_G1IQha, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_9G4q_q_A_G1IQha, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 195};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 268};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getattr, __pyx_mstate->__pyx_kp_b_iso88591_A_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getattr, __pyx_mstate->__pyx_kp_b_iso88591_A_Ql_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 207};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 281};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setattr, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_q_a_AV1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setattr, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_q_a_AV1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 222};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 296};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_default, __pyx_mstate->__pyx_n_u_clientid};
+    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_get, __pyx_mstate->__pyx_kp_b_iso88591_q_4_1_9Cr_IWD_1_t7_9D_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 312};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_keys, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_t7_9E, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_keys, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_t7_9E, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 232};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 322};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_init_vars, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init_2, __pyx_mstate->__pyx_kp_b_iso88591_A_L_E_6_AU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init_2, __pyx_mstate->__pyx_kp_b_iso88591_A_L_E_6_AU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 384};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_M_IQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 388};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_kwargs};
+    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_init_2, __pyx_mstate->__pyx_kp_b_iso88591_A_JgQa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 395};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid};
+    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getclientid, __pyx_mstate->__pyx_kp_b_iso88591_A_1_9Cwa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 399};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value};
+    __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_ensure_client_data, __pyx_mstate->__pyx_kp_b_iso88591_A_9Cq_1_9G4q_a_1_Yd_F_F_9AWA_t6, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 408};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_clientid, __pyx_mstate->__pyx_n_u_data_2};
+    __pyx_mstate_global->__pyx_codeobj_tab[25] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_4z_QfA_t_q_5_5_5_q_1_t, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[25])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 417};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_clientid, __pyx_mstate->__pyx_n_u_data_2};
+    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setitem, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_81_t_q_5_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 426};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name};
+    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_getattr, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_5_1A_Qj_t_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 432};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_value};
+    __pyx_mstate_global->__pyx_codeobj_tab[28] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_setattr, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_q_a_AV1_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[28])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 438};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_value};
+    __pyx_mstate_global->__pyx_codeobj_tab[29] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_update, __pyx_mstate->__pyx_kp_b_iso88591_A_E_a_AU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[29])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 443};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_key, __pyx_mstate->__pyx_n_u_default, __pyx_mstate->__pyx_n_u_clientid, __pyx_mstate->__pyx_n_u_data_2};
+    __pyx_mstate_global->__pyx_codeobj_tab[30] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_get, __pyx_mstate->__pyx_kp_b_iso88591_q_4_1_9Cq_4z_Qe1_t_q_5_1_1_t4q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[30])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 462};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_clientid, __pyx_mstate->__pyx_n_u_data_2};
+    __pyx_mstate_global->__pyx_codeobj_tab[31] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_core_session_py, __pyx_mstate->__pyx_n_u_keys, __pyx_mstate->__pyx_kp_b_iso88591_A_4_1_9Cq_4z_a_t_q_t5_j, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[31])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -8543,16 +12773,6 @@ static void __Pyx_RaiseArgtupleInvalid(
                  (num_expected == 1) ? "" : "s", num_found);
 }
 
-/* PyObjectSetAttrStr */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_setattro))
-        return tp->tp_setattro(obj, attr_name, value);
-    return PyObject_SetAttr(obj, attr_name, value);
-}
-#endif
-
 /* PyDictVersioning (used by GetModuleGlobalName) */
 #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
@@ -8614,6 +12834,411 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
 #endif
     return __Pyx_GetBuiltinName(name);
 }
+
+/* HasAttr (used by ImportImpl) */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
+    PyObject *r;
+    if (unlikely(!PyUnicode_Check(n))) {
+        PyErr_SetString(PyExc_TypeError,
+                        "hasattr(): attribute name must be string");
+        return -1;
+    }
+    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
+    if (!r) {
+        return (unlikely(PyErr_Occurred())) ? -1 : 0;
+    } else {
+        Py_DECREF(r);
+        return 1;
+    }
+}
+#endif
+
+/* ImportImpl (used by Import) */
+static int __Pyx__Import_GetModule(PyObject *qualname, PyObject **module) {
+    PyObject *imported_module = PyImport_GetModule(qualname);
+    if (unlikely(!imported_module)) {
+        *module = NULL;
+        if (PyErr_Occurred()) {
+            return -1;
+        }
+        return 0;
+    }
+    *module = imported_module;
+    return 1;
+}
+static int __Pyx__Import_Lookup(PyObject *qualname, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject **module) {
+    PyObject *imported_module;
+    PyObject *top_level_package_name;
+    Py_ssize_t i;
+    int status, module_found;
+    Py_ssize_t dot_index;
+    module_found = __Pyx__Import_GetModule(qualname, &imported_module);
+    if (unlikely(!module_found || module_found == -1)) {
+        *module = NULL;
+        return module_found;
+    }
+    if (imported_names) {
+        for (i = 0; i < len_imported_names; i++) {
+            PyObject *imported_name = imported_names[i];
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+            int has_imported_attribute = PyObject_HasAttr(imported_module, imported_name);
+#else
+            int has_imported_attribute = PyObject_HasAttrWithError(imported_module, imported_name);
+            if (unlikely(has_imported_attribute == -1)) goto error;
+#endif
+            if (!has_imported_attribute) {
+                goto not_found;
+            }
+        }
+        *module = imported_module;
+        return 1;
+    }
+    dot_index = PyUnicode_FindChar(qualname, '.', 0, PY_SSIZE_T_MAX, 1);
+    if (dot_index == -1) {
+        *module = imported_module;
+        return 1;
+    }
+    if (unlikely(dot_index == -2)) goto error;
+    top_level_package_name = PyUnicode_Substring(qualname, 0, dot_index);
+    if (unlikely(!top_level_package_name)) goto error;
+    Py_DECREF(imported_module);
+    status = __Pyx__Import_GetModule(top_level_package_name, module);
+    Py_DECREF(top_level_package_name);
+    return status;
+error:
+    Py_DECREF(imported_module);
+    *module = NULL;
+    return -1;
+not_found:
+    Py_DECREF(imported_module);
+    *module = NULL;
+    return 0;
+}
+static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level) {
+    PyObject *module = 0;
+    PyObject *empty_dict = 0;
+    PyObject *from_list = 0;
+    int module_found;
+    if (!qualname) {
+        qualname = name;
+    }
+    module_found = __Pyx__Import_Lookup(qualname, imported_names, len_imported_names, &module);
+    if (likely(module_found == 1)) {
+        return module;
+    } else if (unlikely(module_found == -1)) {
+        return NULL;
+    }
+    empty_dict = PyDict_New();
+    if (unlikely(!empty_dict))
+        goto bad;
+    if (imported_names) {
+#if CYTHON_COMPILING_IN_CPYTHON
+        from_list = __Pyx_PyList_FromArray(imported_names, len_imported_names);
+        if (unlikely(!from_list))
+            goto bad;
+#else
+        from_list = PyList_New(len_imported_names);
+        if (unlikely(!from_list)) goto bad;
+        for (Py_ssize_t i=0; i<len_imported_names; ++i) {
+            if (PyList_SetItem(from_list, i, __Pyx_NewRef(imported_names[i])) < 0) goto bad;
+        }
+#endif
+    }
+    if (level == -1) {
+        const char* package_sep = strchr(__Pyx_MODULE_NAME, '.');
+        if (package_sep != (0)) {
+            module = PyImport_ImportModuleLevelObject(
+                name, moddict, empty_dict, from_list, 1);
+            if (unlikely(!module)) {
+                if (unlikely(!PyErr_ExceptionMatches(PyExc_ImportError)))
+                    goto bad;
+                PyErr_Clear();
+            }
+        }
+        level = 0;
+    }
+    if (!module) {
+        module = PyImport_ImportModuleLevelObject(
+            name, moddict, empty_dict, from_list, level);
+    }
+bad:
+    Py_XDECREF(from_list);
+    Py_XDECREF(empty_dict);
+    return module;
+}
+
+/* Import */
+static PyObject *__Pyx_Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, int level) {
+    return __Pyx__Import(name, imported_names, len_imported_names, qualname, __pyx_mstate_global->__pyx_d, level);
+}
+
+/* ImportFrom */
+static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
+    PyObject* value = __Pyx_PyObject_GetAttrStr(module, name);
+    if (unlikely(!value) && PyErr_ExceptionMatches(PyExc_AttributeError)) {
+        const char* module_name_str = 0;
+        PyObject* module_name = 0;
+        PyObject* module_dot = 0;
+        PyObject* full_name = 0;
+        PyErr_Clear();
+        module_name_str = PyModule_GetName(module);
+        if (unlikely(!module_name_str)) { goto modbad; }
+        module_name = PyUnicode_FromString(module_name_str);
+        if (unlikely(!module_name)) { goto modbad; }
+        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u_);
+        if (unlikely(!module_dot)) { goto modbad; }
+        full_name = PyUnicode_Concat(module_dot, name);
+        if (unlikely(!full_name)) { goto modbad; }
+        #if (CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM  < 0x07030400) ||\
+                CYTHON_COMPILING_IN_GRAAL
+        {
+            PyObject *modules = PyImport_GetModuleDict();
+            if (unlikely(!modules))
+                goto modbad;
+            value = PyObject_GetItem(modules, full_name);
+        }
+        #else
+        value = PyImport_GetModule(full_name);
+        #endif
+      modbad:
+        Py_XDECREF(full_name);
+        Py_XDECREF(module_dot);
+        Py_XDECREF(module_name);
+    }
+    if (unlikely(!value)) {
+        PyErr_Format(PyExc_ImportError, "cannot import name %S", name);
+    }
+    return value;
+}
+
+/* JoinPyUnicode */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char) {
+#if CYTHON_USE_UNICODE_INTERNALS && CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    PyObject *result_uval;
+    int result_ukind, kind_shift;
+    Py_ssize_t i, char_pos;
+    void *result_udata;
+    if (max_char > 1114111) max_char = 1114111;
+    result_uval = PyUnicode_New(result_ulength, max_char);
+    if (unlikely(!result_uval)) return NULL;
+    result_ukind = (max_char <= 255) ? PyUnicode_1BYTE_KIND : (max_char <= 65535) ? PyUnicode_2BYTE_KIND : PyUnicode_4BYTE_KIND;
+    kind_shift = (result_ukind == PyUnicode_4BYTE_KIND) ? 2 : result_ukind - 1;
+    result_udata = PyUnicode_DATA(result_uval);
+    assert(kind_shift == 2 || kind_shift == 1 || kind_shift == 0);
+    if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - result_ulength < 0))
+        goto overflow;
+    char_pos = 0;
+    for (i=0; i < value_count; i++) {
+        int ukind;
+        Py_ssize_t ulength;
+        void *udata;
+        PyObject *uval = values[i];
+        #if !CYTHON_COMPILING_IN_LIMITED_API
+        if (__Pyx_PyUnicode_READY(uval) == (-1))
+            goto bad;
+        #endif
+        ulength = __Pyx_PyUnicode_GET_LENGTH(uval);
+        #if !CYTHON_ASSUME_SAFE_SIZE
+        if (unlikely(ulength < 0)) goto bad;
+        #endif
+        if (unlikely(!ulength))
+            continue;
+        if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - ulength < char_pos))
+            goto overflow;
+        ukind = __Pyx_PyUnicode_KIND(uval);
+        udata = __Pyx_PyUnicode_DATA(uval);
+        if (ukind == result_ukind) {
+            memcpy((char *)result_udata + (char_pos << kind_shift), udata, (size_t) (ulength << kind_shift));
+        } else {
+            #if PY_VERSION_HEX >= 0x030d0000
+            if (unlikely(PyUnicode_CopyCharacters(result_uval, char_pos, uval, 0, ulength) < 0)) goto bad;
+            #elif CYTHON_COMPILING_IN_CPYTHON || defined(_PyUnicode_FastCopyCharacters)
+            _PyUnicode_FastCopyCharacters(result_uval, char_pos, uval, 0, ulength);
+            #else
+            Py_ssize_t j;
+            for (j=0; j < ulength; j++) {
+                Py_UCS4 uchar = __Pyx_PyUnicode_READ(ukind, udata, j);
+                __Pyx_PyUnicode_WRITE(result_ukind, result_udata, char_pos+j, uchar);
+            }
+            #endif
+        }
+        char_pos += ulength;
+    }
+    return result_uval;
+overflow:
+    PyErr_SetString(PyExc_OverflowError, "join() result is too long for a Python string");
+bad:
+    Py_DECREF(result_uval);
+    return NULL;
+#else
+    Py_ssize_t i;
+    PyObject *result = NULL;
+    PyObject *value_tuple = PyTuple_New(value_count);
+    if (unlikely(!value_tuple)) return NULL;
+    CYTHON_UNUSED_VAR(max_char);
+    CYTHON_UNUSED_VAR(result_ulength);
+    for (i=0; i<value_count; i++) {
+        if (__Pyx_PyTuple_SET_ITEM(value_tuple, i, values[i]) != (0)) goto bad;
+        Py_INCREF(values[i]);
+    }
+    result = PyUnicode_Join(__pyx_mstate_global->__pyx_empty_unicode, value_tuple);
+bad:
+    Py_DECREF(value_tuple);
+    return result;
+#endif
+}
+
+/* PyObjectVectorCallKwBuilder */
+#if CYTHON_VECTORCALL
+static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
+    (void)__Pyx_PyObject_FastCallDict;
+    if (__Pyx_PyTuple_SET_ITEM(builder, n, key) != (0)) return -1;
+    Py_INCREF(key);
+    args[n] = value;
+    return 0;
+}
+CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
+    (void)__Pyx_VectorcallBuilder_AddArgStr;
+    if (unlikely(!PyUnicode_Check(key))) {
+        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
+        return -1;
+    }
+    return __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n);
+}
+static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
+    PyObject *pyKey = PyUnicode_FromString(key);
+    if (!pyKey) return -1;
+    return __Pyx_VectorcallBuilder_AddArg(pyKey, value, builder, args, n);
+}
+#else // CYTHON_VECTORCALL
+CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, CYTHON_UNUSED PyObject **args, CYTHON_UNUSED int n) {
+    if (unlikely(!PyUnicode_Check(key))) {
+        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
+        return -1;
+    }
+    return PyDict_SetItem(builder, key, value);
+}
+#endif
+
+/* RaiseException */
+static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause) {
+    PyObject* owned_instance = NULL;
+    if (tb == Py_None) {
+        tb = 0;
+    } else if (tb && !PyTraceBack_Check(tb)) {
+        PyErr_SetString(PyExc_TypeError,
+            "raise: arg 3 must be a traceback or None");
+        goto bad;
+    }
+    if (value == Py_None)
+        value = 0;
+    if (PyExceptionInstance_Check(type)) {
+        if (value) {
+            PyErr_SetString(PyExc_TypeError,
+                "instance exception may not have a separate value");
+            goto bad;
+        }
+        value = type;
+        type = (PyObject*) Py_TYPE(value);
+    } else if (PyExceptionClass_Check(type)) {
+        PyObject *instance_class = NULL;
+        if (value && PyExceptionInstance_Check(value)) {
+            instance_class = (PyObject*) Py_TYPE(value);
+            if (instance_class != type) {
+                int is_subclass = PyObject_IsSubclass(instance_class, type);
+                if (!is_subclass) {
+                    instance_class = NULL;
+                } else if (unlikely(is_subclass == -1)) {
+                    goto bad;
+                } else {
+                    type = instance_class;
+                }
+            }
+        }
+        if (!instance_class) {
+            PyObject *args;
+            if (!value)
+                args = PyTuple_New(0);
+            else if (PyTuple_Check(value)) {
+                Py_INCREF(value);
+                args = value;
+            } else
+                args = PyTuple_Pack(1, value);
+            if (!args)
+                goto bad;
+            owned_instance = PyObject_Call(type, args, NULL);
+            Py_DECREF(args);
+            if (!owned_instance)
+                goto bad;
+            value = owned_instance;
+            if (!PyExceptionInstance_Check(value)) {
+                PyErr_Format(PyExc_TypeError,
+                             "calling %R should have returned an instance of "
+                             "BaseException, not %R",
+                             type, Py_TYPE(value));
+                goto bad;
+            }
+        }
+    } else {
+        PyErr_SetString(PyExc_TypeError,
+            "raise: exception class must be a subclass of BaseException");
+        goto bad;
+    }
+    if (cause) {
+        PyObject *fixed_cause;
+        if (cause == Py_None) {
+            fixed_cause = NULL;
+        } else if (PyExceptionClass_Check(cause)) {
+            fixed_cause = PyObject_CallObject(cause, NULL);
+            if (fixed_cause == NULL)
+                goto bad;
+        } else if (PyExceptionInstance_Check(cause)) {
+            fixed_cause = cause;
+            Py_INCREF(fixed_cause);
+        } else {
+            PyErr_SetString(PyExc_TypeError,
+                            "exception causes must derive from "
+                            "BaseException");
+            goto bad;
+        }
+        PyException_SetCause(value, fixed_cause);
+    }
+    PyErr_SetObject(type, value);
+    if (tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+        PyException_SetTraceback(value, tb);
+#elif CYTHON_FAST_THREAD_STATE
+        PyThreadState *tstate = __Pyx_PyThreadState_Current;
+        PyObject* tmp_tb = tstate->curexc_traceback;
+        if (tb != tmp_tb) {
+            Py_INCREF(tb);
+            tstate->curexc_traceback = tb;
+            Py_XDECREF(tmp_tb);
+        }
+#else
+        PyObject *tmp_type, *tmp_value, *tmp_tb;
+        PyErr_Fetch(&tmp_type, &tmp_value, &tmp_tb);
+        Py_INCREF(tb);
+        PyErr_Restore(tmp_type, tmp_value, tb);
+        Py_XDECREF(tmp_tb);
+#endif
+    }
+bad:
+    Py_XDECREF(owned_instance);
+    return;
+}
+
+/* PyObjectSetAttrStr */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_setattro))
+        return tp->tp_setattro(obj, attr_name, value);
+    return PyObject_SetAttr(obj, attr_name, value);
+}
+#endif
 
 /* PyLongCompare */
 static CYTHON_INLINE int __Pyx_PyLong_BoolEqObjC(PyObject *op1, PyObject *op2, long intval, long inplace) {
@@ -9250,181 +13875,65 @@ static CYTHON_INLINE int __Pyx_dict_iter_next(
     return 1;
 }
 
-/* HasAttr (used by ImportImpl) */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
-    PyObject *r;
-    if (unlikely(!PyUnicode_Check(n))) {
-        PyErr_SetString(PyExc_TypeError,
-                        "hasattr(): attribute name must be string");
-        return -1;
-    }
-    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
-    if (!r) {
-        return (unlikely(PyErr_Occurred())) ? -1 : 0;
-    } else {
-        Py_DECREF(r);
-        return 1;
-    }
-}
-#endif
-
-/* ImportImpl (used by Import) */
-static int __Pyx__Import_GetModule(PyObject *qualname, PyObject **module) {
-    PyObject *imported_module = PyImport_GetModule(qualname);
-    if (unlikely(!imported_module)) {
-        *module = NULL;
-        if (PyErr_Occurred()) {
-            return -1;
-        }
+/* PyLongCompare */
+static CYTHON_INLINE int __Pyx_PyLong_BoolNeObjC(PyObject *op1, PyObject *op2, long intval, long inplace) {
+    CYTHON_MAYBE_UNUSED_VAR(intval);
+    CYTHON_UNUSED_VAR(inplace);
+    if (op1 == op2) {
         return 0;
     }
-    *module = imported_module;
-    return 1;
-}
-static int __Pyx__Import_Lookup(PyObject *qualname, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject **module) {
-    PyObject *imported_module;
-    PyObject *top_level_package_name;
-    Py_ssize_t i;
-    int status, module_found;
-    Py_ssize_t dot_index;
-    module_found = __Pyx__Import_GetModule(qualname, &imported_module);
-    if (unlikely(!module_found || module_found == -1)) {
-        *module = NULL;
-        return module_found;
-    }
-    if (imported_names) {
-        for (i = 0; i < len_imported_names; i++) {
-            PyObject *imported_name = imported_names[i];
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-            int has_imported_attribute = PyObject_HasAttr(imported_module, imported_name);
-#else
-            int has_imported_attribute = PyObject_HasAttrWithError(imported_module, imported_name);
-            if (unlikely(has_imported_attribute == -1)) goto error;
+    #if CYTHON_USE_PYLONG_INTERNALS
+    if (likely(PyLong_CheckExact(op1))) {
+        int unequal;
+        unsigned long uintval;
+        Py_ssize_t size = __Pyx_PyLong_DigitCount(op1);
+        const digit* digits = __Pyx_PyLong_Digits(op1);
+        if (intval == 0) {
+            return (__Pyx_PyLong_IsZero(op1) != 1);
+        } else if (intval < 0) {
+            if (__Pyx_PyLong_IsNonNeg(op1))
+                return 1;
+            intval = -intval;
+        } else {
+            if (__Pyx_PyLong_IsNeg(op1))
+                return 1;
+        }
+        uintval = (unsigned long) intval;
+#if PyLong_SHIFT * 4 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 4)) {
+            unequal = (size != 5) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[4] != ((uintval >> (4 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
 #endif
-            if (!has_imported_attribute) {
-                goto not_found;
-            }
-        }
-        *module = imported_module;
-        return 1;
-    }
-    dot_index = PyUnicode_FindChar(qualname, '.', 0, PY_SSIZE_T_MAX, 1);
-    if (dot_index == -1) {
-        *module = imported_module;
-        return 1;
-    }
-    if (unlikely(dot_index == -2)) goto error;
-    top_level_package_name = PyUnicode_Substring(qualname, 0, dot_index);
-    if (unlikely(!top_level_package_name)) goto error;
-    Py_DECREF(imported_module);
-    status = __Pyx__Import_GetModule(top_level_package_name, module);
-    Py_DECREF(top_level_package_name);
-    return status;
-error:
-    Py_DECREF(imported_module);
-    *module = NULL;
-    return -1;
-not_found:
-    Py_DECREF(imported_module);
-    *module = NULL;
-    return 0;
-}
-static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level) {
-    PyObject *module = 0;
-    PyObject *empty_dict = 0;
-    PyObject *from_list = 0;
-    int module_found;
-    if (!qualname) {
-        qualname = name;
-    }
-    module_found = __Pyx__Import_Lookup(qualname, imported_names, len_imported_names, &module);
-    if (likely(module_found == 1)) {
-        return module;
-    } else if (unlikely(module_found == -1)) {
-        return NULL;
-    }
-    empty_dict = PyDict_New();
-    if (unlikely(!empty_dict))
-        goto bad;
-    if (imported_names) {
-#if CYTHON_COMPILING_IN_CPYTHON
-        from_list = __Pyx_PyList_FromArray(imported_names, len_imported_names);
-        if (unlikely(!from_list))
-            goto bad;
-#else
-        from_list = PyList_New(len_imported_names);
-        if (unlikely(!from_list)) goto bad;
-        for (Py_ssize_t i=0; i<len_imported_names; ++i) {
-            if (PyList_SetItem(from_list, i, __Pyx_NewRef(imported_names[i])) < 0) goto bad;
-        }
+#if PyLong_SHIFT * 3 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 3)) {
+            unequal = (size != 4) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[3] != ((uintval >> (3 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
 #endif
+#if PyLong_SHIFT * 2 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 2)) {
+            unequal = (size != 3) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK)) | (digits[2] != ((uintval >> (2 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+#if PyLong_SHIFT * 1 < SIZEOF_LONG*8
+        if (uintval >> (PyLong_SHIFT * 1)) {
+            unequal = (size != 2) || (digits[0] != (uintval & (unsigned long) PyLong_MASK))
+                 | (digits[1] != ((uintval >> (1 * PyLong_SHIFT)) & (unsigned long) PyLong_MASK));
+        } else
+#endif
+            unequal = (size != 1) || (((unsigned long) digits[0]) != (uintval & (unsigned long) PyLong_MASK));
+        return (unequal != 0);
     }
-    if (level == -1) {
-        const char* package_sep = strchr(__Pyx_MODULE_NAME, '.');
-        if (package_sep != (0)) {
-            module = PyImport_ImportModuleLevelObject(
-                name, moddict, empty_dict, from_list, 1);
-            if (unlikely(!module)) {
-                if (unlikely(!PyErr_ExceptionMatches(PyExc_ImportError)))
-                    goto bad;
-                PyErr_Clear();
-            }
-        }
-        level = 0;
+    #endif
+    if (PyFloat_CheckExact(op1)) {
+        const long b = intval;
+        double a = __Pyx_PyFloat_AS_DOUBLE(op1);
+        return ((double)a != (double)b);
     }
-    if (!module) {
-        module = PyImport_ImportModuleLevelObject(
-            name, moddict, empty_dict, from_list, level);
-    }
-bad:
-    Py_XDECREF(from_list);
-    Py_XDECREF(empty_dict);
-    return module;
-}
-
-/* Import */
-static PyObject *__Pyx_Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, int level) {
-    return __Pyx__Import(name, imported_names, len_imported_names, qualname, __pyx_mstate_global->__pyx_d, level);
-}
-
-/* ImportFrom */
-static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
-    PyObject* value = __Pyx_PyObject_GetAttrStr(module, name);
-    if (unlikely(!value) && PyErr_ExceptionMatches(PyExc_AttributeError)) {
-        const char* module_name_str = 0;
-        PyObject* module_name = 0;
-        PyObject* module_dot = 0;
-        PyObject* full_name = 0;
-        PyErr_Clear();
-        module_name_str = PyModule_GetName(module);
-        if (unlikely(!module_name_str)) { goto modbad; }
-        module_name = PyUnicode_FromString(module_name_str);
-        if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__2);
-        if (unlikely(!module_dot)) { goto modbad; }
-        full_name = PyUnicode_Concat(module_dot, name);
-        if (unlikely(!full_name)) { goto modbad; }
-        #if (CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM  < 0x07030400) ||\
-                CYTHON_COMPILING_IN_GRAAL
-        {
-            PyObject *modules = PyImport_GetModuleDict();
-            if (unlikely(!modules))
-                goto modbad;
-            value = PyObject_GetItem(modules, full_name);
-        }
-        #else
-        value = PyImport_GetModule(full_name);
-        #endif
-      modbad:
-        Py_XDECREF(full_name);
-        Py_XDECREF(module_dot);
-        Py_XDECREF(module_name);
-    }
-    if (unlikely(!value)) {
-        PyErr_Format(PyExc_ImportError, "cannot import name %S", name);
-    }
-    return value;
+    return __Pyx_PyObject_IsTrueAndDecref(
+        PyObject_RichCompare(op1, op2, Py_NE));
 }
 
 /* dict_setdefault (used by FetchCommonType) */
@@ -10966,6 +15475,25 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
     return op;
 }
 
+/* ListPack */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...) {
+    va_list va;
+    PyObject *l = PyList_New(n);
+    va_start(va, n);
+    if (unlikely(!l)) goto end;
+    for (Py_ssize_t i=0; i<n; ++i) {
+        PyObject *arg = va_arg(va, PyObject*);
+        Py_INCREF(arg);
+        if (__Pyx_PyList_SET_ITEM(l, i, arg) != (0)) {
+            Py_CLEAR(l);
+            goto end;
+        }
+    }
+    end:
+    va_end(va);
+    return l;
+}
+
 /* CalculateMetaclass (used by Py3ClassCreate) */
 static PyObject *__Pyx_CalculateMetaclass(PyTypeObject *metaclass, PyObject *bases) {
     Py_ssize_t i, nbases;
@@ -11440,41 +15968,9 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__5);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__25);
     }
     goto done;
-}
-#endif
-
-/* PyObjectVectorCallKwBuilder (used by CIntToPy) */
-#if CYTHON_VECTORCALL
-static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
-    (void)__Pyx_PyObject_FastCallDict;
-    if (__Pyx_PyTuple_SET_ITEM(builder, n, key) != (0)) return -1;
-    Py_INCREF(key);
-    args[n] = value;
-    return 0;
-}
-CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
-    (void)__Pyx_VectorcallBuilder_AddArgStr;
-    if (unlikely(!PyUnicode_Check(key))) {
-        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
-        return -1;
-    }
-    return __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n);
-}
-static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
-    PyObject *pyKey = PyUnicode_FromString(key);
-    if (!pyKey) return -1;
-    return __Pyx_VectorcallBuilder_AddArg(pyKey, value, builder, args, n);
-}
-#else // CYTHON_VECTORCALL
-CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, CYTHON_UNUSED PyObject **args, CYTHON_UNUSED int n) {
-    if (unlikely(!PyUnicode_Check(key))) {
-        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
-        return -1;
-    }
-    return PyDict_SetItem(builder, key, value);
 }
 #endif
 
