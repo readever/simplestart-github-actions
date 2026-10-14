@@ -1837,36 +1837,8 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
 #endif
 
-/* PyObjectGetAttrStrNoError.proto (used by HasAttr) */
+/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
-
-/* HasAttr.proto (used by ImportImpl) */
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
-#else
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
-#endif
-
-/* ImportImpl.export */
-static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level);
-
-/* Import.proto */
-static CYTHON_INLINE PyObject *__Pyx_Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, int level);
-
-/* ImportFrom.proto */
-static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
-
-/* PyObjectCall2Args.proto (used by CallUnboundCMethod1) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* CallUnboundCMethod1.proto */
-CYTHON_UNUSED
-static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
-#else
-#define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
-#endif
 
 /* GetBuiltinName.proto (used by GetModuleGlobalName) */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
@@ -1916,6 +1888,34 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 #define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
 #define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
+#endif
+
+/* HasAttr.proto (used by ImportImpl) */
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
+#else
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
+#endif
+
+/* ImportImpl.export */
+static PyObject *__Pyx__Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, PyObject *moddict, int level);
+
+/* Import.proto */
+static CYTHON_INLINE PyObject *__Pyx_Import(PyObject *name, PyObject *const *imported_names, Py_ssize_t len_imported_names, PyObject *qualname, int level);
+
+/* ImportFrom.proto */
+static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
+
+/* PyObjectCall2Args.proto (used by CallUnboundCMethod1) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
+
+/* CallUnboundCMethod1.proto */
+CYTHON_UNUSED
+static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
+#else
+#define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
 #endif
 
 /* PyObjectDelAttr.proto (used by PyObjectSetAttrStr) */
@@ -1979,6 +1979,9 @@ static CYTHON_INLINE int __Pyx_dict_iter_next(PyObject* dict_or_iter, Py_ssize_t
 
 /* MergeKeywords.proto */
 static int __Pyx_MergeKeywords(PyObject *kwdict, PyObject *source_mapping);
+
+/* ListPack.proto */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...);
 
 /* dict_setdefault.proto (used by FetchCommonType) */
 static CYTHON_INLINE PyObject *__Pyx_PyDict_SetDefault(PyObject *d, PyObject *key, PyObject *default_value);
@@ -2370,7 +2373,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type__update;
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[9];
-  PyObject *__pyx_string_tab[80];
+  PyObject *__pyx_string_tab[119];
   PyObject *__pyx_number_tab[3];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -2413,85 +2416,124 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u_ElMessage_if_window_ElMessage_E __pyx_string_tab[1]
-#define __pyx_kp_u__2 __pyx_string_tab[2]
-#define __pyx_kp_u__3 __pyx_string_tab[3]
-#define __pyx_kp_u_simplestart_ss_api_message_py __pyx_string_tab[4]
-#define __pyx_n_u_Message __pyx_string_tab[5]
-#define __pyx_n_u_Message___call __pyx_string_tab[6]
-#define __pyx_n_u_Message___init __pyx_string_tab[7]
-#define __pyx_n_u_Message_closeAll __pyx_string_tab[8]
-#define __pyx_n_u_Message_error __pyx_string_tab[9]
-#define __pyx_n_u_Message_info __pyx_string_tab[10]
-#define __pyx_n_u_Message_primary __pyx_string_tab[11]
-#define __pyx_n_u_Message_success __pyx_string_tab[12]
-#define __pyx_n_u_Message_warning __pyx_string_tab[13]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[14]
-#define __pyx_n_u_args __pyx_string_tab[15]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[16]
-#define __pyx_n_u_call __pyx_string_tab[17]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[18]
-#define __pyx_n_u_closeAll __pyx_string_tab[19]
-#define __pyx_n_u_close_all_messages __pyx_string_tab[20]
-#define __pyx_n_u_custom_class __pyx_string_tab[21]
-#define __pyx_n_u_dangerously_use_html_string __pyx_string_tab[22]
-#define __pyx_n_u_doc __pyx_string_tab[23]
-#define __pyx_n_u_duration __pyx_string_tab[24]
-#define __pyx_n_u_error __pyx_string_tab[25]
-#define __pyx_n_u_experimental_js __pyx_string_tab[26]
-#define __pyx_n_u_func __pyx_string_tab[27]
-#define __pyx_n_u_grouping __pyx_string_tab[28]
-#define __pyx_n_u_info __pyx_string_tab[29]
-#define __pyx_n_u_init __pyx_string_tab[30]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[31]
-#define __pyx_n_u_items __pyx_string_tab[32]
-#define __pyx_n_u_jscode __pyx_string_tab[33]
-#define __pyx_n_u_kwargs __pyx_string_tab[34]
-#define __pyx_n_u_main __pyx_string_tab[35]
-#define __pyx_n_u_message __pyx_string_tab[36]
-#define __pyx_n_u_message_2 __pyx_string_tab[37]
-#define __pyx_n_u_message_data __pyx_string_tab[38]
-#define __pyx_n_u_message_error __pyx_string_tab[39]
-#define __pyx_n_u_message_info __pyx_string_tab[40]
-#define __pyx_n_u_message_primary __pyx_string_tab[41]
-#define __pyx_n_u_message_success __pyx_string_tab[42]
-#define __pyx_n_u_message_warning __pyx_string_tab[43]
-#define __pyx_n_u_metaclass __pyx_string_tab[44]
-#define __pyx_n_u_module __pyx_string_tab[45]
-#define __pyx_n_u_msg __pyx_string_tab[46]
-#define __pyx_n_u_name __pyx_string_tab[47]
-#define __pyx_n_u_offset __pyx_string_tab[48]
-#define __pyx_n_u_on_close __pyx_string_tab[49]
-#define __pyx_n_u_placement __pyx_string_tab[50]
-#define __pyx_n_u_plain __pyx_string_tab[51]
-#define __pyx_n_u_pop __pyx_string_tab[52]
-#define __pyx_n_u_prepare __pyx_string_tab[53]
-#define __pyx_n_u_primary __pyx_string_tab[54]
-#define __pyx_n_u_qualname __pyx_string_tab[55]
-#define __pyx_n_u_repeat_num __pyx_string_tab[56]
-#define __pyx_n_u_self __pyx_string_tab[57]
-#define __pyx_n_u_send_message __pyx_string_tab[58]
-#define __pyx_n_u_set_name __pyx_string_tab[59]
-#define __pyx_n_u_setdefault __pyx_string_tab[60]
-#define __pyx_n_u_show __pyx_string_tab[61]
-#define __pyx_n_u_show_close __pyx_string_tab[62]
-#define __pyx_n_u_simplestart_ss_api_message __pyx_string_tab[63]
-#define __pyx_n_u_simplestream __pyx_string_tab[64]
-#define __pyx_n_u_success __pyx_string_tab[65]
-#define __pyx_n_u_sys __pyx_string_tab[66]
-#define __pyx_n_u_test __pyx_string_tab[67]
-#define __pyx_n_u_top __pyx_string_tab[68]
-#define __pyx_n_u_type __pyx_string_tab[69]
-#define __pyx_n_u_update __pyx_string_tab[70]
-#define __pyx_n_u_values __pyx_string_tab[71]
-#define __pyx_n_u_warning __pyx_string_tab[72]
-#define __pyx_kp_b_iso88591_A_A_1 __pyx_string_tab[73]
-#define __pyx_kp_b_iso88591_A_HA __pyx_string_tab[74]
-#define __pyx_kp_b_iso88591_A_t5 __pyx_string_tab[75]
-#define __pyx_kp_b_iso88591_A_t5_2 __pyx_string_tab[76]
-#define __pyx_kp_b_iso88591_A_t5_A __pyx_string_tab[77]
-#define __pyx_kp_b_iso88591_A_t5_z __pyx_string_tab[78]
-#define __pyx_kp_b_iso88591_m___a_8_8_Q_q_q_A_a_Q_A_a_q_A __pyx_string_tab[79]
+#define __pyx_kp_u_Close_callback __pyx_string_tab[1]
+#define __pyx_kp_u_Custom_CSS_class __pyx_string_tab[2]
+#define __pyx_kp_u_Display_duration_in_ms __pyx_string_tab[3]
+#define __pyx_kp_u_Merge_identical_messages __pyx_string_tab[4]
+#define __pyx_kp_u_Message_text __pyx_string_tab[5]
+#define __pyx_kp_u_Offset_from_the_screen_edge_in_p __pyx_string_tab[6]
+#define __pyx_kp_u_Queue_position __pyx_string_tab[7]
+#define __pyx_kp_u_Render_message_as_an_HTML_fragme __pyx_string_tab[8]
+#define __pyx_kp_u_Repeat_count __pyx_string_tab[9]
+#define __pyx_kp_u_Semantic_type __pyx_string_tab[10]
+#define __pyx_kp_u_Show_a_close_button __pyx_string_tab[11]
+#define __pyx_kp_u_Solid_background_style __pyx_string_tab[12]
+#define __pyx_kp_u_Vuetify_variant_style_empty_uses __pyx_string_tab[13]
+#define __pyx_kp_u__2 __pyx_string_tab[14]
+#define __pyx_kp_u__3 __pyx_string_tab[15]
+#define __pyx_kp_u_bottom_left __pyx_string_tab[16]
+#define __pyx_kp_u_bottom_right __pyx_string_tab[17]
+#define __pyx_kp_u_simplestart_ss_api_message_py __pyx_string_tab[18]
+#define __pyx_kp_u_top_left __pyx_string_tab[19]
+#define __pyx_kp_u_top_right __pyx_string_tab[20]
+#define __pyx_n_u_MESSAGE_SCHEMA __pyx_string_tab[21]
+#define __pyx_n_u_Message __pyx_string_tab[22]
+#define __pyx_n_u_Message___call __pyx_string_tab[23]
+#define __pyx_n_u_Message___init __pyx_string_tab[24]
+#define __pyx_n_u_Message_closeAll __pyx_string_tab[25]
+#define __pyx_n_u_Message_error __pyx_string_tab[26]
+#define __pyx_n_u_Message_info __pyx_string_tab[27]
+#define __pyx_n_u_Message_primary __pyx_string_tab[28]
+#define __pyx_n_u_Message_success __pyx_string_tab[29]
+#define __pyx_n_u_Message_warning __pyx_string_tab[30]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[31]
+#define __pyx_n_u_VSnackbarQueue __pyx_string_tab[32]
+#define __pyx_n_u_args __pyx_string_tab[33]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[34]
+#define __pyx_n_u_bool __pyx_string_tab[35]
+#define __pyx_n_u_bottom __pyx_string_tab[36]
+#define __pyx_n_u_call __pyx_string_tab[37]
+#define __pyx_n_u_callable __pyx_string_tab[38]
+#define __pyx_n_u_category __pyx_string_tab[39]
+#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[40]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[41]
+#define __pyx_n_u_closeAll __pyx_string_tab[42]
+#define __pyx_n_u_close_all_messages __pyx_string_tab[43]
+#define __pyx_n_u_custom_class __pyx_string_tab[44]
+#define __pyx_n_u_dangerously_use_html_string __pyx_string_tab[45]
+#define __pyx_n_u_default __pyx_string_tab[46]
+#define __pyx_n_u_doc __pyx_string_tab[47]
+#define __pyx_n_u_doc_2 __pyx_string_tab[48]
+#define __pyx_n_u_duration __pyx_string_tab[49]
+#define __pyx_n_u_elevated __pyx_string_tab[50]
+#define __pyx_n_u_error __pyx_string_tab[51]
+#define __pyx_n_u_events __pyx_string_tab[52]
+#define __pyx_n_u_feedback __pyx_string_tab[53]
+#define __pyx_n_u_flat __pyx_string_tab[54]
+#define __pyx_n_u_func __pyx_string_tab[55]
+#define __pyx_n_u_grouping __pyx_string_tab[56]
+#define __pyx_n_u_info __pyx_string_tab[57]
+#define __pyx_n_u_init __pyx_string_tab[58]
+#define __pyx_n_u_int __pyx_string_tab[59]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[60]
+#define __pyx_n_u_items __pyx_string_tab[61]
+#define __pyx_n_u_kwargs __pyx_string_tab[62]
+#define __pyx_n_u_main __pyx_string_tab[63]
+#define __pyx_n_u_message __pyx_string_tab[64]
+#define __pyx_n_u_message_2 __pyx_string_tab[65]
+#define __pyx_n_u_message_data __pyx_string_tab[66]
+#define __pyx_n_u_message_error __pyx_string_tab[67]
+#define __pyx_n_u_message_info __pyx_string_tab[68]
+#define __pyx_n_u_message_primary __pyx_string_tab[69]
+#define __pyx_n_u_message_success __pyx_string_tab[70]
+#define __pyx_n_u_message_warning __pyx_string_tab[71]
+#define __pyx_n_u_metaclass __pyx_string_tab[72]
+#define __pyx_n_u_module __pyx_string_tab[73]
+#define __pyx_n_u_msg __pyx_string_tab[74]
+#define __pyx_n_u_name __pyx_string_tab[75]
+#define __pyx_n_u_name_2 __pyx_string_tab[76]
+#define __pyx_n_u_offset __pyx_string_tab[77]
+#define __pyx_n_u_on_close __pyx_string_tab[78]
+#define __pyx_n_u_options __pyx_string_tab[79]
+#define __pyx_n_u_outlined __pyx_string_tab[80]
+#define __pyx_n_u_params __pyx_string_tab[81]
+#define __pyx_n_u_placement __pyx_string_tab[82]
+#define __pyx_n_u_plain __pyx_string_tab[83]
+#define __pyx_n_u_pop __pyx_string_tab[84]
+#define __pyx_n_u_positional __pyx_string_tab[85]
+#define __pyx_n_u_prepare __pyx_string_tab[86]
+#define __pyx_n_u_primary __pyx_string_tab[87]
+#define __pyx_n_u_qualname __pyx_string_tab[88]
+#define __pyx_n_u_reactive __pyx_string_tab[89]
+#define __pyx_n_u_repeat_num __pyx_string_tab[90]
+#define __pyx_n_u_self __pyx_string_tab[91]
+#define __pyx_n_u_send_message __pyx_string_tab[92]
+#define __pyx_n_u_set_name __pyx_string_tab[93]
+#define __pyx_n_u_setdefault __pyx_string_tab[94]
+#define __pyx_n_u_show __pyx_string_tab[95]
+#define __pyx_n_u_show_close __pyx_string_tab[96]
+#define __pyx_n_u_simplestart_ss_api_message __pyx_string_tab[97]
+#define __pyx_n_u_simplestream __pyx_string_tab[98]
+#define __pyx_n_u_ss_core_component __pyx_string_tab[99]
+#define __pyx_n_u_str __pyx_string_tab[100]
+#define __pyx_n_u_success __pyx_string_tab[101]
+#define __pyx_n_u_sys __pyx_string_tab[102]
+#define __pyx_n_u_test __pyx_string_tab[103]
+#define __pyx_n_u_tonal __pyx_string_tab[104]
+#define __pyx_n_u_top __pyx_string_tab[105]
+#define __pyx_n_u_type __pyx_string_tab[106]
+#define __pyx_n_u_update __pyx_string_tab[107]
+#define __pyx_n_u_values __pyx_string_tab[108]
+#define __pyx_n_u_variant __pyx_string_tab[109]
+#define __pyx_n_u_vuetify_base __pyx_string_tab[110]
+#define __pyx_n_u_warning __pyx_string_tab[111]
+#define __pyx_kp_b_iso88591_A_A_1 __pyx_string_tab[112]
+#define __pyx_kp_b_iso88591_A_HA __pyx_string_tab[113]
+#define __pyx_kp_b_iso88591_A_t5 __pyx_string_tab[114]
+#define __pyx_kp_b_iso88591_A_t5_2 __pyx_string_tab[115]
+#define __pyx_kp_b_iso88591_A_t5_A __pyx_string_tab[116]
+#define __pyx_kp_b_iso88591_A_t5_z __pyx_string_tab[117]
+#define __pyx_kp_b_iso88591_m___a_8_q_81_Q_q_q_A_a_Q_A_a_q __pyx_string_tab[118]
 #define __pyx_int_1 __pyx_number_tab[0]
 #define __pyx_int_16 __pyx_number_tab[1]
 #define __pyx_int_3000 __pyx_number_tab[2]
@@ -2511,7 +2553,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<9; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<80; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<119; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -2537,7 +2579,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<9; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<80; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<119; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -2552,7 +2594,7 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_api/message.py":9
+/* "simplestart/ss_api/message.py":36
  * 
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,             # <<<<<<<<<<<<<<
@@ -2614,69 +2656,69 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_message,&__pyx_mstate_global->__pyx_n_u_type,&__pyx_mstate_global->__pyx_n_u_plain,&__pyx_mstate_global->__pyx_n_u_dangerously_use_html_string,&__pyx_mstate_global->__pyx_n_u_custom_class,&__pyx_mstate_global->__pyx_n_u_duration,&__pyx_mstate_global->__pyx_n_u_show_close,&__pyx_mstate_global->__pyx_n_u_on_close,&__pyx_mstate_global->__pyx_n_u_offset,&__pyx_mstate_global->__pyx_n_u_placement,&__pyx_mstate_global->__pyx_n_u_grouping,&__pyx_mstate_global->__pyx_n_u_repeat_num,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 9, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 36, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case 12:
         values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 11:
         values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 10:
         values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "_message", 1) < (0)) __PYX_ERR(0, 9, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "_message", 1) < (0)) __PYX_ERR(0, 36, __pyx_L3_error)
       if (!values[1]) values[1] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_n_u_info)));
       if (!values[2]) values[2] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_False)));
       if (!values[3]) values[3] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_False)));
       if (!values[4]) values[4] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_kp_u_)));
       if (!values[5]) values[5] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_int_3000)));
 
-      /* "simplestart/ss_api/message.py":10
+      /* "simplestart/ss_api/message.py":37
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,
  *             custom_class='', duration=3000, show_close=False, on_close=None,             # <<<<<<<<<<<<<<
@@ -2688,7 +2730,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!values[8]) values[8] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_int_16)));
       if (!values[9]) values[9] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_n_u_top)));
 
-      /* "simplestart/ss_api/message.py":11
+      /* "simplestart/ss_api/message.py":38
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,
  *             custom_class='', duration=3000, show_close=False, on_close=None,
  *             offset=16, placement='top', grouping=False, repeat_num=1, **kwargs):             # <<<<<<<<<<<<<<
@@ -2698,57 +2740,57 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!values[10]) values[10] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_False)));
       if (!values[11]) values[11] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_int_1)));
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_message", 0, 1, 12, i); __PYX_ERR(0, 9, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_message", 0, 1, 12, i); __PYX_ERR(0, 36, __pyx_L3_error) }
       }
     } else {
       switch (__pyx_nargs) {
         case 12:
         values[11] = __Pyx_ArgRef_FASTCALL(__pyx_args, 11);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[11])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 11:
         values[10] = __Pyx_ArgRef_FASTCALL(__pyx_args, 10);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[10])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case 10:
         values[9] = __Pyx_ArgRef_FASTCALL(__pyx_args, 9);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[9])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 36, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 36, __pyx_L3_error)
         break;
         default: goto __pyx_L5_argtuple_error;
       }
@@ -2759,7 +2801,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       if (!values[5]) values[5] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_int_3000)));
       if (!values[6]) values[6] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_False)));
 
-      /* "simplestart/ss_api/message.py":10
+      /* "simplestart/ss_api/message.py":37
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,
  *             custom_class='', duration=3000, show_close=False, on_close=None,             # <<<<<<<<<<<<<<
@@ -2787,7 +2829,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_message", 0, 1, 12, __pyx_nargs); __PYX_ERR(0, 9, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_message", 0, 1, 12, __pyx_nargs); __PYX_ERR(0, 36, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2801,7 +2843,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_11simplestart_6ss_api_7message__message(__pyx_self, __pyx_v_message, __pyx_v_type, __pyx_v_plain, __pyx_v_dangerously_use_html_string, __pyx_v_custom_class, __pyx_v_duration, __pyx_v_show_close, __pyx_v_on_close, __pyx_v_offset, __pyx_v_placement, __pyx_v_grouping, __pyx_v_repeat_num, __pyx_v_kwargs);
 
-  /* "simplestart/ss_api/message.py":9
+  /* "simplestart/ss_api/message.py":36
  * 
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,             # <<<<<<<<<<<<<<
@@ -2825,16 +2867,52 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message__message(CYTHON_UNUSED 
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  Py_ssize_t __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  size_t __pyx_t_6;
+  size_t __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  Py_ssize_t __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_message", 0);
 
-  /* "simplestart/ss_api/message.py":39
+  /* "simplestart/ss_api/message.py":60
+ *     None
+ *     """
+ *     check_schema_kwargs("message", kwargs, MESSAGE_SCHEMA)             # <<<<<<<<<<<<<<
+ * 
+ *     # messageexperimental_js
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MESSAGE_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message, __pyx_v_kwargs, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_api/message.py":67
  * 
  *     # send_message
  *     from simplestream import send_message             # <<<<<<<<<<<<<<
@@ -2843,174 +2921,174 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message__message(CYTHON_UNUSED 
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_send_message};
-    __pyx_t_2 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_simplestream, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_simplestream, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
   }
-  __pyx_t_1 = __pyx_t_2;
+  __pyx_t_1 = __pyx_t_6;
   __Pyx_GOTREF(__pyx_t_1);
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_send_message};
-    __pyx_t_3 = 0; {
-      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_1, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      switch (__pyx_t_3) {
+    __pyx_t_7 = 0; {
+      __pyx_t_3 = __Pyx_ImportFrom(__pyx_t_1, __pyx_imported_names[__pyx_t_7]); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      switch (__pyx_t_7) {
         case 0:
-        __Pyx_INCREF(__pyx_t_4);
-        __pyx_v_send_message = __pyx_t_4;
+        __Pyx_INCREF(__pyx_t_3);
+        __pyx_v_send_message = __pyx_t_3;
         break;
         default:;
       }
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":43
+  /* "simplestart/ss_api/message.py":71
  *     #
  *     message_data = {
  *         "msg": message,             # <<<<<<<<<<<<<<
  *         "type": type,
  *         "plain": plain,
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(11); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_msg, __pyx_v_message) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_msg, __pyx_v_message) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":44
+  /* "simplestart/ss_api/message.py":72
  *     message_data = {
  *         "msg": message,
  *         "type": type,             # <<<<<<<<<<<<<<
  *         "plain": plain,
  *         "dangerously_use_html_string": dangerously_use_html_string,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_type, __pyx_v_type) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_type, __pyx_v_type) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":45
+  /* "simplestart/ss_api/message.py":73
  *         "msg": message,
  *         "type": type,
  *         "plain": plain,             # <<<<<<<<<<<<<<
  *         "dangerously_use_html_string": dangerously_use_html_string,
  *         "custom_class": custom_class,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_plain, __pyx_v_plain) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_plain, __pyx_v_plain) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":46
+  /* "simplestart/ss_api/message.py":74
  *         "type": type,
  *         "plain": plain,
  *         "dangerously_use_html_string": dangerously_use_html_string,             # <<<<<<<<<<<<<<
  *         "custom_class": custom_class,
  *         "duration": duration,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dangerously_use_html_string, __pyx_v_dangerously_use_html_string) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dangerously_use_html_string, __pyx_v_dangerously_use_html_string) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":47
+  /* "simplestart/ss_api/message.py":75
  *         "plain": plain,
  *         "dangerously_use_html_string": dangerously_use_html_string,
  *         "custom_class": custom_class,             # <<<<<<<<<<<<<<
  *         "duration": duration,
  *         "show_close": show_close,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_custom_class, __pyx_v_custom_class) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_custom_class, __pyx_v_custom_class) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":48
+  /* "simplestart/ss_api/message.py":76
  *         "dangerously_use_html_string": dangerously_use_html_string,
  *         "custom_class": custom_class,
  *         "duration": duration,             # <<<<<<<<<<<<<<
  *         "show_close": show_close,
  *         "offset": offset,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_duration, __pyx_v_duration) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_duration, __pyx_v_duration) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":49
+  /* "simplestart/ss_api/message.py":77
  *         "custom_class": custom_class,
  *         "duration": duration,
  *         "show_close": show_close,             # <<<<<<<<<<<<<<
  *         "offset": offset,
  *         "placement": placement,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_show_close, __pyx_v_show_close) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_show_close, __pyx_v_show_close) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":50
+  /* "simplestart/ss_api/message.py":78
  *         "duration": duration,
  *         "show_close": show_close,
  *         "offset": offset,             # <<<<<<<<<<<<<<
  *         "placement": placement,
  *         "grouping": grouping,
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_offset, __pyx_v_offset) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_offset, __pyx_v_offset) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":51
+  /* "simplestart/ss_api/message.py":79
  *         "show_close": show_close,
  *         "offset": offset,
  *         "placement": placement,             # <<<<<<<<<<<<<<
  *         "grouping": grouping,
  *         "repeat_num": repeat_num
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_placement, __pyx_v_placement) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_placement, __pyx_v_placement) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":52
+  /* "simplestart/ss_api/message.py":80
  *         "offset": offset,
  *         "placement": placement,
  *         "grouping": grouping,             # <<<<<<<<<<<<<<
  *         "repeat_num": repeat_num
  *     }
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_grouping, __pyx_v_grouping) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_grouping, __pyx_v_grouping) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
 
-  /* "simplestart/ss_api/message.py":53
+  /* "simplestart/ss_api/message.py":81
  *         "placement": placement,
  *         "grouping": grouping,
  *         "repeat_num": repeat_num             # <<<<<<<<<<<<<<
  *     }
  * 
 */
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_repeat_num, __pyx_v_repeat_num) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_repeat_num, __pyx_v_repeat_num) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
   __pyx_v_message_data = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":57
+  /* "simplestart/ss_api/message.py":85
  * 
  *     #
  *     message_data.update(kwargs)             # <<<<<<<<<<<<<<
  * 
  *     send_message("message", message_data)
 */
-  __pyx_t_1 = __Pyx_CallUnboundCMethod1(&__pyx_mstate_global->__pyx_umethod_PyDict_Type__update, __pyx_v_message_data, __pyx_v_kwargs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CallUnboundCMethod1(&__pyx_mstate_global->__pyx_umethod_PyDict_Type__update, __pyx_v_message_data, __pyx_v_kwargs); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":59
+  /* "simplestart/ss_api/message.py":87
  *     message_data.update(kwargs)
  * 
  *     send_message("message", message_data)             # <<<<<<<<<<<<<<
  * 
  * # MessageAPI
 */
-  __pyx_t_4 = NULL;
+  __pyx_t_3 = NULL;
   __Pyx_INCREF(__pyx_v_send_message);
-  __pyx_t_5 = __pyx_v_send_message; 
-  __pyx_t_6 = 1;
+  __pyx_t_4 = __pyx_v_send_message; 
+  __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-    assert(__pyx_t_4);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-    __Pyx_INCREF(__pyx_t_4);
+  if (unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    assert(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
+    __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
-    __pyx_t_6 = 0;
+    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+    __pyx_t_5 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_mstate_global->__pyx_n_u_message, __pyx_v_message_data};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_mstate_global->__pyx_n_u_message, __pyx_v_message_data};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":9
+  /* "simplestart/ss_api/message.py":36
  * 
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,             # <<<<<<<<<<<<<<
@@ -3023,8 +3101,9 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message__message(CYTHON_UNUSED 
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_AddTraceback("simplestart.ss_api.message._message", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -3035,7 +3114,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message__message(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":63
+/* "simplestart/ss_api/message.py":91
  * # MessageAPI
  * class Message:
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -3082,32 +3161,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "__init__", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 63, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, i); __PYX_ERR(0, 91, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3137,19 +3216,19 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message___init__(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "simplestart/ss_api/message.py":65
+  /* "simplestart/ss_api/message.py":93
  *     def __init__(self):
  *         # Messageshow
  *         self.show = _message             # <<<<<<<<<<<<<<
  * 
  *     def __call__(self, *args, **kwargs):
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_message_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_message_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show, __pyx_t_1) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show, __pyx_t_1) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":63
+  /* "simplestart/ss_api/message.py":91
  * # MessageAPI
  * class Message:
  *     def __init__(self):             # <<<<<<<<<<<<<<
@@ -3170,7 +3249,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message___init__(CYTHO
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":67
+/* "simplestart/ss_api/message.py":95
  *         self.show = _message
  * 
  *     def __call__(self, *args, **kwargs):             # <<<<<<<<<<<<<<
@@ -3228,33 +3307,33 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 67, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 95, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         default:
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 67, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
       const Py_ssize_t used_pos_args = (kwd_pos_args < 1) ? kwd_pos_args : 1;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, used_pos_args, __pyx_kwds_len, "__call__", 1) < (0)) __PYX_ERR(0, 67, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, used_pos_args, __pyx_kwds_len, "__call__", 1) < (0)) __PYX_ERR(0, 95, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__call__", 0, 1, 1, i); __PYX_ERR(0, 67, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("__call__", 0, 1, 1, i); __PYX_ERR(0, 95, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs < 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 67, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__call__", 0, 1, 1, __pyx_nargs); __PYX_ERR(0, 67, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__call__", 0, 1, 1, __pyx_nargs); __PYX_ERR(0, 95, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3290,7 +3369,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_2__call__(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__call__", 0);
 
-  /* "simplestart/ss_api/message.py":69
+  /* "simplestart/ss_api/message.py":97
  *     def __call__(self, *args, **kwargs):
  *         # ss.message()ss.message.show()
  *         return self.show(*args, **kwargs)             # <<<<<<<<<<<<<<
@@ -3298,11 +3377,11 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_2__call__(CYTH
  *     def closeAll(self):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -3310,7 +3389,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_2__call__(CYTH
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":67
+  /* "simplestart/ss_api/message.py":95
  *         self.show = _message
  * 
  *     def __call__(self, *args, **kwargs):             # <<<<<<<<<<<<<<
@@ -3331,12 +3410,12 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_2__call__(CYTH
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":71
+/* "simplestart/ss_api/message.py":99
  *         return self.show(*args, **kwargs)
  * 
  *     def closeAll(self):             # <<<<<<<<<<<<<<
  *         """
- * 
+ *          Vuetify VSnackbarQueue
 */
 
 /* Python wrapper */
@@ -3347,7 +3426,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_6ss_api_7message_7Message_4closeAll, "\n        \345\205\263\351\227\255\346\211\200\346\234\211\346\266\210\346\201\257\n        ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_6ss_api_7message_7Message_4closeAll, "\n        \345\205\263\351\227\255\346\211\200\346\234\211\346\266\210\346\201\257\357\274\210\346\270\205\347\251\272 Vuetify VSnackbarQueue \351\230\237\345\210\227\357\274\211\n        ");
 static PyMethodDef __pyx_mdef_11simplestart_6ss_api_7message_7Message_5closeAll = {"closeAll", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_6ss_api_7message_7Message_5closeAll, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_6ss_api_7message_7Message_4closeAll};
 static PyObject *__pyx_pw_11simplestart_6ss_api_7message_7Message_5closeAll(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -3379,32 +3458,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 71, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 99, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 71, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 99, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "closeAll", 0) < (0)) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "closeAll", 0) < (0)) __PYX_ERR(0, 99, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("closeAll", 1, 1, 1, i); __PYX_ERR(0, 71, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("closeAll", 1, 1, 1, i); __PYX_ERR(0, 99, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 99, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("closeAll", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 71, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("closeAll", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 99, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3441,23 +3520,23 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_4closeAll(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("closeAll", 0);
 
-  /* "simplestart/ss_api/message.py":78
- * 
+  /* "simplestart/ss_api/message.py":104
+ *         """
  *         # send_message
  *         from simplestream import send_message             # <<<<<<<<<<<<<<
- *         send_message("experimental_js", {"jscode": """
- *         // ElMessage
+ *         send_message("close_all_messages", {})
+ *         return
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_send_message};
-    __pyx_t_2 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_simplestream, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_simplestream, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_t_2;
   __Pyx_GOTREF(__pyx_t_1);
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_send_message};
     __pyx_t_3 = 0; {
-      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_1, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 78, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_1, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       switch (__pyx_t_3) {
         case 0:
@@ -3471,19 +3550,18 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_4closeAll(CYTH
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":79
+  /* "simplestart/ss_api/message.py":105
  *         # send_message
  *         from simplestream import send_message
- *         send_message("experimental_js", {"jscode": """             # <<<<<<<<<<<<<<
- *         // ElMessage
- *         if (window.ElMessage) {
+ *         send_message("close_all_messages", {})             # <<<<<<<<<<<<<<
+ *         return
+ * 
 */
   __pyx_t_4 = NULL;
   __Pyx_INCREF(__pyx_v_send_message);
   __pyx_t_5 = __pyx_v_send_message; 
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_jscode, __pyx_mstate_global->__pyx_kp_u_ElMessage_if_window_ElMessage_E) < (0)) __PYX_ERR(0, 79, __pyx_L1_error)
   __pyx_t_7 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -3497,19 +3575,19 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_4closeAll(CYTH
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_mstate_global->__pyx_n_u_experimental_js, __pyx_t_6};
+    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_mstate_global->__pyx_n_u_close_all_messages, __pyx_t_6};
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_api/message.py":88
- *         """})
- * 
+  /* "simplestart/ss_api/message.py":106
+ *         from simplestream import send_message
+ *         send_message("close_all_messages", {})
  *         return             # <<<<<<<<<<<<<<
  * 
  *     def primary(self, message, **kwargs):
@@ -3518,12 +3596,12 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_4closeAll(CYTH
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":71
+  /* "simplestart/ss_api/message.py":99
  *         return self.show(*args, **kwargs)
  * 
  *     def closeAll(self):             # <<<<<<<<<<<<<<
  *         """
- * 
+ *          Vuetify VSnackbarQueue
 */
 
   /* function exit code */
@@ -3541,7 +3619,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_4closeAll(CYTH
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":90
+/* "simplestart/ss_api/message.py":108
  *         return
  * 
  *     def primary(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -3593,39 +3671,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_message,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 90, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 90, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 108, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 90, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "primary", 1) < (0)) __PYX_ERR(0, 90, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "primary", 1) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("primary", 1, 2, 2, i); __PYX_ERR(0, 90, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("primary", 1, 2, 2, i); __PYX_ERR(0, 108, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 90, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 90, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 108, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_message = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("primary", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 90, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("primary", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3662,7 +3740,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_6primary(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("primary", 0);
 
-  /* "simplestart/ss_api/message.py":94
+  /* "simplestart/ss_api/message.py":112
  * 
  *         """
  *         return self.show(message, type='primary', **kwargs)             # <<<<<<<<<<<<<<
@@ -3671,14 +3749,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_6primary(CYTHO
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = NULL;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_primary) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_primary) < (0)) __PYX_ERR(0, 112, __pyx_L1_error)
   __pyx_t_4 = __pyx_t_5;
   __pyx_t_5 = 0;
-  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 112, __pyx_L1_error)
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_3))) {
@@ -3697,14 +3775,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_6primary(CYTHO
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":90
+  /* "simplestart/ss_api/message.py":108
  *         return
  * 
  *     def primary(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -3727,7 +3805,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_6primary(CYTHO
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":96
+/* "simplestart/ss_api/message.py":114
  *         return self.show(message, type='primary', **kwargs)
  * 
  *     def success(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -3779,39 +3857,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_message,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 96, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 114, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 96, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 114, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 96, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "success", 1) < (0)) __PYX_ERR(0, 96, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "success", 1) < (0)) __PYX_ERR(0, 114, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("success", 1, 2, 2, i); __PYX_ERR(0, 96, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("success", 1, 2, 2, i); __PYX_ERR(0, 114, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 96, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 96, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 114, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_message = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("success", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 96, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("success", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3848,7 +3926,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_8success(CYTHO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("success", 0);
 
-  /* "simplestart/ss_api/message.py":100
+  /* "simplestart/ss_api/message.py":118
  * 
  *         """
  *         return self.show(message, type='success', **kwargs)             # <<<<<<<<<<<<<<
@@ -3857,14 +3935,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_8success(CYTHO
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = NULL;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_success) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_success) < (0)) __PYX_ERR(0, 118, __pyx_L1_error)
   __pyx_t_4 = __pyx_t_5;
   __pyx_t_5 = 0;
-  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 118, __pyx_L1_error)
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_3))) {
@@ -3883,14 +3961,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_8success(CYTHO
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":96
+  /* "simplestart/ss_api/message.py":114
  *         return self.show(message, type='primary', **kwargs)
  * 
  *     def success(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -3913,7 +3991,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_8success(CYTHO
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":102
+/* "simplestart/ss_api/message.py":120
  *         return self.show(message, type='success', **kwargs)
  * 
  *     def warning(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -3965,39 +4043,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_message,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 102, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 120, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 102, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 120, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 102, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 120, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "warning", 1) < (0)) __PYX_ERR(0, 102, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "warning", 1) < (0)) __PYX_ERR(0, 120, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("warning", 1, 2, 2, i); __PYX_ERR(0, 102, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("warning", 1, 2, 2, i); __PYX_ERR(0, 120, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 102, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 120, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 102, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 120, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_message = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("warning", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 102, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("warning", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 120, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4034,7 +4112,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_10warning(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("warning", 0);
 
-  /* "simplestart/ss_api/message.py":106
+  /* "simplestart/ss_api/message.py":124
  * 
  *         """
  *         return self.show(message, type='warning', **kwargs)             # <<<<<<<<<<<<<<
@@ -4043,14 +4121,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_10warning(CYTH
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = NULL;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_warning) < (0)) __PYX_ERR(0, 106, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_warning) < (0)) __PYX_ERR(0, 124, __pyx_L1_error)
   __pyx_t_4 = __pyx_t_5;
   __pyx_t_5 = 0;
-  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 106, __pyx_L1_error)
+  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 124, __pyx_L1_error)
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_3))) {
@@ -4069,14 +4147,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_10warning(CYTH
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":102
+  /* "simplestart/ss_api/message.py":120
  *         return self.show(message, type='success', **kwargs)
  * 
  *     def warning(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -4099,7 +4177,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_10warning(CYTH
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":108
+/* "simplestart/ss_api/message.py":126
  *         return self.show(message, type='warning', **kwargs)
  * 
  *     def info(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -4151,39 +4229,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_message,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 126, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 126, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 126, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "info", 1) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "info", 1) < (0)) __PYX_ERR(0, 126, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("info", 1, 2, 2, i); __PYX_ERR(0, 108, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("info", 1, 2, 2, i); __PYX_ERR(0, 126, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 126, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 126, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_message = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("info", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("info", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 126, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4220,7 +4298,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_12info(CYTHON_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("info", 0);
 
-  /* "simplestart/ss_api/message.py":112
+  /* "simplestart/ss_api/message.py":130
  * 
  *         """
  *         return self.show(message, type='info', **kwargs)             # <<<<<<<<<<<<<<
@@ -4229,14 +4307,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_12info(CYTHON_
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = NULL;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_info) < (0)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_info) < (0)) __PYX_ERR(0, 130, __pyx_L1_error)
   __pyx_t_4 = __pyx_t_5;
   __pyx_t_5 = 0;
-  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 130, __pyx_L1_error)
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_3))) {
@@ -4255,14 +4333,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_12info(CYTHON_
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":108
+  /* "simplestart/ss_api/message.py":126
  *         return self.show(message, type='warning', **kwargs)
  * 
  *     def info(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -4285,7 +4363,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_12info(CYTHON_
   return __pyx_r;
 }
 
-/* "simplestart/ss_api/message.py":114
+/* "simplestart/ss_api/message.py":132
  *         return self.show(message, type='info', **kwargs)
  * 
  *     def error(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -4337,39 +4415,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_self,&__pyx_mstate_global->__pyx_n_u_message,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 114, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 132, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 114, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 132, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 132, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "error", 1) < (0)) __PYX_ERR(0, 114, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "error", 1) < (0)) __PYX_ERR(0, 132, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("error", 1, 2, 2, i); __PYX_ERR(0, 114, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("error", 1, 2, 2, i); __PYX_ERR(0, 132, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 132, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 114, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 132, __pyx_L3_error)
     }
     __pyx_v_self = values[0];
     __pyx_v_message = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("error", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("error", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 132, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -4406,7 +4484,7 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_14error(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("error", 0);
 
-  /* "simplestart/ss_api/message.py":118
+  /* "simplestart/ss_api/message.py":136
  * 
  *         """
  *         return self.show(message, type='error', **kwargs)             # <<<<<<<<<<<<<<
@@ -4415,14 +4493,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_14error(CYTHON
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = NULL;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_show); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_error) < (0)) __PYX_ERR(0, 118, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_error) < (0)) __PYX_ERR(0, 136, __pyx_L1_error)
   __pyx_t_4 = __pyx_t_5;
   __pyx_t_5 = 0;
-  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 118, __pyx_L1_error)
+  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 136, __pyx_L1_error)
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_3))) {
@@ -4441,14 +4519,14 @@ static PyObject *__pyx_pf_11simplestart_6ss_api_7message_7Message_14error(CYTHON
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_api/message.py":114
+  /* "simplestart/ss_api/message.py":132
  *         return self.show(message, type='info', **kwargs)
  * 
  *     def error(self, message, **kwargs):             # <<<<<<<<<<<<<<
@@ -4733,9 +4811,11 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_message(PyObject *__pyx_pyinit_mod
   __pyx_mstatetype *__pyx_mstate = NULL;
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
-  size_t __pyx_t_5;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  size_t __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4827,7 +4907,7 @@ __Pyx_RefNannySetupContext("PyInit_message", 0);
  * #
  * import sys             # <<<<<<<<<<<<<<
  * 
- * #
+ * from ss_core.component import check_schema_kwargs
 */
   __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_sys, 0, 0, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __pyx_t_2 = __pyx_t_1;
@@ -4835,275 +4915,577 @@ __Pyx_RefNannySetupContext("PyInit_message", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_sys, __pyx_t_2) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
+  /* "simplestart/ss_api/message.py":6
+ * import sys
+ * 
+ * from ss_core.component import check_schema_kwargs             # <<<<<<<<<<<<<<
+ * 
+ * MESSAGE_SCHEMA = {
+*/
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  }
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_3 = 0; {
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 6, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    }
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
   /* "simplestart/ss_api/message.py":9
+ * 
+ * MESSAGE_SCHEMA = {
+ *     "name": "message",             # <<<<<<<<<<<<<<
+ *     "category": "feedback",
+ *     "vuetify_base": "VSnackbarQueue",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_message) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_n_u_feedback) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify_base, __pyx_mstate_global->__pyx_n_u_VSnackbarQueue) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+
+  /* "simplestart/ss_api/message.py":12
+ *     "category": "feedback",
+ *     "vuetify_base": "VSnackbarQueue",
+ *     "reactive": False,             # <<<<<<<<<<<<<<
+ *     "positional": ["message"],
+ *     "params": {
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_reactive, Py_False) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+
+  /* "simplestart/ss_api/message.py":13
+ *     "vuetify_base": "VSnackbarQueue",
+ *     "reactive": False,
+ *     "positional": ["message"],             # <<<<<<<<<<<<<<
+ *     "params": {
+ *         "message": {"type": "str", "default": "", "doc": "Message text"},
+*/
+  __pyx_t_4 = __Pyx_PyList_Pack(1, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_positional, __pyx_t_4) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_api/message.py":15
+ *     "positional": ["message"],
+ *     "params": {
+ *         "message": {"type": "str", "default": "", "doc": "Message text"},             # <<<<<<<<<<<<<<
+ *         "type": {"type": "str", "default": "info", "options": ["success", "warning", "info", "error", "primary"], "doc": "Semantic type"},
+ *         "plain": {"type": "bool", "default": False, "doc": "Solid background style"},
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Message_text) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_message, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":16
+ *     "params": {
+ *         "message": {"type": "str", "default": "", "doc": "Message text"},
+ *         "type": {"type": "str", "default": "info", "options": ["success", "warning", "info", "error", "primary"], "doc": "Semantic type"},             # <<<<<<<<<<<<<<
+ *         "plain": {"type": "bool", "default": False, "doc": "Solid background style"},
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_info) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(5, __pyx_mstate_global->__pyx_n_u_success, __pyx_mstate_global->__pyx_n_u_warning, __pyx_mstate_global->__pyx_n_u_info, __pyx_mstate_global->__pyx_n_u_error, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Semantic_type) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_type, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":17
+ *         "message": {"type": "str", "default": "", "doc": "Message text"},
+ *         "type": {"type": "str", "default": "info", "options": ["success", "warning", "info", "error", "primary"], "doc": "Semantic type"},
+ *         "plain": {"type": "bool", "default": False, "doc": "Solid background style"},             # <<<<<<<<<<<<<<
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Solid_background_style) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_plain, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":18
+ *         "type": {"type": "str", "default": "info", "options": ["success", "warning", "info", "error", "primary"], "doc": "Semantic type"},
+ *         "plain": {"type": "bool", "default": False, "doc": "Solid background style"},
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},             # <<<<<<<<<<<<<<
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+ *         "dangerously_use_html_string": {"type": "bool", "default": False, "doc": "Render message as an HTML fragment"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(5, __pyx_mstate_global->__pyx_n_u_elevated, __pyx_mstate_global->__pyx_n_u_flat, __pyx_mstate_global->__pyx_n_u_tonal, __pyx_mstate_global->__pyx_n_u_outlined, __pyx_mstate_global->__pyx_n_u_plain); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Vuetify_variant_style_empty_uses) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_variant, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":19
+ *         "plain": {"type": "bool", "default": False, "doc": "Solid background style"},
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},             # <<<<<<<<<<<<<<
+ *         "dangerously_use_html_string": {"type": "bool", "default": False, "doc": "Render message as an HTML fragment"},
+ *         "custom_class": {"type": "str", "default": "", "doc": "Custom CSS class"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(5, __pyx_mstate_global->__pyx_n_u_elevated, __pyx_mstate_global->__pyx_n_u_flat, __pyx_mstate_global->__pyx_n_u_tonal, __pyx_mstate_global->__pyx_n_u_outlined, __pyx_mstate_global->__pyx_n_u_plain); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Vuetify_variant_style_empty_uses) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_variant, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":20
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+ *         "dangerously_use_html_string": {"type": "bool", "default": False, "doc": "Render message as an HTML fragment"},             # <<<<<<<<<<<<<<
+ *         "custom_class": {"type": "str", "default": "", "doc": "Custom CSS class"},
+ *         "duration": {"type": "int", "default": 3000, "doc": "Display duration in ms"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Render_message_as_an_HTML_fragme) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_dangerously_use_html_string, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":21
+ *         "variant": {"type": "str", "default": "", "options": ["elevated", "flat", "tonal", "outlined", "plain"], "doc": "Vuetify variant style; empty uses the default light style"},
+ *         "dangerously_use_html_string": {"type": "bool", "default": False, "doc": "Render message as an HTML fragment"},
+ *         "custom_class": {"type": "str", "default": "", "doc": "Custom CSS class"},             # <<<<<<<<<<<<<<
+ *         "duration": {"type": "int", "default": 3000, "doc": "Display duration in ms"},
+ *         "show_close": {"type": "bool", "default": False, "doc": "Show a close button"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Custom_CSS_class) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_custom_class, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":22
+ *         "dangerously_use_html_string": {"type": "bool", "default": False, "doc": "Render message as an HTML fragment"},
+ *         "custom_class": {"type": "str", "default": "", "doc": "Custom CSS class"},
+ *         "duration": {"type": "int", "default": 3000, "doc": "Display duration in ms"},             # <<<<<<<<<<<<<<
+ *         "show_close": {"type": "bool", "default": False, "doc": "Show a close button"},
+ *         "on_close": {"type": "callable", "default": None, "doc": "Close callback"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_int) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_int_3000) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Display_duration_in_ms) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_duration, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":23
+ *         "custom_class": {"type": "str", "default": "", "doc": "Custom CSS class"},
+ *         "duration": {"type": "int", "default": 3000, "doc": "Display duration in ms"},
+ *         "show_close": {"type": "bool", "default": False, "doc": "Show a close button"},             # <<<<<<<<<<<<<<
+ *         "on_close": {"type": "callable", "default": None, "doc": "Close callback"},
+ *         "offset": {"type": "int", "default": 16, "doc": "Offset from the screen edge in px"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Show_a_close_button) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_show_close, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":24
+ *         "duration": {"type": "int", "default": 3000, "doc": "Display duration in ms"},
+ *         "show_close": {"type": "bool", "default": False, "doc": "Show a close button"},
+ *         "on_close": {"type": "callable", "default": None, "doc": "Close callback"},             # <<<<<<<<<<<<<<
+ *         "offset": {"type": "int", "default": 16, "doc": "Offset from the screen edge in px"},
+ *         "placement": {"type": "str", "default": "top", "options": ["top", "top-left", "top-right", "bottom", "bottom-left", "bottom-right"], "doc": "Queue position"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Close_callback) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_on_close, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":25
+ *         "show_close": {"type": "bool", "default": False, "doc": "Show a close button"},
+ *         "on_close": {"type": "callable", "default": None, "doc": "Close callback"},
+ *         "offset": {"type": "int", "default": 16, "doc": "Offset from the screen edge in px"},             # <<<<<<<<<<<<<<
+ *         "placement": {"type": "str", "default": "top", "options": ["top", "top-left", "top-right", "bottom", "bottom-left", "bottom-right"], "doc": "Queue position"},
+ *         "grouping": {"type": "bool", "default": False, "doc": "Merge identical messages"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_int) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_int_16) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Offset_from_the_screen_edge_in_p) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_offset, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":26
+ *         "on_close": {"type": "callable", "default": None, "doc": "Close callback"},
+ *         "offset": {"type": "int", "default": 16, "doc": "Offset from the screen edge in px"},
+ *         "placement": {"type": "str", "default": "top", "options": ["top", "top-left", "top-right", "bottom", "bottom-left", "bottom-right"], "doc": "Queue position"},             # <<<<<<<<<<<<<<
+ *         "grouping": {"type": "bool", "default": False, "doc": "Merge identical messages"},
+ *         "repeat_num": {"type": "int", "default": 1, "doc": "Repeat count"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_top) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(6, __pyx_mstate_global->__pyx_n_u_top, __pyx_mstate_global->__pyx_kp_u_top_left, __pyx_mstate_global->__pyx_kp_u_top_right, __pyx_mstate_global->__pyx_n_u_bottom, __pyx_mstate_global->__pyx_kp_u_bottom_left, __pyx_mstate_global->__pyx_kp_u_bottom_right); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Queue_position) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_placement, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":27
+ *         "offset": {"type": "int", "default": 16, "doc": "Offset from the screen edge in px"},
+ *         "placement": {"type": "str", "default": "top", "options": ["top", "top-left", "top-right", "bottom", "bottom-left", "bottom-right"], "doc": "Queue position"},
+ *         "grouping": {"type": "bool", "default": False, "doc": "Merge identical messages"},             # <<<<<<<<<<<<<<
+ *         "repeat_num": {"type": "int", "default": 1, "doc": "Repeat count"},
+ *     },
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Merge_identical_messages) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_grouping, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_api/message.py":28
+ *         "placement": {"type": "str", "default": "top", "options": ["top", "top-left", "top-right", "bottom", "bottom-left", "bottom-right"], "doc": "Queue position"},
+ *         "grouping": {"type": "bool", "default": False, "doc": "Merge identical messages"},
+ *         "repeat_num": {"type": "int", "default": 1, "doc": "Repeat count"},             # <<<<<<<<<<<<<<
+ *     },
+ *     "events": {},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_int) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_int_1) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Repeat_count) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_repeat_num, __pyx_t_5) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_api/message.py":30
+ *         "repeat_num": {"type": "int", "default": 1, "doc": "Repeat count"},
+ *     },
+ *     "events": {},             # <<<<<<<<<<<<<<
+ * }
+ * 
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_MESSAGE_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_api/message.py":36
  * 
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,             # <<<<<<<<<<<<<<
  *             custom_class='', duration=3000, show_close=False, on_close=None,
  *             offset=16, placement='top', grouping=False, repeat_num=1, **kwargs):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_1_message, 0, __pyx_mstate_global->__pyx_n_u_message_2, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_1_message, 0, __pyx_mstate_global->__pyx_n_u_message_2, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_mstate_global->__pyx_tuple[0]);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_2, __pyx_t_2) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_2, __pyx_t_2) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_api/message.py":62
+  /* "simplestart/ss_api/message.py":90
  * 
  * # MessageAPI
  * class Message:             # <<<<<<<<<<<<<<
  *     def __init__(self):
  *         # Messageshow
 */
-  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_Message, __pyx_mstate_global->__pyx_n_u_Message, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_mstate_global->__pyx_empty_tuple, __pyx_mstate_global->__pyx_n_u_Message, __pyx_mstate_global->__pyx_n_u_Message, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, (PyObject *) NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "simplestart/ss_api/message.py":63
+  /* "simplestart/ss_api/message.py":91
  * # MessageAPI
  * class Message:
  *     def __init__(self):             # <<<<<<<<<<<<<<
  *         # Messageshow
  *         self.show = _message
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_1__init__, 0, __pyx_mstate_global->__pyx_n_u_Message___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_1__init__, 0, __pyx_mstate_global->__pyx_n_u_Message___init, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_3) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_4) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":67
+  /* "simplestart/ss_api/message.py":95
  *         self.show = _message
  * 
  *     def __call__(self, *args, **kwargs):             # <<<<<<<<<<<<<<
  *         # ss.message()ss.message.show()
  *         return self.show(*args, **kwargs)
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_3__call__, 0, __pyx_mstate_global->__pyx_n_u_Message___call, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_3__call__, 0, __pyx_mstate_global->__pyx_n_u_Message___call, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_call, __pyx_t_3) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_call, __pyx_t_4) < (0)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":71
+  /* "simplestart/ss_api/message.py":99
  *         return self.show(*args, **kwargs)
  * 
  *     def closeAll(self):             # <<<<<<<<<<<<<<
  *         """
- * 
+ *          Vuetify VSnackbarQueue
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_5closeAll, 0, __pyx_mstate_global->__pyx_n_u_Message_closeAll, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_5closeAll, 0, __pyx_mstate_global->__pyx_n_u_Message_closeAll, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_closeAll, __pyx_t_3) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_closeAll, __pyx_t_4) < (0)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":90
+  /* "simplestart/ss_api/message.py":108
  *         return
  * 
  *     def primary(self, message, **kwargs):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_7primary, 0, __pyx_mstate_global->__pyx_n_u_Message_primary, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_7primary, 0, __pyx_mstate_global->__pyx_n_u_Message_primary, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_primary, __pyx_t_3) < (0)) __PYX_ERR(0, 90, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_primary, __pyx_t_4) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":96
+  /* "simplestart/ss_api/message.py":114
  *         return self.show(message, type='primary', **kwargs)
  * 
  *     def success(self, message, **kwargs):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_9success, 0, __pyx_mstate_global->__pyx_n_u_Message_success, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_9success, 0, __pyx_mstate_global->__pyx_n_u_Message_success, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_success, __pyx_t_3) < (0)) __PYX_ERR(0, 96, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_success, __pyx_t_4) < (0)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":102
+  /* "simplestart/ss_api/message.py":120
  *         return self.show(message, type='success', **kwargs)
  * 
  *     def warning(self, message, **kwargs):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_11warning, 0, __pyx_mstate_global->__pyx_n_u_Message_warning, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_11warning, 0, __pyx_mstate_global->__pyx_n_u_Message_warning, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_warning, __pyx_t_3) < (0)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_warning, __pyx_t_4) < (0)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":108
+  /* "simplestart/ss_api/message.py":126
  *         return self.show(message, type='warning', **kwargs)
  * 
  *     def info(self, message, **kwargs):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_13info, 0, __pyx_mstate_global->__pyx_n_u_Message_info, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_13info, 0, __pyx_mstate_global->__pyx_n_u_Message_info, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_info, __pyx_t_3) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_info, __pyx_t_4) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":114
+  /* "simplestart/ss_api/message.py":132
  *         return self.show(message, type='info', **kwargs)
  * 
  *     def error(self, message, **kwargs):             # <<<<<<<<<<<<<<
  *         """
  * 
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_15error, 0, __pyx_mstate_global->__pyx_n_u_Message_error, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_6ss_api_7message_7Message_15error, 0, __pyx_mstate_global->__pyx_n_u_Message_error, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_api_message, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_error, __pyx_t_3) < (0)) __PYX_ERR(0, 114, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_error, __pyx_t_4) < (0)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_api/message.py":62
+  /* "simplestart/ss_api/message.py":90
  * 
  * # MessageAPI
  * class Message:             # <<<<<<<<<<<<<<
  *     def __init__(self):
  *         # Messageshow
 */
-  __pyx_t_3 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_Message, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_mstate_global->__pyx_n_u_Message, __pyx_mstate_global->__pyx_empty_tuple, __pyx_t_2, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_Message, __pyx_t_3) < (0)) __PYX_ERR(0, 62, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_Message, __pyx_t_4) < (0)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_api/message.py":121
+  /* "simplestart/ss_api/message.py":139
  * 
  * # Messagemessage
  * message = Message()             # <<<<<<<<<<<<<<
  * 
  * #
 */
-  __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_Message); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = 1;
+  __pyx_t_4 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_Message); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_7 = 1;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
-    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message, __pyx_t_2) < (0)) __PYX_ERR(0, 121, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message, __pyx_t_2) < (0)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_api/message.py":124
+  /* "simplestart/ss_api/message.py":142
  * 
  * #
  * close_all_messages = message.closeAll             # <<<<<<<<<<<<<<
  * message_success = message.success
  * message_warning = message.warning
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_closeAll); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_closeAll); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_close_all_messages, __pyx_t_4) < (0)) __PYX_ERR(0, 124, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_close_all_messages, __pyx_t_5) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_api/message.py":125
+  /* "simplestart/ss_api/message.py":143
  * #
  * close_all_messages = message.closeAll
  * message_success = message.success             # <<<<<<<<<<<<<<
  * message_warning = message.warning
  * message_info = message.info
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_success); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_success); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_success, __pyx_t_2) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_success, __pyx_t_2) < (0)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_api/message.py":126
+  /* "simplestart/ss_api/message.py":144
  * close_all_messages = message.closeAll
  * message_success = message.success
  * message_warning = message.warning             # <<<<<<<<<<<<<<
  * message_info = message.info
  * message_error = message.error
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_warning); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_warning); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_warning, __pyx_t_4) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_warning, __pyx_t_5) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_api/message.py":127
+  /* "simplestart/ss_api/message.py":145
  * message_success = message.success
  * message_warning = message.warning
  * message_info = message.info             # <<<<<<<<<<<<<<
  * message_error = message.error
  * message_primary = message.primary
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_info); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_info); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_info, __pyx_t_2) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_info, __pyx_t_2) < (0)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_api/message.py":128
+  /* "simplestart/ss_api/message.py":146
  * message_warning = message.warning
  * message_info = message.info
  * message_error = message.error             # <<<<<<<<<<<<<<
  * message_primary = message.primary
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_error); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 128, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_error); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_error, __pyx_t_4) < (0)) __PYX_ERR(0, 128, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_error, __pyx_t_5) < (0)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_api/message.py":129
+  /* "simplestart/ss_api/message.py":147
  * message_info = message.info
  * message_error = message.error
  * message_primary = message.primary             # <<<<<<<<<<<<<<
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_message); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_primary, __pyx_t_2) < (0)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_message_primary, __pyx_t_2) < (0)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_api/message.py":1
@@ -5121,8 +5503,9 @@ __Pyx_RefNannySetupContext("PyInit_message", 0);
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.ss_api.message", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -5173,14 +5556,14 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "simplestart/ss_api/message.py":9
+  /* "simplestart/ss_api/message.py":36
  * 
  * # API
  * def _message(message, type='info', plain=False, dangerously_use_html_string=False,             # <<<<<<<<<<<<<<
  *             custom_class='', duration=3000, show_close=False, on_close=None,
  *             offset=16, placement='top', grouping=False, repeat_num=1, **kwargs):
 */
-  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(11, ((PyObject*)__pyx_mstate_global->__pyx_n_u_info), ((PyObject*)Py_False), ((PyObject*)Py_False), ((PyObject*)__pyx_mstate_global->__pyx_kp_u_), ((PyObject*)__pyx_mstate_global->__pyx_int_3000), ((PyObject*)Py_False), Py_None, ((PyObject*)__pyx_mstate_global->__pyx_int_16), ((PyObject*)__pyx_mstate_global->__pyx_n_u_top), ((PyObject*)Py_False), ((PyObject*)__pyx_mstate_global->__pyx_int_1)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(11, ((PyObject*)__pyx_mstate_global->__pyx_n_u_info), ((PyObject*)Py_False), ((PyObject*)Py_False), ((PyObject*)__pyx_mstate_global->__pyx_kp_u_), ((PyObject*)__pyx_mstate_global->__pyx_int_3000), ((PyObject*)Py_False), Py_None, ((PyObject*)__pyx_mstate_global->__pyx_int_16), ((PyObject*)__pyx_mstate_global->__pyx_n_u_top), ((PyObject*)Py_False), ((PyObject*)__pyx_mstate_global->__pyx_int_1)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[0]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[0]);
   #if CYTHON_IMMORTAL_CONSTANTS
@@ -5213,34 +5596,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{0},{192},{1},{1},{29},{7},{16},{16},{16},{13},{12},{15},{15},{15},{20},{4},{18},{8},{18},{8},{18},{12},{27},{7},{8},{5},{15},{8},{8},{4},{8},{13},{5},{6},{6},{8},{7},{8},{12},{13},{12},{15},{15},{15},{13},{10},{3},{8},{6},{8},{9},{5},{3},{11},{7},{12},{10},{4},{12},{12},{10},{4},{10},{26},{12},{7},{3},{8},{3},{4},{6},{6},{7},{29},{9},{15},{21},{21},{21},{120}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (748 bytes) */
-const char* const cstring = "BZh91AY&SYV\267\"\031\000\000\035\377\373\367\367\367\372b\345\242K\246Cp\000\277\377\377\372@@\304B`A\300@\300@F\200@\000@\002n\240\000\201\242\224\336E<\243\324\315\r@\323M4\364\20044\36544\000\001\223\324h\3653D6\247\224\362\207\006\215\032\006\203@d\304\006F\206@\000i\246@\000\003\004\00084h\3204\032\003& 242\000\003M2\000\000\030 \000\323S\020\232e2d\311\003SP\032h\000\014\203@\000\000\323\324\362e\032\000Ee\2472\241B\353\367\210\317\360\361\034UHd\224\255,\240\010\214\314\210$$\203\027\335\206\300\200rZ\203+\254\352\nq\302'/\026\3310\023)\2048.i\204\252\371 A\301\023\346\360i\363\370=u,\265=\306q\211\016\265\360\365\031\324k\255g\036\272\264\257$\017s'\214e\230\240\231\223(O\002\236Cb\215\257w;$\356)\326\023\303\272\\~/\333\220S\320\201<\333\351\332,\351l4T=\220\016\277\232\315p\203\277\344\245\257\223t\307a=GaG\276\020\022\035F|\354\354\t\005\nX\364\025X$\301E , %r\342\371\036\211\321\000N\313;d+\331\033#\327dF8\371\305\"*\225\026\272\341\204\373\233\375\243\036\235\370\3422F\031\243@0\342\035x\250\307\204\037\266\323-\256\226W\2049cH $$\020\303]\n\226\2002\202\006\273\016\255\3612\325\347f\240\240\205\037\001K\025swB\001qB\210\014\0056&\351D\213\336\277\2552\324g\261+\307\212\245w\204A\002\205o\020`\266\037\247\237)\001\024\204y\251\210\323\027\255\306\245E\333\247\2538\333\013Ek\320\204\221q\323uD\203s\351\275\322\221\367\205\020\230\004WZ\312\327\243!\217\244\320l\226>L\324hww\257J\265\367\370\357y|\214\2537H\224I\221d#R\316&\274\243\265\226\257\226\330\231GE\250\n1\t\304\240_\341\0336d{y\346\031\253\222_\226\244R\020\323\314\364\\N\227\3039\273\005J\2732m\003\203\260 2\r7\205\353\216L\034\240\010\254\353\254\300\266|J0\020^|.\351-:j\330\353\301P\004R\034\244Mbf\261\215\263\034\\\273\203\312F\320P\255F\250<\221\213\310\250\317\177\030\035\214\215\315I\357\246\327\276\030\021'\200\356nK\026\021IQ\205\266\216i\255\234h\247P\035`v\234\017\215>[w\010\344P<.y\315\003\353\330\272\256\225\331p\223\372\3120O\337\200H\333\220\026\377v\022f+q\307\014x!\275\212)j""\353\376\354`o\206*\232<\213\251\375\240\270J\022\2210I\307/\002\352\244\tV\377\027rE8P\220V\267\"\031";
-    PyObject *data = __Pyx_DecompressString(cstring, 748, 2);
+    const struct { const unsigned int length: 8; } index[] = {{0},{14},{16},{22},{24},{12},{33},{14},{34},{12},{13},{19},{22},{57},{1},{1},{11},{12},{29},{8},{9},{14},{7},{16},{16},{16},{13},{12},{15},{15},{15},{20},{14},{4},{18},{4},{6},{8},{8},{8},{19},{18},{8},{18},{12},{27},{7},{3},{7},{8},{8},{5},{6},{8},{4},{8},{8},{4},{8},{3},{13},{5},{6},{8},{7},{8},{12},{13},{12},{15},{15},{15},{13},{10},{3},{8},{4},{6},{8},{7},{8},{6},{9},{5},{3},{10},{11},{7},{12},{8},{10},{4},{12},{12},{10},{4},{10},{26},{12},{17},{3},{7},{3},{8},{5},{3},{4},{6},{6},{7},{12},{7},{25},{9},{15},{21},{21},{21},{133}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (981 bytes) */
+const char* const cstring = "BZh91AY&SY\376;'\314\000\000`\377\373\367\377\367\352b\317\242K\256\307\375\000\277\357\377\372@@@@@@@@@@@\000@\000P\003Z&K\331J\033\230h\223MM1OS\322h\362C\324\000\310\000\0002\000\001\352f\223M\265OSF5\010$052H\3656\243\324\032\032\000\000\000\000\000\000\0006\240\032hCJzi4\232=\004\246\2314a2i\240`\010\310i\241\210142`C\206\206\214\2324h\323C#!\204\001\220\003 \323@\000\014\201\220\006\232\212\237\2122\233)\372M4\3224\000\032\000\003!\240\000\000\000\000%x\345YS\331\333\364zP\237Y\366\037v\000{\365Q@\367\310\222\210$\006\213J\2210\362\227\013\000\312\232(\033\270]`\006\214\234D4\022\351)\266mI4\261\306c\317\331l^k\243\301\226Rh\373\272\224\231\2446\2071$pCR\266;\005\005Hw6\363\022\352\301\342\220Y\211LS0\204N\036\001\352\352F\257S\371\261\2505\220e\204\0235\375&\312\212\313\226U\033S\263j\013\255\212\\\002\255h\237S\312\242b\3758\266K\236s\024\327\223\351\377)\237\241\341'u\203\300\376\226\325\360r\347\320\024/\233O\032\340L\034\312Jj\241\254\226\216\234\204\344\t\005\nS\246\275\"\372\025$I\014G$\207e\025\264T_J\252K\345d.[\300\000R\245[\254\200\310-EQ\0005m9\261\314\234\017\310\t\326F\004.\005\213U\001\231h#d\310xR)\261\260HZ]^\265\022\372\326b\247\244+\241\203\031\320\226\034\t\272\365y\220(bM\307\246\362\014AyaEZ\205\236\355\024\343\312\"A\250\271Q\251Q\353Q\251W\022\233\010E\220[\260\337\"\346J\r\325\003\210\240\327\025\2767\321r\333T\013\001I\007\266\311\300\325*\2351\225\331\242G\244\222\234GQ\034\353\215\244\202{\226\"D\204\004P\244\364\225\301\205@\221+\031\023\027\356\360\027\361V\3564\250 \234P\022V\r\020\035\370\361(\010\030\244\221V\226\212$\264\215cu\206b\207X\201A\377e\251\202\272\010G\030\326Bcn\207\270\255\225\204\033\302\005\302CM\304\246\021gL\020\235\207@\232kV\224\327I\360<\203R \351`\216\304H\t]\202\202\020\262_@%\027\232\310\304\231j\271\363m\303\354h\340\320\320v\234\276\353\244Z\230\321\260\037!Y\320\020I\343Q=\204F&\202\2110Q \215(Q\231\344\354\300\0326\321\310\033\347\030eb\0058\252\030\022v\235\354\032\212\234\322\010\252\364F\207#\030@""\233\r)\010\341\222\232\201\246\026\350\214\200W\2328jNB\314\311\337`\351}Zi\215\366\256\220\353Yp\343\0233A\360\207I\311\322\274I\264D\201I\314\006!\265\360*\211\360\252n \004g\305xY\352\203*\335\230\254\003l'\317Z\223@\361\\\332\365\241\317\221'\000#\221B\220\r\355\212U\265J \257\036\374f\027\242\030l\312\r^\256K\rm\241\304\354\267H\023\032C\314\034\354\367\303$&-\233_\007\232,JD\342\310Dj\030\"\350\002\250\305\340\354\314j\202\304\342r\300\030R\005hEf\341\003\200\251 \200\206\005\n\243-\305&\014\226\005&\237\277\020D(I\033\310\007EZ%\331XJ4\373~,\221\230\264#\221\3409m\227w\311[\271x\217]\006\331\\\225b\237\222\311|SL_\237\277\3300\316\231\342\277\203It\267\247\237~\377\242\313\334\335a9Na\304\331@\207\377\305\334\221N\024$?\216\311\363\000";
+    PyObject *data = __Pyx_DecompressString(cstring, 981, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (671 bytes) */
-const char* const cstring = "x\332mRMO\324@\030\3365\202\335\r\242K\004\374\010I9\030\226\304t\343\301\204\304\250i\242\211\027\215\370\007&C\373\35620\235)\235)\313JH8r\263\007\017\275\230\2547N\272Gn\376\205\036{\344\240\341\272?\301\267\245S\210\332\244\235\367y?\237\347\235\266\355\352\351\365\354\213o\337\177\375\374\372\206\277\003\245\350\000~\177\376q\361\345\264m\022X\337\356\016\231\360\345\320\251S\326\355\303:^<u\300\361\270T\340r\336]\177^g\034\331\300\025\374U\342I\241$\007\007\242HF\335\265\272\203\315\224-\244\266\351>e\234nqX\273\336\251\266\234W\212\005!\007\245i\244{J\021\032\262^P\221\010GU3\303\212\020\217rN\310\025f\202\351+lX\033\\\2222\200\211\2764v\030\261\200F\246\275\243b\317C\323\300!\215\004\023\003B>\214\016\360}\315<M\336\303\201\376\010}\032\r\024U#\3411\351x2\222\261f\002\224\341\345qD\310\211\350\210z\260E\275]\303\250<I\221T\211S^\254\264\014\260\204*\345S1\000l\246\370\210\304\230\267\255\003N\224\216J\022\276\364\360\023GT3)JEp\020\002\n\000\241)';8\275\037\013\314\031`\207\020K\n\241f3\204)R\363d\032\002\265\243<\351\303\356\260PBH@\221\255\341dN\003}\252\251\261\313\301\006\024\023\214]\255\322\300j\225\006\326\253\014@\323R+r\"\201\364c\016x*\214\010\234A\210\354\367\025h)H\271\251\220\343\376\n\201h0\021\312\220\340\034\010i\004\304\014$d/\246\374\262\030C@5\021q\240\200c\037\341\327\222\010v\255F\240\345\343\r\306\\\253m9,\336\313a\327\376@\347\362\017t\314%U\221\010hP\tS#T\240\321\207_\031\352Q\010q\210{\202}\312cP\225\334cw:\337h\315g\267W\307\235\334\272\227\270\331\342\372\351\303\311\323\351B\243\325>v\317\255\271\223\267\211[\030wNt\362,\275\221v\307\253Xd5ZwKG3}0~<>\234\374\307y4q\377u~\232t\262\306R\022\214_L\232\371\334JJ\262'/\317h>\267\234-w\263\356\306Ys\272\321\230ig\255\225ts:\333\230\231\315q\360^n\335M\232\271\325I\220\343\332\030\341\375\264Y\262\315\255\245\204\346\326B\262\232[\213\311\346\225\017\307\316t\222[\311^\332<\277\211\305\311\243\324\375\003O\007\261]";
-    PyObject *data = __Pyx_DecompressString(cstring, 671, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (880 bytes) */
+const char* const cstring = "x\332mSMo\034E\020\335E8\254\203\t1\"\037\010Ej\037\020\226\010\033\345\200\024\t\001Z9\026>`\300^\224k\253v\246f\266\345\376rw\317\332\003B\3121\3079\356q\2179\372\230\237\261\3079\346'\370'P=;m#\301J\333U\325\323]\365\352\275\256\003i<\262\014\244\234AvvP\371`\024;\230NY&\301\373\227\302[\t5\313+\007A\030\315\204f\312\037\243+\221\211\034u\020t\223)\364\036J\244\375\316\262\200\227\341\267\242\360\030X\341(]\230#\363\231C\324\014\363xS3{yRa\205\314\032/b\342S\3249\272\224\211\201g\240\331\321\037\307\277P\006(\025U:E\213\020Xf*\035\246\250 \326f\241\2668\235\233\013\006\204762\253B0zj\244\310Yl\250tt>g>\324\022_U\030DQ\263\0058A\3277\233\3373T6\324\254\362\350;\2409\026P\311\300\244(\347\375\231\361O3Ci\325\267\022\213\320\273.~\366BY\211>\200\013\317\274\347`\305\263\276\203\261\255\203\261\335\205h\273\323\307\207\323\351\344\347C>=8:<\236\364d\365f\314y\324\200\363\333Xh\021n\343\256\275\211\224)F\347\214K\201\320\205I\276uB\201\253S\350\253,#7\205\027\340\264\320%\347\277\327\227\364\177)\262\300\177%\271N\261x5\325D\330\014\\\247\014\270\322\203\257u&\31483\304b\020\032\375\314\030\271! \341\215+\314$f\020\2604\256\316\346\230\235qOF\001?\273\210i2IW\251\035\036\034d\030UI\315t\226\307<\351\te\335\003\344\335\343\313A\227H\225\275\2549\311\303\347AI\356\203#\374\275H\271\3118\337,\375\003E\211\013B\222w\364\340\202\336\215/\020\363X\264\220@|\026\225\246\343\361YX\312\023\211KL\013\035\270\360\374\246Y\021P\371M\007\234+ \374\te\262)\314!@\362\273\302)\210\351\223\337\353\222\302^\227\024\336\350\2420@\327=\247\2372y%\221\254\247/\232jlV\323\315\226\321\274\343\317\330\330\270'\320\221\347\334\202\003\025\2476\30386\344\010m\215M\203\006\244\231uH\247\220'L\234\237W 7\371\035B\026\304\002]7n\\W\312\243\244r:\277\351\236S\361\036\ry\275\024\236\2460\3767\230\3765\030\343\315`\214\223\302\375\027\252\243|\3076\275m\243,IGZ\005\327\363\342k\" \3209Z#h\032\2428\353\225%\256IaY\241\357\307x\261\231j>\003\217=\213\257'\327w\007\333\367\326\237\354\255v\333\321\347""\315d\375\340\233\267\317\333\321\366\353\311\373\321\316\233\243f\022\235O\337\204\346\273\345\007\313\375\325\036]\030\r\266\357w\033\303\345\027\253\257V\177]\375\317\346\337W\223\377n\376y\265\273\036<l\324\352\207\253a\273\363d\311\327O\177|\007\355\316\243\365\243\375\365\376\213w\303\353\247\203\255\307\315\371\362\343\325\213\267\317\257\357\r\266\356\256\267\237,O\256\357\014\266\356\264\204\342\274\035\335o\206\355h\267!\260_\257(|\274\034v\260\333\321\303\006\332\321g\315^;z\320\234\334\356\021\206\255\335\346#J:|\377!]n\276\\N\376\001\267\321C*";
+    PyObject *data = __Pyx_DecompressString(cstring, 880, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1154 bytes) */
-const char* const bytes = "\n        // \347\241\256\344\277\235ElMessage\345\217\257\347\224\250\n        if (window.ElMessage) {\n            ElMessage.closeAll();\n        } else {\n            console.error('ElMessage is not available');\n        }\n        .?simplestart/ss_api/message.pyMessageMessage.__call__Message.__init__Message.closeAllMessage.errorMessage.infoMessage.primaryMessage.successMessage.warning__Pyx_PyDict_NextRefargsasyncio.coroutines__call__cline_in_tracebackcloseAllclose_all_messagescustom_classdangerously_use_html_string__doc__durationerrorexperimental_js__func__groupinginfo__init___is_coroutineitemsjscodekwargs__main__message_messagemessage_datamessage_errormessage_infomessage_primarymessage_successmessage_warning__metaclass____module__msg__name__offseton_closeplacementplainpop__prepare__primary__qualname__repeat_numselfsend_message__set_name__setdefaultshowshow_closesimplestart.ss_api.messagesimplestreamsuccesssys__test__toptypeupdatevalueswarning\200A\360\016\000\t\016\320\r!\240\021\330\010\024\220A\320\025)\250\032\2601\360\022\000\t\n\200A\340\010\014\210H\220A\200A\340\010\017\210t\2205\230\002\230(\240!\200A\360\010\000\t\020\210t\2205\230\001\230\031\240%\240{\260!\200A\360\010\000\t\020\210t\2205\230\001\230\031\240%\240}\260A\200A\360\010\000\t\020\210t\2205\230\001\230\031\240%\240z\260\021\320\000\026\220m\240=\260\001\330\014\035\230_\320,>\270a\330\014\027\320\027(\320(8\270\001\3608\000\005\n\320\t\035\230Q\360\006\000\005\006\330\010\017\210q\330\010\020\220\001\330\010\021\220\021\330\010'\240q\330\010\030\230\001\330\010\024\220A\330\010\026\220a\330\010\022\220!\330\010\025\220Q\330\010\024\220A\330\010\026\220a\360\010\000\005\021\220\007\220q\230\001\340\004\020\220\001\220\033\230A";
+    #else /* compression: none (1481 bytes) */
+const char* const bytes = "Close callbackCustom CSS classDisplay duration in msMerge identical messagesMessage textOffset from the screen edge in pxQueue positionRender message as an HTML fragmentRepeat countSemantic typeShow a close buttonSolid background styleVuetify variant style; empty uses the default light style.?bottom-leftbottom-rightsimplestart/ss_api/message.pytop-lefttop-rightMESSAGE_SCHEMAMessageMessage.__call__Message.__init__Message.closeAllMessage.errorMessage.infoMessage.primaryMessage.successMessage.warning__Pyx_PyDict_NextRefVSnackbarQueueargsasyncio.coroutinesboolbottom__call__callablecategorycheck_schema_kwargscline_in_tracebackcloseAllclose_all_messagescustom_classdangerously_use_html_stringdefaultdoc__doc__durationelevatederroreventsfeedbackflat__func__groupinginfo__init__int_is_coroutineitemskwargs__main__message_messagemessage_datamessage_errormessage_infomessage_primarymessage_successmessage_warning__metaclass____module__msg__name__nameoffseton_closeoptionsoutlinedparamsplacementplainpoppositional__prepare__primary__qualname__reactiverepeat_numselfsend_message__set_name__setdefaultshowshow_closesimplestart.ss_api.messagesimplestreamss_core.componentstrsuccesssys__test__tonaltoptypeupdatevaluesvariantvuetify_basewarning\200A\360\n\000\t\016\320\r!\240\021\330\010\024\220A\320\025+\2501\330\010\t\200A\340\010\014\210H\220A\200A\340\010\017\210t\2205\230\002\230(\240!\200A\360\010\000\t\020\210t\2205\230\001\230\031\240%\240{\260!\200A\360\010\000\t\020\210t\2205\230\001\230\031\240%\240}\260A\200A\360\010\000\t\020\210t\2205\230\001\230\031\240%\240z\260\021\320\000\026\220m\240=\260\001\330\014\035\230_\320,>\270a\330\014\027\320\027(\320(8\270\001\360,\000\005\030\220q\230\013\2408\2501\360\016\000\005\n\320\t\035\230Q\360\006\000\005\006\330\010\017\210q\330\010\020\220\001\330\010\021\220\021\330\010'\240q\330\010\030\230\001\330\010\024\220A\330\010\026\220a\330\010\022\220!\330\010\025\220Q\330\010\024\220A\330\010\026\220a\360\010\000\005\021\220\007\220q\230""\001\340\004\020\220\001\220\033\230A";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 73; i++) {
+    for (int i = 0; i < 112; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 5) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 21) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -5248,7 +5631,7 @@ const char* const bytes = "\n        // \347\241\256\344\277\235ElMessage\345\21
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 73; i < 80; i++) {
+    for (int i = 112; i < 119; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -5259,14 +5642,14 @@ const char* const bytes = "\n        // \347\241\256\344\277\235ElMessage\345\21
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 80; i++) {
+    for (Py_ssize_t i = 0; i < 119; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 73;
+      PyObject **table = stringtab + 112;
       for (Py_ssize_t i=0; i<7; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -5323,7 +5706,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 4;
     unsigned int flags : 10;
-    unsigned int first_line : 7;
+    unsigned int first_line : 8;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -5340,47 +5723,47 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {12, 0, 0, 15, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 9};
+    const __Pyx_PyCode_New_function_description descr = {12, 0, 0, 15, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 36};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_n_u_type, __pyx_mstate->__pyx_n_u_plain, __pyx_mstate->__pyx_n_u_dangerously_use_html_string, __pyx_mstate->__pyx_n_u_custom_class, __pyx_mstate->__pyx_n_u_duration, __pyx_mstate->__pyx_n_u_show_close, __pyx_mstate->__pyx_n_u_on_close, __pyx_mstate->__pyx_n_u_offset, __pyx_mstate->__pyx_n_u_placement, __pyx_mstate->__pyx_n_u_grouping, __pyx_mstate->__pyx_n_u_repeat_num, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_send_message, __pyx_mstate->__pyx_n_u_message_data};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_message_2, __pyx_mstate->__pyx_kp_b_iso88591_m___a_8_8_Q_q_q_A_a_Q_A_a_q_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_message_2, __pyx_mstate->__pyx_kp_b_iso88591_m___a_8_q_81_Q_q_q_A_a_Q_A_a_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_HA, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 67};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 95};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_call, __pyx_mstate->__pyx_kp_b_iso88591_A_t5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 71};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 99};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_send_message};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_closeAll, __pyx_mstate->__pyx_kp_b_iso88591_A_A_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 90};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 108};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_primary, __pyx_mstate->__pyx_kp_b_iso88591_A_t5_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 96};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 114};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_success, __pyx_mstate->__pyx_kp_b_iso88591_A_t5_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 102};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 120};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_warning, __pyx_mstate->__pyx_kp_b_iso88591_A_t5_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 108};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 126};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_info, __pyx_mstate->__pyx_kp_b_iso88591_A_t5_z, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 114};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 132};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_api_message_py, __pyx_mstate->__pyx_n_u_error, __pyx_mstate->__pyx_kp_b_iso88591_A_t5_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
@@ -6600,7 +6983,7 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 }
 #endif
 
-/* PyObjectGetAttrStrNoError (used by HasAttr) */
+/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
 #if __PYX_LIMITED_VERSION_HEX < 0x030d0000
 static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
     __Pyx_PyThreadState_declare
@@ -6627,6 +7010,78 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, P
     }
     return result;
 #endif
+}
+
+/* GetBuiltinName (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
+    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
+    if (unlikely(!result) && !PyErr_Occurred()) {
+        PyErr_Format(PyExc_NameError,
+            "name '%U' is not defined", name);
+    }
+    return result;
+}
+
+/* PyDictVersioning (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
+    PyObject **dictptr = NULL;
+    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
+    if (offset) {
+#if CYTHON_COMPILING_IN_CPYTHON
+        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
+#else
+        dictptr = _PyObject_GetDictPtr(obj);
+#endif
+    }
+    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
+}
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
+        return 0;
+    return obj_dict_version == __Pyx_get_object_dict_version(obj);
+}
+#endif
+
+/* GetModuleGlobalName */
+#if CYTHON_USE_DICT_VERSIONS
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
+#else
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
+#endif
+{
+    PyObject *result;
+#if CYTHON_COMPILING_IN_LIMITED_API
+    if (unlikely(!__pyx_m)) {
+        if (!PyErr_Occurred())
+            PyErr_SetNone(PyExc_NameError);
+        return NULL;
+    }
+    result = PyObject_GetAttr(__pyx_m, name);
+    if (likely(result)) {
+        return result;
+    }
+    PyErr_Clear();
+#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
+    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return result;
+    }
+#else
+    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return __Pyx_NewRef(result);
+    }
+    PyErr_Clear();
+#endif
+    return __Pyx_GetBuiltinName(name);
 }
 
 /* HasAttr (used by ImportImpl) */
@@ -6863,78 +7318,6 @@ static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObje
         result = __Pyx_PyObject_Call2Args(cfunc->method, self, arg);
     }
     return result;
-}
-
-/* GetBuiltinName (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
-    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
-    if (unlikely(!result) && !PyErr_Occurred()) {
-        PyErr_Format(PyExc_NameError,
-            "name '%U' is not defined", name);
-    }
-    return result;
-}
-
-/* PyDictVersioning (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
-    PyObject **dictptr = NULL;
-    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
-    if (offset) {
-#if CYTHON_COMPILING_IN_CPYTHON
-        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
-#else
-        dictptr = _PyObject_GetDictPtr(obj);
-#endif
-    }
-    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
-}
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
-        return 0;
-    return obj_dict_version == __Pyx_get_object_dict_version(obj);
-}
-#endif
-
-/* GetModuleGlobalName */
-#if CYTHON_USE_DICT_VERSIONS
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
-#else
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
-#endif
-{
-    PyObject *result;
-#if CYTHON_COMPILING_IN_LIMITED_API
-    if (unlikely(!__pyx_m)) {
-        if (!PyErr_Occurred())
-            PyErr_SetNone(PyExc_NameError);
-        return NULL;
-    }
-    result = PyObject_GetAttr(__pyx_m, name);
-    if (likely(result)) {
-        return result;
-    }
-    PyErr_Clear();
-#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
-    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return result;
-    }
-#else
-    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return __Pyx_NewRef(result);
-    }
-    PyErr_Clear();
-#endif
-    return __Pyx_GetBuiltinName(name);
 }
 
 /* PyObjectSetAttrStr */
@@ -7467,6 +7850,25 @@ static CYTHON_INLINE int __Pyx_MergeKeywords(PyObject *kwdict, PyObject *source_
     } else {
         return __Pyx_MergeKeywords_any(kwdict, source_mapping);
     }
+}
+
+/* ListPack */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...) {
+    va_list va;
+    PyObject *l = PyList_New(n);
+    va_start(va, n);
+    if (unlikely(!l)) goto end;
+    for (Py_ssize_t i=0; i<n; ++i) {
+        PyObject *arg = va_arg(va, PyObject*);
+        Py_INCREF(arg);
+        if (__Pyx_PyList_SET_ITEM(l, i, arg) != (0)) {
+            Py_CLEAR(l);
+            goto end;
+        }
+    }
+    end:
+    va_end(va);
+    return l;
 }
 
 /* dict_setdefault (used by FetchCommonType) */
@@ -9092,7 +9494,7 @@ static PyObject *__Pyx_Py3MetaclassPrepare(PyObject *metaclass, PyObject *bases,
         return NULL;
     if (unlikely(PyObject_SetItem(ns, __pyx_mstate_global->__pyx_n_u_module, modname) < 0)) goto bad;
     if (unlikely(PyObject_SetItem(ns, __pyx_mstate_global->__pyx_n_u_qualname, qualname) < 0)) goto bad;
-    if (unlikely(doc && PyObject_SetItem(ns, __pyx_mstate_global->__pyx_n_u_doc, doc) < 0)) goto bad;
+    if (unlikely(doc && PyObject_SetItem(ns, __pyx_mstate_global->__pyx_n_u_doc_2, doc) < 0)) goto bad;
     return ns;
 bad:
     Py_DECREF(ns);
