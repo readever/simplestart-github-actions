@@ -4,18 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simplestart"
-version = "0.0.1.57"
-description = "build web app using python"
-readme = "readme.md"
+version = "0.0.1.60"
+description = "Build interactive web apps with pure Python - reactive UI without HTML/CSS/JavaScript"
+readme = "README.md"
 requires-python = ">=3.10, <3.14"
-license = "MIT"
+license = "Proprietary"
 authors = [
-    {name = "wy"}
+    {name = "readever"}
 ]
-keywords = ["web", "framework", "async", "ui", "element ui"]
+keywords = ["web", "framework", "async", "ui", "vuetify", "reactive", "dashboard", "data-app"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "License :: Other/Proprietary License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -25,16 +26,18 @@ classifiers = [
 ]
 
 dependencies = [
-    "starlette>0.50.0",
+    "starlette>=0.50.0",
     "uvicorn[standard]>=0.23.0",
     "pyyaml>=6.0",
     "watchdog>=3.0.0",
     "python-multipart>=0.0.6",
     "itsdangerous>=2.1.0",
-    "pandas>=1.5.0",
     "easydict>=1.9.0",
     "pillow>=9.0.0"
 ]
+
+[project.optional-dependencies]
+table = ["pandas>=1.5.0", "numpy>=1.21.0"]
 
 [project.scripts]
 pyramid = "simplestart.pyramid:main"
@@ -43,6 +46,9 @@ simplestart = "simplestart.launch:start"
 
 [project.urls]
 Homepage = "http://www.simplestart.cc"
+Documentation = "http://www.simplestart.cc"
+Repository = "https://github.com/readever/simplestart"
+Issues = "https://github.com/readever/simplestart/issues"
 
 [tool.setuptools.packages.find]
 where = [".", "./simplestart"]  # 从当前目录和simplestart目录查找包
