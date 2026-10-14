@@ -1513,33 +1513,36 @@ static const char* const __pyx_f[] = {
 struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox;
 struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes;
 
-/* "simplestart/ss_ui/checkbox.py":5
- * 
+/* "simplestart/ss_ui/checkbox.py":67
+ * '''
  * 
  * def checkbox(label="", checked=False, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox {
   PyObject_HEAD
+  PyObject *__pyx_v_bind_state;
+  PyObject *__pyx_v_checked;
   PyObject *__pyx_v_event_data;
   PyObject *__pyx_v_onchange;
   PyObject *__pyx_v_res;
 };
 
 
-/* "simplestart/ss_ui/checkbox.py":53
+/* "simplestart/ss_ui/checkbox.py":180
  * 
  * 
  * def checkboxes(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes {
   PyObject_HEAD
   PyObject *__pyx_v_bind_state;
   PyObject *__pyx_v_event_data;
   PyObject *__pyx_v_onchange;
+  PyObject *__pyx_v_process_options;
   PyObject *__pyx_v_res;
 };
 
@@ -1819,9 +1822,6 @@ static CYTHON_INLINE int __Pyx_ParseKeywords(
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
 
-/* RaiseClosureNameError.proto */
-static void __Pyx_RaiseClosureNameError(const char *varname);
-
 /* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
@@ -1873,8 +1873,34 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
 #endif
 
-/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
+/* PyObjectGetAttrStrNoError.proto (used by HasAttr) */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
+
+/* HasAttr.proto */
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
+#else
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
+#endif
+
+/* RaiseClosureNameError.proto */
+static void __Pyx_RaiseClosureNameError(const char *varname);
+
+/* PyObjectDelAttr.proto (used by PyObjectSetAttrStr) */
+#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030d0000
+#define __Pyx_PyObject_DelAttr(o, n) PyObject_SetAttr(o, n, NULL)
+#else
+#define __Pyx_PyObject_DelAttr(o, n) PyObject_DelAttr(o, n)
+#endif
+
+/* PyObjectSetAttrStr.proto */
+#if CYTHON_USE_TYPE_SLOTS
+#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o, n, NULL)
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value);
+#else
+#define __Pyx_PyObject_DelAttrStr(o,n)   __Pyx_PyObject_DelAttr(o,n)
+#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
+#endif
 
 /* GetBuiltinName.proto (used by GetModuleGlobalName) */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
@@ -1924,21 +1950,6 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 #define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
 #define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
-#endif
-
-/* dict_getitem_default.proto */
-static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
-
-/* PyObjectCall2Args.proto (used by CallUnboundCMethod1) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* CallUnboundCMethod1.proto */
-CYTHON_UNUSED
-static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
-#else
-#define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
 #endif
 
 /* dict_setdefault.proto (used by FetchCommonType) */
@@ -2086,6 +2097,27 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
 
+/* dict_getitem_default.proto */
+static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
+
+/* PyObjectCall2Args.proto (used by CallUnboundCMethod1) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
+
+/* CallUnboundCMethod1.proto */
+CYTHON_UNUSED
+static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg);
+#else
+#define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
+#endif
+
+/* py_dict_pop_ignore.proto */
+static CYTHON_INLINE int __Pyx_PyDict_Pop_ignore(PyObject *d, PyObject *key, PyObject *default_value);
+
+/* py_dict_pop.proto */
+static CYTHON_INLINE PyObject *__Pyx_PyDict_Pop(PyObject *d, PyObject *key, PyObject *default_value);
+
 /* IterFinish.proto (used by dict_iter) */
 static CYTHON_INLINE int __Pyx_IterFinish(void);
 
@@ -2131,6 +2163,17 @@ static CYTHON_INLINE int __Pyx_dict_iter_next(PyObject* dict_or_iter, Py_ssize_t
 
 /* MergeKeywords.proto */
 static int __Pyx_MergeKeywords(PyObject *kwdict, PyObject *source_mapping);
+
+/* DictGetItem.proto */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
+#define __Pyx_PyObject_Dict_GetItem(obj, name)\
+    (likely(PyDict_CheckExact(obj)) ?\
+     __Pyx_PyDict_GetItem(obj, name) : PyObject_GetItem(obj, name))
+#else
+#define __Pyx_PyDict_GetItem(d, key) PyObject_GetItem(d, key)
+#define __Pyx_PyObject_Dict_GetItem(obj, name)  PyObject_GetItem(obj, name)
+#endif
 
 /* KeywordStringCheck.proto */
 static CYTHON_INLINE int __Pyx_CheckKeywordStrings(const char* function_name, PyObject *kw);
@@ -2189,43 +2232,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
 static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *args, size_t nargsf);
 #endif
 
-/* HasAttr.proto */
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
-#else
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
-#endif
-
-/* PyObjectDelAttr.proto (used by PyObjectSetAttrStr) */
-#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030d0000
-#define __Pyx_PyObject_DelAttr(o, n) PyObject_SetAttr(o, n, NULL)
-#else
-#define __Pyx_PyObject_DelAttr(o, n) PyObject_DelAttr(o, n)
-#endif
-
-/* PyObjectSetAttrStr.proto */
-#if CYTHON_USE_TYPE_SLOTS
-#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o, n, NULL)
-static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value);
-#else
-#define __Pyx_PyObject_DelAttrStr(o,n)   __Pyx_PyObject_DelAttr(o,n)
-#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
-#endif
-
-/* py_dict_pop.proto */
-static CYTHON_INLINE PyObject *__Pyx_PyDict_Pop(PyObject *d, PyObject *key, PyObject *default_value);
-
-/* DictGetItem.proto */
-#if !CYTHON_COMPILING_IN_PYPY
-static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
-#define __Pyx_PyObject_Dict_GetItem(obj, name)\
-    (likely(PyDict_CheckExact(obj)) ?\
-     __Pyx_PyDict_GetItem(obj, name) : PyObject_GetItem(obj, name))
-#else
-#define __Pyx_PyDict_GetItem(d, key) PyObject_GetItem(d, key)
-#define __Pyx_PyObject_Dict_GetItem(obj, name)  PyObject_GetItem(obj, name)
-#endif
-
 /* PyObjectVectorCallKwBuilder.proto */
 CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
 #if CYTHON_VECTORCALL
@@ -2277,6 +2283,9 @@ static CYTHON_INLINE PyObject *__Pyx_Import(PyObject *name, PyObject *const *imp
 
 /* ImportFrom.proto */
 static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
+
+/* ListPack.proto */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...);
 
 /* CLineInTraceback.proto (used by AddTraceback) */
 #if CYTHON_CLINE_IN_TRACEBACK && CYTHON_CLINE_IN_TRACEBACK_RUNTIME
@@ -2440,10 +2449,12 @@ int __pyx_module_is_main_simplestart__ss_ui__checkbox = 0;
 /* #### Code section: global_var ### */
 /* #### Code section: string_decls ### */
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_handle_change(PyObject *__pyx_self, PyObject *__pyx_v_event); /* proto */
+static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_extract_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_arg); /* proto */
+static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_2handle_change(PyObject *__pyx_self, PyObject *__pyx_v_event); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_label, PyObject *__pyx_v_checked, PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_options(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_options_list); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_2handle_change(PyObject *__pyx_self, PyObject *__pyx_v_event); /* proto */
+static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_4_normalize_options(PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v__value); /* proto */
 static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_tp_new_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -2476,9 +2487,8 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_tuple[3];
-  PyObject *__pyx_codeobj_tab[5];
-  PyObject *__pyx_string_tab[67];
-  PyObject *__pyx_number_tab[1];
+  PyObject *__pyx_codeobj_tab[7];
+  PyObject *__pyx_string_tab[130];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2530,73 +2540,135 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u__2 __pyx_string_tab[1]
-#define __pyx_kp_u__3 __pyx_string_tab[2]
-#define __pyx_kp_u_disable __pyx_string_tab[3]
-#define __pyx_kp_u_el_checkbox_group_v_model_data __pyx_string_tab[4]
-#define __pyx_kp_u_el_checkbox_label_data_label_v __pyx_string_tab[5]
-#define __pyx_kp_u_enable __pyx_string_tab[6]
-#define __pyx_kp_u_gc __pyx_string_tab[7]
-#define __pyx_kp_u_isenabled __pyx_string_tab[8]
-#define __pyx_kp_u_simplestart_ss_ui_checkbox_py __pyx_string_tab[9]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[10]
-#define __pyx_n_u_args __pyx_string_tab[11]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[12]
-#define __pyx_n_u_bind __pyx_string_tab[13]
-#define __pyx_n_u_bind_state __pyx_string_tab[14]
-#define __pyx_n_u_border __pyx_string_tab[15]
-#define __pyx_n_u_checkbox __pyx_string_tab[16]
-#define __pyx_n_u_checkbox_locals_handle_change __pyx_string_tab[17]
-#define __pyx_n_u_checkboxes __pyx_string_tab[18]
-#define __pyx_n_u_checkboxes_locals_handle_change __pyx_string_tab[19]
-#define __pyx_n_u_checkboxes_locals_process_option __pyx_string_tab[20]
-#define __pyx_n_u_checked __pyx_string_tab[21]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[22]
-#define __pyx_n_u_data __pyx_string_tab[23]
-#define __pyx_n_u_data_2 __pyx_string_tab[24]
-#define __pyx_n_u_disabled __pyx_string_tab[25]
-#define __pyx_n_u_event __pyx_string_tab[26]
-#define __pyx_n_u_eventData __pyx_string_tab[27]
-#define __pyx_n_u_event_data __pyx_string_tab[28]
-#define __pyx_n_u_func __pyx_string_tab[29]
-#define __pyx_n_u_get __pyx_string_tab[30]
-#define __pyx_n_u_handle_change __pyx_string_tab[31]
-#define __pyx_n_u_handle_event_data __pyx_string_tab[32]
-#define __pyx_n_u_handlers __pyx_string_tab[33]
-#define __pyx_n_u_indeterminate __pyx_string_tab[34]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[35]
-#define __pyx_n_u_item __pyx_string_tab[36]
-#define __pyx_n_u_items __pyx_string_tab[37]
-#define __pyx_n_u_kwargs __pyx_string_tab[38]
-#define __pyx_n_u_label __pyx_string_tab[39]
-#define __pyx_n_u_main __pyx_string_tab[40]
-#define __pyx_n_u_max __pyx_string_tab[41]
-#define __pyx_n_u_min __pyx_string_tab[42]
-#define __pyx_n_u_model_value __pyx_string_tab[43]
-#define __pyx_n_u_module __pyx_string_tab[44]
-#define __pyx_n_u_name __pyx_string_tab[45]
-#define __pyx_n_u_onchange __pyx_string_tab[46]
-#define __pyx_n_u_options_list __pyx_string_tab[47]
-#define __pyx_n_u_pop __pyx_string_tab[48]
-#define __pyx_n_u_process_options __pyx_string_tab[49]
-#define __pyx_n_u_qualname __pyx_string_tab[50]
-#define __pyx_n_u_res __pyx_string_tab[51]
-#define __pyx_n_u_result __pyx_string_tab[52]
-#define __pyx_n_u_set_name __pyx_string_tab[53]
-#define __pyx_n_u_setdefault __pyx_string_tab[54]
-#define __pyx_n_u_simplestart_ss_ui_checkbox __pyx_string_tab[55]
-#define __pyx_n_u_ss_core __pyx_string_tab[56]
-#define __pyx_n_u_ss_core_utils __pyx_string_tab[57]
-#define __pyx_n_u_test __pyx_string_tab[58]
-#define __pyx_n_u_value __pyx_string_tab[59]
-#define __pyx_n_u_values __pyx_string_tab[60]
-#define __pyx_n_u_vuetify __pyx_string_tab[61]
-#define __pyx_kp_b_iso88591_A_4q_1_HA_z_e1_gRy_is_7_a_1F_S_s __pyx_string_tab[62]
-#define __pyx_kp_b_iso88591_A_6_uA_1_AQ __pyx_string_tab[63]
-#define __pyx_kp_b_iso88591_A_Q_6_1_gU_gQl_iq_1_AQ __pyx_string_tab[64]
-#define __pyx_kp_b_iso88591_Zq_6_Qha_A_a_vT_a_V4q_F_a_8_vT __pyx_string_tab[65]
-#define __pyx_kp_b_iso88591_vT_a_t1M_t1HA_s_6_1_t1A_vT_2_4 __pyx_string_tab[66]
-#define __pyx_int_0 __pyx_number_tab[0]
+#define __pyx_kp_u_Checkbox_color __pyx_string_tab[1]
+#define __pyx_kp_u_Checkbox_color_primary_success_e __pyx_string_tab[2]
+#define __pyx_kp_u_Checkbox_label_text_first_positi __pyx_string_tab[3]
+#define __pyx_kp_u_Checked_state_State_bindings_are __pyx_string_tab[4]
+#define __pyx_kp_u_Checked_state_changed_event_valu __pyx_string_tab[5]
+#define __pyx_kp_u_Custom_data_merged_into_event_da __pyx_string_tab[6]
+#define __pyx_kp_u_Disable_the_checkbox __pyx_string_tab[7]
+#define __pyx_kp_u_Disable_the_whole_group __pyx_string_tab[8]
+#define __pyx_kp_u_Half_checked_state __pyx_string_tab[9]
+#define __pyx_kp_u_Horizontal_layout_when_True __pyx_string_tab[10]
+#define __pyx_kp_u_Ignored_not_supported_by_Vuetify __pyx_string_tab[11]
+#define __pyx_kp_u_Initially_selected_values_suppor __pyx_string_tab[12]
+#define __pyx_kp_u_Options_a_b_label_value_label_va __pyx_string_tab[13]
+#define __pyx_kp_u_Selection_change_callback_event __pyx_string_tab[14]
+#define __pyx_kp_u_Selection_changed_event_value_li __pyx_string_tab[15]
+#define __pyx_kp_u_State_change_callback_event_valu __pyx_string_tab[16]
+#define __pyx_kp_u_State_object_for_two_way_checked __pyx_string_tab[17]
+#define __pyx_kp_u_Vuetify_label_div_span_checkbox __pyx_string_tab[18]
+#define __pyx_kp_u__2 __pyx_string_tab[19]
+#define __pyx_kp_u__3 __pyx_string_tab[20]
+#define __pyx_kp_u_disable __pyx_string_tab[21]
+#define __pyx_kp_u_enable __pyx_string_tab[22]
+#define __pyx_kp_u_gc __pyx_string_tab[23]
+#define __pyx_kp_u_isenabled __pyx_string_tab[24]
+#define __pyx_kp_u_simplestart_ss_ui_checkbox_py __pyx_string_tab[25]
+#define __pyx_kp_u_v_checkbox __pyx_string_tab[26]
+#define __pyx_kp_u_v_row_v_if_data_inline_no_gutte __pyx_string_tab[27]
+#define __pyx_n_u_CHECKBOXES_SCHEMA __pyx_string_tab[28]
+#define __pyx_n_u_CHECKBOX_SCHEMA __pyx_string_tab[29]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[30]
+#define __pyx_n_u_any __pyx_string_tab[31]
+#define __pyx_n_u_arg __pyx_string_tab[32]
+#define __pyx_n_u_args __pyx_string_tab[33]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[34]
+#define __pyx_n_u_attr_name __pyx_string_tab[35]
+#define __pyx_n_u_bind __pyx_string_tab[36]
+#define __pyx_n_u_bind_state __pyx_string_tab[37]
+#define __pyx_n_u_bool __pyx_string_tab[38]
+#define __pyx_n_u_border __pyx_string_tab[39]
+#define __pyx_n_u_callable __pyx_string_tab[40]
+#define __pyx_n_u_category __pyx_string_tab[41]
+#define __pyx_n_u_change __pyx_string_tab[42]
+#define __pyx_n_u_check_data_update __pyx_string_tab[43]
+#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[44]
+#define __pyx_n_u_checkbox __pyx_string_tab[45]
+#define __pyx_n_u_checkbox_locals_extract_value __pyx_string_tab[46]
+#define __pyx_n_u_checkbox_locals_handle_change __pyx_string_tab[47]
+#define __pyx_n_u_checkboxes __pyx_string_tab[48]
+#define __pyx_n_u_checkboxes_locals__normalize_opt __pyx_string_tab[49]
+#define __pyx_n_u_checkboxes_locals_handle_change __pyx_string_tab[50]
+#define __pyx_n_u_checkboxes_locals_process_option __pyx_string_tab[51]
+#define __pyx_n_u_checked __pyx_string_tab[52]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[53]
+#define __pyx_n_u_color __pyx_string_tab[54]
+#define __pyx_n_u_data __pyx_string_tab[55]
+#define __pyx_n_u_data_2 __pyx_string_tab[56]
+#define __pyx_n_u_default __pyx_string_tab[57]
+#define __pyx_n_u_disabled __pyx_string_tab[58]
+#define __pyx_n_u_doc __pyx_string_tab[59]
+#define __pyx_n_u_event __pyx_string_tab[60]
+#define __pyx_n_u_eventData __pyx_string_tab[61]
+#define __pyx_n_u_event_data __pyx_string_tab[62]
+#define __pyx_n_u_events __pyx_string_tab[63]
+#define __pyx_n_u_extract_value __pyx_string_tab[64]
+#define __pyx_n_u_form __pyx_string_tab[65]
+#define __pyx_n_u_func __pyx_string_tab[66]
+#define __pyx_n_u_get __pyx_string_tab[67]
+#define __pyx_n_u_handle_change __pyx_string_tab[68]
+#define __pyx_n_u_handle_event_data __pyx_string_tab[69]
+#define __pyx_n_u_handlers __pyx_string_tab[70]
+#define __pyx_n_u_id __pyx_string_tab[71]
+#define __pyx_n_u_indeterminate __pyx_string_tab[72]
+#define __pyx_n_u_inline __pyx_string_tab[73]
+#define __pyx_n_u_inspect __pyx_string_tab[74]
+#define __pyx_n_u_int __pyx_string_tab[75]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[76]
+#define __pyx_n_u_item __pyx_string_tab[77]
+#define __pyx_n_u_items __pyx_string_tab[78]
+#define __pyx_n_u_kwargs __pyx_string_tab[79]
+#define __pyx_n_u_label __pyx_string_tab[80]
+#define __pyx_n_u_list __pyx_string_tab[81]
+#define __pyx_n_u_main __pyx_string_tab[82]
+#define __pyx_n_u_max __pyx_string_tab[83]
+#define __pyx_n_u_min __pyx_string_tab[84]
+#define __pyx_n_u_model_value __pyx_string_tab[85]
+#define __pyx_n_u_module __pyx_string_tab[86]
+#define __pyx_n_u_name __pyx_string_tab[87]
+#define __pyx_n_u_name_2 __pyx_string_tab[88]
+#define __pyx_n_u_normalize_options __pyx_string_tab[89]
+#define __pyx_n_u_onchange __pyx_string_tab[90]
+#define __pyx_n_u_options_list __pyx_string_tab[91]
+#define __pyx_n_u_parameters __pyx_string_tab[92]
+#define __pyx_n_u_params __pyx_string_tab[93]
+#define __pyx_n_u_pop __pyx_string_tab[94]
+#define __pyx_n_u_positional __pyx_string_tab[95]
+#define __pyx_n_u_primary __pyx_string_tab[96]
+#define __pyx_n_u_process_options __pyx_string_tab[97]
+#define __pyx_n_u_qualname __pyx_string_tab[98]
+#define __pyx_n_u_reactive __pyx_string_tab[99]
+#define __pyx_n_u_res __pyx_string_tab[100]
+#define __pyx_n_u_resource __pyx_string_tab[101]
+#define __pyx_n_u_result __pyx_string_tab[102]
+#define __pyx_n_u_set_name __pyx_string_tab[103]
+#define __pyx_n_u_setdefault __pyx_string_tab[104]
+#define __pyx_n_u_sig __pyx_string_tab[105]
+#define __pyx_n_u_signature __pyx_string_tab[106]
+#define __pyx_n_u_simplestart_ss_ui_checkbox __pyx_string_tab[107]
+#define __pyx_n_u_size __pyx_string_tab[108]
+#define __pyx_n_u_ss_core __pyx_string_tab[109]
+#define __pyx_n_u_ss_core_component __pyx_string_tab[110]
+#define __pyx_n_u_ss_core_utils __pyx_string_tab[111]
+#define __pyx_n_u_state __pyx_string_tab[112]
+#define __pyx_n_u_state_binding __pyx_string_tab[113]
+#define __pyx_n_u_str __pyx_string_tab[114]
+#define __pyx_n_u_test __pyx_string_tab[115]
+#define __pyx_n_u_type __pyx_string_tab[116]
+#define __pyx_n_u_value __pyx_string_tab[117]
+#define __pyx_n_u_value_2 __pyx_string_tab[118]
+#define __pyx_n_u_values __pyx_string_tab[119]
+#define __pyx_n_u_vuetify __pyx_string_tab[120]
+#define __pyx_n_u_vuetify_base __pyx_string_tab[121]
+#define __pyx_n_u_watch __pyx_string_tab[122]
+#define __pyx_kp_b_iso88591_A_6_uA_87_t7_9A_9E_gU_gQl_iuA_1 __pyx_string_tab[123]
+#define __pyx_kp_b_iso88591_A_7_q_4q_1_HA_z_e1_gRy_is_7_a_1F __pyx_string_tab[124]
+#define __pyx_kp_b_iso88591_A_Q_6_1_gU_gQl_iq_1_1A_s_3m2Q __pyx_string_tab[125]
+#define __pyx_kp_b_iso88591_A_s_G1E_q __pyx_string_tab[126]
+#define __pyx_kp_b_iso88591_Zq_q_HA_6_Qha_A_a_vT_a_F_a_8_F __pyx_string_tab[127]
+#define __pyx_kp_b_iso88591_q_ha_vT_a_t1M_t1HA_awa_awa_s_6 __pyx_string_tab[128]
+#define __pyx_kp_b_iso88591_vQ_q_6_Qa __pyx_string_tab[129]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2616,9 +2688,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes);
   for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<5; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<67; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<7; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<130; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2646,9 +2717,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes);
   for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<5; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<67; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<7; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<130; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2662,12 +2732,12 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_ui/checkbox.py":5
- * 
+/* "simplestart/ss_ui/checkbox.py":67
+ * '''
  * 
  * def checkbox(label="", checked=False, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 
 /* Python wrapper */
@@ -2678,7 +2748,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_8checkbox_checkbox, " \n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\215\351\200\211\346\241\206\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Element Plus\357\274\211\n    \n    \345\217\202\346\225\260: \n        label: \345\244\215\351\200\211\346\241\206\346\240\207\347\255\276\346\226\207\346\234\254\n        checked: \346\230\257\345\220\246\351\200\211\344\270\255\357\274\214\351\273\230\350\256\244\344\270\272False\357\274\210\346\224\257\346\214\201\345\223\215\345\272\224\345\274\217State\347\273\221\345\256\232\357\274\211\n                 \345\217\257\344\273\245\347\233\264\346\216\245\344\274\240 mystate.some_option \350\207\252\345\212\250\347\273\221\345\256\232\n        **kwargs: \345\205\266\344\273\226\345\244\215\351\200\211\346\241\206\345\261\236\346\200\247\n                 \346\224\257\346\214\201onchange - \351\200\211\344\270\255\347\212\266\346\200\201\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n                 \346\224\257\346\214\201eventData - \344\274\240\351\200\222\347\273\231\344\272\213\344\273\266\347\232\204\346\225\260\346\215\256\n                 \346\224\257\346\214\201disabled - \346\230\257\345\220\246\347\246\201\347\224\250\n                 \346\224\257\346\214\201border - \346\230\257\345\220\246\346\230\276\347\244\272\350\276\271\346\241\206\n                 \346\224\257\346\214\201indeterminate - \346\230\257\345\220\246\344\270\272\345\215\212\351\200\211\347\212\266\346\200\201\n                 \346\224\257\346\214\201bind - \347\273\221\345\256\232\345\210\260State\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_8checkbox_checkbox, " \n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\215\351\200\211\346\241\206\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Vuetify v-checkbox\357\274\211\n    \n    \345\217\202\346\225\260: \n        label: \345\244\215\351\200\211\346\241\206\346\240\207\347\255\276\346\226\207\346\234\254\n        checked: \346\230\257\345\220\246\351\200\211\344\270\255\357\274\214\351\273\230\350\256\244\344\270\272False\357\274\210\346\224\257\346\214\201\345\223\215\345\272\224\345\274\217State\347\273\221\345\256\232\357\274\211\n                 \345\217\257\344\273\245\347\233\264\346\216\245\344\274\240 mystate.some_option \350\207\252\345\212\250\347\273\221\345\256\232\n        **kwargs: \345\205\266\344\273\226\345\244\215\351\200\211\346\241\206\345\261\236\346\200\247\n                 \346\224\257\346\214\201onchange - \351\200\211\344\270\255\347\212\266\346\200\201\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n                 \346\224\257\346\214\201eventData - \344\274\240\351\200\222\347\273\231\344\272\213\344\273\266\347\232\204\346\225\260\346\215\256\n                 \346\224\257\346\214\201disabled - \346\230\257\345\220\246\347\246\201\347\224\250\n                 \346\224\257\346\214\201indeterminate - \346\230\257\345\220\246\344\270\272\345\215\212\351\200\211\347\212\266\346\200\201\n                 \346\224\257\346\214\201color - \345\244\215\351\200\211\346\241\206\351\242\234\350\211\262\357\274\210red, indigo, orange, primary, success, info, warning, error\347\255\211\357\274\211\n                 \346\224\257\346\214\201bind - \347\273\221\345\256\232\345\210\260State\n                 border/size - Vuetify \344\270\215\346\224\257\346\214\201\350\277\231\344\272\233\345\217\202\346\225\260\357\274\214\351\235\231\351\273\230\345\277\275\347\225\245\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_8checkbox_1checkbox = {"checkbox", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_8checkbox_1checkbox, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_8checkbox_checkbox};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_1checkbox(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2714,33 +2784,33 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_label,&__pyx_mstate_global->__pyx_n_u_checked,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 5, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 67, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 5, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 67, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 5, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 67, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "checkbox", 1) < (0)) __PYX_ERR(0, 5, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "checkbox", 1) < (0)) __PYX_ERR(0, 67, __pyx_L3_error)
       if (!values[0]) values[0] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_kp_u_)));
       if (!values[1]) values[1] = __Pyx_NewRef(((PyObject *)((PyObject*)Py_False)));
     } else {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 5, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 67, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 5, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 67, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
@@ -2753,7 +2823,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("checkbox", 0, 0, 2, __pyx_nargs); __PYX_ERR(0, 5, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("checkbox", 0, 0, 2, __pyx_nargs); __PYX_ERR(0, 67, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2776,24 +2846,170 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/checkbox.py":32
- *     event_data = kwargs.get("eventData", None)
+/* "simplestart/ss_ui/checkbox.py":90
+ *     #    StatePropBinding  vuetify()
+ *     #    State input_number
+ *     def extract_value(arg):             # <<<<<<<<<<<<<<
+ *         return arg.value if hasattr(arg, 'value') else arg
  * 
- *     def handle_change(event):             # <<<<<<<<<<<<<<
- *         res._data["checked"] = event.value
- *         # eventData
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_1handle_change(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_1extract_value(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_8checkbox_8checkbox_1handle_change = {"handle_change", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_1handle_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_1handle_change(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_8checkbox_8checkbox_1extract_value = {"extract_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_1extract_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_1extract_value(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_arg = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("extract_value (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_arg,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 90, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 90, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "extract_value", 0) < (0)) __PYX_ERR(0, 90, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("extract_value", 1, 1, 1, i); __PYX_ERR(0, 90, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 90, __pyx_L3_error)
+    }
+    __pyx_v_arg = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("extract_value", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 90, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkbox.extract_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_extract_value(__pyx_self, __pyx_v_arg);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_extract_value(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_arg) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("extract_value", 0);
+
+  /* "simplestart/ss_ui/checkbox.py":91
+ *     #    State input_number
+ *     def extract_value(arg):
+ *         return arg.value if hasattr(arg, 'value') else arg             # <<<<<<<<<<<<<<
+ * 
+ *     # StatePropBinding  vuetify()
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_v_arg, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (__pyx_t_2) {
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_arg, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_1 = __pyx_t_3;
+    __pyx_t_3 = 0;
+  } else {
+    __Pyx_INCREF(__pyx_v_arg);
+    __pyx_t_1 = __pyx_v_arg;
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "simplestart/ss_ui/checkbox.py":90
+ *     #    StatePropBinding  vuetify()
+ *     #    State input_number
+ *     def extract_value(arg):             # <<<<<<<<<<<<<<
+ *         return arg.value if hasattr(arg, 'value') else arg
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkbox.extract_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_ui/checkbox.py":157
+ * 
+ *     #  res
+ *     def handle_change(event):             # <<<<<<<<<<<<<<
+ *         res._data["checked"] = event.value
+ *         if checked is not None and hasattr(checked, 'value'):
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_3handle_change(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_8checkbox_8checkbox_3handle_change = {"handle_change", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_3handle_change, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_8checkbox_3handle_change(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2823,32 +3039,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 32, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 157, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 32, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 157, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "handle_change", 0) < (0)) __PYX_ERR(0, 32, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "handle_change", 0) < (0)) __PYX_ERR(0, 157, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, i); __PYX_ERR(0, 32, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, i); __PYX_ERR(0, 157, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 32, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 157, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 32, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 157, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2859,7 +3075,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_handle_change(__pyx_self, __pyx_v_event);
+  __pyx_r = __pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_2handle_change(__pyx_self, __pyx_v_event);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -2869,16 +3085,20 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_handle_change(PyObject *__pyx_self, PyObject *__pyx_v_event) {
+static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_2handle_change(PyObject *__pyx_self, PyObject *__pyx_v_event) {
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox *__pyx_cur_scope;
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox *__pyx_outer_scope;
+  PyObject *__pyx_v_sig = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  size_t __pyx_t_4;
-  int __pyx_t_5;
+  int __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  Py_ssize_t __pyx_t_8;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2887,115 +3107,302 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_handle_change
   __pyx_cur_scope = __pyx_outer_scope;
   __Pyx_INCREF(__pyx_v_event);
 
-  /* "simplestart/ss_ui/checkbox.py":33
- * 
+  /* "simplestart/ss_ui/checkbox.py":158
+ *     #  res
  *     def handle_change(event):
  *         res._data["checked"] = event.value             # <<<<<<<<<<<<<<
- *         # eventData
- *         event = handle_event_data(event, event_data)
+ *         if checked is not None and hasattr(checked, 'value'):
+ *             checked.value = event.value
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 33, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 158, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_checked, __pyx_t_1) < 0))) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_checked, __pyx_t_1) < 0))) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":35
+  /* "simplestart/ss_ui/checkbox.py":159
+ *     def handle_change(event):
  *         res._data["checked"] = event.value
+ *         if checked is not None and hasattr(checked, 'value'):             # <<<<<<<<<<<<<<
+ *             checked.value = event.value
+ *         #
+*/
+  if (unlikely(!__pyx_cur_scope->__pyx_v_checked)) { __Pyx_RaiseClosureNameError("checked"); __PYX_ERR(0, 159, __pyx_L1_error) }
+  __pyx_t_4 = (__pyx_cur_scope->__pyx_v_checked != Py_None);
+  if (__pyx_t_4) {
+  } else {
+    __pyx_t_3 = __pyx_t_4;
+    goto __pyx_L4_bool_binop_done;
+  }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_checked)) { __Pyx_RaiseClosureNameError("checked"); __PYX_ERR(0, 159, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_cur_scope->__pyx_v_checked;
+  __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 159, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __pyx_t_4;
+  __pyx_L4_bool_binop_done:;
+  if (__pyx_t_3) {
+
+    /* "simplestart/ss_ui/checkbox.py":160
+ *         res._data["checked"] = event.value
+ *         if checked is not None and hasattr(checked, 'value'):
+ *             checked.value = event.value             # <<<<<<<<<<<<<<
+ *         #
+ *         if bind_state is not None and hasattr(bind_state, "value"):
+*/
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(!__pyx_cur_scope->__pyx_v_checked)) { __Pyx_RaiseClosureNameError("checked"); __PYX_ERR(0, 160, __pyx_L1_error) }
+    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_checked, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_ui/checkbox.py":159
+ *     def handle_change(event):
+ *         res._data["checked"] = event.value
+ *         if checked is not None and hasattr(checked, 'value'):             # <<<<<<<<<<<<<<
+ *             checked.value = event.value
+ *         #
+*/
+  }
+
+  /* "simplestart/ss_ui/checkbox.py":162
+ *             checked.value = event.value
+ *         #
+ *         if bind_state is not None and hasattr(bind_state, "value"):             # <<<<<<<<<<<<<<
+ *             bind_state.value = event.value
+ *         # eventData
+*/
+  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 162, __pyx_L1_error) }
+  __pyx_t_4 = (__pyx_cur_scope->__pyx_v_bind_state != Py_None);
+  if (__pyx_t_4) {
+  } else {
+    __pyx_t_3 = __pyx_t_4;
+    goto __pyx_L7_bool_binop_done;
+  }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 162, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_cur_scope->__pyx_v_bind_state;
+  __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __pyx_t_4;
+  __pyx_L7_bool_binop_done:;
+  if (__pyx_t_3) {
+
+    /* "simplestart/ss_ui/checkbox.py":163
+ *         #
+ *         if bind_state is not None and hasattr(bind_state, "value"):
+ *             bind_state.value = event.value             # <<<<<<<<<<<<<<
+ *         # eventData
+ *         event = handle_event_data(event, event_data)
+*/
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 163, __pyx_L1_error) }
+    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_bind_state, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1) < (0)) __PYX_ERR(0, 163, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "simplestart/ss_ui/checkbox.py":162
+ *             checked.value = event.value
+ *         #
+ *         if bind_state is not None and hasattr(bind_state, "value"):             # <<<<<<<<<<<<<<
+ *             bind_state.value = event.value
+ *         # eventData
+*/
+  }
+
+  /* "simplestart/ss_ui/checkbox.py":165
+ *             bind_state.value = event.value
  *         # eventData
  *         event = handle_event_data(event, event_data)             # <<<<<<<<<<<<<<
  *         if onchange:
- *             onchange(event)
+ *             #  event
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 35, __pyx_L1_error) }
-  __pyx_t_4 = 1;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 165, __pyx_L1_error) }
+  __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+  if (unlikely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
     assert(__pyx_t_2);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-    __pyx_t_4 = 0;
+    __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+    __pyx_t_6 = 0;
   }
   #endif
   {
     PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_event, __pyx_cur_scope->__pyx_v_event_data};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF_SET(__pyx_v_event, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":36
+  /* "simplestart/ss_ui/checkbox.py":166
  *         # eventData
  *         event = handle_event_data(event, event_data)
  *         if onchange:             # <<<<<<<<<<<<<<
- *             onchange(event)
- * 
+ *             #  event
+ *             sig = inspect.signature(onchange)
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 36, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 36, __pyx_L1_error)
-  if (__pyx_t_5) {
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 166, __pyx_L1_error) }
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 166, __pyx_L1_error)
+  if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/checkbox.py":37
- *         event = handle_event_data(event, event_data)
+    /* "simplestart/ss_ui/checkbox.py":168
  *         if onchange:
- *             onchange(event)             # <<<<<<<<<<<<<<
- * 
- *     res = vuetify(r'''
+ *             #  event
+ *             sig = inspect.signature(onchange)             # <<<<<<<<<<<<<<
+ *             if len(sig.parameters) > 0:
+ *                 onchange(event)
 */
-    __pyx_t_3 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 37, __pyx_L1_error) }
-    __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
-    __pyx_t_2 = __pyx_cur_scope->__pyx_v_onchange; 
-    __pyx_t_4 = 1;
+    __pyx_t_5 = NULL;
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_inspect); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_signature); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 168, __pyx_L1_error) }
+    __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-      assert(__pyx_t_3);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
+    if (unlikely(PyMethod_Check(__pyx_t_7))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_7);
+      assert(__pyx_t_5);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
-      __pyx_t_4 = 0;
+      __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+      __pyx_t_6 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_event};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_cur_scope->__pyx_v_onchange};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_sig = __pyx_t_1;
+    __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/checkbox.py":36
+    /* "simplestart/ss_ui/checkbox.py":169
+ *             #  event
+ *             sig = inspect.signature(onchange)
+ *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
+ *                 onchange(event)
+ *             else:
+*/
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_mstate_global->__pyx_n_u_parameters); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 169, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_8 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 169, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_3 = (__pyx_t_8 > 0);
+    if (__pyx_t_3) {
+
+      /* "simplestart/ss_ui/checkbox.py":170
+ *             sig = inspect.signature(onchange)
+ *             if len(sig.parameters) > 0:
+ *                 onchange(event)             # <<<<<<<<<<<<<<
+ *             else:
+ *                 onchange()
+*/
+      __pyx_t_7 = NULL;
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 170, __pyx_L1_error) }
+      __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
+      __pyx_t_5 = __pyx_cur_scope->__pyx_v_onchange; 
+      __pyx_t_6 = 1;
+      #if CYTHON_UNPACK_METHODS
+      if (unlikely(PyMethod_Check(__pyx_t_5))) {
+        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
+        assert(__pyx_t_7);
+        PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(__pyx__function);
+        __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+        __pyx_t_6 = 0;
+      }
+      #endif
+      {
+        PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_event};
+        __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "simplestart/ss_ui/checkbox.py":169
+ *             #  event
+ *             sig = inspect.signature(onchange)
+ *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
+ *                 onchange(event)
+ *             else:
+*/
+      goto __pyx_L10;
+    }
+
+    /* "simplestart/ss_ui/checkbox.py":172
+ *                 onchange(event)
+ *             else:
+ *                 onchange()             # <<<<<<<<<<<<<<
+ * 
+ *     #
+*/
+    /*else*/ {
+      __pyx_t_5 = NULL;
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 172, __pyx_L1_error) }
+      __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
+      __pyx_t_7 = __pyx_cur_scope->__pyx_v_onchange; 
+      __pyx_t_6 = 1;
+      #if CYTHON_UNPACK_METHODS
+      if (unlikely(PyMethod_Check(__pyx_t_7))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_7);
+        assert(__pyx_t_5);
+        PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+        __Pyx_INCREF(__pyx_t_5);
+        __Pyx_INCREF(__pyx__function);
+        __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+        __pyx_t_6 = 0;
+      }
+      #endif
+      {
+        PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
+        __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __pyx_L10:;
+
+    /* "simplestart/ss_ui/checkbox.py":166
  *         # eventData
  *         event = handle_event_data(event, event_data)
  *         if onchange:             # <<<<<<<<<<<<<<
- *             onchange(event)
- * 
+ *             #  event
+ *             sig = inspect.signature(onchange)
 */
   }
 
-  /* "simplestart/ss_ui/checkbox.py":32
- *     event_data = kwargs.get("eventData", None)
+  /* "simplestart/ss_ui/checkbox.py":157
  * 
+ *     #  res
  *     def handle_change(event):             # <<<<<<<<<<<<<<
  *         res._data["checked"] = event.value
- *         # eventData
+ *         if checked is not None and hasattr(checked, 'value'):
 */
 
   /* function exit code */
@@ -3004,26 +3411,29 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_8checkbox_handle_change
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkbox.handle_change", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_sig);
   __Pyx_XDECREF(__pyx_v_event);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/checkbox.py":5
- * 
+/* "simplestart/ss_ui/checkbox.py":67
+ * '''
  * 
  * def checkbox(label="", checked=False, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_label, PyObject *__pyx_v_checked, PyObject *__pyx_v_kwargs) {
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox *__pyx_cur_scope;
+  CYTHON_UNUSED PyObject *__pyx_v_extract_value = 0;
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_v_handle_change = 0;
   PyObject *__pyx_r = NULL;
@@ -3032,9 +3442,10 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED 
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  size_t __pyx_t_7;
+  size_t __pyx_t_5;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3043,174 +3454,286 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED 
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 5, __pyx_L1_error)
+    __PYX_ERR(0, 67, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
+  __pyx_cur_scope->__pyx_v_checked = __pyx_v_checked;
+  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_checked);
+  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_checked);
 
-  /* "simplestart/ss_ui/checkbox.py":22
+  /* "simplestart/ss_ui/checkbox.py":84
+ *                  border/size - Vuetify
  *     """
+ *     check_schema_kwargs("checkbox", kwargs, CHECKBOX_SCHEMA)             # <<<<<<<<<<<<<<
+ *     #  StatePropBinding
+ *     #  extract_value /
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_CHECKBOX_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_checkbox, __pyx_v_kwargs, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":90
+ *     #    StatePropBinding  vuetify()
+ *     #    State input_number
+ *     def extract_value(arg):             # <<<<<<<<<<<<<<
+ *         return arg.value if hasattr(arg, 'value') else arg
+ * 
+*/
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_8checkbox_1extract_value, 0, __pyx_mstate_global->__pyx_n_u_checkbox_locals_extract_value, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_extract_value = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":94
+ * 
  *     # StatePropBinding  vuetify()
  *     data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
  *     data["label"] = label
  *     data["checked"] = checked
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_data = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_v_data = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":23
+  /* "simplestart/ss_ui/checkbox.py":95
  *     # StatePropBinding  vuetify()
  *     data = kwargs.get("data", {})
  *     data["label"] = label             # <<<<<<<<<<<<<<
  *     data["checked"] = checked
  *     data["disabled"] = kwargs.get("disabled", False)
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_label, __pyx_v_label) < 0))) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_label, __pyx_v_label) < 0))) __PYX_ERR(0, 95, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/checkbox.py":24
+  /* "simplestart/ss_ui/checkbox.py":96
  *     data = kwargs.get("data", {})
  *     data["label"] = label
  *     data["checked"] = checked             # <<<<<<<<<<<<<<
  *     data["disabled"] = kwargs.get("disabled", False)
- *     data["border"] = kwargs.get("border", False)
+ *     data["indeterminate"] = kwargs.get("indeterminate", False)
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_checked, __pyx_v_checked) < 0))) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_checked, __pyx_cur_scope->__pyx_v_checked) < 0))) __PYX_ERR(0, 96, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/checkbox.py":25
+  /* "simplestart/ss_ui/checkbox.py":97
  *     data["label"] = label
  *     data["checked"] = checked
  *     data["disabled"] = kwargs.get("disabled", False)             # <<<<<<<<<<<<<<
- *     data["border"] = kwargs.get("border", False)
  *     data["indeterminate"] = kwargs.get("indeterminate", False)
+ *     data["color"] = kwargs.get("color", "primary")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_2) < 0))) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_3) < 0))) __PYX_ERR(0, 97, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":26
+  /* "simplestart/ss_ui/checkbox.py":98
  *     data["checked"] = checked
  *     data["disabled"] = kwargs.get("disabled", False)
- *     data["border"] = kwargs.get("border", False)             # <<<<<<<<<<<<<<
- *     data["indeterminate"] = kwargs.get("indeterminate", False)
+ *     data["indeterminate"] = kwargs.get("indeterminate", False)             # <<<<<<<<<<<<<<
+ *     data["color"] = kwargs.get("color", "primary")
  * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_border, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_border, __pyx_t_2) < 0))) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_indeterminate, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_indeterminate, __pyx_t_3) < 0))) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":27
+  /* "simplestart/ss_ui/checkbox.py":99
  *     data["disabled"] = kwargs.get("disabled", False)
- *     data["border"] = kwargs.get("border", False)
- *     data["indeterminate"] = kwargs.get("indeterminate", False)             # <<<<<<<<<<<<<<
+ *     data["indeterminate"] = kwargs.get("indeterminate", False)
+ *     data["color"] = kwargs.get("color", "primary")             # <<<<<<<<<<<<<<
+ * 
+ *     # border/size  Vuetify
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_color, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_3) < 0))) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":102
+ * 
+ *     # border/size  Vuetify
+ *     kwargs.pop("border", None)             # <<<<<<<<<<<<<<
+ *     kwargs.pop("size", None)
+ *     bind_state = kwargs.pop("bind", None)
+*/
+  __pyx_t_6 = __Pyx_PyDict_Pop_ignore(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_border, Py_None); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 102, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":103
+ *     # border/size  Vuetify
+ *     kwargs.pop("border", None)
+ *     kwargs.pop("size", None)             # <<<<<<<<<<<<<<
+ *     bind_state = kwargs.pop("bind", None)
+ * 
+*/
+  __pyx_t_6 = __Pyx_PyDict_Pop_ignore(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, Py_None); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":104
+ *     kwargs.pop("border", None)
+ *     kwargs.pop("size", None)
+ *     bind_state = kwargs.pop("bind", None)             # <<<<<<<<<<<<<<
  * 
  *     onchange = kwargs.get("onchange", None)
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_indeterminate, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_indeterminate, __pyx_t_2) < 0))) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_bind, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_bind_state = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":29
- *     data["indeterminate"] = kwargs.get("indeterminate", False)
+  /* "simplestart/ss_ui/checkbox.py":106
+ *     bind_state = kwargs.pop("bind", None)
  * 
  *     onchange = kwargs.get("onchange", None)             # <<<<<<<<<<<<<<
  *     event_data = kwargs.get("eventData", None)
  * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_cur_scope->__pyx_v_onchange = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_onchange = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":30
+  /* "simplestart/ss_ui/checkbox.py":107
  * 
  *     onchange = kwargs.get("onchange", None)
  *     event_data = kwargs.get("eventData", None)             # <<<<<<<<<<<<<<
  * 
- *     def handle_change(event):
-*/
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_eventData, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_cur_scope->__pyx_v_event_data = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/checkbox.py":32
- *     event_data = kwargs.get("eventData", None)
  * 
- *     def handle_change(event):             # <<<<<<<<<<<<<<
- *         res._data["checked"] = event.value
- *         # eventData
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_8checkbox_1handle_change, 0, __pyx_mstate_global->__pyx_n_u_checkbox_locals_handle_change, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_handle_change = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_eventData, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_event_data = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":39
- *             onchange(event)
+  /* "simplestart/ss_ui/checkbox.py":111
  * 
+ *     #
  *     res = vuetify(r'''             # <<<<<<<<<<<<<<
- *         <el-checkbox
- *           :label="data.label"
+ *         <!--
+ *           Vuetify  label div +  span
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplestart/ss_ui/checkbox.py":48
- *           \@change="(value) => onserver('onchange', value)"
- *         />
- *     ''', data=data, handlers={"onchange": handle_change}, **kwargs)             # <<<<<<<<<<<<<<
+  /* "simplestart/ss_ui/checkbox.py":151
+ *             </div>
+ *         </div>
+ *     ''', data=data, handlers={"onchange": None}, bind=bind_state, ** kwargs)             # <<<<<<<<<<<<<<
  * 
- *     return res
+ *     #  id  v-checkbox  input
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_handle_change) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_6) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_4 = __pyx_t_5;
-  __pyx_t_5 = 0;
-  if (__Pyx_MergeKeywords(__pyx_t_4, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __pyx_t_7 = 1;
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  if (PyDict_SetItem(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_onchange, Py_None) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_8) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_bind, __pyx_cur_scope->__pyx_v_bind_state) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_2 = __pyx_t_7;
+  __pyx_t_7 = 0;
+  if (__Pyx_MergeKeywords(__pyx_t_2, __pyx_v_kwargs) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+  if (unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
     assert(__pyx_t_1);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-    __pyx_t_7 = 0;
+    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+    __pyx_t_5 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_el_checkbox_label_data_label_v};
-    __pyx_t_2 = __Pyx_PyObject_FastCallDict((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
+    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_Vuetify_label_div_span_checkbox};
+    __pyx_t_3 = __Pyx_PyObject_FastCallDict((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
   }
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_cur_scope->__pyx_v_res = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_res = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":50
- *     ''', data=data, handlers={"onchange": handle_change}, **kwargs)
+  /* "simplestart/ss_ui/checkbox.py":154
+ * 
+ *     #  id  v-checkbox  input
+ *     res._data["id"] = res.id             # <<<<<<<<<<<<<<
+ * 
+ *     #  res
+*/
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (unlikely((PyObject_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_id, __pyx_t_3) < 0))) __PYX_ERR(0, 154, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":157
+ * 
+ *     #  res
+ *     def handle_change(event):             # <<<<<<<<<<<<<<
+ *         res._data["checked"] = event.value
+ *         if checked is not None and hasattr(checked, 'value'):
+*/
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_8checkbox_3handle_change, 0, __pyx_mstate_global->__pyx_n_u_checkbox_locals_handle_change, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_handle_change = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":175
+ * 
+ *     #
+ *     res.resource["handlers"]["onchange"] = handle_change             # <<<<<<<<<<<<<<
+ * 
+ *     return res
+*/
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_resource); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_handlers); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_handle_change) < 0))) __PYX_ERR(0, 175, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":177
+ *     res.resource["handlers"]["onchange"] = handle_change
  * 
  *     return res             # <<<<<<<<<<<<<<
  * 
@@ -3221,12 +3744,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED 
   __pyx_r = __pyx_cur_scope->__pyx_v_res;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/checkbox.py":5
- * 
+  /* "simplestart/ss_ui/checkbox.py":67
+ * '''
  * 
  * def checkbox(label="", checked=False, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 
   /* function exit code */
@@ -3235,11 +3758,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED 
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkbox", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_extract_value);
   __Pyx_XDECREF(__pyx_v_data);
   __Pyx_XDECREF(__pyx_v_handle_change);
   __Pyx_DECREF((PyObject *)__pyx_cur_scope);
@@ -3248,17 +3772,17 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_checkbox(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/checkbox.py":53
+/* "simplestart/ss_ui/checkbox.py":180
  * 
  * 
  * def checkboxes(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_3checkboxes(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_8checkbox_2checkboxes, " \n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\215\351\200\211\346\241\206\347\273\204\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Element Plus\357\274\211\n    \n    \345\217\202\346\225\260:\n        options_list: \351\200\211\351\241\271\345\210\227\350\241\250\357\274\214\345\217\257\344\273\245\346\230\257\345\255\227\347\254\246\344\270\262\345\210\227\350\241\250\343\200\201\345\205\203\347\273\204\345\210\227\350\241\250\346\210\226\345\257\271\350\261\241\345\210\227\350\241\250\n                      - \345\255\227\347\254\246\344\270\262\345\210\227\350\241\250: ['\351\200\211\351\241\2711', '\351\200\211\351\241\2712']\n                      - \345\205\203\347\273\204\345\210\227\350\241\250: [('\346\240\207\347\255\2761', '\345\200\2741'), ('\346\240\207\347\255\2762', '\345\200\2742')]\n                      - \345\257\271\350\261\241\345\210\227\350\241\250: [{'label': '\346\240\207\347\255\276', 'value': '\345\200\274', 'disabled': False}]\n        model_value: \345\210\235\345\247\213\351\200\211\344\270\255\347\232\204\345\200\274\345\210\227\350\241\250\357\274\210\346\224\257\346\214\201\345\223\215\345\272\224\345\274\217State\347\273\221\345\256\232\357\274\211\n        **kwargs: \345\205\266\344\273\226\345\261\236\346\200\247\n                 \346\224\257\346\214\201onchange - \351\200\211\344\270\255\347\212\266\346\200\201\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n                 \346\224\257\346\214\201disabled - \346\230\257\345\220\246\347\246\201\347\224\250\346\225\264\347\273\204\n                 \346\224\257\346\214\201min - \346\234\200\345\260\221\351\200\211\344\270\255\344\270\252\346\225\260\n                 \346\224\257\346\214\201max - \346\234\200\345\244\232\351\200\211\344\270\255\344\270\252\346\225\260\n                 \346\224\257\346\214\201bind - \347\273\221\345\256\232\345\210\260State\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_8checkbox_2checkboxes, " \n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\215\351\200\211\346\241\206\347\273\204\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Vuetify v-checkbox\357\274\211\n    \n    \345\217\202\346\225\260:\n        options_list: \351\200\211\351\241\271\345\210\227\350\241\250\357\274\214\345\217\257\344\273\245\346\230\257\345\255\227\347\254\246\344\270\262\345\210\227\350\241\250\343\200\201\345\205\203\347\273\204\345\210\227\350\241\250\346\210\226\345\257\271\350\261\241\345\210\227\350\241\250\n                      - \345\255\227\347\254\246\344\270\262\345\210\227\350\241\250: ['\351\200\211\351\241\2711', '\351\200\211\351\241\2712']\n                      - \345\205\203\347\273\204\345\210\227\350\241\250: [('\346\240\207\347\255\2761', '\345\200\2741'), ('\346\240\207\347\255\2762', '\345\200\2742')]\n                      - \345\257\271\350\261\241\345\210\227\350\241\250: [{'label': '\346\240\207\347\255\276', 'value': '\345\200\274', 'disabled': False}]\n        model_value: \345\210\235\345\247\213\351\200\211\344\270\255\347\232\204\345\200\274\345\210\227\350\241\250\357\274\210\346\224\257\346\214\201\345\223\215\345\272\224\345\274\217State\347\273\221\345\256\232\357\274\211\n        **kwargs: \345\205\266\344\273\226\345\261\236\346\200\247\n                 \346\224\257\346\214\201onchange - \351\200\211\344\270\255\347\212\266\346\200\201\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n                 \346\224\257\346\214\201disabled - \346\230\257\345\220\246\347\246\201\347\224\250\346\225\264\347\273\204\n                 \346\224\257\346\214\201color - \345\244\215\351\200\211\346\241\206\351\242\234\350\211\262\n                 \346\224\257\346\214\201inline - \346\230\257\345\220\246\346\260\264\345\271\263\346\216\222\345\210\227\357\274\210\351\273\230\350\256\244 True\357\274\214\346\260\264\345\271\263\346\216\222\345\210\227\357\274\211\n                 ""\346\224\257\346\214\201bind - \347\273\221\345\256\232\345\210\260State\n                 min/max - \351\200\211\344\270\255\344\270\252\346\225\260\351\231\220\345\210\266\357\274\210Vuetify\344\270\215\346\224\257\346\214\201\357\274\214\351\235\231\351\273\230\345\277\275\347\225\245\357\274\211\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_8checkbox_3checkboxes = {"checkboxes", (PyCFunction)(void(*)(void))(PyCFunctionWithKeywords)__pyx_pw_11simplestart_5ss_ui_8checkbox_3checkboxes, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_8checkbox_2checkboxes};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_3checkboxes(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_args = 0;
@@ -3297,12 +3821,12 @@ static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_3checkboxes(PyObject *_
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/checkbox.py":82
+/* "simplestart/ss_ui/checkbox.py":215
  * 
  *     #
  *     def process_options(options_list):             # <<<<<<<<<<<<<<
  *         """"""
- *         if not options_list:
+ *         #  StatePropBinding
 */
 
 /* Python wrapper */
@@ -3345,32 +3869,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_options_list,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 82, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 215, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 215, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_options", 0) < (0)) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "process_options", 0) < (0)) __PYX_ERR(0, 215, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_options", 1, 1, 1, i); __PYX_ERR(0, 82, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("process_options", 1, 1, 1, i); __PYX_ERR(0, 215, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 215, __pyx_L3_error)
     }
     __pyx_v_options_list = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("process_options", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 82, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("process_options", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 215, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3397,8 +3921,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
   Py_ssize_t __pyx_t_4;
   PyObject *(*__pyx_t_5)(PyObject *);
   PyObject *__pyx_t_6 = NULL;
@@ -3413,54 +3937,86 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("process_options", 0);
+  __Pyx_INCREF(__pyx_v_options_list);
 
-  /* "simplestart/ss_ui/checkbox.py":84
- *     def process_options(options_list):
+  /* "simplestart/ss_ui/checkbox.py":218
  *         """"""
+ *         #  StatePropBinding
+ *         if hasattr(options_list, 'value'):             # <<<<<<<<<<<<<<
+ *             options_list = options_list.value
+ * 
+*/
+  __pyx_t_1 = __Pyx_HasAttr(__pyx_v_options_list, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (__pyx_t_1) {
+
+    /* "simplestart/ss_ui/checkbox.py":219
+ *         #  StatePropBinding
+ *         if hasattr(options_list, 'value'):
+ *             options_list = options_list.value             # <<<<<<<<<<<<<<
+ * 
+ *         if not options_list:
+*/
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_options_list, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF_SET(__pyx_v_options_list, __pyx_t_2);
+    __pyx_t_2 = 0;
+
+    /* "simplestart/ss_ui/checkbox.py":218
+ *         """"""
+ *         #  StatePropBinding
+ *         if hasattr(options_list, 'value'):             # <<<<<<<<<<<<<<
+ *             options_list = options_list.value
+ * 
+*/
+  }
+
+  /* "simplestart/ss_ui/checkbox.py":221
+ *             options_list = options_list.value
+ * 
  *         if not options_list:             # <<<<<<<<<<<<<<
  *             return []
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_options_list); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 84, __pyx_L1_error)
-  __pyx_t_2 = (!__pyx_t_1);
-  if (__pyx_t_2) {
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_options_list); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_3 = (!__pyx_t_1);
+  if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/checkbox.py":85
- *         """"""
+    /* "simplestart/ss_ui/checkbox.py":222
+ * 
  *         if not options_list:
  *             return []             # <<<<<<<<<<<<<<
  * 
  *         result = []
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_r = __pyx_t_3;
-    __pyx_t_3 = 0;
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_r = __pyx_t_2;
+    __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "simplestart/ss_ui/checkbox.py":84
- *     def process_options(options_list):
- *         """"""
+    /* "simplestart/ss_ui/checkbox.py":221
+ *             options_list = options_list.value
+ * 
  *         if not options_list:             # <<<<<<<<<<<<<<
  *             return []
  * 
 */
   }
 
-  /* "simplestart/ss_ui/checkbox.py":87
+  /* "simplestart/ss_ui/checkbox.py":224
  *             return []
  * 
  *         result = []             # <<<<<<<<<<<<<<
  *         for item in options_list:
  *             #
 */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_v_result = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
+  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_result = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":88
+  /* "simplestart/ss_ui/checkbox.py":225
  * 
  *         result = []
  *         for item in options_list:             # <<<<<<<<<<<<<<
@@ -3468,48 +4024,48 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
  *             if isinstance(item, (str, int, float)):
 */
   if (likely(PyList_CheckExact(__pyx_v_options_list)) || PyTuple_CheckExact(__pyx_v_options_list)) {
-    __pyx_t_3 = __pyx_v_options_list; __Pyx_INCREF(__pyx_t_3);
+    __pyx_t_2 = __pyx_v_options_list; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_options_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_options_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 225, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
-      if (likely(PyList_CheckExact(__pyx_t_3))) {
+      if (likely(PyList_CheckExact(__pyx_t_2))) {
         {
-          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
+          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
-        __pyx_t_6 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_4, __Pyx_ReferenceSharing_OwnStrongReference);
+        __pyx_t_6 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_4, __Pyx_ReferenceSharing_OwnStrongReference);
         ++__pyx_t_4;
       } else {
         {
-          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_3);
+          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_6 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4));
+        __pyx_t_6 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4));
         #else
-        __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_4);
+        __pyx_t_6 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_4);
         #endif
         ++__pyx_t_4;
       }
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 88, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 225, __pyx_L1_error)
     } else {
-      __pyx_t_6 = __pyx_t_5(__pyx_t_3);
+      __pyx_t_6 = __pyx_t_5(__pyx_t_2);
       if (unlikely(!__pyx_t_6)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 88, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 225, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -3519,7 +4075,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
     __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "simplestart/ss_ui/checkbox.py":90
+    /* "simplestart/ss_ui/checkbox.py":227
  *         for item in options_list:
  *             #
  *             if isinstance(item, (str, int, float)):             # <<<<<<<<<<<<<<
@@ -3529,49 +4085,49 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
     __pyx_t_1 = PyUnicode_Check(__pyx_v_item); 
     if (!__pyx_t_1) {
     } else {
-      __pyx_t_2 = __pyx_t_1;
-      goto __pyx_L7_bool_binop_done;
+      __pyx_t_3 = __pyx_t_1;
+      goto __pyx_L8_bool_binop_done;
     }
     __pyx_t_1 = PyLong_Check(__pyx_v_item); 
     if (!__pyx_t_1) {
     } else {
-      __pyx_t_2 = __pyx_t_1;
-      goto __pyx_L7_bool_binop_done;
+      __pyx_t_3 = __pyx_t_1;
+      goto __pyx_L8_bool_binop_done;
     }
     __pyx_t_1 = PyFloat_Check(__pyx_v_item); 
-    __pyx_t_2 = __pyx_t_1;
-    __pyx_L7_bool_binop_done:;
-    if (__pyx_t_2) {
+    __pyx_t_3 = __pyx_t_1;
+    __pyx_L8_bool_binop_done:;
+    if (__pyx_t_3) {
 
-      /* "simplestart/ss_ui/checkbox.py":91
+      /* "simplestart/ss_ui/checkbox.py":228
  *             #
  *             if isinstance(item, (str, int, float)):
  *                 result.append({"value": item, "label": str(item), "disabled": False})             # <<<<<<<<<<<<<<
  *             #  (label, value)
  *             elif isinstance(item, tuple) and len(item) == 2:
 */
-      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 91, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_item) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
-      __pyx_t_7 = __Pyx_PyObject_Unicode(__pyx_v_item); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 91, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_item) < (0)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Unicode(__pyx_v_item); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_7) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_7) < (0)) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, Py_False) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
-      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 91, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, Py_False) < (0)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 228, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "simplestart/ss_ui/checkbox.py":90
+      /* "simplestart/ss_ui/checkbox.py":227
  *         for item in options_list:
  *             #
  *             if isinstance(item, (str, int, float)):             # <<<<<<<<<<<<<<
  *                 result.append({"value": item, "label": str(item), "disabled": False})
  *             #  (label, value)
 */
-      goto __pyx_L6;
+      goto __pyx_L7;
     }
 
-    /* "simplestart/ss_ui/checkbox.py":93
+    /* "simplestart/ss_ui/checkbox.py":230
  *                 result.append({"value": item, "label": str(item), "disabled": False})
  *             #  (label, value)
  *             elif isinstance(item, tuple) and len(item) == 2:             # <<<<<<<<<<<<<<
@@ -3581,77 +4137,77 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
     __pyx_t_1 = PyTuple_Check(__pyx_v_item); 
     if (__pyx_t_1) {
     } else {
-      __pyx_t_2 = __pyx_t_1;
-      goto __pyx_L10_bool_binop_done;
+      __pyx_t_3 = __pyx_t_1;
+      goto __pyx_L11_bool_binop_done;
     }
-    __pyx_t_9 = PyObject_Length(__pyx_v_item); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_9 = PyObject_Length(__pyx_v_item); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 230, __pyx_L1_error)
     __pyx_t_1 = (__pyx_t_9 == 2);
-    __pyx_t_2 = __pyx_t_1;
-    __pyx_L10_bool_binop_done:;
-    if (__pyx_t_2) {
+    __pyx_t_3 = __pyx_t_1;
+    __pyx_L11_bool_binop_done:;
+    if (__pyx_t_3) {
 
-      /* "simplestart/ss_ui/checkbox.py":94
+      /* "simplestart/ss_ui/checkbox.py":231
  *             #  (label, value)
  *             elif isinstance(item, tuple) and len(item) == 2:
  *                 result.append({"value": item[1], "label": str(item[0]), "disabled": False})             # <<<<<<<<<<<<<<
  *             #
  *             elif isinstance(item, dict):
 */
-      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_item, 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_7) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_7) < (0)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_item, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_item, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_10 = __Pyx_PyObject_Unicode(__pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 94, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Unicode(__pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_10) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_10) < (0)) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, Py_False) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 94, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, Py_False) < (0)) __PYX_ERR(0, 231, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 231, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "simplestart/ss_ui/checkbox.py":93
+      /* "simplestart/ss_ui/checkbox.py":230
  *                 result.append({"value": item, "label": str(item), "disabled": False})
  *             #  (label, value)
  *             elif isinstance(item, tuple) and len(item) == 2:             # <<<<<<<<<<<<<<
  *                 result.append({"value": item[1], "label": str(item[0]), "disabled": False})
  *             #
 */
-      goto __pyx_L6;
+      goto __pyx_L7;
     }
 
-    /* "simplestart/ss_ui/checkbox.py":96
+    /* "simplestart/ss_ui/checkbox.py":233
  *                 result.append({"value": item[1], "label": str(item[0]), "disabled": False})
  *             #
  *             elif isinstance(item, dict):             # <<<<<<<<<<<<<<
  *                 result.append({
  *                     "value": item.get("value", ""),
 */
-    __pyx_t_2 = PyDict_Check(__pyx_v_item); 
-    if (__pyx_t_2) {
+    __pyx_t_3 = PyDict_Check(__pyx_v_item); 
+    if (__pyx_t_3) {
 
-      /* "simplestart/ss_ui/checkbox.py":98
+      /* "simplestart/ss_ui/checkbox.py":235
  *             elif isinstance(item, dict):
  *                 result.append({
  *                     "value": item.get("value", ""),             # <<<<<<<<<<<<<<
  *                     "label": item.get("label", str(item.get("value", ""))),
  *                     "disabled": item.get("disabled", False)
 */
-      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 98, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_mstate_global->__pyx_tuple[0], NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 98, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_mstate_global->__pyx_tuple[0], NULL); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_7) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_7) < (0)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "simplestart/ss_ui/checkbox.py":99
+      /* "simplestart/ss_ui/checkbox.py":236
  *                 result.append({
  *                     "value": item.get("value", ""),
  *                     "label": item.get("label", str(item.get("value", ""))),             # <<<<<<<<<<<<<<
@@ -3660,12 +4216,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
 */
       __pyx_t_10 = __pyx_v_item;
       __Pyx_INCREF(__pyx_t_10);
-      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_11, __pyx_mstate_global->__pyx_tuple[0], NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_11, __pyx_mstate_global->__pyx_tuple[0], NULL); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __pyx_t_11 = __Pyx_PyObject_Unicode(__pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Unicode(__pyx_t_12); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
       __pyx_t_13 = 0;
@@ -3674,48 +4230,48 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
         __pyx_t_7 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_13, (3-__pyx_t_13) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 99, __pyx_L1_error)
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 236, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
       }
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_7) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_7) < (0)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "simplestart/ss_ui/checkbox.py":100
+      /* "simplestart/ss_ui/checkbox.py":237
  *                     "value": item.get("value", ""),
  *                     "label": item.get("label", str(item.get("value", ""))),
  *                     "disabled": item.get("disabled", False)             # <<<<<<<<<<<<<<
  *                 })
  *             else:
 */
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 237, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_mstate_global->__pyx_tuple[1], NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_mstate_global->__pyx_tuple[1], NULL); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 237, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_11) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_11) < (0)) __PYX_ERR(0, 235, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-      /* "simplestart/ss_ui/checkbox.py":97
+      /* "simplestart/ss_ui/checkbox.py":234
  *             #
  *             elif isinstance(item, dict):
  *                 result.append({             # <<<<<<<<<<<<<<
  *                     "value": item.get("value", ""),
  *                     "label": item.get("label", str(item.get("value", ""))),
 */
-      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 97, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "simplestart/ss_ui/checkbox.py":96
+      /* "simplestart/ss_ui/checkbox.py":233
  *                 result.append({"value": item[1], "label": str(item[0]), "disabled": False})
  *             #
  *             elif isinstance(item, dict):             # <<<<<<<<<<<<<<
  *                 result.append({
  *                     "value": item.get("value", ""),
 */
-      goto __pyx_L6;
+      goto __pyx_L7;
     }
 
-    /* "simplestart/ss_ui/checkbox.py":103
+    /* "simplestart/ss_ui/checkbox.py":240
  *                 })
  *             else:
  *                 result.append({"value": str(item), "label": str(item), "disabled": False})             # <<<<<<<<<<<<<<
@@ -3723,23 +4279,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
  *         return result
 */
     /*else*/ {
-      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_11 = __Pyx_PyObject_Unicode(__pyx_v_item); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Unicode(__pyx_v_item); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_11) < (0)) __PYX_ERR(0, 103, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_11) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __pyx_t_11 = __Pyx_PyObject_Unicode(__pyx_v_item); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Unicode(__pyx_v_item); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_11) < (0)) __PYX_ERR(0, 103, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_11) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, Py_False) < (0)) __PYX_ERR(0, 103, __pyx_L1_error)
-      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_disabled, Py_False) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_result, __pyx_t_6); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
-    __pyx_L6:;
+    __pyx_L7:;
 
-    /* "simplestart/ss_ui/checkbox.py":88
+    /* "simplestart/ss_ui/checkbox.py":225
  * 
  *         result = []
  *         for item in options_list:             # <<<<<<<<<<<<<<
@@ -3747,31 +4303,31 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
  *             if isinstance(item, (str, int, float)):
 */
   }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":105
+  /* "simplestart/ss_ui/checkbox.py":242
  *                 result.append({"value": str(item), "label": str(item), "disabled": False})
  * 
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     #
+ *     # StatePropBinding  vuetify()
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_result);
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/checkbox.py":82
+  /* "simplestart/ss_ui/checkbox.py":215
  * 
  *     #
  *     def process_options(options_list):             # <<<<<<<<<<<<<<
  *         """"""
- *         if not options_list:
+ *         #  StatePropBinding
 */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_10);
@@ -3782,17 +4338,18 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_op
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_result);
   __Pyx_XDECREF(__pyx_v_item);
+  __Pyx_XDECREF(__pyx_v_options_list);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/checkbox.py":115
- *     data["max"] = kwargs.get("max", len(data["options_list"]))
+/* "simplestart/ss_ui/checkbox.py":260
+ *     data["inline"] = kwargs.get("inline", True)
  * 
  *     def handle_change(event):             # <<<<<<<<<<<<<<
- *         # eventData
- *         event = handle_event_data(event, event_data)
+ *         # model_value
+ *         value = event.value
 */
 
 /* Python wrapper */
@@ -3834,32 +4391,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 115, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 260, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 115, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 260, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "handle_change", 0) < (0)) __PYX_ERR(0, 115, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "handle_change", 0) < (0)) __PYX_ERR(0, 260, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, i); __PYX_ERR(0, 115, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, i); __PYX_ERR(0, 260, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 115, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 260, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 115, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("handle_change", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 260, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3884,14 +4441,17 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_2handle_ch
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *__pyx_cur_scope;
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *__pyx_outer_scope;
   PyObject *__pyx_v_value = NULL;
+  PyObject *__pyx_v_sig = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  size_t __pyx_t_4;
-  int __pyx_t_5;
-  int __pyx_t_6;
+  int __pyx_t_2;
+  int __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  Py_ssize_t __pyx_t_8;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3900,166 +4460,451 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_2handle_ch
   __pyx_cur_scope = __pyx_outer_scope;
   __Pyx_INCREF(__pyx_v_event);
 
-  /* "simplestart/ss_ui/checkbox.py":117
+  /* "simplestart/ss_ui/checkbox.py":262
  *     def handle_change(event):
- *         # eventData
- *         event = handle_event_data(event, event_data)             # <<<<<<<<<<<<<<
- *         # model_value
- *         value = event.value
-*/
-  __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 117, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 117, __pyx_L1_error) }
-  __pyx_t_4 = 1;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    assert(__pyx_t_2);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
-    __Pyx_INCREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-    __pyx_t_4 = 0;
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_event, __pyx_cur_scope->__pyx_v_event_data};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __Pyx_DECREF_SET(__pyx_v_event, __pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/checkbox.py":119
- *         event = handle_event_data(event, event_data)
  *         # model_value
  *         value = event.value             # <<<<<<<<<<<<<<
  *         res._data["model_value"] = value
  *         #
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_value = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":120
+  /* "simplestart/ss_ui/checkbox.py":263
  *         # model_value
  *         value = event.value
  *         res._data["model_value"] = value             # <<<<<<<<<<<<<<
  *         #
  *         if bind_state is not None and hasattr(bind_state, "value"):
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 120, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 263, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 263, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_model_value, __pyx_v_value) < 0))) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_model_value, __pyx_v_value) < 0))) __PYX_ERR(0, 263, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":122
+  /* "simplestart/ss_ui/checkbox.py":265
  *         res._data["model_value"] = value
  *         #
  *         if bind_state is not None and hasattr(bind_state, "value"):             # <<<<<<<<<<<<<<
  *             bind_state.value = value
- *         if onchange:
+ *         # eventData
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 122, __pyx_L1_error) }
-  __pyx_t_6 = (__pyx_cur_scope->__pyx_v_bind_state != Py_None);
-  if (__pyx_t_6) {
+  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 265, __pyx_L1_error) }
+  __pyx_t_3 = (__pyx_cur_scope->__pyx_v_bind_state != Py_None);
+  if (__pyx_t_3) {
   } else {
-    __pyx_t_5 = __pyx_t_6;
+    __pyx_t_2 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 122, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 265, __pyx_L1_error) }
   __pyx_t_1 = __pyx_cur_scope->__pyx_v_bind_state;
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __pyx_t_6;
+  __pyx_t_2 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
-  if (__pyx_t_5) {
+  if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/checkbox.py":123
+    /* "simplestart/ss_ui/checkbox.py":266
  *         #
  *         if bind_state is not None and hasattr(bind_state, "value"):
  *             bind_state.value = value             # <<<<<<<<<<<<<<
- *         if onchange:
- *             onchange(event)
+ *         # eventData
+ *         event = handle_event_data(event, event_data)
 */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 123, __pyx_L1_error) }
-    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_bind_state, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_value) < (0)) __PYX_ERR(0, 123, __pyx_L1_error)
+    if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 266, __pyx_L1_error) }
+    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_bind_state, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_value) < (0)) __PYX_ERR(0, 266, __pyx_L1_error)
 
-    /* "simplestart/ss_ui/checkbox.py":122
+    /* "simplestart/ss_ui/checkbox.py":265
  *         res._data["model_value"] = value
  *         #
  *         if bind_state is not None and hasattr(bind_state, "value"):             # <<<<<<<<<<<<<<
  *             bind_state.value = value
- *         if onchange:
+ *         # eventData
 */
   }
 
-  /* "simplestart/ss_ui/checkbox.py":124
- *         if bind_state is not None and hasattr(bind_state, "value"):
+  /* "simplestart/ss_ui/checkbox.py":268
  *             bind_state.value = value
- *         if onchange:             # <<<<<<<<<<<<<<
- *             onchange(event)
- * 
-*/
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 124, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 124, __pyx_L1_error)
-  if (__pyx_t_5) {
-
-    /* "simplestart/ss_ui/checkbox.py":125
- *             bind_state.value = value
+ *         # eventData
+ *         event = handle_event_data(event, event_data)             # <<<<<<<<<<<<<<
  *         if onchange:
- *             onchange(event)             # <<<<<<<<<<<<<<
- * 
- *     res = vuetify(r'''
+ *             #  event
 */
-    __pyx_t_3 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 125, __pyx_L1_error) }
-    __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
-    __pyx_t_2 = __pyx_cur_scope->__pyx_v_onchange; 
-    __pyx_t_4 = 1;
+  __pyx_t_4 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 268, __pyx_L1_error) }
+  __pyx_t_6 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
+    assert(__pyx_t_4);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
+    __Pyx_INCREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+    __pyx_t_6 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_event, __pyx_cur_scope->__pyx_v_event_data};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF_SET(__pyx_v_event, __pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":269
+ *         # eventData
+ *         event = handle_event_data(event, event_data)
+ *         if onchange:             # <<<<<<<<<<<<<<
+ *             #  event
+ *             sig = inspect.signature(onchange)
+*/
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 269, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 269, __pyx_L1_error)
+  if (__pyx_t_2) {
+
+    /* "simplestart/ss_ui/checkbox.py":271
+ *         if onchange:
+ *             #  event
+ *             sig = inspect.signature(onchange)             # <<<<<<<<<<<<<<
+ *             if len(sig.parameters) > 0:
+ *                 onchange(event)
+*/
+    __pyx_t_5 = NULL;
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inspect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_signature); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 271, __pyx_L1_error) }
+    __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
-      assert(__pyx_t_3);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_3);
+    if (unlikely(PyMethod_Check(__pyx_t_7))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_7);
+      assert(__pyx_t_5);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
-      __pyx_t_4 = 0;
+      __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+      __pyx_t_6 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_event};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_cur_scope->__pyx_v_onchange};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_v_sig = __pyx_t_1;
+    __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/checkbox.py":124
- *         if bind_state is not None and hasattr(bind_state, "value"):
- *             bind_state.value = value
- *         if onchange:             # <<<<<<<<<<<<<<
- *             onchange(event)
+    /* "simplestart/ss_ui/checkbox.py":272
+ *             #  event
+ *             sig = inspect.signature(onchange)
+ *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
+ *                 onchange(event)
+ *             else:
+*/
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_mstate_global->__pyx_n_u_parameters); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_8 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 272, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_2 = (__pyx_t_8 > 0);
+    if (__pyx_t_2) {
+
+      /* "simplestart/ss_ui/checkbox.py":273
+ *             sig = inspect.signature(onchange)
+ *             if len(sig.parameters) > 0:
+ *                 onchange(event)             # <<<<<<<<<<<<<<
+ *             else:
+ *                 onchange()
+*/
+      __pyx_t_7 = NULL;
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 273, __pyx_L1_error) }
+      __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
+      __pyx_t_5 = __pyx_cur_scope->__pyx_v_onchange; 
+      __pyx_t_6 = 1;
+      #if CYTHON_UNPACK_METHODS
+      if (unlikely(PyMethod_Check(__pyx_t_5))) {
+        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_5);
+        assert(__pyx_t_7);
+        PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(__pyx__function);
+        __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+        __pyx_t_6 = 0;
+      }
+      #endif
+      {
+        PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_event};
+        __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "simplestart/ss_ui/checkbox.py":272
+ *             #  event
+ *             sig = inspect.signature(onchange)
+ *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
+ *                 onchange(event)
+ *             else:
+*/
+      goto __pyx_L7;
+    }
+
+    /* "simplestart/ss_ui/checkbox.py":275
+ *                 onchange(event)
+ *             else:
+ *                 onchange()             # <<<<<<<<<<<<<<
  * 
+ *     res = vuetify(r'''
+*/
+    /*else*/ {
+      __pyx_t_5 = NULL;
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 275, __pyx_L1_error) }
+      __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
+      __pyx_t_7 = __pyx_cur_scope->__pyx_v_onchange; 
+      __pyx_t_6 = 1;
+      #if CYTHON_UNPACK_METHODS
+      if (unlikely(PyMethod_Check(__pyx_t_7))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_7);
+        assert(__pyx_t_5);
+        PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+        __Pyx_INCREF(__pyx_t_5);
+        __Pyx_INCREF(__pyx__function);
+        __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+        __pyx_t_6 = 0;
+      }
+      #endif
+      {
+        PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
+        __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+      }
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __pyx_L7:;
+
+    /* "simplestart/ss_ui/checkbox.py":269
+ *         # eventData
+ *         event = handle_event_data(event, event_data)
+ *         if onchange:             # <<<<<<<<<<<<<<
+ *             #  event
+ *             sig = inspect.signature(onchange)
 */
   }
 
-  /* "simplestart/ss_ui/checkbox.py":115
- *     data["max"] = kwargs.get("max", len(data["options_list"]))
+  /* "simplestart/ss_ui/checkbox.py":260
+ *     data["inline"] = kwargs.get("inline", True)
  * 
  *     def handle_change(event):             # <<<<<<<<<<<<<<
- *         # eventData
- *         event = handle_event_data(event, event_data)
+ *         # model_value
+ *         value = event.value
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkboxes.handle_change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_XDECREF(__pyx_v_sig);
+  __Pyx_XDECREF(__pyx_v_event);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "simplestart/ss_ui/checkbox.py":316
+ *     # process_options  StatePropBinding .value
+ *     if state_binding is not None:
+ *         def _normalize_options(_value):             # <<<<<<<<<<<<<<
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+ *             res._check_data_update()
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_10checkboxes_5_normalize_options(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_8checkbox_10checkboxes_5_normalize_options = {"_normalize_options", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_8checkbox_10checkboxes_5_normalize_options, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11simplestart_5ss_ui_8checkbox_10checkboxes_5_normalize_options(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  CYTHON_UNUSED PyObject *__pyx_v__value = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("_normalize_options (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value_2,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 316, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 316, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_normalize_options", 0) < (0)) __PYX_ERR(0, 316, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_normalize_options", 1, 1, 1, i); __PYX_ERR(0, 316, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 316, __pyx_L3_error)
+    }
+    __pyx_v__value = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("_normalize_options", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 316, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkboxes._normalize_options", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_4_normalize_options(__pyx_self, __pyx_v__value);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_4_normalize_options(PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v__value) {
+  struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *__pyx_cur_scope;
+  struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *__pyx_outer_scope;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  size_t __pyx_t_4;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("_normalize_options", 0);
+  __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *) __Pyx_CyFunction_GetClosure(__pyx_self);
+  __pyx_cur_scope = __pyx_outer_scope;
+
+  /* "simplestart/ss_ui/checkbox.py":317
+ *     if state_binding is not None:
+ *         def _normalize_options(_value):
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))             # <<<<<<<<<<<<<<
+ *             res._check_data_update()
+ *         state_binding._state.watch(state_binding._attr_name)(_normalize_options)
+*/
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 317, __pyx_L1_error) }
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __pyx_t_3;
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_4 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_options_list};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_process_options)) { __Pyx_RaiseClosureNameError("process_options"); __PYX_ERR(0, 317, __pyx_L1_error) }
+  __pyx_t_3 = __pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_options(__pyx_cur_scope->__pyx_v_process_options, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 317, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_3) < 0))) __PYX_ERR(0, 317, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":318
+ *         def _normalize_options(_value):
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+ *             res._check_data_update()             # <<<<<<<<<<<<<<
+ *         state_binding._state.watch(state_binding._attr_name)(_normalize_options)
+ *         res._data["options_list"] = process_options(res._data.get("options_list"))
+*/
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 318, __pyx_L1_error) }
+  __pyx_t_1 = __pyx_cur_scope->__pyx_v_res;
+  __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_4 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
+    __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_check_data_update, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":316
+ *     # process_options  StatePropBinding .value
+ *     if state_binding is not None:
+ *         def _normalize_options(_value):             # <<<<<<<<<<<<<<
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+ *             res._check_data_update()
 */
 
   /* function exit code */
@@ -4069,40 +4914,42 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_2handle_ch
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkboxes.handle_change", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkboxes._normalize_options", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_value);
-  __Pyx_XDECREF(__pyx_v_event);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/checkbox.py":53
+/* "simplestart/ss_ui/checkbox.py":180
  * 
  * 
  * def checkboxes(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs) {
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *__pyx_cur_scope;
   PyObject *__pyx_v_options_list = NULL;
-  PyObject *__pyx_v_process_options = 0;
   PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_v_state_binding = NULL;
   PyObject *__pyx_v_handle_change = 0;
+  PyObject *__pyx_v__normalize_options = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  Py_ssize_t __pyx_t_2;
-  int __pyx_t_3;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  size_t __pyx_t_7;
-  PyObject *__pyx_t_8 = NULL;
+  size_t __pyx_t_5;
+  int __pyx_t_6;
+  Py_ssize_t __pyx_t_7;
+  int __pyx_t_8;
+  int __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4111,74 +4958,127 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUS
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 53, __pyx_L1_error)
+    __PYX_ERR(0, 180, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
 
-  /* "simplestart/ss_ui/checkbox.py":71
+  /* "simplestart/ss_ui/checkbox.py":198
+ *                  min/max - Vuetify
  *     """
+ *     check_schema_kwargs("checkboxes", kwargs, CHECKBOXES_SCHEMA)             # <<<<<<<<<<<<<<
+ *     #
+ *     onchange = kwargs.pop("onchange", None)
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_CHECKBOXES_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_checkboxes, __pyx_v_kwargs, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":200
+ *     check_schema_kwargs("checkboxes", kwargs, CHECKBOXES_SCHEMA)
  *     #
  *     onchange = kwargs.pop("onchange", None)             # <<<<<<<<<<<<<<
  *     event_data = kwargs.pop("eventData", None)
  *     bind_state = kwargs.pop("bind", None)
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_onchange = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":72
+  /* "simplestart/ss_ui/checkbox.py":201
  *     #
  *     onchange = kwargs.pop("onchange", None)
  *     event_data = kwargs.pop("eventData", None)             # <<<<<<<<<<<<<<
  *     bind_state = kwargs.pop("bind", None)
  * 
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_eventData, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_eventData, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_event_data = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":73
+  /* "simplestart/ss_ui/checkbox.py":202
  *     onchange = kwargs.pop("onchange", None)
  *     event_data = kwargs.pop("eventData", None)
  *     bind_state = kwargs.pop("bind", None)             # <<<<<<<<<<<<<<
  * 
- *     # options
+ *     # min/max  Vuetify
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_bind, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_bind, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_bind_state = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":76
+  /* "simplestart/ss_ui/checkbox.py":205
+ * 
+ *     # min/max  Vuetify
+ *     kwargs.pop("min", None)             # <<<<<<<<<<<<<<
+ *     kwargs.pop("max", None)
+ * 
+*/
+  __pyx_t_6 = __Pyx_PyDict_Pop_ignore(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_min, Py_None); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 205, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":206
+ *     # min/max  Vuetify
+ *     kwargs.pop("min", None)
+ *     kwargs.pop("max", None)             # <<<<<<<<<<<<<<
+ * 
+ *     # options
+*/
+  __pyx_t_6 = __Pyx_PyDict_Pop_ignore(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_max, Py_None); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 206, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":209
  * 
  *     # options
  *     if len(args) > 0:             # <<<<<<<<<<<<<<
  *         options_list = args[0]
  *     else:
 */
-  __pyx_t_2 = __Pyx_PyTuple_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 76, __pyx_L1_error)
-  __pyx_t_3 = (__pyx_t_2 > 0);
-  if (__pyx_t_3) {
+  __pyx_t_7 = __Pyx_PyTuple_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 209, __pyx_L1_error)
+  __pyx_t_8 = (__pyx_t_7 > 0);
+  if (__pyx_t_8) {
 
-    /* "simplestart/ss_ui/checkbox.py":77
+    /* "simplestart/ss_ui/checkbox.py":210
  *     # options
  *     if len(args) > 0:
  *         options_list = args[0]             # <<<<<<<<<<<<<<
  *     else:
  *         options_list = kwargs.pop("options_list", [])
 */
-    __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_v_options_list = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/checkbox.py":76
+    /* "simplestart/ss_ui/checkbox.py":209
  * 
  *     # options
  *     if len(args) > 0:             # <<<<<<<<<<<<<<
@@ -4188,7 +5088,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUS
     goto __pyx_L3;
   }
 
-  /* "simplestart/ss_ui/checkbox.py":79
+  /* "simplestart/ss_ui/checkbox.py":212
  *         options_list = args[0]
  *     else:
  *         options_list = kwargs.pop("options_list", [])             # <<<<<<<<<<<<<<
@@ -4196,186 +5096,346 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUS
  *     #
 */
   /*else*/ {
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 79, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_v_options_list = __pyx_t_4;
-    __pyx_t_4 = 0;
+    __pyx_v_options_list = __pyx_t_3;
+    __pyx_t_3 = 0;
   }
   __pyx_L3:;
 
-  /* "simplestart/ss_ui/checkbox.py":82
+  /* "simplestart/ss_ui/checkbox.py":215
  * 
  *     #
  *     def process_options(options_list):             # <<<<<<<<<<<<<<
  *         """"""
- *         if not options_list:
+ *         #  StatePropBinding
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_10checkboxes_1process_options, 0, __pyx_mstate_global->__pyx_n_u_checkboxes_locals_process_option, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_process_options = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_10checkboxes_1process_options, 0, __pyx_mstate_global->__pyx_n_u_checkboxes_locals_process_option, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_process_options = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":108
+  /* "simplestart/ss_ui/checkbox.py":245
  * 
- *     #
+ *     # StatePropBinding  vuetify()
  *     data = {}             # <<<<<<<<<<<<<<
- *     data["options_list"] = process_options(options_list)
- *     data["model_value"] = kwargs.get("model_value", None) if kwargs.get("model_value", None) is not None else []
+ *     # options  StatePropBinding
+ *     #  vuetify()  State
 */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_v_data = ((PyObject*)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 245, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_data = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":109
- *     #
- *     data = {}
- *     data["options_list"] = process_options(options_list)             # <<<<<<<<<<<<<<
+  /* "simplestart/ss_ui/checkbox.py":249
+ *     #  vuetify()  State
+ *     #  State
+ *     state_binding = None             # <<<<<<<<<<<<<<
+ *     if hasattr(options_list, '_state') and hasattr(options_list, '_attr_name'):
+ *         state_binding = options_list
+*/
+  __Pyx_INCREF(Py_None);
+  __pyx_v_state_binding = Py_None;
+
+  /* "simplestart/ss_ui/checkbox.py":250
+ *     #  State
+ *     state_binding = None
+ *     if hasattr(options_list, '_state') and hasattr(options_list, '_attr_name'):             # <<<<<<<<<<<<<<
+ *         state_binding = options_list
+ *         data["options_list"] = options_list
+*/
+  __pyx_t_9 = __Pyx_HasAttr(__pyx_v_options_list, __pyx_mstate_global->__pyx_n_u_state); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 250, __pyx_L1_error)
+  if (__pyx_t_9) {
+  } else {
+    __pyx_t_8 = __pyx_t_9;
+    goto __pyx_L5_bool_binop_done;
+  }
+  __pyx_t_9 = __Pyx_HasAttr(__pyx_v_options_list, __pyx_mstate_global->__pyx_n_u_attr_name); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_8 = __pyx_t_9;
+  __pyx_L5_bool_binop_done:;
+  if (__pyx_t_8) {
+
+    /* "simplestart/ss_ui/checkbox.py":251
+ *     state_binding = None
+ *     if hasattr(options_list, '_state') and hasattr(options_list, '_attr_name'):
+ *         state_binding = options_list             # <<<<<<<<<<<<<<
+ *         data["options_list"] = options_list
+ *     else:
+*/
+    __Pyx_INCREF(__pyx_v_options_list);
+    __Pyx_DECREF_SET(__pyx_v_state_binding, __pyx_v_options_list);
+
+    /* "simplestart/ss_ui/checkbox.py":252
+ *     if hasattr(options_list, '_state') and hasattr(options_list, '_attr_name'):
+ *         state_binding = options_list
+ *         data["options_list"] = options_list             # <<<<<<<<<<<<<<
+ *     else:
+ *         data["options_list"] = process_options(options_list)
+*/
+    if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_v_options_list) < 0))) __PYX_ERR(0, 252, __pyx_L1_error)
+
+    /* "simplestart/ss_ui/checkbox.py":250
+ *     #  State
+ *     state_binding = None
+ *     if hasattr(options_list, '_state') and hasattr(options_list, '_attr_name'):             # <<<<<<<<<<<<<<
+ *         state_binding = options_list
+ *         data["options_list"] = options_list
+*/
+    goto __pyx_L4;
+  }
+
+  /* "simplestart/ss_ui/checkbox.py":254
+ *         data["options_list"] = options_list
+ *     else:
+ *         data["options_list"] = process_options(options_list)             # <<<<<<<<<<<<<<
  *     data["model_value"] = kwargs.get("model_value", None) if kwargs.get("model_value", None) is not None else []
  *     data["disabled"] = kwargs.get("disabled", False)
 */
-  __pyx_t_4 = __pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_options(__pyx_v_process_options, __pyx_v_options_list); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_4) < 0))) __PYX_ERR(0, 109, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  /*else*/ {
+    __pyx_t_3 = __pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_options(__pyx_cur_scope->__pyx_v_process_options, __pyx_v_options_list); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_3) < 0))) __PYX_ERR(0, 254, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  __pyx_L4:;
 
-  /* "simplestart/ss_ui/checkbox.py":110
- *     data = {}
- *     data["options_list"] = process_options(options_list)
+  /* "simplestart/ss_ui/checkbox.py":255
+ *     else:
+ *         data["options_list"] = process_options(options_list)
  *     data["model_value"] = kwargs.get("model_value", None) if kwargs.get("model_value", None) is not None else []             # <<<<<<<<<<<<<<
  *     data["disabled"] = kwargs.get("disabled", False)
- *     data["min"] = kwargs.get("min", 0)
+ *     data["color"] = kwargs.get("color", "primary")
 */
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_model_value, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_model_value, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = (__pyx_t_1 != Py_None);
+  __pyx_t_8 = (__pyx_t_1 != Py_None);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_model_value, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (__pyx_t_8) {
+    __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_model_value, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __pyx_t_1;
+    __pyx_t_3 = __pyx_t_1;
     __pyx_t_1 = 0;
   } else {
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __pyx_t_1;
+    __pyx_t_3 = __pyx_t_1;
     __pyx_t_1 = 0;
   }
-  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_model_value, __pyx_t_4) < 0))) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_model_value, __pyx_t_3) < 0))) __PYX_ERR(0, 255, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":111
- *     data["options_list"] = process_options(options_list)
+  /* "simplestart/ss_ui/checkbox.py":256
+ *         data["options_list"] = process_options(options_list)
  *     data["model_value"] = kwargs.get("model_value", None) if kwargs.get("model_value", None) is not None else []
  *     data["disabled"] = kwargs.get("disabled", False)             # <<<<<<<<<<<<<<
- *     data["min"] = kwargs.get("min", 0)
- *     data["max"] = kwargs.get("max", len(data["options_list"]))
+ *     data["color"] = kwargs.get("color", "primary")
+ *     data["inline"] = kwargs.get("inline", True)
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_4) < 0))) __PYX_ERR(0, 111, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_3) < 0))) __PYX_ERR(0, 256, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":112
+  /* "simplestart/ss_ui/checkbox.py":257
  *     data["model_value"] = kwargs.get("model_value", None) if kwargs.get("model_value", None) is not None else []
  *     data["disabled"] = kwargs.get("disabled", False)
- *     data["min"] = kwargs.get("min", 0)             # <<<<<<<<<<<<<<
- *     data["max"] = kwargs.get("max", len(data["options_list"]))
+ *     data["color"] = kwargs.get("color", "primary")             # <<<<<<<<<<<<<<
+ *     data["inline"] = kwargs.get("inline", True)
  * 
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_min, __pyx_mstate_global->__pyx_int_0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 112, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_min, __pyx_t_4) < 0))) __PYX_ERR(0, 112, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_color, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_3) < 0))) __PYX_ERR(0, 257, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":113
+  /* "simplestart/ss_ui/checkbox.py":258
  *     data["disabled"] = kwargs.get("disabled", False)
- *     data["min"] = kwargs.get("min", 0)
- *     data["max"] = kwargs.get("max", len(data["options_list"]))             # <<<<<<<<<<<<<<
+ *     data["color"] = kwargs.get("color", "primary")
+ *     data["inline"] = kwargs.get("inline", True)             # <<<<<<<<<<<<<<
  * 
  *     def handle_change(event):
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_options_list); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyObject_Length(__pyx_t_4); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 113, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyLong_FromSsize_t(__pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_max, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_max, __pyx_t_1) < 0))) __PYX_ERR(0, 113, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_inline, Py_True); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_inline, __pyx_t_3) < 0))) __PYX_ERR(0, 258, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":115
- *     data["max"] = kwargs.get("max", len(data["options_list"]))
+  /* "simplestart/ss_ui/checkbox.py":260
+ *     data["inline"] = kwargs.get("inline", True)
  * 
  *     def handle_change(event):             # <<<<<<<<<<<<<<
- *         # eventData
- *         event = handle_event_data(event, event_data)
+ *         # model_value
+ *         value = event.value
 */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_10checkboxes_3handle_change, 0, __pyx_mstate_global->__pyx_n_u_checkboxes_locals_handle_change, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_handle_change = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_10checkboxes_3handle_change, 0, __pyx_mstate_global->__pyx_n_u_checkboxes_locals_handle_change, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_handle_change = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":127
- *             onchange(event)
+  /* "simplestart/ss_ui/checkbox.py":277
+ *                 onchange()
  * 
  *     res = vuetify(r'''             # <<<<<<<<<<<<<<
- *         <el-checkbox-group
- *           v-model="data.model_value"
+ *         <v-row v-if="data.inline" no-gutters>
+ *           <v-checkbox
 */
-  __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_1 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplestart/ss_ui/checkbox.py":143
- *           />
- *         </el-checkbox-group>
+  /* "simplestart/ss_ui/checkbox.py":310
+ *           </div>
+ *         </div>
  *     ''', data= data, handlers={"onchange": handle_change}, bind=bind_state)             # <<<<<<<<<<<<<<
  * 
- *     return res
+ *     # State  options_list watch
 */
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 143, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_handle_change) < (0)) __PYX_ERR(0, 143, __pyx_L1_error)
-  __pyx_t_7 = 1;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_handle_change) < (0)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-    assert(__pyx_t_4);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-    __Pyx_INCREF(__pyx_t_4);
+  if (unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+    assert(__pyx_t_1);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
+    __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
-    __pyx_t_7 = 0;
+    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+    __pyx_t_5 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_4, __pyx_mstate_global->__pyx_kp_u_el_checkbox_group_v_model_data};
-    __pyx_t_8 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_8, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_6, __pyx_t_8, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_bind, __pyx_cur_scope->__pyx_v_bind_state, __pyx_t_8, __pyx_callargs+2, 2) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_8);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_v_row_v_if_data_inline_no_gutte};
+    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 277, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_10, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 277, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_2, __pyx_t_10, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 277, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_bind, __pyx_cur_scope->__pyx_v_bind_state, __pyx_t_10, __pyx_callargs+2, 2) < (0)) __PYX_ERR(0, 277, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_10);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 277, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
   }
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_cur_scope->__pyx_v_res = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_res = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":145
- *     ''', data= data, handlers={"onchange": handle_change}, bind=bind_state)
+  /* "simplestart/ss_ui/checkbox.py":315
+ *     #  state_to_component
+ *     # process_options  StatePropBinding .value
+ *     if state_binding is not None:             # <<<<<<<<<<<<<<
+ *         def _normalize_options(_value):
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+*/
+  __pyx_t_8 = (__pyx_v_state_binding != Py_None);
+  if (__pyx_t_8) {
+
+    /* "simplestart/ss_ui/checkbox.py":316
+ *     # process_options  StatePropBinding .value
+ *     if state_binding is not None:
+ *         def _normalize_options(_value):             # <<<<<<<<<<<<<<
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+ *             res._check_data_update()
+*/
+    __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_10checkboxes_5_normalize_options, 0, __pyx_mstate_global->__pyx_n_u_checkboxes_locals__normalize_opt, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_v__normalize_options = __pyx_t_3;
+    __pyx_t_3 = 0;
+
+    /* "simplestart/ss_ui/checkbox.py":319
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+ *             res._check_data_update()
+ *         state_binding._state.watch(state_binding._attr_name)(_normalize_options)             # <<<<<<<<<<<<<<
+ *         res._data["options_list"] = process_options(res._data.get("options_list"))
+ * 
+*/
+    __pyx_t_4 = NULL;
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_state_binding, __pyx_mstate_global->__pyx_n_u_state); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 319, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __pyx_t_1;
+    __Pyx_INCREF(__pyx_t_2);
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_state_binding, __pyx_mstate_global->__pyx_n_u_attr_name); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 319, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_11);
+    __pyx_t_5 = 0;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_11};
+      __pyx_t_10 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_watch, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 319, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+    }
+    __pyx_t_5 = 1;
+    #if CYTHON_UNPACK_METHODS
+    if (unlikely(PyMethod_Check(__pyx_t_10))) {
+      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_10);
+      assert(__pyx_t_4);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_10);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_10, __pyx__function);
+      __pyx_t_5 = 0;
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v__normalize_options};
+      __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+    }
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "simplestart/ss_ui/checkbox.py":320
+ *             res._check_data_update()
+ *         state_binding._state.watch(state_binding._attr_name)(_normalize_options)
+ *         res._data["options_list"] = process_options(res._data.get("options_list"))             # <<<<<<<<<<<<<<
+ * 
+ *     return res
+*/
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 320, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_10 = __pyx_t_4;
+    __Pyx_INCREF(__pyx_t_10);
+    __pyx_t_5 = 0;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_10, __pyx_mstate_global->__pyx_n_u_options_list};
+      __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+    }
+    __pyx_t_4 = __pyx_pf_11simplestart_5ss_ui_8checkbox_10checkboxes_process_options(__pyx_cur_scope->__pyx_v_process_options, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 320, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (unlikely((PyObject_SetItem(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_4) < 0))) __PYX_ERR(0, 320, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "simplestart/ss_ui/checkbox.py":315
+ *     #  state_to_component
+ *     # process_options  StatePropBinding .value
+ *     if state_binding is not None:             # <<<<<<<<<<<<<<
+ *         def _normalize_options(_value):
+ *             res._data["options_list"] = process_options(res._data.get("options_list"))
+*/
+  }
+
+  /* "simplestart/ss_ui/checkbox.py":322
+ *         res._data["options_list"] = process_options(res._data.get("options_list"))
  * 
  *     return res             # <<<<<<<<<<<<<<
 */
@@ -4384,28 +5444,30 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_8checkbox_2checkboxes(CYTHON_UNUS
   __pyx_r = __pyx_cur_scope->__pyx_v_res;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/checkbox.py":53
+  /* "simplestart/ss_ui/checkbox.py":180
  * 
  * 
  * def checkboxes(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_XDECREF(__pyx_t_11);
   __Pyx_AddTraceback("simplestart.ss_ui.checkbox.checkboxes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_options_list);
-  __Pyx_XDECREF(__pyx_v_process_options);
   __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XDECREF(__pyx_v_state_binding);
   __Pyx_XDECREF(__pyx_v_handle_change);
+  __Pyx_XDECREF(__pyx_v__normalize_options);
   __Pyx_DECREF((PyObject *)__pyx_cur_scope);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -4448,6 +5510,8 @@ static void __pyx_tp_dealloc_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__
   }
   #endif
   PyObject_GC_UnTrack(o);
+  Py_CLEAR(p->__pyx_v_bind_state);
+  Py_CLEAR(p->__pyx_v_checked);
   Py_CLEAR(p->__pyx_v_event_data);
   Py_CLEAR(p->__pyx_v_onchange);
   Py_CLEAR(p->__pyx_v_res);
@@ -4480,6 +5544,12 @@ static int __pyx_tp_traverse_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__
     e = __Pyx_call_type_traverse(o, 1, v, a);
     if (e) return e;
   }
+  if (p->__pyx_v_bind_state) {
+    e = (*v)(p->__pyx_v_bind_state, a); if (e) return e;
+  }
+  if (p->__pyx_v_checked) {
+    e = (*v)(p->__pyx_v_checked, a); if (e) return e;
+  }
   if (p->__pyx_v_event_data) {
     e = (*v)(p->__pyx_v_event_data, a); if (e) return e;
   }
@@ -4495,6 +5565,12 @@ static int __pyx_tp_traverse_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__
 static int __pyx_tp_clear_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox(PyObject *o) {
   PyObject* tmp;
   struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox *p = (struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox *)o;
+  tmp = ((PyObject*)p->__pyx_v_bind_state);
+  p->__pyx_v_bind_state = Py_None; Py_INCREF(Py_None);
+  Py_XDECREF(tmp);
+  tmp = ((PyObject*)p->__pyx_v_checked);
+  p->__pyx_v_checked = Py_None; Py_INCREF(Py_None);
+  Py_XDECREF(tmp);
   tmp = ((PyObject*)p->__pyx_v_event_data);
   p->__pyx_v_event_data = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
@@ -4634,6 +5710,7 @@ static void __pyx_tp_dealloc_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1
   Py_CLEAR(p->__pyx_v_bind_state);
   Py_CLEAR(p->__pyx_v_event_data);
   Py_CLEAR(p->__pyx_v_onchange);
+  Py_CLEAR(p->__pyx_v_process_options);
   Py_CLEAR(p->__pyx_v_res);
   #if CYTHON_USE_FREELISTS
   if (likely((int)(__pyx_mstate_global->__pyx_freecount_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes < 8) & __PYX_CHECK_FINAL_TYPE_FOR_FREELISTS(Py_TYPE(o), __pyx_mstate_global->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes, sizeof(struct __pyx_obj_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes))))
@@ -4673,6 +5750,9 @@ static int __pyx_tp_traverse_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1
   if (p->__pyx_v_onchange) {
     e = (*v)(p->__pyx_v_onchange, a); if (e) return e;
   }
+  if (p->__pyx_v_process_options) {
+    e = (*v)(p->__pyx_v_process_options, a); if (e) return e;
+  }
   if (p->__pyx_v_res) {
     e = (*v)(p->__pyx_v_res, a); if (e) return e;
   }
@@ -4690,6 +5770,9 @@ static int __pyx_tp_clear_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_ch
   Py_XDECREF(tmp);
   tmp = ((PyObject*)p->__pyx_v_onchange);
   p->__pyx_v_onchange = Py_None; Py_INCREF(Py_None);
+  Py_XDECREF(tmp);
+  tmp = ((PyObject*)p->__pyx_v_process_options);
+  p->__pyx_v_process_options = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   tmp = ((PyObject*)p->__pyx_v_res);
   p->__pyx_v_res = Py_None; Py_INCREF(Py_None);
@@ -4840,15 +5923,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox)) __PYX_ERR(0, 5, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox)) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox = &__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct__checkbox);
@@ -4859,15 +5942,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   }
   #endif
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes)) __PYX_ERR(0, 53, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes) < (0)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes)) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes = &__pyx_type_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes) < (0)) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_8checkbox___pyx_scope_struct_1_checkboxes);
@@ -5093,6 +6176,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_checkbox(PyObject *__pyx_pyinit_mo
   PyObject *__pyx_t_2 = NULL;
   Py_ssize_t __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5179,42 +6263,20 @@ __Pyx_RefNannySetupContext("PyInit_checkbox", 0);
   (void)__Pyx_modinit_function_import_code(__pyx_mstate);
   /*--- Execution code ---*/
 
-  /* "simplestart/ss_ui/checkbox.py":1
+  /* "simplestart/ss_ui/checkbox.py":2
+ * # corevuetify
  * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * from ss_core.utils import handle_event_data
- * 
+ * from ss_core.component import check_schema_kwargs
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
-    __pyx_t_3 = 0; {
-      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 1, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    }
-  }
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/checkbox.py":2
- * from ss_core import vuetify
- * from ss_core.utils import handle_event_data             # <<<<<<<<<<<<<<
- * 
- * 
-*/
-  {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_handle_event_data};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_utils, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
-  }
-  __pyx_t_2 = __pyx_t_1;
-  __Pyx_GOTREF(__pyx_t_2);
-  {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_handle_event_data};
     __pyx_t_3 = 0; {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 2, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
@@ -5224,41 +6286,493 @@ __Pyx_RefNannySetupContext("PyInit_checkbox", 0);
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":5
+  /* "simplestart/ss_ui/checkbox.py":3
+ * # corevuetify
+ * from ss_core import vuetify
+ * from ss_core.utils import handle_event_data             # <<<<<<<<<<<<<<
+ * from ss_core.component import check_schema_kwargs
+ * import inspect
+*/
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_handle_event_data};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_utils, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
+  }
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_handle_event_data};
+    __pyx_t_3 = 0; {
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 3, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    }
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":4
+ * from ss_core import vuetify
+ * from ss_core.utils import handle_event_data
+ * from ss_core.component import check_schema_kwargs             # <<<<<<<<<<<<<<
+ * import inspect
  * 
+*/
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  }
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_3 = 0; {
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 4, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    }
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":5
+ * from ss_core.utils import handle_event_data
+ * from ss_core.component import check_schema_kwargs
+ * import inspect             # <<<<<<<<<<<<<<
+ * 
+ * CHECKBOX_SCHEMA = {
+*/
+  __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_inspect, 0, 0, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_inspect, __pyx_t_2) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":8
+ * 
+ * CHECKBOX_SCHEMA = {
+ *     "name": "checkbox",             # <<<<<<<<<<<<<<
+ *     "category": "form",
+ *     "vuetify_base": "v-checkbox",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_checkbox) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_n_u_form) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify_base, __pyx_mstate_global->__pyx_kp_u_v_checkbox) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":11
+ *     "category": "form",
+ *     "vuetify_base": "v-checkbox",
+ *     "reactive": True,             # <<<<<<<<<<<<<<
+ *     "positional": ["label", "checked"],
+ *     "params": {
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_reactive, Py_True) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":12
+ *     "vuetify_base": "v-checkbox",
+ *     "reactive": True,
+ *     "positional": ["label", "checked"],             # <<<<<<<<<<<<<<
+ *     "params": {
+ *         "label": {"type": "str", "default": "", "doc": "Checkbox label text (first positional argument)"},
+*/
+  __pyx_t_4 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_n_u_label, __pyx_mstate_global->__pyx_n_u_checked); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_positional, __pyx_t_4) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":14
+ *     "positional": ["label", "checked"],
+ *     "params": {
+ *         "label": {"type": "str", "default": "", "doc": "Checkbox label text (first positional argument)"},             # <<<<<<<<<<<<<<
+ *         "checked": {"type": "bool", "default": False, "doc": "Checked state; State bindings are two-way (second positional argument)"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the checkbox"},
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Checkbox_label_text_first_positi) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_label, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":15
+ *     "params": {
+ *         "label": {"type": "str", "default": "", "doc": "Checkbox label text (first positional argument)"},
+ *         "checked": {"type": "bool", "default": False, "doc": "Checked state; State bindings are two-way (second positional argument)"},             # <<<<<<<<<<<<<<
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the checkbox"},
+ *         "indeterminate": {"type": "bool", "default": False, "doc": "Half-checked state"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Checked_state_State_bindings_are) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_checked, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":16
+ *         "label": {"type": "str", "default": "", "doc": "Checkbox label text (first positional argument)"},
+ *         "checked": {"type": "bool", "default": False, "doc": "Checked state; State bindings are two-way (second positional argument)"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the checkbox"},             # <<<<<<<<<<<<<<
+ *         "indeterminate": {"type": "bool", "default": False, "doc": "Half-checked state"},
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color (primary/success/error or any CSS color)"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Disable_the_checkbox) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":17
+ *         "checked": {"type": "bool", "default": False, "doc": "Checked state; State bindings are two-way (second positional argument)"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the checkbox"},
+ *         "indeterminate": {"type": "bool", "default": False, "doc": "Half-checked state"},             # <<<<<<<<<<<<<<
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color (primary/success/error or any CSS color)"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "State-change callback; event.value = new checked state"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Half_checked_state) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_indeterminate, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":18
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the checkbox"},
+ *         "indeterminate": {"type": "bool", "default": False, "doc": "Half-checked state"},
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color (primary/success/error or any CSS color)"},             # <<<<<<<<<<<<<<
+ *         "onchange": {"type": "callable", "default": None, "doc": "State-change callback; event.value = new checked state"},
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_primary) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Checkbox_color_primary_success_e) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":19
+ *         "indeterminate": {"type": "bool", "default": False, "doc": "Half-checked state"},
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color (primary/success/error or any CSS color)"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "State-change callback; event.value = new checked state"},             # <<<<<<<<<<<<<<
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+ *         "bind": {"type": "any", "default": None, "doc": "State object for two-way checked binding"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_State_change_callback_event_valu) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":20
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color (primary/success/error or any CSS color)"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "State-change callback; event.value = new checked state"},
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},             # <<<<<<<<<<<<<<
+ *         "bind": {"type": "any", "default": None, "doc": "State object for two-way checked binding"},
+ *         "border": {"type": "bool", "default": False, "doc": "Ignored: not supported by Vuetify"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_any) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Custom_data_merged_into_event_da) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_eventData, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":21
+ *         "onchange": {"type": "callable", "default": None, "doc": "State-change callback; event.value = new checked state"},
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+ *         "bind": {"type": "any", "default": None, "doc": "State object for two-way checked binding"},             # <<<<<<<<<<<<<<
+ *         "border": {"type": "bool", "default": False, "doc": "Ignored: not supported by Vuetify"},
+ *         "size": {"type": "str", "default": "", "doc": "Ignored: not supported by Vuetify"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_any) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_State_object_for_two_way_checked) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_bind, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":22
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+ *         "bind": {"type": "any", "default": None, "doc": "State object for two-way checked binding"},
+ *         "border": {"type": "bool", "default": False, "doc": "Ignored: not supported by Vuetify"},             # <<<<<<<<<<<<<<
+ *         "size": {"type": "str", "default": "", "doc": "Ignored: not supported by Vuetify"},
+ *     },
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Ignored_not_supported_by_Vuetify) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_border, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":23
+ *         "bind": {"type": "any", "default": None, "doc": "State object for two-way checked binding"},
+ *         "border": {"type": "bool", "default": False, "doc": "Ignored: not supported by Vuetify"},
+ *         "size": {"type": "str", "default": "", "doc": "Ignored: not supported by Vuetify"},             # <<<<<<<<<<<<<<
+ *     },
+ *     "events": {"change": "Checked state changed; event.value = bool"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Ignored_not_supported_by_Vuetify) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":25
+ *         "size": {"type": "str", "default": "", "doc": "Ignored: not supported by Vuetify"},
+ *     },
+ *     "events": {"change": "Checked state changed; event.value = bool"},             # <<<<<<<<<<<<<<
+ * }
+ * 
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_change, __pyx_mstate_global->__pyx_kp_u_Checked_state_changed_event_valu) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 8, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_CHECKBOX_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":29
+ * 
+ * CHECKBOXES_SCHEMA = {
+ *     "name": "checkboxes",             # <<<<<<<<<<<<<<
+ *     "category": "form",
+ *     "vuetify_base": "v-checkbox",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_checkboxes) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_n_u_form) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify_base, __pyx_mstate_global->__pyx_kp_u_v_checkbox) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":32
+ *     "category": "form",
+ *     "vuetify_base": "v-checkbox",
+ *     "reactive": True,             # <<<<<<<<<<<<<<
+ *     "positional": ["options_list"],
+ *     "params": {
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_reactive, Py_True) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/checkbox.py":33
+ *     "vuetify_base": "v-checkbox",
+ *     "reactive": True,
+ *     "positional": ["options_list"],             # <<<<<<<<<<<<<<
+ *     "params": {
+ *         "options_list": {"type": "list", "default": "", "doc": "Options: ['a','b'] / [('label','value'),...] / [{'label','value','disabled'},...] / State-bound list (first positional argument)"},
+*/
+  __pyx_t_4 = __Pyx_PyList_Pack(1, __pyx_mstate_global->__pyx_n_u_options_list); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_positional, __pyx_t_4) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":35
+ *     "positional": ["options_list"],
+ *     "params": {
+ *         "options_list": {"type": "list", "default": "", "doc": "Options: ['a','b'] / [('label','value'),...] / [{'label','value','disabled'},...] / State-bound list (first positional argument)"},             # <<<<<<<<<<<<<<
+ *         "model_value": {"type": "list", "default": "", "doc": "Initially selected values; supports State binding"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the whole group"},
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_list) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Options_a_b_label_value_label_va) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_options_list, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":36
+ *     "params": {
+ *         "options_list": {"type": "list", "default": "", "doc": "Options: ['a','b'] / [('label','value'),...] / [{'label','value','disabled'},...] / State-bound list (first positional argument)"},
+ *         "model_value": {"type": "list", "default": "", "doc": "Initially selected values; supports State binding"},             # <<<<<<<<<<<<<<
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the whole group"},
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_list) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Initially_selected_values_suppor) < (0)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_model_value, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":37
+ *         "options_list": {"type": "list", "default": "", "doc": "Options: ['a','b'] / [('label','value'),...] / [{'label','value','disabled'},...] / State-bound list (first positional argument)"},
+ *         "model_value": {"type": "list", "default": "", "doc": "Initially selected values; supports State binding"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the whole group"},             # <<<<<<<<<<<<<<
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color"},
+ *         "inline": {"type": "bool", "default": True, "doc": "Horizontal layout when True"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Disable_the_whole_group) < (0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":38
+ *         "model_value": {"type": "list", "default": "", "doc": "Initially selected values; supports State binding"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the whole group"},
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color"},             # <<<<<<<<<<<<<<
+ *         "inline": {"type": "bool", "default": True, "doc": "Horizontal layout when True"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "Selection-change callback; event.value = list of values"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_primary) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Checkbox_color) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":39
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the whole group"},
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color"},
+ *         "inline": {"type": "bool", "default": True, "doc": "Horizontal layout when True"},             # <<<<<<<<<<<<<<
+ *         "onchange": {"type": "callable", "default": None, "doc": "Selection-change callback; event.value = list of values"},
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_True) < (0)) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Horizontal_layout_when_True) < (0)) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inline, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":40
+ *         "color": {"type": "str", "default": "primary", "doc": "Checkbox color"},
+ *         "inline": {"type": "bool", "default": True, "doc": "Horizontal layout when True"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "Selection-change callback; event.value = list of values"},             # <<<<<<<<<<<<<<
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+ *         "min": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 40, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 40, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Selection_change_callback_event) < (0)) __PYX_ERR(0, 40, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":41
+ *         "inline": {"type": "bool", "default": True, "doc": "Horizontal layout when True"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "Selection-change callback; event.value = list of values"},
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},             # <<<<<<<<<<<<<<
+ *         "min": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},
+ *         "max": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_any) < (0)) __PYX_ERR(0, 41, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 41, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Custom_data_merged_into_event_da) < (0)) __PYX_ERR(0, 41, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_eventData, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":42
+ *         "onchange": {"type": "callable", "default": None, "doc": "Selection-change callback; event.value = list of values"},
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+ *         "min": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},             # <<<<<<<<<<<<<<
+ *         "max": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},
+ *     },
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_int) < (0)) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Ignored_not_supported_by_Vuetify) < (0)) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_min, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":43
+ *         "eventData": {"type": "any", "default": None, "doc": "Custom data merged into event.data"},
+ *         "min": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},
+ *         "max": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},             # <<<<<<<<<<<<<<
+ *     },
+ *     "events": {"change": "Selection changed; event.value = list of selected values"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_int) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Ignored_not_supported_by_Vuetify) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_max, __pyx_t_5) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":45
+ *         "max": {"type": "int", "default": None, "doc": "Ignored: not supported by Vuetify"},
+ *     },
+ *     "events": {"change": "Selection changed; event.value = list of selected values"},             # <<<<<<<<<<<<<<
+ * }
+ * 
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_change, __pyx_mstate_global->__pyx_kp_u_Selection_changed_event_value_li) < (0)) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_CHECKBOXES_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/checkbox.py":67
+ * '''
  * 
  * def checkbox(label="", checked=False, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_1checkbox, 0, __pyx_mstate_global->__pyx_n_u_checkbox, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_1checkbox, 0, __pyx_mstate_global->__pyx_n_u_checkbox, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_mstate_global->__pyx_tuple[2]);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_checkbox, __pyx_t_2) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_checkbox, __pyx_t_2) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/checkbox.py":53
+  /* "simplestart/ss_ui/checkbox.py":180
  * 
  * 
  * def checkboxes(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_3checkboxes, 0, __pyx_mstate_global->__pyx_n_u_checkboxes, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_8checkbox_3checkboxes, 0, __pyx_mstate_global->__pyx_n_u_checkboxes, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_checkbox, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_checkboxes, __pyx_t_2) < (0)) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_checkboxes, __pyx_t_2) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/checkbox.py":1
- * from ss_core import vuetify             # <<<<<<<<<<<<<<
+ * # corevuetify             # <<<<<<<<<<<<<<
+ * from ss_core import vuetify
  * from ss_core.utils import handle_event_data
- * 
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -5271,6 +6785,7 @@ __Pyx_RefNannySetupContext("PyInit_checkbox", 0);
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.ss_ui.checkbox", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -5321,36 +6836,36 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "simplestart/ss_ui/checkbox.py":98
+  /* "simplestart/ss_ui/checkbox.py":235
  *             elif isinstance(item, dict):
  *                 result.append({
  *                     "value": item.get("value", ""),             # <<<<<<<<<<<<<<
  *                     "label": item.get("label", str(item.get("value", ""))),
  *                     "disabled": item.get("disabled", False)
 */
-  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[0]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[0]);
 
-  /* "simplestart/ss_ui/checkbox.py":100
+  /* "simplestart/ss_ui/checkbox.py":237
  *                     "value": item.get("value", ""),
  *                     "label": item.get("label", str(item.get("value", ""))),
  *                     "disabled": item.get("disabled", False)             # <<<<<<<<<<<<<<
  *                 })
  *             else:
 */
-  __pyx_mstate_global->__pyx_tuple[1] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_mstate_global->__pyx_tuple[1])) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[1] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_mstate_global->__pyx_tuple[1])) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[1]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[1]);
 
-  /* "simplestart/ss_ui/checkbox.py":5
- * 
+  /* "simplestart/ss_ui/checkbox.py":67
+ * '''
  * 
  * def checkbox(label="", checked=False, **kwargs):             # <<<<<<<<<<<<<<
  *     """
- *      Element Plus
+ *      Vuetify v-checkbox
 */
-  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, ((PyObject*)__pyx_mstate_global->__pyx_kp_u_), ((PyObject*)Py_False)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, ((PyObject*)__pyx_mstate_global->__pyx_kp_u_), ((PyObject*)Py_False)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
   #if CYTHON_IMMORTAL_CONSTANTS
@@ -5383,34 +6898,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{1},{1},{7},{499},{274},{6},{2},{9},{29},{20},{4},{18},{4},{10},{6},{8},{31},{10},{33},{35},{7},{18},{5},{4},{8},{5},{9},{10},{8},{3},{13},{17},{8},{13},{13},{4},{5},{6},{5},{8},{3},{3},{11},{10},{8},{8},{12},{3},{15},{12},{3},{6},{12},{10},{26},{7},{13},{8},{5},{6},{7},{219},{39},{71},{153},{241}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1152 bytes) */
-const char* const cstring = "BZh91AY&SY_5\252:\000\000\347\377\377\357\377\377\377}\377\267\377\355\363\177\226\277\357\377\364@@@@@@@@@@@@@\000@\000P\003\355\353m\243\"J\2300J\024*=\250\312z6A\2521\251\342\233)\247\250\310\032\031\006\200h\033I\246\324\320i\2406\241\247\250ze<O*\034\000\000\000\000\000\001\220\000\000\000\000\000\000\000\031\000\004\246\210A\032S\323)\246\300\232ML\323\312\2324\001\202h\000=@\003@h\3104\3104d\362\232\007\000\000\000\000\000\000d\000\000\000\000\000\000\000\006@\001%\020e\030\321\t\265G\251\344e\036\211\243M\000m h4\000\000\000\000\000\0004\320\3612\216\225J\323\352\034u\332\376\"_\300\311\207\r\367\243#\020TT}\014F1\342\004LtI\032\246\032yn\264\274\204\223\tM\211T1\3775\247\264r\223\37607\032$\233\274\202*\254\026\014B\236\200\214\213\375\225o\034o\316\225\352\321a\316V\246\033a]U\250\003YX\350\301z0\\\310z\024Z\332Rl\333/\226\347%\300\363\035\325\257\317\021L\354\303\004\010\t\252Iy\265\263\205?9\031\023\211sj\325q\247\253\260\231s\014\224\253\203)\307*^l.9\264\231\254B\333\302zH\030f\037\252]#\225Tg\247\020`\362\326\250\361\345v\203Z\300\302\034p\270\177n\372\342\271\333xC\240z\262\355Og\225g^\233\2061\267\263\250\332C\355\306L\363\253{#\352\3504N\362\023AUUE{\317\226:\273\t\350\247@\\\352\303\215\024M\033\314\365\223Od\227`\361\033\006\347\360g\034\321\244Q\321\316\241NPKV(\233U\225\363\325\\\035&v\250\252q=\331Ul\233\\\225\010b;\217\335\225\224\221~[\244\277|\027\264\271\205f\327\375i\325#*\261;\273;?\022\212\304Hv\204\342\r\345H*#%\001\241\2110L\345\367\346\034~\032\026\360C\226\262\027\363]\344\324\211{\330\345\034\263*p\340e\370\216]\335\202&\241\251\031\336\251/$S\244\245`\323\332_M\362\206f\216]\023\024\rw\366y\020\251\231;N0\035\220\336\261\231P\255Jy\266\202\346\223I\037\245\340\344\265\222c\202\225\354\360\360snX\304\030\034\210\222\324\316\027\245\315T9\2144\333B\004\216,\217:\371\307Q\264R\022\021i\243\207`Y7\0216\266\206\242\362\304a)B1TV\326\301L\232&\336\014|\314\306\3757\372\022\304\004\244)6\250~\314\203\341q\010\226\243BR\341\233\230>\r[""\"|n\316}\353#\340\320,\354PE!T\265Z6\322\211QC\220\240DEM\271\301\242\031\246>\005\274I\212\363\307\030\273\305\245\327<\332#q\267p\345'\232\273\344\321\300\t\234\345\344\234\233\221F\361\341\233\003\t\220\013\\\206\2606\345cr\014\314@uK\356\032L\236\226\246\236;\357\320\320\332\002\340jEwJLW!;@d\333L\030\267\032QG\213\035\305e\223\261\241e\230\362\310\324\014\362dHA\241\261\252\214\3608;\005S%\010\260\267N\346\335u\233\350\345l\275\rk\264\206K\231\n\250*\237\005\271#,\331\000\2115\2410\325<\215/\253\240:G\326\024k\304\203E\222\025\272\2147\212\330_\324\310X\223\031\232hG\224\306\005\342\214K)n`T\341\240\332\014\014\256\030i>\320@\231:\371Ng\367\361r\246\265$B\332$\317`ZT7\331\227\335\35776\031Uz\247\001\266\242\241\363\027g{\324}pf^\035\335\321./\337~\342\227\263\0327Y8\006\272I\270]\236\236(EI\033\340sI\312\0360\201 \032\201\267\305W\301\351\266\224\247\364\264\254\224P\257\210\222!\224\341\243\275\344\260\316W(]\374\034-`\307\273\251\n\222@\252j|\256\337\213\3038\261\237\004+\tj\n\305\311\264\365\277\323c\265\242\377Z\317\023\366\327\271\247\253/\355\034\\\351(W\216\277\266N\324\271PI*U<\324\327:e\272_\021\357{\277\256.\305Z\320\272\357\224\344\337\203\013\323#\322H\243)B\222\303D\247\316\234\020\216\255\226E|0\225\266\363\377\361w$S\205\t\005\363Z\243\240";
-    PyObject *data = __Pyx_DecompressString(cstring, 1152, 2);
+    const struct { const unsigned int length: 12; } index[] = {{0},{14},{55},{47},{70},{41},{34},{20},{23},{18},{27},{33},{49},{128},{55},{56},{54},{40},{2173},{1},{1},{7},{6},{2},{9},{29},{10},{1210},{17},{15},{20},{3},{3},{4},{18},{10},{4},{10},{4},{6},{8},{8},{6},{18},{19},{8},{31},{31},{10},{38},{33},{35},{7},{18},{5},{5},{4},{7},{8},{3},{5},{9},{10},{6},{13},{4},{8},{3},{13},{17},{8},{2},{13},{6},{7},{3},{13},{4},{5},{6},{5},{4},{8},{3},{3},{11},{10},{8},{4},{18},{8},{12},{10},{6},{3},{10},{7},{15},{12},{8},{3},{8},{6},{12},{10},{3},{9},{26},{4},{7},{17},{13},{6},{13},{3},{8},{4},{5},{6},{6},{7},{12},{5},{126},{239},{102},{19},{246},{369},{34}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (3136 bytes) */
+const char* const cstring = "BZh91AY&SY\326HF|\000\003\002\377\377\357\377\377\377\377\377\377\377\377\377\377\337\277\377\377\377\377\377\377\377\377\377\377\377\300@@@_\340\300\000`\n\317\201c\003\313,J\212\200\002\212\000:l\001\253s\250hI1\n\215\350S&'\243H\364\3642\236\321\252?%OQ\2023\000L\236Tz4\021\3511=\031OM\t\3504h\001\221\246F\200\000jm\004\362\032h\020h6I\350\324\375F@\324CSL&\t\221\220SaM\251\352=@\311\240i\352\031\000\000\320\000\000\006\200\003 \r\r4\320\006\236\240\000h\000\006\200\006\200h\320@\006\232\006CF\206\200\006\200i\240\304\014\206\200\003@\0002h\000\031\000d\323#M\031\032\r\000\000\032\000b\0324\323\t\241\202\003\021\t\242\231\024\367\242\217T\361#\362'\225?)4\323CM2h\003@\001\240\000\320\000\000\320d\000\320h\r\000\006\200\000\000\000\000\000\004\000i\240d4hh\000h\006\232\014@\310h\0004\000\003&\200\001\220\006M24\321\221\240\320\000\001\240\006!\243M0\232\030 $\210M\000\2024\320\322z\001M\243I\223\006\246\243\310OI\264@\323@\032h=@\003F\203C@\r\000\000\320\320\320\014\200\000\003@\006\200d~\270\031\227\350&\337\347\314#\305\203 \346\305l\232\036\210\343\021r\220~\270+\017\341K)0\255\321\346& \t\201\202\340_h\223\231@-\324\361\020DR\314\234\215\256\211*\225l\014333\0033A\002\240(AQ\341\0214\351\357>AA\332\017\302]\314\021\3603\365\377q\310\207\177\340}\032\331HD\217\206\342\370%c\222\032C(0E\273\275\0236\2209\242\203G*\323f\031\031B\203~\205\261\263\341k\0334\201(f\237\024f\274m\206\252\345x\305%eU,\364\017Xl\253V0\331\200\360\275B1\"\243ayC\027'\240\224\361\303\0258\371*\262\240\227*\362\242\200x\316\343uL\252\250J\347\346\214?$\310 B\311\002 \006\253}p..\240\332\225iA#!}\301\341\001\366\027C\267\323G\361+\265mO\265\363j\346^\313\262\037\276q^\031\032h<q\301\"\260U9\037\010{\202\243\003\212^\256\206\322\200\240\260\236J\207\356\362\216\002\320\260\005\031\315\247(,\022\204\325\254a\021\010\201n5\251\365\014\205\331\014\324\211\007\020\312\0305E:\013\323\010\210\023\203\364\340\254H\010F!\246#-Y\021B\253\2255`\236 \021\245\3577'\366t!\004\250\241\240\214\324\301\212s""b\311 \275\306\356\337\017\226\353\271\234\034\345\326\021\326\316y.\213\021h\3024\035\221\337Zj\231\314#\031M\262$H\220\032\001\010\303y\0366\2034\004\227k\337\335Om\217\001\220;\0029\023\227\207!\2510|\356\363\212w\034\014\234\322\270\302[r\315V\372\3238\232\374\246\030a\217C\240\263\027\230`w\017]i\360W\243E\243\013__\031\214\331\335\363\347o\332C\025\215\306\027)\326H.\203\022\031\031\033\\\"h\373\017c\334\354\034\263\227k3y\210\034\256o{\304A\216\375\235\002!4\300\343\"D,\224\006\t\006\302\351\236V\276h`\233\267V\363K6\371\262\226\312\337\346\362u\240E\350S\245D\343BD\252\253v\265\002\031FuB\250\342\224gh\371z\323\223X\205a\364\2309\001\317\204\020@e\206`\331\220\334)\240^\021w\353\215\2101\232\235\241\274\3523\r\233\333\223\207v\312\300Ft\002\205\330\221]\201\216s\351\235c\037\2518\303\212\210\220(\"Mlu!\344\371\035{\321\251\324f\305(t\023I\032\033\233yW\024\n\n8\202[\320fM\222\024\006\252|R\205JqO@\343\321\223b)+\262c\202\031\223.\3778\221\304\266\233p\222\351\256\256X\001\314x\367\201\304\016\327\201K29\202'\252\333\014(\230\262\204WB\203WV/klb\221\212\331\030\313\372\270\217\022\310\230t\340\263\326c\350\342\336\317\260j40\321\014%\210\216\033`x\262\255\021D\246\303\303\021j$t\347o\325)\370\362\265o9\2623[\n\267\313\371S\305\001q:\276\317\202\0040\030#\021\nBl20.\243\\\242\222\200\241\rD\032\002\246qN\210\324%\241l\372$\214\205\021\342\"\022\005)\204\211\025%\217\304\035\270\260\314\205\212bQH\n\342\237~\210\232+\243\337N\010\347\244\223\242\302\265\345\320\025u\2208\364\357\300\226k\202\216\201\025\014#\030\3645R\027\311bt\006\026 3\260=\320\205y\241\200,\244\312\270h\333\032=\261\233\022N4\257\323\302\364\305\334|\322\000\264\367\01488\220\003\302[\355\362\010\205\273\254&\215\332v\253\225\032\263Z\266\025\254\367\224\215\006\262B\3538\260\353\247\261\353\330\211\210\215,\341\026k\030\327\260\232\302\002\222Hd\001i\354\310\270\325\025\255*\342\3110\235`3TUL\030\024e\226\340Y\010\223\024@H4\014\326\360\230\240\265\210\262(SP\251\014Ft\300\252\213d\300\355`""\2150\341t\027\014H\232\266Q{$]Y\343\215\263\254p\366\221CX+G\005\272\232:\034\357U\r\260\274\3167'u\330\313\t\n7=\t\227\t\210\227)\341L\346\210\215\002z\201a\232\354\235\264\205\334\343*!\264\032aEX\243L\324i\031\004\2001\274\332\025\314W\220\252\227\007\";\027\216\356\303\312C\3013\014\337C\226cE\321*\233Ts\022(\023\014\256^,\206\323\021l3MFY,kDF\213\026Z\352u)\302\211\305k5\3555\306\014*\307\321U6W'H\321\2356\246ee\321JZO\246\212bp\367\255|\026\332\\\251;\335\331C1\312\264\277{h\255\3154be\2608k\0204$\2273\032(\263Bq\002\014\023p\231\363\345:$I\235\225\\q`4\264M\n\356\210(\014.r`\006\031\007W\3109\017\014vY\244U\220\r\333\370\373\2136\226\201JT\304\306\241\316\310D\231\260\024j\356m.\240\301\203j\242!yrk\311%<\325u5B\215\230j@B\246\262\374\204\001I\213R\325\257%\331\362%4\213U$4\265MS\203%\350\002L\013H\305L4\303\nA\221\226L\255\355\035r\212\312\244a\341\216\345E\347\000\265\362\004.C!i\264*3,8\221\2663\352;^\264L\r$Z\307\t\030Db!\270\231\r,@\355\004\222\225>+P\230GQ\354s\226\027XF\264X\242\364.52\323Te5Lo]\312\321\252-\341\014\360\211\261\030\006\334\\\006M\203fP\"Lg\016\313%\212*\254T\006wx\216\231\005Hh0\231\2612 \t\216#(\023\244~dIP\010\260S\261\00532HL]B\375\272\304\252\310\"\261:\311\020\027\254\0147I-`\254K{Y\303qlK\rrJ\304\334}\322\3144q\213@\323\3272\272\311m=D\003\013\216\213p\230[\237(\020/5\230!2uU\235\303R(Ga=m|\332\313\022{\021\225\244\255vb\202\206{\310&\221<\206\\5B\":,\225\245\313\315.\362\215<Y\357\215\023\356\373\346\2162m-\002\030\344\336)$\020+)\220\033P|\364\035\013:\026\206T\235ej\022)\213\010\201'e\005\030\236\337>\275\006\371;\230\245\255+(:QP\203p\224\352\256\200\2776\274#49\026\222\262\t\310\261\001)\222\221\212\215|\030\312p\315L\276\373\255{vp\205+\217\212w\021\252\236DylFX\nf\255e\257L\224\306QT\203`0\316V\320z>\003\202\312\3446\216\217g\260\2666\315,\334F\rM\001\231\310-cP2\260M\370\262\234\224\2419\264V\010\227\211'P\211\317\031\223\013,\2457\000\262\221\311*IP\265[V\211h\300\213\223t\256U\023\331\035\200i\003\200\352\233B\272\357""\036\351\\\326Y\322k\013\257/W\t\356\333F\346\356LY>\235X\220\214l\007f\216\264r\323w\03166\224\265l\304\233\260*\244\206\240j\321\317\323\223\033\256[\244i\245\325o.\205g\014m\347\036<7\230X\030\206\016\003|\221\304]\002\215\266\"\235\343I\000Y\323\340\313\305\342\206\352\334\247)\326\217aqT\265\212\353 \032\251\205Jd\303\275\254-\206\210\245\016'5\366\266\203B\005\252\223\252\221M\022\025\363r\027Q;\365\321\220/:x\372}\267\250D\021>k\347\363\217ek\353#zt[\365\034!\2561\354\037\370,a\217\242\333\030\307V\024\270,2X\004\216o\000d\303W\343PD\333\301\360\321\356C\272t\271u\203\206otdA\233M.7\306\367\243%\352\330:n:e\322\331\356\376(v\275\327\201'\372\214.\307\234\235\215\036\240c\366\377\252O\344\313\301\202tH\3307\251\316\362\000\361\245\300\300\277\026\215\372\r\001\316k\270\003\351\237\356\270\033Zq\353\237\t\004\006vp\366\034a\356\002\312N\224\340\327\242t\373\025\346).a\363\314^`\334\253\262\320\240[\260b\3546\203\222/\005\177\205\207\200v\202F\235+\312^t\252\002\244`\211\272s\030\241\226\022\221`\014\214\2307\242\\\205P\265\264\006\320\262l`\006\373\261\213\360\206\014\0134\034z\234\004L\321\370\014\0130\"\024@\201\253J\221\027\006\253\275]\340\332$\221pY\305\340\316\003\207\031(\304PX\330\244\024\024\360\336\003@\200\315\200\363\r\306\027{\350\323i\257B\260<v\016R\207J\313\244\201\313\247K\314\034\010a\321\346\362\362\004\377\303{r\340\220\206\245l\033\220.\303\212\356\212\264\034\251#\216\333B\227\361\302(\277\335\234\240\306\332@\346\211H\241+\010\343\202\316\3756Q\3460\036\250u\254Hr\357\263\200\316\262>xz4)Yk\311\363\335\377\221\343\270\353\265a\327?\327E^\013\202D\220\320\235\311\345\033\371\tX\232\371\021\367xe\023s\352\336\235\202\036@K\006C\200\233Q\232]>\020=\227\276X\321\244\360&7\331\272n\333ZS\261k\257cU\270\343B\264\260\354\315r>)\242\314e\214\026\221\"\213}\210\206\273\357\372\241\252\217;\242\276#2\307m]9H\017\323E\302\246\235\255\236\236\326\321n/\2507<0<FY\030\347\262>\371\374C\211\335\364\272T\023;\336\274\336\216\371\330\263\233q6\333\304""\303\211\001\0300\271\204H%GLL\312\177\027\026\025\005\237/\303\371\321\333\303\323\301\277\234\372\257 @\254\251\021\005\027<K\007\307\247\373'.\217\321\223\357W2\301\361B\366,vr.5\243Q\007\346;\220\225\020\310I\212&\244\235\324\245\030I\262\340\312\010!\001\330K\231\3679N\253\322\374\270\235\246\307Y\257\233y\373\035\202\374\365ME\223}=\033G\337Jz\361Olo\342Uo\363xHI\200\347`b\376\357f\025\212\274C\341\225\345\316C\366[\031\350T\305\217o\2164\245\267\315\022\004%\262\004j\335\247B\255\207X<\330\332<\370\252\326LD\246\224\2431c\303\223\031v\230\010\333-+\272\030\221\001n\036L\241\025\264\304\310\266\3701\342\344\241e\003\331,O@@Y\003g\3350\300V6a\271\246X^uQ5NDv\2557n\014\310:\034\327\033\324\0014\327zI\255\255\032\301\325t\365\330\227\330\r3F}\212@\367\364\277\210\315\317J=3\211.k=v~Z\206\232\206\236\226\240\346\324\277\002\235u\357\364\217\0267\303\336.\344\212p\241!\254\220\214\370";
+    PyObject *data = __Pyx_DecompressString(cstring, 3136, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1038 bytes) */
-const char* const cstring = "x\332\255TMo\333F\020\225P\311U\035\265\266\\\327nj\247\240\024#JZ[\206\n\247\037\211\355\224H\320&\005ZT\211\223\000A\203\005E\256e\302\024)qW\252T\370\340#\217{\344q\217<\362\310\243\216>\362\250\243~\202~B\207_\226h\303H\017\025\264\344\356\314\233\3317oF\252=QT\"55\274(\304\237}\254\355\310'X>m\032\203\235\226i\364:\227.A\350\357\264\r\005k\007\025E\242R-\334\243\276\244\365pe\016\364(N\251\304\260\344\230\302\264U=\311\242\352i\2174H<\322`\336\363\327\317\362\211\244\267\360A\345~x\347\003\341\340P0t\202\315>6\357W\r=rW\267\205\310=\213=\234\3132_\337\2349\250\355\3300!\267\321\241\252\241o\013\252\256\340\301\003x\t!\231\310L\220\246\022ZI\005>:\305\303\203J\010\277\342\320\244f V\024Z\013OW\020!\323K\3045)Sb\306\240\304 \234\235\t7\352\273;+y\177\367ZG#\347\342\007$I\350\207\227\\#\237\036\2050\374J\213\377\313\0304\rS\301f\214\210\016)\177\240*\305&\314\210Dq\014K\331\376\237\001\211\345\302z\300\260%\253$\332)Dmw4L\250d\322]BPO\335Mt\252u\206\010\3759\034\300z\246\312\024\375\201\007\364%>\226\314\026\221\310P\227U\243&\033\2405UuL\232@9X\0102Q\034\225\231$\272L\270\257\031\262\244\221\303\032\220T4\214\"\262\211\033\223\331\356\203\320\031\240c\0322\006\346\361\364\306m\2225`\205T\035QS\222qS\222OQ\240l\270\342.\341>\326i\370x\006\326p\023b\020:\356\3512B-LS\227\307\207\03102\230$\325-\244\022t)\213Jq;X\344\364\357@\266p\302\020jK\300\013\236\003\210\230\373\203\001\223\241\364\340\006\370\350R\033\336I;\347\177\230\035\243s\245b\204\272=I\213\"LL\340\333\323(B\004\3238\r\354\024\350\033X\347\232]\013\233]K\024%!k\034\277j\300^\203\304\024\260(b\027>H\277\207\251z<<\027'\205[\326\236\325\035\027?g\365I\241\304J\343B\321z\316\304Iq\311\372\307.\331U\376\005\307N}\274\274\306Z\366K{\350,8\252K\274\262\367\303h\373B\232\2246\354\272\375\013\257:\253\316+7\353\256\005\256\0316\347\210\316\221{\333\273\3535<eT\036=\274(\372G\257\223\240\030\330\030\257\336\261\217\370*op\325\351\316\037\210[v\367\\\352\325\275\027#@\t<\307\2379Yg\323mL\0272\245\365\370\222\217""\234\272\363\253\373\223\367\324\353\216>\036\235\371\257\216&\205%\253{.\216\241\264\357Y\211\355\330=\016u.\373\313e^\002\252\245\300Q\037\027W\231\310\032\347)\017\354Y\2365\342H\177\345.\257\007\002=\206\253^\363-\336r\032\216\006\005\026\327\230jwSi>\265\336\261\356\264\222\311\027!r\2255\330\211-\215s\005+km01\332\334a\261\345k\326\207\032K|\333\211\r\233\354\215\275gw\371\242S\016\r\376'\233\240\317\026\227\374\352\217^v\222[\262\372\354\010\232\261\315!\240\304\326\030\005\001\177\007\272\271\374\364\263L\376\226U\2052\313\323\225\314\342\222u\314~\2635\377\233}O\234\344\200\337yv\272\225\311/\337\220`vx\316E\0205_8'V\031*Xa\365qa=\364\200@\353\021a\277\362\235[\016P\013\323\275\240\320zLv\303~\342\224\235\344\364\225}\017\032%r\344\276\360\336\214\366F\335\213%\377\355{\377\275\342+\272\257\0337Hp\233\335\263s\266h\277\345\342U\303S\336\r'\251\021\224\373\345\254\\!\263\030\324\365\316>\363\277}\354=\034e\303\202\377\005\273\232\331\343";
-    PyObject *data = __Pyx_DecompressString(cstring, 1038, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2914 bytes) */
+const char* const cstring = "x\332\355X\333w\033\305\031\217\017v0\3064\021\r\201\022\240#\221Vv\261\344:\004\002v\342b\234@\322\226\202\261\t=\\\272g-\215\344mV\273\253\335\225m\221\204*\tI\024\010\361\002\271,I\300\033\032`\033 V\311\005\371\006z\344Q\217~\364i\265+\371\311\376\023\372\315^,\311\221\341\320gt\244\335\331\231o\277\313\357\373\31573\352\035\302\241}\203\374(\n\361,/\366V=\241\026Adb\264\230l\227\022\241\020\226\244v,\212\320\r_\232K\242\336\376~[\256u\3715\226\036\304,\222\361\250\214Z\"\214(\311H\340%Ffx\216f\021-F\0231\314\311\2668\016#I\246e\334\205\372\311\r\r2\\\230\341\242\022\210a$\217\360\201\021:\211Z$\034\342\271\360\217kA\241!\232\213\342p\027\302\3030\030\034\246\331\004F;\320 \317\263\275\tI\346c(L\3134\212a\021\244\020\303\311\274#I\272w2\022=\310\202\331!\242\310\216\245\262od\210\207VT\344\023\302n\232\215\004B\225\246w\363\"\363\006\317\311\340\033K'\371\204\014\342\230C\003b\002\357\211r\274\210\303\235\210\343e$%\004\201\027exm0\211\366&\260\314D\222{8\010\213f\331$\2220\213Cd\320\362\\\352r\305\245jx\236\027\010\014R'z\325O\373\333\374\203\376\327Q;z\265\305o\001\017\035\326\333\376\326\266`0h\215\354_1\322\346\017\333q\205\375\007]!\313@`\220O\000\320,#\375`\352\372-7\2413`\003\216B\340\375 \035\332\267\022xK\021\037q\302Y~m\265<\271\342+`\260]\373\021S\034\036AU\031\261\021\343\007\377\016\252P\004\330\352\322\311\225r\300lB\316g\2737\020X~\370\317ym1;\206\n\331\251\302t\2520\231.d\337-\236\326\335\214\241\342\371\267l\232/\316\234,\245N\232\352\204q\371\254\361\357\303(\314\014\243GP\351\370\025\343\352\371\302\344\t$\t4\26783\276\254wq&mLL\232\023\247\027g\316\273$\303\022\"\272\207\0031>li\264'P\361\360\244q|\272t#\263l\32585^<=^\232\375\322\030{o\341\203oK\337L\200\260q\371_\305\267n\032c\023\240\343\277\251\303\2133'\232\226\255u\004ky\234\336\373g\273q\3028vt\341\210^\234~\217x;u\014=\025b\231\320\276\035>\236\353%\rK\314Gl\034\275Y\310~U\312\034!~\342 \314$\341\005\221\027\350(M\322\331\322\n\"\3136\341c{\356\324\001\363\354q\363\342\227\346\271""\233\310R\216\nS\357\024\246o\232\3474\363\332\031\343\330\373\346\265KF:\003\301\273h S\2334\216\036)^\327\210\341\261s\346\251\317M\375\22213V\310\276S|\373\246\231:d\277k^\270n\236\315@\304\225\226\215\261\317 \021N\034\301\020-\310\t\021C\304N@\275n\307\211\302\314\371\322'_\240\010\303\312X\334\303\t\t\271G\226E\t\031\263\357\033G?\265q\201\002\001\375\010\362\273\360\321\307\225^UZ,L\216;\261\214M,|\244\025/\274g(_\202W\346\351I\000\253\232\010\310PN\231__2/\236@v\n\220\371\316gf\372JM\370\3143\327\013\331+\306\311)c||\341\310l\351\310\254\371\325?\215lv\031\263\n\306\221\344\3321\023<\226um\t\002\201O\001\266\322\010#\207\206,1\032f\3400\246Hung\270\212'@i%mO\230g'\315K\300\375T\351\370\365\025N\032\337|\275p\345di\342\220qQG\022\013\245\r\030\342xne\274x\350\206yf\254\312\237G\203\250\246\323\010t\330a-\2507\315\2537\212\323\343`\323\270\374VQ9\006\363\244\322l\000\350'\210\326\324\337\211#t\202\225[Z\321\202:m~\365\211C\346\213\343\306\325\217\321v;wrR\300;|.\265|\335\304\250=\213\214\364q\363\335OV\004\205\320\302\241\357\214\243\357\2327\306J\237\247\215\017\365\205i\265t\365r\351\322IR\010\000J\262N\004\335\002b\214i\306\333\332BJ3\323\212o\341\334\025\360\0318\3523.|\\\372\346\332\342\314\205j\277\213\300\327S\237\026\277\233\206\371[\245\207\224\204\n\232\203K\025\223\301\030\273\002<5\336\326M\365\333\342\345)d\225\210\200U\364 ?\267\270_\234>c\314\244\312\005\303\206\304\2365\027\247@\2740=]\230=c\236<\\\232\2355.N\231\037N\020\363\312\027\010V\370}a~\204\263r\t\252\201rE\375\032\320\241r\206\005\002\335\345r\t9\2542\376\232[=Zp+\332\321\215\366#&\202Z\254H\335\345\246\025\211\030& \327U#\213]\325\340\356@\336\312\347.\004\013\036\026\207\261\330\342\3479{-\360\267U\275\322\212\016\372\226\035\352\256r\215\370\n\253B\222\0052\200/\002,\321\235(\302\342\321.D\263L\224\01302\216\301z\032\002\207\260\330\205B\tQ\342\305NX\374\030\253\303W\255\316RYN\322-c\010u2a\260D\234c\302\276Z\343\025yt\004\235(jJ\273\3709\242\356cMYX\3250\370\034\203\311-\273\272""\253\372j\276em\341\\O\254m\337\201\003\010\366\0028\302p\265\r\2051\007;\203$\314.>&@\035\251%3\304\204q\000L\323\014+\325\030v2\002\324\2132\\'\372}\027\022\3500Y\223;\321\026a\024\236o\325\331^#\023\244X\325\320\216\240\3601\021'&k-\362\325\224\252\362\"\300\342\210\334\211\236\020\200\032\t \\\300\336\213\220\315\033\207k\370\323\275\177?*\033@\007\017no'\356\254\240_;\360\257b\346\224\037\203\177pr\2119r\215\206\030\311n\205%&&\260\030v2\242\334.IT\202iw\351\026\024\2225\270\007|\024\371\221\312\220\031\216\205\334\371\300\363@4!C\372\245J\257V\343\357p B\210\320\302[{\3146D\2503\332\n7;L\273[\242\310V\255\032\215\316}\030\310`\217\333\273\262\025\343\026B\313\0225\022\322\351L\207\325u8[$'@\253M\3252U\236/\216.\267\203\260\372\007\246\320O\232\006?<\001V\245\376O$\375kO%\004p\007WW\214\026\353n\225\331\232u\321\036\256\324\324^\311?\213+\325\245\034\260\305\254\204\253(\262z\325$\327@\230\021\355\375|'9\001&bP\326\243\264@B\362\375\314\264\237\231\366#\245\257w\367\256\336?=\375\374_w\365S\375\320~\256\307\355p\036)\352\205\344(\374v2!\231\372\013lP_\204\235\002\227\204`\340+\321R\222\0131<@\007\347q\031 \223(\0326\360\024G\30709\330\221\037e\235\003\311\341\177\220\027\303X$GG\222\212\020\364Fy1i\307@Y\344\244H\"(\033\000\273C\202[\214\246\366\215\020s.\201\227k\360v\226\007uRw\020\034\023!%69n\035\006\023a\226\330 \246\312\007\276r\253,Jq\274\030\203\355\310\033\230r\270_Kj\025\205e\001A\344\311\2774U:p8D\326\002\212\341(\342-&\007h\213tV\330\326\317\336\206\271d\r\203\016\262;\263\267h0n5,i\253%U\205\r\3638FQ\221\004\027\242\250(\226\253\\t\036\312\357\333\035\242\304\204\253v%\366j\305p\222@j\n\3102\022\265\234\\\262=\263\266hv6\254\031M\352\002E\305h\210\t\256\243\240\245b\226B\027\037N\200]\370\020J8\327[\020v\211\\Yl\004Z\004Y\262^Z-I\340\205\362\237 \316\177a+@\246\250x\202fmC\"\266\017U\"\226\340\313'\304\020i\002\266\024%a\331\361\006Z\016\342\022\023\205/ \000\347\322\2125?h\255\371A7\301\022\370,Y\200\270\267 \251\005\260'\201\\8\035\200\024+\331""\234\267.\224\373g\032L\013\212\364\301\025\216C6>\326\325\376{e\330>,87j\220\226\360\010\r\307\305T\317\\\343\235\351\307\025\217\022P\023\232\365\360\204\262M\375\215*k\333t\257\376d\246g\256\371\227\312\223\352.\3153\017c]JT}I\333\254E\365>\235\315z\347\2327*\014yo\276q}~\275W\363h~\335Ctt\3147\337\255\370\325\373\265\016\320\331\274.-)^\345Q%\246m\321\372\346\326\337\247\326\251\236yrK\365,\255]sGsz\033\014wk\236\271\346M\352v-N\014mM\307\211\341\216\371F\217\002\032\233\323\273\225\236yP\364\206\352Q\375\332=\032\326;\346\326o\004o^T\223\372Z\235\311HYov[\256\355{z\336\263I\355P\237\001O6\350\375\231\272\314F2T\226\255\327{\364\201\314\257\262\017g\373\262\341\2347\367\330\367\315\371\201\227\334\227\034\301\276\271\r\017\252\003\332\006\255Oc\364x\345\203\224\361f\266f\344lGvO\016\244\220V\257\355\324\353\364\0072}\020\211\347^\307\310mz\207\376l\346\311lo6\236\273=w \337?0\337\270.\035O\021\234\224\006\245\317\301<\177\367\303Z\307\252\260\306\377oP\347\032\311\340\357\324gAr\227\376P&\236\272+\375\212\022_\362\255i\270O\211\253\315\332n\275g\251yM\303\332\245\3065\r\315\340\311\006\245O\031R\351\271\372\306t]z\223\322c7\036T\234\236\207\224a\000\300\243\265\351vG\376\216\007\000\253\315\032\235\367?\221\255s\337zF\335\254\322\020|\035 \321pgzs\232&\331\232\253o\262\232\243J|\256\336\243lTd\000z70\246~]zX\031\200t\266ity\3449\335C\234\2723\355\007Jz\227^\250[\323\264.\035Q\376\250\262\272?sO\206\317\021\234\033\032S\303\351\276\364\220\022R=\344q\355\322f\322\227T\352\224Mj\217\3727\275c\276\036\340J\325\221~\022\361/\264!\235^\335b\225ce\357GH\374Mn\323\266+\245\275\200\327\335J\307\\\343\275\326\033\220\322{mx\362\276-\031\257\355\316v\002k\007\t\344\036\002\346\355\251\021\320\361\246\372\212&\353\333\200@\3359\310'd\212\360\272'\177\327\257I\252\235\326?t\032\010g\203|\277\372[\240W\217Fe\366d\367\346\266\346\342\337\257\313\277\374z\376\365p>\314\3459\276vn*\023aw<\240\354U\267\252q\255I\367\316\3277\020\022\270\350>\r\350\256\007L^Q\017\344\037\351\312>""\226\253[j\"A\276\251\274\254\002\211\356 \223s#\264a^h;2\315\331\236l\231\271\233\265\3473\035\231\336\314pv \347\311y-\300\323u\204\226\303J_~c\213\276.\023\317\336\226}<\267!\327\227\243\241?\277\316\247y\377\007\326\3512\364";
+    PyObject *data = __Pyx_DecompressString(cstring, 2914, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2087 bytes) */
-const char* const bytes = ".?disable\n        <el-checkbox-group\n          v-model=\"data.model_value\"\n          :disabled=\"data.disabled\"\n          :min=\"data.min\"\n          :max=\"data.max\"\n          \\@change=\"(value) => onserver('onchange', value)\"\n        >\n          <el-checkbox\n            v-for=\"(option, index) in data.options_list\"\n            :key=\"index\"\n            :label=\"option.label\"\n            :value=\"option.value\"\n            :disabled=\"option.disabled || data.disabled\"\n          />\n        </el-checkbox-group>\n    \n        <el-checkbox\n          :label=\"data.label\"\n          v-model=\"data.checked\"\n          :disabled=\"data.disabled\"\n          :border=\"data.border\"\n          :indeterminate=\"data.indeterminate\"\n          \\@change=\"(value) => onserver('onchange', value)\"\n        />\n    enablegcisenabledsimplestart/ss_ui/checkbox.py__Pyx_PyDict_NextRefargsasyncio.coroutinesbindbind_statebordercheckboxcheckbox.<locals>.handle_changecheckboxescheckboxes.<locals>.handle_changecheckboxes.<locals>.process_optionscheckedcline_in_traceback_datadatadisabledeventeventDataevent_data__func__gethandle_changehandle_event_datahandlersindeterminate_is_coroutineitemitemskwargslabel__main__maxminmodel_value__module____name__onchangeoptions_listpopprocess_options__qualname__resresult__set_name__setdefaultsimplestart.ss_ui.checkboxss_coress_core.utils__test__valuevaluesvuetify\200A\340\010\013\2104\210q\330\014\023\2201\340\010\021\220\021\330\010\014\210H\220A\340\014\017\210z\230\021\230'\240\025\240e\2501\330\020\026\220g\230R\230y\250\006\250i\260s\270!\2707\300,\310a\340\021\033\2301\230F\240'\250\024\250S\260\001\260\026\260s\270!\330\020\026\220g\230R\230y\250\004\250A\250T\260\031\270#\270Q\270d\300!\3005\310\014\320TU\340\021\033\2301\230F\240!\330\020\026\220g\230Q\330\024\035\230T\240\024\240Q\240i\250q\330\024\035\230T\240\024\240Q\240i\250s\260!\2604\260t\2701\270I\300Q\330\024 \240\004\240D\250\001\250\034\260Q\360\006\000\021""\027\220g\230R\230y\250\003\2501\250G\2609\270C\270q\300\007\300|\320ST\340\010\017\210q\200A\330\010\013\2106\220\021\220-\230u\240A\340\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\330\014\024\220A\220Q\200A\340\010\020\320\020!\240\021\240'\250\021\340\010\020\220\005\220Q\330\010\013\2106\220\021\320\022#\2401\340\010\013\210;\220g\230U\240$\240g\250Q\250l\270!\330\014\026\220i\230q\330\010\013\2101\330\014\024\220A\220Q\200\r\210Z\220q\360\"\000\005\014\2106\220\024\220Q\220h\230a\330\004\010\210\001\210\033\220A\330\004\010\210\001\210\035\220a\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\034\220V\2304\230q\240\n\250!\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\340\004\017\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\340\004\005\360\016\000\005\013\210'\220\021\220!\360\022\000\n\017\210f\220J\230l\320*<\270A\340\004\013\2101\200\001\360$\000\005\020\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\330\004\021\220\026\220t\2301\230H\240A\360\006\000\005\010\200s\210!\2106\220\022\2201\330\010\027\220t\2301\230A\340\010\027\220v\230T\240\021\320\"2\260!\360\006\000\005\006\3604\000\005\014\2101\330\004\010\210\001\320\t\033\230?\250!\2501\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260I\270V\3004\300q\310\017\320W]\320]d\320dn\320no\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\031\220&\230\004\230A\230W\240A\330\004\010\210\001\210\031\220&\230\004\230A\230W\240C\240q\250\004\250A\250Q\340\004\005\360\030\000\005\013\210'\220\021\220!\360 \000\n\020\210v\220Z\230|\320+;\2705\300\001\340\004\013\2101";
+    #else /* compression: none (6276 bytes) */
+const char* const bytes = "Checkbox colorCheckbox color (primary/success/error or any CSS color)Checkbox label text (first positional argument)Checked state; State bindings are two-way (second positional argument)Checked state changed; event.value = boolCustom data merged into event.dataDisable the checkboxDisable the whole groupHalf-checked stateHorizontal layout when TrueIgnored: not supported by VuetifyInitially selected values; supports State bindingOptions: ['a','b'] / [('label','value'),...] / [{'label','value','disabled'},...] / State-bound list (first positional argument)Selection-change callback; event.value = list of valuesSelection changed; event.value = list of selected valuesState-change callback; event.value = new checked stateState object for two-way checked binding\n        <!--\n        \342\232\240\357\270\217 \344\270\272\344\273\200\344\271\210\344\270\215\347\224\250 Vuetify \347\232\204 label\357\274\214\350\200\214\346\230\257\345\244\226\345\261\202 div + \350\207\252\345\256\232\344\271\211 span\357\274\237\n        \357\274\210\345\257\271\346\257\224\357\274\232checkboxes \347\224\250 v-model\357\274\214label \347\202\271\345\207\273\350\265\260 Vuetify \345\216\237\347\224\237\350\275\254\345\217\221\351\223\276\350\267\257\357\274\214\345\244\251\347\204\266\345\217\257\347\224\250\343\200\202\357\274\211\n\n        1. Vuetify \347\232\204 label\357\274\210VLabel\357\274\211\345\206\205\351\203\250\347\273\221\345\256\232\344\272\206 @click=\"onClickLabel\"\357\274\214\345\205\266\344\270\255\350\260\203\347\224\250 e.stopPropagation()\357\274\214\n           \347\202\271\345\207\273 label \346\226\207\346\234\254\346\227\266 click \344\272\213\344\273\266\346\227\240\346\263\225\345\206\222\346\263\241\345\210\260 v-checkbox \346\240\271\345\205\203\347\264\240\357\274\214\345\217\227\346\216\247\346\250\241\345\274\217\344\270\213\347\212\266\346\200\201\346\227\240\346\263\225\346\233\264\346\226\260\343\200\202\n           \345\217\246\345\244\226 @click.captu""re\357\274\210onClickCapture\357\274\211\344\274\232\350\242\253 filterInputAttrs \345\275\222\345\205\245\345\206\205\351\203\250 input \350\200\214\351\235\236\346\240\271\345\205\203\347\264\240\357\274\214\n           \344\271\237\346\227\240\346\263\225\345\217\257\351\235\240\347\233\221\345\220\254\343\200\202\346\224\271\347\224\250\350\207\252\345\256\232\344\271\211 span \345\220\216\346\262\241\346\234\211 VLabel \346\213\246\346\210\252\357\274\214\n           \347\202\271\345\207\273\346\225\264\344\270\252\345\214\272\345\237\237\351\203\275\350\203\275\346\255\243\345\270\270\345\206\222\346\263\241\345\210\260\345\244\226\345\261\202 div \347\232\204 @click\343\200\202\n\n        2. \344\270\216 v-switch \347\232\204 active_text/inactive_text\357\274\210\350\207\252\345\256\232\344\271\211 span\357\274\211\346\226\271\346\241\210\344\270\200\350\207\264\357\274\214\n           \345\267\262\351\252\214\350\257\201\345\234\250 slot \344\270\255\347\202\271\345\207\273\346\226\207\346\234\254\347\201\265\346\225\217\343\200\202\n\n        3. \345\244\226\345\261\202 div \347\232\204 @click \345\234\250\345\206\222\346\263\241\351\230\266\346\256\265\347\273\237\344\270\200\345\244\204\347\220\206\357\274\232\n           - e.preventDefault() \351\230\273\346\255\242\345\206\205\351\203\250\347\234\237\345\256\236 <input type=\"checkbox\"> \347\232\204\345\216\237\347\224\237\345\210\207\346\215\242\357\274\214\n             \351\201\277\345\205\215\346\265\217\350\247\210\345\231\250\351\273\230\350\256\244\350\241\214\344\270\272\344\270\216 data.checked \345\217\240\345\212\240\351\200\240\346\210\220\"\351\227\252\344\270\200\344\270\213\"\345\233\236\350\267\263\357\274\233\n           - \347\233\264\346\216\245\347\277\273\350\275\254 data.checked\357\274\210\345\217\227\346\216\247\346\250\241\345\274\217\357\274\214v-checkbox \345\217\252\350\242\253\345\212\250\346\230\276\347\244\272 model-value\357\274\211\357\274\214\n             \347\273""\225\345\274\200 Vuetify \345\206\205\351\203\250\347\212\266\346\200\201\346\234\272\357\274\214\344\273\273\344\275\225\346\214\202\350\275\275\345\234\272\346\231\257\357\274\210\345\220\253 markdown slot\357\274\211\351\203\275\347\250\263\345\256\232\343\200\202\n        -->\n        <div\n            \\@click=\"(e) => { if (data.disabled) return; e.preventDefault(); data.checked = !data.checked; onserver('onchange', data.checked) }\"\n        >\n            <div style=\"display: flex; align-items: center; cursor: pointer;\">\n                <v-checkbox\n                  :id=\"data.id\"\n                  :model-value=\"data.checked\"\n                  :disabled=\"data.disabled\"\n                  :indeterminate=\"data.indeterminate\"\n                  :color=\"data.color || undefined\"\n                  density=\"compact\"\n                  hide-details\n                  style=\"margin: 0; padding: 2px 0;\"\n                />\n                <span\n                    v-if=\"data.label\"\n                    style=\"margin-left: 8px; user-select: none;\"\n                >{{ data.label }}</span>\n            </div>\n        </div>\n    .?disableenablegcisenabledsimplestart/ss_ui/checkbox.pyv-checkbox\n        <v-row v-if=\"data.inline\" no-gutters>\n          <v-checkbox\n            v-for=\"(option, index) in data.options_list\"\n            :key=\"option.value\"\n            :label=\"option.label\"\n            :value=\"option.value\"\n            v-model=\"data.model_value\"\n            :disabled=\"option.disabled || data.disabled\"\n            :color=\"data.color || undefined\"\n            density=\"compact\"\n            hide-details\n            style=\"margin: 0; padding: 2px 0;\"\n            \\@update:model-value=\"(value) => onserver('onchange', value)\"\n          />\n        </v-row>\n        <div v-else>\n          <div style=\"display: flex; flex-direction: column; gap: 0;\">\n          <v-checkbox\n            v-for=\"(option, index"") in data.options_list\"\n            :key=\"option.value\"\n            :label=\"option.label\"\n            :value=\"option.value\"\n            v-model=\"data.model_value\"\n            :disabled=\"option.disabled || data.disabled\"\n            :color=\"data.color || undefined\"\n            density=\"compact\"\n            hide-details\n            style=\"margin: 0; padding: 2px 0;\"\n            \\@update:model-value=\"(value) => onserver('onchange', value)\"\n          />\n          </div>\n        </div>\n    CHECKBOXES_SCHEMACHECKBOX_SCHEMA__Pyx_PyDict_NextRefanyargargsasyncio.coroutines_attr_namebindbind_stateboolbordercallablecategorychange_check_data_updatecheck_schema_kwargscheckboxcheckbox.<locals>.extract_valuecheckbox.<locals>.handle_changecheckboxescheckboxes.<locals>._normalize_optionscheckboxes.<locals>.handle_changecheckboxes.<locals>.process_optionscheckedcline_in_tracebackcolor_datadatadefaultdisableddoceventeventDataevent_dataeventsextract_valueform__func__gethandle_changehandle_event_datahandlersidindeterminateinlineinspectint_is_coroutineitemitemskwargslabellist__main__maxminmodel_value__module____name__name_normalize_optionsonchangeoptions_listparametersparamspoppositionalprimaryprocess_options__qualname__reactiveresresourceresult__set_name__setdefaultsigsignaturesimplestart.ss_ui.checkboxsizess_coress_core.componentss_core.utils_statestate_bindingstr__test__typevalue_valuevaluesvuetifyvuetify_basewatch\200A\330\010\013\2106\220\021\220-\230u\240A\330\010\013\2108\2207\230%\230t\2407\250!\2509\260A\330\014\023\2209\230E\240\021\340\010\013\210;\220g\230U\240$\240g\250Q\250l\270!\330\014\026\220i\230u\240A\340\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\340\014\022\220'\230\032\2401\240A\330\014\017\210s\220!\2203\220m\2402\240Q\330\020\030\230\001\230\021\340\020\030\230\001\200A\360\006\000\t\014\2107\220!\220>\240\021\330\014\033\230<\240q\340\010\013\2104\210q\330\014\023\2201\340\010\021\220\021\330\010\014\210H\220A\340""\014\017\210z\230\021\230'\240\025\240e\2501\330\020\026\220g\230R\230y\250\006\250i\260s\270!\2707\300,\310a\340\021\033\2301\230F\240'\250\024\250S\260\001\260\026\260s\270!\330\020\026\220g\230R\230y\250\004\250A\250T\260\031\270#\270Q\270d\300!\3005\310\014\320TU\340\021\033\2301\230F\240!\330\020\026\220g\230Q\330\024\035\230T\240\024\240Q\240i\250q\330\024\035\230T\240\024\240Q\240i\250s\260!\2604\260t\2701\270I\300Q\330\024 \240\004\240D\250\001\250\034\260Q\360\006\000\021\027\220g\230R\230y\250\003\2501\250G\2609\270C\270q\300\007\300|\320ST\340\010\017\210q\200A\340\010\020\220\005\220Q\330\010\013\2106\220\021\320\022#\2401\340\010\013\210;\220g\230U\240$\240g\250Q\250l\270!\330\014\026\220i\230q\340\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\340\014\022\220'\230\032\2401\240A\330\014\017\210s\220!\2203\220m\2402\240Q\330\020\030\230\001\230\021\340\020\030\230\001\200A\330\010\017\210s\220*\230G\2401\240E\250\036\260q\200\r\210Z\220q\360\"\000\005\030\220q\230\014\240H\250A\360\014\000\005\006\360\010\000\005\014\2106\220\024\220Q\220h\230a\330\004\010\210\001\210\033\220A\330\004\010\210\001\210\035\220a\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\360\006\000\005\013\210$\210a\210z\230\021\330\004\n\210$\210a\210x\220q\330\004\021\220\026\220t\2301\230H\240A\340\004\017\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\360\010\000\005\013\210'\220\021\220!\360P\001\000\n\017\210f\220J\230l\250'\260\025\260o\300Q\360\006\000\005\010\200v\210Q\210h\220c\230\021\360\006\000\005\006\360$\000\005\010\200y\220\001\220\033\230A\230^\2501\340\004\013\2101\200\001\360$\000\005\030\220q\230\016\240h\250a\340\004\017\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\330\004\021\220\026\220t\2301\230H\240A\360\006\000\005\013\210$\210a\210w\220a\330\004\n\210$\210a\210w\220a\360\006\000""\005\010\200s\210!\2106\220\022\2201\330\010\027\220t\2301\230A\340\010\027\220v\230T\240\021\320\"2\260!\360\006\000\005\006\360<\000\005\014\2101\360\010\000\005\025\220A\330\004\007\200w\210a\210~\230Z\240t\2507\260!\260>\300\021\330\010\030\230\001\330\010\014\210A\320\r\037\230q\340\010\014\210A\320\r\037\230\177\250a\250q\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260I\270V\3004\300q\310\017\320W]\320]d\320dn\320no\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\034\220V\2304\230q\240\n\250!\340\004\005\360\"\000\005\013\210'\220\021\220!\360B\001\000\n\020\210v\220Z\230|\320+;\2705\300\001\360\n\000\005\010\200~\220W\230A\330\010\t\360\006\000\t\026\220W\230F\240!\240=\260\014\270A\270Q\330\010\013\2106\220\021\320\022$\240O\2601\260C\260v\270T\300\021\300!\340\004\013\2101\210\001\330\014\017\210v\220Q\320\026(\250\017\260q\270\003\2706\300\024\300Q\300a\330\014\017\320\017\"\240!";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 62; i++) {
+    for (int i = 0; i < 123; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 10) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 28) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -5418,7 +6933,7 @@ const char* const bytes = ".?disable\n        <el-checkbox-group\n          v-mo
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 62; i < 67; i++) {
+    for (int i = 123; i < 130; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -5429,15 +6944,15 @@ const char* const bytes = ".?disable\n        <el-checkbox-group\n          v-mo
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 67; i++) {
+    for (Py_ssize_t i = 0; i < 130; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 62;
-      for (Py_ssize_t i=0; i<5; ++i) {
+      PyObject **table = stringtab + 123;
+      for (Py_ssize_t i=0; i<7; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
         if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -5454,33 +6969,6 @@ const char* const bytes = ".?disable\n        <el-checkbox-group\n          v-mo
     }
     #endif
   }
-  {
-    PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 0;
-    int8_t const cint_constants_1[] = {0};
-    for (int i = 0; i < 1; i++) {
-      numbertab[i] = PyLong_FromLong(cint_constants_1[i - 0]);
-      if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
-    }
-  }
-  #if CYTHON_IMMORTAL_CONSTANTS
-  {
-    PyObject **table = __pyx_mstate->__pyx_number_tab;
-    for (Py_ssize_t i=0; i<1; ++i) {
-      #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-      #if PY_VERSION_HEX < 0x030E0000
-      if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
-      #else
-      if (PyUnstable_Object_IsUniquelyReferenced(table[i]))
-      #endif
-      {
-        Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
-      }
-      #else
-      Py_SET_REFCNT(table[i], _Py_IMMORTAL_INITIAL_REFCNT);
-      #endif
-    }
-  }
-  #endif
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -5492,7 +6980,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 4;
     unsigned int flags : 10;
-    unsigned int first_line : 7;
+    unsigned int first_line : 9;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -5509,29 +6997,39 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 32};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_kp_b_iso88591_A_6_uA_1_AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 90};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_arg};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_extract_value, __pyx_mstate->__pyx_kp_b_iso88591_A_s_G1E_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 82};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 157};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event, __pyx_mstate->__pyx_n_u_sig};
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_kp_b_iso88591_A_6_uA_87_t7_9A_9E_gU_gQl_iuA_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 215};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_options_list, __pyx_mstate->__pyx_n_u_result, __pyx_mstate->__pyx_n_u_item};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_process_options, __pyx_mstate->__pyx_kp_b_iso88591_A_4q_1_HA_z_e1_gRy_is_7_a_1F_S_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_process_options, __pyx_mstate->__pyx_kp_b_iso88591_A_7_q_4q_1_HA_z_e1_gRy_is_7_a_1F, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 115};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_kp_b_iso88591_A_Q_6_1_gU_gQl_iq_1_AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 260};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_sig};
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_kp_b_iso88591_A_Q_6_1_gU_gQl_iq_1_1A_s_3m2Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 9, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 5};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_label, __pyx_mstate->__pyx_n_u_checked, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_checkbox, __pyx_mstate->__pyx_kp_b_iso88591_Zq_6_Qha_A_a_vT_a_V4q_F_a_8_vT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 316};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_value_2};
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_normalize_options, __pyx_mstate->__pyx_kp_b_iso88591_vQ_q_6_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 12, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 53};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_bind_state, __pyx_mstate->__pyx_n_u_options_list, __pyx_mstate->__pyx_n_u_process_options, __pyx_mstate->__pyx_n_u_process_options, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_checkboxes, __pyx_mstate->__pyx_kp_b_iso88591_vT_a_t1M_t1HA_s_6_1_t1A_vT_2_4, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 12, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 67};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_label, __pyx_mstate->__pyx_n_u_checked, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_extract_value, __pyx_mstate->__pyx_n_u_extract_value, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_bind_state, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_handle_change};
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_checkbox, __pyx_mstate->__pyx_kp_b_iso88591_Zq_q_HA_6_Qha_A_a_vT_a_F_a_8_F, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 15, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 180};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_bind_state, __pyx_mstate->__pyx_n_u_options_list, __pyx_mstate->__pyx_n_u_process_options, __pyx_mstate->__pyx_n_u_process_options, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_state_binding, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_handle_change, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_normalize_options, __pyx_mstate->__pyx_n_u_normalize_options};
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_checkbox_py, __pyx_mstate->__pyx_n_u_checkboxes, __pyx_mstate->__pyx_kp_b_iso88591_q_ha_vT_a_t1M_t1HA_awa_awa_s_6, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -6649,11 +8147,6 @@ static void __Pyx_RaiseArgtupleInvalid(
                  (num_expected == 1) ? "" : "s", num_found);
 }
 
-/* RaiseClosureNameError */
-static void __Pyx_RaiseClosureNameError(const char *varname) {
-    PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
-}
-
 /* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
 #if CYTHON_FAST_THREAD_STATE
 static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
@@ -6754,7 +8247,7 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 }
 #endif
 
-/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
+/* PyObjectGetAttrStrNoError (used by HasAttr) */
 #if __PYX_LIMITED_VERSION_HEX < 0x030d0000
 static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
     __Pyx_PyThreadState_declare
@@ -6782,6 +8275,40 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, P
     return result;
 #endif
 }
+
+/* HasAttr */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
+    PyObject *r;
+    if (unlikely(!PyUnicode_Check(n))) {
+        PyErr_SetString(PyExc_TypeError,
+                        "hasattr(): attribute name must be string");
+        return -1;
+    }
+    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
+    if (!r) {
+        return (unlikely(PyErr_Occurred())) ? -1 : 0;
+    } else {
+        Py_DECREF(r);
+        return 1;
+    }
+}
+#endif
+
+/* RaiseClosureNameError */
+static void __Pyx_RaiseClosureNameError(const char *varname) {
+    PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
+}
+
+/* PyObjectSetAttrStr */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_setattro))
+        return tp->tp_setattro(obj, attr_name, value);
+    return PyObject_SetAttr(obj, attr_name, value);
+}
+#endif
 
 /* GetBuiltinName (used by GetModuleGlobalName) */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
@@ -6853,95 +8380,6 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     PyErr_Clear();
 #endif
     return __Pyx_GetBuiltinName(name);
-}
-
-/* PyObjectCall2Args (used by CallUnboundCMethod1) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
-    PyObject *args[3] = {NULL, arg1, arg2};
-    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
-}
-
-/* CallUnboundCMethod1 */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg) {
-    int was_initialized =  __Pyx_CachedCFunction_GetAndSetInitializing(cfunc);
-    if (likely(was_initialized == 2 && cfunc->func)) {
-        int flag = cfunc->flag;
-        if (flag == METH_O) {
-            return __Pyx_CallCFunction(cfunc, self, arg);
-        } else if (flag == METH_FASTCALL) {
-            return __Pyx_CallCFunctionFast(cfunc, self, &arg, 1);
-        } else if (flag == (METH_FASTCALL | METH_KEYWORDS)) {
-            return __Pyx_CallCFunctionFastWithKeywords(cfunc, self, &arg, 1, NULL);
-        }
-    }
-#if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-    else if (unlikely(was_initialized == 1)) {
-        __Pyx_CachedCFunction tmp_cfunc = {
-#ifndef __cplusplus
-            0
-#endif
-        };
-        tmp_cfunc.type = cfunc->type;
-        tmp_cfunc.method_name = cfunc->method_name;
-        return __Pyx__CallUnboundCMethod1(&tmp_cfunc, self, arg);
-    }
-#endif
-    PyObject* result = __Pyx__CallUnboundCMethod1(cfunc, self, arg);
-    __Pyx_CachedCFunction_SetFinishedInitializing(cfunc);
-    return result;
-}
-#endif
-static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg){
-    PyObject *result = NULL;
-    if (unlikely(!cfunc->func && !cfunc->method) && unlikely(__Pyx_TryUnpackUnboundCMethod(cfunc) < 0)) return NULL;
-#if CYTHON_COMPILING_IN_CPYTHON
-    if (cfunc->func && (cfunc->flag & METH_VARARGS)) {
-        PyObject *args = PyTuple_New(1);
-        if (unlikely(!args)) return NULL;
-        Py_INCREF(arg);
-        PyTuple_SET_ITEM(args, 0, arg);
-        if (cfunc->flag & METH_KEYWORDS)
-            result = __Pyx_CallCFunctionWithKeywords(cfunc, self, args, NULL);
-        else
-            result = __Pyx_CallCFunction(cfunc, self, args);
-        Py_DECREF(args);
-    } else
-#endif
-    {
-        result = __Pyx_PyObject_Call2Args(cfunc->method, self, arg);
-    }
-    return result;
-}
-
-/* dict_getitem_default */
-static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value) {
-    PyObject* value;
-#if !CYTHON_COMPILING_IN_PYPY || PYPY_VERSION_NUM >= 0x07020000
-    value = PyDict_GetItemWithError(d, key);
-    if (unlikely(!value)) {
-        if (unlikely(PyErr_Occurred()))
-            return NULL;
-        value = default_value;
-    }
-    Py_INCREF(value);
-    if ((1));
-#else
-    if (PyBytes_CheckExact(key) || PyUnicode_CheckExact(key) || PyLong_CheckExact(key)) {
-        value = PyDict_GetItem(d, key);
-        if (unlikely(!value)) {
-            value = default_value;
-        }
-        Py_INCREF(value);
-    }
-#endif
-    else {
-        if (default_value == Py_None)
-            value = __Pyx_CallUnboundCMethod1(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_get, d, key);
-        else
-            value = __Pyx_CallUnboundCMethod2(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_get, d, key, default_value);
-    }
-    return value;
 }
 
 /* dict_setdefault (used by FetchCommonType) */
@@ -8483,6 +9921,140 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
     return op;
 }
 
+/* PyObjectCall2Args (used by CallUnboundCMethod1) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
+    PyObject *args[3] = {NULL, arg1, arg2};
+    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* CallUnboundCMethod1 */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg) {
+    int was_initialized =  __Pyx_CachedCFunction_GetAndSetInitializing(cfunc);
+    if (likely(was_initialized == 2 && cfunc->func)) {
+        int flag = cfunc->flag;
+        if (flag == METH_O) {
+            return __Pyx_CallCFunction(cfunc, self, arg);
+        } else if (flag == METH_FASTCALL) {
+            return __Pyx_CallCFunctionFast(cfunc, self, &arg, 1);
+        } else if (flag == (METH_FASTCALL | METH_KEYWORDS)) {
+            return __Pyx_CallCFunctionFastWithKeywords(cfunc, self, &arg, 1, NULL);
+        }
+    }
+#if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
+    else if (unlikely(was_initialized == 1)) {
+        __Pyx_CachedCFunction tmp_cfunc = {
+#ifndef __cplusplus
+            0
+#endif
+        };
+        tmp_cfunc.type = cfunc->type;
+        tmp_cfunc.method_name = cfunc->method_name;
+        return __Pyx__CallUnboundCMethod1(&tmp_cfunc, self, arg);
+    }
+#endif
+    PyObject* result = __Pyx__CallUnboundCMethod1(cfunc, self, arg);
+    __Pyx_CachedCFunction_SetFinishedInitializing(cfunc);
+    return result;
+}
+#endif
+static PyObject* __Pyx__CallUnboundCMethod1(__Pyx_CachedCFunction* cfunc, PyObject* self, PyObject* arg){
+    PyObject *result = NULL;
+    if (unlikely(!cfunc->func && !cfunc->method) && unlikely(__Pyx_TryUnpackUnboundCMethod(cfunc) < 0)) return NULL;
+#if CYTHON_COMPILING_IN_CPYTHON
+    if (cfunc->func && (cfunc->flag & METH_VARARGS)) {
+        PyObject *args = PyTuple_New(1);
+        if (unlikely(!args)) return NULL;
+        Py_INCREF(arg);
+        PyTuple_SET_ITEM(args, 0, arg);
+        if (cfunc->flag & METH_KEYWORDS)
+            result = __Pyx_CallCFunctionWithKeywords(cfunc, self, args, NULL);
+        else
+            result = __Pyx_CallCFunction(cfunc, self, args);
+        Py_DECREF(args);
+    } else
+#endif
+    {
+        result = __Pyx_PyObject_Call2Args(cfunc->method, self, arg);
+    }
+    return result;
+}
+
+/* dict_getitem_default */
+static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value) {
+    PyObject* value;
+#if !CYTHON_COMPILING_IN_PYPY || PYPY_VERSION_NUM >= 0x07020000
+    value = PyDict_GetItemWithError(d, key);
+    if (unlikely(!value)) {
+        if (unlikely(PyErr_Occurred()))
+            return NULL;
+        value = default_value;
+    }
+    Py_INCREF(value);
+    if ((1));
+#else
+    if (PyBytes_CheckExact(key) || PyUnicode_CheckExact(key) || PyLong_CheckExact(key)) {
+        value = PyDict_GetItem(d, key);
+        if (unlikely(!value)) {
+            value = default_value;
+        }
+        Py_INCREF(value);
+    }
+#endif
+    else {
+        if (default_value == Py_None)
+            value = __Pyx_CallUnboundCMethod1(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_get, d, key);
+        else
+            value = __Pyx_CallUnboundCMethod2(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_get, d, key, default_value);
+    }
+    return value;
+}
+
+/* py_dict_pop_ignore */
+static CYTHON_INLINE int __Pyx_PyDict_Pop_ignore(PyObject *d, PyObject *key, PyObject *default_value) {
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030d00A2 || defined(PyDict_Pop)
+    int result = PyDict_Pop(d, key, NULL);
+    CYTHON_UNUSED_VAR(default_value);
+    return (unlikely(result == -1)) ? -1 : 0;
+#else
+    PyObject *value;
+    CYTHON_UNUSED_VAR(default_value);
+    #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030d0000
+    value = _PyDict_Pop(d, key, Py_None);
+    #else
+    value = __Pyx_CallUnboundCMethod2(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_pop, d, key, Py_None);
+    #endif
+    if (unlikely(value == NULL))
+        return -1;
+    Py_DECREF(value);
+    return 0;
+#endif
+}
+
+/* py_dict_pop */
+static CYTHON_INLINE PyObject *__Pyx_PyDict_Pop(PyObject *d, PyObject *key, PyObject *default_value) {
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030d00A2 || defined(PyDict_Pop)
+    PyObject *value;
+    if (PyDict_Pop(d, key, &value) == 0) {
+        if (default_value) {
+            Py_INCREF(default_value);
+        } else {
+            PyErr_SetObject(PyExc_KeyError, key);
+        }
+        value = default_value;
+    }
+    return value;
+#elif CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030d0000
+    return _PyDict_Pop(d, key, default_value);
+#else
+    if (default_value) {
+        return __Pyx_CallUnboundCMethod2(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_pop, d, key, default_value);
+    } else {
+        return __Pyx_CallUnboundCMethod1(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_pop, d, key);
+    }
+#endif
+}
+
 /* IterFinish (used by dict_iter) */
 static CYTHON_INLINE int __Pyx_IterFinish(void) {
     PyObject* exc_type;
@@ -9005,6 +10577,25 @@ static CYTHON_INLINE int __Pyx_MergeKeywords(PyObject *kwdict, PyObject *source_
     }
 }
 
+/* DictGetItem */
+#if !CYTHON_COMPILING_IN_PYPY
+static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
+    PyObject *value;
+    if (unlikely(__Pyx_PyDict_GetItemRef(d, key, &value) == 0)) { // no value, no error
+        if (unlikely(PyTuple_Check(key))) {
+            PyObject* args = PyTuple_Pack(1, key);
+            if (likely(args)) {
+                PyErr_SetObject(PyExc_KeyError, args);
+                Py_DECREF(args);
+            }
+        } else {
+            PyErr_SetObject(PyExc_KeyError, key);
+        }
+    }
+    return value;
+}
+#endif
+
 /* KeywordStringCheck */
 static int __Pyx_CheckKeywordStrings(
     const char* function_name,
@@ -9161,78 +10752,6 @@ static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *
     result = __Pyx_PyObject_FastCall(attr, args+1, nargsf - 1);
     Py_DECREF(attr);
     return result;
-}
-#endif
-
-/* HasAttr */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
-    PyObject *r;
-    if (unlikely(!PyUnicode_Check(n))) {
-        PyErr_SetString(PyExc_TypeError,
-                        "hasattr(): attribute name must be string");
-        return -1;
-    }
-    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
-    if (!r) {
-        return (unlikely(PyErr_Occurred())) ? -1 : 0;
-    } else {
-        Py_DECREF(r);
-        return 1;
-    }
-}
-#endif
-
-/* PyObjectSetAttrStr */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_setattro))
-        return tp->tp_setattro(obj, attr_name, value);
-    return PyObject_SetAttr(obj, attr_name, value);
-}
-#endif
-
-/* py_dict_pop */
-static CYTHON_INLINE PyObject *__Pyx_PyDict_Pop(PyObject *d, PyObject *key, PyObject *default_value) {
-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030d00A2 || defined(PyDict_Pop)
-    PyObject *value;
-    if (PyDict_Pop(d, key, &value) == 0) {
-        if (default_value) {
-            Py_INCREF(default_value);
-        } else {
-            PyErr_SetObject(PyExc_KeyError, key);
-        }
-        value = default_value;
-    }
-    return value;
-#elif CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030d0000
-    return _PyDict_Pop(d, key, default_value);
-#else
-    if (default_value) {
-        return __Pyx_CallUnboundCMethod2(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_pop, d, key, default_value);
-    } else {
-        return __Pyx_CallUnboundCMethod1(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_pop, d, key);
-    }
-#endif
-}
-
-/* DictGetItem */
-#if !CYTHON_COMPILING_IN_PYPY
-static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
-    PyObject *value;
-    if (unlikely(__Pyx_PyDict_GetItemRef(d, key, &value) == 0)) { // no value, no error
-        if (unlikely(PyTuple_Check(key))) {
-            PyObject* args = PyTuple_Pack(1, key);
-            if (likely(args)) {
-                PyErr_SetObject(PyExc_KeyError, args);
-                Py_DECREF(args);
-            }
-        } else {
-            PyErr_SetObject(PyExc_KeyError, key);
-        }
-    }
-    return value;
 }
 #endif
 
@@ -9616,6 +11135,25 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         PyErr_Format(PyExc_ImportError, "cannot import name %S", name);
     }
     return value;
+}
+
+/* ListPack */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...) {
+    va_list va;
+    PyObject *l = PyList_New(n);
+    va_start(va, n);
+    if (unlikely(!l)) goto end;
+    for (Py_ssize_t i=0; i<n; ++i) {
+        PyObject *arg = va_arg(va, PyObject*);
+        Py_INCREF(arg);
+        if (__Pyx_PyList_SET_ITEM(l, i, arg) != (0)) {
+            Py_CLEAR(l);
+            goto end;
+        }
+    }
+    end:
+    va_end(va);
+    return l;
 }
 
 /* CLineInTraceback (used by AddTraceback) */

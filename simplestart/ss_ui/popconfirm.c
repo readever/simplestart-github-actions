@@ -1646,18 +1646,116 @@ static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
 /* KeywordStringCheck.proto */
 static CYTHON_INLINE int __Pyx_CheckKeywordStrings(const char* function_name, PyObject *kw);
 
-/* dict_getitem_default.proto */
-static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
+/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
+#endif
 
-/* CallCFunction.proto (used by CallUnboundCMethod1) */
-#define __Pyx_CallCFunction(cfunc, self, args)\
-    ((PyCFunction)(void(*)(void))(cfunc)->func)(self, args)
-#define __Pyx_CallCFunctionWithKeywords(cfunc, self, args, kwargs)\
-    ((PyCFunctionWithKeywords)(void(*)(void))(cfunc)->func)(self, args, kwargs)
-#define __Pyx_CallCFunctionFast(cfunc, self, args, nargs)\
-    ((__Pyx_PyCFunctionFast)(void(*)(void))(PyCFunction)(cfunc)->func)(self, args, nargs)
-#define __Pyx_CallCFunctionFastWithKeywords(cfunc, self, args, nargs, kwnames)\
-    ((__Pyx_PyCFunctionFastWithKeywords)(void(*)(void))(PyCFunction)(cfunc)->func)(self, args, nargs, kwnames)
+/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
+#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
+#if PY_VERSION_HEX >= 0x030C00A6
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
+#else
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
+#endif
+#else
+#define __Pyx_PyThreadState_declare
+#define __Pyx_PyThreadState_assign
+#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
+#endif
+
+/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
+#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
+#else
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#endif
+#else
+#define __Pyx_PyErr_Clear() PyErr_Clear()
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
+#endif
+
+/* PyObjectGetAttrStr.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name);
+#else
+#define __Pyx_PyObject_GetAttrStr(o,n) PyObject_GetAttr(o,n)
+#endif
+
+/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
+
+/* GetBuiltinName.proto (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name);
+
+/* PyDictVersioning.proto (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+#define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
+#define __PYX_GET_DICT_VERSION(dict)  (((PyDictObject*)(dict))->ma_version_tag)
+#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)\
+    (version_var) = __PYX_GET_DICT_VERSION(dict);\
+    (cache_var) = (value);
+#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP) {\
+    static PY_UINT64_T __pyx_dict_version = 0;\
+    static PyObject *__pyx_dict_cached_value = NULL;\
+    if (likely(__PYX_GET_DICT_VERSION(DICT) == __pyx_dict_version)) {\
+        (VAR) = __Pyx_XNewRef(__pyx_dict_cached_value);\
+    } else {\
+        (VAR) = __pyx_dict_cached_value = (LOOKUP);\
+        __pyx_dict_version = __PYX_GET_DICT_VERSION(DICT);\
+    }\
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj);
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj);
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version);
+#else
+#define __PYX_GET_DICT_VERSION(dict)  (0)
+#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)
+#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP)  (VAR) = (LOOKUP);
+#endif
+
+/* GetModuleGlobalName.proto */
+#if CYTHON_USE_DICT_VERSIONS
+#define __Pyx_GetModuleGlobalName(var, name)  do {\
+    static PY_UINT64_T __pyx_dict_version = 0;\
+    static PyObject *__pyx_dict_cached_value = NULL;\
+    (var) = (likely(__pyx_dict_version == __PYX_GET_DICT_VERSION(__pyx_mstate_global->__pyx_d))) ?\
+        (likely(__pyx_dict_cached_value) ? __Pyx_NewRef(__pyx_dict_cached_value) : __Pyx_GetBuiltinName(name)) :\
+        __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
+} while(0)
+#define __Pyx_GetModuleGlobalNameUncached(var, name)  do {\
+    PY_UINT64_T __pyx_dict_version;\
+    PyObject *__pyx_dict_cached_value;\
+    (var) = __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
+} while(0)
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value);
+#else
+#define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
+#define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
+#endif
 
 /* PyObjectCall.proto (used by PyObjectFastCall) */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -1671,19 +1769,25 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
 #endif
 
-/* PyObjectFastCall.proto (used by PyObjectCall2Args) */
+/* PyObjectFastCall.proto */
 #define __Pyx_PyObject_FastCall(func, args, nargs)  __Pyx_PyObject_FastCallDict(func, args, (size_t)(nargs), NULL)
 static CYTHON_INLINE PyObject* __Pyx_PyObject_FastCallDict(PyObject *func, PyObject * const*args, size_t nargs, PyObject *kwargs);
 
+/* dict_getitem_default.proto */
+static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
+
+/* CallCFunction.proto (used by CallUnboundCMethod1) */
+#define __Pyx_CallCFunction(cfunc, self, args)\
+    ((PyCFunction)(void(*)(void))(cfunc)->func)(self, args)
+#define __Pyx_CallCFunctionWithKeywords(cfunc, self, args, kwargs)\
+    ((PyCFunctionWithKeywords)(void(*)(void))(cfunc)->func)(self, args, kwargs)
+#define __Pyx_CallCFunctionFast(cfunc, self, args, nargs)\
+    ((__Pyx_PyCFunctionFast)(void(*)(void))(PyCFunction)(cfunc)->func)(self, args, nargs)
+#define __Pyx_CallCFunctionFastWithKeywords(cfunc, self, args, nargs, kwnames)\
+    ((__Pyx_PyCFunctionFastWithKeywords)(void(*)(void))(PyCFunction)(cfunc)->func)(self, args, nargs, kwnames)
+
 /* PyObjectCall2Args.proto (used by CallUnboundCMethod1) */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* PyObjectGetAttrStr.proto (used by UnpackUnboundCMethod) */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name);
-#else
-#define __Pyx_PyObject_GetAttrStr(o,n) PyObject_GetAttr(o,n)
-#endif
 
 /* UnpackUnboundCMethod.proto (used by CallUnboundCMethod1) */
 typedef struct {
@@ -1750,110 +1854,6 @@ static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key);
 /* PyObject_Unicode.proto */
 #define __Pyx_PyObject_Unicode(obj)\
     (likely(PyUnicode_CheckExact(obj)) ? __Pyx_NewRef(obj) : PyObject_Str(obj))
-
-/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
-
-/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
-#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
-#if PY_VERSION_HEX >= 0x030C00A6
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
-#else
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
-#endif
-#else
-#define __Pyx_PyThreadState_declare
-#define __Pyx_PyThreadState_assign
-#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
-#endif
-
-/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
-#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
-#else
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#endif
-#else
-#define __Pyx_PyErr_Clear() PyErr_Clear()
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
-#endif
-
-/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
-
-/* GetBuiltinName.proto (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name);
-
-/* PyDictVersioning.proto (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-#define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
-#define __PYX_GET_DICT_VERSION(dict)  (((PyDictObject*)(dict))->ma_version_tag)
-#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)\
-    (version_var) = __PYX_GET_DICT_VERSION(dict);\
-    (cache_var) = (value);
-#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP) {\
-    static PY_UINT64_T __pyx_dict_version = 0;\
-    static PyObject *__pyx_dict_cached_value = NULL;\
-    if (likely(__PYX_GET_DICT_VERSION(DICT) == __pyx_dict_version)) {\
-        (VAR) = __Pyx_XNewRef(__pyx_dict_cached_value);\
-    } else {\
-        (VAR) = __pyx_dict_cached_value = (LOOKUP);\
-        __pyx_dict_version = __PYX_GET_DICT_VERSION(DICT);\
-    }\
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj);
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj);
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version);
-#else
-#define __PYX_GET_DICT_VERSION(dict)  (0)
-#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)
-#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP)  (VAR) = (LOOKUP);
-#endif
-
-/* GetModuleGlobalName.proto */
-#if CYTHON_USE_DICT_VERSIONS
-#define __Pyx_GetModuleGlobalName(var, name)  do {\
-    static PY_UINT64_T __pyx_dict_version = 0;\
-    static PyObject *__pyx_dict_cached_value = NULL;\
-    (var) = (likely(__pyx_dict_version == __PYX_GET_DICT_VERSION(__pyx_mstate_global->__pyx_d))) ?\
-        (likely(__pyx_dict_cached_value) ? __Pyx_NewRef(__pyx_dict_cached_value) : __Pyx_GetBuiltinName(name)) :\
-        __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
-} while(0)
-#define __Pyx_GetModuleGlobalNameUncached(var, name)  do {\
-    PY_UINT64_T __pyx_dict_version;\
-    PyObject *__pyx_dict_cached_value;\
-    (var) = __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
-} while(0)
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value);
-#else
-#define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
-#define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
-#endif
 
 /* PyUnicode_Substring.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyUnicode_Substring(
@@ -2115,6 +2115,9 @@ static CYTHON_INLINE PyObject *__Pyx_Import(PyObject *name, PyObject *const *imp
 /* ImportFrom.proto */
 static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
 
+/* ListPack.proto */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...);
+
 /* CLineInTraceback.proto (used by AddTraceback) */
 #if CYTHON_CLINE_IN_TRACEBACK && CYTHON_CLINE_IN_TRACEBACK_RUNTIME
 static int __Pyx_CLineForTraceback(PyThreadState *tstate, int c_line);
@@ -2304,8 +2307,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[3];
-  PyObject *__pyx_string_tab[56];
-  PyObject *__pyx_number_tab[1];
+  PyObject *__pyx_string_tab[106];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2346,63 +2348,112 @@ static __pyx_mstatetype __pyx_mstate_global_static =
 static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_static;
 #endif
 /* #### Code section: constant_name_defines ### */
-#define __pyx_kp_u__3 __pyx_string_tab[0]
-#define __pyx_kp_u__4 __pyx_string_tab[1]
-#define __pyx_kp_u_div_style_display_contents_el_p __pyx_string_tab[2]
-#define __pyx_kp_u_ref_slot __pyx_string_tab[3]
-#define __pyx_kp_u_simplestart_ss_ui_popconfirm_py __pyx_string_tab[4]
-#define __pyx_kp_u_top_start __pyx_string_tab[5]
-#define __pyx_n_u_ __pyx_string_tab[6]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[7]
-#define __pyx_n_u__2 __pyx_string_tab[8]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[9]
-#define __pyx_n_u_button_text __pyx_string_tab[10]
-#define __pyx_n_u_cancel __pyx_string_tab[11]
-#define __pyx_n_u_cancel_button_text __pyx_string_tab[12]
-#define __pyx_n_u_cancel_button_type __pyx_string_tab[13]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[14]
-#define __pyx_n_u_confirm_button_text __pyx_string_tab[15]
-#define __pyx_n_u_confirm_button_type __pyx_string_tab[16]
-#define __pyx_n_u_data __pyx_string_tab[17]
-#define __pyx_n_u_default __pyx_string_tab[18]
-#define __pyx_n_u_func __pyx_string_tab[19]
-#define __pyx_n_u_get __pyx_string_tab[20]
-#define __pyx_n_u_handle_cancel __pyx_string_tab[21]
-#define __pyx_n_u_handle_confirm __pyx_string_tab[22]
-#define __pyx_n_u_handlers __pyx_string_tab[23]
-#define __pyx_n_u_id __pyx_string_tab[24]
-#define __pyx_n_u_inner_context __pyx_string_tab[25]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[26]
-#define __pyx_n_u_items __pyx_string_tab[27]
-#define __pyx_n_u_kwargs __pyx_string_tab[28]
-#define __pyx_n_u_lambda __pyx_string_tab[29]
-#define __pyx_n_u_main __pyx_string_tab[30]
-#define __pyx_n_u_module __pyx_string_tab[31]
-#define __pyx_n_u_name __pyx_string_tab[32]
-#define __pyx_n_u_oncancel __pyx_string_tab[33]
-#define __pyx_n_u_onconfirm __pyx_string_tab[34]
-#define __pyx_n_u_placement __pyx_string_tab[35]
-#define __pyx_n_u_popconfirm __pyx_string_tab[36]
-#define __pyx_n_u_popconfirm_locals_lambda __pyx_string_tab[37]
-#define __pyx_n_u_primary __pyx_string_tab[38]
-#define __pyx_n_u_qualname __pyx_string_tab[39]
-#define __pyx_n_u_ref_slot_2 __pyx_string_tab[40]
-#define __pyx_n_u_ref_slot_id __pyx_string_tab[41]
-#define __pyx_n_u_res __pyx_string_tab[42]
-#define __pyx_n_u_set_name __pyx_string_tab[43]
-#define __pyx_n_u_setdefault __pyx_string_tab[44]
-#define __pyx_n_u_simplestart_ss_ui_popconfirm __pyx_string_tab[45]
-#define __pyx_n_u_ss_core __pyx_string_tab[46]
-#define __pyx_n_u_test __pyx_string_tab[47]
-#define __pyx_n_u_title __pyx_string_tab[48]
-#define __pyx_n_u_uuid __pyx_string_tab[49]
-#define __pyx_n_u_uuid4 __pyx_string_tab[50]
-#define __pyx_n_u_values __pyx_string_tab[51]
-#define __pyx_n_u_vuetify __pyx_string_tab[52]
-#define __pyx_kp_b_iso88591_6_Qha_F_ay_A_DA_t1_B_A_DA_t1_B __pyx_string_tab[53]
-#define __pyx_kp_b_iso88591_81 __pyx_string_tab[54]
-#define __pyx_kp_b_iso88591_XQ __pyx_string_tab[55]
-#define __pyx_int_0 __pyx_number_tab[0]
+#define __pyx_kp_u_Bubble_location_Vuetify_location __pyx_string_tab[0]
+#define __pyx_kp_u_Cancel_callback __pyx_string_tab[1]
+#define __pyx_kp_u_Cancel_label __pyx_string_tab[2]
+#define __pyx_kp_u_Confirm_callback __pyx_string_tab[3]
+#define __pyx_kp_u_Confirm_label __pyx_string_tab[4]
+#define __pyx_kp_u_Confirmation_text __pyx_string_tab[5]
+#define __pyx_kp_u_Trigger_button_label_defaults_to __pyx_string_tab[6]
+#define __pyx_kp_u__3 __pyx_string_tab[7]
+#define __pyx_kp_u__4 __pyx_string_tab[8]
+#define __pyx_kp_u__5 __pyx_string_tab[9]
+#define __pyx_kp_u_bottom_end __pyx_string_tab[10]
+#define __pyx_kp_u_bottom_start __pyx_string_tab[11]
+#define __pyx_kp_u_default_text_primary_elevated_co __pyx_string_tab[12]
+#define __pyx_kp_u_div_style_display_contents_v_me __pyx_string_tab[13]
+#define __pyx_kp_u_left_end __pyx_string_tab[14]
+#define __pyx_kp_u_left_start __pyx_string_tab[15]
+#define __pyx_kp_u_primary_elevated_colored_default __pyx_string_tab[16]
+#define __pyx_kp_u_ref_slot __pyx_string_tab[17]
+#define __pyx_kp_u_right_end __pyx_string_tab[18]
+#define __pyx_kp_u_right_start __pyx_string_tab[19]
+#define __pyx_kp_u_simplestart_ss_ui_popconfirm_py __pyx_string_tab[20]
+#define __pyx_kp_u_top_end __pyx_string_tab[21]
+#define __pyx_kp_u_top_start __pyx_string_tab[22]
+#define __pyx_kp_u_v_menu __pyx_string_tab[23]
+#define __pyx_n_u_ __pyx_string_tab[24]
+#define __pyx_n_u_Canceled __pyx_string_tab[25]
+#define __pyx_n_u_Confirmed __pyx_string_tab[26]
+#define __pyx_n_u_POPCONFIRM_SCHEMA __pyx_string_tab[27]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[28]
+#define __pyx_n_u__2 __pyx_string_tab[29]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[30]
+#define __pyx_n_u_bottom __pyx_string_tab[31]
+#define __pyx_n_u_button_text __pyx_string_tab[32]
+#define __pyx_n_u_callable __pyx_string_tab[33]
+#define __pyx_n_u_cancel __pyx_string_tab[34]
+#define __pyx_n_u_cancel_button_text __pyx_string_tab[35]
+#define __pyx_n_u_cancel_button_type __pyx_string_tab[36]
+#define __pyx_n_u_cancel_color __pyx_string_tab[37]
+#define __pyx_n_u_cancel_type __pyx_string_tab[38]
+#define __pyx_n_u_cancel_variant __pyx_string_tab[39]
+#define __pyx_n_u_category __pyx_string_tab[40]
+#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[41]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[42]
+#define __pyx_n_u_confirm __pyx_string_tab[43]
+#define __pyx_n_u_confirm_button_text __pyx_string_tab[44]
+#define __pyx_n_u_confirm_button_type __pyx_string_tab[45]
+#define __pyx_n_u_confirm_color __pyx_string_tab[46]
+#define __pyx_n_u_confirm_type __pyx_string_tab[47]
+#define __pyx_n_u_confirm_variant __pyx_string_tab[48]
+#define __pyx_n_u_data __pyx_string_tab[49]
+#define __pyx_n_u_default __pyx_string_tab[50]
+#define __pyx_n_u_doc __pyx_string_tab[51]
+#define __pyx_n_u_elevated __pyx_string_tab[52]
+#define __pyx_n_u_events __pyx_string_tab[53]
+#define __pyx_n_u_feedback __pyx_string_tab[54]
+#define __pyx_n_u_func __pyx_string_tab[55]
+#define __pyx_n_u_get __pyx_string_tab[56]
+#define __pyx_n_u_handle_cancel __pyx_string_tab[57]
+#define __pyx_n_u_handle_confirm __pyx_string_tab[58]
+#define __pyx_n_u_handlers __pyx_string_tab[59]
+#define __pyx_n_u_id __pyx_string_tab[60]
+#define __pyx_n_u_inner_context __pyx_string_tab[61]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[62]
+#define __pyx_n_u_items __pyx_string_tab[63]
+#define __pyx_n_u_kwargs __pyx_string_tab[64]
+#define __pyx_n_u_lambda __pyx_string_tab[65]
+#define __pyx_n_u_left __pyx_string_tab[66]
+#define __pyx_n_u_location __pyx_string_tab[67]
+#define __pyx_n_u_main __pyx_string_tab[68]
+#define __pyx_n_u_module __pyx_string_tab[69]
+#define __pyx_n_u_name __pyx_string_tab[70]
+#define __pyx_n_u_name_2 __pyx_string_tab[71]
+#define __pyx_n_u_oncancel __pyx_string_tab[72]
+#define __pyx_n_u_onconfirm __pyx_string_tab[73]
+#define __pyx_n_u_options __pyx_string_tab[74]
+#define __pyx_n_u_params __pyx_string_tab[75]
+#define __pyx_n_u_placement __pyx_string_tab[76]
+#define __pyx_n_u_popconfirm __pyx_string_tab[77]
+#define __pyx_n_u_popconfirm_locals_lambda __pyx_string_tab[78]
+#define __pyx_n_u_positional __pyx_string_tab[79]
+#define __pyx_n_u_primary __pyx_string_tab[80]
+#define __pyx_n_u_qualname __pyx_string_tab[81]
+#define __pyx_n_u_reactive __pyx_string_tab[82]
+#define __pyx_n_u_ref_slot_2 __pyx_string_tab[83]
+#define __pyx_n_u_ref_slot_id __pyx_string_tab[84]
+#define __pyx_n_u_res __pyx_string_tab[85]
+#define __pyx_n_u_right __pyx_string_tab[86]
+#define __pyx_n_u_set_name __pyx_string_tab[87]
+#define __pyx_n_u_setdefault __pyx_string_tab[88]
+#define __pyx_n_u_simplestart_ss_ui_popconfirm __pyx_string_tab[89]
+#define __pyx_n_u_ss_core __pyx_string_tab[90]
+#define __pyx_n_u_ss_core_component __pyx_string_tab[91]
+#define __pyx_n_u_str __pyx_string_tab[92]
+#define __pyx_n_u_test __pyx_string_tab[93]
+#define __pyx_n_u_text __pyx_string_tab[94]
+#define __pyx_n_u_title __pyx_string_tab[95]
+#define __pyx_n_u_top __pyx_string_tab[96]
+#define __pyx_n_u_type __pyx_string_tab[97]
+#define __pyx_n_u_uuid __pyx_string_tab[98]
+#define __pyx_n_u_uuid4 __pyx_string_tab[99]
+#define __pyx_n_u_values __pyx_string_tab[100]
+#define __pyx_n_u_vuetify __pyx_string_tab[101]
+#define __pyx_n_u_vuetify_base __pyx_string_tab[102]
+#define __pyx_kp_b_iso88591_81 __pyx_string_tab[103]
+#define __pyx_kp_b_iso88591_XQ __pyx_string_tab[104]
+#define __pyx_kp_b_iso88591_q_ha_6_Qha_F_ay_A_DA_t1_B_6_Q_5 __pyx_string_tab[105]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2418,8 +2469,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   __Pyx_State_RemoveModule(NULL);
   #endif
   for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<56; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<106; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2443,8 +2493,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_bytes);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<56; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
-  for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
+  for (int i=0; i<106; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2458,12 +2507,12 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_ui/popconfirm.py":4
- * import uuid
+/* "simplestart/ss_ui/popconfirm.py":25
+ * }
  * 
  * def popconfirm(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-menu + v-card
 */
 
 /* Python wrapper */
@@ -2474,7 +2523,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_10popconfirm_popconfirm, "\n    \345\210\233\345\273\272\346\260\224\346\263\241\347\241\256\350\256\244\346\241\206\347\273\204\344\273\266\n    \n    \345\217\202\346\225\260:\n    - title: \347\241\256\350\256\244\346\241\206\346\240\207\351\242\230\357\274\214\351\273\230\350\256\244\"popconfirm\"\n    - button_text: \350\247\246\345\217\221\346\214\211\351\222\256\346\226\207\346\234\254\357\274\214\351\273\230\350\256\244placement\345\200\274\n    - confirm_button_text: \347\241\256\350\256\244\346\214\211\351\222\256\346\226\207\346\234\254\357\274\214\351\273\230\350\256\244\"\347\241\256\350\256\244\"\n    - cancel_button_text: \345\217\226\346\266\210\346\214\211\351\222\256\346\226\207\346\234\254\357\274\214\351\273\230\350\256\244\"\345\217\226\346\266\210\"\n    - confirm_button_type: \347\241\256\350\256\244\346\214\211\351\222\256\347\261\273\345\236\213\357\274\214\351\273\230\350\256\244\"primary\"\n    - cancel_button_type: \345\217\226\346\266\210\346\214\211\351\222\256\347\261\273\345\236\213\357\274\214\351\273\230\350\256\244\"default\"\n    - placement: \346\260\224\346\263\241\346\241\206\344\275\215\347\275\256\357\274\214\351\273\230\350\256\244\"top-start\"\n    - onconfirm: \347\241\256\350\256\244\344\272\213\344\273\266\345\233\236\350\260\203\345\207\275\346\225\260\357\274\214\351\273\230\350\256\244lambda: None\n    - oncancel: \345\217\226\346\266\210\344\272\213\344\273\266\345\233\236\350\260\203\345\207\275\346\225\260\357\274\214\351\273\230\350\256\244lambda: None\n    - **kwargs: \345\205\266\344\273\226\347\273\204\344\273\266\345\261\236\346\200\247\n    \n    \350\277\224\345\233\236:\n    - \346\270\262\346\237\223\345\220\216\347\232\204\346\260\224\346\263\241\347\241\256\350\256\244\346\241\206\347\273\204\344\273\266\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_10popconfirm_popconfirm, "\n    \345\210\233\345\273\272\346\260\224\346\263\241\347\241\256\350\256\244\346\241\206\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Vuetify v-menu + v-card\357\274\211\n    \n    \345\217\202\346\225\260:\n    - title: \347\241\256\350\256\244\346\241\206\346\240\207\351\242\230\357\274\214\351\273\230\350\256\244\"popconfirm\"\n    - button_text: \350\247\246\345\217\221\346\214\211\351\222\256\346\226\207\346\234\254\357\274\214\351\273\230\350\256\244placement\345\200\274\n    - confirm_button_text: \347\241\256\350\256\244\346\214\211\351\222\256\346\226\207\346\234\254\357\274\214\351\273\230\350\256\244\"\347\241\256\350\256\244\"\n    - cancel_button_text: \345\217\226\346\266\210\346\214\211\351\222\256\346\226\207\346\234\254\357\274\214\351\273\230\350\256\244\"\345\217\226\346\266\210\"\n    - confirm_button_type: \347\241\256\350\256\244\346\214\211\351\222\256\347\261\273\345\236\213\357\274\214\351\273\230\350\256\244\"primary\"\n    - cancel_button_type: \345\217\226\346\266\210\346\214\211\351\222\256\347\261\273\345\236\213\357\274\214\351\273\230\350\256\244\"default\"\n    - placement: \346\260\224\346\263\241\346\241\206\344\275\215\347\275\256\357\274\214\351\273\230\350\256\244\"top-start\"\n    - onconfirm: \347\241\256\350\256\244\344\272\213\344\273\266\345\233\236\350\260\203\345\207\275\346\225\260\357\274\214\351\273\230\350\256\244lambda: None\n    - oncancel: \345\217\226\346\266\210\344\272\213\344\273\266\345\233\236\350\260\203\345\207\275\346\225\260\357\274\214\351\273\230\350\256\244lambda: None\n    - **kwargs: \345\205\266\344\273\226\347\273\204\344\273\266\345\261\236\346\200\247\n    \n    \350\277\224\345\233\236:\n    - \346\270\262\346\237\223\345\220\216\347\232\204\346\260\224\346\263\241\347\241\256\350\256\244\346\241\206\347\273\204\344\273\266\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_10popconfirm_1popconfirm = {"popconfirm", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_10popconfirm_1popconfirm, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_10popconfirm_popconfirm};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_10popconfirm_1popconfirm(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2520,7 +2569,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/popconfirm.py":39
+/* "simplestart/ss_ui/popconfirm.py":70
  * 
  *     #
  *     handle_confirm = kwargs.get("onconfirm", lambda: None)             # <<<<<<<<<<<<<<
@@ -2559,12 +2608,12 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self)
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/popconfirm.py":40
+/* "simplestart/ss_ui/popconfirm.py":71
  *     #
  *     handle_confirm = kwargs.get("onconfirm", lambda: None)
  *     handle_cancel = kwargs.get("oncancel", lambda: None)             # <<<<<<<<<<<<<<
  * 
- *     #  - header-class, body-class, footer-class
+ *     #  - v-menu + v-card
 */
 
 /* Python wrapper */
@@ -2598,16 +2647,18 @@ static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/popconfirm.py":4
- * import uuid
+/* "simplestart/ss_ui/popconfirm.py":25
+ * }
  * 
  * def popconfirm(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-menu + v-card
 */
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_10popconfirm_popconfirm(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_v_confirm_type = NULL;
+  PyObject *__pyx_v_cancel_type = NULL;
   PyObject *__pyx_v_ref_slot_id = NULL;
   PyObject *__pyx_v_handle_confirm = NULL;
   PyObject *__pyx_v_handle_cancel = NULL;
@@ -2619,287 +2670,395 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10popconfirm_popconfirm(CYTHON_UN
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   size_t __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("popconfirm", 0);
 
-  /* "simplestart/ss_ui/popconfirm.py":23
+  /* "simplestart/ss_ui/popconfirm.py":44
  *     -
  *     """
+ *     check_schema_kwargs("popconfirm", kwargs, POPCONFIRM_SCHEMA)             # <<<<<<<<<<<<<<
+ *     data = kwargs.get("data", {})
+ * 
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_POPCONFIRM_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_popconfirm, __pyx_v_kwargs, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":45
+ *     """
+ *     check_schema_kwargs("popconfirm", kwargs, POPCONFIRM_SCHEMA)
  *     data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
  * 
  *     data["title"] = kwargs.get("title", "popconfirm")
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_data = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_v_data = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":25
+  /* "simplestart/ss_ui/popconfirm.py":47
  *     data = kwargs.get("data", {})
  * 
  *     data["title"] = kwargs.get("title", "popconfirm")             # <<<<<<<<<<<<<<
  *     data["confirm_button_text"] = kwargs.get("confirm_button_text", "")
  *     data["cancel_button_text"] = kwargs.get("cancel_button_text", "")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_mstate_global->__pyx_n_u_popconfirm); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_2) < 0))) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_mstate_global->__pyx_n_u_popconfirm); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_3) < 0))) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":26
+  /* "simplestart/ss_ui/popconfirm.py":48
  * 
  *     data["title"] = kwargs.get("title", "popconfirm")
  *     data["confirm_button_text"] = kwargs.get("confirm_button_text", "")             # <<<<<<<<<<<<<<
  *     data["cancel_button_text"] = kwargs.get("cancel_button_text", "")
- *     data["confirm_button_type"] = kwargs.get("confirm_button_type", "primary")
+ * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_confirm_button_text, __pyx_mstate_global->__pyx_n_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_confirm_button_text, __pyx_t_2) < 0))) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_confirm_button_text, __pyx_mstate_global->__pyx_n_u_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_confirm_button_text, __pyx_t_3) < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":27
+  /* "simplestart/ss_ui/popconfirm.py":49
  *     data["title"] = kwargs.get("title", "popconfirm")
  *     data["confirm_button_text"] = kwargs.get("confirm_button_text", "")
  *     data["cancel_button_text"] = kwargs.get("cancel_button_text", "")             # <<<<<<<<<<<<<<
- *     data["confirm_button_type"] = kwargs.get("confirm_button_type", "primary")
- *     data["cancel_button_type"] = kwargs.get("cancel_button_type", "default")
+ * 
+ *     # Vuetify
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_cancel_button_text, __pyx_mstate_global->__pyx_n_u__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_cancel_button_text, __pyx_t_2) < 0))) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_cancel_button_text, __pyx_mstate_global->__pyx_n_u__2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_cancel_button_text, __pyx_t_3) < 0))) __PYX_ERR(0, 49, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":28
- *     data["confirm_button_text"] = kwargs.get("confirm_button_text", "")
- *     data["cancel_button_text"] = kwargs.get("cancel_button_text", "")
- *     data["confirm_button_type"] = kwargs.get("confirm_button_type", "primary")             # <<<<<<<<<<<<<<
- *     data["cancel_button_type"] = kwargs.get("cancel_button_type", "default")
- *     data["placement"] = kwargs.get("placement", "top-start")
+  /* "simplestart/ss_ui/popconfirm.py":52
+ * 
+ *     # Vuetify
+ *     confirm_type = kwargs.get("confirm_button_type", "primary")             # <<<<<<<<<<<<<<
+ *     data["confirm_variant"] = "elevated" if confirm_type == "primary" else "text"
+ *     data["confirm_color"] = "primary" if confirm_type == "primary" else ""
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_confirm_button_type, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_confirm_button_type, __pyx_t_2) < 0))) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_confirm_button_type, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_confirm_type = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":29
- *     data["cancel_button_text"] = kwargs.get("cancel_button_text", "")
- *     data["confirm_button_type"] = kwargs.get("confirm_button_type", "primary")
- *     data["cancel_button_type"] = kwargs.get("cancel_button_type", "default")             # <<<<<<<<<<<<<<
- *     data["placement"] = kwargs.get("placement", "top-start")
+  /* "simplestart/ss_ui/popconfirm.py":53
+ *     # Vuetify
+ *     confirm_type = kwargs.get("confirm_button_type", "primary")
+ *     data["confirm_variant"] = "elevated" if confirm_type == "primary" else "text"             # <<<<<<<<<<<<<<
+ *     data["confirm_color"] = "primary" if confirm_type == "primary" else ""
  * 
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_cancel_button_type, __pyx_mstate_global->__pyx_n_u_default); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_cancel_button_type, __pyx_t_2) < 0))) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_confirm_type, __pyx_mstate_global->__pyx_n_u_primary, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (__pyx_t_6) {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_elevated);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_elevated;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_text);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_text;
+  }
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_confirm_variant, __pyx_t_3) < 0))) __PYX_ERR(0, 53, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":30
- *     data["confirm_button_type"] = kwargs.get("confirm_button_type", "primary")
- *     data["cancel_button_type"] = kwargs.get("cancel_button_type", "default")
- *     data["placement"] = kwargs.get("placement", "top-start")             # <<<<<<<<<<<<<<
+  /* "simplestart/ss_ui/popconfirm.py":54
+ *     confirm_type = kwargs.get("confirm_button_type", "primary")
+ *     data["confirm_variant"] = "elevated" if confirm_type == "primary" else "text"
+ *     data["confirm_color"] = "primary" if confirm_type == "primary" else ""             # <<<<<<<<<<<<<<
  * 
- *     data["button_text"] = kwargs.get("button_text", data["placement"])
+ *     cancel_type = kwargs.get("cancel_button_type", "default")
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_placement, __pyx_mstate_global->__pyx_kp_u_top_start); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_placement, __pyx_t_2) < 0))) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_confirm_type, __pyx_mstate_global->__pyx_n_u_primary, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 54, __pyx_L1_error)
+  if (__pyx_t_6) {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_primary);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_primary;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u__3);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_kp_u__3;
+  }
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_confirm_color, __pyx_t_3) < 0))) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":32
- *     data["placement"] = kwargs.get("placement", "top-start")
+  /* "simplestart/ss_ui/popconfirm.py":56
+ *     data["confirm_color"] = "primary" if confirm_type == "primary" else ""
  * 
- *     data["button_text"] = kwargs.get("button_text", data["placement"])             # <<<<<<<<<<<<<<
+ *     cancel_type = kwargs.get("cancel_button_type", "default")             # <<<<<<<<<<<<<<
+ *     data["cancel_variant"] = "text" if cancel_type == "default" else "elevated"
+ *     data["cancel_color"] = "" if cancel_type == "default" else "primary"
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_cancel_button_type, __pyx_mstate_global->__pyx_n_u_default); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_cancel_type = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":57
+ * 
+ *     cancel_type = kwargs.get("cancel_button_type", "default")
+ *     data["cancel_variant"] = "text" if cancel_type == "default" else "elevated"             # <<<<<<<<<<<<<<
+ *     data["cancel_color"] = "" if cancel_type == "default" else "primary"
+ * 
+*/
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_cancel_type, __pyx_mstate_global->__pyx_n_u_default, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__pyx_t_6) {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_text);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_text;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_elevated);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_elevated;
+  }
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_cancel_variant, __pyx_t_3) < 0))) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":58
+ *     cancel_type = kwargs.get("cancel_button_type", "default")
+ *     data["cancel_variant"] = "text" if cancel_type == "default" else "elevated"
+ *     data["cancel_color"] = "" if cancel_type == "default" else "primary"             # <<<<<<<<<<<<<<
+ * 
+ *     # Vuetify
+*/
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_cancel_type, __pyx_mstate_global->__pyx_n_u_default, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 58, __pyx_L1_error)
+  if (__pyx_t_6) {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u__3);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_kp_u__3;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_primary);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_primary;
+  }
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_cancel_color, __pyx_t_3) < 0))) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":61
+ * 
+ *     # Vuetify
+ *     data["location"] = kwargs.get("placement", "top-start")             # <<<<<<<<<<<<<<
+ * 
+ *     data["button_text"] = kwargs.get("button_text", data["location"])
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_placement, __pyx_mstate_global->__pyx_kp_u_top_start); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_location, __pyx_t_3) < 0))) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":63
+ *     data["location"] = kwargs.get("placement", "top-start")
+ * 
+ *     data["button_text"] = kwargs.get("button_text", data["location"])             # <<<<<<<<<<<<<<
  * 
  *     # referenceID
 */
-  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_placement); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_button_text, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_location); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_button_text, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_button_text, __pyx_t_1) < 0))) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_button_text, __pyx_t_1) < 0))) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":35
+  /* "simplestart/ss_ui/popconfirm.py":66
  * 
  *     # referenceID
  *     ref_slot_id = f"{str(uuid.uuid4())[:8]}-ref_slot"             # <<<<<<<<<<<<<<
  *     data["ref_slot_id"] = ref_slot_id
  * 
 */
-  __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_uuid); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_uuid4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uuid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = 1;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-    assert(__pyx_t_2);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-    __Pyx_INCREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-    __pyx_t_5 = 0;
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __pyx_t_4 = __Pyx_PyObject_Unicode(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyUnicode_Substring(__pyx_t_4, 0, 8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_ref_slot); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_ref_slot_id = ((PyObject*)__pyx_t_4);
-  __pyx_t_4 = 0;
-
-  /* "simplestart/ss_ui/popconfirm.py":36
- *     # referenceID
- *     ref_slot_id = f"{str(uuid.uuid4())[:8]}-ref_slot"
- *     data["ref_slot_id"] = ref_slot_id             # <<<<<<<<<<<<<<
- * 
- *     #
-*/
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_ref_slot_id, __pyx_v_ref_slot_id) < 0))) __PYX_ERR(0, 36, __pyx_L1_error)
-
-  /* "simplestart/ss_ui/popconfirm.py":39
- * 
- *     #
- *     handle_confirm = kwargs.get("onconfirm", lambda: None)             # <<<<<<<<<<<<<<
- *     handle_cancel = kwargs.get("oncancel", lambda: None)
- * 
-*/
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10popconfirm_10popconfirm_lambda, 0, __pyx_mstate_global->__pyx_n_u_popconfirm_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_popconfirm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onconfirm, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_v_handle_confirm = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/popconfirm.py":40
- *     #
- *     handle_confirm = kwargs.get("onconfirm", lambda: None)
- *     handle_cancel = kwargs.get("oncancel", lambda: None)             # <<<<<<<<<<<<<<
- * 
- *     #  - header-class, body-class, footer-class
-*/
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10popconfirm_10popconfirm_1lambda1, 0, __pyx_mstate_global->__pyx_n_u_popconfirm_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_popconfirm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_oncancel, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_handle_cancel = __pyx_t_4;
-  __pyx_t_4 = 0;
-
-  /* "simplestart/ss_ui/popconfirm.py":43
- * 
- *     #  - header-class, body-class, footer-class
- *     res = vuetify(r'''             # <<<<<<<<<<<<<<
- *         <div style="display: contents">
- *         <el-popconfirm
-*/
-  __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uuid4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-
-  /* "simplestart/ss_ui/popconfirm.py":64
- *         </el-popconfirm>
- *         </div>
- *     ''', data= data, handlers = {"onconfirm": handle_confirm, "cancel": handle_cancel})             # <<<<<<<<<<<<<<
- * 
- *     # ss.inner_context
-*/
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_onconfirm, __pyx_v_handle_confirm) < (0)) __PYX_ERR(0, 64, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_cancel, __pyx_v_handle_cancel) < (0)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    assert(__pyx_t_1);
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    assert(__pyx_t_3);
     PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
-    __Pyx_INCREF(__pyx_t_1);
+    __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx__function);
     __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
     __pyx_t_5 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_div_style_display_contents_el_p};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 43, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_3, __pyx_t_6, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
-    __pyx_t_4 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_v_res = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Unicode(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyUnicode_Substring(__pyx_t_2, 0, 8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_ref_slot); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_ref_slot_id = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":68
- *     # ss.inner_context
- *     # demo_splitter.py
- *     res.ref_slot = inner_context(res.id, 0, ref_slot_id)             # <<<<<<<<<<<<<<
+  /* "simplestart/ss_ui/popconfirm.py":67
+ *     # referenceID
+ *     ref_slot_id = f"{str(uuid.uuid4())[:8]}-ref_slot"
+ *     data["ref_slot_id"] = ref_slot_id             # <<<<<<<<<<<<<<
  * 
- *     return res
+ *     #
 */
-  __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_inner_context); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_ref_slot_id, __pyx_v_ref_slot_id) < 0))) __PYX_ERR(0, 67, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/popconfirm.py":70
+ * 
+ *     #
+ *     handle_confirm = kwargs.get("onconfirm", lambda: None)             # <<<<<<<<<<<<<<
+ *     handle_cancel = kwargs.get("oncancel", lambda: None)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10popconfirm_10popconfirm_lambda, 0, __pyx_mstate_global->__pyx_n_u_popconfirm_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_popconfirm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onconfirm, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_handle_confirm = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":71
+ *     #
+ *     handle_confirm = kwargs.get("onconfirm", lambda: None)
+ *     handle_cancel = kwargs.get("oncancel", lambda: None)             # <<<<<<<<<<<<<<
+ * 
+ *     #  - v-menu + v-card
+*/
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10popconfirm_10popconfirm_1lambda1, 0, __pyx_mstate_global->__pyx_n_u_popconfirm_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_popconfirm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_oncancel, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_handle_cancel = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":74
+ * 
+ *     #  - v-menu + v-card
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
+ *         <div style="display: contents">
+ *             <v-menu
+*/
+  __pyx_t_1 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
+
+  /* "simplestart/ss_ui/popconfirm.py":104
+ *             </v-menu>
+ *         </div>
+ *     ''', data=data, handlers={"onconfirm": handle_confirm, "cancel": handle_cancel})             # <<<<<<<<<<<<<<
+ * 
+ *     # ss.inner_context
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onconfirm, __pyx_v_handle_confirm) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cancel, __pyx_v_handle_cancel) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_6))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
-    assert(__pyx_t_2);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-    __Pyx_INCREF(__pyx_t_2);
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_1);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
     __pyx_t_5 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_t_3, __pyx_mstate_global->__pyx_int_0, __pyx_v_ref_slot_id};
-    __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_div_style_display_contents_v_me};
+    __pyx_t_7 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_7, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 74, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_4, __pyx_t_7, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_7);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
   }
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_res, __pyx_mstate_global->__pyx_n_u_ref_slot_2, __pyx_t_4) < (0)) __PYX_ERR(0, 68, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_res = __pyx_t_2;
+  __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":70
- *     res.ref_slot = inner_context(res.id, 0, ref_slot_id)
+  /* "simplestart/ss_ui/popconfirm.py":107
+ * 
+ *     # ss.inner_context
+ *     res.ref_slot = inner_context(res.id, ref_slot_id)             # <<<<<<<<<<<<<<
+ * 
+ *     return res
+*/
+  __pyx_t_3 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_inner_context); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_7))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_7);
+    assert(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_7);
+    __Pyx_INCREF(__pyx_t_3);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_7, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_4, __pyx_v_ref_slot_id};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+  }
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_res, __pyx_mstate_global->__pyx_n_u_ref_slot_2, __pyx_t_2) < (0)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":109
+ *     res.ref_slot = inner_context(res.id, ref_slot_id)
  * 
  *     return res             # <<<<<<<<<<<<<<
 */
@@ -2908,12 +3067,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10popconfirm_popconfirm(CYTHON_UN
   __pyx_r = __pyx_v_res;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/popconfirm.py":4
- * import uuid
+  /* "simplestart/ss_ui/popconfirm.py":25
+ * }
  * 
  * def popconfirm(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-menu + v-card
 */
 
   /* function exit code */
@@ -2922,11 +3081,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10popconfirm_popconfirm(CYTHON_UN
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("simplestart.ss_ui.popconfirm.popconfirm", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XDECREF(__pyx_v_confirm_type);
+  __Pyx_XDECREF(__pyx_v_cancel_type);
   __Pyx_XDECREF(__pyx_v_ref_slot_id);
   __Pyx_XDECREF(__pyx_v_handle_confirm);
   __Pyx_XDECREF(__pyx_v_handle_cancel);
@@ -3200,6 +3361,8 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_popconfirm(PyObject *__pyx_pyinit_
   PyObject *__pyx_t_2 = NULL;
   Py_ssize_t __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3288,8 +3451,8 @@ __Pyx_RefNannySetupContext("PyInit_popconfirm", 0);
 
   /* "simplestart/ss_ui/popconfirm.py":1
  * from ss_core import vuetify, inner_context             # <<<<<<<<<<<<<<
+ * from ss_core.component import check_schema_kwargs
  * import uuid
- * 
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify,__pyx_mstate_global->__pyx_n_u_inner_context};
@@ -3310,35 +3473,260 @@ __Pyx_RefNannySetupContext("PyInit_popconfirm", 0);
 
   /* "simplestart/ss_ui/popconfirm.py":2
  * from ss_core import vuetify, inner_context
- * import uuid             # <<<<<<<<<<<<<<
+ * from ss_core.component import check_schema_kwargs             # <<<<<<<<<<<<<<
+ * import uuid
  * 
- * def popconfirm(**kwargs):
 */
-  __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_uuid, 0, 0, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 2, __pyx_L1_error)
+  }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_uuid, __pyx_t_2) < (0)) __PYX_ERR(0, 2, __pyx_L1_error)
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_3 = 0; {
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 2, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 2, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    }
+  }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/popconfirm.py":4
- * import uuid
+  /* "simplestart/ss_ui/popconfirm.py":3
+ * from ss_core import vuetify, inner_context
+ * from ss_core.component import check_schema_kwargs
+ * import uuid             # <<<<<<<<<<<<<<
+ * 
+ * POPCONFIRM_SCHEMA = {
+*/
+  __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_uuid, 0, 0, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_uuid, __pyx_t_2) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":6
+ * 
+ * POPCONFIRM_SCHEMA = {
+ *     "name": "popconfirm",             # <<<<<<<<<<<<<<
+ *     "category": "feedback",
+ *     "vuetify_base": "v-menu",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_popconfirm) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_n_u_feedback) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify_base, __pyx_mstate_global->__pyx_kp_u_v_menu) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/popconfirm.py":9
+ *     "category": "feedback",
+ *     "vuetify_base": "v-menu",
+ *     "reactive": True,             # <<<<<<<<<<<<<<
+ *     "positional": [],
+ *     "params": {
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_reactive, Py_True) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/popconfirm.py":10
+ *     "vuetify_base": "v-menu",
+ *     "reactive": True,
+ *     "positional": [],             # <<<<<<<<<<<<<<
+ *     "params": {
+ *         "title": {"type": "str", "default": "popconfirm", "doc": "Confirmation text"},
+*/
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_positional, __pyx_t_4) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":12
+ *     "positional": [],
+ *     "params": {
+ *         "title": {"type": "str", "default": "popconfirm", "doc": "Confirmation text"},             # <<<<<<<<<<<<<<
+ *         "button_text": {"type": "str", "default": "", "doc": "Trigger button label; defaults to the placement value"},
+ *         "confirm_button_text": {"type": "str", "default": "", "doc": "Confirm label"},
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_popconfirm) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Confirmation_text) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":13
+ *     "params": {
+ *         "title": {"type": "str", "default": "popconfirm", "doc": "Confirmation text"},
+ *         "button_text": {"type": "str", "default": "", "doc": "Trigger button label; defaults to the placement value"},             # <<<<<<<<<<<<<<
+ *         "confirm_button_text": {"type": "str", "default": "", "doc": "Confirm label"},
+ *         "cancel_button_text": {"type": "str", "default": "", "doc": "Cancel label"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u__3) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Trigger_button_label_defaults_to) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_button_text, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":14
+ *         "title": {"type": "str", "default": "popconfirm", "doc": "Confirmation text"},
+ *         "button_text": {"type": "str", "default": "", "doc": "Trigger button label; defaults to the placement value"},
+ *         "confirm_button_text": {"type": "str", "default": "", "doc": "Confirm label"},             # <<<<<<<<<<<<<<
+ *         "cancel_button_text": {"type": "str", "default": "", "doc": "Cancel label"},
+ *         "confirm_button_type": {"type": "str", "default": "primary", "options": ["primary", "default"], "doc": "primary = elevated/colored; default = text"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Confirm_label) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_confirm_button_text, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":15
+ *         "button_text": {"type": "str", "default": "", "doc": "Trigger button label; defaults to the placement value"},
+ *         "confirm_button_text": {"type": "str", "default": "", "doc": "Confirm label"},
+ *         "cancel_button_text": {"type": "str", "default": "", "doc": "Cancel label"},             # <<<<<<<<<<<<<<
+ *         "confirm_button_type": {"type": "str", "default": "primary", "options": ["primary", "default"], "doc": "primary = elevated/colored; default = text"},
+ *         "cancel_button_type": {"type": "str", "default": "default", "options": ["default", "primary"], "doc": "default = text; primary = elevated/colored"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u__2) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Cancel_label) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cancel_button_text, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":16
+ *         "confirm_button_text": {"type": "str", "default": "", "doc": "Confirm label"},
+ *         "cancel_button_text": {"type": "str", "default": "", "doc": "Cancel label"},
+ *         "confirm_button_type": {"type": "str", "default": "primary", "options": ["primary", "default"], "doc": "primary = elevated/colored; default = text"},             # <<<<<<<<<<<<<<
+ *         "cancel_button_type": {"type": "str", "default": "default", "options": ["default", "primary"], "doc": "default = text; primary = elevated/colored"},
+ *         "placement": {"type": "str", "default": "top-start", "options": ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"], "doc": "Bubble location (Vuetify location syntax)"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_primary) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_n_u_primary, __pyx_mstate_global->__pyx_n_u_default); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_primary_elevated_colored_default) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_confirm_button_type, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":17
+ *         "cancel_button_text": {"type": "str", "default": "", "doc": "Cancel label"},
+ *         "confirm_button_type": {"type": "str", "default": "primary", "options": ["primary", "default"], "doc": "primary = elevated/colored; default = text"},
+ *         "cancel_button_type": {"type": "str", "default": "default", "options": ["default", "primary"], "doc": "default = text; primary = elevated/colored"},             # <<<<<<<<<<<<<<
+ *         "placement": {"type": "str", "default": "top-start", "options": ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"], "doc": "Bubble location (Vuetify location syntax)"},
+ *         "onconfirm": {"type": "callable", "default": None, "doc": "Confirm callback"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_default) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_default_text_primary_elevated_co) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cancel_button_type, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":18
+ *         "confirm_button_type": {"type": "str", "default": "primary", "options": ["primary", "default"], "doc": "primary = elevated/colored; default = text"},
+ *         "cancel_button_type": {"type": "str", "default": "default", "options": ["default", "primary"], "doc": "default = text; primary = elevated/colored"},
+ *         "placement": {"type": "str", "default": "top-start", "options": ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"], "doc": "Bubble location (Vuetify location syntax)"},             # <<<<<<<<<<<<<<
+ *         "onconfirm": {"type": "callable", "default": None, "doc": "Confirm callback"},
+ *         "oncancel": {"type": "callable", "default": None, "doc": "Cancel callback"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_top_start) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyList_Pack(12, __pyx_mstate_global->__pyx_n_u_top, __pyx_mstate_global->__pyx_kp_u_top_start, __pyx_mstate_global->__pyx_kp_u_top_end, __pyx_mstate_global->__pyx_n_u_bottom, __pyx_mstate_global->__pyx_kp_u_bottom_start, __pyx_mstate_global->__pyx_kp_u_bottom_end, __pyx_mstate_global->__pyx_n_u_left, __pyx_mstate_global->__pyx_kp_u_left_start, __pyx_mstate_global->__pyx_kp_u_left_end, __pyx_mstate_global->__pyx_n_u_right, __pyx_mstate_global->__pyx_kp_u_right_start, __pyx_mstate_global->__pyx_kp_u_right_end); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_options, __pyx_t_6) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Bubble_location_Vuetify_location) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_placement, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":19
+ *         "cancel_button_type": {"type": "str", "default": "default", "options": ["default", "primary"], "doc": "default = text; primary = elevated/colored"},
+ *         "placement": {"type": "str", "default": "top-start", "options": ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"], "doc": "Bubble location (Vuetify location syntax)"},
+ *         "onconfirm": {"type": "callable", "default": None, "doc": "Confirm callback"},             # <<<<<<<<<<<<<<
+ *         "oncancel": {"type": "callable", "default": None, "doc": "Cancel callback"},
+ *     },
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Confirm_callback) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onconfirm, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":20
+ *         "placement": {"type": "str", "default": "top-start", "options": ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"], "doc": "Bubble location (Vuetify location syntax)"},
+ *         "onconfirm": {"type": "callable", "default": None, "doc": "Confirm callback"},
+ *         "oncancel": {"type": "callable", "default": None, "doc": "Cancel callback"},             # <<<<<<<<<<<<<<
+ *     },
+ *     "events": {"confirm": "Confirmed", "cancel": "Canceled"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Cancel_callback) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_oncancel, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":22
+ *         "oncancel": {"type": "callable", "default": None, "doc": "Cancel callback"},
+ *     },
+ *     "events": {"confirm": "Confirmed", "cancel": "Canceled"},             # <<<<<<<<<<<<<<
+ * }
+ * 
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_confirm, __pyx_mstate_global->__pyx_n_u_Confirmed) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cancel, __pyx_mstate_global->__pyx_n_u_Canceled) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_POPCONFIRM_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/popconfirm.py":25
+ * }
  * 
  * def popconfirm(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-menu + v-card
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10popconfirm_1popconfirm, 0, __pyx_mstate_global->__pyx_n_u_popconfirm, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_popconfirm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10popconfirm_1popconfirm, 0, __pyx_mstate_global->__pyx_n_u_popconfirm, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_popconfirm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_popconfirm, __pyx_t_2) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_popconfirm, __pyx_t_2) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/popconfirm.py":1
  * from ss_core import vuetify, inner_context             # <<<<<<<<<<<<<<
+ * from ss_core.component import check_schema_kwargs
  * import uuid
- * 
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3351,6 +3739,8 @@ __Pyx_RefNannySetupContext("PyInit_popconfirm", 0);
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.ss_ui.popconfirm", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -3406,34 +3796,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{1},{1},{739},{9},{31},{9},{6},{20},{6},{18},{11},{6},{18},{18},{18},{19},{19},{4},{7},{8},{3},{13},{14},{8},{2},{13},{13},{5},{6},{8},{8},{10},{8},{8},{9},{9},{10},{28},{7},{12},{8},{11},{3},{12},{10},{28},{7},{8},{5},{4},{5},{6},{7},{261},{4},{4}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (851 bytes) */
-const char* const cstring = "BZh91AY&SY+\364\224\244\000\000\223\377\377\347~m\032\375\367\255W\367\001yD\277\377\377\356@@\301@dAA@@@@@C\300@\000@\002\334H\320(\300\325=\nO)\246#\324\365\033)\261A\264@4\003Cj\r\000\000\365\030\200\323\324i\246\322h\314\240\324\322\217S5F\322m\036\244\032d\311\20222\032\001\200\020bb\006!\243@\321\240d\307\000\r\003@44\000\0004\3044i\240\000\000\003C \000\014$\220F\200D\364\236\251\342i\252zF\032L\000#\004\014\004`\0044m\250\321\240\004F9\230\331\303\244\177g\243sy\342\335=\236\355_\037\210\314\014\325\000Q9\211\037\362\201[\234d\310\007\310SC\202\217'\342\035\026\036\230%&\257c{^\020\272h\335\030\232\014\034\326\240\002\252\220\216\366\347I\267[\372\334\250\253\344[ti\031\271\343\265?\310\377\330\025&9Phj\317fi\t\177\001\320\246H\t\204\310\212\251\014\245\337`\006\223Q\353\360\223\345^1\227.\220\222\016et'%\212\312\361\221fx\014\220WL\215h\206\261\004\030\323yA\254\2538\210\260L\033\226\211\253\035\261}\243K\337\262\342\310\231\306\264\363\224\340m\215\3312\354v\211\261\234\365\007O{\215\227\336>b>\307/\203\0315\343\271\245\3676\014G.a\206\031\347\337\022\222b\014\346dj\006\251&dD\276\"4\022\245j\205[\327i\230\251=#umIK\203ZD\214CfZ\323\033\002\200\240D\2420S\235y[\302\352\354\023!+\210\244c\0021\023\211M\022\016\022K\341$\245d\013\270\260Sq\303A\003\210\005\226\32548\353\304\231\254P\275\267\323\335{}\2148~\227f[N)\204\304\003@\332\243\033X\265\314\344\212T\324\216f\337\223\351\257I<&\201lO[\237\001j`\301)\3003\344{\251\214\366U\267Q\350\223\266\242\367\312\210\031\343LL/\326\000\213\355\212p\037\224\324D\026U\276\031:s\207m\n$#+$\372\001\362\032\320U\336\364L\241\320g\020\034\346\320'\262L\301\014s\312\023\311\"\347\216R0g\2003\021L\230t\260\271\001O\002\030\2004\214\243\254'(\006#n\264\256\027\333\226\304\242\020\312\001\330m\034\231\204\243!\272\016\205\2566\323\321V\200\000f\00452N\016}W\215YX\201\364\213\0130\240\276\001'b\276\205.\003\255\343*\332\261\207\r\232\353\261\220\224\222 \236\236\363MwRbE\243\234\2476LY\241:\275\001\236P\273C\361\276\224\0069""\213\0068\206M\346\227\n$\215\215s\356\254\333@C^\365\235\221\347\260\307\306\243\213\205\t\026z\245\226\206\026\376\030\234\340\237\314wV\225I :\207X\354\376z\356\243\365*\376zy\n>y\275\027 \367Z\274\000\255\340X\024\336\241\234+?\263\"\300\251\261\272%#\271\233_s\0047\2673\360\205\312!\313rD\230\017\024,~\361\335\212\263N\336\007\020\240% L\020\264\203\203\032\203\206E8\230n>\274u\001\177\213\271\"\234(H\025\372JR\000";
-    PyObject *data = __Pyx_DecompressString(cstring, 851, 2);
+    const struct { const unsigned int length: 11; } index[] = {{41},{15},{12},{16},{13},{17},{53},{0},{1},{1},{10},{12},{42},{1304},{8},{10},{42},{9},{9},{11},{31},{7},{9},{6},{6},{8},{9},{17},{20},{6},{18},{6},{11},{8},{6},{18},{18},{12},{11},{14},{8},{19},{18},{7},{19},{19},{13},{12},{15},{4},{7},{3},{8},{6},{8},{8},{3},{13},{14},{8},{2},{13},{13},{5},{6},{8},{4},{8},{8},{10},{8},{4},{8},{9},{7},{6},{9},{10},{28},{10},{7},{12},{8},{8},{11},{3},{5},{12},{10},{28},{7},{17},{3},{8},{4},{5},{3},{4},{4},{5},{6},{7},{12},{4},{4},{336}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1334 bytes) */
+const char* const cstring = "BZh91AY&SYO\347\205\343\000\001+\177\377\347\177\375_\375\357\257_\377s\375T\277\357\377\356@@\301@dAA@@@@@C\300@\000P\004\274w]Wp\305V \333q\206\252y\nmL\203\321\223P2\036\223!\211\3514b\r1\032\032b\032\0004\006F\324\323j2\031\030\214 \224\204\321\221\244\301)\344\312m\032\232i\220\006\203FC@i\352\000\000\000\000\000\030\200\001( \215)\202zj\231\200S\032\246\323Q\352\r\250h\036\240\000\001\220\000\003@mG\251\220\000\t\024!1Sdi3\325=G\250\320\000\365\032\000\003@\000\000\000\r\000\007\250h\320h\003\200\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000HY[{\375\003\330|0\347\304\014\343\357\207CA\2616\335E4\321m/\360\246Wn\240\375\001\t\245\304\357\2635\373\232\277\227\001\014\2357j\242\tb[\277\371\2223\346\306\262\3252\214\351FS\322Fy\221\rA\244d\261\341T%\032\250K\023\324\334\020\222\270\300W\004\226l9\271\317\304\346\373\276\370\372_\230z\207\252Rs\262\311\rSU\202\225\320^\317\345\021\357\263\262R\337\353.gi\2268~R\311\306j\325\317dH$\370\320\244\264f1y7\257[1\006E\225\212\206 \324\330\035\265\3343\210\231oP\355U\024\277\006\213\021\231\207z3\354\242\252j^\324\032\265\250\344\010\301\200\034I>y\004\245\302\224c,\211g\2700\367\255\344\270\200W\354\324z\022>k\251\016\006\236\002\254\r!cI\007\035\307\354\022\212@im\207T\340\342\301\207\247\2167\230\201\034\275Xws\342\252\363R4\233\311b\215\023\244\010\3201kPy\273QHp\271i\322s\217i\321H\236s\325h\241K(y,U\227M:s\017J\001\255\016\0103\257#\321\276\3353\234^~D\032\013\310H\227+jS\353S\207\213G;\276\205\255x\331\371u\212\253\027\007\t\260*\212\t<\021\203U\2638\035i6T\352\244qz\253H/\021\220AG\3202\317\035\016\222\244\335\316\274\342Q\2016P\320\024\243Q8\342rX&x\361 $\022\230q+\020Y\0329#R.\342\016nA\222\245\216\263\032\334\305\364\272P\277c\257\264M\007\347\251OXc\353\352\214\323\304\352\233V\005\022\276\0025\350S\022 \265\0130\320\314t\211\036\253O\366\222Pp\347\350(\364\025\317\204^\272\265\321b\327\226\3678\245\201\035u\206\226\346X\246\005\213U\240\343\231\212ME\005\275\t;\326\315\n\245\350\246\024U\250%""\0267Y\362l]\304\323\201\310\255\310\245p\337\270\205lBb\302x!\275\020\324\204\223\2226X\227\"\201\214T\274\247`\222j\013\343l\255\303\266\344 \333V\217\200\214\013bM\221\355T\304\262\020\320P\222[@T\240\205\346&\013\251\263d\361D\014\252\202XT\273\t\345L\354\313\007\210\364\346\277\r\372\335\354I\242@\327\034\305r:\032p8\206\220Bq\304[d\210\000\244\300dm\004\300\222\3370\222-\0306w\346\225@\211\275vr\324\361\315JU0V\023\3326WU<bT\226\205f\024\024\271\"(\204\261\346G\211\026dX\231\221\335\313Y\211\311\343\031\241\203DL\r\246\247\200\r\252,\250\256T\241Y\002\202\271\r\262\004r\241\000Ch\214\202fFNIW\\\252\026M\353.\212t\347\203X\314\202\007N\312\2322\313I\r\266\023\226\016\005\242`\321\252\343k!\301\223\261\254\250*\030gJ\223g\r\245\024.B\373\336\025FS\206\376}Q{\315\300Q\tg\337\313\307\341e\232\212\252X\313\241\305\021jR\270G>\210\314\016yB\334\211\234\020T\231\232\232\350#\n\220\256B\254\252\326\\\305\024\257\004\253I\216R\227\363\261,\222\010M\354\245j\370\262:X\026n\2176\300S\277ET\260\331\245\331\257\217\024P\327\013v\310mm\010@I\300UZ\243d\204\331\206\364\313C@\270M\261`\341GT\334(%X\215\313\256r\005\335\021%j\t\206\374&\265n\3457K\215\024\325\335\211,\020\212B@\2635\306\257\312c\353\270\034Lb\334FE\230\246H\211\261\355\330\254/\253\340\333lw\243$<70p%\022\245;\322\215\2377K\021\324.\252J\200T]\017\035\335p\224\025\r0\217O\335\016\016\344>(o\343\365\301@\2554u\020\001<Pa\374\265\275j\336\253\257\327f\251q\211\277Q\256|\373]\236\321\020O\342p$D(|\264\212E\270\306\355\206\272\372B\232(\314F\273g\3526II\337u\362\355]\271*24g\305}\262\204\273\016\327s\315z\352\266\361px.\\\320:\365\014\324\372,\346G\234\307\223\236\355V`\007\221\374\033\230i\246\002\030d#\t\007D\331\027\273\225=\213#\341\212_\374]\311\024\341BA?\236\027\214";
+    PyObject *data = __Pyx_DecompressString(cstring, 1334, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (752 bytes) */
-const char* const cstring = "x\332\225T\275O\333@\024\217\245\200(\264R\021\210\201\252j\022*h\253:QTTU(I\233\212v\254J+\241\016H\247\213}\201+\376\342\356\034\260\000\211\321[=U\036\257R\007O(S\305\310\3301##K?\306\374\t=\177$v\002\014=\311\366\335{\277\367~\357\336\373%\345\227\323\205d\325T\334)P\346h\250^R1\2654\350\254\025\024\323`\310`\264\324HqH\223-\323\022\2366&\372\320\274\3060\213B!\203\345h_J}\tXn\331\214\231\206\314\320\001K\220\211\007\304\036\020z\262q\320P\004\3355a\221\343\246\25016\307B7\260\t\317\315l\231\260Q\266\321(\321(\005\351\242I\txxN1[\257\022\342z\3114(\"\035D\036\255\230Fb\\y<\202\214\270\262\300\330\222Ee\206\301\220.\010\031*,\021\324F\004\th\352\215\207\232=\307\343\213/R\350\310t\307\334O\312\316\266\262qxX\0307\026\216\217k\225a\354X\316P:kXMR\211J\000\325L\006\260Zj\324*c%\214\031j\225\301\025\032\243R\014S\311\211\376\352%Flt%YTP\252\305\254#\304\211Md\221\007\005Q,\230\020e\220\260\n\245\300\306\2254\270l9\314\264\344\310\371\347\333\351\337\323\357\000\274w\016\304\263\216\025\006\336\211\026|@\355__\276\376\376\341B\352\030\n6\205\234\210i3l \232iT<\256\253\002\275*\"E\023\241\000\213\003\021\222iAe\367\232_\3035\222\r;\243\2426\2645\006@\3336\024\000\266\021\333\201\206\252!\020\323\014\016qp|\"\024\253\3300\020\001QW\017\304|(\030^\001\2131\320\335}H\266iM\203zK\205\r\000t(\252\023K7U[\244\023\313\200\272\370\n\355F4C\r\017E\23764\323\332\232f*P\243\215\362 \263E\260\016\211\003\300\236\r\2658\345`F\031\361\020D\001\240\210%\244b\227\334:3\307r4\307rJF\243;\t8\023\000\361\016\377\211l\033\253\341\263\332\201\232\215h\307F\014\267\235\023\251\277\234\233\270\355>\367\346\275\ro\307\207\227\371)Wr\357yo\375\207>\364\235@\272\010\r\275[%\276\034\344\203fO^?o&\246\"_\340,\250\366\236\276>/\376\007\312}\340O\372*/\362zW\272\2141\213\3762\317\363&\007\335\3653\351l\266?\231\233\230\363\226\274\217\276\344\317\373\233\374\031o\r\353X\364\213\241{\301\333\364W\375=~'\330\270\310\317'\325\036\005\325\3207\343\256x\263^\261\377$7}\327\355x[\374~\257\3348\373\374S""\352O\345&\246N\216\274:\227\370\034\177\023\314\005\315\313\374\214[\r^t\253\301\247\356\306?\265o\036\271";
-    PyObject *data = __Pyx_DecompressString(cstring, 752, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1230 bytes) */
+const char* const cstring = "x\332\245V\315O\033G\024\307\022\251\022\2426\242\240\250J\002]6\021\004\245\306B\244\25026-\201Dm%\002\204\010UU\245\321xwl\217\330\33513\263\006\013\220r\344\326=U{\334J=\354)\362\251\362\221c\216>\346\310\245\037G\376\204\316\314\316\332\216\301$QW\262g\347\2757\357\3637\357\355\023\277Tr\220\341\020\013rL<\343\341\216\2178.7\272\024\326\3608<\230]\205\236\205\034\303\202\216S\202\326\256\336:\260\204\234U\342\2251u\273<\275\357e&\2728:\340/)\256T\0205J>\347\202\244\204\226\014\033\225\241\357pfpb\360*2j\016\264\220\213<n\324\241\343\243\271oKD\210\273Y\344\331\372\215qH\271>f\024\225\352%\243F\261\013iC\354\221\203\352\220#;g\021\207Pd\217\030\372)\330\270n0\336pP\321\2641\023\206\032y\303\"\036\027\306\230\271\334\221S\262\365\254\360\301\177\207&\237|\232\035\241\002r8\227n\315\013\222\226C\030\312\022/k9\330\332}\207\275|A\270\300\221+\374\341\310\270\017-\216\205\377\204\026\315C\021\025\2511\343\330\274x\"\r\350r\216\016\241\304=\243\236eU\262\257\335MR\017d\312L\221_\212\241\307\213\246\336fK\330\263\213\246\262i.\037\036\032\375G\214\343\343BNi\275\302\252Lr\036\333\332 Ee\300\034\302\001\266\373-\244\245\260|\312\010\315\0335\202E)\350\222\271\\\310\r\014l\000\253\220K\023x\2217rIb,H\355\001\006\022fV\306\333\311\001\307\\\\\225$\372.\367\312\363\262\214\304c\357I\224\345@\306\212f\331A\007\331\n%\373\331\371+\243\357)\353@\276|\372*{\245\354/\337)\200\026\315\007\310\305\374\341\214\302\355\314\354\222!\274G\264\216\250 \251+?3k\016T\324\311T\"\n>\0264\037\020S\276\023Tb(\351.@S\337\023d^\365\202\276\243\212f\376\337\344\020O\353\373\260\374h\333\037\221\240\016\350\006B*\225\350ka\271\244\207u\251\t\262\322+\341\2402\227]U\255\252\247\016\356\241\2356\255\373m6\275\327\242\245W\225\226\344E\251aX\\E\244^s\214\001\037\347j\244\246\003\237\25358\251\311\003rQ2\211\227\377\374\376\372\337\327\177$\303\005\331zv {scsu\343\371\263\037^\254\203\355\325\357\237\256\257\000\260\3318\020\2775lq\360\\\270\362\002\225\377\372\365\267\277\377<\201b^Y\230\210\024S""\342s\354!\226\314\213\236T\3139\005\305\324KPz\021\253}\224FMK&P\321\357=d\r>1\002P\205\320\206UE\326.`bq!\330\335\207\264\302\004|<\004\260PF\305X\2233R'\342\022 \364\223\244\235^\250\246\233^\206\366@bKW\310&VZ=T\227\223\255\214\220-\r\003P\366=\013\200\n\342U(\313\016\222(\322M\2421\331Q\206m\354y\210\0025\037\017D\377f\240\223X,\232-K\342+8\320-\331pY\202(\235\205\000\270PD,\036\227\330\276P-\036\017\272(\371\027\367E\231\355\334\033RS\260\256A\n]\326\231\376]\310\364\200\247 M8ly.5[#\014\313\323\320\321\330\005`\317\207Nb\215\"5KQ\007\253\335YD\021S\200\005\200!\256\235\023o\351\267H\027\300s\n\300s]\037\230\312\003\322\213\000\233\360\317\223i\346\024\210*2\016T-\325\304\020\020\227\265\362}l\313\337c\365A\303\352\311w\226^@\t2\024\177\323\234\217\177jn\275\312\234O\017]\373\"\330\013?\213\2521|;|\363d1\030\017\266\202j\010\317\206\257\237dN\356\006\317\302\007!\014\033q\346\255$\264o\230\321t<\034\257\264\263k\247+\2324\025\335\216x<\337\376\352\311\351\324\371'C\327\306\203\305p<\334jO~\335\334\322\"\223\241\027\257\267\306Z\033o\3465\345^\270\036O4\255\326\227o2g\303\237\007\323\341p\270\322\236Xh\246\374\211\360\347\350\250\271\320$\247\251\216\273\341bt/\336n\336j\355I+7\204{\223A=|\031\215F\331x\357,\021\272\023NG\303\321J\004\232k\255LkT\n\216\005\367\203\3550#\\\332\211\026\242R'\222;\241\362\366v\260\023>\016\367\242Ocah\\\307{\024\317K\336\315\223\231`4\230:/\014\215\334:)\007?\206n\373\321R+\177\272%\231\327_\035\005\305(\023\215EO\343\3213\221\273\371\377\000\366\300\213\261";
+    PyObject *data = __Pyx_DecompressString(cstring, 1230, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1545 bytes) */
-const char* const bytes = ".?\n        <div style=\"display: contents\">\n        <el-popconfirm\n        :title=\"data.title\"\n        :confirm-button-text=\"data.confirm_button_text\"\n        :cancel-button-text=\"data.cancel_button_text\"\n        :confirm-button-type=\"data.confirm_button_type\"\n        :cancel-button-type=\"data.cancel_button_type\"\n        :placement=\"data.placement\"\n        \\@confirm=\"onserver('onconfirm')\"\n        \\@cancel=\"onserver('cancel')\"\n        >\n        <template #reference>\n          <div>\n            <el-button v-show=\"data.button_text\">{{ data.button_text }}</el-button>\n            <div :id=\"data.ref_slot_id\"></div>\n          </div>\n        </template>\n        <div data-content=\"true\"></div>\n        </el-popconfirm>\n        </div>   \n    -ref_slotsimplestart/ss_ui/popconfirm.pytop-start\347\241\256\350\256\244__Pyx_PyDict_NextRef\345\217\226\346\266\210asyncio.coroutinesbutton_textcancelcancel_button_textcancel_button_typecline_in_tracebackconfirm_button_textconfirm_button_typedatadefault__func__gethandle_cancelhandle_confirmhandlersidinner_context_is_coroutineitemskwargs<lambda>__main____module____name__oncancelonconfirmplacementpopconfirmpopconfirm.<locals>.<lambda>primary__qualname__ref_slotref_slot_idres__set_name__setdefaultsimplestart.ss_ui.popconfirmss_core__test__titleuuiduuid4valuesvuetify\200\001\360&\000\005\014\2106\220\024\220Q\220h\230a\340\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\320\t\"\240&\250\004\250A\320-D\300A\330\004\010\210\001\320\t!\240\026\240t\2501\320,B\300!\330\004\010\210\001\320\t\"\240&\250\004\250A\320-D\300A\330\004\010\210\001\320\t!\240\026\240t\2501\320,B\300!\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\340\004\010\210\001\320\t\032\230&\240\004\240A\240_\260D\270\001\270\021\360\006\000\005\023\220#\220S\230\001\230\024\230V\2403\240b\250\001\330\004\010\210\001\320\t\032\230!\360\006\000\005\026\220V\2304\230q\240\r\250Q\330\004\024\220F\230$""\230a\230|\2501\360\006\000\005\013\210'\220\021\220!\360*\000\n\020\210v\220\\\240\035\320.>\270j\310\001\360\010\000\005\010\200|\220=\240\001\240\023\240E\250\023\250A\340\004\013\2101\2508\2601\250X\260Q";
+    #else /* compression: none (2788 bytes) */
+const char* const bytes = "Bubble location (Vuetify location syntax)Cancel callbackCancel labelConfirm callbackConfirm labelConfirmation textTrigger button label; defaults to the placement value.?bottom-endbottom-startdefault = text; primary = elevated/colored\n        <div style=\"display: contents\">\n            <v-menu\n                :location=\"data.location\"\n                close-on-click\n            >\n                <template #activator=\"{ props }\">\n                    <div>\n                        <v-btn v-show=\"data.button_text\" variant=\"text\" v-bind=\"props\">{{ data.button_text }}</v-btn>\n                        <div :id=\"data.ref_slot_id\" v-bind=\"props\" style=\"cursor: pointer;\"></div>\n                    </div>\n                </template>\n                \n                <v-card>\n                    <v-card-text>{{ data.title }}</v-card-text>\n                    <v-card-actions>\n                        <div class=\"flex-grow-1\"></div>\n                        <v-btn \n                            variant=\"text\" \n                            \\@click=\"$emit('close'); onserver('cancel')\"\n                        >{{ data.cancel_button_text }}</v-btn>\n                        <v-btn \n                            :variant=\"data.confirm_variant\" \n                            :color=\"data.confirm_color\"\n                            \\@click=\"$emit('close'); onserver('onconfirm')\"\n                        >{{ data.confirm_button_text }}</v-btn>\n                    </v-card-actions>\n                </v-card>\n            </v-menu>\n        </div>   \n    left-endleft-startprimary = elevated/colored; default = text-ref_slotright-endright-startsimplestart/ss_ui/popconfirm.pytop-endtop-startv-menu\347\241\256\350\256\244CanceledConfirmedPOPCONFIRM_SCHEMA__Pyx_PyDict_NextRef\345\217\226\346\266\210asyncio.coroutinesbottombutton_textcallablecancelcancel_button_textcancel_button_typecancel_colorcancel_typecancel_variantcategorycheck_schema_kwargscline_in""_tracebackconfirmconfirm_button_textconfirm_button_typeconfirm_colorconfirm_typeconfirm_variantdatadefaultdocelevatedeventsfeedback__func__gethandle_cancelhandle_confirmhandlersidinner_context_is_coroutineitemskwargs<lambda>leftlocation__main____module____name__nameoncancelonconfirmoptionsparamsplacementpopconfirmpopconfirm.<locals>.<lambda>positionalprimary__qualname__reactiveref_slotref_slot_idresright__set_name__setdefaultsimplestart.ss_ui.popconfirmss_coress_core.componentstr__test__texttitletoptypeuuiduuid4valuesvuetifyvuetify_base\2508\2601\250X\260Q\200\001\360&\000\005\030\220q\230\016\240h\250a\330\004\013\2106\220\024\220Q\220h\230a\340\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\320\t\"\240&\250\004\250A\320-D\300A\330\004\010\210\001\320\t!\240\026\240t\2501\320,B\300!\360\006\000\005\024\2206\230\024\230Q\320\0365\260Q\330\004\010\210\001\320\t\036\230n\250M\270\023\270O\3101\330\004\010\210\001\320\t\034\230M\250\035\260c\270\037\310\001\340\004\022\220&\230\004\230A\320\0353\2601\330\004\010\210\001\320\t\035\230Z\240|\2603\260o\300Q\330\004\010\210\001\320\t\033\2306\240\034\250S\260\017\270q\360\006\000\005\t\210\001\210\036\220v\230T\240\021\240-\250q\340\004\010\210\001\320\t\032\230&\240\004\240A\240_\260D\270\001\270\021\360\006\000\005\023\220#\220S\230\001\230\024\230V\2403\240b\250\001\330\004\010\210\001\320\t\032\230!\360\006\000\005\026\220V\2304\230q\240\r\250Q\330\004\024\220F\230$\230a\230|\2501\360\006\000\005\013\210'\220\021\220!\360<\000\n\017\210f\220J\230m\320+;\270:\300Q\360\006\000\005\010\200|\220=\240\001\240\023\240E\250\021\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 53; i++) {
+    for (int i = 0; i < 103; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 6) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 24) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3441,7 +3831,7 @@ const char* const bytes = ".?\n        <div style=\"display: contents\">\n      
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 53; i < 56; i++) {
+    for (int i = 103; i < 106; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3452,14 +3842,14 @@ const char* const bytes = ".?\n        <div style=\"display: contents\">\n      
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 56; i++) {
+    for (Py_ssize_t i = 0; i < 106; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 53;
+      PyObject **table = stringtab + 103;
       for (Py_ssize_t i=0; i<3; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3477,33 +3867,6 @@ const char* const bytes = ".?\n        <div style=\"display: contents\">\n      
     }
     #endif
   }
-  {
-    PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 0;
-    int8_t const cint_constants_1[] = {0};
-    for (int i = 0; i < 1; i++) {
-      numbertab[i] = PyLong_FromLong(cint_constants_1[i - 0]);
-      if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
-    }
-  }
-  #if CYTHON_IMMORTAL_CONSTANTS
-  {
-    PyObject **table = __pyx_mstate->__pyx_number_tab;
-    for (Py_ssize_t i=0; i<1; ++i) {
-      #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-      #if PY_VERSION_HEX < 0x030E0000
-      if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
-      #else
-      if (PyUnstable_Object_IsUniquelyReferenced(table[i]))
-      #endif
-      {
-        Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
-      }
-      #else
-      Py_SET_REFCNT(table[i], _Py_IMMORTAL_INITIAL_REFCNT);
-      #endif
-    }
-  }
-  #endif
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3513,9 +3876,9 @@ typedef struct {
     unsigned int argcount : 1;
     unsigned int num_posonly_args : 1;
     unsigned int num_kwonly_args : 1;
-    unsigned int nlocals : 3;
+    unsigned int nlocals : 4;
     unsigned int flags : 10;
-    unsigned int first_line : 6;
+    unsigned int first_line : 7;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -3532,19 +3895,19 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 39};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
     PyObject* const varnames[] = {0};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_popconfirm_py, __pyx_mstate->__pyx_n_u_lambda, __pyx_mstate->__pyx_kp_b_iso88591_XQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 40};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 71};
     PyObject* const varnames[] = {0};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_popconfirm_py, __pyx_mstate->__pyx_n_u_lambda, __pyx_mstate->__pyx_kp_b_iso88591_81, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 4};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_ref_slot_id, __pyx_mstate->__pyx_n_u_handle_confirm, __pyx_mstate->__pyx_n_u_handle_cancel, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_popconfirm_py, __pyx_mstate->__pyx_n_u_popconfirm, __pyx_mstate->__pyx_kp_b_iso88591_6_Qha_F_ay_A_DA_t1_B_A_DA_t1_B, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 25};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_confirm_type, __pyx_mstate->__pyx_n_u_cancel_type, __pyx_mstate->__pyx_n_u_ref_slot_id, __pyx_mstate->__pyx_n_u_handle_confirm, __pyx_mstate->__pyx_n_u_handle_cancel, __pyx_mstate->__pyx_n_u_res};
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_popconfirm_py, __pyx_mstate->__pyx_n_u_popconfirm, __pyx_mstate->__pyx_kp_b_iso88591_q_ha_6_Qha_F_ay_A_DA_t1_B_6_Q_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -3931,6 +4294,217 @@ static int __Pyx_CheckKeywordStrings(
 #endif
 }
 
+/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    int result;
+    PyObject *exc_type;
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *current_exception = tstate->current_exception;
+    if (unlikely(!current_exception)) return 0;
+    exc_type = (PyObject*) Py_TYPE(current_exception);
+    if (exc_type == err) return 1;
+#else
+    exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+#endif
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_INCREF(exc_type);
+    #endif
+    if (unlikely(PyTuple_Check(err))) {
+        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    } else {
+        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+    }
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_DECREF(exc_type);
+    #endif
+    return result;
+}
+#endif
+
+/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *tmp_value;
+    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
+    if (value) {
+        #if CYTHON_COMPILING_IN_CPYTHON
+        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
+        #endif
+            PyException_SetTraceback(value, tb);
+    }
+    tmp_value = tstate->current_exception;
+    tstate->current_exception = value;
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(type);
+    Py_XDECREF(tb);
+#else
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject* exc_value;
+    exc_value = tstate->current_exception;
+    tstate->current_exception = 0;
+    *value = exc_value;
+    *type = NULL;
+    *tb = NULL;
+    if (exc_value) {
+        *type = (PyObject*) Py_TYPE(exc_value);
+        Py_INCREF(*type);
+        #if CYTHON_COMPILING_IN_CPYTHON
+        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
+        Py_XINCREF(*tb);
+        #else
+        *tb = PyException_GetTraceback(exc_value);
+        #endif
+    }
+#else
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#endif
+}
+#endif
+
+/* PyObjectGetAttrStr (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name) {
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_getattro))
+        return tp->tp_getattro(obj, attr_name);
+    return PyObject_GetAttr(obj, attr_name);
+}
+#endif
+
+/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
+        __Pyx_PyErr_Clear();
+}
+#endif
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
+    PyObject *result;
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
+    return result;
+#else
+#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
+        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
+    }
+#endif
+    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
+    if (unlikely(!result)) {
+        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
+    }
+    return result;
+#endif
+}
+
+/* GetBuiltinName (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
+    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
+    if (unlikely(!result) && !PyErr_Occurred()) {
+        PyErr_Format(PyExc_NameError,
+            "name '%U' is not defined", name);
+    }
+    return result;
+}
+
+/* PyDictVersioning (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
+    PyObject **dictptr = NULL;
+    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
+    if (offset) {
+#if CYTHON_COMPILING_IN_CPYTHON
+        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
+#else
+        dictptr = _PyObject_GetDictPtr(obj);
+#endif
+    }
+    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
+}
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
+        return 0;
+    return obj_dict_version == __Pyx_get_object_dict_version(obj);
+}
+#endif
+
+/* GetModuleGlobalName */
+#if CYTHON_USE_DICT_VERSIONS
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
+#else
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
+#endif
+{
+    PyObject *result;
+#if CYTHON_COMPILING_IN_LIMITED_API
+    if (unlikely(!__pyx_m)) {
+        if (!PyErr_Occurred())
+            PyErr_SetNone(PyExc_NameError);
+        return NULL;
+    }
+    result = PyObject_GetAttr(__pyx_m, name);
+    if (likely(result)) {
+        return result;
+    }
+    PyErr_Clear();
+#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
+    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return result;
+    }
+#else
+    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return __Pyx_NewRef(result);
+    }
+    PyErr_Clear();
+#endif
+    return __Pyx_GetBuiltinName(name);
+}
+
 /* PyObjectCall (used by PyObjectFastCall) */
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
@@ -3971,7 +4545,7 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject
 }
 #endif
 
-/* PyObjectFastCall (used by PyObjectCall2Args) */
+/* PyObjectFastCall */
 #if PY_VERSION_HEX < 0x03090000 || CYTHON_COMPILING_IN_LIMITED_API
 static PyObject* __Pyx_PyObject_FastCall_fallback(PyObject *func, PyObject * const*args, size_t nargs, PyObject *kwargs) {
     PyObject *argstuple;
@@ -4053,16 +4627,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyOb
     PyObject *args[3] = {NULL, arg1, arg2};
     return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
-
-/* PyObjectGetAttrStr (used by UnpackUnboundCMethod) */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject* attr_name) {
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_getattro))
-        return tp->tp_getattro(obj, attr_name);
-    return PyObject_GetAttr(obj, attr_name);
-}
-#endif
 
 /* UnpackUnboundCMethod (used by CallUnboundCMethod1) */
 #if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030C0000
@@ -4304,207 +4868,6 @@ static PyObject *__Pyx_PyDict_GetItem(PyObject *d, PyObject* key) {
     return value;
 }
 #endif
-
-/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    int result;
-    PyObject *exc_type;
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *current_exception = tstate->current_exception;
-    if (unlikely(!current_exception)) return 0;
-    exc_type = (PyObject*) Py_TYPE(current_exception);
-    if (exc_type == err) return 1;
-#else
-    exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-#endif
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_INCREF(exc_type);
-    #endif
-    if (unlikely(PyTuple_Check(err))) {
-        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    } else {
-        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-    }
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_DECREF(exc_type);
-    #endif
-    return result;
-}
-#endif
-
-/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *tmp_value;
-    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
-    if (value) {
-        #if CYTHON_COMPILING_IN_CPYTHON
-        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
-        #endif
-            PyException_SetTraceback(value, tb);
-    }
-    tmp_value = tstate->current_exception;
-    tstate->current_exception = value;
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(type);
-    Py_XDECREF(tb);
-#else
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject* exc_value;
-    exc_value = tstate->current_exception;
-    tstate->current_exception = 0;
-    *value = exc_value;
-    *type = NULL;
-    *tb = NULL;
-    if (exc_value) {
-        *type = (PyObject*) Py_TYPE(exc_value);
-        Py_INCREF(*type);
-        #if CYTHON_COMPILING_IN_CPYTHON
-        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
-        Py_XINCREF(*tb);
-        #else
-        *tb = PyException_GetTraceback(exc_value);
-        #endif
-    }
-#else
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#endif
-}
-#endif
-
-/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
-        __Pyx_PyErr_Clear();
-}
-#endif
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
-    PyObject *result;
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
-    return result;
-#else
-#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
-        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
-    }
-#endif
-    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
-    if (unlikely(!result)) {
-        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
-    }
-    return result;
-#endif
-}
-
-/* GetBuiltinName (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
-    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
-    if (unlikely(!result) && !PyErr_Occurred()) {
-        PyErr_Format(PyExc_NameError,
-            "name '%U' is not defined", name);
-    }
-    return result;
-}
-
-/* PyDictVersioning (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
-    PyObject **dictptr = NULL;
-    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
-    if (offset) {
-#if CYTHON_COMPILING_IN_CPYTHON
-        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
-#else
-        dictptr = _PyObject_GetDictPtr(obj);
-#endif
-    }
-    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
-}
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
-        return 0;
-    return obj_dict_version == __Pyx_get_object_dict_version(obj);
-}
-#endif
-
-/* GetModuleGlobalName */
-#if CYTHON_USE_DICT_VERSIONS
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
-#else
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
-#endif
-{
-    PyObject *result;
-#if CYTHON_COMPILING_IN_LIMITED_API
-    if (unlikely(!__pyx_m)) {
-        if (!PyErr_Occurred())
-            PyErr_SetNone(PyExc_NameError);
-        return NULL;
-    }
-    result = PyObject_GetAttr(__pyx_m, name);
-    if (likely(result)) {
-        return result;
-    }
-    PyErr_Clear();
-#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
-    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return result;
-    }
-#else
-    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return __Pyx_NewRef(result);
-    }
-    PyErr_Clear();
-#endif
-    return __Pyx_GetBuiltinName(name);
-}
 
 /* PyUnicode_Substring */
 static CYTHON_INLINE PyObject* __Pyx_PyUnicode_Substring(
@@ -6450,7 +6813,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         if (unlikely(!module_name_str)) { goto modbad; }
         module_name = PyUnicode_FromString(module_name_str);
         if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__3);
+        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__4);
         if (unlikely(!module_dot)) { goto modbad; }
         full_name = PyUnicode_Concat(module_dot, name);
         if (unlikely(!full_name)) { goto modbad; }
@@ -6474,6 +6837,25 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         PyErr_Format(PyExc_ImportError, "cannot import name %S", name);
     }
     return value;
+}
+
+/* ListPack */
+static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...) {
+    va_list va;
+    PyObject *l = PyList_New(n);
+    va_start(va, n);
+    if (unlikely(!l)) goto end;
+    for (Py_ssize_t i=0; i<n; ++i) {
+        PyObject *arg = va_arg(va, PyObject*);
+        Py_INCREF(arg);
+        if (__Pyx_PyList_SET_ITEM(l, i, arg) != (0)) {
+            Py_CLEAR(l);
+            goto end;
+        }
+    }
+    end:
+    va_end(va);
+    return l;
 }
 
 /* CLineInTraceback (used by AddTraceback) */
@@ -6803,7 +7185,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__5);
     }
     goto done;
 }

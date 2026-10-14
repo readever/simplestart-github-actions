@@ -1512,12 +1512,12 @@ static const char* const __pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload;
 
-/* "simplestart/ss_ui/upload.py":4
+/* "simplestart/ss_ui/upload.py":33
  * 
  * 
  * def upload(**kwargs):             # <<<<<<<<<<<<<<
- *     data = kwargs.get("data", {})
- * 
+ *     """
+ *      Vuetify v-file-upload
 */
 struct __pyx_obj_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload {
   PyObject_HEAD
@@ -1806,6 +1806,110 @@ static CYTHON_INLINE int __Pyx_ParseKeywords(
 /* RaiseClosureNameError.proto */
 static void __Pyx_RaiseClosureNameError(const char *varname);
 
+/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
+#endif
+
+/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
+#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
+#if PY_VERSION_HEX >= 0x030C00A6
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
+#else
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
+#endif
+#else
+#define __Pyx_PyThreadState_declare
+#define __Pyx_PyThreadState_assign
+#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
+#endif
+
+/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
+#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
+#else
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#endif
+#else
+#define __Pyx_PyErr_Clear() PyErr_Clear()
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
+#endif
+
+/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
+
+/* GetBuiltinName.proto (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name);
+
+/* PyDictVersioning.proto (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+#define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
+#define __PYX_GET_DICT_VERSION(dict)  (((PyDictObject*)(dict))->ma_version_tag)
+#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)\
+    (version_var) = __PYX_GET_DICT_VERSION(dict);\
+    (cache_var) = (value);
+#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP) {\
+    static PY_UINT64_T __pyx_dict_version = 0;\
+    static PyObject *__pyx_dict_cached_value = NULL;\
+    if (likely(__PYX_GET_DICT_VERSION(DICT) == __pyx_dict_version)) {\
+        (VAR) = __Pyx_XNewRef(__pyx_dict_cached_value);\
+    } else {\
+        (VAR) = __pyx_dict_cached_value = (LOOKUP);\
+        __pyx_dict_version = __PYX_GET_DICT_VERSION(DICT);\
+    }\
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj);
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj);
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version);
+#else
+#define __PYX_GET_DICT_VERSION(dict)  (0)
+#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)
+#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP)  (VAR) = (LOOKUP);
+#endif
+
+/* GetModuleGlobalName.proto */
+#if CYTHON_USE_DICT_VERSIONS
+#define __Pyx_GetModuleGlobalName(var, name)  do {\
+    static PY_UINT64_T __pyx_dict_version = 0;\
+    static PyObject *__pyx_dict_cached_value = NULL;\
+    (var) = (likely(__pyx_dict_version == __PYX_GET_DICT_VERSION(__pyx_mstate_global->__pyx_d))) ?\
+        (likely(__pyx_dict_cached_value) ? __Pyx_NewRef(__pyx_dict_cached_value) : __Pyx_GetBuiltinName(name)) :\
+        __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
+} while(0)
+#define __Pyx_GetModuleGlobalNameUncached(var, name)  do {\
+    PY_UINT64_T __pyx_dict_version;\
+    PyObject *__pyx_dict_cached_value;\
+    (var) = __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
+} while(0)
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value);
+#else
+#define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
+#define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
+#endif
+
 /* dict_getitem_default.proto */
 static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
 
@@ -2017,110 +2121,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *closure,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
-
-/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
-
-/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
-#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
-#if PY_VERSION_HEX >= 0x030C00A6
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
-#else
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
-#endif
-#else
-#define __Pyx_PyThreadState_declare
-#define __Pyx_PyThreadState_assign
-#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
-#endif
-
-/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
-#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
-#else
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#endif
-#else
-#define __Pyx_PyErr_Clear() PyErr_Clear()
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
-#endif
-
-/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
-
-/* GetBuiltinName.proto (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name);
-
-/* PyDictVersioning.proto (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-#define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
-#define __PYX_GET_DICT_VERSION(dict)  (((PyDictObject*)(dict))->ma_version_tag)
-#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)\
-    (version_var) = __PYX_GET_DICT_VERSION(dict);\
-    (cache_var) = (value);
-#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP) {\
-    static PY_UINT64_T __pyx_dict_version = 0;\
-    static PyObject *__pyx_dict_cached_value = NULL;\
-    if (likely(__PYX_GET_DICT_VERSION(DICT) == __pyx_dict_version)) {\
-        (VAR) = __Pyx_XNewRef(__pyx_dict_cached_value);\
-    } else {\
-        (VAR) = __pyx_dict_cached_value = (LOOKUP);\
-        __pyx_dict_version = __PYX_GET_DICT_VERSION(DICT);\
-    }\
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj);
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj);
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version);
-#else
-#define __PYX_GET_DICT_VERSION(dict)  (0)
-#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)
-#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP)  (VAR) = (LOOKUP);
-#endif
-
-/* GetModuleGlobalName.proto */
-#if CYTHON_USE_DICT_VERSIONS
-#define __Pyx_GetModuleGlobalName(var, name)  do {\
-    static PY_UINT64_T __pyx_dict_version = 0;\
-    static PyObject *__pyx_dict_cached_value = NULL;\
-    (var) = (likely(__pyx_dict_version == __PYX_GET_DICT_VERSION(__pyx_mstate_global->__pyx_d))) ?\
-        (likely(__pyx_dict_cached_value) ? __Pyx_NewRef(__pyx_dict_cached_value) : __Pyx_GetBuiltinName(name)) :\
-        __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
-} while(0)
-#define __Pyx_GetModuleGlobalNameUncached(var, name)  do {\
-    PY_UINT64_T __pyx_dict_version;\
-    PyObject *__pyx_dict_cached_value;\
-    (var) = __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
-} while(0)
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value);
-#else
-#define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
-#define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
-#endif
 
 /* PyObjectVectorCallKwBuilder.proto */
 CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
@@ -2384,7 +2384,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[2];
-  PyObject *__pyx_string_tab[45];
+  PyObject *__pyx_string_tab[96];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2431,50 +2431,101 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u__2 __pyx_string_tab[1]
-#define __pyx_kp_u__3 __pyx_string_tab[2]
-#define __pyx_kp_u_disable __pyx_string_tab[3]
-#define __pyx_kp_u_el_upload_v_model_file_list_dat __pyx_string_tab[4]
-#define __pyx_kp_u_enable __pyx_string_tab[5]
-#define __pyx_kp_u_gc __pyx_string_tab[6]
-#define __pyx_kp_u_isenabled __pyx_string_tab[7]
-#define __pyx_kp_u_simplestart_ss_ui_upload_py __pyx_string_tab[8]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[9]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[10]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[11]
-#define __pyx_n_u_data __pyx_string_tab[12]
-#define __pyx_n_u_drag __pyx_string_tab[13]
-#define __pyx_n_u_event __pyx_string_tab[14]
-#define __pyx_n_u_func __pyx_string_tab[15]
-#define __pyx_n_u_get __pyx_string_tab[16]
-#define __pyx_n_u_handlers __pyx_string_tab[17]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[18]
-#define __pyx_n_u_items __pyx_string_tab[19]
-#define __pyx_n_u_kwargs __pyx_string_tab[20]
-#define __pyx_n_u_main __pyx_string_tab[21]
-#define __pyx_n_u_module __pyx_string_tab[22]
-#define __pyx_n_u_multiple __pyx_string_tab[23]
-#define __pyx_n_u_myuploaded __pyx_string_tab[24]
-#define __pyx_n_u_name __pyx_string_tab[25]
-#define __pyx_n_u_on_uploaded __pyx_string_tab[26]
-#define __pyx_n_u_onsuccess __pyx_string_tab[27]
-#define __pyx_n_u_pop __pyx_string_tab[28]
-#define __pyx_n_u_px __pyx_string_tab[29]
-#define __pyx_n_u_qualname __pyx_string_tab[30]
-#define __pyx_n_u_res __pyx_string_tab[31]
-#define __pyx_n_u_set_name __pyx_string_tab[32]
-#define __pyx_n_u_setdefault __pyx_string_tab[33]
-#define __pyx_n_u_simplestart_ss_ui_upload __pyx_string_tab[34]
-#define __pyx_n_u_ss_core __pyx_string_tab[35]
-#define __pyx_n_u_test __pyx_string_tab[36]
-#define __pyx_n_u_upload __pyx_string_tab[37]
-#define __pyx_n_u_upload_locals_myuploaded __pyx_string_tab[38]
-#define __pyx_n_u_value __pyx_string_tab[39]
-#define __pyx_n_u_values __pyx_string_tab[40]
-#define __pyx_n_u_vuetify __pyx_string_tab[41]
-#define __pyx_n_u_width __pyx_string_tab[42]
-#define __pyx_kp_b_iso88591_6_Qha_F_ay_vS_Qha_Baq_A_6_Qha_v __pyx_string_tab[43]
-#define __pyx_kp_b_iso88591_A_1_1A __pyx_string_tab[44]
+#define __pyx_kp_u_Accepted_file_types_e_g_image_or __pyx_string_tab[1]
+#define __pyx_kp_u_Allow_multiple_files __pyx_string_tab[2]
+#define __pyx_kp_u_Allow_removing_files_from_the_li __pyx_string_tab[3]
+#define __pyx_kp_u_Browse_Files __pyx_string_tab[4]
+#define __pyx_kp_u_Browse_button_text __pyx_string_tab[5]
+#define __pyx_kp_u_Density_default_comfortable_comp __pyx_string_tab[6]
+#define __pyx_kp_u_Disable_the_uploader __pyx_string_tab[7]
+#define __pyx_kp_u_Divider_text_between_browse_and __pyx_string_tab[8]
+#define __pyx_kp_u_Enable_drag_and_drop_zone __pyx_string_tab[9]
+#define __pyx_kp_u_File_uploaded_event_value_file_l __pyx_string_tab[10]
+#define __pyx_kp_u_Hide_the_browse_button __pyx_string_tab[11]
+#define __pyx_kp_u_Initial_file_list __pyx_string_tab[12]
+#define __pyx_kp_u_Inset_style_file_list __pyx_string_tab[13]
+#define __pyx_kp_u_Show_file_size_in_the_list __pyx_string_tab[14]
+#define __pyx_kp_u_Upload_success_callback_event_va __pyx_string_tab[15]
+#define __pyx_kp_u_Width_numbers_become_px __pyx_string_tab[16]
+#define __pyx_kp_u_Zone_subtitle_text __pyx_string_tab[17]
+#define __pyx_kp_u_Zone_title_text __pyx_string_tab[18]
+#define __pyx_kp_u__2 __pyx_string_tab[19]
+#define __pyx_kp_u__3 __pyx_string_tab[20]
+#define __pyx_kp_u__4 __pyx_string_tab[21]
+#define __pyx_kp_u_disable __pyx_string_tab[22]
+#define __pyx_kp_u_div_style_width_data_width_disp __pyx_string_tab[23]
+#define __pyx_kp_u_enable __pyx_string_tab[24]
+#define __pyx_kp_u_gc __pyx_string_tab[25]
+#define __pyx_kp_u_int_str __pyx_string_tab[26]
+#define __pyx_kp_u_isenabled __pyx_string_tab[27]
+#define __pyx_kp_u_simplestart_ss_ui_upload_py __pyx_string_tab[28]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[29]
+#define __pyx_n_u_UPLOAD_SCHEMA __pyx_string_tab[30]
+#define __pyx_n_u_accept __pyx_string_tab[31]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[32]
+#define __pyx_n_u_bool __pyx_string_tab[33]
+#define __pyx_n_u_browse_text __pyx_string_tab[34]
+#define __pyx_n_u_callable __pyx_string_tab[35]
+#define __pyx_n_u_category __pyx_string_tab[36]
+#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[37]
+#define __pyx_n_u_clearable __pyx_string_tab[38]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[39]
+#define __pyx_n_u_compact __pyx_string_tab[40]
+#define __pyx_n_u_data __pyx_string_tab[41]
+#define __pyx_n_u_default __pyx_string_tab[42]
+#define __pyx_n_u_density __pyx_string_tab[43]
+#define __pyx_n_u_disabled __pyx_string_tab[44]
+#define __pyx_n_u_divider_text __pyx_string_tab[45]
+#define __pyx_n_u_doc __pyx_string_tab[46]
+#define __pyx_n_u_drag __pyx_string_tab[47]
+#define __pyx_n_u_event __pyx_string_tab[48]
+#define __pyx_n_u_events __pyx_string_tab[49]
+#define __pyx_n_u_form __pyx_string_tab[50]
+#define __pyx_n_u_func __pyx_string_tab[51]
+#define __pyx_n_u_get __pyx_string_tab[52]
+#define __pyx_n_u_handlers __pyx_string_tab[53]
+#define __pyx_n_u_hide_browse __pyx_string_tab[54]
+#define __pyx_n_u_inset_file_list __pyx_string_tab[55]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[56]
+#define __pyx_n_u_items __pyx_string_tab[57]
+#define __pyx_n_u_kwargs __pyx_string_tab[58]
+#define __pyx_n_u_list __pyx_string_tab[59]
+#define __pyx_n_u_main __pyx_string_tab[60]
+#define __pyx_n_u_module __pyx_string_tab[61]
+#define __pyx_n_u_multiple __pyx_string_tab[62]
+#define __pyx_n_u_myuploaded __pyx_string_tab[63]
+#define __pyx_n_u_name __pyx_string_tab[64]
+#define __pyx_n_u_name_2 __pyx_string_tab[65]
+#define __pyx_n_u_on_uploaded __pyx_string_tab[66]
+#define __pyx_n_u_onsuccess __pyx_string_tab[67]
+#define __pyx_n_u_or __pyx_string_tab[68]
+#define __pyx_n_u_params __pyx_string_tab[69]
+#define __pyx_n_u_pop __pyx_string_tab[70]
+#define __pyx_n_u_positional __pyx_string_tab[71]
+#define __pyx_n_u_px __pyx_string_tab[72]
+#define __pyx_n_u_qualname __pyx_string_tab[73]
+#define __pyx_n_u_reactive __pyx_string_tab[74]
+#define __pyx_n_u_res __pyx_string_tab[75]
+#define __pyx_n_u_set_name __pyx_string_tab[76]
+#define __pyx_n_u_setdefault __pyx_string_tab[77]
+#define __pyx_n_u_show_size __pyx_string_tab[78]
+#define __pyx_n_u_simplestart_ss_ui_upload __pyx_string_tab[79]
+#define __pyx_n_u_ss_core __pyx_string_tab[80]
+#define __pyx_n_u_ss_core_component __pyx_string_tab[81]
+#define __pyx_n_u_str __pyx_string_tab[82]
+#define __pyx_n_u_subtitle __pyx_string_tab[83]
+#define __pyx_n_u_success __pyx_string_tab[84]
+#define __pyx_n_u_test __pyx_string_tab[85]
+#define __pyx_n_u_title __pyx_string_tab[86]
+#define __pyx_n_u_type __pyx_string_tab[87]
+#define __pyx_n_u_upload __pyx_string_tab[88]
+#define __pyx_n_u_upload_locals_myuploaded __pyx_string_tab[89]
+#define __pyx_n_u_value __pyx_string_tab[90]
+#define __pyx_n_u_values __pyx_string_tab[91]
+#define __pyx_n_u_vuetify __pyx_string_tab[92]
+#define __pyx_n_u_width __pyx_string_tab[93]
+#define __pyx_kp_b_iso88591_A_1_Qa __pyx_string_tab[94]
+#define __pyx_kp_b_iso88591_q_6_Qha_F_ay_vS_Qha_Baq_A_vT_a __pyx_string_tab[95]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2492,7 +2543,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload);
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<45; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<96; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2518,7 +2569,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload);
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<45; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<96; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2532,12 +2583,12 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_ui/upload.py":4
+/* "simplestart/ss_ui/upload.py":33
  * 
  * 
  * def upload(**kwargs):             # <<<<<<<<<<<<<<
- *     data = kwargs.get("data", {})
- * 
+ *     """
+ *      Vuetify v-file-upload
 */
 
 /* Python wrapper */
@@ -2548,7 +2599,8 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_6upload_1upload = {"upload", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_6upload_1upload, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_6upload_upload, "\n    \345\210\233\345\273\272\346\226\207\344\273\266\344\270\212\344\274\240\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Vuetify v-file-upload\357\274\214\346\213\226\346\224\276\344\270\212\344\274\240\345\214\272\357\274\211\n    \n    \345\217\202\346\225\260:\n    - width: \345\256\275\345\272\246\n    - multiple: \346\230\257\345\220\246\345\205\201\350\256\270\345\244\232\351\200\211\357\274\210\351\273\230\350\256\244 True\357\274\211\n    - value: \346\226\207\344\273\266\345\210\227\350\241\250\357\274\210File \345\257\271\350\261\241\346\225\260\347\273\204\357\274\211\n    - title: \346\240\207\351\242\230\346\226\207\346\241\210\357\274\210\351\273\230\350\256\244 \"Drop files here or\"\357\274\211\n    - subtitle: \345\211\257\346\240\207\351\242\230\346\226\207\346\241\210\n    - browse_text: \346\265\217\350\247\210\346\214\211\351\222\256\346\226\207\346\241\210\357\274\210\351\273\230\350\256\244 \"Browse Files\"\357\274\211\n    - divider_text: \345\210\206\351\232\224\347\254\246\346\226\207\346\241\210\357\274\210\351\273\230\350\256\244 \"or\"\357\274\211\n    - show_size: \346\230\257\345\220\246\346\230\276\347\244\272\346\226\207\344\273\266\345\244\247\345\260\217\n    - inset_file_list: \346\230\257\345\220\246\345\260\206\346\226\207\344\273\266\345\210\227\350\241\250\345\265\214\345\205\245\346\213\226\346\224\276\345\214\272\345\206\205\n    - clearable: \346\230\257\345\220\246\345\217\257\346\270\205\351\231\244\n    - hide_browse: \346\230\257\345\220\246\351\232\220\350\227\217\346\265\217\350\247\210\346\214\211\351\222\256\n    - disabled: \346\230\257\345\220\246\347\246\201\347\224\250\n    - accept: \346\216\245\345\217\227\347\232\204 MIME \347\261\273\345\236\213\n    - density: \345\257\206\345\272\246\357\274\210\351\273\230\350\256\244 compact\357\274\211\n    - drag: \346\230\257\345\220\246\346\224\257\346\214\201\346\213\226\346\224\276\344\270\212\344\274\240\357\274\210\351\273\230\350\256\244 True""\357\274\233\344\270\272 False \346\227\266\351\231\215\347\272\247\344\270\272 v-file-input\357\274\214\344\273\205\346\224\257\346\214\201\347\202\271\345\207\273\351\200\211\346\213\251\357\274\211\n    - onsuccess: \346\226\207\344\273\266\351\200\211\346\213\251\345\217\230\345\214\226\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n    ");
+static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_6upload_1upload = {"upload", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_6upload_1upload, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_6upload_upload};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_6upload_1upload(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
@@ -2593,12 +2645,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/upload.py":23
+/* "simplestart/ss_ui/upload.py":81
  *     onsuccess = kwargs.get("onsuccess", None)
  * 
  *     def myuploaded(event):             # <<<<<<<<<<<<<<
  *         if onsuccess:
- *           onsuccess(event)
+ *             onsuccess(event)
 */
 
 /* Python wrapper */
@@ -2640,32 +2692,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 23, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 81, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 23, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 81, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myuploaded", 0) < (0)) __PYX_ERR(0, 23, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myuploaded", 0) < (0)) __PYX_ERR(0, 81, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myuploaded", 1, 1, 1, i); __PYX_ERR(0, 23, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myuploaded", 1, 1, 1, i); __PYX_ERR(0, 81, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 23, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 81, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myuploaded", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 23, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myuploaded", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 81, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2703,26 +2755,26 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_6upload_myuploaded(PyObje
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/upload.py":24
+  /* "simplestart/ss_ui/upload.py":82
  * 
  *     def myuploaded(event):
  *         if onsuccess:             # <<<<<<<<<<<<<<
- *           onsuccess(event)
+ *             onsuccess(event)
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onsuccess)) { __Pyx_RaiseClosureNameError("onsuccess"); __PYX_ERR(0, 24, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onsuccess); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onsuccess)) { __Pyx_RaiseClosureNameError("onsuccess"); __PYX_ERR(0, 82, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onsuccess); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 82, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "simplestart/ss_ui/upload.py":25
+    /* "simplestart/ss_ui/upload.py":83
  *     def myuploaded(event):
  *         if onsuccess:
- *           onsuccess(event)             # <<<<<<<<<<<<<<
+ *             onsuccess(event)             # <<<<<<<<<<<<<<
  * 
- *     res = vuetify('''
+ *     res = vuetify(r'''
 */
     __pyx_t_3 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onsuccess)) { __Pyx_RaiseClosureNameError("onsuccess"); __PYX_ERR(0, 25, __pyx_L1_error) }
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onsuccess)) { __Pyx_RaiseClosureNameError("onsuccess"); __PYX_ERR(0, 83, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onsuccess);
     __pyx_t_4 = __pyx_cur_scope->__pyx_v_onsuccess; 
     __pyx_t_5 = 1;
@@ -2742,26 +2794,26 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_6upload_myuploaded(PyObje
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "simplestart/ss_ui/upload.py":24
+    /* "simplestart/ss_ui/upload.py":82
  * 
  *     def myuploaded(event):
  *         if onsuccess:             # <<<<<<<<<<<<<<
- *           onsuccess(event)
+ *             onsuccess(event)
  * 
 */
   }
 
-  /* "simplestart/ss_ui/upload.py":23
+  /* "simplestart/ss_ui/upload.py":81
  *     onsuccess = kwargs.get("onsuccess", None)
  * 
  *     def myuploaded(event):             # <<<<<<<<<<<<<<
  *         if onsuccess:
- *           onsuccess(event)
+ *             onsuccess(event)
 */
 
   /* function exit code */
@@ -2779,12 +2831,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_6upload_myuploaded(PyObje
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/upload.py":4
+/* "simplestart/ss_ui/upload.py":33
  * 
  * 
  * def upload(**kwargs):             # <<<<<<<<<<<<<<
- *     data = kwargs.get("data", {})
- * 
+ *     """
+ *      Vuetify v-file-upload
 */
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_kwargs) {
@@ -2797,10 +2849,10 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  int __pyx_t_3;
+  PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  PyObject *__pyx_t_5 = NULL;
-  size_t __pyx_t_6;
+  size_t __pyx_t_5;
+  int __pyx_t_6;
   PyObject *__pyx_t_7 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -2810,74 +2862,109 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 4, __pyx_L1_error)
+    __PYX_ERR(0, 33, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
 
-  /* "simplestart/ss_ui/upload.py":5
+  /* "simplestart/ss_ui/upload.py":55
+ *     - onsuccess:
+ *     """
+ *     check_schema_kwargs("upload", kwargs, UPLOAD_SCHEMA)             # <<<<<<<<<<<<<<
+ *     data = kwargs.get("data", {})
  * 
- * def upload(**kwargs):
+*/
+  __pyx_t_2 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_UPLOAD_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_2);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_upload, __pyx_v_kwargs, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/upload.py":56
+ *     """
+ *     check_schema_kwargs("upload", kwargs, UPLOAD_SCHEMA)
  *     data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
  * 
- *     # switch
+ *     width = kwargs.get("width", "")
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_data = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_v_data = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/upload.py":9
- *     # switch
- *     # upload
+  /* "simplestart/ss_ui/upload.py":58
+ *     data = kwargs.get("data", {})
+ * 
  *     width = kwargs.get("width", "")             # <<<<<<<<<<<<<<
  *     if width != "":
  *         if isinstance(width, (int)):
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_width = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_width = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/upload.py":10
- *     # upload
+  /* "simplestart/ss_ui/upload.py":59
+ * 
  *     width = kwargs.get("width", "")
  *     if width != "":             # <<<<<<<<<<<<<<
  *         if isinstance(width, (int)):
  *             width = f"{width}px"
 */
-  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_v_width, __pyx_mstate_global->__pyx_kp_u_, Py_NE)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 10, __pyx_L1_error)
-  if (__pyx_t_3) {
+  __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_width, __pyx_mstate_global->__pyx_kp_u_, Py_NE)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
+  if (__pyx_t_6) {
 
-    /* "simplestart/ss_ui/upload.py":11
+    /* "simplestart/ss_ui/upload.py":60
  *     width = kwargs.get("width", "")
  *     if width != "":
  *         if isinstance(width, (int)):             # <<<<<<<<<<<<<<
  *             width = f"{width}px"
  * 
 */
-    __pyx_t_3 = PyLong_Check(__pyx_v_width); 
-    if (__pyx_t_3) {
+    __pyx_t_6 = PyLong_Check(__pyx_v_width); 
+    if (__pyx_t_6) {
 
-      /* "simplestart/ss_ui/upload.py":12
+      /* "simplestart/ss_ui/upload.py":61
  *     if width != "":
  *         if isinstance(width, (int)):
  *             width = f"{width}px"             # <<<<<<<<<<<<<<
  * 
  *     data["width"] = width
 */
-      __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_v_width, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_px); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_width, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_1 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_px); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF_SET(__pyx_v_width, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "simplestart/ss_ui/upload.py":11
+      /* "simplestart/ss_ui/upload.py":60
  *     width = kwargs.get("width", "")
  *     if width != "":
  *         if isinstance(width, (int)):             # <<<<<<<<<<<<<<
@@ -2886,8 +2973,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
 */
     }
 
-    /* "simplestart/ss_ui/upload.py":10
- *     # upload
+    /* "simplestart/ss_ui/upload.py":59
+ * 
  *     width = kwargs.get("width", "")
  *     if width != "":             # <<<<<<<<<<<<<<
  *         if isinstance(width, (int)):
@@ -2895,101 +2982,233 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
 */
   }
 
-  /* "simplestart/ss_ui/upload.py":14
+  /* "simplestart/ss_ui/upload.py":63
  *             width = f"{width}px"
  * 
  *     data["width"] = width             # <<<<<<<<<<<<<<
- *     data["drag"] = kwargs.get("drag", False)
- *     data["multiple"] = kwargs.get("multiple", False)
-*/
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_width, __pyx_v_width) < 0))) __PYX_ERR(0, 14, __pyx_L1_error)
-
-  /* "simplestart/ss_ui/upload.py":15
- * 
- *     data["width"] = width
- *     data["drag"] = kwargs.get("drag", False)             # <<<<<<<<<<<<<<
- *     data["multiple"] = kwargs.get("multiple", False)
+ *     data["multiple"] = kwargs.get("multiple", True)
  *     data["value"] = kwargs.get("value", [])
 */
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_drag, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_drag, __pyx_t_1) < 0))) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_width, __pyx_v_width) < 0))) __PYX_ERR(0, 63, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/upload.py":16
- *     data["width"] = width
- *     data["drag"] = kwargs.get("drag", False)
- *     data["multiple"] = kwargs.get("multiple", False)             # <<<<<<<<<<<<<<
- *     data["value"] = kwargs.get("value", [])
+  /* "simplestart/ss_ui/upload.py":64
  * 
+ *     data["width"] = width
+ *     data["multiple"] = kwargs.get("multiple", True)             # <<<<<<<<<<<<<<
+ *     data["value"] = kwargs.get("value", [])
+ *     data["title"] = kwargs.get("title", "")
 */
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_multiple, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_multiple, Py_True); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_multiple, __pyx_t_1) < 0))) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_multiple, __pyx_t_1) < 0))) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/upload.py":17
- *     data["drag"] = kwargs.get("drag", False)
- *     data["multiple"] = kwargs.get("multiple", False)
+  /* "simplestart/ss_ui/upload.py":65
+ *     data["width"] = width
+ *     data["multiple"] = kwargs.get("multiple", True)
  *     data["value"] = kwargs.get("value", [])             # <<<<<<<<<<<<<<
- * 
- *     # styleuploadswitch
+ *     data["title"] = kwargs.get("title", "")
+ *     data["subtitle"] = kwargs.get("subtitle", "")
 */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_2) < 0))) __PYX_ERR(0, 17, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_3) < 0))) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/upload.py":21
- *     # styleuploadswitch
+  /* "simplestart/ss_ui/upload.py":66
+ *     data["multiple"] = kwargs.get("multiple", True)
+ *     data["value"] = kwargs.get("value", [])
+ *     data["title"] = kwargs.get("title", "")             # <<<<<<<<<<<<<<
+ *     data["subtitle"] = kwargs.get("subtitle", "")
+ *     data["browse_text"] = kwargs.get("browse_text", "Browse Files")
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_3) < 0))) __PYX_ERR(0, 66, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":67
+ *     data["value"] = kwargs.get("value", [])
+ *     data["title"] = kwargs.get("title", "")
+ *     data["subtitle"] = kwargs.get("subtitle", "")             # <<<<<<<<<<<<<<
+ *     data["browse_text"] = kwargs.get("browse_text", "Browse Files")
+ *     data["divider_text"] = kwargs.get("divider_text", "or")
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_subtitle, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_subtitle, __pyx_t_3) < 0))) __PYX_ERR(0, 67, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":68
+ *     data["title"] = kwargs.get("title", "")
+ *     data["subtitle"] = kwargs.get("subtitle", "")
+ *     data["browse_text"] = kwargs.get("browse_text", "Browse Files")             # <<<<<<<<<<<<<<
+ *     data["divider_text"] = kwargs.get("divider_text", "or")
+ *     data["show_size"] = kwargs.get("show_size", False)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_browse_text, __pyx_mstate_global->__pyx_kp_u_Browse_Files); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_browse_text, __pyx_t_3) < 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":69
+ *     data["subtitle"] = kwargs.get("subtitle", "")
+ *     data["browse_text"] = kwargs.get("browse_text", "Browse Files")
+ *     data["divider_text"] = kwargs.get("divider_text", "or")             # <<<<<<<<<<<<<<
+ *     data["show_size"] = kwargs.get("show_size", False)
+ *     data["inset_file_list"] = kwargs.get("inset_file_list", False)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_divider_text, __pyx_mstate_global->__pyx_n_u_or); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_divider_text, __pyx_t_3) < 0))) __PYX_ERR(0, 69, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":70
+ *     data["browse_text"] = kwargs.get("browse_text", "Browse Files")
+ *     data["divider_text"] = kwargs.get("divider_text", "or")
+ *     data["show_size"] = kwargs.get("show_size", False)             # <<<<<<<<<<<<<<
+ *     data["inset_file_list"] = kwargs.get("inset_file_list", False)
+ *     data["clearable"] = kwargs.get("clearable", False)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_size, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_size, __pyx_t_3) < 0))) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":71
+ *     data["divider_text"] = kwargs.get("divider_text", "or")
+ *     data["show_size"] = kwargs.get("show_size", False)
+ *     data["inset_file_list"] = kwargs.get("inset_file_list", False)             # <<<<<<<<<<<<<<
+ *     data["clearable"] = kwargs.get("clearable", False)
+ *     data["hide_browse"] = kwargs.get("hide_browse", False)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_inset_file_list, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_inset_file_list, __pyx_t_3) < 0))) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":72
+ *     data["show_size"] = kwargs.get("show_size", False)
+ *     data["inset_file_list"] = kwargs.get("inset_file_list", False)
+ *     data["clearable"] = kwargs.get("clearable", False)             # <<<<<<<<<<<<<<
+ *     data["hide_browse"] = kwargs.get("hide_browse", False)
+ *     data["disabled"] = kwargs.get("disabled", False)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_clearable, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_clearable, __pyx_t_3) < 0))) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":73
+ *     data["inset_file_list"] = kwargs.get("inset_file_list", False)
+ *     data["clearable"] = kwargs.get("clearable", False)
+ *     data["hide_browse"] = kwargs.get("hide_browse", False)             # <<<<<<<<<<<<<<
+ *     data["disabled"] = kwargs.get("disabled", False)
+ *     data["accept"] = kwargs.get("accept", "")
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_hide_browse, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_hide_browse, __pyx_t_3) < 0))) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":74
+ *     data["clearable"] = kwargs.get("clearable", False)
+ *     data["hide_browse"] = kwargs.get("hide_browse", False)
+ *     data["disabled"] = kwargs.get("disabled", False)             # <<<<<<<<<<<<<<
+ *     data["accept"] = kwargs.get("accept", "")
+ *     data["density"] = kwargs.get("density", "compact")
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_disabled, Py_False); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_3) < 0))) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":75
+ *     data["hide_browse"] = kwargs.get("hide_browse", False)
+ *     data["disabled"] = kwargs.get("disabled", False)
+ *     data["accept"] = kwargs.get("accept", "")             # <<<<<<<<<<<<<<
+ *     data["density"] = kwargs.get("density", "compact")
+ *     data["drag"] = kwargs.get("drag", True)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_accept, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_accept, __pyx_t_3) < 0))) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":76
+ *     data["disabled"] = kwargs.get("disabled", False)
+ *     data["accept"] = kwargs.get("accept", "")
+ *     data["density"] = kwargs.get("density", "compact")             # <<<<<<<<<<<<<<
+ *     data["drag"] = kwargs.get("drag", True)
+ * 
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_density, __pyx_mstate_global->__pyx_n_u_compact); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_density, __pyx_t_3) < 0))) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":77
+ *     data["accept"] = kwargs.get("accept", "")
+ *     data["density"] = kwargs.get("density", "compact")
+ *     data["drag"] = kwargs.get("drag", True)             # <<<<<<<<<<<<<<
+ * 
+ *     onsuccess = kwargs.get("onsuccess", None)
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_drag, Py_True); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_drag, __pyx_t_3) < 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/upload.py":79
+ *     data["drag"] = kwargs.get("drag", True)
  * 
  *     onsuccess = kwargs.get("onsuccess", None)             # <<<<<<<<<<<<<<
  * 
  *     def myuploaded(event):
 */
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onsuccess, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_cur_scope->__pyx_v_onsuccess = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onsuccess, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_onsuccess = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/upload.py":23
+  /* "simplestart/ss_ui/upload.py":81
  *     onsuccess = kwargs.get("onsuccess", None)
  * 
  *     def myuploaded(event):             # <<<<<<<<<<<<<<
  *         if onsuccess:
- *           onsuccess(event)
+ *             onsuccess(event)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6upload_6upload_1myuploaded, 0, __pyx_mstate_global->__pyx_n_u_upload_locals_myuploaded, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_upload, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_v_myuploaded = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6upload_6upload_1myuploaded, 0, __pyx_mstate_global->__pyx_n_u_upload_locals_myuploaded, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_upload, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_myuploaded = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/upload.py":27
- *           onsuccess(event)
+  /* "simplestart/ss_ui/upload.py":85
+ *             onsuccess(event)
  * 
- *     res = vuetify('''             # <<<<<<<<<<<<<<
- *         <el-upload v-model:file-list="data.value"
- *             action="/upload"
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
+ *         <div :style="{ width: data.width, display: 'block' }">
+ *             <v-file-upload
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplestart/ss_ui/upload.py":44
- *             </template>
- *         </el-upload>
- *     ''', data= data, handlers = {"on_uploaded":myuploaded})             # <<<<<<<<<<<<<<
+  /* "simplestart/ss_ui/upload.py":117
+ *             ></v-file-input>
+ *         </div>
+ *     ''', data=data, handlers={"on_uploaded": myuploaded})             # <<<<<<<<<<<<<<
  * 
  *     return res
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_on_uploaded, __pyx_v_myuploaded) < (0)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __pyx_t_6 = 1;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_on_uploaded, __pyx_v_myuploaded) < (0)) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_4))) {
     __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
@@ -2998,28 +3217,28 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
     __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-    __pyx_t_6 = 0;
+    __pyx_t_5 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_el_upload_v_model_file_list_dat};
-    __pyx_t_7 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 27, __pyx_L1_error)
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_div_style_width_data_width_disp};
+    __pyx_t_7 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_7, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_5, __pyx_t_7, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_7);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_7, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_2, __pyx_t_7, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_7);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
   }
-  __pyx_v_res = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_v_res = __pyx_t_3;
+  __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/upload.py":46
- *     ''', data= data, handlers = {"on_uploaded":myuploaded})
+  /* "simplestart/ss_ui/upload.py":119
+ *     ''', data=data, handlers={"on_uploaded": myuploaded})
  * 
  *     return res             # <<<<<<<<<<<<<<
 */
@@ -3028,20 +3247,20 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6upload_upload(CYTHON_UNUSED PyOb
   __pyx_r = __pyx_v_res;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/upload.py":4
+  /* "simplestart/ss_ui/upload.py":33
  * 
  * 
  * def upload(**kwargs):             # <<<<<<<<<<<<<<
- *     data = kwargs.get("data", {})
- * 
+ *     """
+ *      Vuetify v-file-upload
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("simplestart.ss_ui.upload.upload", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
@@ -3280,15 +3499,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload)) __PYX_ERR(0, 4, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload)) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload) < (0)) __PYX_ERR(0, 33, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload = &__pyx_type_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload) < (0)) __PYX_ERR(0, 33, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6upload___pyx_scope_struct__upload);
@@ -3514,6 +3733,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_upload(PyObject *__pyx_pyinit_modu
   PyObject *__pyx_t_2 = NULL;
   Py_ssize_t __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3625,16 +3845,332 @@ __Pyx_RefNannySetupContext("PyInit_upload", 0);
   /* "simplestart/ss_ui/upload.py":4
  * 
  * 
- * def upload(**kwargs):             # <<<<<<<<<<<<<<
- *     data = kwargs.get("data", {})
+ * from ss_core.component import check_schema_kwargs             # <<<<<<<<<<<<<<
+ * 
+ * UPLOAD_SCHEMA = {
+*/
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  }
+  __pyx_t_2 = __pyx_t_1;
+  __Pyx_GOTREF(__pyx_t_2);
+  {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_3 = 0; {
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 4, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    }
+  }
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/upload.py":7
+ * 
+ * UPLOAD_SCHEMA = {
+ *     "name": "upload",             # <<<<<<<<<<<<<<
+ *     "category": "form",
+ *     "reactive": True,
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_upload) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_n_u_form) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/upload.py":9
+ *     "name": "upload",
+ *     "category": "form",
+ *     "reactive": True,             # <<<<<<<<<<<<<<
+ *     "positional": [],
+ *     "params": {
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_reactive, Py_True) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/upload.py":10
+ *     "category": "form",
+ *     "reactive": True,
+ *     "positional": [],             # <<<<<<<<<<<<<<
+ *     "params": {
+ *         "value": {"type": "list", "default": "[]", "doc": "Initial file list"},
+*/
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_positional, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/upload.py":12
+ *     "positional": [],
+ *     "params": {
+ *         "value": {"type": "list", "default": "[]", "doc": "Initial file list"},             # <<<<<<<<<<<<<<
+ *         "multiple": {"type": "bool", "default": True, "doc": "Allow multiple files"},
+ *         "drag": {"type": "bool", "default": True, "doc": "Enable drag-and-drop zone"},
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(16); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_list) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u__3) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Initial_file_list) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":13
+ *     "params": {
+ *         "value": {"type": "list", "default": "[]", "doc": "Initial file list"},
+ *         "multiple": {"type": "bool", "default": True, "doc": "Allow multiple files"},             # <<<<<<<<<<<<<<
+ *         "drag": {"type": "bool", "default": True, "doc": "Enable drag-and-drop zone"},
+ *         "accept": {"type": "str", "default": "", "doc": "Accepted file types, e.g. 'image/[inserted by cython to avoid comment start]*' or '.pdf'"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_True) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Allow_multiple_files) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_multiple, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":14
+ *         "value": {"type": "list", "default": "[]", "doc": "Initial file list"},
+ *         "multiple": {"type": "bool", "default": True, "doc": "Allow multiple files"},
+ *         "drag": {"type": "bool", "default": True, "doc": "Enable drag-and-drop zone"},             # <<<<<<<<<<<<<<
+ *         "accept": {"type": "str", "default": "", "doc": "Accepted file types, e.g. 'image/[inserted by cython to avoid comment start]*' or '.pdf'"},
+ *         "title": {"type": "str", "default": "", "doc": "Zone title text"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_True) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Enable_drag_and_drop_zone) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_drag, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":15
+ *         "multiple": {"type": "bool", "default": True, "doc": "Allow multiple files"},
+ *         "drag": {"type": "bool", "default": True, "doc": "Enable drag-and-drop zone"},
+ *         "accept": {"type": "str", "default": "", "doc": "Accepted file types, e.g. 'image/[inserted by cython to avoid comment start]*' or '.pdf'"},             # <<<<<<<<<<<<<<
+ *         "title": {"type": "str", "default": "", "doc": "Zone title text"},
+ *         "subtitle": {"type": "str", "default": "", "doc": "Zone subtitle text"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Accepted_file_types_e_g_image_or) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_accept, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":16
+ *         "drag": {"type": "bool", "default": True, "doc": "Enable drag-and-drop zone"},
+ *         "accept": {"type": "str", "default": "", "doc": "Accepted file types, e.g. 'image/[inserted by cython to avoid comment start]*' or '.pdf'"},
+ *         "title": {"type": "str", "default": "", "doc": "Zone title text"},             # <<<<<<<<<<<<<<
+ *         "subtitle": {"type": "str", "default": "", "doc": "Zone subtitle text"},
+ *         "browse_text": {"type": "str", "default": "Browse Files", "doc": "Browse button text"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Zone_title_text) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_title, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":17
+ *         "accept": {"type": "str", "default": "", "doc": "Accepted file types, e.g. 'image/[inserted by cython to avoid comment start]*' or '.pdf'"},
+ *         "title": {"type": "str", "default": "", "doc": "Zone title text"},
+ *         "subtitle": {"type": "str", "default": "", "doc": "Zone subtitle text"},             # <<<<<<<<<<<<<<
+ *         "browse_text": {"type": "str", "default": "Browse Files", "doc": "Browse button text"},
+ *         "divider_text": {"type": "str", "default": "or", "doc": "Divider text between browse and drag hint"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Zone_subtitle_text) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_subtitle, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":18
+ *         "title": {"type": "str", "default": "", "doc": "Zone title text"},
+ *         "subtitle": {"type": "str", "default": "", "doc": "Zone subtitle text"},
+ *         "browse_text": {"type": "str", "default": "Browse Files", "doc": "Browse button text"},             # <<<<<<<<<<<<<<
+ *         "divider_text": {"type": "str", "default": "or", "doc": "Divider text between browse and drag hint"},
+ *         "show_size": {"type": "bool", "default": False, "doc": "Show file size in the list"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_Browse_Files) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Browse_button_text) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_browse_text, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":19
+ *         "subtitle": {"type": "str", "default": "", "doc": "Zone subtitle text"},
+ *         "browse_text": {"type": "str", "default": "Browse Files", "doc": "Browse button text"},
+ *         "divider_text": {"type": "str", "default": "or", "doc": "Divider text between browse and drag hint"},             # <<<<<<<<<<<<<<
+ *         "show_size": {"type": "bool", "default": False, "doc": "Show file size in the list"},
+ *         "inset_file_list": {"type": "bool", "default": False, "doc": "Inset style file list"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_or) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Divider_text_between_browse_and) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_divider_text, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":20
+ *         "browse_text": {"type": "str", "default": "Browse Files", "doc": "Browse button text"},
+ *         "divider_text": {"type": "str", "default": "or", "doc": "Divider text between browse and drag hint"},
+ *         "show_size": {"type": "bool", "default": False, "doc": "Show file size in the list"},             # <<<<<<<<<<<<<<
+ *         "inset_file_list": {"type": "bool", "default": False, "doc": "Inset style file list"},
+ *         "clearable": {"type": "bool", "default": False, "doc": "Allow removing files from the list"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Show_file_size_in_the_list) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_show_size, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":21
+ *         "divider_text": {"type": "str", "default": "or", "doc": "Divider text between browse and drag hint"},
+ *         "show_size": {"type": "bool", "default": False, "doc": "Show file size in the list"},
+ *         "inset_file_list": {"type": "bool", "default": False, "doc": "Inset style file list"},             # <<<<<<<<<<<<<<
+ *         "clearable": {"type": "bool", "default": False, "doc": "Allow removing files from the list"},
+ *         "hide_browse": {"type": "bool", "default": False, "doc": "Hide the browse button"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Inset_style_file_list) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inset_file_list, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":22
+ *         "show_size": {"type": "bool", "default": False, "doc": "Show file size in the list"},
+ *         "inset_file_list": {"type": "bool", "default": False, "doc": "Inset style file list"},
+ *         "clearable": {"type": "bool", "default": False, "doc": "Allow removing files from the list"},             # <<<<<<<<<<<<<<
+ *         "hide_browse": {"type": "bool", "default": False, "doc": "Hide the browse button"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the uploader"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Allow_removing_files_from_the_li) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_clearable, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":23
+ *         "inset_file_list": {"type": "bool", "default": False, "doc": "Inset style file list"},
+ *         "clearable": {"type": "bool", "default": False, "doc": "Allow removing files from the list"},
+ *         "hide_browse": {"type": "bool", "default": False, "doc": "Hide the browse button"},             # <<<<<<<<<<<<<<
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the uploader"},
+ *         "density": {"type": "str", "default": "compact", "doc": "Density: default/comfortable/compact"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Hide_the_browse_button) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_hide_browse, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":24
+ *         "clearable": {"type": "bool", "default": False, "doc": "Allow removing files from the list"},
+ *         "hide_browse": {"type": "bool", "default": False, "doc": "Hide the browse button"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the uploader"},             # <<<<<<<<<<<<<<
+ *         "density": {"type": "str", "default": "compact", "doc": "Density: default/comfortable/compact"},
+ *         "width": {"type": "int | str", "default": "", "doc": "Width; numbers become px"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Disable_the_uploader) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_disabled, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":25
+ *         "hide_browse": {"type": "bool", "default": False, "doc": "Hide the browse button"},
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the uploader"},
+ *         "density": {"type": "str", "default": "compact", "doc": "Density: default/comfortable/compact"},             # <<<<<<<<<<<<<<
+ *         "width": {"type": "int | str", "default": "", "doc": "Width; numbers become px"},
+ *         "onsuccess": {"type": "callable", "default": None, "doc": "Upload-success callback; event.value = uploaded files"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_compact) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Density_default_comfortable_comp) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_density, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":26
+ *         "disabled": {"type": "bool", "default": False, "doc": "Disable the uploader"},
+ *         "density": {"type": "str", "default": "compact", "doc": "Density: default/comfortable/compact"},
+ *         "width": {"type": "int | str", "default": "", "doc": "Width; numbers become px"},             # <<<<<<<<<<<<<<
+ *         "onsuccess": {"type": "callable", "default": None, "doc": "Upload-success callback; event.value = uploaded files"},
+ *     },
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_kp_u_int_str) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Width_numbers_become_px) < (0)) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_width, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/upload.py":27
+ *         "density": {"type": "str", "default": "compact", "doc": "Density: default/comfortable/compact"},
+ *         "width": {"type": "int | str", "default": "", "doc": "Width; numbers become px"},
+ *         "onsuccess": {"type": "callable", "default": None, "doc": "Upload-success callback; event.value = uploaded files"},             # <<<<<<<<<<<<<<
+ *     },
+ *     "events": {"success": "File uploaded; event.value = file list"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Upload_success_callback_event_va) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onsuccess, __pyx_t_5) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/upload.py":29
+ *         "onsuccess": {"type": "callable", "default": None, "doc": "Upload-success callback; event.value = uploaded files"},
+ *     },
+ *     "events": {"success": "File uploaded; event.value = file list"},             # <<<<<<<<<<<<<<
+ * }
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6upload_1upload, 0, __pyx_mstate_global->__pyx_n_u_upload, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_upload, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_success, __pyx_mstate_global->__pyx_kp_u_File_uploaded_event_value_file_l) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_UPLOAD_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/upload.py":33
+ * 
+ * 
+ * def upload(**kwargs):             # <<<<<<<<<<<<<<
+ *     """
+ *      Vuetify v-file-upload
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6upload_1upload, 0, __pyx_mstate_global->__pyx_n_u_upload, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_upload, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_upload, __pyx_t_2) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_upload, __pyx_t_2) < (0)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/upload.py":1
@@ -3653,6 +4189,7 @@ __Pyx_RefNannySetupContext("PyInit_upload", 0);
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.ss_ui.upload", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -3710,34 +4247,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{0},{1},{1},{7},{661},{6},{2},{9},{27},{20},{18},{18},{4},{4},{5},{8},{3},{8},{13},{5},{6},{8},{10},{8},{10},{8},{11},{9},{3},{2},{12},{3},{12},{10},{24},{7},{8},{6},{26},{5},{6},{7},{5},{166},{14}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (720 bytes) */
-const char* const cstring = "BZh91AY&SY|\013;\364\000\000u\377\363\347\336l\031t\347\241\027\275\001|\004\277\357\377\340@@@@@@\000@@\000@\000@\002\\\335\327m\334N\006\246\232Dm\t\211\223)\350\232=OI\352z\2322\003@\0324\321\243G\251\351\251\240\324h\322\0324S\364\324\236\247\246Q\223A\240\003@44\000\017P\001\246\204\246\221\264\203i\240F\236\246\217B\003\023@\0002\000z\200%\023D\322\233M\032\032@4\320\311\240\000\000\000\001\221\246I\022\233\\XC\367\027\3463&ATU\225&I\344\\\251\002\0000A\267N\372\300\340UB\304\224*\311*\017\245f\256\331\255\226\310B(\200\222 \033\351\341\207\027\245\235\277\254x\237m>\300\356\034\013\023_\205\353\\s\304\037\004\253\350\377\214\030\0224\362WT\363\014\227\341\362+i \251\027n2!\327g\325.<\277O/b\007#R\025\245 \355\325!\257T\216u\200th\372\0342h\252\027\261\010\330\300\341\311i.Vp\250\260\257\310\303/\3042\024\023D\360\274\306T\020\273\022\222j\177\345\024\315g\243VJ\206\231b\032\014\"\016\252\214Q\"`B\260\014\303j\213\223\000\022(\360\247$\372)\230\237\331s\010\335.\330A\300\352K|\270\034[\276\230\n\326\254\217\262?\035\001T\r\373\352F\001\300\226]$\021\000\010\247\320C\230\300\225\375X\351\201z\235\r\031:\322N\336\262^\252\026\311N&\025\332d\245\245m\346Bh*\362Hl*\225\206\273<h\"\217\232q:\327<\323\210\314=\203\t\004\256\352\352\032v\323\204\354C\024TI\032l\030\234(\022\243\343\031E\216\341I\255\023\326\251\022\225\006\322g\330a\222,\200\342\350m\255*\251bW\217\225LQ(\226x\010\027\0354\300\344q<\214\221\271\000x\271\367\242\316\274\211\001F\037B\324\336\232)\0226\206\225\020/\224=j\301\233\226\255\312s\251i\021\211\353\325\t\221J\004\014\350k6\016\301\270\313\324\274\002S3\344\300\260k\tL\310\253\022\324\370\020%\031jJ\034\350G\034\241o\327[R\213e(\267\247\r*\330\2461\000\201\020\032A\241\264\003rk\rz,\024\210\224a[]\n\024\223!q!\351\342|\240d\334\n\354JZ\336\"\2212\214B;H&#l\245\207\253\246l\267\004\326\305\272\315\255\335\301#\013\344\311W\266`4\001\245\003\336\177\213>y\353Nm\177\227*\250\273R\346\315\225\330:,'\251{Km\256\370[T\177m\274\316\266+\177\rK\tIHi""\360\026\031\335\377\027rE8P\220|\013;\364";
-    PyObject *data = __Pyx_DecompressString(cstring, 720, 2);
+    const struct { const unsigned int length: 11; } index[] = {{0},{45},{20},{34},{12},{18},{36},{20},{41},{25},{38},{22},{17},{21},{26},{53},{24},{18},{15},{1},{2},{1},{7},{1344},{6},{2},{9},{9},{27},{20},{13},{6},{18},{4},{11},{8},{8},{19},{9},{18},{7},{4},{7},{7},{8},{12},{3},{4},{5},{6},{4},{8},{3},{8},{11},{15},{13},{5},{6},{4},{8},{10},{8},{10},{8},{4},{11},{9},{2},{6},{3},{10},{2},{12},{8},{3},{12},{10},{9},{24},{7},{17},{3},{8},{7},{8},{5},{4},{6},{26},{5},{6},{7},{5},{14},{369}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1326 bytes) */
+const char* const cstring = "BZh91AY&SY]\003\353\007\000\001>\377\373\347\374\346_\365\367\245\037\377w\377\236\277\357\377\376@@@@@@@@@@@\000@\000P\004\256\367\253\213\273\267\245\356\357w\273\267R\317n\022\205\001S\306*d\3312y2\236\251\2101=\0204dh\000\000\003F\233I\206\232\217\321\023 \224Q\220\032\233!2)\265\007\2244z\232\000h\003@\001\220\000\000\000\032\033PJ\010!I\355\006\204\310\215=@\001\240\000\321\240\000\000\000\003F\203\324\365\036\240$Q4\322aI\344\014P\332OH\0004\001\240\000\000\000\000\000\0004\022E\023L\232iOj\2172F\246\236\322#\324\311\246\200\300\324h\000\000\000bb\001\243C\324?\232\345\277M\354(\205J\030\231Lf&\305\313\312*\240\212\252V #$\207\220nhH\002)-p\236\261\347f\355$}}\024F\313\261W\211\273\213\220(\354\335\371\254\220\275\030\336\2430d\320\272\035\211\000\005 \001\366\330\324\340\234\323\030\374]\372\300\240\256f\323\013\354\235?\2542\313a\332\227q!=gu\317i\256\255j}\331\222(d+s>Z]E46\332fy\202\222\342\257\033\216;!\335\237\370\\\230\310\311\"9N[\035\257\325\\\014f\350\031\205\212\024\366\270ya\024\271z\315\332`TtS!\007\310\246\344\234'\370B9\230FP\311\251'\007\3251\260\310\373/\301\235b\311\230\262\267\256\213+y\004\254(J\2441]\203S ]>\271\237X\256d\242\221\025\307)u\225\013j\242\276dLL\3744\347\024FUMG\357w\345L1\2324ls/{&\007\260m;*\350\333\261}\331n\022\347\3306\337\355\253\234\027\374\273\370Xy$\222\3379\345\260\362o\036x\177\257\277\3253U\010\266\302\343[:_\311\343\306\264\255\245X0\310\305\003\267-\207GT\3443Y:27\013j\036\022\244\221v\254\244\346I\2248\242\2038\351\031e\3749\345\334\240R\262\254\254\263c\272d\231\365\000p\213\026\376;(\232\202\322\313\020\245\251QR\302g\032j\304\257X\222{L\310\005\353\256\023\335\263=gs\001\362\345\226\2328\220\236\004u\313H\024\3549\266SM\347\230_'A\3165%}9\345j\271\240pPM>H\221\2037L\242a\"\rV\312\205A9P\311I\024\237\351!!]\03581\271p:\251\232\270q\261\357\010B:zF\307\0161\232\214\212\327\214\023\311\014\014\315pe\rI\322\340\346:Z\241\233l\032Q\317&@\245\225\rV\354U\221\211\"\270#9\332\367\026U\022\244B\003m\256\236\314@F""\332$a*\227\317L\263[?~cQS\200\016\204\004b\014\252\2002\252`\242\365\003\255qK+\022\373U\n\237\001\031\201\372T\257N\300\222\030\020\335\r\262\nA\010\362\234z\rI\246\265u(\256\320\253e\234\3602\314\330$\217Y\220~\"+C\223kP\223\205'\365\343\236\252?\014\00647\277\314/\350\341\313J*-\254\320\320\305\207\003\232U\344\317h\306\323 \217.x\3200\253\017]\324\002\220${q\242k\030[\026q\241\rAh\205\306F\034t\031\030r\033X\226\220\222\004\253\200\203\023#]\375\024.=\303TZ\021\023Q\320\030X\364\010\200\256\346B\231\033 -\243\314\3630\230X\244\2062b\206\306\351\233c\343\304\204\256e\2726\020C\222\251&\317\313\033U\n0\200\332\266\027\200)lH\212zQx\222<\206\215\351i\222\t\254\030\030\276\3725\2428\230'\031\020\010\305cH\3566\330\207Z$\203y\212\202D\307Op\231\213\036\355,\360Y\246C\"\032X\302&N\251<\t6\031\261\233\032\252#L\224\3070\335\210\026\324\0310(\250\215k\024w\302\r\264\032S>\350\302GD0L%\223\231\205\304\370U\035\tC\270\261\264\005U(\300\265,\232\335\251V\267\261\363\036\032E\310\020Z\"`i\020%5mI\270\352+\261@\253J\"\024+\224JR\245\344Em\337\252\333\013hQ\213\311S\203I\353\033@H\350\227E\255g|\250\026\021\326UB\322:Q\032:=\021\242J\211\235g\037Yx\212\354\224\241\357.W\274\360\205V\031\350\267I|\244\271\217>\3133\250#\013$\2230B\211.\365\260\250\000\326/\330\267=a\023\273J\221\021C-\230j\201L\306Qz+\\\222qZ\327oB\030H\272\237\257R\"m\242\033\210K\235\177_w\271\307\275\261\203\213\205K\230;\016\341\377wx\377\225:U.$\\f\277C\217ii\243\017\366\353r%\206b\322\026mmZk\362>\245\332\022\375<G\363*\\}\213\357\360\027=\346\315^}-o\332D\353\227\272\326\006\222\225\342e\261\307Wefvg\371\266)@\317\t\377\305\334\221N\024$\027@\372\301\300";
+    PyObject *data = __Pyx_DecompressString(cstring, 1326, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (643 bytes) */
-const char* const cstring = "x\332\205SAO\3330\024\246\022l\210n\322\3208\r\t\205\010\t&\321T\\v@M&6\304q\032\333\216\223,\343\274\266\026\216\035l'\220\033\307\034}\314\261\307\376\244\036\371\t\374\2049qZ\n\3534KI\234\367\276\367\276\357\371=\007\237c\252\360\025\203-\257]\003`\275,e\002\307^\336KD\014\354tH\031\364\030U:\364c\254q\220c\226\201\277\210\250\027&\232\n\036\372}\027\372\334y\032K<\362B\317E\327?/\374I\3064M\031,0s\303\013\234\340=\225\021\002J\325\310#\307ua\325}\364\302\310\023\\\201\314A\036\035\n\216\234\017\342\303co\t\366\224/z\226y\240!I\031\326`k\246\303\320\337\177R\372\0348?\241\253Lk\301=]\244\020\372\251\244\t\226\205\037}e\224\\{Z\264\224\203\376\002\371\202\256?\347\373\267\014`\nVsSb\231\t\303J\205~\373\333k[\346G\003\267\351\331\2361\210\275~\324\210\2501+\222\3054_J\344\"\021\322p\247W\224}.E\352\325\243\340\215A\202'\244\025\223D\344\257\222\223\025D}\313\364\377#h\244\272<\316\010\274\036\315\021\241\312\355bEm\014(\215\245\356+\2052\332\316[\220\026\010}/\356\354sN\211F\337l\t?`\210U\301\t\025\001\021Rd\232rPV.\007D9\322\022\023\270\302\344\272\356t\335h\310\201k\204\206\031'\010\215@\2171\217\031H\205\250B\213xjE\253\353[,G\n\241\004\333<v\331K\2221\260\337vh\223b>|\010q\234X\317\322<\332!u\023\234\2124\275C\350&\303\314\201$\330\234\nt\033cw\261\255\300\346\\*:h\212\016\\2\325\010\203\272a\312*w\306\366<\006L\020\314T\024<\211inm\363Ry\006\232\016\213[\032\353\361}g\266\336-?\231\035si\306\025~\334\\\333x[^\230\003\203M1\261\276\327\367y\371\323tf\233\335\362\324Afov\314\027\353\276yX\337,;\345\2569\2335\233\017\346S\265S]V\343\tv\206=\223W\277&\333\223\343ik\3305\027\325A\205\253b\332\251y\266\315+\023W\373U8\355<\254o\324\226nyh\266\315\376\243\277\266\365\256\314\315\357\311\336\324\262t\313\223\373\263Z\300\311l\353\27591g\177\000\263B\211\215";
-    PyObject *data = __Pyx_DecompressString(cstring, 643, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1183 bytes) */
+const char* const cstring = "x\332\335VKo\333F\020\266\000;Mm\003m\000\027(\3426]\033A\224\024\026\205\000\205\017\216\345F\251b$E\037q\235\264@\037X\254\310\245\2640\311\245\271K\331J]\300G\035y\344\221G\035}\354\317\360QG\377\004\377\204\316>(\313\266\2144\207^J@$gvfv\346\233\217;j\272.\215%\365\220\317\002\212d?\246b\rQ\247\343\240*\013I\207\326\277\254\"\236\240\252\023{~\265\031\004\374\000\205i Y\014\326\312E\030]BC\336cQ\307\350\220\237\360\020\311.E\001\023\362Y\302\017\004E\333j\305\276\267S)y\204$=\224-\032\t&\373\033\310\243>\201\310u\227\207>O$i\007T\275\307\304\225-&\224\250#\246q\300\211G\223\026\3531x\350\030\250M\345\001\245\021j\233\360$\362\220\227\220\016\352\262H>\217\264\257\222k\260P\363\022\036\243\267<\242*\2412\234\367\004\321\036\215\244\323#AJQ\303\300\241\262\177\001\273\350\215\333\223\251\277\214\230d$\2700{\031\t*\221\220}\213\213V\356v\001\032-\t\366\226\"\026\2151y\243\267\255\211\024\340\027\002\271$\010\332\304\335\273\232E\231\235\201\365\027\346\311\356\023\024\245a\233&\002\212\006x(\212\017\177\205b\220H\333\222I\005\022\000\2425\027\242\363\333\037_{\006\303yd\257M\217\365\320\206N\270\261\372':P\261\241\tD\022G\277\257!\360\210\003\002\235\251\266\003\356\356U\321_\253[cw\035\242WSy\325L\226\227\226\324\325\2531\277\261\252#*\360W\247\030\204\334\243\201\265\3215_7\332(\351f\315Jq\212\245.\330\232\231\342\217\216P\032\001\261XD\275)\016%f\326g\014\341;\334\014\023j\nY\353i4Xi\246\330{\206\252\223\016Vu\223\207\000\342\324\024g\312\314@\306J\236b\313\024\363L#\024\263\254\207\326b\245\305J;\305\317\r(I\024%\254\307X\236b\333\205dk\246Hk\2554\330h\246V\254\311\346\215\2535\342\024K\242\317\037kg\204w\301\357\231\023\243\214m\244\353v\277?Mc\260\240\033\232d5M\257\306\352C\375%=B\215-\373q\351c\311j/\007\331\332\254_\"\370t\362\263(N\345\024j\323@\320\377\234\361\001i\217\243\375;\306\277\007\261\336\207 \377\263\206\353\246^\364{\263\016\337\253\021\251\236&\035\027\006\013:\202\363>a\302\250<\301Bh\222\220$\221u!p\312\352f?'\356c\374\252\177\010\277\026s%""\376\001>\371\237\250\377\346\325w?6[x\367\233\027\317\277o\032\034\210\350G.\343\216\313\023\236J\000C\2649\017&\316\0265&\324^.T\331\341I\337\355Rw\017\013x\204\004\357\035\220\244#\306Mr\003\010\200Y\204eB\\\252\206\213\035\246\nD;k-\224e\267&\017%\217\273\352\320\326\343H\337\004\014\345\020c?\215\\\214;Tva\226\0060\206&\016\202+g\016f\002\217Ka\222\206\302\244\250\327pH 7\270\240Y)8\340\222\345a\277\034z\030G$\244\346\316#\\\252yd\247&Ob(5\0241\217c\016u0\036\221 >\304x?%\201qM(\024\314z4\241\002c\225\234Q\303\233E`\314\377\211\3569\272{\216\331O\350\032\250}8\nC\230\255\000\207L\312qa\323\301\200\233*L\353\324\037)\023\300\222`\023F(\t\304\226sQ\237&\250\276\211^J%\363\373z\360\0367G\267\027\006\217G\213\237d;\0319\256\234\257\315\314}\232\355\347\363\305\303\341\312hva\260\236-\301J7'g\263\213\203\355\354~F\262~Q\031\315~p\334\033\354f\025\345\275a\014F\213K\3313X\336?\233\275=\250\014\226\263\346H\277\334\313z\371\353\342N\2616$#\273\262\235\337\317I\336\037VnP\\u9\375\360n\376\240\230-\232\005>iZ\315r\276^,\025;\247\017\326Ol\334/\362[\271W\254\024\215\223\212\265\271\227\373EkX9}\264\371w\363&\233\253\221\257\347\373Y\366s\376U\276_\314+D\224\342\363\314\317[E\245X\036Z\227\273\331z\276\224\357\344\335\002`\3728\273\225y\371J\336\030V\316f\347\316o\317\314-\014\252\331\235l\345\374ief\376\243\201\237}\233\363\341\316\031\200\373\370\037\237\366\252X";
+    PyObject *data = __Pyx_DecompressString(cstring, 1183, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1206 bytes) */
-const char* const bytes = ".?disable\n        <el-upload v-model:file-list=\"data.value\"\n            action=\"/upload\"\n            :drag = \"data.drag\"\n            :multiple = \"data.multiple\"\n            :on-success = \"(uploadFile) => onserver('on_uploaded', uploadFile)\"\n        >\n            <template v-if=\"!data.drag\">\n                <el-button type=\"primary\">Click to upload</el-button>\n            </template>\n            <template v-else>\n                <el-icon class=\"el-icon--upload\"><upload-filled /></el-icon>\n                <div class=\"el-upload__text\">\n                Drop file here or <em>click to upload</em>\n                </div>\n            </template>\n        </el-upload>\n    enablegcisenabledsimplestart/ss_ui/upload.py__Pyx_PyDict_NextRefasyncio.coroutinescline_in_tracebackdatadragevent__func__gethandlers_is_coroutineitemskwargs__main____module__multiplemyuploaded__name__on_uploadedonsuccesspoppx__qualname__res__set_name__setdefaultsimplestart.ss_ui.uploadss_core__test__uploadupload.<locals>.myuploadedvaluevaluesvuetifywidth\200\001\330\004\013\2106\220\024\220Q\220h\230a\360\010\000\005\r\210F\220$\220a\220y\240\001\330\004\007\200v\210S\220\001\330\010\013\210:\220Q\220h\230a\330\014\024\220B\220a\220q\340\004\010\210\001\210\033\220A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\360\010\000\005\021\220\006\220d\230!\230=\250\001\340\004\005\360\010\000\005\013\210'\220\021\220!\360\"\000\n\020\210v\220\\\240\036\250q\340\004\013\2101\200A\330\010\013\2101\330\n\023\2201\220A";
+    #else /* compression: none (2833 bytes) */
+const char* const bytes = "Accepted file types, e.g. 'image/*' or '.pdf'Allow multiple filesAllow removing files from the listBrowse FilesBrowse button textDensity: default/comfortable/compactDisable the uploaderDivider text between browse and drag hintEnable drag-and-drop zoneFile uploaded; event.value = file listHide the browse buttonInitial file listInset style file listShow file size in the listUpload-success callback; event.value = uploaded filesWidth; numbers become pxZone subtitle textZone title text.[]?disable\n        <div :style=\"{ width: data.width, display: 'block' }\">\n            <v-file-upload\n                v-if=\"data.drag\"\n                v-model=\"data.value\"\n                :multiple=\"data.multiple\"\n                :title=\"data.title || undefined\"\n                :subtitle=\"data.subtitle || undefined\"\n                :browse-text=\"data.browse_text\"\n                :divider-text=\"data.divider_text\"\n                :show-size=\"data.show_size\"\n                :inset-file-list=\"data.inset_file_list\"\n                :clearable=\"data.clearable\"\n                :hide-browse=\"data.hide_browse\"\n                :disabled=\"data.disabled\"\n                :accept=\"data.accept || undefined\"\n                :density=\"data.density\"\n                \\@update:model-value=\"(files) => uploadFiles(files)\"\n            ></v-file-upload>\n            <v-file-input\n                v-else\n                v-model=\"data.value\"\n                :multiple=\"data.multiple\"\n                :label=\"data.title || undefined\"\n                :show-size=\"data.show_size\"\n                :clearable=\"data.clearable\"\n                :disabled=\"data.disabled\"\n                :accept=\"data.accept || undefined\"\n                :density=\"data.density\"\n                \\@update:model-value=\"(files) => uploadFiles(files)\"\n            ></v-file-input>\n        </div>\n    enablegcint | strisenabledsimplestart/ss_ui/upload.py__Pyx_PyDict_NextRefUPL""OAD_SCHEMAacceptasyncio.coroutinesboolbrowse_textcallablecategorycheck_schema_kwargsclearablecline_in_tracebackcompactdatadefaultdensitydisableddivider_textdocdrageventeventsform__func__gethandlershide_browseinset_file_list_is_coroutineitemskwargslist__main____module__multiplemyuploaded__name__nameon_uploadedonsuccessorparamspoppositionalpx__qualname__reactiveres__set_name__setdefaultshow_sizesimplestart.ss_ui.uploadss_coress_core.componentstrsubtitlesuccess__test__titletypeuploadupload.<locals>.myuploadedvaluevaluesvuetifywidth\200A\330\010\013\2101\330\014\025\220Q\220a\200\001\360,\000\005\030\220q\230\n\240(\250!\330\004\013\2106\220\024\220Q\220h\230a\340\004\014\210F\220$\220a\220y\240\001\330\004\007\200v\210S\220\001\330\010\013\210:\220Q\220h\230a\330\014\024\220B\220a\220q\340\004\010\210\001\210\033\220A\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\330\004\010\210\001\320\t\033\2306\240\024\240Q\320&6\260a\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\036\230f\240D\250\001\320)<\270A\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\330\004\010\210\001\210\036\220v\230T\240\021\240,\250a\330\004\010\210\001\210\034\220V\2304\230q\240\n\250!\330\004\010\210\001\210\035\220f\230D\240\001\240\033\250A\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\340\004\020\220\006\220d\230!\230=\250\001\340\004\005\360\010\000\005\013\210'\220\021\220!\360@\001\000\n\017\210f\220J\230o\250Q\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 43; i++) {
+    for (int i = 0; i < 94; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 9) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 29) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3745,7 +4282,7 @@ const char* const bytes = ".?disable\n        <el-upload v-model:file-list=\"dat
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 43; i < 45; i++) {
+    for (int i = 94; i < 96; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3756,14 +4293,14 @@ const char* const bytes = ".?disable\n        <el-upload v-model:file-list=\"dat
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 45; i++) {
+    for (Py_ssize_t i = 0; i < 96; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 43;
+      PyObject **table = stringtab + 94;
       for (Py_ssize_t i=0; i<2; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3792,7 +4329,7 @@ typedef struct {
     unsigned int num_kwonly_args : 1;
     unsigned int nlocals : 3;
     unsigned int flags : 10;
-    unsigned int first_line : 5;
+    unsigned int first_line : 7;
 } __Pyx_PyCode_New_function_description;
 /* NewCodeObj.proto */
 static PyObject* __Pyx_PyCode_New(
@@ -3809,14 +4346,14 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 23};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 81};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_upload_py, __pyx_mstate->__pyx_n_u_myuploaded, __pyx_mstate->__pyx_kp_b_iso88591_A_1_1A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_upload_py, __pyx_mstate->__pyx_n_u_myuploaded, __pyx_mstate->__pyx_kp_b_iso88591_A_1_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 4};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 33};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_onsuccess, __pyx_mstate->__pyx_n_u_myuploaded, __pyx_mstate->__pyx_n_u_myuploaded, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_upload_py, __pyx_mstate->__pyx_n_u_upload, __pyx_mstate->__pyx_kp_b_iso88591_6_Qha_F_ay_vS_Qha_Baq_A_6_Qha_v, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_upload_py, __pyx_mstate->__pyx_n_u_upload, __pyx_mstate->__pyx_kp_b_iso88591_q_6_Qha_F_ay_vS_Qha_Baq_A_vT_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -4980,6 +5517,207 @@ static int __Pyx_ParseKeywords(
 /* RaiseClosureNameError */
 static void __Pyx_RaiseClosureNameError(const char *varname) {
     PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
+}
+
+/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    int result;
+    PyObject *exc_type;
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *current_exception = tstate->current_exception;
+    if (unlikely(!current_exception)) return 0;
+    exc_type = (PyObject*) Py_TYPE(current_exception);
+    if (exc_type == err) return 1;
+#else
+    exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+#endif
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_INCREF(exc_type);
+    #endif
+    if (unlikely(PyTuple_Check(err))) {
+        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    } else {
+        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+    }
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_DECREF(exc_type);
+    #endif
+    return result;
+}
+#endif
+
+/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *tmp_value;
+    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
+    if (value) {
+        #if CYTHON_COMPILING_IN_CPYTHON
+        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
+        #endif
+            PyException_SetTraceback(value, tb);
+    }
+    tmp_value = tstate->current_exception;
+    tstate->current_exception = value;
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(type);
+    Py_XDECREF(tb);
+#else
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject* exc_value;
+    exc_value = tstate->current_exception;
+    tstate->current_exception = 0;
+    *value = exc_value;
+    *type = NULL;
+    *tb = NULL;
+    if (exc_value) {
+        *type = (PyObject*) Py_TYPE(exc_value);
+        Py_INCREF(*type);
+        #if CYTHON_COMPILING_IN_CPYTHON
+        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
+        Py_XINCREF(*tb);
+        #else
+        *tb = PyException_GetTraceback(exc_value);
+        #endif
+    }
+#else
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#endif
+}
+#endif
+
+/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
+        __Pyx_PyErr_Clear();
+}
+#endif
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
+    PyObject *result;
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
+    return result;
+#else
+#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
+        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
+    }
+#endif
+    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
+    if (unlikely(!result)) {
+        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
+    }
+    return result;
+#endif
+}
+
+/* GetBuiltinName (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
+    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
+    if (unlikely(!result) && !PyErr_Occurred()) {
+        PyErr_Format(PyExc_NameError,
+            "name '%U' is not defined", name);
+    }
+    return result;
+}
+
+/* PyDictVersioning (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
+    PyObject **dictptr = NULL;
+    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
+    if (offset) {
+#if CYTHON_COMPILING_IN_CPYTHON
+        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
+#else
+        dictptr = _PyObject_GetDictPtr(obj);
+#endif
+    }
+    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
+}
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
+        return 0;
+    return obj_dict_version == __Pyx_get_object_dict_version(obj);
+}
+#endif
+
+/* GetModuleGlobalName */
+#if CYTHON_USE_DICT_VERSIONS
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
+#else
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
+#endif
+{
+    PyObject *result;
+#if CYTHON_COMPILING_IN_LIMITED_API
+    if (unlikely(!__pyx_m)) {
+        if (!PyErr_Occurred())
+            PyErr_SetNone(PyExc_NameError);
+        return NULL;
+    }
+    result = PyObject_GetAttr(__pyx_m, name);
+    if (likely(result)) {
+        return result;
+    }
+    PyErr_Clear();
+#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
+    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return result;
+    }
+#else
+    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return __Pyx_NewRef(result);
+    }
+    PyErr_Clear();
+#endif
+    return __Pyx_GetBuiltinName(name);
 }
 
 /* PyObjectCall2Args (used by CallUnboundCMethod1) */
@@ -6678,207 +7416,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
     return op;
 }
 
-/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    int result;
-    PyObject *exc_type;
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *current_exception = tstate->current_exception;
-    if (unlikely(!current_exception)) return 0;
-    exc_type = (PyObject*) Py_TYPE(current_exception);
-    if (exc_type == err) return 1;
-#else
-    exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-#endif
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_INCREF(exc_type);
-    #endif
-    if (unlikely(PyTuple_Check(err))) {
-        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    } else {
-        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-    }
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_DECREF(exc_type);
-    #endif
-    return result;
-}
-#endif
-
-/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *tmp_value;
-    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
-    if (value) {
-        #if CYTHON_COMPILING_IN_CPYTHON
-        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
-        #endif
-            PyException_SetTraceback(value, tb);
-    }
-    tmp_value = tstate->current_exception;
-    tstate->current_exception = value;
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(type);
-    Py_XDECREF(tb);
-#else
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject* exc_value;
-    exc_value = tstate->current_exception;
-    tstate->current_exception = 0;
-    *value = exc_value;
-    *type = NULL;
-    *tb = NULL;
-    if (exc_value) {
-        *type = (PyObject*) Py_TYPE(exc_value);
-        Py_INCREF(*type);
-        #if CYTHON_COMPILING_IN_CPYTHON
-        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
-        Py_XINCREF(*tb);
-        #else
-        *tb = PyException_GetTraceback(exc_value);
-        #endif
-    }
-#else
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#endif
-}
-#endif
-
-/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
-        __Pyx_PyErr_Clear();
-}
-#endif
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
-    PyObject *result;
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
-    return result;
-#else
-#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
-        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
-    }
-#endif
-    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
-    if (unlikely(!result)) {
-        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
-    }
-    return result;
-#endif
-}
-
-/* GetBuiltinName (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
-    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
-    if (unlikely(!result) && !PyErr_Occurred()) {
-        PyErr_Format(PyExc_NameError,
-            "name '%U' is not defined", name);
-    }
-    return result;
-}
-
-/* PyDictVersioning (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
-    PyObject **dictptr = NULL;
-    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
-    if (offset) {
-#if CYTHON_COMPILING_IN_CPYTHON
-        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
-#else
-        dictptr = _PyObject_GetDictPtr(obj);
-#endif
-    }
-    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
-}
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
-        return 0;
-    return obj_dict_version == __Pyx_get_object_dict_version(obj);
-}
-#endif
-
-/* GetModuleGlobalName */
-#if CYTHON_USE_DICT_VERSIONS
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
-#else
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
-#endif
-{
-    PyObject *result;
-#if CYTHON_COMPILING_IN_LIMITED_API
-    if (unlikely(!__pyx_m)) {
-        if (!PyErr_Occurred())
-            PyErr_SetNone(PyExc_NameError);
-        return NULL;
-    }
-    result = PyObject_GetAttr(__pyx_m, name);
-    if (likely(result)) {
-        return result;
-    }
-    PyErr_Clear();
-#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
-    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return result;
-    }
-#else
-    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return __Pyx_NewRef(result);
-    }
-    PyErr_Clear();
-#endif
-    return __Pyx_GetBuiltinName(name);
-}
-
 /* PyObjectVectorCallKwBuilder */
 #if CYTHON_VECTORCALL
 static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
@@ -7728,7 +8265,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__3);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
     }
     goto done;
 }

@@ -1512,12 +1512,12 @@ static const char* const __pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker;
 
-/* "simplestart/ss_ui/colorpicker.py":7
- * from ss_core.component import props
+/* "simplestart/ss_ui/colorpicker.py":23
+ * 
  * 
  * def colorpicker(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-color-picker
 */
 struct __pyx_obj_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker {
   PyObject_HEAD
@@ -1807,6 +1807,110 @@ static CYTHON_INLINE int __Pyx_ParseKeywords(
 /* RaiseClosureNameError.proto */
 static void __Pyx_RaiseClosureNameError(const char *varname);
 
+/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
+#endif
+
+/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
+#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
+#if PY_VERSION_HEX >= 0x030C00A6
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
+#else
+#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
+#endif
+#else
+#define __Pyx_PyThreadState_declare
+#define __Pyx_PyThreadState_assign
+#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
+#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
+#endif
+
+/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
+#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
+#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
+#else
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#endif
+#else
+#define __Pyx_PyErr_Clear() PyErr_Clear()
+#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
+#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
+#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
+#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
+#endif
+
+/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
+
+/* GetBuiltinName.proto (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name);
+
+/* PyDictVersioning.proto (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+#define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
+#define __PYX_GET_DICT_VERSION(dict)  (((PyDictObject*)(dict))->ma_version_tag)
+#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)\
+    (version_var) = __PYX_GET_DICT_VERSION(dict);\
+    (cache_var) = (value);
+#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP) {\
+    static PY_UINT64_T __pyx_dict_version = 0;\
+    static PyObject *__pyx_dict_cached_value = NULL;\
+    if (likely(__PYX_GET_DICT_VERSION(DICT) == __pyx_dict_version)) {\
+        (VAR) = __Pyx_XNewRef(__pyx_dict_cached_value);\
+    } else {\
+        (VAR) = __pyx_dict_cached_value = (LOOKUP);\
+        __pyx_dict_version = __PYX_GET_DICT_VERSION(DICT);\
+    }\
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj);
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj);
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version);
+#else
+#define __PYX_GET_DICT_VERSION(dict)  (0)
+#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)
+#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP)  (VAR) = (LOOKUP);
+#endif
+
+/* GetModuleGlobalName.proto */
+#if CYTHON_USE_DICT_VERSIONS
+#define __Pyx_GetModuleGlobalName(var, name)  do {\
+    static PY_UINT64_T __pyx_dict_version = 0;\
+    static PyObject *__pyx_dict_cached_value = NULL;\
+    (var) = (likely(__pyx_dict_version == __PYX_GET_DICT_VERSION(__pyx_mstate_global->__pyx_d))) ?\
+        (likely(__pyx_dict_cached_value) ? __Pyx_NewRef(__pyx_dict_cached_value) : __Pyx_GetBuiltinName(name)) :\
+        __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
+} while(0)
+#define __Pyx_GetModuleGlobalNameUncached(var, name)  do {\
+    PY_UINT64_T __pyx_dict_version;\
+    PyObject *__pyx_dict_cached_value;\
+    (var) = __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
+} while(0)
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value);
+#else
+#define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
+#define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
+#endif
+
 /* dict_getitem_default.proto */
 static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObject* default_value);
 
@@ -1821,6 +1925,18 @@ static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* 
 #else
 #define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
 #endif
+
+/* RaiseTooManyValuesToUnpack.proto */
+static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
+
+/* RaiseNeedMoreValuesToUnpack.proto */
+static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index);
+
+/* IterFinish.proto */
+static CYTHON_INLINE int __Pyx_IterFinish(void);
+
+/* UnpackItemEndCheck.proto */
+static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
 
 /* dict_setdefault.proto (used by FetchCommonType) */
 static CYTHON_INLINE PyObject *__Pyx_PyDict_SetDefault(PyObject *d, PyObject *key, PyObject *default_value);
@@ -1966,110 +2082,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml,
                                       PyObject *closure,
                                       PyObject *module, PyObject *globals,
                                       PyObject* code);
-
-/* PyErrExceptionMatches.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
-
-/* PyThreadStateGet.proto (used by PyErrFetchRestore) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
-#define __Pyx_PyThreadState_assign  __pyx_tstate = __Pyx_PyThreadState_Current;
-#if PY_VERSION_HEX >= 0x030C00A6
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->current_exception != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->current_exception ? (PyObject*) Py_TYPE(__pyx_tstate->current_exception) : (PyObject*) NULL)
-#else
-#define __Pyx_PyErr_Occurred()  (__pyx_tstate->curexc_type != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  (__pyx_tstate->curexc_type)
-#endif
-#else
-#define __Pyx_PyThreadState_declare
-#define __Pyx_PyThreadState_assign
-#define __Pyx_PyErr_Occurred()  (PyErr_Occurred() != NULL)
-#define __Pyx_PyErr_CurrentExceptionType()  PyErr_Occurred()
-#endif
-
-/* PyErrFetchRestore.proto (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_Clear() __Pyx_ErrRestore(NULL, NULL, NULL)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  __Pyx_ErrRestoreInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)    __Pyx_ErrFetchInState(PyThreadState_GET(), type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  __Pyx_ErrRestoreInState(__pyx_tstate, type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)    __Pyx_ErrFetchInState(__pyx_tstate, type, value, tb)
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb);
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb);
-#if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030C00A6
-#define __Pyx_PyErr_SetNone(exc) (Py_INCREF(exc), __Pyx_ErrRestore((exc), NULL, NULL))
-#else
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#endif
-#else
-#define __Pyx_PyErr_Clear() PyErr_Clear()
-#define __Pyx_PyErr_SetNone(exc) PyErr_SetNone(exc)
-#define __Pyx_ErrRestoreWithState(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchWithState(type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestoreInState(tstate, type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
-#define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
-#define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
-#endif
-
-/* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
-
-/* GetBuiltinName.proto (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name);
-
-/* PyDictVersioning.proto (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-#define __PYX_DICT_VERSION_INIT  ((PY_UINT64_T) -1)
-#define __PYX_GET_DICT_VERSION(dict)  (((PyDictObject*)(dict))->ma_version_tag)
-#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)\
-    (version_var) = __PYX_GET_DICT_VERSION(dict);\
-    (cache_var) = (value);
-#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP) {\
-    static PY_UINT64_T __pyx_dict_version = 0;\
-    static PyObject *__pyx_dict_cached_value = NULL;\
-    if (likely(__PYX_GET_DICT_VERSION(DICT) == __pyx_dict_version)) {\
-        (VAR) = __Pyx_XNewRef(__pyx_dict_cached_value);\
-    } else {\
-        (VAR) = __pyx_dict_cached_value = (LOOKUP);\
-        __pyx_dict_version = __PYX_GET_DICT_VERSION(DICT);\
-    }\
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj);
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj);
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version);
-#else
-#define __PYX_GET_DICT_VERSION(dict)  (0)
-#define __PYX_UPDATE_DICT_CACHE(dict, value, cache_var, version_var)
-#define __PYX_PY_DICT_LOOKUP_IF_MODIFIED(VAR, DICT, LOOKUP)  (VAR) = (LOOKUP);
-#endif
-
-/* GetModuleGlobalName.proto */
-#if CYTHON_USE_DICT_VERSIONS
-#define __Pyx_GetModuleGlobalName(var, name)  do {\
-    static PY_UINT64_T __pyx_dict_version = 0;\
-    static PyObject *__pyx_dict_cached_value = NULL;\
-    (var) = (likely(__pyx_dict_version == __PYX_GET_DICT_VERSION(__pyx_mstate_global->__pyx_d))) ?\
-        (likely(__pyx_dict_cached_value) ? __Pyx_NewRef(__pyx_dict_cached_value) : __Pyx_GetBuiltinName(name)) :\
-        __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
-} while(0)
-#define __Pyx_GetModuleGlobalNameUncached(var, name)  do {\
-    PY_UINT64_T __pyx_dict_version;\
-    PyObject *__pyx_dict_cached_value;\
-    (var) = __Pyx__GetModuleGlobalName(name, &__pyx_dict_version, &__pyx_dict_cached_value);\
-} while(0)
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value);
-#else
-#define __Pyx_GetModuleGlobalName(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
-#define __Pyx_GetModuleGlobalNameUncached(var, name)  (var) = __Pyx__GetModuleGlobalName(name)
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
-#endif
 
 /* PyObjectVectorCallKwBuilder.proto */
 CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
@@ -2332,8 +2344,10 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
+  PyObject *__pyx_tuple[3];
   PyObject *__pyx_codeobj_tab[2];
-  PyObject *__pyx_string_tab[47];
+  PyObject *__pyx_string_tab[84];
+  PyObject *__pyx_number_tab[6];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2380,52 +2394,95 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u__2 __pyx_string_tab[1]
-#define __pyx_kp_u__3 __pyx_string_tab[2]
-#define __pyx_kp_u_disable __pyx_string_tab[3]
-#define __pyx_kp_u_div_display_contents_el_color_p __pyx_string_tab[4]
-#define __pyx_kp_u_enable __pyx_string_tab[5]
-#define __pyx_kp_u_gc __pyx_string_tab[6]
-#define __pyx_kp_u_isenabled __pyx_string_tab[7]
-#define __pyx_kp_u_simplestart_ss_ui_colorpicker_py __pyx_string_tab[8]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[9]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[10]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[11]
-#define __pyx_n_u_color __pyx_string_tab[12]
-#define __pyx_n_u_colorpicker __pyx_string_tab[13]
-#define __pyx_n_u_colorpicker_locals_myonchange __pyx_string_tab[14]
-#define __pyx_n_u_data __pyx_string_tab[15]
-#define __pyx_n_u_data_2 __pyx_string_tab[16]
-#define __pyx_n_u_event __pyx_string_tab[17]
-#define __pyx_n_u_func __pyx_string_tab[18]
-#define __pyx_n_u_get __pyx_string_tab[19]
-#define __pyx_n_u_handlers __pyx_string_tab[20]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[21]
-#define __pyx_n_u_items __pyx_string_tab[22]
-#define __pyx_n_u_kwargs __pyx_string_tab[23]
-#define __pyx_n_u_main __pyx_string_tab[24]
-#define __pyx_n_u_module __pyx_string_tab[25]
-#define __pyx_n_u_myonchange __pyx_string_tab[26]
-#define __pyx_n_u_name __pyx_string_tab[27]
-#define __pyx_n_u_onchange __pyx_string_tab[28]
-#define __pyx_n_u_pop __pyx_string_tab[29]
-#define __pyx_n_u_predefine __pyx_string_tab[30]
-#define __pyx_n_u_props __pyx_string_tab[31]
-#define __pyx_n_u_qualname __pyx_string_tab[32]
-#define __pyx_n_u_res __pyx_string_tab[33]
-#define __pyx_n_u_set_name __pyx_string_tab[34]
-#define __pyx_n_u_setdefault __pyx_string_tab[35]
-#define __pyx_n_u_show_alpha __pyx_string_tab[36]
-#define __pyx_n_u_simplestart_ss_ui_colorpicker __pyx_string_tab[37]
-#define __pyx_n_u_size __pyx_string_tab[38]
-#define __pyx_n_u_ss_core __pyx_string_tab[39]
-#define __pyx_n_u_ss_core_component __pyx_string_tab[40]
-#define __pyx_n_u_style __pyx_string_tab[41]
-#define __pyx_n_u_test __pyx_string_tab[42]
-#define __pyx_n_u_values __pyx_string_tab[43]
-#define __pyx_n_u_vuetify __pyx_string_tab[44]
-#define __pyx_kp_b_iso88591_A_6_Q_1_1 __pyx_string_tab[45]
-#define __pyx_kp_b_iso88591_A_6_Qha_F_ay_6_Qha_t1N_d_vT_a_v __pyx_string_tab[46]
+#define __pyx_kp_u_Color_change_callback_event_valu __pyx_string_tab[1]
+#define __pyx_kp_u_Color_changed_event_value_color __pyx_string_tab[2]
+#define __pyx_kp_u_Initial_color_supports_State_bin __pyx_string_tab[3]
+#define __pyx_kp_u_Preset_swatch_colors_Element_sty __pyx_string_tab[4]
+#define __pyx_kp_u_Trigger_size_preset_small_defaul __pyx_string_tab[5]
+#define __pyx_kp_u_True_forces_rgba_mode_alpha_slid __pyx_string_tab[6]
+#define __pyx_kp_u__2 __pyx_string_tab[7]
+#define __pyx_kp_u__3 __pyx_string_tab[8]
+#define __pyx_kp_u_disable __pyx_string_tab[9]
+#define __pyx_kp_u_div_style_display_contents_v_me __pyx_string_tab[10]
+#define __pyx_kp_u_enable __pyx_string_tab[11]
+#define __pyx_kp_u_gc __pyx_string_tab[12]
+#define __pyx_kp_u_isenabled __pyx_string_tab[13]
+#define __pyx_kp_u_simplestart_ss_ui_colorpicker_py __pyx_string_tab[14]
+#define __pyx_kp_u_v_color_picker __pyx_string_tab[15]
+#define __pyx_n_u_COLORPICKER_SCHEMA __pyx_string_tab[16]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[17]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[18]
+#define __pyx_n_u_bool __pyx_string_tab[19]
+#define __pyx_n_u_btn __pyx_string_tab[20]
+#define __pyx_n_u_btn_size __pyx_string_tab[21]
+#define __pyx_n_u_callable __pyx_string_tab[22]
+#define __pyx_n_u_category __pyx_string_tab[23]
+#define __pyx_n_u_change __pyx_string_tab[24]
+#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[25]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[26]
+#define __pyx_n_u_color __pyx_string_tab[27]
+#define __pyx_n_u_colorpicker __pyx_string_tab[28]
+#define __pyx_n_u_colorpicker_locals_myonchange __pyx_string_tab[29]
+#define __pyx_n_u_data __pyx_string_tab[30]
+#define __pyx_n_u_data_2 __pyx_string_tab[31]
+#define __pyx_n_u_default __pyx_string_tab[32]
+#define __pyx_n_u_doc __pyx_string_tab[33]
+#define __pyx_n_u_event __pyx_string_tab[34]
+#define __pyx_n_u_events __pyx_string_tab[35]
+#define __pyx_n_u_form __pyx_string_tab[36]
+#define __pyx_n_u_func __pyx_string_tab[37]
+#define __pyx_n_u_get __pyx_string_tab[38]
+#define __pyx_n_u_handlers __pyx_string_tab[39]
+#define __pyx_n_u_hex __pyx_string_tab[40]
+#define __pyx_n_u_hsl __pyx_string_tab[41]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[42]
+#define __pyx_n_u_items __pyx_string_tab[43]
+#define __pyx_n_u_kwargs __pyx_string_tab[44]
+#define __pyx_n_u_large __pyx_string_tab[45]
+#define __pyx_n_u_list __pyx_string_tab[46]
+#define __pyx_n_u_main __pyx_string_tab[47]
+#define __pyx_n_u_mode __pyx_string_tab[48]
+#define __pyx_n_u_modes __pyx_string_tab[49]
+#define __pyx_n_u_module __pyx_string_tab[50]
+#define __pyx_n_u_myonchange __pyx_string_tab[51]
+#define __pyx_n_u_name __pyx_string_tab[52]
+#define __pyx_n_u_name_2 __pyx_string_tab[53]
+#define __pyx_n_u_onchange __pyx_string_tab[54]
+#define __pyx_n_u_params __pyx_string_tab[55]
+#define __pyx_n_u_pop __pyx_string_tab[56]
+#define __pyx_n_u_positional __pyx_string_tab[57]
+#define __pyx_n_u_predefine __pyx_string_tab[58]
+#define __pyx_n_u_qualname __pyx_string_tab[59]
+#define __pyx_n_u_reactive __pyx_string_tab[60]
+#define __pyx_n_u_res __pyx_string_tab[61]
+#define __pyx_n_u_rgb __pyx_string_tab[62]
+#define __pyx_n_u_rgba __pyx_string_tab[63]
+#define __pyx_n_u_set_name __pyx_string_tab[64]
+#define __pyx_n_u_setdefault __pyx_string_tab[65]
+#define __pyx_n_u_show_alpha __pyx_string_tab[66]
+#define __pyx_n_u_simplestart_ss_ui_colorpicker __pyx_string_tab[67]
+#define __pyx_n_u_size __pyx_string_tab[68]
+#define __pyx_n_u_small __pyx_string_tab[69]
+#define __pyx_n_u_ss_core __pyx_string_tab[70]
+#define __pyx_n_u_ss_core_component __pyx_string_tab[71]
+#define __pyx_n_u_str __pyx_string_tab[72]
+#define __pyx_n_u_sw __pyx_string_tab[73]
+#define __pyx_n_u_swatch_size __pyx_string_tab[74]
+#define __pyx_n_u_swatches __pyx_string_tab[75]
+#define __pyx_n_u_test __pyx_string_tab[76]
+#define __pyx_n_u_type __pyx_string_tab[77]
+#define __pyx_n_u_value __pyx_string_tab[78]
+#define __pyx_n_u_values __pyx_string_tab[79]
+#define __pyx_n_u_vuetify __pyx_string_tab[80]
+#define __pyx_n_u_vuetify_base __pyx_string_tab[81]
+#define __pyx_kp_b_iso88591_A_6_U_1_1 __pyx_string_tab[82]
+#define __pyx_kp_b_iso88591_q_xq_6_Qha_F_ay_4uJd_d_6_QhcQVV __pyx_string_tab[83]
+#define __pyx_int_16 __pyx_number_tab[0]
+#define __pyx_int_20 __pyx_number_tab[1]
+#define __pyx_int_24 __pyx_number_tab[2]
+#define __pyx_int_26 __pyx_number_tab[3]
+#define __pyx_int_30 __pyx_number_tab[4]
+#define __pyx_int_38 __pyx_number_tab[5]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2442,8 +2499,10 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #endif
   Py_CLEAR(clear_module_state->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker);
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker);
+  for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<47; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<84; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<6; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2468,8 +2527,10 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   Py_VISIT(traverse_module_state->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker);
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker);
+  for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<47; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<84; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<6; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2483,12 +2544,12 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_ui/colorpicker.py":7
- * from ss_core.component import props
+/* "simplestart/ss_ui/colorpicker.py":23
+ * 
  * 
  * def colorpicker(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-color-picker
 */
 
 /* Python wrapper */
@@ -2499,7 +2560,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_11colorpicker_colorpicker, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\351\242\234\350\211\262\351\200\211\346\213\251\345\231\250\347\273\204\344\273\266\n    \n    \345\217\202\346\225\260:\n        color: \351\273\230\350\256\244\351\242\234\350\211\262\345\200\274\n        size: \347\273\204\344\273\266\345\244\247\345\260\217\n        show_alpha: \346\230\257\345\220\246\346\230\276\347\244\272\351\200\217\346\230\216\345\272\246\351\200\211\346\213\251\n        predefine: \351\242\204\345\256\232\344\271\211\351\242\234\350\211\262\345\210\227\350\241\250\n        onchange: \351\242\234\350\211\262\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \351\242\234\350\211\262\351\200\211\346\213\251\345\231\250\347\273\204\344\273\266\347\232\204props\345\257\271\350\261\241\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_11colorpicker_colorpicker, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\351\242\234\350\211\262\351\200\211\346\213\251\345\231\250\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Vuetify v-color-picker\357\274\211\n    \n    \345\217\202\346\225\260:\n        color: \351\273\230\350\256\244\351\242\234\350\211\262\345\200\274\n        size: \350\247\246\345\217\221\345\231\250\345\260\272\345\257\270\346\241\243\344\275\215\357\274\210small / default / large\357\274\211\n        show_alpha: \346\230\257\345\220\246\346\230\276\347\244\272\351\200\217\346\230\216\345\272\246\351\200\211\346\213\251\357\274\210Vuetify \351\200\232\350\277\207\351\242\234\350\211\262\346\240\274\345\274\217\350\207\252\345\212\250\345\244\204\347\220\206\357\274\211\n        predefine: \351\242\204\345\256\232\344\271\211\351\242\234\350\211\262\345\210\227\350\241\250\357\274\210\346\230\240\345\260\204\345\210\260 Vuetify \347\232\204 swatches\357\274\211\n        onchange: \351\242\234\350\211\262\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \351\242\234\350\211\262\351\200\211\346\213\251\345\231\250\347\273\204\344\273\266\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_11colorpicker_1colorpicker = {"colorpicker", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_11colorpicker_1colorpicker, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_11colorpicker_colorpicker};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_11colorpicker_1colorpicker(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2545,12 +2606,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/colorpicker.py":32
+/* "simplestart/ss_ui/colorpicker.py":58
  *     onchange = kwargs.get("onchange", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         #  event  el-color-picker  @change  value
- *         res._data["color"] = event
+ *         res._data["color"] = event.value
+ *         if onchange:
 */
 
 /* Python wrapper */
@@ -2592,32 +2653,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 32, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 58, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 32, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 58, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 32, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 58, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 32, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 58, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 32, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 58, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 32, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 58, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2644,8 +2705,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_11colorpicker_myonc
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
   size_t __pyx_t_5;
   int __pyx_lineno = 0;
@@ -2655,78 +2716,81 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_11colorpicker_myonc
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/colorpicker.py":34
+  /* "simplestart/ss_ui/colorpicker.py":59
+ * 
  *     def myonchange(event):
- *         #  event  el-color-picker  @change  value
- *         res._data["color"] = event             # <<<<<<<<<<<<<<
+ *         res._data["color"] = event.value             # <<<<<<<<<<<<<<
  *         if onchange:
  *           onchange(event)
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 34, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_color, __pyx_v_event) < 0))) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 59, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (unlikely((PyObject_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_1) < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/colorpicker.py":35
- *         #  event  el-color-picker  @change  value
- *         res._data["color"] = event
+  /* "simplestart/ss_ui/colorpicker.py":60
+ *     def myonchange(event):
+ *         res._data["color"] = event.value
  *         if onchange:             # <<<<<<<<<<<<<<
  *           onchange(event)
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 35, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 35, __pyx_L1_error)
-  if (__pyx_t_2) {
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 60, __pyx_L1_error) }
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__pyx_t_3) {
 
-    /* "simplestart/ss_ui/colorpicker.py":36
- *         res._data["color"] = event
+    /* "simplestart/ss_ui/colorpicker.py":61
+ *         res._data["color"] = event.value
  *         if onchange:
  *           onchange(event)             # <<<<<<<<<<<<<<
  * 
- *     # el-color-picker  div  CoreVuetify.vue
+ *     res = vuetify(r'''
 */
-    __pyx_t_3 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 36, __pyx_L1_error) }
+    __pyx_t_2 = NULL;
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 61, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
     __pyx_t_4 = __pyx_cur_scope->__pyx_v_onchange; 
     __pyx_t_5 = 1;
     #if CYTHON_UNPACK_METHODS
     if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_3);
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+      assert(__pyx_t_2);
       PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(__pyx__function);
       __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
       __pyx_t_5 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_event};
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_event};
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/colorpicker.py":35
- *         #  event  el-color-picker  @change  value
- *         res._data["color"] = event
+    /* "simplestart/ss_ui/colorpicker.py":60
+ *     def myonchange(event):
+ *         res._data["color"] = event.value
  *         if onchange:             # <<<<<<<<<<<<<<
  *           onchange(event)
  * 
 */
   }
 
-  /* "simplestart/ss_ui/colorpicker.py":32
+  /* "simplestart/ss_ui/colorpicker.py":58
  *     onchange = kwargs.get("onchange", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         #  event  el-color-picker  @change  value
- *         res._data["color"] = event
+ *         res._data["color"] = event.value
+ *         if onchange:
 */
 
   /* function exit code */
@@ -2734,7 +2798,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_11colorpicker_myonc
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_AddTraceback("simplestart.ss_ui.colorpicker.colorpicker.myonchange", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
@@ -2744,18 +2808,20 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_11colorpicker_myonc
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/colorpicker.py":7
- * from ss_core.component import props
+/* "simplestart/ss_ui/colorpicker.py":23
+ * 
  * 
  * def colorpicker(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-color-picker
 */
 
 static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_kwargs) {
   struct __pyx_obj_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker *__pyx_cur_scope;
-  CYTHON_UNUSED PyObject *__pyx_v_style = NULL;
   PyObject *__pyx_v_data = NULL;
+  PyObject *__pyx_v__btn = NULL;
+  PyObject *__pyx_v__sw = NULL;
+  PyObject *__pyx_v_show_alpha = NULL;
   PyObject *__pyx_v_myonchange = 0;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2764,7 +2830,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   size_t __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_6;
+  PyObject *(*__pyx_t_7)(PyObject *);
+  PyObject *__pyx_t_8 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2773,133 +2841,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 7, __pyx_L1_error)
+    __PYX_ERR(0, 23, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
 
-  /* "simplestart/ss_ui/colorpicker.py":21
- *         props
+  /* "simplestart/ss_ui/colorpicker.py":37
+ * 
  *     """
- *     style = ""             # <<<<<<<<<<<<<<
+ *     check_schema_kwargs("colorpicker", kwargs, COLORPICKER_SCHEMA)             # <<<<<<<<<<<<<<
  *     data = kwargs.get("data", {})
  * 
-*/
-  __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
-  __pyx_v_style = __pyx_mstate_global->__pyx_kp_u_;
-
-  /* "simplestart/ss_ui/colorpicker.py":22
- *     """
- *     style = ""
- *     data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
- * 
- *     data["color"] = kwargs.get("color", "")
-*/
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_data = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":24
- *     data = kwargs.get("data", {})
- * 
- *     data["color"] = kwargs.get("color", "")             # <<<<<<<<<<<<<<
- *     data["size"] = kwargs.get("size", "")
- *     data["show_alpha"] = kwargs.get("show_alpha", False)
-*/
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_color, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_2) < 0))) __PYX_ERR(0, 24, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":25
- * 
- *     data["color"] = kwargs.get("color", "")
- *     data["size"] = kwargs.get("size", "")             # <<<<<<<<<<<<<<
- *     data["show_alpha"] = kwargs.get("show_alpha", False)
- * 
-*/
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_2) < 0))) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":26
- *     data["color"] = kwargs.get("color", "")
- *     data["size"] = kwargs.get("size", "")
- *     data["show_alpha"] = kwargs.get("show_alpha", False)             # <<<<<<<<<<<<<<
- * 
- *     # predefine
-*/
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_alpha, Py_False); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_alpha, __pyx_t_2) < 0))) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":29
- * 
- *     # predefine
- *     data["predefine"] = kwargs.get("predefine", [])             # <<<<<<<<<<<<<<
- *     onchange = kwargs.get("onchange", None)
- * 
-*/
-  __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_predefine, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_predefine, __pyx_t_1) < 0))) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":30
- *     # predefine
- *     data["predefine"] = kwargs.get("predefine", [])
- *     onchange = kwargs.get("onchange", None)             # <<<<<<<<<<<<<<
- * 
- *     def myonchange(event):
-*/
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_cur_scope->__pyx_v_onchange = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":32
- *     onchange = kwargs.get("onchange", None)
- * 
- *     def myonchange(event):             # <<<<<<<<<<<<<<
- *         #  event  el-color-picker  @change  value
- *         res._data["color"] = event
-*/
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_11colorpicker_11colorpicker_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_colorpicker_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_colorpicker, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_myonchange = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/colorpicker.py":41
- *     # v-runtime-template
- *     #  div v-runtime-template  div
- *     res = vuetify(r'''             # <<<<<<<<<<<<<<
- *         <div display:contents>
- *         <el-color-picker v-model="data.color"
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-
-  /* "simplestart/ss_ui/colorpicker.py":50
- *          />
- *          </div>
- *     ''', data= data, handlers = {"onchange":myonchange})             # <<<<<<<<<<<<<<
- * 
- *     return res
-*/
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_COLORPICKER_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 50, __pyx_L1_error)
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2913,25 +2871,297 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_div_display_contents_el_color_p};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 41, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 41, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_4, __pyx_t_6, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 41, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
+    PyObject *__pyx_callargs[4] = {__pyx_t_2, __pyx_mstate_global->__pyx_n_u_colorpicker, __pyx_v_kwargs, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_cur_scope->__pyx_v_res = __pyx_t_1;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":38
+ *     """
+ *     check_schema_kwargs("colorpicker", kwargs, COLORPICKER_SCHEMA)
+ *     data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
+ * 
+ *     data["color"] = kwargs.get("color", "")
+*/
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_data = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":40
+ *     data = kwargs.get("data", {})
+ * 
+ *     data["color"] = kwargs.get("color", "")             # <<<<<<<<<<<<<<
+ * 
+ *     #   small 24/16, default 30/20, large 38/26
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_color, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_3) < 0))) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":43
+ * 
+ *     #   small 24/16, default 30/20, large 38/26
+ *     _btn, _sw = {"small": (24, 16), "large": (38, 26)}.get(kwargs.get("size") or "", (30, 20))             # <<<<<<<<<<<<<<
+ *     data["btn_size"] = _btn
+ *     data["swatch_size"] = _sw
+*/
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_small, __pyx_mstate_global->__pyx_tuple[0]) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_large, __pyx_mstate_global->__pyx_tuple[1]) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (!__pyx_t_6) {
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else {
+    __Pyx_INCREF(__pyx_t_4);
+    __pyx_t_1 = __pyx_t_4;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    goto __pyx_L3_bool_binop_done;
+  }
+  __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
+  __pyx_t_1 = __pyx_mstate_global->__pyx_kp_u_;
+  __pyx_L3_bool_binop_done:;
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_t_3, __pyx_t_1, __pyx_mstate_global->__pyx_tuple[2]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
+    PyObject* sequence = __pyx_t_4;
+    Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+    if (unlikely(size != 2)) {
+      if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+      else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+      __PYX_ERR(0, 43, __pyx_L1_error)
+    }
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    if (likely(PyTuple_CheckExact(sequence))) {
+      __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0);
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1);
+      __Pyx_INCREF(__pyx_t_3);
+    } else {
+      __pyx_t_1 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+      __Pyx_XGOTREF(__pyx_t_1);
+      __pyx_t_3 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
+      __Pyx_XGOTREF(__pyx_t_3);
+    }
+    #else
+    __pyx_t_1 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    #endif
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else {
+    Py_ssize_t index = -1;
+    __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_2);
+    index = 0; __pyx_t_1 = __pyx_t_7(__pyx_t_2); if (unlikely(!__pyx_t_1)) goto __pyx_L5_unpacking_failed;
+    __Pyx_GOTREF(__pyx_t_1);
+    index = 1; __pyx_t_3 = __pyx_t_7(__pyx_t_2); if (unlikely(!__pyx_t_3)) goto __pyx_L5_unpacking_failed;
+    __Pyx_GOTREF(__pyx_t_3);
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_2), 2) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __pyx_t_7 = NULL;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    goto __pyx_L6_unpacking_done;
+    __pyx_L5_unpacking_failed:;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_7 = NULL;
+    if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+    __PYX_ERR(0, 43, __pyx_L1_error)
+    __pyx_L6_unpacking_done:;
+  }
+  __pyx_v__btn = __pyx_t_1;
   __pyx_t_1 = 0;
+  __pyx_v__sw = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":44
+ *     #   small 24/16, default 30/20, large 38/26
+ *     _btn, _sw = {"small": (24, 16), "large": (38, 26)}.get(kwargs.get("size") or "", (30, 20))
+ *     data["btn_size"] = _btn             # <<<<<<<<<<<<<<
+ *     data["swatch_size"] = _sw
+ * 
+*/
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_btn_size, __pyx_v__btn) < 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/colorpicker.py":45
+ *     _btn, _sw = {"small": (24, 16), "large": (38, 26)}.get(kwargs.get("size") or "", (30, 20))
+ *     data["btn_size"] = _btn
+ *     data["swatch_size"] = _sw             # <<<<<<<<<<<<<<
+ * 
+ *     # Vuetify v-color-picker  swatches
+*/
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_swatch_size, __pyx_v__sw) < 0))) __PYX_ERR(0, 45, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/colorpicker.py":48
+ * 
+ *     # Vuetify v-color-picker  swatches
+ *     data["swatches"] = kwargs.get("predefine", [])             # <<<<<<<<<<<<<<
+ * 
+ *     # show_alphaTrue  rgba alpha
+*/
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_predefine, __pyx_t_4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_swatches, __pyx_t_3) < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "simplestart/ss_ui/colorpicker.py":52
- *     ''', data= data, handlers = {"onchange":myonchange})
+ *     # show_alphaTrue  rgba alpha
+ *     # False  modes  alpha  alpha
+ *     show_alpha = kwargs.get("show_alpha", None)             # <<<<<<<<<<<<<<
+ *     data["mode"] = "rgba" if show_alpha else ""
+ *     data["modes"] = ["hex", "rgb", "hsl"] if show_alpha is False else None
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_alpha, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_show_alpha = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":53
+ *     # False  modes  alpha  alpha
+ *     show_alpha = kwargs.get("show_alpha", None)
+ *     data["mode"] = "rgba" if show_alpha else ""             # <<<<<<<<<<<<<<
+ *     data["modes"] = ["hex", "rgb", "hsl"] if show_alpha is False else None
+ * 
+*/
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_show_alpha); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (__pyx_t_6) {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_rgba);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_n_u_rgba;
+  } else {
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
+    __pyx_t_3 = __pyx_mstate_global->__pyx_kp_u_;
+  }
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_mode, __pyx_t_3) < 0))) __PYX_ERR(0, 53, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":54
+ *     show_alpha = kwargs.get("show_alpha", None)
+ *     data["mode"] = "rgba" if show_alpha else ""
+ *     data["modes"] = ["hex", "rgb", "hsl"] if show_alpha is False else None             # <<<<<<<<<<<<<<
+ * 
+ *     onchange = kwargs.get("onchange", None)
+*/
+  __pyx_t_6 = (__pyx_v_show_alpha == Py_False);
+  if (__pyx_t_6) {
+    __pyx_t_4 = PyList_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_hex);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_hex);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_mstate_global->__pyx_n_u_hex) != (0)) __PYX_ERR(0, 54, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_rgb);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_rgb);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 1, __pyx_mstate_global->__pyx_n_u_rgb) != (0)) __PYX_ERR(0, 54, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_hsl);
+    __Pyx_GIVEREF(__pyx_mstate_global->__pyx_n_u_hsl);
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 2, __pyx_mstate_global->__pyx_n_u_hsl) != (0)) __PYX_ERR(0, 54, __pyx_L1_error);
+    __pyx_t_3 = __pyx_t_4;
+    __pyx_t_4 = 0;
+  } else {
+    __Pyx_INCREF(Py_None);
+    __pyx_t_3 = Py_None;
+  }
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_modes, __pyx_t_3) < 0))) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":56
+ *     data["modes"] = ["hex", "rgb", "hsl"] if show_alpha is False else None
+ * 
+ *     onchange = kwargs.get("onchange", None)             # <<<<<<<<<<<<<<
+ * 
+ *     def myonchange(event):
+*/
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_onchange = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":58
+ *     onchange = kwargs.get("onchange", None)
+ * 
+ *     def myonchange(event):             # <<<<<<<<<<<<<<
+ *         res._data["color"] = event.value
+ *         if onchange:
+*/
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_11colorpicker_11colorpicker_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_colorpicker_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_colorpicker, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_v_myonchange = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":63
+ *           onchange(event)
+ * 
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
+ *         <div style="display: contents;">
+ *             <v-menu :close-on-content-click="false">
+*/
+  __pyx_t_4 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "simplestart/ss_ui/colorpicker.py":80
+ *             </v-menu>
+ *         </div>
+ *     ''', data=data, handlers={"onchange": myonchange})             # <<<<<<<<<<<<<<
+ * 
+ *     return res
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    assert(__pyx_t_4);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_1);
+    __Pyx_INCREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_1, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_4, __pyx_mstate_global->__pyx_kp_u_div_style_display_contents_v_me};
+    __pyx_t_8 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_8, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_2, __pyx_t_8, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+  }
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_cur_scope->__pyx_v_res = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":82
+ *     ''', data=data, handlers={"onchange": myonchange})
  * 
  *     return res             # <<<<<<<<<<<<<<
 */
@@ -2940,12 +3170,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_
   __pyx_r = __pyx_cur_scope->__pyx_v_res;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/colorpicker.py":7
- * from ss_core.component import props
+  /* "simplestart/ss_ui/colorpicker.py":23
+ * 
  * 
  * def colorpicker(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-color-picker
 */
 
   /* function exit code */
@@ -2954,12 +3184,14 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_11colorpicker_colorpicker(CYTHON_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("simplestart.ss_ui.colorpicker.colorpicker", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_style);
   __Pyx_XDECREF(__pyx_v_data);
+  __Pyx_XDECREF(__pyx_v__btn);
+  __Pyx_XDECREF(__pyx_v__sw);
+  __Pyx_XDECREF(__pyx_v_show_alpha);
   __Pyx_XDECREF(__pyx_v_myonchange);
   __Pyx_DECREF((PyObject *)__pyx_cur_scope);
   __Pyx_XGIVEREF(__pyx_r);
@@ -3198,15 +3430,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker)) __PYX_ERR(0, 7, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker = &__pyx_type_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_11colorpicker___pyx_scope_struct__colorpicker);
@@ -3432,6 +3664,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_colorpicker(PyObject *__pyx_pyinit
   PyObject *__pyx_t_2 = NULL;
   Py_ssize_t __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3522,7 +3755,7 @@ __Pyx_RefNannySetupContext("PyInit_colorpicker", 0);
  * # corevuetify
  * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * 
- * # utilsprops
+ * from ss_core.component import check_schema_kwargs
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
@@ -3541,43 +3774,171 @@ __Pyx_RefNannySetupContext("PyInit_colorpicker", 0);
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/colorpicker.py":5
+  /* "simplestart/ss_ui/colorpicker.py":4
+ * from ss_core import vuetify
  * 
- * # utilsprops
- * from ss_core.component import props             # <<<<<<<<<<<<<<
+ * from ss_core.component import check_schema_kwargs             # <<<<<<<<<<<<<<
  * 
- * def colorpicker(**kwargs):
+ * COLORPICKER_SCHEMA = {
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_props};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_props};
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
     __pyx_t_3 = 0; {
-      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 5, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 4, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 4, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/colorpicker.py":7
- * from ss_core.component import props
+ * 
+ * COLORPICKER_SCHEMA = {
+ *     "name": "colorpicker",             # <<<<<<<<<<<<<<
+ *     "category": "form",
+ *     "vuetify_base": "v-color-picker",
+*/
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_colorpicker) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_category, __pyx_mstate_global->__pyx_n_u_form) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify_base, __pyx_mstate_global->__pyx_kp_u_v_color_picker) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/colorpicker.py":10
+ *     "category": "form",
+ *     "vuetify_base": "v-color-picker",
+ *     "reactive": True,             # <<<<<<<<<<<<<<
+ *     "positional": [],
+ *     "params": {
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_reactive, Py_True) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/colorpicker.py":11
+ *     "vuetify_base": "v-color-picker",
+ *     "reactive": True,
+ *     "positional": [],             # <<<<<<<<<<<<<<
+ *     "params": {
+ *         "color": {"type": "str", "default": "", "doc": "Initial color; supports State binding"},
+*/
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_positional, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":13
+ *     "positional": [],
+ *     "params": {
+ *         "color": {"type": "str", "default": "", "doc": "Initial color; supports State binding"},             # <<<<<<<<<<<<<<
+ *         "size": {"type": "str", "default": "", "doc": "Trigger size preset: small / default / large"},
+ *         "show_alpha": {"type": "bool", "default": None, "doc": "True forces rgba mode (alpha slider); False limits modes to non-alpha formats; default: alpha follows the initial color format"},
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Initial_color_supports_State_bin) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":14
+ *     "params": {
+ *         "color": {"type": "str", "default": "", "doc": "Initial color; supports State binding"},
+ *         "size": {"type": "str", "default": "", "doc": "Trigger size preset: small / default / large"},             # <<<<<<<<<<<<<<
+ *         "show_alpha": {"type": "bool", "default": None, "doc": "True forces rgba mode (alpha slider); False limits modes to non-alpha formats; default: alpha follows the initial color format"},
+ *         "predefine": {"type": "list", "default": "", "doc": "Preset swatch colors (Element-style alias of swatches)"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Trigger_size_preset_small_defaul) < (0)) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":15
+ *         "color": {"type": "str", "default": "", "doc": "Initial color; supports State binding"},
+ *         "size": {"type": "str", "default": "", "doc": "Trigger size preset: small / default / large"},
+ *         "show_alpha": {"type": "bool", "default": None, "doc": "True forces rgba mode (alpha slider); False limits modes to non-alpha formats; default: alpha follows the initial color format"},             # <<<<<<<<<<<<<<
+ *         "predefine": {"type": "list", "default": "", "doc": "Preset swatch colors (Element-style alias of swatches)"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "Color-change callback; event.value = new color"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_True_forces_rgba_mode_alpha_slid) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_show_alpha, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":16
+ *         "size": {"type": "str", "default": "", "doc": "Trigger size preset: small / default / large"},
+ *         "show_alpha": {"type": "bool", "default": None, "doc": "True forces rgba mode (alpha slider); False limits modes to non-alpha formats; default: alpha follows the initial color format"},
+ *         "predefine": {"type": "list", "default": "", "doc": "Preset swatch colors (Element-style alias of swatches)"},             # <<<<<<<<<<<<<<
+ *         "onchange": {"type": "callable", "default": None, "doc": "Color-change callback; event.value = new color"},
+ *     },
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_list) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_kp_u_) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Preset_swatch_colors_Element_sty) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_predefine, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":17
+ *         "show_alpha": {"type": "bool", "default": None, "doc": "True forces rgba mode (alpha slider); False limits modes to non-alpha formats; default: alpha follows the initial color format"},
+ *         "predefine": {"type": "list", "default": "", "doc": "Preset swatch colors (Element-style alias of swatches)"},
+ *         "onchange": {"type": "callable", "default": None, "doc": "Color-change callback; event.value = new color"},             # <<<<<<<<<<<<<<
+ *     },
+ *     "events": {"change": "Color changed; event.value = color string"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Color_change_callback_event_valu) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":19
+ *         "onchange": {"type": "callable", "default": None, "doc": "Color-change callback; event.value = new color"},
+ *     },
+ *     "events": {"change": "Color changed; event.value = color string"},             # <<<<<<<<<<<<<<
+ * }
+ * 
+*/
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_change, __pyx_mstate_global->__pyx_kp_u_Color_changed_event_value_color) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_COLORPICKER_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "simplestart/ss_ui/colorpicker.py":23
+ * 
  * 
  * def colorpicker(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- * 
+ *      Vuetify v-color-picker
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_11colorpicker_1colorpicker, 0, __pyx_mstate_global->__pyx_n_u_colorpicker, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_colorpicker, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_11colorpicker_1colorpicker, 0, __pyx_mstate_global->__pyx_n_u_colorpicker, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_colorpicker, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_colorpicker, __pyx_t_2) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_colorpicker, __pyx_t_2) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/colorpicker.py":1
@@ -3596,6 +3957,7 @@ __Pyx_RefNannySetupContext("PyInit_colorpicker", 0);
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.ss_ui.colorpicker", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -3645,42 +4007,81 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannyDeclarations
   CYTHON_UNUSED_VAR(__pyx_mstate);
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
+
+  /* "simplestart/ss_ui/colorpicker.py":43
+ * 
+ *     #   small 24/16, default 30/20, large 38/26
+ *     _btn, _sw = {"small": (24, 16), "large": (38, 26)}.get(kwargs.get("size") or "", (30, 20))             # <<<<<<<<<<<<<<
+ *     data["btn_size"] = _btn
+ *     data["swatch_size"] = _sw
+*/
+  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_24, __pyx_mstate_global->__pyx_int_16); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[0]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[0]);
+  __pyx_mstate_global->__pyx_tuple[1] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_38, __pyx_mstate_global->__pyx_int_26); if (unlikely(!__pyx_mstate_global->__pyx_tuple[1])) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[1]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[1]);
+  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_30, __pyx_mstate_global->__pyx_int_20); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
+  #if CYTHON_IMMORTAL_CONSTANTS
+  {
+    PyObject **table = __pyx_mstate->__pyx_tuple;
+    for (Py_ssize_t i=0; i<3; ++i) {
+      #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
+      #if PY_VERSION_HEX < 0x030E0000
+      if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
+      #else
+      if (PyUnstable_Object_IsUniquelyReferenced(table[i]))
+      #endif
+      {
+        Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
+      }
+      #else
+      Py_SET_REFCNT(table[i], _Py_IMMORTAL_INITIAL_REFCNT);
+      #endif
+    }
+  }
+  #endif
   __Pyx_RefNannyFinishContext();
   return 0;
+  __pyx_L1_error:;
+  __Pyx_RefNannyFinishContext();
+  return -1;
 }
 /* #### Code section: init_constants ### */
 
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{1},{1},{7},{268},{6},{2},{9},{32},{20},{18},{18},{5},{11},{31},{5},{4},{5},{8},{3},{8},{13},{5},{6},{8},{10},{10},{8},{8},{3},{9},{5},{12},{3},{12},{10},{10},{29},{4},{7},{17},{5},{8},{6},{7},{25},{138}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (611 bytes) */
-const char* const cstring = "BZh91AY&SY\214\205>9\000\000I\177\373\347z\365<\364\357\241\027\345\001t\004\277\357\377\360@@@@@@@\000@@@\000@\000@\001\374\245\002p\324&\251\372i\222i\211\246\211\211\232\214@\032\0314\014\200\032=5\031\036OJ\034\302h\r\001\243F\021\240\304i\211\223\023A\204h\031\000\311\201\314&\200\320\0324a\032\014F\230\23114\030F\201\220\014\230\r\002\020\304S\320\320\231\031L\324=5\000h\000\320\000\r4\362\217\322\215<'w?H\033wu_y\231\230\200(\221\211\357\3779\354[\355\241\336\016R\367\"\003t.\006\207\222\361)\205U\031p\215\357KH\201@\200\331\272}]\331U\221=\370^t\371Hp/z\307\334p\346&\350\232\004\214\257iV\250\216\202\211\355\267\231\250\037\214\30437\010\222\216\347\240+\245\270\250h\315h\324\375\254\346\346\340\267d\214&q\2110\233-\350 {\233\365f\"33\013\240)+\301\242\023\030'\250O\343\000j\303\213\245\303u\364|NY\212\222\210)\322\023n\320G\246\354`\360i*\272\3464\245\002v\260\220X\222*6\357\224\343M\222\031<\2004\250\337#\363pqT\205\010\212:v\253\335\025\214\254\345\322H\215\245\344\337\3360\021\325\255\271\274\374\212\370\236v2\244\341\027\035t<X\361Jc\333\210\206\\\311\"\013+\304\261\020I\026\274\223\014Cl\036+\253P\265\310qlhv\030\240\224\021\250\253\263-h \302\022\341\342\"@(2\211\226\254\370\303\346\376V\n\027\001\322\360,\252\000)\204 \2203\013\r\002`\016z\005Vr98h%\000\300A\254\220\255P.\211N\273{\021fi\252\231\230\310h\034L\230\025\0010Pn\226\207\264F\031\240E>8\211\3162\312\255U\224\324\035\251\n\223\246\003f)\326\367\202@\2255j2\204\\\006\375\033\330\260 V]\353\002\245\242\365\031\272\260\275\316\022M\373\250we\313.[\007~\274\004\312\274\3439}\211\356A\361\243\347\206q\242Q\373\253_\345\360\317\352U=+K\031\327\261l\301.,1^s\\\221\315\351 v\223UQ\301\302\375\200$\302\356H\247\n\022\021\220\247\307 ";
-    PyObject *data = __Pyx_DecompressString(cstring, 611, 2);
+    const struct { const unsigned int length: 11; } index[] = {{0},{46},{41},{37},{54},{44},{126},{1},{1},{7},{1040},{6},{2},{9},{32},{14},{18},{20},{18},{4},{4},{8},{8},{8},{6},{19},{18},{5},{11},{31},{5},{4},{7},{3},{5},{6},{4},{8},{3},{8},{3},{3},{13},{5},{6},{5},{4},{8},{4},{5},{10},{10},{8},{4},{8},{6},{3},{10},{9},{12},{8},{3},{3},{4},{12},{10},{10},{29},{4},{5},{7},{17},{3},{3},{11},{8},{8},{4},{5},{6},{7},{12},{27},{222}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1303 bytes) */
+const char* const cstring = "BZh91AY&SYH|A\177\000\001\n\177\377\377|\365_|\357\365\037\357\377\377\234\277\357\377\376@@@@@@@@@@@@@\000@\000P\004~sf\313*!BC\010\201$\365=\251\224\3645\003C\023\324\375Q\262 \030\200\310\310i\246\232\036\240\003CM\017S \32351\016\000\001\240\001\240\r\000\000\0321\000\003@\000\000\000\003@\006\247\244\320\023S\324MM=0\223\002d\032\003@i\240h\000\000\000\003@\032\032h\016\000\001\240\001\240\r\000\000\0321\000\003@\000\000\000\003@\004\241\001\001\031\032\004\010\214\302&\312\036\240h\332\206\207\250\007\251\240\000\000\007\250y4e#B\317\rZ\177\261?\356_\233\237\247\244U\025VE\210]\324\220\0369\016\254\260\214}\023\353S\022\242\242\213\3734\212/\026\240\312\335\016D\350\033\305(\302\035*\374\332\356b\353\330\222 $\330\000\271\265\252\3156}\224\017\217\335\314\330\310\037R\361\310\326\223a\250\212\204\246+:'\363\363\213\007:R#^sEk\216\322\322\233\t\234\367\267\3501\254\225\255\220\335\227[\275\275\230\30026\320\254\355\300t\006f\226\3778q\314\210\211\342\234g\204hT\315\220\t\022\350\212\002\022 -z\034\264\255\224\027\032\206\025!\211\260\203\030\nj\211\311\005\313\004\317\214O\200K\266z\364\251N\206\036\250\367\243\367x\366h!\014hs\317q\306\344b\344S\031\305?\000\365L\346\330\234\222]8;6g\277L\037\177\305\023r\355^?\013\235s\3707\\\306\203\245\204\240'\025\334\353\231\324\263>\257[\232\231[\212\362\227\017U\316.\306\027k\217\217\236\265\007\031Q\346\000\323D\311q#\215\361\010\022_\222\025\252\3714,V\\\020\315j\3620\324k\305\326\314\331\235\364\375L\316\331\301H8T\247<\347a\t\257\245\226\242\340\376\313&/\332\326\264U\224\263\016\274\363\345Z\200 \2342\032\243:\206\022O\300e\203X Y\303\"Z`\260\341kL\202\217\331\"\001\200\325g\001\0273^\221\3327_=ce\262\013\347;\370\336\277\024\277\317\007\244\210\360\257\021\200\026\266SI+\310a*e\177t\022\200\03575\264\306@\363\261\345.\367h\037\247>\031\333`\033]\301'\036\202h\222\316<mF\227e\002PfdR4x\r\244g\202\010\201\206q\357LT(A\233]R\345.K\214l\346:\230\254\304\242\313\324\025QE\234\266\227\032F#\257\233\310%\026\003\006\273""\371h\256\223\335\271\364\245\031f\227k\003\353\376f\350*\341n\347\023\340B9\302\323q\342\260\220\r\202\034\330\220\211\014\371\275\326<$\240\355\333X\304\234\004\024A\256k\231O:SA\210d\326K,\254CA\004\224\222J\256\026\002I\225\241R)!md\005\032\314XE#;6e\243{'\003\003F\222#\252\"\246\326\261\357\326\231P\233\014\240\253|b\220\315\022\353\221R\364fDfj\273\014\205\206\375g\016\356r\202\255%bs2x\373\204H\334B\303ko\r\362\032\312\245\007Z\225\315\311\232\024A\312N\315E\266\300&9\002@\223i\332Pl\275\365\265\271\001\370\373\210`\311\335\305\022\273k*\256\347\333\024\212\235\252\234\001\013`\002\330\014\211\301\205\027\3308\202?\200%s\017\0070:J\253\005!\342\251\025zd8\024x@\013\302\276\244:\252\005\344\222\242\315Dz\324\250\344E\357\253\237HA\206\022p\2472\351D'+\215<X\002\252!\243-Z\327\230\265W3K\264\030\320/[V\001\021\310\243\220\217]\232A\272\355\273\312\364[\000\272b\251\201!Qi%\204\256*q\3372s)\364llm\236a\222\201U\024TT\024U]&M\227\275D\225\335\365{\361\246\266Y\241\342\252)3T\334\211A!\244\344\277\020\345\321\"D\233\341\301\005\362(2\210)r\256\024v[\303\305%h\246l\\\313\205\21799V\234&F\207\026\242\016\026\360\271\312\313q\276F\200*`/\024U\255\333\032\233`na_t\025\375\277'1\t\2021\306\300:l\206\\\231),\\\351<p\030\3205\206\262$*\266\225\272O\250\265`\204v\\u@\232\207\010\2611P\033\233\005\207E\226\217;m\0140]\345oV\032\347\024\266\265\r\006\014\255M\234:#\213\204\200\024u\236\356\312%\022;\331\215\334\370\273(Q\26650\216\213\3207\323\356K\204\340\305\310\037\212\376\350\177\"\177G\017\332r\262\362\236\036npc\303B\243\226\356\\\034\251\307qh\305\243\r_\227\267n\360HV\362\267\250X\213\246\344\375\211\213Q,\3707\310\213\355\"\3221\344\255J\255S\340+\232\005m\230\240Q\214\351<B\377\213\271\"\234(H$> \277\200";
+    PyObject *data = __Pyx_DecompressString(cstring, 1303, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (527 bytes) */
-const char* const cstring = "x\332MROk\3330\024o\240)m\312\330Z\312`\353`N\031\244c\215C.=\224$[`\354X\226\261cA\250\262\222\210\310\222'\311n\275S\217>\372\250\243\217=\366\243\354\230c>B>\302\236\355$\266@\322{\357\367{O\357\217\334\257\036\323\370\236\323\226\263Y\003\217E\016\030\003\216\343\033\"\205\241\302\350Q\005S\336%\222K\325\r\030YP\345D]_z\224\017/<l\260[@\027;\366\215f\177\351\006\312\305:2\227\017]\314\2039\336\342`@\205\241\306\n\024\365\350\224\211m\220\235^q\356\276\2219\0263`\\F\230\207\364\2633\0349Rh\252\"\252.;R\224p\347\312)\341\312\323\351Uu9\203\036\024^\352T\344\035\231\021\246K\311\323\314\0178\325\006+\323\323\032\205\254W\324Yv\300\rb\204~\306\217\260\2773b\320-}4\277\350\024\353X\020&\241#J\206\0062\326\204\303\211\230@FaB\3571Y\024Qj\241\352Q\007\\\022\314\365\310\365\343m\t(oA\276i\004CAh\032\n\202\320\214\032@=N\225FL\243\335{\314P_/\036\260\232i\204|\014\357\302\202Y\205\234\302]\005E\002\373pn\365@\006\273&\007J\006\340\374'\304\274$)\n\252\246f\343\003\022\020q\310M5\274Z\257\334\242Wn\255\252\374\017\350\"\307\355\005\250\037H\221\1772\023\347\231\031\360E\250\030\225\216Bj\3304~\032\257\016\217\223\353\364$\375b'K\020\373\313\326i\332N\373O\215\365\207\275\346\253d\274\334\317\361\263t\222\316-^\355\037&\215\344<\375a?Yl\343\347\306\2620\274O\257\355\231\235\330y\206\013\303\277\243w\366\2555Y?\273}i\257\017\366\232G@\372h\017\254\227\265\263\341\013x\275N\242\364\267=\261W\031\304l\256O\367\232\307I\007\262h\203\330z\003\340]v\376<^\301\333\375\377\305\277+\362";
-    PyObject *data = __Pyx_DecompressString(cstring, 527, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1190 bytes) */
+const char* const cstring = "x\332\215U\315O\033G\024\0075T\204\034\020QTU\364Cc'\222A\311\332\270B\034lL\213(i\223\266\t\020\232HI\245\321xwl\217\230\235Yff\375\321\244R\216\034\367\270G\037}\314\221#\307\0369r\314\237\300\237\3207\263k\342\020\210\272\226\347\343\315\357\275y\337\263%\271T\236\337!\242M\221O8o\022\377\240\216h\227\nS\356\022\036S\324@\202\366\220o\201[v@\031:\270\214r\010\244\215b\242\375H0\303\010\317hu\244\343(\222\312h\364\314\020CQ\223\211\000@;\212jj\220\356\021\343w2\250FK\333\234\206 \326\323f\300)\"\234\021\215d+GQ\275\274\257X\273M\341\"\3667E\221\023QC:\004\325Q\005\005\264Ebn`\305\211j\323}\005\232\265\244\362\251F\252\335$(\224\001EK\204G\035\2024g\001U\313u\364\220pM\021g!\003\r-B##\221\220\302\313\200  $F\327\307\322khL\347\\\366\000\334\241\210M\032\234s\224\177\014\230&MN\347P\376\255\007\254\213\234a\215\"\234E\234\014j\300\"\014\030\254\353\305\215\013\240\003w=pD\214j>\227\232z\240N\216\364|\316\374\203F\261e\365\276\304\344\030\r\rA48\372.\361\r\353\022#U\243\370\032\234%#\215\376\271\202#\277\256i\004\202\021\242\323(:p\021\325z,0\035\320\226\030R\206sl\335\016\344\016e\355\216\371\204\336%\212\021\001\364\026\334_DJ\306\"\240 m\26586;\"\201\215}\r\255\324QS*\210\200\247H\300b]C\253Q\177L\253\241j\324GZB\210\\\340\226V\036\270_\271\272\266\\\207\353sa\257Q\310\304\013\253a\r}\244\t\272\217JQ\277t\255\261\316`\035\0211!\2527!'\313\266IQ\017Pf\362g\000\231\352{\2715\245\037&\210\260\275\306\240\225\265e@]$C\211\t\316\004\365\232\\\372\007\226\035\312\261\355\334\230_\234%\330\2337\250t\267\345>g\344z\305\032sM`+.\262W\344Ie\234(W\234u=w\223\027A\252Qu\245`\310O(\026\236'\201\203\027\257\004\326\306\305\233C\307\333k\320Vj\216t\365\n\306\3324j\201_\202\317\260\350\t\036\375?\230\376\372)\216\200\201:f\356\2716\326(.\271y\03156\220\024\232\252.UK%)\262\236\007\001\311\216?\225X\271T\274\225\254z?P\327+P\374\331\226\n\333\025\332>\323\331*\320\014\342@\265!\312T\264\3061\2538of\276/G\203\217\203\261\365\364\367\247{;\217\266~\333\336\303\317\266~\335\376c\023""\343\235A\037\376?3\337\340'\264o\366\240S\351\201\360\231\204\270@\372\030p\203nJ\3111d\302\270Hl\273\267\327\373\340\204\266T\203\314F\010\214\177\2005L!\301\007=h\243\332\267)\211\231\300F\021\237\332\224t\352L\3508\251\356:\244.t\246\215r8\030\373\r\333\300\270\177\326A\003\351\273\267\303\r\332vK\214[\261\3601nS\003\034\001\247Jwh\277\2439f\032_\230\300 au\246\223\353\357\234i\203qH@5l\243\350B\357\2261\2470\177P\000\013\022\346\343\230\026\021EB\035Ix\23244o)\240\253+\232\245\014\306\2071\341\031\217\242\256\213Rxj\240rm\361b\014\217N.\021V\271Q\272#{\330\275\014\023\341,\273p\226'\374c=\357\236+\355\014\243\371\004\2200\222\302\372\303(\254{\023\rf\\.\030\033j\3555\203\210\2724t\203\356\306\324\260\326 \237p\223h\372v\363l\366\326\321Z\262\220\334O\377\034\026\354\246z6w;)$\325\267\323\347\337N\315|\235\034\246\363\303\376\350\360\354\206\305\335Iv\223NJ\336\337\230=\232>\372&y\230\336KI:\030M\237\17795s\353\250\224,\246\253i<|<\n\336\335{\027\034\027\216\327N\356\234\354\236t\376\365Ow\237\237>\177y\372\362\325\231c\375>9t\213\323\233\213i\3012\337t\304n\272?\\\030z\243\303\363\331\251\231\333\311W\211I\253\351\223Q!cZLj\247\337y\243\335\263\374\366\315\344E\372\313\2606zu\374\305q\375\004\224\232?\352&\373\351B\372`\010\233\231\363\271L\247\205\244p^\234\232\233?j%\217S>*\274\007K\252\377\001\263L\371\367";
+    PyObject *data = __Pyx_DecompressString(cstring, 1190, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (840 bytes) */
-const char* const bytes = ".?disable\n        <div display:contents>\n        <el-color-picker v-model=\"data.color\"\n        :size=\"data.size\"\n        :show-alpha=\"data.show_alpha\"\n        :predefine=\"data.predefine\"\n        \\@change=\"(value) => onserver('onchange', value)\"\n         />\n         </div>\n    enablegcisenabledsimplestart/ss_ui/colorpicker.py__Pyx_PyDict_NextRefasyncio.coroutinescline_in_tracebackcolorcolorpickercolorpicker.<locals>.myonchange_datadataevent__func__gethandlers_is_coroutineitemskwargs__main____module__myonchange__name__onchangepoppredefineprops__qualname__res__set_name__setdefaultshow_alphasimplestart.ss_ui.colorpickersizess_coress_core.componentstyle__test__valuesvuetify\200A\340\010\013\2106\220\021\220+\230Q\330\010\013\2101\330\n\022\220!\2201\200\001\360\034\000\005\r\210A\330\004\013\2106\220\024\220Q\220h\230a\340\004\010\210\001\210\033\220F\230$\230a\230y\250\001\330\004\010\210\001\210\032\2206\230\024\230Q\230h\240a\330\004\010\210\001\320\t\031\230\026\230t\2401\240N\260!\360\006\000\005\t\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\017\210v\220T\230\021\230,\240a\340\004\005\360\022\000\005\013\210'\220\021\220!\360\022\000\n\020\210v\220\\\240\033\250A\340\004\013\2101";
+    #else /* compression: none (2255 bytes) */
+const char* const bytes = "Color-change callback; event.value = new colorColor changed; event.value = color stringInitial color; supports State bindingPreset swatch colors (Element-style alias of swatches)Trigger size preset: small / default / largeTrue forces rgba mode (alpha slider); False limits modes to non-alpha formats; default: alpha follows the initial color format.?disable\n        <div style=\"display: contents;\">\n            <v-menu :close-on-content-click=\"false\">\n                <template #activator=\"{ props }\">\n                    <v-btn v-bind=\"props\" :width=\"data.btn_size\" :height=\"data.btn_size\" variant=\"flat\" rounded=\"4\" style=\"padding: 0; border-radius: 4px; border: 1px solid rgba(0,0,0,0.16);\" :style=\"{ minWidth: data.btn_size + 'px' }\">\n                        <span :style=\"{ width: data.swatch_size + 'px', height: data.swatch_size + 'px', borderRadius: '2px', border: '1px solid rgba(0,0,0,0.06)', display: 'inline-block', background: data.color || '#ffffff' }\"></span>\n                    </v-btn>\n                </template>\n                <v-color-picker\n                    v-model=\"data.color\"\n                    :swatches=\"data.swatches\"\n                    :mode=\"data.mode || undefined\"\n                    :modes=\"data.modes || undefined\"\n                    \\@update:model-value=\"(value) => onserver('onchange', value)\"\n                />\n            </v-menu>\n        </div>\n    enablegcisenabledsimplestart/ss_ui/colorpicker.pyv-color-pickerCOLORPICKER_SCHEMA__Pyx_PyDict_NextRefasyncio.coroutinesbool_btnbtn_sizecallablecategorychangecheck_schema_kwargscline_in_tracebackcolorcolorpickercolorpicker.<locals>.myonchange_datadatadefaultdoceventeventsform__func__gethandlershexhsl_is_coroutineitemskwargslargelist__main__modemodes__module__myonchange__name__nameonchangeparamspoppositionalpredefine__qualname__reactiveresrgbrgba__set_name__setdefaultshow_alphasimplestart.ss_ui.colorpickersizesmallss_coress_core.componentstr_swswatc""h_sizeswatches__test__typevaluevaluesvuetifyvuetify_base\200A\330\010\013\2106\220\021\220+\230U\240!\330\010\013\2101\330\n\022\220!\2201\200\001\360\034\000\005\030\220q\230\017\240x\250q\330\004\013\2106\220\024\220Q\220h\230a\340\004\010\210\001\210\033\220F\230$\230a\230y\250\001\360\006\000\005\013\210'\220\032\2304\230u\240J\250d\260$\260d\270!\2706\300\024\300Q\300h\310c\320QV\320VZ\320Z[\330\004\010\210\001\210\036\220q\330\004\010\210\001\320\t\032\230!\360\006\000\005\t\210\001\210\036\220v\230T\240\021\240-\250q\360\010\000\005\022\220\026\220t\2301\230N\250!\330\004\010\210\001\210\032\220:\320\035-\250Q\330\004\010\210\001\210\033\220A\220W\230G\240:\250[\270\003\270;\300a\340\004\017\210v\220T\230\021\230,\240a\340\004\005\360\n\000\005\013\210'\220\021\220!\360\"\000\n\017\210f\220J\230l\250!\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 45; i++) {
+    for (int i = 0; i < 82; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 9) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 16) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3688,7 +4089,7 @@ const char* const bytes = ".?disable\n        <div display:contents>\n        <e
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 45; i < 47; i++) {
+    for (int i = 82; i < 84; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3699,14 +4100,14 @@ const char* const bytes = ".?disable\n        <div display:contents>\n        <e
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 47; i++) {
+    for (Py_ssize_t i = 0; i < 84; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 45;
+      PyObject **table = stringtab + 82;
       for (Py_ssize_t i=0; i<2; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3724,6 +4125,33 @@ const char* const bytes = ".?disable\n        <div display:contents>\n        <e
     }
     #endif
   }
+  {
+    PyObject **numbertab = __pyx_mstate->__pyx_number_tab + 0;
+    int8_t const cint_constants_1[] = {16,20,24,26,30,38};
+    for (int i = 0; i < 6; i++) {
+      numbertab[i] = PyLong_FromLong(cint_constants_1[i - 0]);
+      if (unlikely(!numbertab[i])) __PYX_ERR(0, 1, __pyx_L1_error)
+    }
+  }
+  #if CYTHON_IMMORTAL_CONSTANTS
+  {
+    PyObject **table = __pyx_mstate->__pyx_number_tab;
+    for (Py_ssize_t i=0; i<6; ++i) {
+      #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
+      #if PY_VERSION_HEX < 0x030E0000
+      if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
+      #else
+      if (PyUnstable_Object_IsUniquelyReferenced(table[i]))
+      #endif
+      {
+        Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
+      }
+      #else
+      Py_SET_REFCNT(table[i], _Py_IMMORTAL_INITIAL_REFCNT);
+      #endif
+    }
+  }
+  #endif
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3733,7 +4161,7 @@ typedef struct {
     unsigned int argcount : 1;
     unsigned int num_posonly_args : 1;
     unsigned int num_kwonly_args : 1;
-    unsigned int nlocals : 3;
+    unsigned int nlocals : 4;
     unsigned int flags : 10;
     unsigned int first_line : 6;
 } __Pyx_PyCode_New_function_description;
@@ -3752,14 +4180,14 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 32};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 58};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_colorpicker_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_6_Q_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_colorpicker_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_6_U_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 7};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_style, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_colorpicker_py, __pyx_mstate->__pyx_n_u_colorpicker, __pyx_mstate->__pyx_kp_b_iso88591_A_6_Qha_F_ay_6_Qha_t1N_d_vT_a_v, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 9, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 23};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data_2, __pyx_mstate->__pyx_n_u_btn, __pyx_mstate->__pyx_n_u_sw, __pyx_mstate->__pyx_n_u_show_alpha, __pyx_mstate->__pyx_n_u_onchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_n_u_res};
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_colorpicker_py, __pyx_mstate->__pyx_n_u_colorpicker, __pyx_mstate->__pyx_kp_b_iso88591_q_xq_6_Qha_F_ay_4uJd_d_6_QhcQVV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -4925,6 +5353,207 @@ static void __Pyx_RaiseClosureNameError(const char *varname) {
     PyErr_Format(PyExc_NameError, "free variable '%s' referenced before assignment in enclosing scope", varname);
 }
 
+/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    int result;
+    PyObject *exc_type;
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *current_exception = tstate->current_exception;
+    if (unlikely(!current_exception)) return 0;
+    exc_type = (PyObject*) Py_TYPE(current_exception);
+    if (exc_type == err) return 1;
+#else
+    exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+#endif
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_INCREF(exc_type);
+    #endif
+    if (unlikely(PyTuple_Check(err))) {
+        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    } else {
+        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
+    }
+    #if CYTHON_AVOID_BORROWED_REFS
+    Py_DECREF(exc_type);
+    #endif
+    return result;
+}
+#endif
+
+/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
+#if CYTHON_FAST_THREAD_STATE
+static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject *tmp_value;
+    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
+    if (value) {
+        #if CYTHON_COMPILING_IN_CPYTHON
+        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
+        #endif
+            PyException_SetTraceback(value, tb);
+    }
+    tmp_value = tstate->current_exception;
+    tstate->current_exception = value;
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(type);
+    Py_XDECREF(tb);
+#else
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
+#if PY_VERSION_HEX >= 0x030C00A6
+    PyObject* exc_value;
+    exc_value = tstate->current_exception;
+    tstate->current_exception = 0;
+    *value = exc_value;
+    *type = NULL;
+    *tb = NULL;
+    if (exc_value) {
+        *type = (PyObject*) Py_TYPE(exc_value);
+        Py_INCREF(*type);
+        #if CYTHON_COMPILING_IN_CPYTHON
+        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
+        Py_XINCREF(*tb);
+        #else
+        *tb = PyException_GetTraceback(exc_value);
+        #endif
+    }
+#else
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#endif
+}
+#endif
+
+/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
+        __Pyx_PyErr_Clear();
+}
+#endif
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
+    PyObject *result;
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
+    return result;
+#else
+#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
+        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
+    }
+#endif
+    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
+    if (unlikely(!result)) {
+        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
+    }
+    return result;
+#endif
+}
+
+/* GetBuiltinName (used by GetModuleGlobalName) */
+static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
+    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
+    if (unlikely(!result) && !PyErr_Occurred()) {
+        PyErr_Format(PyExc_NameError,
+            "name '%U' is not defined", name);
+    }
+    return result;
+}
+
+/* PyDictVersioning (used by GetModuleGlobalName) */
+#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
+}
+static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
+    PyObject **dictptr = NULL;
+    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
+    if (offset) {
+#if CYTHON_COMPILING_IN_CPYTHON
+        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
+#else
+        dictptr = _PyObject_GetDictPtr(obj);
+#endif
+    }
+    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
+}
+static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
+    PyObject *dict = Py_TYPE(obj)->tp_dict;
+    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
+        return 0;
+    return obj_dict_version == __Pyx_get_object_dict_version(obj);
+}
+#endif
+
+/* GetModuleGlobalName */
+#if CYTHON_USE_DICT_VERSIONS
+static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
+#else
+static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
+#endif
+{
+    PyObject *result;
+#if CYTHON_COMPILING_IN_LIMITED_API
+    if (unlikely(!__pyx_m)) {
+        if (!PyErr_Occurred())
+            PyErr_SetNone(PyExc_NameError);
+        return NULL;
+    }
+    result = PyObject_GetAttr(__pyx_m, name);
+    if (likely(result)) {
+        return result;
+    }
+    PyErr_Clear();
+#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
+    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return result;
+    }
+#else
+    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
+    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
+    if (likely(result)) {
+        return __Pyx_NewRef(result);
+    }
+    PyErr_Clear();
+#endif
+    return __Pyx_GetBuiltinName(name);
+}
+
 /* PyObjectCall2Args (used by CallUnboundCMethod1) */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
     PyObject *args[3] = {NULL, arg1, arg2};
@@ -5012,6 +5641,44 @@ static PyObject* __Pyx_PyDict_GetItemDefault(PyObject* d, PyObject* key, PyObjec
             value = __Pyx_CallUnboundCMethod2(&__pyx_mstate_global->__pyx_umethod_PyDict_Type_get, d, key, default_value);
     }
     return value;
+}
+
+/* RaiseTooManyValuesToUnpack */
+static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected) {
+    PyErr_Format(PyExc_ValueError,
+                 "too many values to unpack (expected %" CYTHON_FORMAT_SSIZE_T "d)", expected);
+}
+
+/* RaiseNeedMoreValuesToUnpack */
+static CYTHON_INLINE void __Pyx_RaiseNeedMoreValuesError(Py_ssize_t index) {
+    PyErr_Format(PyExc_ValueError,
+                 "need more than %" CYTHON_FORMAT_SSIZE_T "d value%.1s to unpack",
+                 index, (index == 1) ? "" : "s");
+}
+
+/* IterFinish */
+static CYTHON_INLINE int __Pyx_IterFinish(void) {
+    PyObject* exc_type;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    exc_type = __Pyx_PyErr_CurrentExceptionType();
+    if (unlikely(exc_type)) {
+        if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration)))
+            return -1;
+        __Pyx_PyErr_Clear();
+        return 0;
+    }
+    return 0;
+}
+
+/* UnpackItemEndCheck */
+static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
+    if (unlikely(retval)) {
+        Py_DECREF(retval);
+        __Pyx_RaiseTooManyValuesError(expected);
+        return -1;
+    }
+    return __Pyx_IterFinish();
 }
 
 /* dict_setdefault (used by FetchCommonType) */
@@ -6551,207 +7218,6 @@ static PyObject *__Pyx_CyFunction_New(PyMethodDef *ml, int flags, PyObject* qual
         PyObject_GC_Track(op);
     }
     return op;
-}
-
-/* PyErrExceptionMatches (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
-    }
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    int result;
-    PyObject *exc_type;
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *current_exception = tstate->current_exception;
-    if (unlikely(!current_exception)) return 0;
-    exc_type = (PyObject*) Py_TYPE(current_exception);
-    if (exc_type == err) return 1;
-#else
-    exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-#endif
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_INCREF(exc_type);
-    #endif
-    if (unlikely(PyTuple_Check(err))) {
-        result = __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    } else {
-        result = __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-    }
-    #if CYTHON_AVOID_BORROWED_REFS
-    Py_DECREF(exc_type);
-    #endif
-    return result;
-}
-#endif
-
-/* PyErrFetchRestore (used by PyObjectGetAttrStrNoError) */
-#if CYTHON_FAST_THREAD_STATE
-static CYTHON_INLINE void __Pyx_ErrRestoreInState(PyThreadState *tstate, PyObject *type, PyObject *value, PyObject *tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject *tmp_value;
-    assert(type == NULL || (value != NULL && type == (PyObject*) Py_TYPE(value)));
-    if (value) {
-        #if CYTHON_COMPILING_IN_CPYTHON
-        if (unlikely(((PyBaseExceptionObject*) value)->traceback != tb))
-        #endif
-            PyException_SetTraceback(value, tb);
-    }
-    tmp_value = tstate->current_exception;
-    tstate->current_exception = value;
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(type);
-    Py_XDECREF(tb);
-#else
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject **type, PyObject **value, PyObject **tb) {
-#if PY_VERSION_HEX >= 0x030C00A6
-    PyObject* exc_value;
-    exc_value = tstate->current_exception;
-    tstate->current_exception = 0;
-    *value = exc_value;
-    *type = NULL;
-    *tb = NULL;
-    if (exc_value) {
-        *type = (PyObject*) Py_TYPE(exc_value);
-        Py_INCREF(*type);
-        #if CYTHON_COMPILING_IN_CPYTHON
-        *tb = ((PyBaseExceptionObject*) exc_value)->traceback;
-        Py_XINCREF(*tb);
-        #else
-        *tb = PyException_GetTraceback(exc_value);
-        #endif
-    }
-#else
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#endif
-}
-#endif
-
-/* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
-    __Pyx_PyThreadState_declare
-    __Pyx_PyThreadState_assign
-    if (likely(__Pyx_PyErr_ExceptionMatches(PyExc_AttributeError)))
-        __Pyx_PyErr_Clear();
-}
-#endif
-static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name) {
-    PyObject *result;
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-    (void) PyObject_GetOptionalAttr(obj, attr_name, &result);
-    return result;
-#else
-#if CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_TYPE_SLOTS
-    PyTypeObject* tp = Py_TYPE(obj);
-    if (likely(tp->tp_getattro == PyObject_GenericGetAttr)) {
-        return _PyObject_GenericGetAttrWithDict(obj, attr_name, NULL, 1);
-    }
-#endif
-    result = __Pyx_PyObject_GetAttrStr(obj, attr_name);
-    if (unlikely(!result)) {
-        __Pyx_PyObject_GetAttrStr_ClearAttributeError();
-    }
-    return result;
-#endif
-}
-
-/* GetBuiltinName (used by GetModuleGlobalName) */
-static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
-    PyObject* result = __Pyx_PyObject_GetAttrStrNoError(__pyx_mstate_global->__pyx_b, name);
-    if (unlikely(!result) && !PyErr_Occurred()) {
-        PyErr_Format(PyExc_NameError,
-            "name '%U' is not defined", name);
-    }
-    return result;
-}
-
-/* PyDictVersioning (used by GetModuleGlobalName) */
-#if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_tp_dict_version(PyObject *obj) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    return likely(dict) ? __PYX_GET_DICT_VERSION(dict) : 0;
-}
-static CYTHON_INLINE PY_UINT64_T __Pyx_get_object_dict_version(PyObject *obj) {
-    PyObject **dictptr = NULL;
-    Py_ssize_t offset = Py_TYPE(obj)->tp_dictoffset;
-    if (offset) {
-#if CYTHON_COMPILING_IN_CPYTHON
-        dictptr = (likely(offset > 0)) ? (PyObject **) ((char *)obj + offset) : _PyObject_GetDictPtr(obj);
-#else
-        dictptr = _PyObject_GetDictPtr(obj);
-#endif
-    }
-    return (dictptr && *dictptr) ? __PYX_GET_DICT_VERSION(*dictptr) : 0;
-}
-static CYTHON_INLINE int __Pyx_object_dict_version_matches(PyObject* obj, PY_UINT64_T tp_dict_version, PY_UINT64_T obj_dict_version) {
-    PyObject *dict = Py_TYPE(obj)->tp_dict;
-    if (unlikely(!dict) || unlikely(tp_dict_version != __PYX_GET_DICT_VERSION(dict)))
-        return 0;
-    return obj_dict_version == __Pyx_get_object_dict_version(obj);
-}
-#endif
-
-/* GetModuleGlobalName */
-#if CYTHON_USE_DICT_VERSIONS
-static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_version, PyObject **dict_cached_value)
-#else
-static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
-#endif
-{
-    PyObject *result;
-#if CYTHON_COMPILING_IN_LIMITED_API
-    if (unlikely(!__pyx_m)) {
-        if (!PyErr_Occurred())
-            PyErr_SetNone(PyExc_NameError);
-        return NULL;
-    }
-    result = PyObject_GetAttr(__pyx_m, name);
-    if (likely(result)) {
-        return result;
-    }
-    PyErr_Clear();
-#elif CYTHON_AVOID_BORROWED_REFS || CYTHON_AVOID_THREAD_UNSAFE_BORROWED_REFS
-    if (unlikely(__Pyx_PyDict_GetItemRef(__pyx_mstate_global->__pyx_d, name, &result) == -1)) PyErr_Clear();
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return result;
-    }
-#else
-    result = _PyDict_GetItem_KnownHash(__pyx_mstate_global->__pyx_d, name, ((PyASCIIObject *) name)->hash);
-    __PYX_UPDATE_DICT_CACHE(__pyx_mstate_global->__pyx_d, result, *dict_cached_value, *dict_version)
-    if (likely(result)) {
-        return __Pyx_NewRef(result);
-    }
-    PyErr_Clear();
-#endif
-    return __Pyx_GetBuiltinName(name);
 }
 
 /* PyObjectVectorCallKwBuilder */

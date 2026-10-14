@@ -1,4 +1,5 @@
 from .card import card, section, container
+from .sheet import sheet
 ## from .rate import rate, 通过懒加载加载
 from .button import button, button_group, button_toggle
 ## from .link import link, 通过懒加载加载
@@ -35,7 +36,6 @@ from .button import button, button_group, button_toggle
 ## from .anchor import anchor, 通过懒加载加载
 ## from .panel import panel, 通过懒加载加载
 ## from .divider import divider, 通过懒加载加载
-## from .listbox import listbox, 通过懒加载加载 
 ## from .htmlview import htmlview, 通过懒加载加载
 ## from .menu import menu, 通过懒加载加载
 ## from .video import video, 通过懒加载加载
@@ -48,20 +48,21 @@ from .write import write
 ## from .colorpicker import colorpicker, 通过懒加载加载
 ## from .popconfirm import popconfirm, 通过懒加载加载
 from .layout import row, col, center ###, 通过懒加载加载
+from .footer import footer
+from .toolbar import toolbar
+from .listbox import listbox
 ## from .timer import timer, 通过懒加载加载
 ## from .plot import plot, 通过懒加载加载
+from .pdfviewer import pdfviewer
 from ss_core.print import myprint
 
-#不太成熟，以后再弄
-##from .echarts import echarts
-
 __all__ = [
-    'card', 'section', 'container',
+    'card', 'section', 'container', 'sheet',
     'rate',
     'button', 'button_group', 'button_toggle',
     'link',
     'icon', 'icon_with_bg',
-    'space',
+    'space', 'spacer',
     'splitter',
     'text',
     'checkbox', 'checkboxes',
@@ -93,7 +94,6 @@ __all__ = [
     'anchor',
     'panel',
     'divider',
-    'listbox',
     'htmlview',
     'menu',
     'video',
@@ -105,9 +105,14 @@ __all__ = [
     'colorpicker',
     'popconfirm',
     'row', 'col', 'center',
+    'footer',
+    'toolbar',
+    'listbox',
     'timer',
     'plot',
-    'tag'
+    'echarts',
+    'tag',
+    'pdfviewer'
 ]
 
 import importlib
@@ -212,7 +217,6 @@ switch = LazyLoader('ss_ui.switch')
 anchor = LazyLoader('ss_ui.anchor')
 panel = LazyLoader('ss_ui.panel')
 divider = LazyLoader('ss_ui.divider')
-listbox = LazyLoader('ss_ui.listbox')
 htmlview = LazyLoader('ss_ui.htmlview')
 overlay = LazyLoader('ss_ui.overlay')
 colorpicker = LazyLoader('ss_ui.colorpicker')
@@ -220,7 +224,9 @@ popconfirm = LazyLoader('ss_ui.popconfirm')
 timer = LazyLoader('ss_ui.timer')
 # 特殊处理 plot，因为 line 等方法是 Plot 类的实例方法
 plot = LazyLoader('ss_ui.plot', 'plot')
+echarts = LazyLoader('ss_ui.echarts', 'echarts')
 space = LazyLoader('ss_ui.space')
+spacer = LazyLoader('ss_ui.space', 'spacer')
 table_v1 = LazyLoader('ss_ui.table_v1', 'table')
 
 # 正确写法 - 需要分别懒加载每个函数

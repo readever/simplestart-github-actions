@@ -2272,7 +2272,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[33];
+  PyObject *__pyx_string_tab[35];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2315,37 +2315,39 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
 #define __pyx_kp_u__2 __pyx_string_tab[1]
-#define __pyx_kp_u_el_anchor__link_font_size_small __pyx_string_tab[2]
-#define __pyx_kp_u_el_anchor_offset_70_el_anchor_l __pyx_string_tab[3]
-#define __pyx_kp_u_simplestart_ss_ui_anchor_py __pyx_string_tab[4]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[5]
-#define __pyx_n_u_anchor __pyx_string_tab[6]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[7]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[8]
-#define __pyx_n_u_css __pyx_string_tab[9]
-#define __pyx_n_u_data __pyx_string_tab[10]
-#define __pyx_n_u_dedent __pyx_string_tab[11]
-#define __pyx_n_u_func __pyx_string_tab[12]
-#define __pyx_n_u_get __pyx_string_tab[13]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[14]
-#define __pyx_n_u_items __pyx_string_tab[15]
-#define __pyx_n_u_kwargs __pyx_string_tab[16]
-#define __pyx_n_u_links __pyx_string_tab[17]
-#define __pyx_n_u_main __pyx_string_tab[18]
-#define __pyx_n_u_module __pyx_string_tab[19]
-#define __pyx_n_u_name __pyx_string_tab[20]
-#define __pyx_n_u_pop __pyx_string_tab[21]
-#define __pyx_n_u_qualname __pyx_string_tab[22]
-#define __pyx_n_u_res __pyx_string_tab[23]
-#define __pyx_n_u_set_name __pyx_string_tab[24]
-#define __pyx_n_u_setdefault __pyx_string_tab[25]
-#define __pyx_n_u_simplestart_ss_ui_anchor __pyx_string_tab[26]
-#define __pyx_n_u_ss_core __pyx_string_tab[27]
-#define __pyx_n_u_test __pyx_string_tab[28]
-#define __pyx_n_u_textwrap __pyx_string_tab[29]
-#define __pyx_n_u_values __pyx_string_tab[30]
-#define __pyx_n_u_vuetify __pyx_string_tab[31]
-#define __pyx_kp_b_iso88591_F_axq_Q_A_7_6_q_A __pyx_string_tab[32]
+#define __pyx_kp_u_active_document_querySelectorAl __pyx_string_tab[2]
+#define __pyx_kp_u_anchor_list_padding_0_important __pyx_string_tab[3]
+#define __pyx_kp_u_div_class_anchor_list_div_v_for __pyx_string_tab[4]
+#define __pyx_kp_u_simplestart_ss_ui_anchor_py __pyx_string_tab[5]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[6]
+#define __pyx_n_u_anchor __pyx_string_tab[7]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[8]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[9]
+#define __pyx_n_u_css __pyx_string_tab[10]
+#define __pyx_n_u_data __pyx_string_tab[11]
+#define __pyx_n_u_dedent __pyx_string_tab[12]
+#define __pyx_n_u_func __pyx_string_tab[13]
+#define __pyx_n_u_get __pyx_string_tab[14]
+#define __pyx_n_u_handleAnchorClick __pyx_string_tab[15]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[16]
+#define __pyx_n_u_items __pyx_string_tab[17]
+#define __pyx_n_u_kwargs __pyx_string_tab[18]
+#define __pyx_n_u_links __pyx_string_tab[19]
+#define __pyx_n_u_main __pyx_string_tab[20]
+#define __pyx_n_u_module __pyx_string_tab[21]
+#define __pyx_n_u_name __pyx_string_tab[22]
+#define __pyx_n_u_pop __pyx_string_tab[23]
+#define __pyx_n_u_qualname __pyx_string_tab[24]
+#define __pyx_n_u_res __pyx_string_tab[25]
+#define __pyx_n_u_set_name __pyx_string_tab[26]
+#define __pyx_n_u_setdefault __pyx_string_tab[27]
+#define __pyx_n_u_simplestart_ss_ui_anchor __pyx_string_tab[28]
+#define __pyx_n_u_ss_core __pyx_string_tab[29]
+#define __pyx_n_u_test __pyx_string_tab[30]
+#define __pyx_n_u_textwrap __pyx_string_tab[31]
+#define __pyx_n_u_values __pyx_string_tab[32]
+#define __pyx_n_u_vuetify __pyx_string_tab[33]
+#define __pyx_kp_b_iso88591_F_axq_Q_Ab_P_7_6_q_A __pyx_string_tab[34]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2361,7 +2363,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   __Pyx_State_RemoveModule(NULL);
   #endif
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<33; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<35; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2385,7 +2387,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_bytes);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<33; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<35; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2404,7 +2406,7 @@ return 0;
  * 
  * def anchor(links, **kwargs):             # <<<<<<<<<<<<<<
  *      """
- *       -  href
+ *       Vuetify
 */
 
 /* Python wrapper */
@@ -2415,7 +2417,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_6anchor_anchor, "\n     \351\224\232\347\202\271\347\273\204\344\273\266\345\256\236\347\216\260 - \346\226\271\345\274\217\344\272\214\357\274\232\344\275\277\347\224\250\344\272\213\344\273\266\350\247\246\345\217\221\350\200\214\344\270\215\346\230\257\345\216\237\347\224\237 href \350\267\263\350\275\254\n     \345\217\202\350\200\203 Element Plus Anchor \347\273\204\344\273\266\n\n     Args:\n         links: \351\224\232\347\202\271\351\223\276\346\216\245\345\210\227\350\241\250\357\274\214\346\257\217\344\270\252\345\205\203\347\264\240\345\214\205\345\220\253 href \345\222\214 title\n         **kwargs: \345\205\266\344\273\226\345\217\202\346\225\260\n     ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_6anchor_anchor, "\n     \351\224\232\347\202\271\347\273\204\344\273\266\345\256\236\347\216\260\357\274\210\345\237\272\344\272\216 Vuetify\357\274\211\n\n     Args:\n         links: \351\224\232\347\202\271\351\223\276\346\216\245\345\210\227\350\241\250\357\274\214\346\257\217\344\270\252\345\205\203\347\264\240\345\214\205\345\220\253 href \345\222\214 title\n         **kwargs: \345\205\266\344\273\226\345\217\202\346\225\260\n     ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_6anchor_1anchor = {"anchor", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_6anchor_1anchor, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_6anchor_anchor};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_6anchor_1anchor(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2515,51 +2517,60 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6anchor_anchor(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("anchor", 0);
 
-  /* "simplestart/ss_ui/anchor.py":13
+  /* "simplestart/ss_ui/anchor.py":12
  *          **kwargs:
  *      """
  *      data = kwargs.get("data", {})             # <<<<<<<<<<<<<<
  *      data["links"] = links
  * 
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_data = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/anchor.py":14
+  /* "simplestart/ss_ui/anchor.py":13
  *      """
  *      data = kwargs.get("data", {})
  *      data["links"] = links             # <<<<<<<<<<<<<<
  * 
  *      data["_css"] = """
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_links, __pyx_v_links) < 0))) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_links, __pyx_v_links) < 0))) __PYX_ERR(0, 13, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/anchor.py":16
+  /* "simplestart/ss_ui/anchor.py":15
  *      data["links"] = links
  * 
  *      data["_css"] = """             # <<<<<<<<<<<<<<
- *      .el-anchor__link{
- *         font-size : smaller;
+ *      /[inserted by cython to avoid comment start]*  *[inserted by cython to avoid comment closer]/
+ *      .anchor-list {
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css, __pyx_mstate_global->__pyx_kp_u_el_anchor__link_font_size_small) < 0))) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css, __pyx_mstate_global->__pyx_kp_u_anchor_list_padding_0_important) < 0))) __PYX_ERR(0, 15, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/anchor.py":33
+  /* "simplestart/ss_ui/anchor.py":64
  * 
- *      #  Element Plus
+ *      #  -  href  title
+ *      data["handleAnchorClick"] = """             # <<<<<<<<<<<<<<
+ *         //  active
+ *         document.querySelectorAll('.anchor-item').forEach(item => item.classList.remove('active'));
+*/
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_handleAnchorClick, __pyx_mstate_global->__pyx_kp_u_active_document_querySelectorAl) < 0))) __PYX_ERR(0, 64, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/anchor.py":104
+ * 
+ *      # HTML
  *      res = vuetify(dedent(r'''             # <<<<<<<<<<<<<<
- *         <el-anchor :offset="70">
- *             <el-anchor-link
+ *         <div class="anchor-list">
+ *             <div
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_dedent); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_dedent); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -2574,17 +2585,17 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6anchor_anchor(CYTHON_UNUSED PyOb
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_el_anchor_offset_70_el_anchor_l};
+    PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_div_class_anchor_list_div_v_for};
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
 
-  /* "simplestart/ss_ui/anchor.py":44
- *             </el-anchor-link>
- *         </el-anchor>
+  /* "simplestart/ss_ui/anchor.py":115
+ *             </div>
+ *         </div>
  *     '''), data=data)             # <<<<<<<<<<<<<<
  *      return res
 */
@@ -2602,22 +2613,22 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6anchor_anchor(CYTHON_UNUSED PyOb
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_t_4};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 33, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_v_res = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/anchor.py":45
- *         </el-anchor>
+  /* "simplestart/ss_ui/anchor.py":116
+ *         </div>
  *     '''), data=data)
  *      return res             # <<<<<<<<<<<<<<
 */
@@ -2631,7 +2642,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6anchor_anchor(CYTHON_UNUSED PyOb
  * 
  * def anchor(links, **kwargs):             # <<<<<<<<<<<<<<
  *      """
- *       -  href
+ *       Vuetify
 */
 
   /* function exit code */
@@ -3052,7 +3063,7 @@ __Pyx_RefNannySetupContext("PyInit_anchor", 0);
  * 
  * def anchor(links, **kwargs):             # <<<<<<<<<<<<<<
  *      """
- *       -  href
+ *       Vuetify
 */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6anchor_1anchor, 0, __pyx_mstate_global->__pyx_n_u_anchor, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_anchor, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3135,34 +3146,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{1},{1},{254},{454},{27},{20},{6},{18},{18},{4},{4},{6},{8},{3},{13},{5},{6},{5},{8},{10},{8},{3},{12},{3},{12},{10},{24},{7},{8},{8},{6},{7},{62}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (636 bytes) */
-const char* const cstring = "BZh91AY&SY\250&K\237\000\000z\177\343\347~q\000|\377\325\277\367!q\004\277\357\377\372@@@@\000@@\000@\000@\001\375\023\240\356\r$\323$\332LMOSj3\024h<\241\240\001\352\000yOP\003F\236\223\323(5Se4\365\r4\036\243F\215\000\320\000\032\032\000\000\000\000\004Jz\232?R\0004=\020\310\003@\000\0001\006@\000\0142M\t\2111\251\224`SM\244\323F\233&\240\001\220\003@\001\352z=Q\206\273<\203\010#b\023}\342\001M#N\323\200r\351-]\241Q\034\333\000\350d\244E\264\232\n\305\226\204\221\002\003\001\000\\E\311\266\267\227\347\307\257\355\370\030[%\366\220\206U\214\326\274\363U!\306\271\214\003/\200\254\234'_\201f~\253i8\260\205\234\323\"\257D`\023\345\252B^\"\037l\255q\303\241{\236 \364Q@6\221EA\342\335\201\001\320\025\013\223,\362\241`\375\2454\300\314\005$\311Q\314\332g\374\3318\337\022\306\256O){\272\3274-\3544 \345\342v\314\007\205\275(\304\016`\272\001\255`\010\204\301\301k\207\367\342\336\221\177\034K\217\3213\2049\362\323\252T\205\337\017\327\232\352E]\300\204\032\245\345\036y\035\230\"\034Q\025;\244x\272\213\000\177\242zI\224\3042\007\031\311\003\341z\202r\206\320(\010\237\275WW4\301Z\272J\217Q=\333\302\006?.\3321\201\240!\0317\207\003z\360\271\214\224c\230\003\317@\teb{/\214m\0324Y\007\204 \325\212\267E\3428\211\241\004\321\210\0256\274\000\222\355\343\216\0279\302#\026\263\315m\210\215\235\213U\241\rLV\352R\331\364;(T+8>\200\016\247\216\024\004\322b\007\032\356\346\340\336\342\317\220\r\360\354\332@\270\322\345%\345+\200f5\262Cq\267#=}\332(BQ\002!\026\3560H\210Br\025<\260C\\\322\234\252\200#\222>H\032\032\307^6\030)Q:\357\000;\322\2640Q\022\204,\030\255\232\203\002\002?8P\270\203l\245\2266\"\273k\247\225#\035\346\260\336\022F\356\202\354>x\341Dr q\331\236\352\216\343z\201\275\312^\357)\322\035\3123\004\212\263Sey\354\353\216\226\245\224Z\372\275\377\305\334\221N\024$*\t\222\347\300";
-    PyObject *data = __Pyx_DecompressString(cstring, 636, 2);
+    const struct { const unsigned int length: 11; } index[] = {{1},{1},{1646},{1136},{311},{27},{20},{6},{18},{18},{4},{4},{6},{8},{3},{17},{13},{5},{6},{5},{8},{10},{8},{3},{12},{3},{12},{10},{24},{7},{8},{8},{6},{7},{76}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1647 bytes) */
+const char* const cstring = "BZh91AY&SY!(Af\000\001\276\377\373\347~a\000\177\377\377\377\377%}\252\277\377\377\376|\363\354\376\347\333\265\377@@G\340\300\000P\005\276\354\254\254\325\215\265\032\003Z\315h\022\204\231\n\236\323M\0234\312S\305?MMO\322\236Hi\352i\372\214\247\250\031\003\324\003@\323@\036\240mOPh4\3204\000z\200\000\375S\365=Q\003#\021\243\002h\3100\t\243M\006\010\310`#\000\231\032bbb4da\006\214\206\0014\300\000\230\230\201\2414\"zF\205=#\310\365'\251\223O\024=CA\220\032\000\000\000\000\000\006\214\200\003@\000\000\006\201\003#\021\243\002h\3100\t\243M\006\010\310`#\000\231\032bbb4da\006\214\206\0014\300\000\230\230\201\"\210\023\002\001\006\223I\355'\250OSM\244\323L\200\r1\000\000\320\003A\2401\000\000\000\000\r\000\031U\234R\3567S\000G)\241#\237\317)QI_/\261\205\247*<\003\313\3411o\n\231\230\nD\314\200\300sZB!\363Gy\225\201Q\001\0032 x\261\305]\2747 3\366`\364\213v8;\372\321\275y\021\256\256g`\366\317\205~w\275\020@\n\320\021\017O\037\224o3+/\227\267\312C\223\263\264\344\220r\247\001\364\351\371\2706\266\332P\364\250`Z\031\016\327\274\213\320\347o\022R\307=!'8Iu\327Gm\262\325V\322\267\241\210\301EQ\206\226\320L\316\215\264\204\232\371\341L\251J\311\301kh\340\320\275\204\273$C\246d\320\035\214\024]\300\\[\212\210tz\276$\265\331\325\242\324\354\203\245\024\356\214\261\340\354\220\271\236n|v\325gA\031;=zQ;\nT\272\rZG\035\031*\224\363(%\276As}<\026Y=\224\331is4j\302vw\022\024\2215\302\340\340\264\343S\211/:Q\372\366gD\031JbM\016_6\262.\336qAw\357\362\240TWU\231\342\261^}\327\304\206\244\321*\307t\326S\005\035\340j\213\010qN\335\263\037\010\243OX<\001\362z\256J\211\340\216,\007e\365\302\357\324\220h\r\227)\023\263l\364\035\231\351\002\230\205\023\026\306\035\352\214\231\333U\260\256\030\246\365\211\227\213\202\233\353J#\007=\217\323\267#9\0332\006\260\242\014\002\371R;\373\017&\034\246U8|1XC\031\305\244\226\212_\315\215:\363\035\207\230g\273V\224\303\214\027\221\306\210\326\2344\035\326\250\246g\275\327\030\215\255\210\"!<\006\020\317,&\247\030\212d(\314W{z\224\031L\320\302\330q""\\\203\331Y\352\234aF\024\226\0038\256\211wNbT\362\340\304\344\221\232\2049\3725\356[\352t\230\233\351h\351\335\022m\025\253\022\036\241!\014\n\343,\306\226@\233t\241\007UD7\032\363\350\031&\325\365!\304\312\311\231\000G\013;\213f\211\361\236N\304\nVa\357[lm\327\234\226e\350\215\004d\025u\212\001`V^\224\313\313\2327\307\315\236\252R\211R\263\342\254 \030$p\321\014\240Q!5 %K\331\324*\260\013F\215\276\3531\\m\244\310<r\351\244\260\326\236\305\303\220\276\300\222\204n\220\211\275D\\PSP\305%\215\205M5\326\233L#\204\025RAa\006=2%\256\\\256#S2\274\20142\222\312K\023\200\230\332\022\300\337Z\265\322$0\031\356\241\307\035SD]#\016!\324H6+\031\301\004s\220\240\234w+\207\266\357\025\331*A\265i^\014h\306d^\204\206j\2509\333\231\316u\247F\374\2148V5I\235\"\336\213\010\365-\264\315Q\271\010\213.\343\203\2530l\024\321\314\274\233kP\324\027/\004c\r\336\\\212\262\2214\241V{Za\177s\002$\267^cCcGM(H\254X\306\004\005\343\200\273\301y\024C\016\006ML\2253:\264*\023\256\266\002\240\"L\322\020\234%[\356H\213z\321\260\351\323\250\235P\022\370\326\020\274\204\326\315\370\205a\\\t\361\327M@\257\215\032QD\t\3576\326\243\005Q\"\221\"\301A!\212\004\2347\316y\254\314\033\372L\331\361\ti\243-!|\212\r\223q\nKK[N\250\034\000W\"\222\252e% 0\275\254F\r\221\241\"\201\230KN`\313&\302\311C#\235\246\365\214\267Pd\325\202D\245\010\240\344x\274\303\264\344I\016>\352\246\035\347\032\253\355\340\033Hi\261\200\330\206\241\253\273\032\337\222\213!\216\235!\327\033\312\005\023\354\346\022\333\"E9\206\221`i\342\341\372\231\244\240\200I46\031\013\213\236(m\275\266\246\330.\270\316c7v\006/q \365\263q\327\271\006*\356\31589\273l\367\312\200\251H\250*L\262.t\005\0211\303\217<[`\312e#\007\213YA\"q\317\010\020d\316y%(T$([\225\201\021<\256,J\226n\001\306#\021\010\315\365\250\002U\020h\203\234\004\030\030\265\247_\267\325\337\014%\205\342\353k\014X\013\031\232E\200\246B\007\022\374\r\246\211\030\3511HQq\351\202\253\3303\250\224\016,\241\335\272\313\267\372\355\000~\022Z!VuH\205\257%o\371\204F>Z*\227\274h3\365\224\247!""\227\246o}yy\374\305\351\211\001\276\300g\310\266\317G\240[:\033\220\217!C\003\022A\372\242\322\022\212C\035\353\217\344\036.\2577\033y\317\304\306\277\366T\224LCe\331\333\335\352\276\202'\334\001T$\371C\201\007#\353N\005\273\366\267\345b\003p\256~\177\206\224y,\231c&>e?\027*\341\256\321\224\374\354\253J\326\017X\201\023D\326\026\222\344\377T\257\371\374\215 a\031\235\277\321@e\305\374\025f&\227\204[\032\315\274>A\3748\354\266v7x6\376\374\0175Mi\003\365\2102J\032\013\307\233Q\331\214\237\366n\3174\327l\265t\345\301\226\352\031\210\335E:\363>\3739M\210\357\267'\261\325\343f\246Z\224\317-1\202\230\342\211nOn\376\327\201\263\253\321\377\305\334\221N\024$\010J\020Y\200";
+    PyObject *data = __Pyx_DecompressString(cstring, 1647, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (554 bytes) */
-const char* const cstring = "x\332\215RAo\3230\024.\007&\001Cb\0348{\331\244t@\335\n\241N\244t0\264!\355\202\200\003'$\313u^Z\253\216\235\331N\332RU\342\230c\216\375i\034\371\t\375\t8\315\026Zu\022<)\361\213\277\357}~\357s\360\273\207\250\014\014\242E%\033)M\210\340r<\257\266]DJ\332\226\341?\000\005\310\304T\010\320\275\032dJ(\035\240\243n\247\373\252\333\275\331_T\313\335\302\301He\240\321|G\342u\347\rD\321\377H`nZ\224Y\236\301\277dn\333\237\000\037\216l\200\006J\204w\235\340\342m}\010\nT\024\031\260}\357\264\343\235\325\204mR\253ld\013+#kEJ\367\275\022C\\\242\220Z\212\313\017\343\355P\203\221\206\250\242\3422\335e\304T\217\373\236\325)\354b\337\3373\301\331\030'\0322\220vC\007\365Q\235c\r\211\240\014\232\376\221\377\022\371\376I\317\331$\215E\325\014\227\302\221\217A`5\221\240/\024Kc\247\205\207`/\005\224\351\207\331U\330\254\325\\\365m\0356L+!\256\244U\3378L\232s4\200\021\315xy\003\276\211\225\262#\037-Nz\333\215\237\355\2141\237W\315Zn\005\240\305b\333\354\366\266\333\177\3137\220j\323\3608\021`,\325\266m\014Iy\273Bq2#\344\363l\352\236\013\316,\371\004S\373\025\242\n\244f&\031W\230)\255R\313%\030\347\251\004\302%\261\332\2716\240lL\2301\345-\206\020:?\010\211R\311\010q\016\021nH]\310-\304f<\241zh\326\267MHL\235\212\213X\205\251\2002\2234vk\242\022B\256S*\252O\r\216\353~\265\033\324e\241\353.\025vc \274\036\010W=\233\365\251\216j\035X\276\247v\242i\222Q\221\202\311R\260<\232\375\274\267z\332\330{\234\177,\216\013ZL\227\327\277\356?\310\017\362\027\305\227\337\353\344yq\276\362\032{\373\371iqXt\227\007\313\303\325\263\306\243'\271\343\355\347\347\177\000\351>AO";
-    PyObject *data = __Pyx_DecompressString(cstring, 554, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1517 bytes) */
+const char* const cstring = "x\332\225V[o\023G\024\206\207\"%\245\022y\351\363$\264\330&xc\032H\250\203\241\201R\t\251\252(T\255\252\252Z\215w\307\3614\353\03533k\307\r\221B\251\024\033\t\222\212J\204\000*\221\312ET\rjUqI\200\337\320\307>\366!k;O\344'\364\314\256\035\257\355\r\025+y\275\263s.\337\371\316\231\263G;\336\213\032\327\320\020\252\335_\333\270\361k\2652[\275U\331\370y\251\366\303\263\332\322\217\010\033\222\026\010\252\375\261\266%k2\303\311\021[j\347\035\302K\347\210E\014\311\370\270eE#\032\266\215,\343q*I.\022\3232\214\237\302F6\252\226(u\014\251\177\315\260\260\020\237R!5Nr\254@\242\021\337G$\026\033\333\362\021\004\266\376t\325}q\315\255\\\001H\356\334\032\240\362\341U\237\254\271\227\357\204!4\230-$\362\261(O(\265\r\350\026b\013\304\"\001\0004\203\242-\00314\275\265\323r\240\302\021`\273%\367\277\224\214\265\231\361\014t\261\324\356\252\t\306\343N\222)y\222\331R\005\"9\315Ec(\225J!I\245Eb!\212M'\001\322\261i\266\030\037\353\322\230i{3\023\220\230\351NN\203\006\0238\310r\222\201\204\346-l@F\367F\016\240H\320\274/I\254\327d\342\033\023K\034o\262e\246\006\"hP\331\036D\221\201o#1t\341BKu\202\310S\026Q\217'J\247\315(5;2\327O\254\030\342D:\334\016\257\251\352/w\253\225\227\365\271\207\356\312\322\372\263Jum\311\275\374\300]y\346\336x\320\201Y\030\234Y\026\341\200\234X\300#\023DHH\253\020q\177+\215\271\256\0279\316\373\030\333\204\n\361\034\246vg]5Mvf\014p\325W\226k+\327\033\307\357\346S\367\321\263\365\325\253At\033\313\2177.=\2003\340^\234W'vn\276\323\304\306\255\331\372\275\213\365\331K\365\033?\0055\033g\010\316\264\357\377\013\226\017\251ib\235\205|\370\301\002\313'\230c\233\324\2368iQ [mE;\212\246\235\245\206rs\371&&\014\207s\0208\327\004\0274\263\2058L\221e2\202(\257]\026\006Q\324\217G\223\260\212\267\241T\257b\360n41\326\311`\355\346_\325\253w\353+/k/V|\006\327_\\\201\347W\317\313\356\334\274{u\315O\202\373\350y\275\374\260zg~\343\267Ew\365\336h\"?\365\352y\245\315XW\000\321i\004~\223\r\314\007P\232dq\2012\236D\021\221cLf#\355g\016\322 HG\231@f|s\247m\311\276\244\244\010F\267""\261\323\3233\323\0137UtEj\233\254\250Q\333&\374+j\312,:\212FG\216\240}\373P\256\204\363\371\343\032\334\n\0169\256\211,+\352\234Nd\245.\250I\240\276Q?4\031\310\"\311P\233\230\252l{zz<\255\206R\230N\ne0\200\367A\004\016\340\320~\344\327\267[\276^_n\024'\332?\344\357\006\373q \356<\264-\250\241$J\240~\232\3133.\261-[<\3450\237\240\366v\273\312V\\\310\222E\222\310f6i\354\204\243\252\336^\256\335\\\351\302\3435\347\026\236\0144\341\270\240\337\203\305\203\303\371\251P\267\006\263TB\366\016'\206\017\016\017\207\212\250~\0367\211\3018\226\224\331>\274P\311-\002\016\201\267#\333x|=\r&\025\320\236KI\224\266\2301\031\000\301\261-\250\357\037[\026Jh\303\002\021,H\220A\233\304\263D\345\027\002\326\016\007\202t\270PQ\346\031\205\317\022om\244\0317\t\217slRGx\260\003\301\260\246?N,\254>Ea)\tR\237\314\302\244\300\003\th\222{(\361!\311dB\343Mccr\202\253\356\023oJ\023#s8L\272\253\024f+\353O\177\257]~\\\235\275\010\247{}5\274 \264\306\354\361F\260\274\322)6\270\034I$\336\014\215\373\344\336\372\313\373\365k\267\353\225?\241T_\007+\231L\023\230-\332\341y\263\003t\211HX6pZ0\313\221\301\304\223\014H\007Z\244\327\275\016'\336\357(\037\360\223K\372\217\220P\362u4\0162\201FVT\035'\211\206\203U\260UO#\301\267!Y\363\311\334\266\264\022\350\0038\017\352\227\010#\020\256\243&- o\004J\r\004\372\313\300\261\266\276\252\244\272\346\241B\034BK\r\300\001\230D\324FjF\321\324B\014t\211&'I\311\227\324\3244\324-\320\216@e\252[\346#\303\242\306dj\200\332\0056I\364\357D4\222\305\266i\221qO\353\244\332\205\341Jy\211\265k\037\353\2625=\355\311i\336x\210f\332G\273\243C\020nK'\260\024P\217\026\314/\230\313!!t\207\016\371\210\265|I\327\317\224\246\340\36715\244\376\0314\257\263$\343obQ\262\r\3124he\314\221\320.\204\241\232\206Nm\035\252\302 *\255\272!\204\"\320$&\024\241\256g\034\333\320u\030\021\272\"\324\251\320\267,yS\362d\021z\233\360\230\327u5T\351p\345\230\351XD=\3318\007\377y\226\327\365\363\016\266\374%' \013\237\331\306.<\301\027\014;\226\014D\250y\0216N\217\360\274\202\250\204Mu\237\222j\260+`""\313!\002>s\222fJ\263;7\367\354\330\365N\371\223\205\367\026\360\302\324\342\371\177\336\352)\367\225\007\027>\377\327{\330\2770\276\231\336\271cWo\271\357\357\336\376;}\233g`\261\273<\272\320\2770\262\330\267\330\277\371\356\216\267\367\224Akwy\374?\357\206g8";
+    PyObject *data = __Pyx_DecompressString(cstring, 1517, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1041 bytes) */
-const char* const bytes = ".?\n     .el-anchor__link{\n        font-size : smaller;\n        color: #606266;\n     }\n     \n     .el-anchor__link:hover {\n        color: #409eff;\n     }\n     \n     .el-anchor__link.is-active {\n        color: #409eff;\n        font-weight: bold;\n     }\n     \n        <el-anchor :offset=\"70\">\n            <el-anchor-link\n                v-for=\"link in data.links\"\n                :href=\"link.href\"\n                mark=\"true\"\n                \\@click.prevent=\"link.href = link.href.replace('#', ''); const anchorEl = $el.ownerDocument.getElementById(link.href); anchorEl.scrollIntoView({ behavior: 'smooth' });\"\n            >\n                {{ link.title }}\n            </el-anchor-link>\n        </el-anchor>\n    simplestart/ss_ui/anchor.py__Pyx_PyDict_NextRefanchorasyncio.coroutinescline_in_traceback_cssdatadedent__func__get_is_coroutineitemskwargslinks__main____module____name__pop__qualname__res__set_name__setdefaultsimplestart.ss_ui.anchorss_core__test__textwrapvaluesvuetify\200\001\360\022\000\006\r\210F\220$\220a\220x\230q\330\005\t\210\021\210+\220Q\340\005\t\210\021\210*\220A\360\"\000\006\014\2107\220!\2206\230\021\230!\360\026\000\013\020\210q\330\005\014\210A";
+    #else /* compression: none (3457 bytes) */
+const char* const bytes = ".?\n        // \347\247\273\351\231\244\346\211\200\346\234\211\351\224\232\347\202\271\347\232\204 active \347\261\273\n        document.querySelectorAll('.anchor-item').forEach(item => item.classList.remove('active'));\n        \n        // \344\270\272\345\275\223\345\211\215\347\202\271\345\207\273\347\232\204\351\224\232\347\202\271\346\267\273\345\212\240 active \347\261\273\n        const anchorList = document.querySelector('.anchor-list');\n        if (anchorList) {\n            const items = anchorList.querySelectorAll('.anchor-item');\n            items.forEach(item => {\n                if (item.textContent.trim() === title) {\n                    item.classList.add('active');\n                }\n            });\n        }\n        \n        const id = href.replace('#', '');\n        const el = document.querySelector('[data-anchor-id=\"' + id + '\"]') || document.getElementById(id);\n        if (!el) return;\n        \n        // \346\237\245\346\211\276\350\207\252\345\256\232\344\271\211\346\273\232\345\212\250\345\256\271\345\231\250\n        const scroller = el.closest('.ss-scrollbar__wrap') || el.closest('.v-main');\n        if (scroller) {\n            // \350\256\241\347\256\227\351\224\232\347\202\271\347\233\270\345\257\271\344\272\216\346\273\232\345\212\250\345\256\271\345\231\250\351\241\266\351\203\250\347\232\204\345\201\217\347\247\273\351\207\217\n            // \351\234\200\350\246\201\350\200\203\350\231\221\346\273\232\345\212\250\345\256\271\345\231\250\345\275\223\345\211\215\347\232\204 scrollTop\n            const elRect = el.getBoundingClientRect();\n            const scrollerRect = scroller.getBoundingClientRect();\n            const currentScrollTop = scroller.scrollTop;\n            const offset = currentScrollTop + (elRect.top - scrollerRect.top) - 70;\n            // \347\233\264\346\216\245\350\256\276\347\275\256\346\273\232\345\212\250\344\275\215\347\275\256\357\274\210\345\207\217\345\216\273\351\241\266\351\203\250\345""\257\274\350\210\252\346\240\217\351\253\230\345\272\24670px\357\274\211\n            scroller.scrollTo({ top: offset, behavior: 'smooth' });\n        } else {\n            el.scrollIntoView({ behavior: 'smooth' });\n\t\t}\n\n\t\tif (window.innerWidth < 768 && myapp?.appvue?.show_right_sidebar !== undefined) {\n\t\t\tmyapp.appvue.show_right_sidebar = false;\n\t\t}\n     \n     /* \351\224\232\347\202\271\345\210\227\350\241\250\345\256\271\345\231\250 */\n     .anchor-list {\n        padding: 0 !important;\n        margin: 0 !important;\n        list-style: none;\n     }\n     \n     /* \351\224\232\347\202\271\346\235\241\347\233\256 */\n     .anchor-item {\n        font-size: 13px !important;\n        color: #303133 !important;\n        text-decoration: none !important;\n        padding: 4px 8px !important;\n        margin: 0 !important;\n        display: block;\n        transition: all 0.3s ease;\n        line-height: 1.5;\n        cursor: pointer;\n        border-radius: 4px;\n        position: relative;\n     }\n     \n     .anchor-item:hover {\n        color: #409eff !important;\n        background-color: #ecf5ff !important;\n     }\n     \n     /* \351\200\211\344\270\255\347\212\266\346\200\201\351\253\230\344\272\256 */\n     .anchor-item.active {\n        color: #409eff !important;\n        font-weight: 600 !important;\n     }\n     \n     /* \351\200\211\344\270\255\347\212\266\346\200\201\345\267\246\344\276\247\350\223\235\350\211\262\346\235\241 */\n     .anchor-item.active::before {\n        content: '';\n        position: absolute;\n        left: 0;\n        top: 50%;\n        transform: translateY(-50%);\n        width: 3px;\n        height: 16px;\n        background-color: #409eff;\n        border-radius: 0 2px 2px 0;\n     }\n     \n        <div class=\"anchor-list\">\n            <div\n                v-for=\"link in data.links\"\n                :key=\"link.href\"\n                class=\"anchor-item\"\n                @click=\"invoke_js('handle""AnchorClick', link)\"\n            >\n                {{ link.title }}\n            </div>\n        </div>\n    simplestart/ss_ui/anchor.py__Pyx_PyDict_NextRefanchorasyncio.coroutinescline_in_traceback_cssdatadedent__func__gethandleAnchorClick_is_coroutineitemskwargslinks__main____module____name__pop__qualname__res__set_name__setdefaultsimplestart.ss_ui.anchorss_core__test__textwrapvaluesvuetify\200\001\360\020\000\006\r\210F\220$\220a\220x\230q\330\005\t\210\021\210+\220Q\340\005\t\210\021\210*\220A\360b\001\000\006\n\210\021\320\n!\240\021\360P\001\000\006\014\2107\220!\2206\230\021\230!\360\026\000\013\020\210q\330\005\014\210A";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 34; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 5) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 6) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3170,7 +3181,7 @@ const char* const bytes = ".?\n     .el-anchor__link{\n        font-size : small
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 32; i < 33; i++) {
+    for (int i = 34; i < 35; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3181,14 +3192,14 @@ const char* const bytes = ".?\n     .el-anchor__link{\n        font-size : small
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 33; i++) {
+    for (Py_ssize_t i = 0; i < 35; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 32;
+      PyObject **table = stringtab + 34;
       for (Py_ssize_t i=0; i<1; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3236,7 +3247,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 4};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_links, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_anchor_py, __pyx_mstate->__pyx_n_u_anchor, __pyx_mstate->__pyx_kp_b_iso88591_F_axq_Q_A_7_6_q_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_anchor_py, __pyx_mstate->__pyx_n_u_anchor, __pyx_mstate->__pyx_kp_b_iso88591_F_axq_Q_Ab_P_7_6_q_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

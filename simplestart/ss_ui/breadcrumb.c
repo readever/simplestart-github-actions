@@ -2232,7 +2232,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[1];
-  PyObject *__pyx_string_tab[31];
+  PyObject *__pyx_string_tab[27];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2275,35 +2275,31 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
 #define __pyx_kp_u__2 __pyx_string_tab[1]
-#define __pyx_kp_u__3 __pyx_string_tab[2]
-#define __pyx_kp_u__4 __pyx_string_tab[3]
-#define __pyx_kp_u_el_breadcrumb_separator_data_se __pyx_string_tab[4]
-#define __pyx_kp_u_simplestart_ss_ui_breadcrumb_py __pyx_string_tab[5]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[6]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[7]
-#define __pyx_n_u_breadcrumb __pyx_string_tab[8]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[9]
-#define __pyx_n_u_data __pyx_string_tab[10]
-#define __pyx_n_u_func __pyx_string_tab[11]
-#define __pyx_n_u_get __pyx_string_tab[12]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[13]
-#define __pyx_n_u_items __pyx_string_tab[14]
-#define __pyx_n_u_kwargs __pyx_string_tab[15]
-#define __pyx_n_u_main __pyx_string_tab[16]
-#define __pyx_n_u_module __pyx_string_tab[17]
-#define __pyx_n_u_name __pyx_string_tab[18]
-#define __pyx_n_u_qualname __pyx_string_tab[19]
-#define __pyx_n_u_res __pyx_string_tab[20]
-#define __pyx_n_u_separator __pyx_string_tab[21]
-#define __pyx_n_u_separator_icon __pyx_string_tab[22]
-#define __pyx_n_u_set_name __pyx_string_tab[23]
-#define __pyx_n_u_setdefault __pyx_string_tab[24]
-#define __pyx_n_u_simplestart_ss_ui_breadcrumb __pyx_string_tab[25]
-#define __pyx_n_u_ss_core __pyx_string_tab[26]
-#define __pyx_n_u_test __pyx_string_tab[27]
-#define __pyx_n_u_values __pyx_string_tab[28]
-#define __pyx_n_u_vuetify __pyx_string_tab[29]
-#define __pyx_kp_b_iso88591_6_Qha_F_ay_d_V4q_2_A_Q_a_1 __pyx_string_tab[30]
+#define __pyx_kp_u_simplestart_ss_ui_breadcrumb_py __pyx_string_tab[2]
+#define __pyx_kp_u_v_breadcrumbs_template_v_for_it __pyx_string_tab[3]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[4]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[5]
+#define __pyx_n_u_breadcrumb __pyx_string_tab[6]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[7]
+#define __pyx_n_u_data __pyx_string_tab[8]
+#define __pyx_n_u_func __pyx_string_tab[9]
+#define __pyx_n_u_get __pyx_string_tab[10]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[11]
+#define __pyx_n_u_items __pyx_string_tab[12]
+#define __pyx_n_u_kwargs __pyx_string_tab[13]
+#define __pyx_n_u_main __pyx_string_tab[14]
+#define __pyx_n_u_module __pyx_string_tab[15]
+#define __pyx_n_u_name __pyx_string_tab[16]
+#define __pyx_n_u_qualname __pyx_string_tab[17]
+#define __pyx_n_u_res __pyx_string_tab[18]
+#define __pyx_n_u_set_name __pyx_string_tab[19]
+#define __pyx_n_u_setdefault __pyx_string_tab[20]
+#define __pyx_n_u_simplestart_ss_ui_breadcrumb __pyx_string_tab[21]
+#define __pyx_n_u_ss_core __pyx_string_tab[22]
+#define __pyx_n_u_test __pyx_string_tab[23]
+#define __pyx_n_u_values __pyx_string_tab[24]
+#define __pyx_n_u_vuetify __pyx_string_tab[25]
+#define __pyx_kp_b_iso88591_6_Qha_F_ay_A_a_1 __pyx_string_tab[26]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2319,7 +2315,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   __Pyx_State_RemoveModule(NULL);
   #endif
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<31; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<27; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2343,7 +2339,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_bytes);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<31; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<27; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2362,7 +2358,7 @@ return 0;
  * 
  * def breadcrumb(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- *     Breadcrumb
+ *     Breadcrumb Vuetify v-breadcrumbs
 */
 
 /* Python wrapper */
@@ -2373,7 +2369,7 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_10breadcrumb_breadcrumb, "\n    \345\210\233\345\273\272Breadcrumb\351\235\242\345\214\205\345\261\221\347\273\204\344\273\266\n    \n    \345\217\202\346\225\260:\n    - items: \351\235\242\345\214\205\345\261\221\351\241\271\346\225\260\346\215\256\357\274\214\346\225\260\347\273\204\346\240\274\345\274\217\357\274\214\346\257\217\344\270\252\345\205\203\347\264\240\345\214\205\345\220\253name\343\200\201to\343\200\201replace\347\255\211\345\261\236\346\200\247\n    - separator: \345\210\206\351\232\224\347\254\246\357\274\214\351\273\230\350\256\244\345\200\274\344\270\272'/'\n    - separator_icon: \345\210\206\351\232\224\347\254\246\345\233\276\346\240\207\357\274\214\351\273\230\350\256\244\345\200\274\344\270\272\347\251\272\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_10breadcrumb_breadcrumb, "\n    \345\210\233\345\273\272Breadcrumb\351\235\242\345\214\205\345\261\221\347\273\204\344\273\266\357\274\210\345\237\272\344\272\216 Vuetify v-breadcrumbs\357\274\211\n    \n    \345\217\202\346\225\260:\n    - items: \351\235\242\345\214\205\345\261\221\351\241\271\346\225\260\346\215\256\357\274\214\346\225\260\347\273\204\346\240\274\345\274\217\357\274\214\346\257\217\344\270\252\345\205\203\347\264\240\345\214\205\345\220\253name\343\200\201to\343\200\201replace\347\255\211\345\261\236\346\200\247\n    - separator: \345\210\206\351\232\224\347\254\246\357\274\214\351\273\230\350\256\244\345\200\274\344\270\272'/'\n    - separator_icon: \345\210\206\351\232\224\347\254\246\345\233\276\346\240\207\357\274\214\351\273\230\350\256\244\345\200\274\344\270\272\347\251\272\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_10breadcrumb_1breadcrumb = {"breadcrumb", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11simplestart_5ss_ui_10breadcrumb_1breadcrumb, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_10breadcrumb_breadcrumb};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_10breadcrumb_1breadcrumb(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
@@ -2422,8 +2418,6 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_kwargs) {
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_v_items = NULL;
-  PyObject *__pyx_v_separator = NULL;
-  PyObject *__pyx_v_separator_icon = NULL;
   PyObject *__pyx_v_res = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2442,7 +2436,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UN
  *     """
  *     data = kwargs.get('data', {})             # <<<<<<<<<<<<<<
  *     items = kwargs.get('items', [])
- *     separator = kwargs.get('separator', '/')
+ * 
 */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2456,8 +2450,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UN
  *     """
  *     data = kwargs.get('data', {})
  *     items = kwargs.get('items', [])             # <<<<<<<<<<<<<<
- *     separator = kwargs.get('separator', '/')
- *     separator_icon = kwargs.get('separator_icon', '')
+ * 
+ *     # data
 */
   __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2467,72 +2461,30 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UN
   __pyx_v_items = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/breadcrumb.py":14
- *     data = kwargs.get('data', {})
- *     items = kwargs.get('items', [])
- *     separator = kwargs.get('separator', '/')             # <<<<<<<<<<<<<<
- *     separator_icon = kwargs.get('separator_icon', '')
- * 
-*/
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_separator, __pyx_mstate_global->__pyx_kp_u_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_separator = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/breadcrumb.py":15
- *     items = kwargs.get('items', [])
- *     separator = kwargs.get('separator', '/')
- *     separator_icon = kwargs.get('separator_icon', '')             # <<<<<<<<<<<<<<
- * 
- *     # data
-*/
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_separator_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_separator_icon = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/breadcrumb.py":18
+  /* "simplestart/ss_ui/breadcrumb.py":16
  * 
  *     # data
  *     data['items'] = items             # <<<<<<<<<<<<<<
- *     data['separator'] = separator
- *     data['separator_icon'] = separator_icon
+ * 
+ *     # data
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_items, __pyx_v_items) < 0))) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_items, __pyx_v_items) < 0))) __PYX_ERR(0, 16, __pyx_L1_error)
 
   /* "simplestart/ss_ui/breadcrumb.py":19
- *     # data
- *     data['items'] = items
- *     data['separator'] = separator             # <<<<<<<<<<<<<<
- *     data['separator_icon'] = separator_icon
- * 
-*/
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_separator, __pyx_v_separator) < 0))) __PYX_ERR(0, 19, __pyx_L1_error)
-
-  /* "simplestart/ss_ui/breadcrumb.py":20
- *     data['items'] = items
- *     data['separator'] = separator
- *     data['separator_icon'] = separator_icon             # <<<<<<<<<<<<<<
  * 
  *     # data
-*/
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_separator_icon, __pyx_v_separator_icon) < 0))) __PYX_ERR(0, 20, __pyx_L1_error)
-
-  /* "simplestart/ss_ui/breadcrumb.py":23
- * 
- *     # data
- *     res = vuetify('''<el-breadcrumb             # <<<<<<<<<<<<<<
- *         :separator="data.separator_icon ? '' : data.separator"
- *         :separator-icon="data.separator_icon">
+ *     res = vuetify(r'''             # <<<<<<<<<<<<<<
+ *         <v-breadcrumbs>
+ *             <template v-for="(item, index) in data.items" :key="index">
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "simplestart/ss_ui/breadcrumb.py":33
- *             {{item.name}}
- *         </el-breadcrumb-item>
- *     </el-breadcrumb>''', data=data)             # <<<<<<<<<<<<<<
+  /* "simplestart/ss_ui/breadcrumb.py":34
+ *             </template>
+ *         </v-breadcrumbs>
+ *     ''', data=data)             # <<<<<<<<<<<<<<
  * 
  *     return res
 */
@@ -2549,22 +2501,22 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UN
   }
   #endif
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_el_breadcrumb_separator_data_se};
-    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_v_breadcrumbs_template_v_for_it};
+    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_res = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/breadcrumb.py":35
- *     </el-breadcrumb>''', data=data)
+  /* "simplestart/ss_ui/breadcrumb.py":36
+ *     ''', data=data)
  * 
  *     return res             # <<<<<<<<<<<<<<
 */
@@ -2578,7 +2530,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UN
  * 
  * def breadcrumb(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- *     Breadcrumb
+ *     Breadcrumb Vuetify v-breadcrumbs
 */
 
   /* function exit code */
@@ -2592,8 +2544,6 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_10breadcrumb_breadcrumb(CYTHON_UN
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_data);
   __Pyx_XDECREF(__pyx_v_items);
-  __Pyx_XDECREF(__pyx_v_separator);
-  __Pyx_XDECREF(__pyx_v_separator_icon);
   __Pyx_XDECREF(__pyx_v_res);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -2977,7 +2927,7 @@ __Pyx_RefNannySetupContext("PyInit_breadcrumb", 0);
  * 
  * def breadcrumb(**kwargs):             # <<<<<<<<<<<<<<
  *     """
- *     Breadcrumb
+ *     Breadcrumb Vuetify v-breadcrumbs
 */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_10breadcrumb_1breadcrumb, 0, __pyx_mstate_global->__pyx_n_u_breadcrumb, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_breadcrumb, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3058,34 +3008,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{1},{0},{1},{1},{369},{31},{20},{18},{10},{18},{4},{8},{3},{13},{5},{6},{8},{10},{8},{12},{3},{9},{14},{12},{10},{28},{7},{8},{6},{7},{110}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (508 bytes) */
-const char* const cstring = "BZh91AY&SY+iD\177\000\000O\377\373\347|v\032\364\347\265\027\245\001q\000\277\357\377\352@@@@@@@\000@@@\000@\0000\001\232l\245\203S)4\233\023\t6\230\223\324\323LF\r@ba\032d\321\246\320\231\246L\240\324\323S\324\215\252o$\236\211\262&\004a\031\031\006\231\0321\000b4\323M\003$ \247\232\t\211\032zL\215\250\0004\000\000\000\006\324y#\003b\237\031\372?\231+\311`\265\013\3404\345\026,\211FY\267\330-R\252\010\246:\210\036|\021\250\323\245\330\240@W9lH\004\007\302\006&\256B0\301\340\374\324\367s\343\027\272\333\r\003\241zN6\253|\000\221wF^\024\241\240\231\032#<\363\376\204\346\031t\317\320Y\004Vk\233B\254\275]+4\350\234\334\324\240\233}G\004K5.\222\300|\224\347\010\365U7\210K0\370\211O<d@\"\005\254\215\000\354\257\0235\230 \003\370\233`\025\326D$\252z\004$5<\315I5\346Gt\242M\210\013\241\331\t]\"\370\261\362g\200`\232\221L\2075\324%\225\306\3151tB\000\240\227\302\021\260S\332\370\\\003\357}\324E\031#&\316`0\205\256\026\211#I\016'\304i\006\237\351`\357\334{\034K\003\020\225\003\222-\030\013VJ\300\330\24080\251\002\".\343\315\177Q\322&D\316h\n\025 \n)xD@pf6\250\311zBUQ.\317+\216\024\r&\0144M \3460\020\205\355\340\334Lt\253\014Ps\005\270f E\005\205\270\000\325\360\006C)JG&+\211\013I\260\204<\340\202{6\231\017\220\222\262f\247u\205sPS$\341\366?\006\261\373\213\2242o\207|_\334\353E^X\343\2319^\327+\327\2465\310\022\314$\177\342\356H\247\n\022\005m(\217\340";
-    PyObject *data = __Pyx_DecompressString(cstring, 508, 2);
+    const struct { const unsigned int length: 10; } index[] = {{1},{1},{31},{531},{20},{18},{10},{18},{4},{8},{3},{13},{5},{6},{8},{10},{8},{12},{3},{12},{10},{28},{7},{8},{6},{7},{64}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (473 bytes) */
+const char* const cstring = "BZh91AY&SY.6\303\027\000\000S\377\363\347|\364\t|\347\241\027\245\001p\000\277\357\377\356@@@@@\000\000@@\000@\0000\001d\266\2142HI\352l\236\211\221\250\320\320\032\0324\007\250224\031\036S\330\2505O\024\236\210\364\324\365\r\032\217D\302d\300\232\006 `\020\332L\000\224D\031G\240Bi\246\215\250\36544\000\001\243@\000\032\017\213\222\335\310j\262\266\266\320\266\\\024\026\367@\255\013\020aR\264\240\265<$)T<\003bR\245y\342\t\017\222[\357\2172\331\367NN\246\211\364\353A55\354\305\334\242\220v\336\242]\210\337a\002`\013\3336\020\353\303g\023\312\362\030\023\030\010z\341\364\025\321\020%.2[$}\261\264\347\304\216\255>\343\\\354.$&\341F`^',,3kP\210>aA\020\310\200S\240\373\035\031\322\376\344$\t\331\277\021\r\204`\250\330\025y\324E\032I60p>J\350D\232\370\202B\005\230\214\362\240]zce\261f\274\324\301\"\240a_\311\242\251\350#\244\211\2550\347\2661\311\366\331\3619\005\024&1\222S\200o\227*h\212%\332\t\n\205)O\211\024\036A\030\240\363`\346\032\243#\236X\330\300 \324\006\241\216\"\360\250\250\341\264\313.\314\202KS4\354\202h\215\010C\023\226\264\016I\351\210R\322\003\344\005R\271\356\320\243.Z!\364\367\321c\202j\214\224M\031\0320c\t\300\310\346$\364\311|\204U\177.\333M\210R\201\202\371AB-g\003\356b\272w\223\n6\004\217\025\"\337\357\235\314\341\004z\265k\024\217\317K*o\362\330\356\016\311\024\026\344w\370\273\222)\302\204\201q\266\030\270";
+    PyObject *data = __Pyx_DecompressString(cstring, 473, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (435 bytes) */
-const char* const cstring = "x\332mQ=k\033A\020\225@6\361G\341\030\247\2111>\035\006%`\235H\010)\204e\023\010)C\234\"\3550\332\0339\213\356C\336\017Y\2071\270\274r\313+S\246\314Oq\2512?A?!\273'\241\3639\036Xvf\337{\303\233\331^pqFQw(\010C&t<\364\266\275U\364%MP\240J\305\300\017Qa\260\256\201\2634\361.\274N\307\353{u\310\177N\337u\374g\233\370\347kz\335F\227+\212\253^.\246\335\221\263\362\306!\247\036OB\232\275\265\327\322\200{\224~]\320\037S6\360K\242_\007Tj\337\255\"P\351\023D\320$BF+xU=r\351\342\366\266\004\023\214\351\356\256\362\337\373\177\200\245\356\tr.y<\211H*\024\252'%h\336\253\300`\222\001|\313f\366|\346L\301W\232\251\3574B\231%\214\247\001KE\252\025OHV\022\026\331\032x\002JX\257Cdc\267\021\200\221N\030\300\025)\340\022\326\302rQ\343\033\024W\022 F+\263\021\247\241\216\310en(w_k\214\226\271 \271\376\263\372\347\001H\333|\311\262Yhm\352H=\232.(\247\013*\253\2624b\351\312\022\000\246\030i\222SM\212\217\262\373\346b\277\261\261\233\1774\007\346\322\374,p\336\332\315\277\230\023\203&\373\325\234\267\366\314\246\t\213v1\370m\213W\346G\361\241\270~\360\336\377i/6\033\033[y3?4\237\346\255\02769.\232e\362\260uT\\:t'\357\230\227\246\2758h\274>.\360ok'\177\367\017\004\363\001\033";
-    PyObject *data = __Pyx_DecompressString(cstring, 435, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (414 bytes) */
+const char* const cstring = "x\332\235R\315j\333@\020\266\301.4\t\204\226\336\ne\253\024\334B%\341K\017\306r(\224\034K\332\027X\306\322\310^\254\037w\177\024\213\330\220\243\216{\354\261\217\325c\036\301\217\320]\331\265\235\312\007\323\201egg\276o\346\033f\275k\301\322y\202B\002\227\276\020T1\177\314\021\242\220\253t\354\315\3133\262\265a\341\356\023b\264\213\3279\211\246\010H$\205\033\347<p\3363\023\371HX\026\341\342\203\271H\004\022<\033\024\016\031\314\260\014\234:\347<\255\323\354\343ZN\003c\255pY\274\255B\202 8\350\340%\230M\344\224\270\244\3574\250\243\243\305\356\357\211\245z\031\244HV\253\246(\277\251\352$\351F&&\002\217w\035\002\031L9\3321ls\231\223\345\222\364\256z\316q\370)B7ba\364\037\023\014\375\277[\334\307\377am\022\224\336\226\013s\276\260P\322\257\270\220\3371\006Qf!\313\2750\347\271\222,C\261\247\205\211yS\226Q\311!\3041\2043\273+Jc\225\205\224NPR&\350\216X\257pv\007|\"(M\301\320\214\245y\244\022\264\236\035\334\336?\024$\033\237\243\001\nSe\3634^d\364\250D\036\374l\257\376\331\336\301(uG\003\227\006@i\001\211BQ(\224,.\037\332\353\227\255\356E\365I\277\322\337\364\364'\374\356\\T7\372\235\006]\376j\257\237\265\272\317\253v\365Z\177\266\356y\325\323/\364\333\365\233\326\331e\005\217\235\363\252\377\007\031f\376N";
+    PyObject *data = __Pyx_DecompressString(cstring, 414, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (760 bytes) */
-const char* const bytes = "/.?<el-breadcrumb \n        :separator=\"data.separator_icon ? '' : data.separator\" \n        :separator-icon=\"data.separator_icon\">\n        <el-breadcrumb-item \n            v-for=\"(item, index) in data.items\" \n            :key=\"index\"\n            :to=\"item.to\"\n            :replace=\"item.replace\">\n            {{item.name}}\n        </el-breadcrumb-item>\n    </el-breadcrumb>simplestart/ss_ui/breadcrumb.py__Pyx_PyDict_NextRefasyncio.coroutinesbreadcrumbcline_in_tracebackdata__func__get_is_coroutineitemskwargs__main____module____name____qualname__resseparatorseparator_icon__set_name__setdefaultsimplestart.ss_ui.breadcrumbss_core__test__valuesvuetify\200\001\360\022\000\005\014\2106\220\024\220Q\220h\230a\330\004\014\210F\220$\220a\220y\240\001\330\004\020\220\006\220d\230!\230=\250\001\330\004\025\220V\2304\230q\320 2\260!\360\006\000\005\t\210\001\210\033\220A\330\004\010\210\001\210\037\230\001\330\004\010\210\001\320\t\035\230Q\360\006\000\005\013\210'\220\021\220!\360\024\000\032\037\230a\340\004\013\2101";
+    #else /* compression: none (852 bytes) */
+const char* const bytes = ".?simplestart/ss_ui/breadcrumb.py\n        <v-breadcrumbs>\n            <template v-for=\"(item, index) in data.items\" :key=\"index\">\n                <v-breadcrumbs-item\n                    v-if=\"index === data.items.length - 1\"\n                >\n                    {{ item.name }}\n                </v-breadcrumbs-item>\n                <v-breadcrumbs-item v-else>\n                    <a :href=\"item.to || '#'\">\n                        {{ item.name }}\n                    </a>\n                </v-breadcrumbs-item>\n            </template>\n        </v-breadcrumbs>\n    __Pyx_PyDict_NextRefasyncio.coroutinesbreadcrumbcline_in_tracebackdata__func__get_is_coroutineitemskwargs__main____module____name____qualname__res__set_name__setdefaultsimplestart.ss_ui.breadcrumbss_core__test__valuesvuetify\200\001\360\022\000\005\014\2106\220\024\220Q\220h\230a\330\004\014\210F\220$\220a\220y\240\001\360\006\000\005\t\210\001\210\033\220A\360\006\000\005\013\210'\220\021\220!\360\036\000\n\017\210a\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 26; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 6) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 4) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3093,7 +3043,7 @@ const char* const bytes = "/.?<el-breadcrumb \n        :separator=\"data.separat
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 30; i < 31; i++) {
+    for (int i = 26; i < 27; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -3104,14 +3054,14 @@ const char* const bytes = "/.?<el-breadcrumb \n        :separator=\"data.separat
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 31; i++) {
+    for (Py_ssize_t i = 0; i < 27; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 30;
+      PyObject **table = stringtab + 26;
       for (Py_ssize_t i=0; i<1; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -3157,9 +3107,9 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 3};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_n_u_separator, __pyx_mstate->__pyx_n_u_separator_icon, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_breadcrumb_py, __pyx_mstate->__pyx_n_u_breadcrumb, __pyx_mstate->__pyx_kp_b_iso88591_6_Qha_F_ay_d_V4q_2_A_Q_a_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 3};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_n_u_res};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_breadcrumb_py, __pyx_mstate->__pyx_n_u_breadcrumb, __pyx_mstate->__pyx_kp_b_iso88591_6_Qha_F_ay_A_a_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -4291,7 +4241,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         if (unlikely(!module_name_str)) { goto modbad; }
         module_name = PyUnicode_FromString(module_name_str);
         if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u__3);
+        module_dot = PyUnicode_Concat(module_name, __pyx_mstate_global->__pyx_kp_u_);
         if (unlikely(!module_dot)) { goto modbad; }
         full_name = PyUnicode_Concat(module_dot, name);
         if (unlikely(!full_name)) { goto modbad; }
@@ -6289,7 +6239,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__2);
     }
     goto done;
 }
