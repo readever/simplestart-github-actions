@@ -1,6 +1,16 @@
 # SimpleStart
 
-A Python web framework for building web applications with Element UI.
+Build interactive web apps with pure Python — a reactive UI framework without HTML, CSS or JavaScript.
+
+SimpleStart turns plain Python scripts into reactive web applications. Import `simplestart`, call `ss.*` APIs, and a modern Vuetify-powered UI renders in your browser — no frontend code required.
+
+## Features
+
+- **Pure Python** — no HTML, CSS, JavaScript or template files
+- **Reactive UI** — state changes update the page automatically
+- **60+ built-in components** — forms, tables, charts (ECharts), dialogs, tabs, layout and more
+- **Cython-accelerated core** — compiled for performance
+- **Zero configuration** — built-in web server: run your script, open the browser
 
 ## Installation
 
@@ -8,40 +18,42 @@ A Python web framework for building web applications with Element UI.
 pip install simplestart
 ```
 
-## Usage
+## Quick Start
+
+Create `app.py`:
 
 ```python
 import simplestart as ss
 
-# Your code here
+def on_click():
+    ss.message("Hello from SimpleStart!")
+
+ss.write("## My First App")
+ss.text("This page is 100% Python.")
+ss.button("Click me", type="primary", onclick=on_click)
+
+ss.run()
 ```
 
-## Building from Source
-
-This package uses Cython to compile Python code to C for better performance.
-
-### Prerequisites
-
-- Python 3.10+
-- Cython
-- C compiler
-
-### Build
+Run it:
 
 ```bash
-pip install build
-python -m build --wheel
+python app.py
 ```
 
-## GitHub Actions
+Then open http://localhost:8000 — that's the whole workflow.
 
-This project uses GitHub Actions to automatically build wheels for multiple platforms:
-- Linux (Ubuntu)
-- macOS
-- Windows
+## Documentation
 
-Supported Python versions: 3.10, 3.11, 3.12, 3.13
+Live demos and full API documentation: **http://www.simplestart.cc**
+
+## Requirements
+
+- Python 3.10 – 3.13
+- Works on Linux, macOS and Windows
 
 ## License
 
-MIT
+SimpleStart is proprietary software. You may build applications with it — including commercial ones — and distribute your applications freely (e.g. bundled with PyInstaller or Docker). Redistribution of the framework itself as a standalone package is not permitted. See [LICENSE.txt](LICENSE.txt) for details.
+
+Copyright (c) 2026 readever. All rights reserved.
