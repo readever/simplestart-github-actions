@@ -87,10 +87,6 @@ async def _websocket_endpoint(websocket):
 async def _upload_file(request: Request):
     return await server.upload_file(request)
 
-# 资源路由
-async def _resource(request: Request):
-    return await server.resource(request)
-
 # API 路由
 async def _init_system(request):
     return await server.init_system(request)
@@ -134,8 +130,6 @@ routes = [
     Route('/assets/{path}', _send_static_resource),
     # Upload 路由
     Route('/upload', _upload_file, methods=['POST']),
-    # 资源路由
-    Route('/ss/res/{url}', _resource),
     # API 路由
     Route('/api/init', _init_system),
     Route('/api/init/{pre_clientid}', _init_system2),

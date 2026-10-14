@@ -1711,27 +1711,6 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
-/* ListPack.proto */
-static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...);
-
-/* PyObjectVectorCallKwBuilder.proto */
-CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
-#if CYTHON_VECTORCALL
-#if PY_VERSION_HEX >= 0x03090000
-#define __Pyx_Object_Vectorcall_CallFromBuilder PyObject_Vectorcall
-#else
-#define __Pyx_Object_Vectorcall_CallFromBuilder _PyObject_Vectorcall
-#endif
-#define __Pyx_MakeVectorcallBuilderKwds(n) PyTuple_New(n)
-static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
-static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n);
-#else
-#define __Pyx_Object_Vectorcall_CallFromBuilder __Pyx_PyObject_FastCallDict
-#define __Pyx_MakeVectorcallBuilderKwds(n) __Pyx_PyDict_NewPresized(n)
-#define __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n) PyDict_SetItem(builder, key, value)
-#define __Pyx_VectorcallBuilder_AddArgStr(key, value, builder, args, n) PyDict_SetItemString(builder, key, value)
-#endif
-
 /* dict_setdefault.proto (used by CLineInTraceback) */
 static CYTHON_INLINE PyObject *__Pyx_PyDict_SetDefault(PyObject *d, PyObject *key, PyObject *default_value);
 
@@ -1788,6 +1767,24 @@ typedef const char *__Pyx_TypeName;
 /* GCCDiagnostics.proto (used by CIntToPy) */
 #if !defined(__INTEL_COMPILER) && defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
 #define __Pyx_HAS_GCC_DIAGNOSTIC
+#endif
+
+/* PyObjectVectorCallKwBuilder.proto (used by CIntToPy) */
+CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
+#if CYTHON_VECTORCALL
+#if PY_VERSION_HEX >= 0x03090000
+#define __Pyx_Object_Vectorcall_CallFromBuilder PyObject_Vectorcall
+#else
+#define __Pyx_Object_Vectorcall_CallFromBuilder _PyObject_Vectorcall
+#endif
+#define __Pyx_MakeVectorcallBuilderKwds(n) PyTuple_New(n)
+static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n);
+static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n);
+#else
+#define __Pyx_Object_Vectorcall_CallFromBuilder __Pyx_PyObject_FastCallDict
+#define __Pyx_MakeVectorcallBuilderKwds(n) __Pyx_PyDict_NewPresized(n)
+#define __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n) PyDict_SetItem(builder, key, value)
+#define __Pyx_VectorcallBuilder_AddArgStr(key, value, builder, args, n) PyDict_SetItemString(builder, key, value)
 #endif
 
 /* CIntToPy.proto */
@@ -1925,7 +1922,7 @@ typedef struct {
   PyObject *__pyx_empty_tuple;
   PyObject *__pyx_empty_bytes;
   PyObject *__pyx_empty_unicode;
-  PyObject *__pyx_string_tab[26];
+  PyObject *__pyx_string_tab[11];
 /* #### Code section: module_state_contents ### */
 /* CodeObjectCache.module_state_decls */
 struct __Pyx_CodeObjectCache __pyx_code_cache;
@@ -1956,31 +1953,16 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u_0_1 __pyx_string_tab[1]
-#define __pyx_kp_u_A_simple_example_package __pyx_string_tab[2]
-#define __pyx_kp_u_Your_Name __pyx_string_tab[3]
-#define __pyx_kp_u__2 __pyx_string_tab[4]
-#define __pyx_kp_u_simplestart_launch_start __pyx_string_tab[5]
-#define __pyx_kp_u_ss_launch_start __pyx_string_tab[6]
-#define __pyx_n_u_author __pyx_string_tab[7]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[8]
-#define __pyx_n_u_console_scripts __pyx_string_tab[9]
-#define __pyx_n_u_description __pyx_string_tab[10]
-#define __pyx_n_u_entry_points __pyx_string_tab[11]
-#define __pyx_n_u_launch __pyx_string_tab[12]
-#define __pyx_n_u_main __pyx_string_tab[13]
-#define __pyx_n_u_module __pyx_string_tab[14]
-#define __pyx_n_u_name __pyx_string_tab[15]
-#define __pyx_n_u_name_2 __pyx_string_tab[16]
-#define __pyx_n_u_py_modules __pyx_string_tab[17]
-#define __pyx_n_u_qualname __pyx_string_tab[18]
-#define __pyx_n_u_server __pyx_string_tab[19]
-#define __pyx_n_u_setdefault __pyx_string_tab[20]
-#define __pyx_n_u_setup __pyx_string_tab[21]
-#define __pyx_n_u_setuptools __pyx_string_tab[22]
-#define __pyx_n_u_simplestart __pyx_string_tab[23]
-#define __pyx_n_u_test __pyx_string_tab[24]
-#define __pyx_n_u_version __pyx_string_tab[25]
+#define __pyx_kp_u__2 __pyx_string_tab[1]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[2]
+#define __pyx_n_u_main __pyx_string_tab[3]
+#define __pyx_n_u_module __pyx_string_tab[4]
+#define __pyx_n_u_name __pyx_string_tab[5]
+#define __pyx_n_u_qualname __pyx_string_tab[6]
+#define __pyx_n_u_setdefault __pyx_string_tab[7]
+#define __pyx_n_u_setup __pyx_string_tab[8]
+#define __pyx_n_u_setuptools __pyx_string_tab[9]
+#define __pyx_n_u_test __pyx_string_tab[10]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -1995,7 +1977,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   __Pyx_State_RemoveModule(NULL);
   #endif
-  for (int i=0; i<26; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<11; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* #### Code section: module_state_clear_end ### */
 return 0;
@@ -2012,7 +1994,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_tuple);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_bytes);
   __Pyx_VISIT_CONST(traverse_module_state->__pyx_empty_unicode);
-  for (int i=0; i<26; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<11; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* #### Code section: module_state_traverse_end ### */
 return 0;
@@ -2285,10 +2267,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_setup(PyObject *__pyx_pyinit_modul
   Py_ssize_t __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  size_t __pyx_t_9;
+  size_t __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2378,7 +2357,7 @@ __Pyx_RefNannySetupContext("PyInit_setup", 0);
   /* "simplestart/setup.py":1
  * from setuptools import setup             # <<<<<<<<<<<<<<
  * 
- * setup(
+ * setup()
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_setup};
@@ -2400,53 +2379,16 @@ __Pyx_RefNannySetupContext("PyInit_setup", 0);
   /* "simplestart/setup.py":3
  * from setuptools import setup
  * 
- * setup(             # <<<<<<<<<<<<<<
- *     name="simplestart",
- *     version="0.1",
+ * setup()             # <<<<<<<<<<<<<<
 */
   __pyx_t_4 = NULL;
   __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_setup); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-
-  /* "simplestart/setup.py":8
- *     author="Your Name",
- *     description="A simple example package",
- *     py_modules=['launch', 'server'],             # <<<<<<<<<<<<<<
- *     entry_points={
- *         "console_scripts": [
-*/
-  __pyx_t_6 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_n_u_launch, __pyx_mstate_global->__pyx_n_u_server); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 8, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-
-  /* "simplestart/setup.py":10
- *     py_modules=['launch', 'server'],
- *     entry_points={
- *         "console_scripts": [             # <<<<<<<<<<<<<<
- *             "ss = launch:start",
- *             "simplestart = launch:start"
-*/
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyList_Pack(2, __pyx_mstate_global->__pyx_kp_u_ss_launch_start, __pyx_mstate_global->__pyx_kp_u_simplestart_launch_start); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_8);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_console_scripts, __pyx_t_8) < (0)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_9 = 1;
+  __pyx_t_6 = 1;
   {
-    PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 6 : 0)] = {__pyx_t_4, NULL};
-    __pyx_t_8 = __Pyx_MakeVectorcallBuilderKwds(6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 3, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_name_2, __pyx_mstate_global->__pyx_n_u_simplestart, __pyx_t_8, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_version, __pyx_mstate_global->__pyx_kp_u_0_1, __pyx_t_8, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_author, __pyx_mstate_global->__pyx_kp_u_Your_Name, __pyx_t_8, __pyx_callargs+1, 2) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_description, __pyx_mstate_global->__pyx_kp_u_A_simple_example_package, __pyx_t_8, __pyx_callargs+1, 3) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_py_modules, __pyx_t_6, __pyx_t_8, __pyx_callargs+1, 4) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_entry_points, __pyx_t_7, __pyx_t_8, __pyx_callargs+1, 5) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_9, (1-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_8);
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
+    __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -2456,7 +2398,7 @@ __Pyx_RefNannySetupContext("PyInit_setup", 0);
   /* "simplestart/setup.py":1
  * from setuptools import setup             # <<<<<<<<<<<<<<
  * 
- * setup(
+ * setup()
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -2470,9 +2412,6 @@ __Pyx_RefNannySetupContext("PyInit_setup", 0);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_8);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
       __Pyx_AddTraceback("init simplestart.setup", __pyx_clineno, __pyx_lineno, __pyx_filename);
@@ -2520,34 +2459,26 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 5; } index[] = {{1},{3},{24},{9},{1},{26},{17},{6},{18},{15},{11},{12},{6},{8},{10},{8},{4},{10},{12},{6},{10},{5},{10},{11},{8},{7}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (216 bytes) */
-const char* const cstring = "BZh91AY&SY\030\230X\301\000\000\005_\200@\000@\001`\022\240\001\000 \277\357\377`0\000\255\266\032\251\376\222z\232OmH@\0065\032\006\246\230\210\365\000\032\000\000JM)\355S\304e40 z\217R\006\326\267H\006\272D\017\001\013\352\314\207\t\263\224P/\370\222\304^kn\332m\367X\245\361\017VE\247\226G\024\303!\235\364\211K*\222_\226\177+\221hIG\246\325\255\235\005q\3125\"\330\"'\t!\214I\341Y\021\214\016_\351\220R\tJ\301\310\242\255\230\244=\3021\365\276\\@K\002T\245\205(\034d\001\2710\234\216m\212\336o\014\335\326I\370\200\3109\363\256\002\311b\254\305\364*\030\231+O\234\337\374]\311\024\341B@bac\004";
-    PyObject *data = __Pyx_DecompressString(cstring, 216, 2);
+    const struct { const unsigned int length: 5; } index[] = {{1},{1},{18},{8},{10},{8},{12},{10},{5},{10},{8}};
+    #if (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (75 bytes) */
+const char* const cstring = "x\332%\307\321\021\2000\010\003\320\215\\\301Qr\330\342]Oh\253\300\376b\315G\362\262\355EZg\264\016\177\250\360A\345\002\224\362gt\324\020\376\324I\327\336A\362\333\330+\237\024\342\251\230\253|\0141\300\331\034x\001tl$\276";
+    PyObject *data = __Pyx_DecompressString(cstring, 75, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (166 bytes) */
-const char* const cstring = "x\332]OK\016\0021\010\275JO0\321\255\2111^\300\275+\202\035t\032;\245\0025\316\355\305\251\013\343[\300\343\363\370\014\233a{\014\232\346\232)\320\013W_1\336\361Fgn\022N8\323\241\327\325P,\354C\306V\342\264[C\325\277\0046\233XbN\205 \0250\301H\027\237\027\271(g\002\215\222\252\351H\235$.TL\026\250\234\212i\237\0040\243k\0353\217\315E\216\342wt[\227oZ\001\036\rs\257(\311\223D\311F\272b\313\346\254\325\325\030s\326\237\017\000\314\t\300\247\335\327\277\001\213\262gO";
-    PyObject *data = __Pyx_DecompressString(cstring, 166, 1);
-    if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
-    const char* const bytes = __Pyx_PyBytes_AsString(data);
-    #if !CYTHON_ASSUME_SAFE_MACROS
-    if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
-    #endif
-    #else /* compression: none (258 bytes) */
-const char* const bytes = ".0.1A simple example packageYour Name?simplestart = launch:startss = launch:startauthorcline_in_tracebackconsole_scriptsdescriptionentry_pointslaunch__main____module____name__namepy_modules__qualname__serversetdefaultsetupsetuptoolssimplestart__test__version";
+    #else /* compression: none (91 bytes) */
+const char* const bytes = ".?cline_in_traceback__main____module____name____qualname__setdefaultsetupsetuptools__test__";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 26; i++) {
+    for (int i = 0; i < 11; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 7) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 2) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -2556,7 +2487,7 @@ const char* const bytes = ".0.1A simple example packageYour Name?simplestart = l
       pos += bytes_length;
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 26; i++) {
+    for (Py_ssize_t i = 0; i < 11; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
@@ -3186,57 +3117,6 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     return __Pyx_GetBuiltinName(name);
 }
 
-/* ListPack */
-static PyObject *__Pyx_PyList_Pack(Py_ssize_t n, ...) {
-    va_list va;
-    PyObject *l = PyList_New(n);
-    va_start(va, n);
-    if (unlikely(!l)) goto end;
-    for (Py_ssize_t i=0; i<n; ++i) {
-        PyObject *arg = va_arg(va, PyObject*);
-        Py_INCREF(arg);
-        if (__Pyx_PyList_SET_ITEM(l, i, arg) != (0)) {
-            Py_CLEAR(l);
-            goto end;
-        }
-    }
-    end:
-    va_end(va);
-    return l;
-}
-
-/* PyObjectVectorCallKwBuilder */
-#if CYTHON_VECTORCALL
-static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
-    (void)__Pyx_PyObject_FastCallDict;
-    if (__Pyx_PyTuple_SET_ITEM(builder, n, key) != (0)) return -1;
-    Py_INCREF(key);
-    args[n] = value;
-    return 0;
-}
-CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
-    (void)__Pyx_VectorcallBuilder_AddArgStr;
-    if (unlikely(!PyUnicode_Check(key))) {
-        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
-        return -1;
-    }
-    return __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n);
-}
-static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
-    PyObject *pyKey = PyUnicode_FromString(key);
-    if (!pyKey) return -1;
-    return __Pyx_VectorcallBuilder_AddArg(pyKey, value, builder, args, n);
-}
-#else // CYTHON_VECTORCALL
-CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, CYTHON_UNUSED PyObject **args, CYTHON_UNUSED int n) {
-    if (unlikely(!PyUnicode_Check(key))) {
-        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
-        return -1;
-    }
-    return PyDict_SetItem(builder, key, value);
-}
-#endif
-
 /* dict_setdefault (used by CLineInTraceback) */
 static CYTHON_INLINE PyObject *__Pyx_PyDict_SetDefault(PyObject *d, PyObject *key, PyObject *default_value) {
     PyObject* value;
@@ -3585,6 +3465,38 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__2);
     }
     goto done;
+}
+#endif
+
+/* PyObjectVectorCallKwBuilder (used by CIntToPy) */
+#if CYTHON_VECTORCALL
+static int __Pyx_VectorcallBuilder_AddArg(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
+    (void)__Pyx_PyObject_FastCallDict;
+    if (__Pyx_PyTuple_SET_ITEM(builder, n, key) != (0)) return -1;
+    Py_INCREF(key);
+    args[n] = value;
+    return 0;
+}
+CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
+    (void)__Pyx_VectorcallBuilder_AddArgStr;
+    if (unlikely(!PyUnicode_Check(key))) {
+        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
+        return -1;
+    }
+    return __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n);
+}
+static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, PyObject *builder, PyObject **args, int n) {
+    PyObject *pyKey = PyUnicode_FromString(key);
+    if (!pyKey) return -1;
+    return __Pyx_VectorcallBuilder_AddArg(pyKey, value, builder, args, n);
+}
+#else // CYTHON_VECTORCALL
+CYTHON_UNUSED static int __Pyx_VectorcallBuilder_AddArg_Check(PyObject *key, PyObject *value, PyObject *builder, CYTHON_UNUSED PyObject **args, CYTHON_UNUSED int n) {
+    if (unlikely(!PyUnicode_Check(key))) {
+        PyErr_SetString(PyExc_TypeError, "keywords must be strings");
+        return -1;
+    }
+    return PyDict_SetItem(builder, key, value);
 }
 #endif
 
