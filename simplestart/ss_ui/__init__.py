@@ -53,7 +53,6 @@ from .toolbar import toolbar
 from .listbox import listbox
 ## from .timer import timer, 通过懒加载加载
 ## from .plot import plot, 通过懒加载加载
-from .pdfviewer import pdfviewer
 from ss_core.print import myprint
 
 __all__ = [
@@ -111,8 +110,7 @@ __all__ = [
     'timer',
     'plot',
     'echarts',
-    'tag',
-    'pdfviewer'
+    'tag'
 ]
 
 import importlib
