@@ -1512,7 +1512,7 @@ static const char* const __pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog;
 
-/* "simplestart/ss_ui/dialog.py":27
+/* "simplestart/ss_ui/dialog.py":28
  * }
  * 
  * def dialog(title="", **kwargs):             # <<<<<<<<<<<<<<
@@ -2367,7 +2367,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[4];
-  PyObject *__pyx_string_tab[102];
+  PyObject *__pyx_string_tab[107];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -2418,103 +2418,108 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Click_outside_ESC_does_not_close __pyx_string_tab[2]
 #define __pyx_kp_u_Close_callback_event_value_True __pyx_string_tab[3]
 #define __pyx_kp_u_Confirm_button_label __pyx_string_tab[4]
-#define __pyx_kp_u_Dialog_closed __pyx_string_tab[5]
-#define __pyx_kp_u_Dialog_title __pyx_string_tab[6]
-#define __pyx_kp_u_Dialog_width_e_g_50_or_500 __pyx_string_tab[7]
-#define __pyx_kp_u_Extra_data_passed_to_the_callbac __pyx_string_tab[8]
-#define __pyx_kp_u_Fill_the_entire_screen __pyx_string_tab[9]
-#define __pyx_kp_u_Transition_animation_name __pyx_string_tab[10]
-#define __pyx_kp_u_Vuetify_scroll_strategy_block_cl __pyx_string_tab[11]
-#define __pyx_kp_u__4 __pyx_string_tab[12]
-#define __pyx_kp_u__5 __pyx_string_tab[13]
-#define __pyx_kp_u_disable __pyx_string_tab[14]
-#define __pyx_kp_u_div_id_data_dlg_container_style __pyx_string_tab[15]
-#define __pyx_kp_u_enable __pyx_string_tab[16]
-#define __pyx_kp_u_gc __pyx_string_tab[17]
-#define __pyx_kp_u_isenabled __pyx_string_tab[18]
-#define __pyx_kp_u_simplestart_ss_ui_dialog_py __pyx_string_tab[19]
-#define __pyx_kp_u_str_int __pyx_string_tab[20]
-#define __pyx_kp_u_v_dialog __pyx_string_tab[21]
-#define __pyx_n_u_ __pyx_string_tab[22]
-#define __pyx_n_u_DIALOG_SCHEMA __pyx_string_tab[23]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[24]
-#define __pyx_n_u__2 __pyx_string_tab[25]
-#define __pyx_n_u__3 __pyx_string_tab[26]
-#define __pyx_n_u_any __pyx_string_tab[27]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[28]
-#define __pyx_n_u_block __pyx_string_tab[29]
-#define __pyx_n_u_bool __pyx_string_tab[30]
-#define __pyx_n_u_callable __pyx_string_tab[31]
-#define __pyx_n_u_cancel_text __pyx_string_tab[32]
-#define __pyx_n_u_category __pyx_string_tab[33]
-#define __pyx_n_u_check_data_update __pyx_string_tab[34]
-#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[35]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[36]
-#define __pyx_n_u_close __pyx_string_tab[37]
-#define __pyx_n_u_confirm __pyx_string_tab[38]
-#define __pyx_n_u_confirm_text __pyx_string_tab[39]
-#define __pyx_n_u_container_id __pyx_string_tab[40]
-#define __pyx_n_u_data __pyx_string_tab[41]
-#define __pyx_n_u_default __pyx_string_tab[42]
-#define __pyx_n_u_dialog __pyx_string_tab[43]
-#define __pyx_n_u_dialogInited __pyx_string_tab[44]
-#define __pyx_n_u_dialogVisible __pyx_string_tab[45]
-#define __pyx_n_u_dialog_locals_close __pyx_string_tab[46]
-#define __pyx_n_u_dialog_locals_myonclose __pyx_string_tab[47]
-#define __pyx_n_u_dialog_locals_open __pyx_string_tab[48]
-#define __pyx_n_u_dlg __pyx_string_tab[49]
-#define __pyx_n_u_dlg_container __pyx_string_tab[50]
-#define __pyx_n_u_doc __pyx_string_tab[51]
-#define __pyx_n_u_event __pyx_string_tab[52]
-#define __pyx_n_u_eventData __pyx_string_tab[53]
-#define __pyx_n_u_event_data __pyx_string_tab[54]
-#define __pyx_n_u_events __pyx_string_tab[55]
-#define __pyx_n_u_feedback __pyx_string_tab[56]
-#define __pyx_n_u_fullscreen __pyx_string_tab[57]
-#define __pyx_n_u_func __pyx_string_tab[58]
-#define __pyx_n_u_handle_event_data __pyx_string_tab[59]
-#define __pyx_n_u_handlers __pyx_string_tab[60]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[61]
-#define __pyx_n_u_items __pyx_string_tab[62]
-#define __pyx_n_u_kwargs __pyx_string_tab[63]
-#define __pyx_n_u_main __pyx_string_tab[64]
-#define __pyx_n_u_module __pyx_string_tab[65]
-#define __pyx_n_u_myonclose __pyx_string_tab[66]
-#define __pyx_n_u_name __pyx_string_tab[67]
-#define __pyx_n_u_name_2 __pyx_string_tab[68]
-#define __pyx_n_u_onclose __pyx_string_tab[69]
-#define __pyx_n_u_open __pyx_string_tab[70]
-#define __pyx_n_u_params __pyx_string_tab[71]
-#define __pyx_n_u_persistent __pyx_string_tab[72]
-#define __pyx_n_u_pop __pyx_string_tab[73]
-#define __pyx_n_u_positional __pyx_string_tab[74]
-#define __pyx_n_u_qualname __pyx_string_tab[75]
-#define __pyx_n_u_reactive __pyx_string_tab[76]
-#define __pyx_n_u_res __pyx_string_tab[77]
-#define __pyx_n_u_scale __pyx_string_tab[78]
-#define __pyx_n_u_scrollStrategy __pyx_string_tab[79]
-#define __pyx_n_u_scroll_strategy __pyx_string_tab[80]
-#define __pyx_n_u_set_name __pyx_string_tab[81]
-#define __pyx_n_u_setdefault __pyx_string_tab[82]
-#define __pyx_n_u_simplestart_ss_ui_dialog __pyx_string_tab[83]
-#define __pyx_n_u_ss_core __pyx_string_tab[84]
-#define __pyx_n_u_ss_core_component __pyx_string_tab[85]
-#define __pyx_n_u_ss_core_utils __pyx_string_tab[86]
-#define __pyx_n_u_str __pyx_string_tab[87]
-#define __pyx_n_u_test __pyx_string_tab[88]
-#define __pyx_n_u_title __pyx_string_tab[89]
-#define __pyx_n_u_transition __pyx_string_tab[90]
-#define __pyx_n_u_type __pyx_string_tab[91]
-#define __pyx_n_u_uuid __pyx_string_tab[92]
-#define __pyx_n_u_uuid4 __pyx_string_tab[93]
-#define __pyx_n_u_values __pyx_string_tab[94]
-#define __pyx_n_u_vuetify __pyx_string_tab[95]
-#define __pyx_n_u_vuetify_base __pyx_string_tab[96]
-#define __pyx_n_u_width __pyx_string_tab[97]
-#define __pyx_kp_b_iso88591_1_q_F_ay_fD_A_t1M_F_ay_t1N_t1N __pyx_string_tab[98]
-#define __pyx_kp_b_iso88591_A_1_1A __pyx_string_tab[99]
-#define __pyx_kp_b_iso88591_A_5_A_5_1_5_a __pyx_string_tab[100]
-#define __pyx_kp_b_iso88591_A_5_A_a __pyx_string_tab[101]
+#define __pyx_kp_u_Content_area_padding_int_px_maps __pyx_string_tab[5]
+#define __pyx_kp_u_Dialog_closed __pyx_string_tab[6]
+#define __pyx_kp_u_Dialog_title __pyx_string_tab[7]
+#define __pyx_kp_u_Dialog_width_e_g_50_or_500 __pyx_string_tab[8]
+#define __pyx_kp_u_Extra_data_passed_to_the_callbac __pyx_string_tab[9]
+#define __pyx_kp_u_Fill_the_entire_screen __pyx_string_tab[10]
+#define __pyx_kp_u_Transition_animation_name __pyx_string_tab[11]
+#define __pyx_kp_u_Vuetify_scroll_strategy_block_cl __pyx_string_tab[12]
+#define __pyx_kp_u__4 __pyx_string_tab[13]
+#define __pyx_kp_u__5 __pyx_string_tab[14]
+#define __pyx_kp_u_disable __pyx_string_tab[15]
+#define __pyx_kp_u_div_id_data_dlg_container_style __pyx_string_tab[16]
+#define __pyx_kp_u_enable __pyx_string_tab[17]
+#define __pyx_kp_u_gc __pyx_string_tab[18]
+#define __pyx_kp_u_int_str __pyx_string_tab[19]
+#define __pyx_kp_u_isenabled __pyx_string_tab[20]
+#define __pyx_kp_u_simplestart_ss_ui_dialog_py __pyx_string_tab[21]
+#define __pyx_kp_u_str_int __pyx_string_tab[22]
+#define __pyx_kp_u_v_dialog __pyx_string_tab[23]
+#define __pyx_n_u_ __pyx_string_tab[24]
+#define __pyx_n_u_DIALOG_SCHEMA __pyx_string_tab[25]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[26]
+#define __pyx_n_u__2 __pyx_string_tab[27]
+#define __pyx_n_u__3 __pyx_string_tab[28]
+#define __pyx_n_u_any __pyx_string_tab[29]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[30]
+#define __pyx_n_u_block __pyx_string_tab[31]
+#define __pyx_n_u_bool __pyx_string_tab[32]
+#define __pyx_n_u_callable __pyx_string_tab[33]
+#define __pyx_n_u_cancel_text __pyx_string_tab[34]
+#define __pyx_n_u_category __pyx_string_tab[35]
+#define __pyx_n_u_check_data_update __pyx_string_tab[36]
+#define __pyx_n_u_check_schema_kwargs __pyx_string_tab[37]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[38]
+#define __pyx_n_u_close __pyx_string_tab[39]
+#define __pyx_n_u_confirm __pyx_string_tab[40]
+#define __pyx_n_u_confirm_text __pyx_string_tab[41]
+#define __pyx_n_u_container_id __pyx_string_tab[42]
+#define __pyx_n_u_data __pyx_string_tab[43]
+#define __pyx_n_u_default __pyx_string_tab[44]
+#define __pyx_n_u_dialog __pyx_string_tab[45]
+#define __pyx_n_u_dialogInited __pyx_string_tab[46]
+#define __pyx_n_u_dialogVisible __pyx_string_tab[47]
+#define __pyx_n_u_dialog_locals_close __pyx_string_tab[48]
+#define __pyx_n_u_dialog_locals_myonclose __pyx_string_tab[49]
+#define __pyx_n_u_dialog_locals_open __pyx_string_tab[50]
+#define __pyx_n_u_dlg __pyx_string_tab[51]
+#define __pyx_n_u_dlg_container __pyx_string_tab[52]
+#define __pyx_n_u_doc __pyx_string_tab[53]
+#define __pyx_n_u_event __pyx_string_tab[54]
+#define __pyx_n_u_eventData __pyx_string_tab[55]
+#define __pyx_n_u_event_data __pyx_string_tab[56]
+#define __pyx_n_u_events __pyx_string_tab[57]
+#define __pyx_n_u_feedback __pyx_string_tab[58]
+#define __pyx_n_u_fullscreen __pyx_string_tab[59]
+#define __pyx_n_u_func __pyx_string_tab[60]
+#define __pyx_n_u_handle_event_data __pyx_string_tab[61]
+#define __pyx_n_u_handlers __pyx_string_tab[62]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[63]
+#define __pyx_n_u_items __pyx_string_tab[64]
+#define __pyx_n_u_kwargs __pyx_string_tab[65]
+#define __pyx_n_u_main __pyx_string_tab[66]
+#define __pyx_n_u_module __pyx_string_tab[67]
+#define __pyx_n_u_myonclose __pyx_string_tab[68]
+#define __pyx_n_u_name __pyx_string_tab[69]
+#define __pyx_n_u_name_2 __pyx_string_tab[70]
+#define __pyx_n_u_onclose __pyx_string_tab[71]
+#define __pyx_n_u_open __pyx_string_tab[72]
+#define __pyx_n_u_padding __pyx_string_tab[73]
+#define __pyx_n_u_padding_class __pyx_string_tab[74]
+#define __pyx_n_u_padding_utility_class __pyx_string_tab[75]
+#define __pyx_n_u_params __pyx_string_tab[76]
+#define __pyx_n_u_persistent __pyx_string_tab[77]
+#define __pyx_n_u_pop __pyx_string_tab[78]
+#define __pyx_n_u_positional __pyx_string_tab[79]
+#define __pyx_n_u_qualname __pyx_string_tab[80]
+#define __pyx_n_u_reactive __pyx_string_tab[81]
+#define __pyx_n_u_res __pyx_string_tab[82]
+#define __pyx_n_u_scale __pyx_string_tab[83]
+#define __pyx_n_u_scrollStrategy __pyx_string_tab[84]
+#define __pyx_n_u_scroll_strategy __pyx_string_tab[85]
+#define __pyx_n_u_set_name __pyx_string_tab[86]
+#define __pyx_n_u_setdefault __pyx_string_tab[87]
+#define __pyx_n_u_simplestart_ss_ui_dialog __pyx_string_tab[88]
+#define __pyx_n_u_ss_core __pyx_string_tab[89]
+#define __pyx_n_u_ss_core_component __pyx_string_tab[90]
+#define __pyx_n_u_ss_core_utils __pyx_string_tab[91]
+#define __pyx_n_u_str __pyx_string_tab[92]
+#define __pyx_n_u_test __pyx_string_tab[93]
+#define __pyx_n_u_title __pyx_string_tab[94]
+#define __pyx_n_u_transition __pyx_string_tab[95]
+#define __pyx_n_u_type __pyx_string_tab[96]
+#define __pyx_n_u_uuid __pyx_string_tab[97]
+#define __pyx_n_u_uuid4 __pyx_string_tab[98]
+#define __pyx_n_u_values __pyx_string_tab[99]
+#define __pyx_n_u_vuetify __pyx_string_tab[100]
+#define __pyx_n_u_vuetify_base __pyx_string_tab[101]
+#define __pyx_n_u_width __pyx_string_tab[102]
+#define __pyx_kp_b_iso88591_1_q_F_ay_fD_A_t1M_F_ay_t1N_t1N __pyx_string_tab[103]
+#define __pyx_kp_b_iso88591_A_1_1A __pyx_string_tab[104]
+#define __pyx_kp_b_iso88591_A_5_A_5_1_5_a __pyx_string_tab[105]
+#define __pyx_kp_b_iso88591_A_5_A_a __pyx_string_tab[106]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -2533,7 +2538,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<102; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<107; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -2560,7 +2565,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<102; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<107; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -2574,7 +2579,7 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "simplestart/ss_ui/dialog.py":27
+/* "simplestart/ss_ui/dialog.py":28
  * }
  * 
  * def dialog(title="", **kwargs):             # <<<<<<<<<<<<<<
@@ -2625,24 +2630,24 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_title,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 27, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 28, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 27, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 28, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "dialog", 1) < (0)) __PYX_ERR(0, 27, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "dialog", 1) < (0)) __PYX_ERR(0, 28, __pyx_L3_error)
       if (!values[0]) values[0] = __Pyx_NewRef(((PyObject *)((PyObject*)__pyx_mstate_global->__pyx_n_u_)));
     } else {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 27, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 28, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
@@ -2653,7 +2658,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("dialog", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 27, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("dialog", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 28, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2676,7 +2681,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/dialog.py":77
+/* "simplestart/ss_ui/dialog.py":80
  *     }
  * 
  *     def myonclose(event):             # <<<<<<<<<<<<<<
@@ -2723,32 +2728,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 77, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 80, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 77, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonclose", 0) < (0)) __PYX_ERR(0, 77, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonclose", 0) < (0)) __PYX_ERR(0, 80, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonclose", 1, 1, 1, i); __PYX_ERR(0, 77, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonclose", 1, 1, 1, i); __PYX_ERR(0, 80, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 77, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonclose", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 77, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonclose", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 80, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2787,7 +2792,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
   __pyx_cur_scope = __pyx_outer_scope;
   __Pyx_INCREF(__pyx_v_event);
 
-  /* "simplestart/ss_ui/dialog.py":78
+  /* "simplestart/ss_ui/dialog.py":81
  * 
  *     def myonclose(event):
  *         event = handle_event_data(event, event_data)             # <<<<<<<<<<<<<<
@@ -2795,9 +2800,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
  *             onclose(event)
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 78, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 81, __pyx_L1_error) }
   __pyx_t_4 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -2815,24 +2820,24 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF_SET(__pyx_v_event, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":79
+  /* "simplestart/ss_ui/dialog.py":82
  *     def myonclose(event):
  *         event = handle_event_data(event, event_data)
  *         if onclose:             # <<<<<<<<<<<<<<
  *             onclose(event)
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onclose)) { __Pyx_RaiseClosureNameError("onclose"); __PYX_ERR(0, 79, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onclose); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 79, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onclose)) { __Pyx_RaiseClosureNameError("onclose"); __PYX_ERR(0, 82, __pyx_L1_error) }
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onclose); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 82, __pyx_L1_error)
   if (__pyx_t_5) {
 
-    /* "simplestart/ss_ui/dialog.py":80
+    /* "simplestart/ss_ui/dialog.py":83
  *         event = handle_event_data(event, event_data)
  *         if onclose:
  *             onclose(event)             # <<<<<<<<<<<<<<
@@ -2840,7 +2845,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
  *     res = vuetify(r'''
 */
     __pyx_t_3 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onclose)) { __Pyx_RaiseClosureNameError("onclose"); __PYX_ERR(0, 80, __pyx_L1_error) }
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onclose)) { __Pyx_RaiseClosureNameError("onclose"); __PYX_ERR(0, 83, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onclose);
     __pyx_t_2 = __pyx_cur_scope->__pyx_v_onclose; 
     __pyx_t_4 = 1;
@@ -2860,12 +2865,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/dialog.py":79
+    /* "simplestart/ss_ui/dialog.py":82
  *     def myonclose(event):
  *         event = handle_event_data(event, event_data)
  *         if onclose:             # <<<<<<<<<<<<<<
@@ -2874,7 +2879,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
 */
   }
 
-  /* "simplestart/ss_ui/dialog.py":77
+  /* "simplestart/ss_ui/dialog.py":80
  *     }
  * 
  *     def myonclose(event):             # <<<<<<<<<<<<<<
@@ -2898,7 +2903,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_myonclose(PyObjec
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/dialog.py":112
+/* "simplestart/ss_ui/dialog.py":115
  * 
  *     #  open  confirm
  *     def open():             # <<<<<<<<<<<<<<
@@ -2935,46 +2940,46 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_2open(PyObject *_
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/dialog.py":113
+  /* "simplestart/ss_ui/dialog.py":116
  *     #  open  confirm
  *     def open():
  *         res.data["dialogVisible"] = True             # <<<<<<<<<<<<<<
  *         res.data["dialogInited"] = True
  *         res.data["confirm"] = False
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 113, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 116, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dialogVisible, Py_True) < 0))) __PYX_ERR(0, 113, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dialogVisible, Py_True) < 0))) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":114
+  /* "simplestart/ss_ui/dialog.py":117
  *     def open():
  *         res.data["dialogVisible"] = True
  *         res.data["dialogInited"] = True             # <<<<<<<<<<<<<<
  *         res.data["confirm"] = False
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 114, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 117, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dialogInited, Py_True) < 0))) __PYX_ERR(0, 114, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dialogInited, Py_True) < 0))) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":115
+  /* "simplestart/ss_ui/dialog.py":118
  *         res.data["dialogVisible"] = True
  *         res.data["dialogInited"] = True
  *         res.data["confirm"] = False             # <<<<<<<<<<<<<<
  * 
  *     #  close
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 115, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 118, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_confirm, Py_False) < 0))) __PYX_ERR(0, 115, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_confirm, Py_False) < 0))) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":112
+  /* "simplestart/ss_ui/dialog.py":115
  * 
  *     #  open  confirm
  *     def open():             # <<<<<<<<<<<<<<
@@ -2995,7 +3000,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_2open(PyObject *_
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/dialog.py":121
+/* "simplestart/ss_ui/dialog.py":124
  *     #  _check_data_update()
  *     # open()  res.data  getter  close()
  *     def close():             # <<<<<<<<<<<<<<
@@ -3034,27 +3039,27 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_4close(PyObject *
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/dialog.py":122
+  /* "simplestart/ss_ui/dialog.py":125
  *     # open()  res.data  getter  close()
  *     def close():
  *         res.data["dialogVisible"] = False             # <<<<<<<<<<<<<<
  *         res._check_data_update()
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 122, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 125, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dialogVisible, Py_False) < 0))) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_dialogVisible, Py_False) < 0))) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":123
+  /* "simplestart/ss_ui/dialog.py":126
  *     def close():
  *         res.data["dialogVisible"] = False
  *         res._check_data_update()             # <<<<<<<<<<<<<<
  * 
  *     res.open = open
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 123, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 126, __pyx_L1_error) }
   __pyx_t_2 = __pyx_cur_scope->__pyx_v_res;
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_3 = 0;
@@ -3062,12 +3067,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_4close(PyObject *
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_check_data_update, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":121
+  /* "simplestart/ss_ui/dialog.py":124
  *     #  _check_data_update()
  *     # open()  res.data  getter  close()
  *     def close():             # <<<<<<<<<<<<<<
@@ -3089,7 +3094,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_6dialog_4close(PyObject *
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/dialog.py":27
+/* "simplestart/ss_ui/dialog.py":28
  * }
  * 
  * def dialog(title="", **kwargs):             # <<<<<<<<<<<<<<
@@ -3106,6 +3111,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
   PyObject *__pyx_v_transition = NULL;
   PyObject *__pyx_v_cancel_text = NULL;
   PyObject *__pyx_v_confirm_text = NULL;
+  PyObject *__pyx_v_padding = NULL;
   PyObject *__pyx_v_container_id = NULL;
   PyObject *__pyx_v_data = NULL;
   PyObject *__pyx_v_myonclose = 0;
@@ -3128,13 +3134,13 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 27, __pyx_L1_error)
+    __PYX_ERR(0, 28, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
   __Pyx_INCREF(__pyx_v_title);
 
-  /* "simplestart/ss_ui/dialog.py":42
+  /* "simplestart/ss_ui/dialog.py":43
  *     - eventData:
  *     """
  *     check_schema_kwargs("dialog", kwargs, DIALOG_SCHEMA)             # <<<<<<<<<<<<<<
@@ -3142,9 +3148,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
  *     #  pop kwargs  vuetifypop  data vuetify
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_check_schema_kwargs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DIALOG_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_DIALOG_SCHEMA); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -3164,134 +3170,146 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":45
+  /* "simplestart/ss_ui/dialog.py":46
  *     # title  State dialog(title=...)  kwargs
  *     #  pop kwargs  vuetifypop  data vuetify
  *     title = kwargs.pop("title", title)             # <<<<<<<<<<<<<<
  *     onclose = kwargs.pop("onclose", None)
  *     event_data = kwargs.pop("eventData", None)
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_v_title); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_title, __pyx_v_title); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_title, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":46
+  /* "simplestart/ss_ui/dialog.py":47
  *     #  pop kwargs  vuetifypop  data vuetify
  *     title = kwargs.pop("title", title)
  *     onclose = kwargs.pop("onclose", None)             # <<<<<<<<<<<<<<
  *     event_data = kwargs.pop("eventData", None)
  *     width = kwargs.pop("width", "50%")
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onclose, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onclose, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_onclose = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":47
+  /* "simplestart/ss_ui/dialog.py":48
  *     title = kwargs.pop("title", title)
  *     onclose = kwargs.pop("onclose", None)
  *     event_data = kwargs.pop("eventData", None)             # <<<<<<<<<<<<<<
  *     width = kwargs.pop("width", "50%")
  *     fullscreen = kwargs.pop("fullscreen", False)
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_eventData, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_eventData, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_event_data = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":48
+  /* "simplestart/ss_ui/dialog.py":49
  *     onclose = kwargs.pop("onclose", None)
  *     event_data = kwargs.pop("eventData", None)
  *     width = kwargs.pop("width", "50%")             # <<<<<<<<<<<<<<
  *     fullscreen = kwargs.pop("fullscreen", False)
  *     persistent = kwargs.pop("persistent", False)
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u_50); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u_50); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_width = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":49
+  /* "simplestart/ss_ui/dialog.py":50
  *     event_data = kwargs.pop("eventData", None)
  *     width = kwargs.pop("width", "50%")
  *     fullscreen = kwargs.pop("fullscreen", False)             # <<<<<<<<<<<<<<
  *     persistent = kwargs.pop("persistent", False)
  *     scroll_strategy = kwargs.pop("scroll_strategy", "block")
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_fullscreen, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_fullscreen, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_fullscreen = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":50
+  /* "simplestart/ss_ui/dialog.py":51
  *     width = kwargs.pop("width", "50%")
  *     fullscreen = kwargs.pop("fullscreen", False)
  *     persistent = kwargs.pop("persistent", False)             # <<<<<<<<<<<<<<
  *     scroll_strategy = kwargs.pop("scroll_strategy", "block")
  *     transition = kwargs.pop("transition", "scale")
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_persistent, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_persistent, Py_False); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_persistent = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":51
+  /* "simplestart/ss_ui/dialog.py":52
  *     fullscreen = kwargs.pop("fullscreen", False)
  *     persistent = kwargs.pop("persistent", False)
  *     scroll_strategy = kwargs.pop("scroll_strategy", "block")             # <<<<<<<<<<<<<<
  *     transition = kwargs.pop("transition", "scale")
  *     cancel_text = kwargs.pop("cancel_text", "")
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_scroll_strategy, __pyx_mstate_global->__pyx_n_u_block); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_scroll_strategy, __pyx_mstate_global->__pyx_n_u_block); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_scroll_strategy = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":52
+  /* "simplestart/ss_ui/dialog.py":53
  *     persistent = kwargs.pop("persistent", False)
  *     scroll_strategy = kwargs.pop("scroll_strategy", "block")
  *     transition = kwargs.pop("transition", "scale")             # <<<<<<<<<<<<<<
  *     cancel_text = kwargs.pop("cancel_text", "")
  *     confirm_text = kwargs.pop("confirm_text", "")
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_transition, __pyx_mstate_global->__pyx_n_u_scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_transition, __pyx_mstate_global->__pyx_n_u_scale); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_transition = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":53
+  /* "simplestart/ss_ui/dialog.py":54
  *     scroll_strategy = kwargs.pop("scroll_strategy", "block")
  *     transition = kwargs.pop("transition", "scale")
  *     cancel_text = kwargs.pop("cancel_text", "")             # <<<<<<<<<<<<<<
  *     confirm_text = kwargs.pop("confirm_text", "")
- * 
+ *     padding = kwargs.pop("padding", None)
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_cancel_text, __pyx_mstate_global->__pyx_n_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_cancel_text, __pyx_mstate_global->__pyx_n_u__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_cancel_text = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":54
+  /* "simplestart/ss_ui/dialog.py":55
  *     transition = kwargs.pop("transition", "scale")
  *     cancel_text = kwargs.pop("cancel_text", "")
  *     confirm_text = kwargs.pop("confirm_text", "")             # <<<<<<<<<<<<<<
+ *     padding = kwargs.pop("padding", None)
  * 
- *     #  id div
 */
-  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_confirm_text, __pyx_mstate_global->__pyx_n_u__3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_confirm_text, __pyx_mstate_global->__pyx_n_u__3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_confirm_text = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":60
+  /* "simplestart/ss_ui/dialog.py":56
+ *     cancel_text = kwargs.pop("cancel_text", "")
+ *     confirm_text = kwargs.pop("confirm_text", "")
+ *     padding = kwargs.pop("padding", None)             # <<<<<<<<<<<<<<
+ * 
+ *     #  id div
+*/
+  __pyx_t_1 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_padding, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_padding = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "simplestart/ss_ui/dialog.py":62
  *     # data-content teleport  body
  *     #  eager  "Unable to locate target"
  *     container_id = "dlg_" + str(uuid.uuid4())[:8]             # <<<<<<<<<<<<<<
@@ -3299,9 +3317,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
  *     data = {
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uuid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uuid); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uuid4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_uuid4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
@@ -3321,146 +3339,179 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_2 = __Pyx_PyObject_Unicode(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Unicode(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyUnicode_Substring(__pyx_t_2, 0, 8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_Substring(__pyx_t_2, 0, 8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_n_u_dlg, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_n_u_dlg, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_container_id = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":63
+  /* "simplestart/ss_ui/dialog.py":65
  * 
  *     data = {
  *         "dlg_container": container_id,             # <<<<<<<<<<<<<<
  *         "title": title,
  *         "width": width,
 */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(13); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_dlg_container, __pyx_v_container_id) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_dlg_container, __pyx_v_container_id) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":64
+  /* "simplestart/ss_ui/dialog.py":66
  *     data = {
  *         "dlg_container": container_id,
  *         "title": title,             # <<<<<<<<<<<<<<
  *         "width": width,
  *         "fullscreen": fullscreen,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_title, __pyx_v_title) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_title, __pyx_v_title) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":65
+  /* "simplestart/ss_ui/dialog.py":67
  *         "dlg_container": container_id,
  *         "title": title,
  *         "width": width,             # <<<<<<<<<<<<<<
  *         "fullscreen": fullscreen,
  *         "persistent": persistent,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_width, __pyx_v_width) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_width, __pyx_v_width) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":66
+  /* "simplestart/ss_ui/dialog.py":68
  *         "title": title,
  *         "width": width,
  *         "fullscreen": fullscreen,             # <<<<<<<<<<<<<<
  *         "persistent": persistent,
  *         "scrollStrategy": scroll_strategy,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_fullscreen, __pyx_v_fullscreen) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_fullscreen, __pyx_v_fullscreen) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":67
+  /* "simplestart/ss_ui/dialog.py":69
  *         "width": width,
  *         "fullscreen": fullscreen,
  *         "persistent": persistent,             # <<<<<<<<<<<<<<
  *         "scrollStrategy": scroll_strategy,
  *         "transition": transition,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_persistent, __pyx_v_persistent) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_persistent, __pyx_v_persistent) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":68
+  /* "simplestart/ss_ui/dialog.py":70
  *         "fullscreen": fullscreen,
  *         "persistent": persistent,
  *         "scrollStrategy": scroll_strategy,             # <<<<<<<<<<<<<<
  *         "transition": transition,
  *         "cancel_text": cancel_text,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_scrollStrategy, __pyx_v_scroll_strategy) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_scrollStrategy, __pyx_v_scroll_strategy) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":69
+  /* "simplestart/ss_ui/dialog.py":71
  *         "persistent": persistent,
  *         "scrollStrategy": scroll_strategy,
  *         "transition": transition,             # <<<<<<<<<<<<<<
  *         "cancel_text": cancel_text,
  *         "confirm_text": confirm_text,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_transition, __pyx_v_transition) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_transition, __pyx_v_transition) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":70
+  /* "simplestart/ss_ui/dialog.py":72
  *         "scrollStrategy": scroll_strategy,
  *         "transition": transition,
  *         "cancel_text": cancel_text,             # <<<<<<<<<<<<<<
  *         "confirm_text": confirm_text,
  *         "dialogVisible": False,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_cancel_text, __pyx_v_cancel_text) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_cancel_text, __pyx_v_cancel_text) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":71
+  /* "simplestart/ss_ui/dialog.py":73
  *         "transition": transition,
  *         "cancel_text": cancel_text,
  *         "confirm_text": confirm_text,             # <<<<<<<<<<<<<<
  *         "dialogVisible": False,
  *         "dialogInited": False,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_confirm_text, __pyx_v_confirm_text) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_confirm_text, __pyx_v_confirm_text) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":72
+  /* "simplestart/ss_ui/dialog.py":74
  *         "cancel_text": cancel_text,
  *         "confirm_text": confirm_text,
  *         "dialogVisible": False,             # <<<<<<<<<<<<<<
  *         "dialogInited": False,
  *         "confirm": False,
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_dialogVisible, Py_False) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_dialogVisible, Py_False) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":73
+  /* "simplestart/ss_ui/dialog.py":75
  *         "confirm_text": confirm_text,
  *         "dialogVisible": False,
  *         "dialogInited": False,             # <<<<<<<<<<<<<<
  *         "confirm": False,
- *     }
+ *         "padding_class": padding_utility_class(padding),
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_dialogInited, Py_False) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_dialogInited, Py_False) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":74
+  /* "simplestart/ss_ui/dialog.py":76
  *         "dialogVisible": False,
  *         "dialogInited": False,
  *         "confirm": False,             # <<<<<<<<<<<<<<
+ *         "padding_class": padding_utility_class(padding),
+ *     }
+*/
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_confirm, Py_False) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
+
+  /* "simplestart/ss_ui/dialog.py":77
+ *         "dialogInited": False,
+ *         "confirm": False,
+ *         "padding_class": padding_utility_class(padding),             # <<<<<<<<<<<<<<
  *     }
  * 
 */
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_confirm, Py_False) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_3 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_padding_utility_class); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    assert(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
+    __Pyx_INCREF(__pyx_t_3);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_padding};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_padding_class, __pyx_t_1) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_data = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":77
+  /* "simplestart/ss_ui/dialog.py":80
  *     }
  * 
  *     def myonclose(event):             # <<<<<<<<<<<<<<
  *         event = handle_event_data(event, event_data)
  *         if onclose:
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_6dialog_1myonclose, 0, __pyx_mstate_global->__pyx_n_u_dialog_locals_myonclose, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_6dialog_1myonclose, 0, __pyx_mstate_global->__pyx_n_u_dialog_locals_myonclose, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_myonclose = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":82
+  /* "simplestart/ss_ui/dialog.py":85
  *             onclose(event)
  * 
  *     res = vuetify(r'''             # <<<<<<<<<<<<<<
@@ -3468,100 +3519,100 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
  *   <v-dialog
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplestart/ss_ui/dialog.py":109
+  /* "simplestart/ss_ui/dialog.py":112
  *   </v-dialog>
  * </div>
  * ''', data=data, handlers={"onclose": myonclose} if onclose else None)             # <<<<<<<<<<<<<<
  * 
  *     #  open  confirm
 */
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onclose); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onclose); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 112, __pyx_L1_error)
   if (__pyx_t_6) {
-    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_onclose, __pyx_v_myonclose) < (0)) __PYX_ERR(0, 109, __pyx_L1_error)
-    __pyx_t_4 = __pyx_t_7;
+    if (PyDict_SetItem(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_onclose, __pyx_v_myonclose) < (0)) __PYX_ERR(0, 112, __pyx_L1_error)
+    __pyx_t_3 = __pyx_t_7;
     __pyx_t_7 = 0;
   } else {
     __Pyx_INCREF(Py_None);
-    __pyx_t_4 = Py_None;
+    __pyx_t_3 = Py_None;
   }
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+  if (unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
     assert(__pyx_t_1);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
     __pyx_t_5 = 0;
   }
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_div_id_data_dlg_container_style};
-    __pyx_t_7 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 82, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_7, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_4, __pyx_t_7, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_7);
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data, __pyx_v_data, __pyx_t_7, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_3, __pyx_t_7, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_7);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_cur_scope->__pyx_v_res = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":112
+  /* "simplestart/ss_ui/dialog.py":115
  * 
  *     #  open  confirm
  *     def open():             # <<<<<<<<<<<<<<
  *         res.data["dialogVisible"] = True
  *         res.data["dialogInited"] = True
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_6dialog_3open, 0, __pyx_mstate_global->__pyx_n_u_dialog_locals_open, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_6dialog_3open, 0, __pyx_mstate_global->__pyx_n_u_dialog_locals_open, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_open = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":121
+  /* "simplestart/ss_ui/dialog.py":124
  *     #  _check_data_update()
  *     # open()  res.data  getter  close()
  *     def close():             # <<<<<<<<<<<<<<
  *         res.data["dialogVisible"] = False
  *         res._check_data_update()
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_6dialog_5close, 0, __pyx_mstate_global->__pyx_n_u_dialog_locals_close, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_6dialog_5close, 0, __pyx_mstate_global->__pyx_n_u_dialog_locals_close, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_close = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":125
+  /* "simplestart/ss_ui/dialog.py":128
  *         res._check_data_update()
  * 
  *     res.open = open             # <<<<<<<<<<<<<<
  *     res.close = close
  * 
 */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_open, __pyx_v_open) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_open, __pyx_v_open) < (0)) __PYX_ERR(0, 128, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":126
+  /* "simplestart/ss_ui/dialog.py":129
  * 
  *     res.open = open
  *     res.close = close             # <<<<<<<<<<<<<<
  * 
  *     return res
 */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_close, __pyx_v_close) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_close, __pyx_v_close) < (0)) __PYX_ERR(0, 129, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/dialog.py":128
+  /* "simplestart/ss_ui/dialog.py":131
  *     res.close = close
  * 
  *     return res             # <<<<<<<<<<<<<<
@@ -3571,7 +3622,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
   __pyx_r = __pyx_cur_scope->__pyx_v_res;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/dialog.py":27
+  /* "simplestart/ss_ui/dialog.py":28
  * }
  * 
  * def dialog(title="", **kwargs):             # <<<<<<<<<<<<<<
@@ -3596,6 +3647,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_6dialog_dialog(CYTHON_UNUSED PyOb
   __Pyx_XDECREF(__pyx_v_transition);
   __Pyx_XDECREF(__pyx_v_cancel_text);
   __Pyx_XDECREF(__pyx_v_confirm_text);
+  __Pyx_XDECREF(__pyx_v_padding);
   __Pyx_XDECREF(__pyx_v_container_id);
   __Pyx_XDECREF(__pyx_v_data);
   __Pyx_XDECREF(__pyx_v_myonclose);
@@ -3846,15 +3898,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog)) __PYX_ERR(0, 27, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog)) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog_spec, __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog = &__pyx_type_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11simplestart_5ss_ui_6dialog___pyx_scope_struct__dialog);
@@ -4170,7 +4222,7 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
   /* "simplestart/ss_ui/dialog.py":1
  * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * from ss_core.utils import handle_event_data
- * from ss_core.component import check_schema_kwargs
+ * from ss_core.component import check_schema_kwargs, padding_utility_class
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_vuetify};
@@ -4192,7 +4244,7 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
   /* "simplestart/ss_ui/dialog.py":2
  * from ss_core import vuetify
  * from ss_core.utils import handle_event_data             # <<<<<<<<<<<<<<
- * from ss_core.component import check_schema_kwargs
+ * from ss_core.component import check_schema_kwargs, padding_utility_class
  * import uuid
 */
   {
@@ -4215,19 +4267,19 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
   /* "simplestart/ss_ui/dialog.py":3
  * from ss_core import vuetify
  * from ss_core.utils import handle_event_data
- * from ss_core.component import check_schema_kwargs             # <<<<<<<<<<<<<<
+ * from ss_core.component import check_schema_kwargs, padding_utility_class             # <<<<<<<<<<<<<<
  * import uuid
  * 
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs,__pyx_mstate_global->__pyx_n_u_padding_utility_class};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_ss_core_component, __pyx_imported_names, 2, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs};
-    __pyx_t_3 = 0; {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_check_schema_kwargs,__pyx_mstate_global->__pyx_n_u_padding_utility_class};
+    for (__pyx_t_3=0; __pyx_t_3 < 2; __pyx_t_3++) {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 3, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 3, __pyx_L1_error)
@@ -4238,7 +4290,7 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
 
   /* "simplestart/ss_ui/dialog.py":4
  * from ss_core.utils import handle_event_data
- * from ss_core.component import check_schema_kwargs
+ * from ss_core.component import check_schema_kwargs, padding_utility_class
  * import uuid             # <<<<<<<<<<<<<<
  * 
  * DIALOG_SCHEMA = {
@@ -4288,9 +4340,9 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
  *     "params": {
  *         "title": {"type": "str", "default": "", "doc": "Dialog title"},             # <<<<<<<<<<<<<<
  *         "width": {"type": "str | int", "default": "50%", "doc": "Dialog width, e.g. '50%' or '500'"},
- *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},
+ *         "padding": {"type": "int | str", "default": None, "doc": "Content area padding; int px maps to nearest pa-* step (16pa-4)"},
 */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(10); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(11); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -4304,8 +4356,8 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
  *     "params": {
  *         "title": {"type": "str", "default": "", "doc": "Dialog title"},
  *         "width": {"type": "str | int", "default": "50%", "doc": "Dialog width, e.g. '50%' or '500'"},             # <<<<<<<<<<<<<<
+ *         "padding": {"type": "int | str", "default": None, "doc": "Content area padding; int px maps to nearest pa-* step (16pa-4)"},
  *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},
- *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},
 */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -4318,160 +4370,175 @@ __Pyx_RefNannySetupContext("PyInit_dialog", 0);
   /* "simplestart/ss_ui/dialog.py":15
  *         "title": {"type": "str", "default": "", "doc": "Dialog title"},
  *         "width": {"type": "str | int", "default": "50%", "doc": "Dialog width, e.g. '50%' or '500'"},
- *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},             # <<<<<<<<<<<<<<
+ *         "padding": {"type": "int | str", "default": None, "doc": "Content area padding; int px maps to nearest pa-* step (16pa-4)"},             # <<<<<<<<<<<<<<
+ *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},
  *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},
- *         "scroll_strategy": {"type": "str", "default": "block", "doc": "Vuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog"},
 */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Fill_the_entire_screen) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_fullscreen, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_kp_u_int_str) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Content_area_padding_int_px_maps) < (0)) __PYX_ERR(0, 15, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_padding, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/dialog.py":16
  *         "width": {"type": "str | int", "default": "50%", "doc": "Dialog width, e.g. '50%' or '500'"},
- *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},
- *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},             # <<<<<<<<<<<<<<
+ *         "padding": {"type": "int | str", "default": None, "doc": "Content area padding; int px maps to nearest pa-* step (16pa-4)"},
+ *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},             # <<<<<<<<<<<<<<
+ *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},
  *         "scroll_strategy": {"type": "str", "default": "block", "doc": "Vuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog"},
- *         "transition": {"type": "str", "default": "scale", "doc": "Transition animation name"},
 */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Click_outside_ESC_does_not_close) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_persistent, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Fill_the_entire_screen) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_fullscreen, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/dialog.py":17
+ *         "padding": {"type": "int | str", "default": None, "doc": "Content area padding; int px maps to nearest pa-* step (16pa-4)"},
+ *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},
+ *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},             # <<<<<<<<<<<<<<
+ *         "scroll_strategy": {"type": "str", "default": "block", "doc": "Vuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog"},
+ *         "transition": {"type": "str", "default": "scale", "doc": "Transition animation name"},
+*/
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Click_outside_ESC_does_not_close) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_persistent, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "simplestart/ss_ui/dialog.py":18
  *         "fullscreen": {"type": "bool", "default": False, "doc": "Fill the entire screen"},
  *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},
  *         "scroll_strategy": {"type": "str", "default": "block", "doc": "Vuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog"},             # <<<<<<<<<<<<<<
  *         "transition": {"type": "str", "default": "scale", "doc": "Transition animation name"},
  *         "cancel_text": {"type": "str", "default": "", "doc": "Cancel button label"},
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_block) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Vuetify_scroll_strategy_block_cl) < (0)) __PYX_ERR(0, 17, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_block) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Vuetify_scroll_strategy_block_cl) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_scroll_strategy, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":18
+  /* "simplestart/ss_ui/dialog.py":19
  *         "persistent": {"type": "bool", "default": False, "doc": "Click outside / ESC does not close"},
  *         "scroll_strategy": {"type": "str", "default": "block", "doc": "Vuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog"},
  *         "transition": {"type": "str", "default": "scale", "doc": "Transition animation name"},             # <<<<<<<<<<<<<<
  *         "cancel_text": {"type": "str", "default": "", "doc": "Cancel button label"},
  *         "confirm_text": {"type": "str", "default": "", "doc": "Confirm button label"},
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_scale) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Transition_animation_name) < (0)) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_scale) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Transition_animation_name) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_transition, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":19
+  /* "simplestart/ss_ui/dialog.py":20
  *         "scroll_strategy": {"type": "str", "default": "block", "doc": "Vuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog"},
  *         "transition": {"type": "str", "default": "scale", "doc": "Transition animation name"},
  *         "cancel_text": {"type": "str", "default": "", "doc": "Cancel button label"},             # <<<<<<<<<<<<<<
  *         "confirm_text": {"type": "str", "default": "", "doc": "Confirm button label"},
  *         "onclose": {"type": "callable", "default": None, "doc": "Close callback; event.value: True=confirm, False=cancel/overlay"},
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u__2) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Cancel_button_label) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u__2) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Cancel_button_label) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cancel_text, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":20
+  /* "simplestart/ss_ui/dialog.py":21
  *         "transition": {"type": "str", "default": "scale", "doc": "Transition animation name"},
  *         "cancel_text": {"type": "str", "default": "", "doc": "Cancel button label"},
  *         "confirm_text": {"type": "str", "default": "", "doc": "Confirm button label"},             # <<<<<<<<<<<<<<
  *         "onclose": {"type": "callable", "default": None, "doc": "Close callback; event.value: True=confirm, False=cancel/overlay"},
  *         "eventData": {"type": "any", "default": None, "doc": "Extra data passed to the callback"},
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u__3) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Confirm_button_label) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u__3) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Confirm_button_label) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_confirm_text, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":21
+  /* "simplestart/ss_ui/dialog.py":22
  *         "cancel_text": {"type": "str", "default": "", "doc": "Cancel button label"},
  *         "confirm_text": {"type": "str", "default": "", "doc": "Confirm button label"},
  *         "onclose": {"type": "callable", "default": None, "doc": "Close callback; event.value: True=confirm, False=cancel/overlay"},             # <<<<<<<<<<<<<<
  *         "eventData": {"type": "any", "default": None, "doc": "Extra data passed to the callback"},
  *     },
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Close_callback_event_value_True) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_callable) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Close_callback_event_value_True) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_onclose, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":22
+  /* "simplestart/ss_ui/dialog.py":23
  *         "confirm_text": {"type": "str", "default": "", "doc": "Confirm button label"},
  *         "onclose": {"type": "callable", "default": None, "doc": "Close callback; event.value: True=confirm, False=cancel/overlay"},
  *         "eventData": {"type": "any", "default": None, "doc": "Extra data passed to the callback"},             # <<<<<<<<<<<<<<
  *     },
  *     "events": {"close": "Dialog closed"},
 */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_any) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Extra_data_passed_to_the_callbac) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_any) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Extra_data_passed_to_the_callbac) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_eventData, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_params, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":24
+  /* "simplestart/ss_ui/dialog.py":25
  *         "eventData": {"type": "any", "default": None, "doc": "Extra data passed to the callback"},
  *     },
  *     "events": {"close": "Dialog closed"},             # <<<<<<<<<<<<<<
  * }
  * 
 */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_close, __pyx_mstate_global->__pyx_kp_u_Dialog_closed) < (0)) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_close, __pyx_mstate_global->__pyx_kp_u_Dialog_closed) < (0)) __PYX_ERR(0, 25, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_events, __pyx_t_4) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_DIALOG_SCHEMA, __pyx_t_2) < (0)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/dialog.py":27
+  /* "simplestart/ss_ui/dialog.py":28
  * }
  * 
  * def dialog(title="", **kwargs):             # <<<<<<<<<<<<<<
  *     """
  *      Vuetify v-dialog + v-card
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_1dialog, 0, __pyx_mstate_global->__pyx_n_u_dialog, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_6dialog_1dialog, 0, __pyx_mstate_global->__pyx_n_u_dialog, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_dialog, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_mstate_global->__pyx_tuple[0]);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_dialog, __pyx_t_2) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_dialog, __pyx_t_2) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/dialog.py":1
  * from ss_core import vuetify             # <<<<<<<<<<<<<<
  * from ss_core.utils import handle_event_data
- * from ss_core.component import check_schema_kwargs
+ * from ss_core.component import check_schema_kwargs, padding_utility_class
 */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -4533,14 +4600,14 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "simplestart/ss_ui/dialog.py":27
+  /* "simplestart/ss_ui/dialog.py":28
  * }
  * 
  * def dialog(title="", **kwargs):             # <<<<<<<<<<<<<<
  *     """
  *      Vuetify v-dialog + v-card
 */
-  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(1, ((PyObject*)__pyx_mstate_global->__pyx_n_u_)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(1, ((PyObject*)__pyx_mstate_global->__pyx_n_u_)); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[0]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[0]);
   #if CYTHON_IMMORTAL_CONSTANTS
@@ -4573,34 +4640,34 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{3},{19},{34},{63},{20},{13},{12},{33},{33},{22},{25},{104},{1},{1},{7},{1005},{6},{2},{9},{27},{9},{8},{9},{13},{20},{6},{6},{3},{18},{5},{4},{8},{11},{8},{18},{19},{18},{5},{7},{12},{12},{4},{7},{6},{12},{13},{21},{25},{20},{4},{13},{3},{5},{9},{10},{6},{8},{10},{8},{17},{8},{13},{5},{6},{8},{10},{9},{8},{4},{7},{4},{6},{10},{3},{10},{12},{8},{3},{5},{14},{15},{12},{10},{24},{7},{17},{13},{3},{8},{5},{10},{4},{4},{5},{6},{7},{12},{5},{303},{26},{37},{22}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1485 bytes) */
-const char* const cstring = "BZh91AY&SY\367B\326\352\000\001\013\177\377\367\377}\373\177\357\347\237\357\347\375\005\277\357\377\356A@\301R`A\301 @\000@@C\300@\000P\005\036\367\275\356\333\255\274fMM5\266\273\321\341\242P\364\205?J{I\372\023T\375F\231\rOM54\332\000\230h\232\006\3220h\232`\2144\320\323!\222zL\322i\350\230hS\001\023e4i'\242l\243\312z\232\001\240h\006\203@\000\000\000\0314h4\000\r\000i\2424\247\251\225=\252z'\244\366\221\r\251\232 \000\032b\001\240\000\000\000\000\000\000\001\240i\252\236\251\352~\246\246\237\251\250\323OQ\3524\000h\000\001\241\240\000\000\000\320\000\0004\000\000\022D\215\024\362d\223\304\3204#\010\323 \000\000\320\000\000\000\000\001\2404\001\240/\342OC\330\304\330^\005\314\321\366\262\370'\037\357*4\364\331\2208K\033 Z\377'\270\240\245\242\000\251eT\310 G\004qm)\020(\310,\372v\003'{\212\0069(\321[E\010|\005S\267\366\n\300\3165\311g\026Fp\026\005\004\031\347\217q\021\0211@\t\241\235\211\303\320\343\343o\274>\254\212\002\363\314\032/C;\215\007\010-\352\320\204\302},\017\362+NB\302Nf\364\351\252e\326U\241\225X\224\326\204u\237Tm\245\004.\342\341\357\252\023ax\3312\212\354\356\323\004\342\"\376\007\325t\245\212\351\325\"\022\000\031\036\r3\201C<x)\346\363\010X\225)\234\273(F+\013\316\311\206\"\200\224e;\341\254\013\000\305\362\014\336T\200`2\032fS(\"\316\361\205\"f\327\211\335\262\303C\336\242.\320t\366]\271t\013w\217\r\232\026\3527\240c$*\034\240\211\306\361\004\203\010&\234\030\322\307\310\032V\206p\314B\035#\020\223\2306\3621oZU\313{\354\025?0\262\371.\366]\243\030fd3\243\000\263\361\022\250\034\\nG\216\306\0023\301\2378\233/\323\026\005\210\257\233Ja-IRN\342Hc\232u\030\302\216}\035\003-\024\tn\352\325X\301(\020\257\024\300\344\330f&\211\304\340=\330\247+\007\216yS\314\"\034\013\260\014\366D\225\366pG)\"&sT\025\246BW,\314\004\013%\260\034\310<\236\360\332\226 \275\037\030B\206S\352\003\007\345\274\004Ai-\035\230L\213:\250\255\241D\201|}l\304\r\002\202\262\315\273\223b\347\t\031\214\023\321R/\262n\027i13\221\231\002Jq\3601\325\320fa\361\3622\002\005\351(\201""\240\270\233z\247\003\026\232\002g\2524\313\225\\\3238\321&AF\020\347t\224\222Jf\010\200D\361\247\246'-\252\000\312\010\204\242N\024\030\272\t@\302X\000oH\0033}f/\205\264\315\364\302\330\213\n\026\246\215f\005\207\242\271\255\316'\025\001\352[oM@Z7m\024\253\017\000\023\200\326@\320\026\024\025\206\024X0\277&e\nn\225TX\313\035\257\231\320,I\224\235*\305\201\2774\025'\276\016\023\004\350pX\021\215K(!FnH\251f`\300\264\201(\251\262\266\245\261\002\t<\233qjpj\n\330\014\221\247\245C/]\264\217j\310i\230iT\026v\000\026\335\220:\270ld\226fT+\023\230y\220))\036\221\362\256\222A\rn\322\252g\010)^\351\215\255L\001|\\E\205$\266\351\227<\nym\215\366X)u\37209ds]\2630 \260\003d\257\211\004\201N*@N \240\232)\020\232Z\023!\212Y\312G\2165p.d\205-\257un\274\031A\352\240\215V\245[\032\325W\253E\t\232\240l\325P\340\211'\235\004\362&\006\t\347\034/\322S\205\020\320AX\313\200\242Q\2263@\013aT\022\241\\\222\032\343\322E3\002\343\204\362HO\"\2213\003\000\320\340\031\346u3L\242\016\0140:\030S<,B\302\300c5;\202#hV\310\3142,Y)\305Xs\027Y\023\031n\207\302\273;j\213Hl\020\020P\236!\226\321s(\356\n\204\367rj;\205\\\251u\247\335\303\227\2112\336\350\"wv/i8\016\0041%(\303F\024%\210Yy\200\210\2450\344\010\227\305\014\321\\\250\341\335\025\244\331(\274\241l-Qt\274Mx\222\256\026\234\202\205&R\311\246\201U+ b\364I\201\246g\216\030\333\016\224kR\351BiJ8D\252c\243\273\022\007e\014\300\3435\332 M2\021\250`\202\220\211-r\225\2630\232R,\331u;\030\326G\025\225\300\016r\274P\234\300\2108W\000\3701\204/\200\253!\321\026]\013t\360\230Gf\017\014)\021\036\004,w v6\026#;\334\000\300\200\"\270\002\340\341b%N\224P\375\227\n\370F\"I \223<\244\177\020I`~\341D\206\266P\274\372\300@n\201\266\212\310\0025\373\264\2540I\376\320\365\354u1$!7\253?\203t?\005y<\231\023\310\313\0172\333[n\215\235\322\003\223\365\313\205\341kd\013\253\023\267AS?\200\247P\252\263\"x\350\003\253\251\000:,\375\237\0063\353W\025\325\327\332\324\320(\314S 5+\227\262\207\207\371\271\001\252lm\367wH\n\263\343\345R^\371V\231A}\036\031\270\377\364Z\325""\206\355,\253\023\n\321\306\270FI:\220Ke2\005\0200\333\005\177\304a(6\267\007#GG\311\376\235\215'\364R`\337\361w$S\205\t\017t-n\240";
-    PyObject *data = __Pyx_DecompressString(cstring, 1485, 2);
+    const struct { const unsigned int length: 11; } index[] = {{3},{19},{34},{63},{20},{66},{13},{12},{33},{33},{22},{25},{104},{1},{1},{7},{1033},{6},{2},{9},{9},{27},{9},{8},{9},{13},{20},{6},{6},{3},{18},{5},{4},{8},{11},{8},{18},{19},{18},{5},{7},{12},{12},{4},{7},{6},{12},{13},{21},{25},{20},{4},{13},{3},{5},{9},{10},{6},{8},{10},{8},{17},{8},{13},{5},{6},{8},{10},{9},{8},{4},{7},{4},{7},{13},{21},{6},{10},{3},{10},{12},{8},{3},{5},{14},{15},{12},{10},{24},{7},{17},{13},{3},{8},{5},{10},{4},{4},{5},{6},{7},{12},{5},{326},{26},{37},{22}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1551 bytes) */
+const char* const cstring = "BZh91AY&SY\353\333^\265\000\001\032\377\377\367\377}\373\177\377\347\237\357\347\375\005\277\357\377\356A@\321R`A\301 @\000@@S\300@\000P\005~vRQ\225\010)\025S\0344(\322OM\006\246\236\231(\364\364\247\264\221\372\243e\001\220\r4\007\351A\351\032=G\250=M\0324lS\323$\362\236\210\036\221\232\200\252z\230\206\243L\230\232`\004a\006F\000L\002\030\000\232i\201\003F\000\214\000\0020\tB\000\211<A0Rz\233)\346\210\201\220\017H\310\000\000h\000\000\000\017S\020\000\004\030\000&\000\002`\230\000\000\000\000&\0010\020\300\000\021\200\000\000\221Di\240\022`\206\215\ny4\236\247\244=@\000\001\240\000\0004\000\000\000\000\320\014\222'd.\325\315\272\013\311\372>\261\257\271@\207\355J:}6\304@)\226 e\377\2243\250\306\240Dl\217?\244\303\274\031\360{\021H\213\351;\377\2356\337\265\3664_\215\024\262\252Zc\005\324\303\364\031\302\322\032d\324\203\221\321\006z\224P\200\371?\227\231\021\0215\200Qi;V(\255\316\352{\256\336~Pb\331\203F.U\212FPiMGU\306\226\022\025\234\317\301|\031bJ4f\312W]e:G\206X\300w\266\363/\314m\243D\302\307\211\246g<\350af\347\313\n\315\222\331\211Tz\334\304\340^\010\325r7kO6\330\306\3749%\323S \201\265\340]\301x\343\246u\035e<\365$ER\274m\031\213\246}\213\022\326\237:\226#xT\000\220\312\0314\202\2001\001\006:\256 \034S!\204\311e\302\005\035\023\013\242j\366\335\246\315\222\206Lx\353\221z\203\347\302}\3729\240PE\202\235\260\374\323P8\345\261sa\3041\340\253\231\031FL\372\265\234|\323\310\026S\177H\357QH\244 %j.M\233\234\335\313\334\316\216\373\206O\335\365\217\014cX\364#\027\273+\240\216\010\314\303\354\017\213\344\321\273\273\177=*\2033\2744)\312y\031\335{\242\364h\322\204knBo\302\033\273\331\331\2406mH\362\031|\220#\2345/\234\354/\252\031\2668[\345^6\371\326\345\251\311\262\304\304\272\227\212\307\027\n\244CC\307F\244\232<\367\244U$\245\027\242\302\265\262%\\\326Yg\226( \372\265\205\026\244\337\310\035\321Z\240\364\372\031\316\252\244\360\014\375^\210 \344\352'\327\333\004\220\273v)\333\225xP\374\361cP\022\307\242\\d*\315\235V\315\316T\221\306\302wb\212\370t\030Xj\3458""\306\242Qn\376m\365\244\033d7\2707\302&\355\026D\350\257\023\264\276`n[`U\013\345o\024\260\252L,G1/C\023\033\345i\350\301\260k\2343\005\353\243\025o\\;F\010\332\210azL\271\232\205@\310^\007n!\267^\226p\024\324\353D\036\026h1\222\2634q\322\241\212\214\367!\346K\306I\245\204\256l#m\301\264\272mT\273&\300\243\316c\326\301\237b\263\361\301\303\215\3519\3142\350VdhH\335go-,'\0072\255\355\007\013\275D.NG\304M\224\262\"\270S\225lmB\336\377\256\037\215UE\014\2145\270\344\373\362\302/a\213\350\222\333\203\346\222c4EF\222\375V\307sNF\244\240\207\334\244\223\031\005\304\006Y\3539\334W\353]\231\317\263Ak+h\203\001\231\023\2426\220\217\026\222\232\020\363eW\316\001\025L4\232\372\244\300+3\242\365E9\255\247\240\024V\035k\257$\214'\277w\014\351N8#oa\272\004H\t\323o\336\210Z\2562\300SE\264\212\026$Q\\\244\232\031s\201q\t#]\3213\360\205\257\254\202\315\206\315!\013\354%~ZW6\n\375\323\004X\233\274\037\"\274\200\"\211\315\004\350L\030Nd\003\"We\313\"\212Q\266p\274\266p\237)\317\014c0\252\303EUGV6\251m\0034Boy7\243\346\3100`1Q\336\235\003\226UT\244\020\250a\001\204D\305\030F\3427-\014\344P\200\"YE\230\225CE\330\226\356-\272\215-\025\034\350(\262;Zg,wI\016&\020ye\304r\264&\377\311kM\312=\227A\224\216\270d\\\351\267m\363\315\242\3335o\363\26678\262\266\26232\225\352\260\014\003\265\300uu!\251\361\202\027\315\323\002BD\316\360\221\022\256t\033\206\231d\246\203RU\311n\266\032\215t\"\231\225t\355\313K\356\223\032j\266\254wZd\302\2243\177\025\"\246\336\252\307T\325\365\344\307E\024\254 \022K\257\263|\301\370\345N\346\374(\303\205\027\033*\203*\347{\211HD1\2509\036H\247\032L[br\220\333|xG\030\032\341\003J\330\007j\336\013-a\210\354\315R\225\214P\345\203\314\t\334a:\345\332\351E\025p\255\013\3626\016\032\3516\340~;d\323|\234\306\301a\263\264\027\217\016\312F}Kh\236\214\313\224\326\230\3066\365EOt\363o'\213K=W\357m\303\230\266\275u\323\303\t\260;\216\377g\213\007\213\177\204(\2437\003\330\343!+\352\312\217\000\262Y\325\211\302\254FZ:s55\255c\340\327 .\354m\r\r\374\226@\245\366\354k\202\276q""\013\3772\3016\001Xa\003\026$\002x\263\275\252\030\031}\315\313\203q\301\273\371w\234\005\256K\223@w\221\265\367\261\277\300\354\002m\346\365\261\343\200\036f\367\363\373\267\237\260_J\236i\032\203\343O\233\323\377&J\355\317\271\245\365\250\\\254\211\304\240\222\341CJ\000\204^\221\010\000\210\005\010\243\000\211-#\023\030\"\210\261WDM\273kn\034r\333\001\306\036!7\213\271\"\234(Hu\355\257Z\200";
+    PyObject *data = __Pyx_DecompressString(cstring, 1551, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1327 bytes) */
-const char* const cstring = "x\332\235U\315o\023G\024\217%\207\272\t\2550 J[\025M\226\017S\025\333D\002*\2318\324rH\213Th\013\210S\325\321xw\354\2142\336\331\354\314:YQ\244\234*\337\272\247jU\251\222\271\371\004\234*\365\326?!G\037\271@{\314\237\3207\263c;6E\225j\311\263o\336\274\367\346\275\337\373\230\353W/6\211\357R\216Z\221R\302G\234\264(or\346n#\021)\311<\212\252\350\366\203&\362\004\225\310\027\n\271\\H\332\324\013r\t\347-\342n\337D\264G}U\351\021\036\321\032z\030F\264\356\n\277\315\302\356\025\264I\270\204\255\271\245*z4\344$nf\2073\227n0\302E'3\357\331\215b\212SK\3572Om]A\264\322\251\240\322\365\253\027KH\204\232\270Z\272\275\247B\202<\242\010\n\210\004m\244\004R[S\3776\031\347\206\001N\262\220\"\351\206\224\372\017C\342K\246\0308@|\326%\206\362I\227>\212\250b\355X\213\t\316\313\022\254+\332\211k\250\305\205\273]5\036VC\032\210L\273\352\013\237\336D%\375)!\270R\354J\253\313\374\216\2717 \035\212Zt\213\371\236\331{&\244\312-\217I\322\342ti\315c=Tc^\335\321QT<\336\301\200\237\"\314\247\241\203jR\305\234\326\235\307\240'\003\200\257\20621c\345\216\317\024\204|\013\225\264\nD(K\2506\366\346\211\263\276\204\320Z\257\234\311\002\215\020\005gBC\021\245\210\273e\310ZWx\224\227M\006\307^\030\225GL2p\3211R\337\177\021\005pF\377K\032\325\321\005S\022\231Z\255\035q\236\201n\245\247\014+\021\320P2\251\335\267\022S\206\225\230\313\206\025\313\270\017,\323\212\252If\255\324\224a%L1\275\341\013\200\030\371\036m\003\354\036\262 \033\311q\364\244\255hX\346\224\364 l\341K\032B=_.\t\337\324D\351J\246bK\377S\255\265n4!\001.\t\275l3\331\226My\257?~\234\251\231\035z\362d\255:s<\257C\367\324\230\007\\]8Z\273l\223_w\024t\237\263\276V\205\223\211n\365_\224\307\006\211\253q\221s6]\016\235Tw\332\234\356\225;\241\330-\257\316\3314\006Z\312G=\0222b.\006\343\016\200\344\352\351\361\226\252h\353aps\006\2461\327\231\000\221\315\n\254\355Y8\340\236\267\337K9\355A\366=\007\271\202\213\260\356\004!ts\030\377?_2\370&\256d\374\267\3702\301u\006\3031\327t^u\334z\353K\026>\352\353\226\357\270Lf\224'Y7\340T*\022\252\252\2248bU"";\036\202\030\212\035\375\210\230\257\306V^=\377\343\357\347\277\275~\372\323\306\235\306\327\337|\211\0374\277\272}\267\201\361\267\361\036\3747\230\253\360=p\365>m\277\372\371\227\327\277\367\377z\372\354\325\263_\211\037\023\031\373.\023\020P\010s\035\n\\\232a\326\022\202\353)\251\0359\002\273\253\273I\2041v\267\250\273\2155\0248\353\374\214!\341\323%x{\227\204\035\t\030\373\0243\037C\227\271T\317[\323\r\026\272\243\010Nf\032f\236\266\t\255F\"\256\262\320\216N\263\231TY4\326\300_\310\330z%{!\346\230\335\3306\341\374\201\010\250\257\347\351\314L\365\204k\306\223Y6\300\023C\2308\r%\333\224z:\222\351l\300\270\035\371.\306[\004\314Q<U\310\030\241\304L\342\t\272\020DWf\360`\334\205;1\374`hF\240\212'\276b\254\237\233l\265,\355n@B\322\225\323\001\030\210`\374\326\020\216\361NDx\246\027R]x0\202\250\224\020-\235\035\206\331\016\217\007&\306\222*{!P\026\373#\305W1\305g\333D\232`\250\375@\331t\003xP\000\031\313\200(\271\004\323\030\022+\025\254zVM\307\254\212\003\032E\314\323\377k\346\231\220\275\354U\265\037\334\"\222\232\331\272\277\334_=<\267\260x6\331I\227\006\227\207+\207\307\026\026\337\353o&\027\022\222\304\203\334(\377~\277\235l\244\271\364\343Ac\224/&g\022\225\256\246w\207\305Q\376\370Q\261\361\311\275\341\312\334\346L\322N7\006\271\203\225k/\032sG'\223Ki>m\244x\010'\247\222\033\351\351\364\273\203s\225!9<\276\260x:\371<u\322f\2723\310\0176\207\347\207\367\207;/\363\213\243\302\207iqT(&\343\345LB\354\362Q\272b\251\017\222\235Q\341l\232\263\302\206:\225\254\352\330\216\035.-,.\367KI1Y9\274\261pl\271\177)y7-\246\237\r~xQ\3773\227\211\234\324Kaa\261\260\277\327\337\031\345\337\331\217\223\334\313<@\265\337\030\025N\034\234X\031\024\007%\200\240\000\254\321q\260\2344\364\311r\377z\222;(^\030L\351\363\203UK'\237\244\344\r\241\203\345s)\371\007\355\214\235m";
-    PyObject *data = __Pyx_DecompressString(cstring, 1327, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1406 bytes) */
+const char* const cstring = "x\332\235U\315o\023G\024O$\207\246\t\2550 \n\255\212&\346\303\264\3056\221\200J\316\007\215\022\322\"\025\332\002\342Tu4\336\035;\243\214w6;\263NV\024\211\023\362\255\253\036\252U\245J\346\346\023p\252\324[\377\204\034}D\225\240=\346O\350\233\217\265c#T\251\226<\373\346\315\373\374\315{o\256]\271\260N\002\217r\324\210\225\022\001\342\244A\371:g\3366\022\261\222\314\247\250\206n\336[G\276\240\022\005B!\217\013I\327\365\202<\302y\203x\333K\210vh\240\252\035\302cZG\367\243\230\256x\"h\262\250}\031m\022.ak\274\324D\207F\234$\353\366p\334\251\010\024\030A$\242\004\205\304\367Y\320ZB\0148\341\036j\223P\"%P@\341X\002\213T>ER\321\020]Z\274\376\327\223\237a\177\365\223\rF\270h\331\000}\267QLq\352\350]\346\253\255\313\210V[UT\276v\345B\031\211H\023W\3127\367TD\220O\224\366,A[\373R[\243\0147\031\347\206\001\021\262\210\"\351E\224\006\367#\022H\246\030\244@\002\326&\206\nH\233>\210\251b\315D\213\t\316+\022\254+\332J\352\250\301\205\267]3\021\326\"\032\n\253]\013D@\227PY\177\312\010\\\212]\351t\001\004\3437$-\212\032t\213\005\276\331\373&\245\352\r\237I\322\340tn\331g\035Tg\376JIgQ\365y\013\303\r(\302\002\032\225P]\252\204\323\225\322C\320\223!\\@\035Y1c\345V\300\024\244|\003\225={\007\262\214\352y4\217J\253s\010-w*V\026h\204(\004\023\031\212(E\274-C\326\333\302\247\274bj \217\302\250<`\222A\210%#\365\375\027q\010g\364\277\244\321\n:o\212\312\252\325\2331\347\026t'=b8\211\220F\222I\035\276\223\0301\234\304\304m81\313\275\347\230NT\ro\326I\215\030N\302\024\323\033\261\000\210q\340\323&\300\356#\007\262\221\314\263'ME\243\n\247\244\003i\213@\322\010:\342RY\004\246&\312\227\255\212k\236O\264\326\252\321\204\013\360H\344\333\315p[1\345\275\372\360\241U3;\364\350\321rm\354xR\207\356)T\3678\024z\216\224\3556lx\245\\\0364tQi\211\212+\214\225\222\202\336.\255.\327\340dh\267v\310\360\2443\342i\314\344\204M\347\274\311\351^\245\025\211\335\312\342\204Mc\240\241\002\324!\021#\3061\030/\001\200\236\236Mo\251\230\246\0365Kc\020\346\334\322\020$;\211\260A\301B\005~\336\356\227r\332\201\312""\360K\310\023\\D+\2450\202N\217\222\377\027\213\205o\030\212\345\277%\226!\256c\030\346\\\323\225\265\274-W\347\034|4\320\343\240\345\351\271\371#L\310\210I\313\362%k\207\034f'\211TMJ\034\263\232\233!a\002b \014*\271\271W\317\377\370\347\371o\257\237>\331\270\265\366\3657_\342{\353_\335\274\275\206\361\267\311\036\3747\230\247\360\035\210\371.m\276\372\351\227\327\277w\377~\372\354\325\263_I\220\020\231\004\036\023\220Y\004\317\007t\2014\023\257!\004\327\243T\007r\010\177O\267\234\210\022\354mQo\033kL\260\035\017\226!\341\323&x{\227D-\t`\007\024\263\000C+zT\017e\3232\016\303\303P\016\007\037f\276\266\t\375Hb\256lj\207G\336\330\23594\226!^\270\272\325\252}F&\230\355\304u\352\344\201\010i\240\207\356\330\340\365\205gf\230Y6 \022C\230<\r%\233\224\372:\223\321\000\301\270\031\007\036\306[\004\314Q<R\260\214Hb&\361\020]H\242--<\030\267\301'\206\037L\326\030T\3610V\214\365\233dW\307\322\341\272\256\037k\376|\003\3269SI\316\214H[\216\306i(\302\374\345\"\034\343\235\230p\353\000^n(U\030hTJ\200\205\216\217V\273\303\371\370\305XR\345\"\003\312]\322\241*\255\232*u\215%M\326\324}\240\276\332!<O\000\241c\350\200%\230\306P\001R\301\252'\337hh\253$\244q\314|\375\277j\036\035\331\261o\264\373\340\006\221\324L\352\307\363\335\305\203\263S3\247\323\235l\256w\251\277ppdj\346\275\356fz>%i\322\233\036\024\336\3576\323\215l:\373\250\2676(\024\323S\251\312\026\263\333\375\342\240p\364\260X~r\247\2770\2619\2256\263\215\336\364\376\302\325\027k\023G\307\323\213Y![\313p\037NN\244\327\263\223\331w\373g\253}2\346\366\340\350\324\314\311\364\363\254\224\255g;\275Bo\263\177\256\177\267\277\363\26203\230=\223\025\007\263\3054_N\245\304-\037f\013\216\372 \335\031\314\236\316\246\235\260\241N\244\213\260\335?\003\256\372;:\345#\007sS3\363\335rZL\027\016\256O\035\231\357^L\337\315\212\331g\275\037^\254\3749mE\216\353evjf\366\361^wgPx\347q\222N\277,\000\202\217\327\006\263\307\366\217-\364\212\2752 3\013\254\301Q\360\221\256\351\223\371\356\265tz\277x\2767\242\317\365\026\035\235~\234\2217\204\366""\347\317f\344_(\275\334\006";
+    PyObject *data = __Pyx_DecompressString(cstring, 1406, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2567 bytes) */
-const char* const bytes = "50%Cancel button labelClick outside / ESC does not closeClose callback; event.value: True=confirm, False=cancel/overlayConfirm button labelDialog closedDialog titleDialog width, e.g. '50%' or '500'Extra data passed to the callbackFill the entire screenTransition animation nameVuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog.?disable\n<div :id=\"data.dlg_container\" :style=\"{ display: data.dialogInited ? 'contents' : 'none' }\">\n  <v-dialog\n    eager\n    attach\n    :model-value=\"data.dialogVisible\"\n    \\@update:model-value=\"data.dialogVisible = $event\"\n    :fullscreen=\"data.fullscreen\"\n    :persistent=\"data.persistent\"\n    :scroll-strategy=\"data.scrollStrategy\"\n    :transition=\"data.transition\"\n    :width=\"data.fullscreen ? undefined : data.width\"\n    \\@after-leave=\"onserver('onclose', data.confirm)\"\n  >\n    <v-card>\n      <v-card-title>{{ data.title }}</v-card-title>\n      <v-card-text>\n        <div data-content=\"true\"></div>\n      </v-card-text>\n      <v-card-actions>\n        <div class=\"flex-grow-1\"></div>\n        <v-btn variant=\"text\" \\@click=\"data.dialogVisible = false; data.confirm = false\">{{ data.cancel_text }}</v-btn>\n        <v-btn variant=\"elevated\" color=\"primary\" \\@click=\"data.dialogVisible = false; data.confirm = true\">{{ data.confirm_text }}</v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</div>\nenablegcisenabledsimplestart/ss_ui/dialog.pystr | intv-dialog\345\257\271\350\257\235\346\241\206DIALOG_SCHEMA__Pyx_PyDict_NextRef\345\217\226\346\266\210\347\241\256\345\256\232anyasyncio.coroutinesblockboolcallablecancel_textcategory_check_data_updatecheck_schema_kwargscline_in_tracebackcloseconfirmconfirm_textcontainer_iddatadefaultdialogdialogIniteddialogVisibledialog.<locals>.closedialog.<locals>.myonclosedialog.<locals>.opendlg_dlg_containerdoceventeventDataevent_dataeventsfeedbackfullscreen__func__handle_event_datahandlers_is_c""oroutineitemskwargs__main____module__myonclose__name__nameoncloseopenparamspersistentpoppositional__qualname__reactiveresscalescrollStrategyscroll_strategy__set_name__setdefaultsimplestart.ss_ui.dialogss_coress_core.componentss_core.utilsstr__test__titletransitiontypeuuiduuid4valuesvuetifyvuetify_basewidth\200\013\2101\360\036\000\005\030\220q\230\n\240(\250!\360\006\000\005\r\210F\220$\220a\220y\240\001\330\004\016\210f\220D\230\001\230\033\240A\330\004\021\220\026\220t\2301\230M\250\021\330\004\014\210F\220$\220a\220y\240\001\330\004\021\220\026\220t\2301\230N\250!\330\004\021\220\026\220t\2301\230N\250!\330\004\026\220f\230D\240\001\320!4\260A\330\004\021\220\026\220t\2301\230N\250!\330\004\022\220&\230\004\230A\230_\250A\330\004\023\2206\230\024\230Q\320\036.\250a\360\014\000\005\024\2207\230\"\230C\230q\240\004\240F\250#\250R\250q\340\004\005\330\010\031\230\021\330\010\021\220\021\330\010\021\220\021\330\010\026\220a\330\010\026\220a\330\010\032\230!\330\010\026\220a\330\010\027\220q\330\010\030\230\001\330\010\031\230\021\330\010\030\230\001\330\010\023\2201\360\006\000\005\006\360\n\000\005\013\210'\220\021\220!\3606\000\006\013\210&\220\t\230\021\230+\240^\260=\300\001\360\006\000\005\006\360\022\000\005\006\360\010\000\005\010\200x\210q\330\004\007\200y\220\001\340\004\013\2101\200A\330\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\330\014\023\2201\220A\200A\330\010\013\2105\220\001\320\021$\240A\330\010\013\2105\220\001\320\021#\2401\330\010\013\2105\220\001\220\035\230a\200A\330\010\013\2105\220\001\320\021$\240A\330\010\013\320\013\036\230a";
+    #else /* compression: none (2734 bytes) */
+const char* const bytes = "50%Cancel button labelClick outside / ESC does not closeClose callback; event.value: True=confirm, False=cancel/overlayConfirm button labelContent area padding; int px maps to nearest pa-* step (16\342\206\222pa-4)Dialog closedDialog titleDialog width, e.g. '50%' or '500'Extra data passed to the callbackFill the entire screenTransition animation nameVuetify scroll-strategy: block/close/reposition/none; 'none' allows scrolling the page behind the dialog.?disable\n<div :id=\"data.dlg_container\" :style=\"{ display: data.dialogInited ? 'contents' : 'none' }\">\n  <v-dialog\n    eager\n    attach\n    :model-value=\"data.dialogVisible\"\n    \\@update:model-value=\"data.dialogVisible = $event\"\n    :fullscreen=\"data.fullscreen\"\n    :persistent=\"data.persistent\"\n    :scroll-strategy=\"data.scrollStrategy\"\n    :transition=\"data.transition\"\n    :width=\"data.fullscreen ? undefined : data.width\"\n    \\@after-leave=\"onserver('onclose', data.confirm)\"\n  >\n    <v-card>\n      <v-card-title>{{ data.title }}</v-card-title>\n      <v-card-text :class=\"data.padding_class\">\n        <div data-content=\"true\"></div>\n      </v-card-text>\n      <v-card-actions>\n        <div class=\"flex-grow-1\"></div>\n        <v-btn variant=\"text\" \\@click=\"data.dialogVisible = false; data.confirm = false\">{{ data.cancel_text }}</v-btn>\n        <v-btn variant=\"elevated\" color=\"primary\" \\@click=\"data.dialogVisible = false; data.confirm = true\">{{ data.confirm_text }}</v-btn>\n      </v-card-actions>\n    </v-card>\n  </v-dialog>\n</div>\nenablegcint | strisenabledsimplestart/ss_ui/dialog.pystr | intv-dialog\345\257\271\350\257\235\346\241\206DIALOG_SCHEMA__Pyx_PyDict_NextRef\345\217\226\346\266\210\347\241\256\345\256\232anyasyncio.coroutinesblockboolcallablecancel_textcategory_check_data_updatecheck_schema_kwargscline_in_tracebackcloseconfirmconfirm_textcontainer_iddatadefaultdialogdialogIniteddialogVisibledialog.<locals>.closedialog.<locals>.myonclosedialog.<loca""ls>.opendlg_dlg_containerdoceventeventDataevent_dataeventsfeedbackfullscreen__func__handle_event_datahandlers_is_coroutineitemskwargs__main____module__myonclose__name__nameoncloseopenpaddingpadding_classpadding_utility_classparamspersistentpoppositional__qualname__reactiveresscalescrollStrategyscroll_strategy__set_name__setdefaultsimplestart.ss_ui.dialogss_coress_core.componentss_core.utilsstr__test__titletransitiontypeuuiduuid4valuesvuetifyvuetify_basewidth\200\013\2101\360\036\000\005\030\220q\230\n\240(\250!\360\006\000\005\r\210F\220$\220a\220y\240\001\330\004\016\210f\220D\230\001\230\033\240A\330\004\021\220\026\220t\2301\230M\250\021\330\004\014\210F\220$\220a\220y\240\001\330\004\021\220\026\220t\2301\230N\250!\330\004\021\220\026\220t\2301\230N\250!\330\004\026\220f\230D\240\001\320!4\260A\330\004\021\220\026\220t\2301\230N\250!\330\004\022\220&\230\004\230A\230_\250A\330\004\023\2206\230\024\230Q\320\036.\250a\330\004\016\210f\220D\230\001\230\033\240A\360\014\000\005\024\2207\230\"\230C\230q\240\004\240F\250#\250R\250q\340\004\005\330\010\031\230\021\330\010\021\220\021\330\010\021\220\021\330\010\026\220a\330\010\026\220a\330\010\032\230!\330\010\026\220a\330\010\027\220q\330\010\030\230\001\330\010\031\230\021\330\010\030\230\001\330\010\023\2201\330\010\031\320\031.\250a\250q\360\006\000\005\006\360\n\000\005\013\210'\220\021\220!\3606\000\006\013\210&\220\t\230\021\230+\240^\260=\300\001\360\006\000\005\006\360\022\000\005\006\360\010\000\005\010\200x\210q\330\004\007\200y\220\001\340\004\013\2101\200A\330\010\020\320\020!\240\021\240'\250\021\330\010\013\2101\330\014\023\2201\220A\200A\330\010\013\2105\220\001\320\021$\240A\330\010\013\2105\220\001\320\021#\2401\330\010\013\2105\220\001\220\035\230a\200A\330\010\013\2105\220\001\320\021$\240A\330\010\013\320\013\036\230a";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 98; i++) {
+    for (int i = 0; i < 103; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 22) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 24) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -4608,7 +4675,7 @@ const char* const bytes = "50%Cancel button labelClick outside / ESC does not cl
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 98; i < 102; i++) {
+    for (int i = 103; i < 107; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -4619,14 +4686,14 @@ const char* const bytes = "50%Cancel button labelClick outside / ESC does not cl
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 102; i++) {
+    for (Py_ssize_t i = 0; i < 107; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 98;
+      PyObject **table = stringtab + 103;
       for (Py_ssize_t i=0; i<4; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -4672,23 +4739,23 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 77};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 80};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_dialog_py, __pyx_mstate->__pyx_n_u_myonclose, __pyx_mstate->__pyx_kp_b_iso88591_A_1_1A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 112};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 115};
     PyObject* const varnames[] = {0};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_dialog_py, __pyx_mstate->__pyx_n_u_open, __pyx_mstate->__pyx_kp_b_iso88591_A_5_A_5_1_5_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 121};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 124};
     PyObject* const varnames[] = {0};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_dialog_py, __pyx_mstate->__pyx_n_u_close, __pyx_mstate->__pyx_kp_b_iso88591_A_5_A_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 20, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 27};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_title, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_onclose, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_fullscreen, __pyx_mstate->__pyx_n_u_persistent, __pyx_mstate->__pyx_n_u_scroll_strategy, __pyx_mstate->__pyx_n_u_transition, __pyx_mstate->__pyx_n_u_cancel_text, __pyx_mstate->__pyx_n_u_confirm_text, __pyx_mstate->__pyx_n_u_container_id, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_myonclose, __pyx_mstate->__pyx_n_u_myonclose, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_open, __pyx_mstate->__pyx_n_u_open, __pyx_mstate->__pyx_n_u_close, __pyx_mstate->__pyx_n_u_close};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 21, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 28};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_title, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_onclose, __pyx_mstate->__pyx_n_u_event_data, __pyx_mstate->__pyx_n_u_width, __pyx_mstate->__pyx_n_u_fullscreen, __pyx_mstate->__pyx_n_u_persistent, __pyx_mstate->__pyx_n_u_scroll_strategy, __pyx_mstate->__pyx_n_u_transition, __pyx_mstate->__pyx_n_u_cancel_text, __pyx_mstate->__pyx_n_u_confirm_text, __pyx_mstate->__pyx_n_u_padding, __pyx_mstate->__pyx_n_u_container_id, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_myonclose, __pyx_mstate->__pyx_n_u_myonclose, __pyx_mstate->__pyx_n_u_res, __pyx_mstate->__pyx_n_u_open, __pyx_mstate->__pyx_n_u_open, __pyx_mstate->__pyx_n_u_close, __pyx_mstate->__pyx_n_u_close};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_dialog_py, __pyx_mstate->__pyx_n_u_dialog, __pyx_mstate->__pyx_kp_b_iso88591_1_q_F_ay_fD_A_t1M_F_ay_t1N_t1N, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);

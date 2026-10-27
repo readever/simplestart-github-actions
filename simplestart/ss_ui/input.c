@@ -2710,7 +2710,7 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Enter_key_pressed __pyx_string_tab[10]
 #define __pyx_kp_u_Extra_CSS_class_on_the_field __pyx_string_tab[11]
 #define __pyx_kp_u_Field_label __pyx_string_tab[12]
-#define __pyx_kp_u_Fill_the_full_row_width_when_Fal __pyx_string_tab[13]
+#define __pyx_kp_u_Fill_the_full_row_width_stack_co __pyx_string_tab[13]
 #define __pyx_kp_u_Fixed_width_numbers_become_px __pyx_string_tab[14]
 #define __pyx_kp_u_Focus_color __pyx_string_tab[15]
 #define __pyx_kp_u_Initial_value_also_the_first_pos __pyx_string_tab[16]
@@ -2865,8 +2865,8 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_width_for_block __pyx_string_tab[165]
 #define __pyx_n_u_width_val __pyx_string_tab[166]
 #define __pyx_n_u_width_val_for_block __pyx_string_tab[167]
-#define __pyx_kp_b_iso88591_4_Qha_Qiq_Qha_5 __pyx_string_tab[168]
-#define __pyx_kp_b_iso88591_5 __pyx_string_tab[169]
+#define __pyx_kp_b_iso88591_5 __pyx_string_tab[168]
+#define __pyx_kp_b_iso88591_8_Qha_Qha_5 __pyx_string_tab[169]
 #define __pyx_kp_b_iso88591_A_e1_Qe5_M_V4q_A_4s_q_Qa_6_Q_1_1 __pyx_string_tab[170]
 #define __pyx_kp_b_iso88591_A_e1_Qe5_M_V4q_A_4s_q_Qa_6_Q_7_1 __pyx_string_tab[171]
 #define __pyx_kp_b_iso88591_A_s_G1E_q __pyx_string_tab[172]
@@ -3128,7 +3128,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(CYTHO
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":227
+/* "simplestart/ss_ui/input.py":261
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
@@ -3175,32 +3175,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 227, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 261, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 227, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 261, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 227, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 261, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 227, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 261, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 227, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 261, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 227, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 261, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3247,19 +3247,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_5input___pyx_scope_struct__input *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/input.py":230
+  /* "simplestart/ss_ui/input.py":264
  *         #  slider
  *         #  int pw.encode()
  *         val = event.value             # <<<<<<<<<<<<<<
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_val = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":231
+  /* "simplestart/ss_ui/input.py":265
  *         #  int pw.encode()
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":             # <<<<<<<<<<<<<<
@@ -3272,8 +3272,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
     __pyx_t_2 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 231, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 265, __pyx_L1_error) }
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_4 = __pyx_t_5;
   __Pyx_INCREF(__pyx_t_4);
@@ -3283,20 +3283,20 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_extract_value)) { __Pyx_RaiseClosureNameError("extract_value"); __PYX_ERR(0, 231, __pyx_L1_error) }
-  __pyx_t_5 = __pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(__pyx_cur_scope->__pyx_v_extract_value, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 231, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_extract_value)) { __Pyx_RaiseClosureNameError("extract_value"); __PYX_ERR(0, 265, __pyx_L1_error) }
+  __pyx_t_5 = __pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(__pyx_cur_scope->__pyx_v_extract_value, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_password, Py_NE)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_password, Py_NE)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_2 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":232
+    /* "simplestart/ss_ui/input.py":266
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:             # <<<<<<<<<<<<<<
@@ -3312,29 +3312,29 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
       __Pyx_XGOTREF(__pyx_t_9);
       /*try:*/ {
 
-        /* "simplestart/ss_ui/input.py":233
+        /* "simplestart/ss_ui/input.py":267
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:
  *                 if '.' in val:             # <<<<<<<<<<<<<<
  *                     val = float(val)
  *                 else:
 */
-        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_, __pyx_v_val, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 233, __pyx_L6_error)
+        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_, __pyx_v_val, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 267, __pyx_L6_error)
         if (__pyx_t_2) {
 
-          /* "simplestart/ss_ui/input.py":234
+          /* "simplestart/ss_ui/input.py":268
  *             try:
  *                 if '.' in val:
  *                     val = float(val)             # <<<<<<<<<<<<<<
  *                 else:
  *                     val = int(val)
 */
-          __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 234, __pyx_L6_error)
+          __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 268, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_5);
           __pyx_t_5 = 0;
 
-          /* "simplestart/ss_ui/input.py":233
+          /* "simplestart/ss_ui/input.py":267
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:
  *                 if '.' in val:             # <<<<<<<<<<<<<<
@@ -3344,7 +3344,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
           goto __pyx_L12;
         }
 
-        /* "simplestart/ss_ui/input.py":236
+        /* "simplestart/ss_ui/input.py":270
  *                     val = float(val)
  *                 else:
  *                     val = int(val)             # <<<<<<<<<<<<<<
@@ -3352,14 +3352,14 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
  *                 pass
 */
         /*else*/ {
-          __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 236, __pyx_L6_error)
+          __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_5);
           __pyx_t_5 = 0;
         }
         __pyx_L12:;
 
-        /* "simplestart/ss_ui/input.py":232
+        /* "simplestart/ss_ui/input.py":266
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:             # <<<<<<<<<<<<<<
@@ -3376,7 +3376,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "simplestart/ss_ui/input.py":237
+      /* "simplestart/ss_ui/input.py":271
  *                 else:
  *                     val = int(val)
  *             except ValueError:             # <<<<<<<<<<<<<<
@@ -3390,7 +3390,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
       }
       goto __pyx_L8_except_error;
 
-      /* "simplestart/ss_ui/input.py":232
+      /* "simplestart/ss_ui/input.py":266
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:             # <<<<<<<<<<<<<<
@@ -3411,7 +3411,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
       __pyx_L11_try_end:;
     }
 
-    /* "simplestart/ss_ui/input.py":231
+    /* "simplestart/ss_ui/input.py":265
  *         #  int pw.encode()
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":             # <<<<<<<<<<<<<<
@@ -3420,44 +3420,44 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
 */
   }
 
-  /* "simplestart/ss_ui/input.py":244
+  /* "simplestart/ss_ui/input.py":278
  *         # event.value  [object Object]
  *         #  val checkbox
  *         res._data["value"] = val             # <<<<<<<<<<<<<<
  *         if hasattr(original_value, 'value'):
  *             original_value.value = val
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 244, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 244, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 278, __pyx_L1_error) }
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (unlikely((PyObject_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < 0))) __PYX_ERR(0, 244, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < 0))) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/input.py":245
+  /* "simplestart/ss_ui/input.py":279
  *         #  val checkbox
  *         res._data["value"] = val
  *         if hasattr(original_value, 'value'):             # <<<<<<<<<<<<<<
  *             original_value.value = val
  *         if onchange:
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_original_value)) { __Pyx_RaiseClosureNameError("original_value"); __PYX_ERR(0, 245, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_original_value)) { __Pyx_RaiseClosureNameError("original_value"); __PYX_ERR(0, 279, __pyx_L1_error) }
   __pyx_t_5 = __pyx_cur_scope->__pyx_v_original_value;
   __Pyx_INCREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_HasAttr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_HasAttr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":246
+    /* "simplestart/ss_ui/input.py":280
  *         res._data["value"] = val
  *         if hasattr(original_value, 'value'):
  *             original_value.value = val             # <<<<<<<<<<<<<<
  *         if onchange:
  *             #  event
 */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_original_value)) { __Pyx_RaiseClosureNameError("original_value"); __PYX_ERR(0, 246, __pyx_L1_error) }
-    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_original_value, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < (0)) __PYX_ERR(0, 246, __pyx_L1_error)
+    if (unlikely(!__pyx_cur_scope->__pyx_v_original_value)) { __Pyx_RaiseClosureNameError("original_value"); __PYX_ERR(0, 280, __pyx_L1_error) }
+    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_original_value, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
 
-    /* "simplestart/ss_ui/input.py":245
+    /* "simplestart/ss_ui/input.py":279
  *         #  val checkbox
  *         res._data["value"] = val
  *         if hasattr(original_value, 'value'):             # <<<<<<<<<<<<<<
@@ -3466,18 +3466,18 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
 */
   }
 
-  /* "simplestart/ss_ui/input.py":247
+  /* "simplestart/ss_ui/input.py":281
  *         if hasattr(original_value, 'value'):
  *             original_value.value = val
  *         if onchange:             # <<<<<<<<<<<<<<
  *             #  event
  *             sig = inspect.signature(onchange)
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 247, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 247, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 281, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 281, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":249
+    /* "simplestart/ss_ui/input.py":283
  *         if onchange:
  *             #  event
  *             sig = inspect.signature(onchange)             # <<<<<<<<<<<<<<
@@ -3485,12 +3485,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
  *                 onchange(event)
 */
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inspect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 249, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inspect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_signature); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 249, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_signature); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 283, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 249, __pyx_L1_error) }
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 283, __pyx_L1_error) }
     __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
     if (unlikely(PyMethod_Check(__pyx_t_11))) {
@@ -3508,27 +3508,27 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
       __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 249, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 283, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
     }
     __pyx_v_sig = __pyx_t_5;
     __pyx_t_5 = 0;
 
-    /* "simplestart/ss_ui/input.py":250
+    /* "simplestart/ss_ui/input.py":284
  *             #  event
  *             sig = inspect.signature(onchange)
  *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
  *                 onchange(event)
  *             else:
 */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_mstate_global->__pyx_n_u_parameters); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_mstate_global->__pyx_n_u_parameters); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_12 = PyObject_Length(__pyx_t_5); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_12 = PyObject_Length(__pyx_t_5); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_2 = (__pyx_t_12 > 0);
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/input.py":251
+      /* "simplestart/ss_ui/input.py":285
  *             sig = inspect.signature(onchange)
  *             if len(sig.parameters) > 0:
  *                 onchange(event)             # <<<<<<<<<<<<<<
@@ -3536,7 +3536,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
  *                 onchange()
 */
       __pyx_t_11 = NULL;
-      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 251, __pyx_L1_error) }
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 285, __pyx_L1_error) }
       __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
       __pyx_t_1 = __pyx_cur_scope->__pyx_v_onchange; 
       __pyx_t_6 = 1;
@@ -3556,12 +3556,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
         __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 285, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "simplestart/ss_ui/input.py":250
+      /* "simplestart/ss_ui/input.py":284
  *             #  event
  *             sig = inspect.signature(onchange)
  *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
@@ -3571,7 +3571,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
       goto __pyx_L17;
     }
 
-    /* "simplestart/ss_ui/input.py":253
+    /* "simplestart/ss_ui/input.py":287
  *                 onchange(event)
  *             else:
  *                 onchange()             # <<<<<<<<<<<<<<
@@ -3580,7 +3580,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
 */
     /*else*/ {
       __pyx_t_1 = NULL;
-      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 253, __pyx_L1_error) }
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 287, __pyx_L1_error) }
       __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
       __pyx_t_11 = __pyx_cur_scope->__pyx_v_onchange; 
       __pyx_t_6 = 1;
@@ -3600,14 +3600,14 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
         __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 287, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
     __pyx_L17:;
 
-    /* "simplestart/ss_ui/input.py":247
+    /* "simplestart/ss_ui/input.py":281
  *         if hasattr(original_value, 'value'):
  *             original_value.value = val
  *         if onchange:             # <<<<<<<<<<<<<<
@@ -3616,7 +3616,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
 */
   }
 
-  /* "simplestart/ss_ui/input.py":227
+  /* "simplestart/ss_ui/input.py":261
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
@@ -3642,7 +3642,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_2myonchange(PyObjec
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":255
+/* "simplestart/ss_ui/input.py":289
  *                 onchange()
  * 
  *     def myonsubmit(event):             # <<<<<<<<<<<<<<
@@ -3689,32 +3689,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 255, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 289, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 255, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 289, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonsubmit", 0) < (0)) __PYX_ERR(0, 255, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonsubmit", 0) < (0)) __PYX_ERR(0, 289, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, i); __PYX_ERR(0, 255, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, i); __PYX_ERR(0, 289, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 255, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 289, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 255, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonsubmit", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 289, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3761,19 +3761,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
   __pyx_outer_scope = (struct __pyx_obj_11simplestart_5ss_ui_5input___pyx_scope_struct__input *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
 
-  /* "simplestart/ss_ui/input.py":257
+  /* "simplestart/ss_ui/input.py":291
  *     def myonsubmit(event):
  *         #  myonchange
  *         val = event.value             # <<<<<<<<<<<<<<
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_val = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":258
+  /* "simplestart/ss_ui/input.py":292
  *         #  myonchange
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":             # <<<<<<<<<<<<<<
@@ -3786,8 +3786,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
     __pyx_t_2 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 258, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 292, __pyx_L1_error) }
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_4 = __pyx_t_5;
   __Pyx_INCREF(__pyx_t_4);
@@ -3797,20 +3797,20 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_get, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_extract_value)) { __Pyx_RaiseClosureNameError("extract_value"); __PYX_ERR(0, 258, __pyx_L1_error) }
-  __pyx_t_5 = __pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(__pyx_cur_scope->__pyx_v_extract_value, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_extract_value)) { __Pyx_RaiseClosureNameError("extract_value"); __PYX_ERR(0, 292, __pyx_L1_error) }
+  __pyx_t_5 = __pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(__pyx_cur_scope->__pyx_v_extract_value, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_password, Py_NE)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_password, Py_NE)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_2 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":259
+    /* "simplestart/ss_ui/input.py":293
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:             # <<<<<<<<<<<<<<
@@ -3826,29 +3826,29 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
       __Pyx_XGOTREF(__pyx_t_9);
       /*try:*/ {
 
-        /* "simplestart/ss_ui/input.py":260
+        /* "simplestart/ss_ui/input.py":294
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:
  *                 if '.' in val:             # <<<<<<<<<<<<<<
  *                     val = float(val)
  *                 else:
 */
-        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_, __pyx_v_val, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 260, __pyx_L6_error)
+        __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_, __pyx_v_val, Py_EQ)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 294, __pyx_L6_error)
         if (__pyx_t_2) {
 
-          /* "simplestart/ss_ui/input.py":261
+          /* "simplestart/ss_ui/input.py":295
  *             try:
  *                 if '.' in val:
  *                     val = float(val)             # <<<<<<<<<<<<<<
  *                 else:
  *                     val = int(val)
 */
-          __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L6_error)
+          __pyx_t_5 = __Pyx_PyNumber_Float(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 295, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_5);
           __pyx_t_5 = 0;
 
-          /* "simplestart/ss_ui/input.py":260
+          /* "simplestart/ss_ui/input.py":294
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:
  *                 if '.' in val:             # <<<<<<<<<<<<<<
@@ -3858,7 +3858,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
           goto __pyx_L12;
         }
 
-        /* "simplestart/ss_ui/input.py":263
+        /* "simplestart/ss_ui/input.py":297
  *                     val = float(val)
  *                 else:
  *                     val = int(val)             # <<<<<<<<<<<<<<
@@ -3866,14 +3866,14 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
  *                 pass
 */
         /*else*/ {
-          __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 263, __pyx_L6_error)
+          __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_v_val); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 297, __pyx_L6_error)
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_5);
           __pyx_t_5 = 0;
         }
         __pyx_L12:;
 
-        /* "simplestart/ss_ui/input.py":259
+        /* "simplestart/ss_ui/input.py":293
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:             # <<<<<<<<<<<<<<
@@ -3890,7 +3890,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "simplestart/ss_ui/input.py":264
+      /* "simplestart/ss_ui/input.py":298
  *                 else:
  *                     val = int(val)
  *             except ValueError:             # <<<<<<<<<<<<<<
@@ -3904,7 +3904,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
       }
       goto __pyx_L8_except_error;
 
-      /* "simplestart/ss_ui/input.py":259
+      /* "simplestart/ss_ui/input.py":293
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":
  *             try:             # <<<<<<<<<<<<<<
@@ -3925,7 +3925,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
       __pyx_L11_try_end:;
     }
 
-    /* "simplestart/ss_ui/input.py":258
+    /* "simplestart/ss_ui/input.py":292
  *         #  myonchange
  *         val = event.value
  *         if isinstance(val, str) and extract_value(res._data.get("type")) != "password":             # <<<<<<<<<<<<<<
@@ -3934,31 +3934,31 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
 */
   }
 
-  /* "simplestart/ss_ui/input.py":267
+  /* "simplestart/ss_ui/input.py":301
  *                 pass
  *         #  checkbox
  *         res._data["value"] = val             # <<<<<<<<<<<<<<
  *         if onsubmit:
  *             #  event
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 267, __pyx_L1_error) }
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 301, __pyx_L1_error) }
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (unlikely((PyObject_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < 0))) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < 0))) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "simplestart/ss_ui/input.py":268
+  /* "simplestart/ss_ui/input.py":302
  *         #  checkbox
  *         res._data["value"] = val
  *         if onsubmit:             # <<<<<<<<<<<<<<
  *             #  event
  *             sig = inspect.signature(onsubmit)
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 268, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onsubmit); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 268, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 302, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onsubmit); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 302, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input.py":270
+    /* "simplestart/ss_ui/input.py":304
  *         if onsubmit:
  *             #  event
  *             sig = inspect.signature(onsubmit)             # <<<<<<<<<<<<<<
@@ -3966,12 +3966,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
  *                 onsubmit(event)
 */
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inspect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_inspect); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_signature); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 270, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_signature); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 270, __pyx_L1_error) }
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 304, __pyx_L1_error) }
     __pyx_t_6 = 1;
     #if CYTHON_UNPACK_METHODS
     if (unlikely(PyMethod_Check(__pyx_t_11))) {
@@ -3989,27 +3989,27 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
       __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 304, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
     }
     __pyx_v_sig = __pyx_t_5;
     __pyx_t_5 = 0;
 
-    /* "simplestart/ss_ui/input.py":271
+    /* "simplestart/ss_ui/input.py":305
  *             #  event
  *             sig = inspect.signature(onsubmit)
  *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
  *                 onsubmit(event)
  *             else:
 */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_mstate_global->__pyx_n_u_parameters); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_mstate_global->__pyx_n_u_parameters); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 305, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_12 = PyObject_Length(__pyx_t_5); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 271, __pyx_L1_error)
+    __pyx_t_12 = PyObject_Length(__pyx_t_5); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 305, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_2 = (__pyx_t_12 > 0);
     if (__pyx_t_2) {
 
-      /* "simplestart/ss_ui/input.py":272
+      /* "simplestart/ss_ui/input.py":306
  *             sig = inspect.signature(onsubmit)
  *             if len(sig.parameters) > 0:
  *                 onsubmit(event)             # <<<<<<<<<<<<<<
@@ -4017,7 +4017,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
  *                 onsubmit()
 */
       __pyx_t_11 = NULL;
-      if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 272, __pyx_L1_error) }
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 306, __pyx_L1_error) }
       __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onsubmit);
       __pyx_t_1 = __pyx_cur_scope->__pyx_v_onsubmit; 
       __pyx_t_6 = 1;
@@ -4037,12 +4037,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
         __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 306, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-      /* "simplestart/ss_ui/input.py":271
+      /* "simplestart/ss_ui/input.py":305
  *             #  event
  *             sig = inspect.signature(onsubmit)
  *             if len(sig.parameters) > 0:             # <<<<<<<<<<<<<<
@@ -4052,7 +4052,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
       goto __pyx_L16;
     }
 
-    /* "simplestart/ss_ui/input.py":274
+    /* "simplestart/ss_ui/input.py":308
  *                 onsubmit(event)
  *             else:
  *                 onsubmit()             # <<<<<<<<<<<<<<
@@ -4061,7 +4061,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
 */
     /*else*/ {
       __pyx_t_1 = NULL;
-      if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 274, __pyx_L1_error) }
+      if (unlikely(!__pyx_cur_scope->__pyx_v_onsubmit)) { __Pyx_RaiseClosureNameError("onsubmit"); __PYX_ERR(0, 308, __pyx_L1_error) }
       __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onsubmit);
       __pyx_t_11 = __pyx_cur_scope->__pyx_v_onsubmit; 
       __pyx_t_6 = 1;
@@ -4081,14 +4081,14 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
         __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_6, (1-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
+        if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 308, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
     __pyx_L16:;
 
-    /* "simplestart/ss_ui/input.py":268
+    /* "simplestart/ss_ui/input.py":302
  *         #  checkbox
  *         res._data["value"] = val
  *         if onsubmit:             # <<<<<<<<<<<<<<
@@ -4097,7 +4097,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_5input_4myonsubmit(PyObjec
 */
   }
 
-  /* "simplestart/ss_ui/input.py":255
+  /* "simplestart/ss_ui/input.py":289
  *                 onchange()
  * 
  *     def myonsubmit(event):             # <<<<<<<<<<<<<<
@@ -4843,48 +4843,39 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
  *     data["disabled"] = kwargs.get("disabled", False)
  *     #  primary#409EFF Element  color
  *     data["color"] = kwargs.get("color", "primary")             # <<<<<<<<<<<<<<
- *     # Vuetify focused  --v-field-border-width  2px 1px
- *     data["_css"] = ".ss-input-field .v-field__outline,.ss-input-field.v-field--focused .v-field__outline{--v-field-border-width:1px}"
+ *     #  selectbox/input_number  Element  #dcdfe6  /
+ *     # hover #c0c4cc /  #409eff 1px Vuetify outlined
 */
   __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_color, __pyx_mstate_global->__pyx_n_u_primary); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_color, __pyx_t_3) < 0))) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":156
- *     data["color"] = kwargs.get("color", "primary")
- *     # Vuetify focused  --v-field-border-width  2px 1px
- *     data["_css"] = ".ss-input-field .v-field__outline,.ss-input-field.v-field--focused .v-field__outline{--v-field-border-width:1px}"             # <<<<<<<<<<<<<<
- *     # Vuetify focused  --v-field-border-width  2px 1px
- *     data["_css"] = ".ss-input-field .v-field__outline,.ss-input-field.v-field--focused .v-field__outline{--v-field-border-width:1px}"
-*/
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css, __pyx_mstate_global->__pyx_kp_u_ss_input_field_v_field__outline) < 0))) __PYX_ERR(0, 156, __pyx_L1_error)
-
   /* "simplestart/ss_ui/input.py":158
- *     data["_css"] = ".ss-input-field .v-field__outline,.ss-input-field.v-field--focused .v-field__outline{--v-field-border-width:1px}"
- *     # Vuetify focused  --v-field-border-width  2px 1px
- *     data["_css"] = ".ss-input-field .v-field__outline,.ss-input-field.v-field--focused .v-field__outline{--v-field-border-width:1px}"             # <<<<<<<<<<<<<<
- *     #  args  value kwargs
- *     # value=  StatePropBinding  State
+ *     # hover #c0c4cc /  #409eff 1px Vuetify outlined
+ *     #  variant="solo"
+ *     data["_css"] = """             # <<<<<<<<<<<<<<
+ * .ss-input-field .v-field__outline,
+ * .ss-input-field .v-field--focused .v-field__outline {
 */
   if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css, __pyx_mstate_global->__pyx_kp_u_ss_input_field_v_field__outline) < 0))) __PYX_ERR(0, 158, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":161
+  /* "simplestart/ss_ui/input.py":195
  *     #  args  value kwargs
  *     # value=  StatePropBinding  State
  *     original_value = args[0] if len(args) > 0 else kwargs.get("value", "")             # <<<<<<<<<<<<<<
  *     data["value"] = original_value
  *     data["maxlength"] = kwargs.get("maxlength", "")
 */
-  __pyx_t_15 = __Pyx_PyTuple_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_15 == ((Py_ssize_t)-1))) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_15 = __Pyx_PyTuple_GET_SIZE(__pyx_v_args); if (unlikely(__pyx_t_15 == ((Py_ssize_t)-1))) __PYX_ERR(0, 195, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_15 > 0);
   if (__pyx_t_6) {
-    __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt_Tuple(__pyx_v_args, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 1, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = __pyx_t_4;
     __pyx_t_4 = 0;
   } else {
-    __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_value, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = __pyx_t_4;
     __pyx_t_4 = 0;
@@ -4893,202 +4884,202 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   __pyx_cur_scope->__pyx_v_original_value = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":162
+  /* "simplestart/ss_ui/input.py":196
  *     # value=  StatePropBinding  State
  *     original_value = args[0] if len(args) > 0 else kwargs.get("value", "")
  *     data["value"] = original_value             # <<<<<<<<<<<<<<
  *     data["maxlength"] = kwargs.get("maxlength", "")
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_value, __pyx_cur_scope->__pyx_v_original_value) < 0))) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_value, __pyx_cur_scope->__pyx_v_original_value) < 0))) __PYX_ERR(0, 196, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":163
+  /* "simplestart/ss_ui/input.py":197
  *     original_value = args[0] if len(args) > 0 else kwargs.get("value", "")
  *     data["value"] = original_value
  *     data["maxlength"] = kwargs.get("maxlength", "")             # <<<<<<<<<<<<<<
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")
  *     #  icon  prefix_icon
 */
-  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_t_3) < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_maxlength, __pyx_t_3) < 0))) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":164
+  /* "simplestart/ss_ui/input.py":198
  *     data["value"] = original_value
  *     data["maxlength"] = kwargs.get("maxlength", "")
  *     data["placeholder"] = kwargs.get("placeholder", "Please input")             # <<<<<<<<<<<<<<
  *     #  icon  prefix_icon
  *     # Vuetify  prepend-inner-icon / append-inner-icon
 */
-  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_mstate_global->__pyx_kp_u_Please_input); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_mstate_global->__pyx_kp_u_Please_input); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_t_3) < 0))) __PYX_ERR(0, 164, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_placeholder, __pyx_t_3) < 0))) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":167
+  /* "simplestart/ss_ui/input.py":201
  *     #  icon  prefix_icon
  *     # Vuetify  prepend-inner-icon / append-inner-icon
  *     data["prepend_inner_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))             # <<<<<<<<<<<<<<
  *     data["show_password"] = kwargs.get("show_password", False)
  *     data["__pw_visible"] = False
 */
-  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_prefix_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_icon, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_icon, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prepend_inner_icon, __pyx_t_4) < 0))) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prepend_inner_icon, __pyx_t_4) < 0))) __PYX_ERR(0, 201, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":168
+  /* "simplestart/ss_ui/input.py":202
  *     # Vuetify  prepend-inner-icon / append-inner-icon
  *     data["prepend_inner_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))
  *     data["show_password"] = kwargs.get("show_password", False)             # <<<<<<<<<<<<<<
  *     data["__pw_visible"] = False
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_password, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_password, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_password, __pyx_t_4) < 0))) __PYX_ERR(0, 168, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_password, __pyx_t_4) < 0))) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":169
+  /* "simplestart/ss_ui/input.py":203
  *     data["prepend_inner_icon"] = kwargs.get("icon", kwargs.get("prefix_icon", ""))
  *     data["show_password"] = kwargs.get("show_password", False)
  *     data["__pw_visible"] = False             # <<<<<<<<<<<<<<
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
  *     data["clearable"] = kwargs.get("clearable", True)
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_pw_visible, Py_False) < 0))) __PYX_ERR(0, 169, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_pw_visible, Py_False) < 0))) __PYX_ERR(0, 203, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":170
+  /* "simplestart/ss_ui/input.py":204
  *     data["show_password"] = kwargs.get("show_password", False)
  *     data["__pw_visible"] = False
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)             # <<<<<<<<<<<<<<
  *     data["clearable"] = kwargs.get("clearable", True)
  * 
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_word_limit, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_show_word_limit, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_word_limit, __pyx_t_4) < 0))) __PYX_ERR(0, 170, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_show_word_limit, __pyx_t_4) < 0))) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":171
+  /* "simplestart/ss_ui/input.py":205
  *     data["__pw_visible"] = False
  *     data["show_word_limit"] = kwargs.get("show_word_limit", False)
  *     data["clearable"] = kwargs.get("clearable", True)             # <<<<<<<<<<<<<<
  * 
  *     #  size  Vuetify  density
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_clearable, Py_True); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_clearable, Py_True); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_clearable, __pyx_t_4) < 0))) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_clearable, __pyx_t_4) < 0))) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":176
+  /* "simplestart/ss_ui/input.py":210
  *     # Vuetify density defaultcomfortablecompact
  *     #  compact40px Element input(32px)  Vuetify (56px)
  *     size = kwargs.get("size", "compact")             # <<<<<<<<<<<<<<
  *     #  extract_value
  *     #  size  data["density"] vuetify()
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, __pyx_mstate_global->__pyx_n_u_compact); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_size, __pyx_mstate_global->__pyx_n_u_compact); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 210, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_size = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":180
+  /* "simplestart/ss_ui/input.py":214
  *     #  size  data["density"] vuetify()
  *     #
  *     data["size"] = size             # <<<<<<<<<<<<<<
  *     data["density"] = size
  * 
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_size, __pyx_v_size) < 0))) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_size, __pyx_v_size) < 0))) __PYX_ERR(0, 214, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":181
+  /* "simplestart/ss_ui/input.py":215
  *     #
  *     data["size"] = size
  *     data["density"] = size             # <<<<<<<<<<<<<<
  * 
  *     data["append_inner_icon"] = kwargs.get("suffix_icon", "")
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_density, __pyx_v_size) < 0))) __PYX_ERR(0, 181, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_density, __pyx_v_size) < 0))) __PYX_ERR(0, 215, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":183
+  /* "simplestart/ss_ui/input.py":217
  *     data["density"] = size
  * 
  *     data["append_inner_icon"] = kwargs.get("suffix_icon", "")             # <<<<<<<<<<<<<<
  *     #  suffix_icon  icon prefix_icon
  *     append_icon = data["append_inner_icon"]
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_suffix_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_suffix_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_append_inner_icon, __pyx_t_4) < 0))) __PYX_ERR(0, 183, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_append_inner_icon, __pyx_t_4) < 0))) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":185
+  /* "simplestart/ss_ui/input.py":219
  *     data["append_inner_icon"] = kwargs.get("suffix_icon", "")
  *     #  suffix_icon  icon prefix_icon
  *     append_icon = data["append_inner_icon"]             # <<<<<<<<<<<<<<
  *     append_icon_is_reactive = hasattr(append_icon, '_state') and hasattr(append_icon, '_attr_name')
  *     prepend_icon = data["prepend_inner_icon"]
 */
-  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_append_inner_icon); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_append_inner_icon); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_append_icon = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":186
+  /* "simplestart/ss_ui/input.py":220
  *     #  suffix_icon  icon prefix_icon
  *     append_icon = data["append_inner_icon"]
  *     append_icon_is_reactive = hasattr(append_icon, '_state') and hasattr(append_icon, '_attr_name')             # <<<<<<<<<<<<<<
  *     prepend_icon = data["prepend_inner_icon"]
  *     prepend_icon_is_reactive = hasattr(prepend_icon, '_state') and hasattr(prepend_icon, '_attr_name')
 */
-  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_append_icon, __pyx_mstate_global->__pyx_n_u_state); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_append_icon, __pyx_mstate_global->__pyx_n_u_state); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 220, __pyx_L1_error)
   if (__pyx_t_13) {
   } else {
     __pyx_t_6 = __pyx_t_13;
     goto __pyx_L19_bool_binop_done;
   }
-  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_append_icon, __pyx_mstate_global->__pyx_n_u_attr_name); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_append_icon, __pyx_mstate_global->__pyx_n_u_attr_name); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 220, __pyx_L1_error)
   __pyx_t_6 = __pyx_t_13;
   __pyx_L19_bool_binop_done:;
   __pyx_v_append_icon_is_reactive = __pyx_t_6;
 
-  /* "simplestart/ss_ui/input.py":187
+  /* "simplestart/ss_ui/input.py":221
  *     append_icon = data["append_inner_icon"]
  *     append_icon_is_reactive = hasattr(append_icon, '_state') and hasattr(append_icon, '_attr_name')
  *     prepend_icon = data["prepend_inner_icon"]             # <<<<<<<<<<<<<<
  *     prepend_icon_is_reactive = hasattr(prepend_icon, '_state') and hasattr(prepend_icon, '_attr_name')
  *     if not prepend_icon_is_reactive and not prepend_icon and (append_icon_is_reactive or append_icon):
 */
-  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prepend_inner_icon); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Dict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prepend_inner_icon); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_prepend_icon = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":188
+  /* "simplestart/ss_ui/input.py":222
  *     append_icon_is_reactive = hasattr(append_icon, '_state') and hasattr(append_icon, '_attr_name')
  *     prepend_icon = data["prepend_inner_icon"]
  *     prepend_icon_is_reactive = hasattr(prepend_icon, '_state') and hasattr(prepend_icon, '_attr_name')             # <<<<<<<<<<<<<<
  *     if not prepend_icon_is_reactive and not prepend_icon and (append_icon_is_reactive or append_icon):
  *         data["prepend_inner_icon"] = kwargs.get("icon", "")
 */
-  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_prepend_icon, __pyx_mstate_global->__pyx_n_u_state); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_prepend_icon, __pyx_mstate_global->__pyx_n_u_state); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 222, __pyx_L1_error)
   if (__pyx_t_13) {
   } else {
     __pyx_t_6 = __pyx_t_13;
     goto __pyx_L21_bool_binop_done;
   }
-  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_prepend_icon, __pyx_mstate_global->__pyx_n_u_attr_name); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_HasAttr(__pyx_v_prepend_icon, __pyx_mstate_global->__pyx_n_u_attr_name); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 222, __pyx_L1_error)
   __pyx_t_6 = __pyx_t_13;
   __pyx_L21_bool_binop_done:;
   __pyx_v_prepend_icon_is_reactive = __pyx_t_6;
 
-  /* "simplestart/ss_ui/input.py":189
+  /* "simplestart/ss_ui/input.py":223
  *     prepend_icon = data["prepend_inner_icon"]
  *     prepend_icon_is_reactive = hasattr(prepend_icon, '_state') and hasattr(prepend_icon, '_attr_name')
  *     if not prepend_icon_is_reactive and not prepend_icon and (append_icon_is_reactive or append_icon):             # <<<<<<<<<<<<<<
@@ -5101,7 +5092,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
     __pyx_t_6 = __pyx_t_13;
     goto __pyx_L24_bool_binop_done;
   }
-  __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_v_prepend_icon); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_IsTrue(__pyx_v_prepend_icon); if (unlikely((__pyx_t_13 < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
   __pyx_t_7 = (!__pyx_t_13);
   if (__pyx_t_7) {
   } else {
@@ -5113,24 +5104,24 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
     __pyx_t_6 = __pyx_v_append_icon_is_reactive;
     goto __pyx_L24_bool_binop_done;
   }
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_append_icon); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_append_icon); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
   __pyx_t_6 = __pyx_t_7;
   __pyx_L24_bool_binop_done:;
   if (__pyx_t_6) {
 
-    /* "simplestart/ss_ui/input.py":190
+    /* "simplestart/ss_ui/input.py":224
  *     prepend_icon_is_reactive = hasattr(prepend_icon, '_state') and hasattr(prepend_icon, '_attr_name')
  *     if not prepend_icon_is_reactive and not prepend_icon and (append_icon_is_reactive or append_icon):
  *         data["prepend_inner_icon"] = kwargs.get("icon", "")             # <<<<<<<<<<<<<<
  * 
  *     input_type = kwargs.get("type", "text")
 */
-    __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_icon, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 224, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prepend_inner_icon, __pyx_t_4) < 0))) __PYX_ERR(0, 190, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_prepend_inner_icon, __pyx_t_4) < 0))) __PYX_ERR(0, 224, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "simplestart/ss_ui/input.py":189
+    /* "simplestart/ss_ui/input.py":223
  *     prepend_icon = data["prepend_inner_icon"]
  *     prepend_icon_is_reactive = hasattr(prepend_icon, '_state') and hasattr(prepend_icon, '_attr_name')
  *     if not prepend_icon_is_reactive and not prepend_icon and (append_icon_is_reactive or append_icon):             # <<<<<<<<<<<<<<
@@ -5139,95 +5130,95 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
 */
   }
 
-  /* "simplestart/ss_ui/input.py":192
+  /* "simplestart/ss_ui/input.py":226
  *         data["prepend_inner_icon"] = kwargs.get("icon", "")
  * 
  *     input_type = kwargs.get("type", "text")             # <<<<<<<<<<<<<<
  *     data["type"] = input_type
  * 
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_text); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_input_type = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":193
+  /* "simplestart/ss_ui/input.py":227
  * 
  *     input_type = kwargs.get("type", "text")
  *     data["type"] = input_type             # <<<<<<<<<<<<<<
  * 
  *     #  variant  outlined
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_type, __pyx_v_input_type) < 0))) __PYX_ERR(0, 193, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_type, __pyx_v_input_type) < 0))) __PYX_ERR(0, 227, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":196
+  /* "simplestart/ss_ui/input.py":230
  * 
  *     #  variant  outlined
  *     variant = kwargs.get("variant", "outlined")             # <<<<<<<<<<<<<<
  *     #  extract_value
  *     data["variant"] = variant
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_variant, __pyx_mstate_global->__pyx_n_u_outlined); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_variant, __pyx_mstate_global->__pyx_n_u_outlined); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_variant = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":198
+  /* "simplestart/ss_ui/input.py":232
  *     variant = kwargs.get("variant", "outlined")
  *     #  extract_value
  *     data["variant"] = variant             # <<<<<<<<<<<<<<
  * 
  *     #  width
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_variant, __pyx_v_variant) < 0))) __PYX_ERR(0, 198, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_variant, __pyx_v_variant) < 0))) __PYX_ERR(0, 232, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":201
+  /* "simplestart/ss_ui/input.py":235
  * 
  *     #  width
  *     width = kwargs.get("width", "")             # <<<<<<<<<<<<<<
  *     style = kwargs.get("style", "")
  * 
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_width, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_width = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":202
+  /* "simplestart/ss_ui/input.py":236
  *     #  width
  *     width = kwargs.get("width", "")
  *     style = kwargs.get("style", "")             # <<<<<<<<<<<<<<
  * 
  *     #
 */
-  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_style, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_style, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_style = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":206
+  /* "simplestart/ss_ui/input.py":240
  *     #
  *     #  extract_value
  *     width_val = extract_value(width)             # <<<<<<<<<<<<<<
  *     if width_val:
  *         if isinstance(width_val, (int)):
 */
-  __pyx_t_4 = __pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(__pyx_cur_scope->__pyx_v_extract_value, __pyx_v_width); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_4 = __pyx_pf_11simplestart_5ss_ui_5input_5input_extract_value(__pyx_cur_scope->__pyx_v_extract_value, __pyx_v_width); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_width_val = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "simplestart/ss_ui/input.py":207
+  /* "simplestart/ss_ui/input.py":241
  *     #  extract_value
  *     width_val = extract_value(width)
  *     if width_val:             # <<<<<<<<<<<<<<
  *         if isinstance(width_val, (int)):
  *             width_val = f"{width_val}px"
 */
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_width_val); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_width_val); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 241, __pyx_L1_error)
   if (__pyx_t_6) {
 
-    /* "simplestart/ss_ui/input.py":208
+    /* "simplestart/ss_ui/input.py":242
  *     width_val = extract_value(width)
  *     if width_val:
  *         if isinstance(width_val, (int)):             # <<<<<<<<<<<<<<
@@ -5237,22 +5228,22 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
     __pyx_t_6 = PyLong_Check(__pyx_v_width_val); 
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_ui/input.py":209
+      /* "simplestart/ss_ui/input.py":243
  *     if width_val:
  *         if isinstance(width_val, (int)):
  *             width_val = f"{width_val}px"             # <<<<<<<<<<<<<<
  * 
  *     #  extract_value
 */
-      __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_width_val, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_width_val, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_px); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyUnicode_Concat__Pyx_ReferenceSharing_OwnStrongReferenceInPlace(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_px); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF_SET(__pyx_v_width_val, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "simplestart/ss_ui/input.py":208
+      /* "simplestart/ss_ui/input.py":242
  *     width_val = extract_value(width)
  *     if width_val:
  *         if isinstance(width_val, (int)):             # <<<<<<<<<<<<<<
@@ -5261,7 +5252,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
 */
     }
 
-    /* "simplestart/ss_ui/input.py":207
+    /* "simplestart/ss_ui/input.py":241
  *     #  extract_value
  *     width_val = extract_value(width)
  *     if width_val:             # <<<<<<<<<<<<<<
@@ -5270,43 +5261,43 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
 */
   }
 
-  /* "simplestart/ss_ui/input.py":216
+  /* "simplestart/ss_ui/input.py":250
  *     #  mystate.width
  *     #  width
  *     data["custom_width"] = width             # <<<<<<<<<<<<<<
  *     data["custom_style"] = style
  *     data["width"] = width
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_custom_width, __pyx_v_width) < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_custom_width, __pyx_v_width) < 0))) __PYX_ERR(0, 250, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":217
+  /* "simplestart/ss_ui/input.py":251
  *     #  width
  *     data["custom_width"] = width
  *     data["custom_style"] = style             # <<<<<<<<<<<<<<
  *     data["width"] = width
  * 
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_custom_style, __pyx_v_style) < 0))) __PYX_ERR(0, 217, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_custom_style, __pyx_v_style) < 0))) __PYX_ERR(0, 251, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":218
+  /* "simplestart/ss_ui/input.py":252
  *     data["custom_width"] = width
  *     data["custom_style"] = style
  *     data["width"] = width             # <<<<<<<<<<<<<<
  * 
  *     #  css_classcss_nameclassName
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_width, __pyx_v_width) < 0))) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_width, __pyx_v_width) < 0))) __PYX_ERR(0, 252, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":221
+  /* "simplestart/ss_ui/input.py":255
  * 
  *     #  css_classcss_nameclassName
  *     css_class = kwargs.pop("css_class", "") or kwargs.pop("css_name", "") or kwargs.pop("className", "")             # <<<<<<<<<<<<<<
  *     data["css_class"] = css_class
  * 
 */
-  __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_css_class, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_css_class, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 255, __pyx_L1_error)
   if (!__pyx_t_6) {
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
@@ -5315,9 +5306,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     goto __pyx_L30_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_css_name, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_css_name, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 255, __pyx_L1_error)
   if (!__pyx_t_6) {
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else {
@@ -5326,7 +5317,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     goto __pyx_L30_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_className, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_className, __pyx_mstate_global->__pyx_kp_u__2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_t_4);
   __pyx_t_3 = __pyx_t_4;
@@ -5335,66 +5326,66 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   __pyx_v_css_class = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":222
+  /* "simplestart/ss_ui/input.py":256
  *     #  css_classcss_nameclassName
  *     css_class = kwargs.pop("css_class", "") or kwargs.pop("css_name", "") or kwargs.pop("className", "")
  *     data["css_class"] = css_class             # <<<<<<<<<<<<<<
  * 
  *     onchange = kwargs.pop("onchange", None)
 */
-  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css_class, __pyx_v_css_class) < 0))) __PYX_ERR(0, 222, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css_class, __pyx_v_css_class) < 0))) __PYX_ERR(0, 256, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input.py":224
+  /* "simplestart/ss_ui/input.py":258
  *     data["css_class"] = css_class
  * 
  *     onchange = kwargs.pop("onchange", None)             # <<<<<<<<<<<<<<
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
 */
-  __pyx_t_3 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_Pop(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onchange, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_cur_scope->__pyx_v_onchange = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":225
+  /* "simplestart/ss_ui/input.py":259
  * 
  *     onchange = kwargs.pop("onchange", None)
  *     onsubmit = kwargs.get("onsubmit", None)             # <<<<<<<<<<<<<<
  * 
  *     def myonchange(event):
 */
-  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onsubmit, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_onsubmit, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_cur_scope->__pyx_v_onsubmit = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":227
+  /* "simplestart/ss_ui/input.py":261
  *     onsubmit = kwargs.get("onsubmit", None)
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
  *         #  slider
  *         #  int pw.encode()
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_3myonchange, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_3myonchange, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_myonchange = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":255
+  /* "simplestart/ss_ui/input.py":289
  *                 onchange()
  * 
  *     def myonsubmit(event):             # <<<<<<<<<<<<<<
  *         #  myonchange
  *         val = event.value
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_5myonsubmit, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonsubmit, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5input_5myonsubmit, 0, __pyx_mstate_global->__pyx_n_u_input_locals_myonsubmit, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_myonsubmit = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":300
+  /* "simplestart/ss_ui/input.py":334
  *     #     data.valuev-text-field
  *     #    model-value Vuetify  markdown slot
  *     res = vuetify(r'''             # <<<<<<<<<<<<<<
@@ -5402,20 +5393,20 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
  *             :style="data.root_in_row ? 'display: inline-block; vertical-align: top;' : 'display: inline-block; vertical-align: top; width: 100%;'"
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
 
-  /* "simplestart/ss_ui/input.py":365
+  /* "simplestart/ss_ui/input.py":399
  *             />
  *         </div>
  *     ''', data= data, handlers = {"onchange":myonchange, "onsubmit":myonsubmit})             # <<<<<<<<<<<<<<
  *     return res
  * 
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 365, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 399, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 365, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_onsubmit, __pyx_v_myonsubmit) < (0)) __PYX_ERR(0, 365, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 399, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_onsubmit, __pyx_v_myonsubmit) < (0)) __PYX_ERR(0, 399, __pyx_L1_error)
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_12))) {
@@ -5430,23 +5421,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_4, __pyx_mstate_global->__pyx_kp_u_div_style_data_root_in_row_disp};
-    __pyx_t_11 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 334, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_11, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 300, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_1, __pyx_t_11, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 300, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_11, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_1, __pyx_t_11, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 334, __pyx_L1_error)
     __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_12, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_11);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_cur_scope->__pyx_v_res = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input.py":366
+  /* "simplestart/ss_ui/input.py":400
  *         </div>
  *     ''', data= data, handlers = {"onchange":myonchange, "onsubmit":myonsubmit})
  *     return res             # <<<<<<<<<<<<<<
@@ -5505,7 +5496,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_input(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":368
+/* "simplestart/ss_ui/input.py":402
  *     return res
  * 
  * def text_input(*args, **kwargs):             # <<<<<<<<<<<<<<
@@ -5565,7 +5556,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("text_input", 0);
 
-  /* "simplestart/ss_ui/input.py":378
+  /* "simplestart/ss_ui/input.py":412
  *         props
  *     """
  *     return input(*args, **kwargs)             # <<<<<<<<<<<<<<
@@ -5573,11 +5564,11 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
  * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 378, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 412, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5585,7 +5576,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/input.py":368
+  /* "simplestart/ss_ui/input.py":402
  *     return res
  * 
  * def text_input(*args, **kwargs):             # <<<<<<<<<<<<<<
@@ -5606,7 +5597,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input.py":381
+/* "simplestart/ss_ui/input.py":415
  * 
  * 
  * def textarea(*args, **kwargs):             # <<<<<<<<<<<<<<
@@ -5616,7 +5607,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_2text_input(CYTHON_UNUSED 
 
 /* Python wrapper */
 static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_5textarea(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_5input_4textarea, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\232\350\241\214\346\226\207\346\234\254\350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\357\274\210textarea\357\274\211\n    \n    \350\277\231\346\230\257 input \347\273\204\344\273\266\347\232\204\344\276\277\346\215\267\345\214\205\350\243\205\357\274\214\350\207\252\345\212\250\350\256\276\347\275\256 textarea \347\233\270\345\205\263\345\217\202\346\225\260\343\200\202\n    \347\255\211\344\273\267\344\272\216: input(type=\"textarea\", rows=rows, autosize=autosize, ...)\n    \n    \345\217\202\346\225\260:\n        value: \351\273\230\350\256\244\345\200\274\n        disabled: \346\230\257\345\220\246\347\246\201\347\224\250\n        maxlength: \346\234\200\345\244\247\350\276\223\345\205\245\351\225\277\345\272\246\n        placeholder: \345\215\240\344\275\215\346\226\207\346\234\254\n        rows: \350\241\214\346\225\260\357\274\214\351\273\230\350\256\2443\n        show_word_limit: \346\230\257\345\220\246\346\230\276\347\244\272\345\255\227\346\225\260\347\273\237\350\256\241\n        size: \347\273\204\344\273\266\345\244\247\345\260\217\n        style: \350\207\252\345\256\232\344\271\211\346\240\267\345\274\217\n        autosize: \346\230\257\345\220\246\350\207\252\345\212\250\350\260\203\346\225\264\351\253\230\345\272\246\357\274\210\345\270\203\345\260\224\345\200\274\346\210\226\346\225\260\347\273\204\346\240\274\345\274\217 [min, max]\357\274\211\n        label: \346\240\207\347\255\276\346\240\207\351\242\230\n        title: \346\240\207\347\255\276\346\240\207\351\242\230\357\274\210\344\270\216 label \345\220\214\344\271\211\357\274\214\344\272\214\350\200\205\351\203\275\346\224\257\346\214\201\357\274\211\n        block: \346\230\257\345\220\246\344\270\272\345\235\227\347\272\247\350\276\223\345\205\245\346\241\206\357\274\210\345\215\240\346\215\256\346\225\264\350\241\214\357\274\211\357\274\214\351\273\230\350\256\244True\n        onchange: \350\276\223\345\205""\245\345\200\274\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \346\226\207\346\234\254\345\237\237\347\273\204\344\273\266\347\232\204props\345\257\271\350\261\241\n    ");
+PyDoc_STRVAR(__pyx_doc_11simplestart_5ss_ui_5input_4textarea, "\n    \345\210\233\345\273\272\344\270\200\344\270\252\345\244\232\350\241\214\346\226\207\346\234\254\350\276\223\345\205\245\346\241\206\347\273\204\344\273\266\357\274\210textarea\357\274\211\n    \n    \350\277\231\346\230\257 input \347\273\204\344\273\266\347\232\204\344\276\277\346\215\267\345\214\205\350\243\205\357\274\214\350\207\252\345\212\250\350\256\276\347\275\256 textarea \347\233\270\345\205\263\345\217\202\346\225\260\343\200\202\n    \347\255\211\344\273\267\344\272\216: input(type=\"textarea\", rows=rows, autosize=autosize, ...)\n    \n    \345\217\202\346\225\260:\n        value: \351\273\230\350\256\244\345\200\274\n        disabled: \346\230\257\345\220\246\347\246\201\347\224\250\n        maxlength: \346\234\200\345\244\247\350\276\223\345\205\245\351\225\277\345\272\246\n        placeholder: \345\215\240\344\275\215\346\226\207\346\234\254\n        rows: \350\241\214\346\225\260\357\274\214\351\273\230\350\256\2443\n        show_word_limit: \346\230\257\345\220\246\346\230\276\347\244\272\345\255\227\346\225\260\347\273\237\350\256\241\n        size: \347\273\204\344\273\266\345\244\247\345\260\217\n        style: \350\207\252\345\256\232\344\271\211\346\240\267\345\274\217\n        autosize: \346\230\257\345\220\246\350\207\252\345\212\250\350\260\203\346\225\264\351\253\230\345\272\246\357\274\210\345\270\203\345\260\224\345\200\274\346\210\226\346\225\260\347\273\204\346\240\274\345\274\217 [min, max]\357\274\211\n        label: \346\240\207\347\255\276\346\240\207\351\242\230\n        title: \346\240\207\347\255\276\346\240\207\351\242\230\357\274\210\344\270\216 label \345\220\214\344\271\211\357\274\214\344\272\214\350\200\205\351\203\275\346\224\257\346\214\201\357\274\211\n        block: \346\230\257\345\220\246\344\270\272\345\235\227\347\272\247\350\276\223\345\205\245\346\241\206\357\274\210\345\215\240\346\215\256\346\225\264\350\241\214\357\274\211\357\274\233\347\272\265\345\220\221\344\270\212\344\270\213\346\226\207\351\273""\230\350\256\244\345\267\262\346\222\221\346\273\241\357\274\214\344\270\200\350\210\254\346\227\240\351\234\200\344\274\240\n        onchange: \350\276\223\345\205\245\345\200\274\346\224\271\345\217\230\346\227\266\347\232\204\345\233\236\350\260\203\345\207\275\346\225\260\n        \n    \350\277\224\345\233\236:\n        \346\226\207\346\234\254\345\237\237\347\273\204\344\273\266\347\232\204props\345\257\271\350\261\241\n    ");
 static PyMethodDef __pyx_mdef_11simplestart_5ss_ui_5input_5textarea = {"textarea", (PyCFunction)(void(*)(void))(PyCFunctionWithKeywords)__pyx_pw_11simplestart_5ss_ui_5input_5textarea, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11simplestart_5ss_ui_5input_4textarea};
 static PyObject *__pyx_pw_11simplestart_5ss_ui_5input_5textarea(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_args = 0;
@@ -5666,50 +5657,39 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_4textarea(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("textarea", 0);
 
-  /* "simplestart/ss_ui/input.py":407
- *     """
- *     # 3
+  /* "simplestart/ss_ui/input.py":443
+ *     #  / row  240px  block=True
+ *     # textarea  ss.row
  *     kwargs.setdefault("type", "textarea")             # <<<<<<<<<<<<<<
- *     kwargs.setdefault("block", True)
- *     kwargs.setdefault("rows", 3)
-*/
-  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_textarea); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "simplestart/ss_ui/input.py":408
- *     # 3
- *     kwargs.setdefault("type", "textarea")
- *     kwargs.setdefault("block", True)             # <<<<<<<<<<<<<<
  *     kwargs.setdefault("rows", 3)
  * 
 */
-  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_block, Py_True); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_textarea); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":409
+  /* "simplestart/ss_ui/input.py":444
+ *     # textarea  ss.row
  *     kwargs.setdefault("type", "textarea")
- *     kwargs.setdefault("block", True)
  *     kwargs.setdefault("rows", 3)             # <<<<<<<<<<<<<<
  * 
  *     return input(*args, **kwargs)
 */
-  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_SetDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_rows, __pyx_mstate_global->__pyx_int_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input.py":411
+  /* "simplestart/ss_ui/input.py":446
  *     kwargs.setdefault("rows", 3)
  * 
  *     return input(*args, **kwargs)             # <<<<<<<<<<<<<<
 */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_input); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_2 = PyDict_Copy(__pyx_v_kwargs); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_args, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 446, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5717,7 +5697,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5input_4textarea(CYTHON_UNUSED Py
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "simplestart/ss_ui/input.py":381
+  /* "simplestart/ss_ui/input.py":415
  * 
  * 
  * def textarea(*args, **kwargs):             # <<<<<<<<<<<<<<
@@ -6428,7 +6408,7 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
  *         "value": {"type": "str", "default": "", "doc": "Initial value (also the first positional argument)"},
  *         "label": {"type": "str", "default": "", "doc": "Field label"},             # <<<<<<<<<<<<<<
  *         "title": {"type": "str", "default": "", "doc": "Alias of label"},
- *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; when False the input is 240px wide"},
+ *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; stack contexts fill by default, row contexts keep 240px compact; explicit width= overrides both"},
 */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -6442,7 +6422,7 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
  *         "value": {"type": "str", "default": "", "doc": "Initial value (also the first positional argument)"},
  *         "label": {"type": "str", "default": "", "doc": "Field label"},
  *         "title": {"type": "str", "default": "", "doc": "Alias of label"},             # <<<<<<<<<<<<<<
- *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; when False the input is 240px wide"},
+ *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; stack contexts fill by default, row contexts keep 240px compact; explicit width= overrides both"},
  *         "data": {"type": "dict", "default": {}, "doc": "Advanced: base dict merged into component state"},
 */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 15, __pyx_L1_error)
@@ -6456,7 +6436,7 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   /* "simplestart/ss_ui/input.py":16
  *         "label": {"type": "str", "default": "", "doc": "Field label"},
  *         "title": {"type": "str", "default": "", "doc": "Alias of label"},
- *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; when False the input is 240px wide"},             # <<<<<<<<<<<<<<
+ *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; stack contexts fill by default, row contexts keep 240px compact; explicit width= overrides both"},             # <<<<<<<<<<<<<<
  *         "data": {"type": "dict", "default": {}, "doc": "Advanced: base dict merged into component state"},
  *         "autosize": {"type": "bool | list", "default": False, "doc": "Auto-grow height; True, or [minRows, maxRows]"},
 */
@@ -6464,13 +6444,13 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_bool) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_False) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Fill_the_full_row_width_when_Fal) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Fill_the_full_row_width_stack_co) < (0)) __PYX_ERR(0, 16, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_block, __pyx_t_5) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/input.py":17
  *         "title": {"type": "str", "default": "", "doc": "Alias of label"},
- *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; when False the input is 240px wide"},
+ *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; stack contexts fill by default, row contexts keep 240px compact; explicit width= overrides both"},
  *         "data": {"type": "dict", "default": {}, "doc": "Advanced: base dict merged into component state"},             # <<<<<<<<<<<<<<
  *         "autosize": {"type": "bool | list", "default": False, "doc": "Auto-grow height; True, or [minRows, maxRows]"},
  *         "rows": {"type": "int", "default": 2, "doc": "Textarea row count (used with type='textarea')"},
@@ -6487,7 +6467,7 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/input.py":18
- *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; when False the input is 240px wide"},
+ *         "block": {"type": "bool", "default": False, "doc": "Fill the full row width; stack contexts fill by default, row contexts keep 240px compact; explicit width= overrides both"},
  *         "data": {"type": "dict", "default": {}, "doc": "Advanced: base dict merged into component state"},
  *         "autosize": {"type": "bool | list", "default": False, "doc": "Auto-grow height; True, or [minRows, maxRows]"},             # <<<<<<<<<<<<<<
  *         "rows": {"type": "int", "default": 2, "doc": "Textarea row count (used with type='textarea')"},
@@ -6849,34 +6829,34 @@ __Pyx_RefNannySetupContext("PyInit_input", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_input, __pyx_t_2) < (0)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":368
+  /* "simplestart/ss_ui/input.py":402
  *     return res
  * 
  * def text_input(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
  *     input
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_3text_input, 0, __pyx_mstate_global->__pyx_n_u_text_input, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_3text_input, 0, __pyx_mstate_global->__pyx_n_u_text_input, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_text_input, __pyx_t_2) < (0)) __PYX_ERR(0, 368, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_text_input, __pyx_t_2) < (0)) __PYX_ERR(0, 402, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "simplestart/ss_ui/input.py":381
+  /* "simplestart/ss_ui/input.py":415
  * 
  * 
  * def textarea(*args, **kwargs):             # <<<<<<<<<<<<<<
  *     """
  *     textarea
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5textarea, 0, __pyx_mstate_global->__pyx_n_u_textarea, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_5input_5textarea, 0, __pyx_mstate_global->__pyx_n_u_textarea, NULL, __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_textarea, __pyx_t_2) < (0)) __PYX_ERR(0, 381, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_textarea, __pyx_t_2) < (0)) __PYX_ERR(0, 415, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "simplestart/ss_ui/input.py":1
@@ -6954,25 +6934,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 12; } index[] = {{1},{47},{18},{14},{20},{19},{45},{54},{17},{53},{17},{28},{11},{59},{30},{11},{50},{17},{19},{55},{53},{16},{12},{61},{36},{21},{46},{69},{0},{1},{11},{7},{4033},{6},{2},{9},{9},{38},{26},{112},{52},{12},{12},{20},{11},{23},{17},{3},{4},{18},{10},{9},{8},{12},{5},{13},{4},{8},{8},{6},{19},{4},{9},{9},{18},{5},{7},{10},{4},{9},{8},{12},{12},{5},{4},{7},{7},{4},{8},{3},{5},{6},{13},{4},{8},{3},{20},{5},{8},{4},{2},{7},{5},{28},{25},{25},{10},{7},{3},{13},{5},{6},{5},{8},{8},{9},{8},{10},{10},{10},{8},{4},{8},{8},{14},{8},{10},{6},{7},{8},{11},{3},{10},{11},{12},{24},{18},{7},{12},{2},{12},{8},{3},{11},{3},{4},{8},{12},{10},{13},{15},{3},{9},{23},{4},{7},{17},{6},{3},{5},{6},{11},{8},{4},{10},{8},{5},{4},{3},{5},{6},{7},{7},{12},{5},{15},{9},{19},{48},{15},{129},{150},{19},{1068}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (3089 bytes) */
-const char* const cstring = "BZh91AY&SYk\255r\036\000\003.\377\377\377\377\377\377\377\377\377\377\377\347\377\377\277\357\377\377\300@@@@@@@@@@@@\000@\000`\014{\340\353XR\000GXP\004\200\210\240\007Mi\220\035\320@\2255\024\332P\3106\247\2504~\244\363\024\375\"~\223I4\321\243FM\250\315##M1\2441\032i\240\r\001\246\230\236\232\021\247\251\350\004\241\004\006\201\031\004S`I\351\003\324\331C\322\000\000\000\000\000\000\000d\000\032\001\2404\322h\022$\375D\006\203A\352h\006CF \310\000\003@\007\251\246\200\000\032\001\240\315M\265L\200A\200\002`\000\206&\t\200\000#\000&L\023&\000\004dbb0\020\300\000\0100\000L\000\020\304\3010\000\004`\004\311\202d\300\000\214\214LF\002\030\000\000H\2214\004\321\2414\310h\3224\236\232)\2613R\231\3452\233\325\036\232\020z\232d\365\r\030\032&\200\303@C\010\036S\311\245\215\355\023\027&\030ZjZ\004\022A8\253\023Z\366\316h\374 \000\245\261W\351\220\005\316\317{\250\324D\241O\340_\315\360\224\253\343\375\314m\266\323lh\033Li\261\214l\314\244\2567\t\034\247\310\"\333J-\345J\241Yj\025\311\266\210JhFk\224\376D\026\"\357\220\272\237\320{\374!\237\371\034\322\370\332\021S@\177H|L\367\3774\022f\223,\262%x\323G%A\3045\304\200T\354\035\004Vx-\231\273\302l+\235\216d\213\025\305\343/\nw\231U\301\2709yM\021\302k~k\031\211\230\312~!\363\230^L[5\251g+\210j\343\2367\272e\260,yv\352\023\363\001a,\304\020zA\\a3K%Kd\243b@\013b\000=\325\316\377\217\343\371\377\374p?[\376\323\353\005\0064\361\205O\016\004\021\004Rs\334\212C\301\014\\\024}\255f\334\275\351\020D-\032\366g\371U\226\313\352\226\014\322dh\303\340d\322\251\212\203,+f\253b\030\317\210(9\030\230I\020\0303A\242-\003\025\331\014'\341\203[j\2722Zy\355\014\177\213]><Z\006+4\0165\004\rA\n\353\277\366\323<\007\227\263\337m\205O\244\324M\376(\317\215\316u\326\265\264\nYx=X\344#z\302\234e\247Z\351v\265\233U\315n\030\353\327M\004\263\225\225\014(\231\352\034M]Y\314W%g['e\230T\242\202\t\250\300\270X\n\376K\016\357\005\356\265\365\240\216\303\3062\257\001\337;*%Q\344\252'\333\206\017-g.\262\021,\215\202\220x\365\0064N\361g\024\230\330\020BR8""\333\220\302\341!\316\315\034\336\264bx=J&\224G\031\330\304\332\340~#\215&\340\343\023o\324\201\025\346)P\025&\351QI19\016Q\\\225gHyih\"Ha\312\304\330yu\233%f\2064|\336\364\246\202C\032l\037y\240\202\263Q\300\315\235j3\310$\356\252$\264\270\006\302N\243)\321\262\177\013\325\267\016\031\300\326\244}:\321\336/,\\8\376\r>\266\263\356w-*~\232\315a\t\215\035\036C\234%Z3\204\347gM\002\274\002\255\027,\334h=vH\031u\360\010\334x\264HD\014*\245\362G\255\346\235D\303\217S9[\225LG'\244\225\177K7zz/\206n\351\327\374\213\036\017\267i\300=X\322\317L\344Nd\244V2U\251\222;}\345\001_Qa`\321\375\335qm\367rV[\3403\002kT\033\327x\332H*\371\307u\2107\215\007;Z\003/\tk\346a\242\007\205\375\303\002:\214\324\373U\313_\244\373\213#a\216\244z\300\232c]\226\233\rQ!\250\364A#\3257\034Dk\034\312\312A\333\007\031Q\006\t\036l\311\007N\216\203\307\357\033,\025\313\315\347\270A\263\271\377Bt6/\243FF\362\006\0302\3468\036\236+5\304\006W\362\3423m\341\002\035\323\211V.\025\353\350\356eM\265\247?q1#C\241cc\035\374\202\252\247\316\327|\314\324\325\273g}L~\216\272z\307\3644~\372\217\262\263#\206\004\204/J\252\330p\341f\247-\222\214M\355\2332\374\250\323pKU\334\177}e\234\247\0100dJ\254\326\322\r.N\341\312\274\353\250\225\322\270\024\353\256\355\353\300N\257]\223-$Y\244\225Q\010$\371\326y\211\343\2742\026\021`\347v\217j\030\356\311\202\242H\312\315S\226\226\021\212\317nAb'L$\017\346\250\024\016\265k\036i\025\344\240\252TX\341#\031\\\213\0200\326\273\225\231\232,H\002\226%mCj`\323d\234\221r\211\013\341_(R\033\315j\260\235\261\350=\273\234\034c\t?\244QM|UB\375\275\265\241w\232FT\01734\023\330\221\231\022\366\325_\305\320j\305\202\263Q\250\007\250\262[\276c\365-A\346W#\3514\326\272\204$sT\014v\221\020\n\257\355Z\352vp1D\313(\030\333\254KA\352\013\267\243\345\372\361\334\237\231\313\304\340tu\312\0342\303\016]/\255,\313\332\347\222c\033\001\264&\364\234\016\273\255:\305\375\234\264\303\222\362\311\036\005~|\325\261N\311\007\206\270N\2341\347\252\322\323\001\252\334\231ef\363\304GK\236$\025\026~\301\3142d\312k""\253\210=\241\204\373\035vg\004{\030\2430UC\001\300\365\023\312\306\206\323y\230<\212\310`>^<Mq8j%\010P@J\"PI\016$\302\023ch\220X\3050\277\325\371\347\323\206\306&H\030\306\014\2040`@\323\203\353\262C\006c\217\200\273\007y\304Y]|U\010\3102\026\242y,\231F\372\013\271\251aa\030\036\346\353y\2623\017$#?n\336\341\335_\303\257\233oT\201\204(\307\271?%\032\036\355\016+lU\014\332\302\265\316\242`\334\235\251\325?(\330\233Q0\304\2438\344Q\304 d\260\222q;\245@\203\240\2024\037\315}\227\301\334u\263\227\n\311\271\035$H\n\205,:\014>\317\346s\242\242%\245\375\264\363T%\320\252\332\364\027\203F\364\203\347z\266\337le\367y;\371\220\032rH\304Z\232\321\263j\216\262+\224XU\216\272\001U\332,\035\315\232\312\2210\234\342\010\032\201J\330\224\312\235%E\241\026\314\256\325\271\324\025\3247K\311\267|H\245Q\207!>;o\272\302H\363\260\366\030O(\361\233FY\353\235G\303\275u\243\321\035\200K]\300o\326\240U\010\207[\202Oy-\250\224\2550\300\357\327\306g~)HR`\364\273t\\r0\257\032\233\2417bC\272\324\001\216\344\214\344\205\020\375\022\274]\323jX\317$p\340q\230\324\321\275X)\020f\322\032\201\303EMY\322\365e\220\221\264\366X\007\232\347~c=\266\226\245\364\275\340\362\215\214\265\346F\027)\200\264ARQV\246\200\261\t\304a\202\026\034/\035~\324\321\315\010\316\347%o\212c\222\241^\370\214Yx\225\330\232\035\234\223#\t\025\t\207\204\223\027\246\256\316\360L0\3443M\003\277\222\350\030QE\333\3148p@N\010C\\giym~\317}\027\210d\213/\271 b\347\336\321\344\032\023\030\372m\372\t\203j\372\213)\tf\362\010\216Kc\022\234\234\207j\300\320l\r\364cS\341\013\036\272\363(\201k=u\234\010\025\2410\322\312\322h\027=\364\004\204\264\245Z\245\256\n&\373\310\326\234\2052Dr\320\256B\317\356\2369\027\212\250\253XcbS\032\267=\225Dd|\272M\213?9\252B\270cm\246*\224C\267\241\204\0244\341$\2718\026\210*HuZ\024\030\201\255\310Pq2b*H\253\320M%Q%\004\230\224\nb\"\004W)P\204\307\016vT\344Bsj\252\314G?c\227s4M\300\327C\003\324\350\353E\270\014\365,\320s\013\003\234S\004\320\024a\231\213\303)\311Lf\205=\205\373\016\352\242>e\002\021YY\\\270""\034\307\337\301E\326\232\237\021SR\037\205\n\306ZUT\r\033\350\026\025\032\325\021q\316n\3066M6\232L^v6\034\333\313W*N\336KV\304w\261\225\207\032Tz\014\343\033i\2468]\323\250\276\206dg\333f\200:\362\237\025\3071\201\215Q+\032\003B=\335c)_\273e\037\247\276v\235\213\257\310O\331\252=\311\352\014\263\001\003\033\022c\006\330\305\314I!\246\234\220\034\315\311,S\3432\210D\334\276Qh\030#\022@%\003:A\235\013\255L\330QE\202QE\351\033]B\310\265\350\354\315\234\275\023^\214 S\236\252\347\321\224Q`\347y!\357\201@\316t\352\034\212e![\214p\221\005!/\r2\250\272\341\346R\257\004g\n\312\360\342\0332\356X%\356\224o\215%B\n>\370\335\270a\206\371*l%\033\222\356\340V\023\230\020\025\3243\346\322,\013\\\222\323\252\376 Wi\250\245\r\251\333j'G\261\"\377:\332wq3\316\342IHe\014\\\2742\030\014\035 \220\212)g\263\342\001))\"\323\t\301\332\r\263\302\2257u\327\327\312U\\\235u\232\022\000\271\014\235\000\327ham\216%*\325\216\371Z\004\253\325\022\333\316}\235;%\267\226\204\247m\334\334\343\0303\024\324\010c\nDfu\244\014\350\353\256aX\031\310\227(Qx%l4c\0021\317%&\007\231\246\233\026\213\212\215\305\224\361D(D\3106m%\211>\301\277\301\277\313\351V&t\023B\201'\347\034\3607SI\343\326\224.Yi\021\317\310\217\021\3477\207>\326\330.a*\r\377\370\303\311\212&y{\374=\216\223\251\242=\036\343\325Fg\031\271:\301\261;\002K\273\314\343\226\207Q\276\342\210{\320\367\336\255G&\355!\325\345\334\213\330\270\320\303\322;\213\200\354!\232\340\227\207\212\273l\242\322\202\260d\201w\371\260N\262\024e\032\224\206\304M%\350jye\250S\034\335\006y\266\035NT\032X\371B\022$UK\203\034\313\263H\253\367\205\003\001\211t\277\345k\307\315\342\361z\334\276?\301'\370\327\336\274\033\023i6\016H\017\272}\361\206)\266&#\3571\370\320{\377\211\213\332b'\360\324(\177L\204Sp\033\277\246\320\306\004V\241\"\311Uf\210\034\363\350\037m\220\246\306\233\276OpT+\223\312\002\330OPvW\3552\312&p\367\332\267\211\360d\2332\007\201\336\333\324\342\026\3102h\213\022\2268\376<\003\312Z\027\010\"\223\270MV\360\270F\201\257&2\263\347\033\265\333\353W\030^""\261\223\274h 0Y<\304\302\\\375k\234\202\344J\305\360\327{28\246wZ\327aQ\214ac\375\234\376YG\220U\375\317:v\004\216u\220\341\245X\\^\351;J\323\"Tz:E(\2301S\342n\224:0\226!k\3036\367a\362\337\3451\346\326\353\275\014O\275\2678\266\330#9\264\031\202\310\257\355M\374\254\013\373\031\373\375\227-j\257\026[\344t\364\352T}\347\207\267\237x\311\227\241B\322\034\\\307)\227\227}K\2771\017\003\212\016?m\314\rin\177\265\230\346\254\277\315]\251\213\313\312I\305\034\325\027T\261\212\301T\207\035\235\303\236_\257\005\035 \240\265\013\374\362\250i\252\n\321\262(\025\303\002\321+\002\216F\013\032\317\200p\200|^\245\344\330Ws'\0272\302\013#\\\306_\361w$S\205\t\006\272\327!\340";
-    PyObject *data = __Pyx_DecompressString(cstring, 3089, 2);
+    const struct { const unsigned int length: 13; } index[] = {{1},{47},{18},{14},{20},{19},{45},{54},{17},{53},{17},{28},{11},{120},{30},{11},{50},{17},{19},{55},{53},{16},{12},{61},{36},{21},{46},{69},{0},{1},{11},{7},{4121},{6},{2},{9},{9},{38},{26},{1450},{52},{12},{12},{20},{11},{23},{17},{3},{4},{18},{10},{9},{8},{12},{5},{13},{4},{8},{8},{6},{19},{4},{9},{9},{18},{5},{7},{10},{4},{9},{8},{12},{12},{5},{4},{7},{7},{4},{8},{3},{5},{6},{13},{4},{8},{3},{20},{5},{8},{4},{2},{7},{5},{28},{25},{25},{10},{7},{3},{13},{5},{6},{5},{8},{8},{9},{8},{10},{10},{10},{8},{4},{8},{8},{14},{8},{10},{6},{7},{8},{11},{3},{10},{11},{12},{24},{18},{7},{12},{2},{12},{8},{3},{11},{3},{4},{8},{12},{10},{13},{15},{3},{9},{23},{4},{7},{17},{6},{3},{5},{6},{11},{8},{4},{10},{8},{5},{4},{3},{5},{6},{7},{7},{12},{5},{15},{9},{19},{15},{37},{129},{150},{19},{1062}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (3713 bytes) */
+const char* const cstring = "BZh91AY&SY\262h\324\343\000\003\237\377\377\377\377\377\377\377\377\377\377\377\367\377\377\277\357\377\377\377\377\347\373\377\377\377\377\300@@@O\340\300\000`\016|\372\206\216\235\000\r\025\327T:2P\240\000\000(\000*\272\200\031\340J$\024\204\315\rL\2153h\214\365!\210\363S\004\236\221\24116\215\033Q\224\301\243MFh4\206\320z\206\243d`\246\323\321L4\320OD\364\214\214M\2501\r24\017I\350\365\003Q&\233Q\221\222?H\243b=OT\030A\241\221\243C\002di\2652\030\215\006@\323\004d\310\032h\321\200\201\243A\241\210h\320\030\201\240d\323L\215\014\003)\371)\2624\217$\032\000\000\000\365\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\007\222z\202DH&\2413SQ\3522~\224h4=F\200h\017\325\000\003G\250=@\000\r\000\003@d\003A\240\000\320\000\000\017P\000\000\320\001\000\032\032i\2201\032h\014\214\203!\243\t\240\032\003 2\014\200\310\310\321\2404\000\310\032\r\003@\031\000\000\301\003&F\201\240\000\221!\000\232i\240\215&\320\215M=&\232\233\023M4j\236\005=F\215=@4\000\000h4\r\000\000\323G\251\223M4\000\000\000\000\000\000\000\332\267\313\213\306C\256\231Z\nV\306\331S\337\346\307v\327\314\361\272\363\\\000\327\246{\177\235\020F\177\327T\326\310\211\202];\365\233\257,\253\365\375\230\332\033c@\330\306\233\030\306\314T\225\246\364\221\326?\371\005\266\225.\005\025\022\262\324+\223m\020\224\322\014k\2256\010-\025\333\002\352\371\003U\244\206kc.|&\204T\320\031\301\340\263U\331A&{_\231\375S\024\376C\331\013\332ep\241L\\[\267n%\220\323G=\003\220k\221\000\252\363\007P\212\316\355\2639\273\307X\256v9\222,W\027\214\274*\3562\227\0070tt\031Gfk\261\242\306bh5O\300N\303=Ef\232\364\254z|\3620\253eZ\245[\3041\231\227PY\335\007M\032\312\"j\n\343\t\231\262U[%\033\222\000[\222\010\n\233dyj\257\353\322\256\364\317\027\n\331`\016\217c\353Nc\203B\212:\214U\226\322C(2nD\014\373\317{\357\262\235\025c\n\275\353\302\315=\372\313e\371\1772Z3Y\267X\253`f\306\323cx\303G\264\312\222\255\201`\312\312\331\266\370\2063\274\025\022PV-%\010\r\264\212\211\021i#\014\252\257\273\375\324\374\331\376&z\242""\023\244\354X\256+\220I\357n\334\347\rT{\260~\020\016\203\360\3200\003P\300\020I,\263\316\301_7j\251Q\"\350R\231dh\235\347)\262\302/\2579W\236\250\312\345\3720epQ\301\352\033\317\336\267c\262\315\033r\341\317\246\311r\323\235\351\273\206\270\321\267\217\247\232\373\262\322h/ b\335y\"\274/\304\343n%\216\024\3312gc\242\211\242\275aE\200\320\231\003\250t\303i\231\243\275ed\235-\355L\256}\255L\021\337<C/\363N\361\337\241*\036\205\"~\226y\275\233\216\033HD\266\033\306Rd\330A\311d\307`\312\316\002\021\2435\211\343\227\250k\324*z\273*\331\356\225U\036\347\314K\004\244l\203i\330\355\316\003\214\334{a\233N\177\247\241S\362\331x\027\256\222\362\342\262r\034\242\271*\316\270x\352\264\021$0\35316/\036\303t\254\311\215\036\337\252R\232\t\214c\033`\373-\004\037\002\303a\3271\311l2\220I\341H\222\326\340\221\020\233P\350Fs\251\262\236\203\331\277\342\362\307\261\000n$|\345\373^\021\021\021\027\243\250\224\257]\215\377\007f\326\214v\307\t\235\316\234\n=+\343\2561H I\264\202\321x\n\004\253FB\t\316VW\330\212\321a\200:\365V\264q\240\361\262@\313p\200G!\336\312B aJ\260\222^\250\004\246H8\266\212M\02016\"Sb7\367\353\370\322\226{\234<\231\351\342\206o\\\233\027\273\313\340\302\361K\256\321\274\350\016\354mg\270\234\211\314\224\252\034\235Jd\037Q\356\325\362\013<\202\322\323t#\335uE\372=\023\233e\245\375+\270f%\351\302mq\310\222\355)r\223\t\321.%\356\016\247\000\301V\r\033\006\200\311Hp\027\214\016\n\301@?)\363\017\017\2563b4m\311<X*\343N\016b\230\301\007\320\005I\036\034\014z\310\361\002i\230\302\341q\300\343\211\rG\253\004\2174\3466\221h\346VU\007\024\034E\0100H\3644$\036N^A\340\360\233\254\025\313\317\364\356\004n\352\367\342\373\276\266\253x\267\035H3\316\036\263\2715\363Q\031\024!\317\312\250\210\350\316\205=\274\215\030\017<9>\007_u\3138%{$;\260d\321H\256\331\210l\002\212\031\332\016\272\010 \232\3725fS\320\233\243\257n\344#\323\204\355>\026.N#\314\241\212\014\325\367\360\221!\327w\0271n\343\310\346\307\213\360\255\337\220h\344\313\305\370\030\027\331\235c\332\227g/Y\315Q\223\363W""\306B&\215\t\311\347\204\235\235\235\227uBQ\207:\246\226\177\"\347\260\240M \035\320\351\321;\030YYe]$#\022\250\016\347\304L\"\330>(\254/4(q\027\251w@\240\3055\022\026\242\225\342\312\004\360\250\024\016\304^c\306\224Y}AIT\261\302F2\271\026 a\261v+44X\204\005V \266\203j`\323d\271E\313\014\320Ze\232X\310J\203x:L\333\370\312\323\207V\350'\2015\030\356\016Q\204\235\305Jk\361\251\013\317\251\013\251\244l\240xY\231=\351\030\nZU7t\031\350v\264\213s3\001\346[.OA\361Z)\243nJw\034x=\3424\035\346\006\336t\010/\325\351GcU\374\272\315\300qqP\335v\321-G\222/;\243\305\341\216\231\370\034\274\307\003\251\327(p\314\3554r\232\336\240\355 \322\275\216y&1\260\033Bmp\310\212Q1\022\tB\375\311\014RMmX\206T(\220`\212\236\0030a\271A\022T\000\252 F'\t\333\323\257\216\232oE\343\202\025nC,\254\343;\344b\347\221\005\013=\360\346\0313%B\276:\267\207\267\030L\356;-\310\021\352\351F5\rU\006\003\201\354'\235\214M\246\3644\236b\254\206\003\347\343\304\333\t\023m\266\306\334B\211A)\244I!1\023\000J\034K&B\006\233\033H -b\240bn\274Q\235\r\214L\220c\0302\020\301\201\000\323\203\351Y!\2031\307\333\035\027\350\300\334ZYf\352\010\3143\026\302y\254\301\2257\207?I\207=\227\027\021\211\362]k\371\3634\217\020\026^.O$\352^\276\336nN\324\261j\002J%\245\246\361[\007\242\310vM\224\220\323\214\260f\211\205\345\264\250\240<\021KmS\003\262\351\365\316\027\335\346\362\227)\031Yy$\311\024\240\247t$\306\254\177\016\301\022\242\024Rx\317\035T\227\206\370\223\315^\316\261g\243)\245A\242\350%H'\217\225\360m=\246\217i\210\324i\r~\275\367b,\351\216zm\013\301\243\240B^\307v\323\014.\327\365\234<\260\305\001\235\211\030\213cYq\234\212;dW(\260\246\215\236M`U{\014\255\035\355\233J\"T\252\004DA\003P)\272&\205*\212\351E}\027R\247e\345\201\326\026Pn\274\t\267|IUH\321\314O\216\333\356\261U4zl=f\024\316\0271\274g\214\352?\027\231v\321\344\021\253\221\007\035#m\350\003\206j\001\016b\033\265\302\220\237\002H\336\216\352\234\360Zt\235\2734\234c\265\312B\206\017[\267+\216\263\n\366i\251\272\312;R\035\367\000r4\206\223\021\224$dI\021""\016\013\305\335\016\223zZi\232:8\3163\0321pV\nD-\031\206\260p\321F\254\353\275z\256\365\000\\\210\017~\300G\206\367\206+m\232M+U\267R\201B\356\034\\\272\321\003\335X\n\341\rh\251\227Z\030\242\301D\010'\211\336\231-]\025\325\256\225Y),*[w4a\331\024\032u\026\260\303\025\305-\206\210P*\353!\265aD\264-\263^\245HZ\265?@\226uA\354\340\367\0201\247\330\315H\221\014a8!\rn:p\3504\027\333\353\366\221\240C$]\243\001\t1sph\357\215\t\214}{}\224\301\265}\013*\204\263\307\276\"\\\227F\222\276NE\341S\320j8\302\256\014c\000\233\350f=\252\364\020\334\013i\207\236\264\201$\027\005\003[\260\006\201uaP*c\275a\311\217\n1vfU\202\361\027h\275\211\316.sF?\n\3777\023P\332o@i\260\t\215[\205\224\210\324z\025%\247\234\327!\\1\266\323\002\305\020\355\350a\005FxI.\2671j\n0M!\322\321T\230\000\327\"\024\033Y1\024H\247\244M%@\275)\251M\202P*\010\210\021d\244\353\033c\0349\333G\"\023\2218T\260\304s\365\271w\263)\270\030s\260:\271\221\332E\270\014\354\331\211\312,\016d\023\004\304\0250\320\305\334\224\344\2463%>\"\376%\330U#\321\250!\025\225\225\311t\034\241\366\030+\024\256\203[\332Q\212C\356!X\014\220ZR h\346\250,(l\014\200\266/\265\014\346@n\337\227\020d\352\023i\244\305\343ca>^\005\342\353\000\355\353`\270\321\331\316V\033\322\251\3540\030\333M1\302\351<\202\372\215\007i\254\265\333\250\016\326s\337y\274\320i\244J\306$\265#\326\332|\274\025\331eO\330\362\217\t\333]\256\371?Q\374\244\265\336\rj\200 ch\206\n\023L`\333\030\262\311Hi\247 \214\266\207$\261O\210\312!.\365,\256u9\324\245Hl\033\026\372\252\264\244\253\315r\335\331\241\202\300\223j\016\246y\035h\261\316\361v\364d\213\3215\343\302\0059\354\226oS\260\251`\351y!\360\200D\014\346N\203\221^\251\013\033c\242D\025B]\312\265P\272\343BR\257\004i\n\312\260\3326j\351\260Z\245\242\255U\\^!\223\325V]s<\373&\213\2614U\222\310\003\327 ^PPs\266'6\221`Z\344\214\365\250\"/\332\n\354\350UQ\306\235\266\242uo\216$\214<\345\274\351\322ev6,\247\004\334\251/\211j\201\332\334P\255C\235'\222\245V\010\035![j\212\247UR\307\313\245\315WSr\272\372\371B\225\311\327Y""\222\020\027\"\310)X\033f\226\027\001u\256S\225\212\327|\256=\262b\235\233b\\\233O\233\327\305-\374\265\022\235e\267p\347\030\301\232SP\204\315p\030\"\331\312\232\212\326\343'<\345\003\204\242BF\014.\326\013\030\"\252\250UV\355,\254\0313mu\345\024\221y\330z,\250J\324\270\203\206\223F\322\316S\265\332\354\371?\017\001lB\342`I\373\217\031\024\320rW\254\350\332\004.Yrl\021\317\010\356\2363\231h|\373\332\033\005\301!V6\276\020\320\035\375(\231\340\362\272\376\237`\016\313\001F\034\347\261U\\\030\3434i\332\r\211\324\022\266\314\0160Ya^\224\312\271\026\241\344\207\004Dp\320\260G&\375a\331\360X\005\354\\Ha\353\016\320;j\367\251\220\247M\225e\353kZ\024\026\003$\026f&\006;\024\004_\214\225#b(\001\205\243V\256\232\366\n\234\316\002\301\257;\214\255\312\203KO\200!\"E*\2744\342\273~\310&\364E\024\005\021(\037\021\222U B\205\232\206\377\312\305\266LS\033\032g\207\026g\352~\237\217\371\216\377\274\317\262\3341\211\264\233\007\220\007\2748\332\336\330\333\023\021\217\274\201\370\320K\275Q\305\r\202\212\263i\3707\226\230\313\177q\322\177\021\307\233\267\373\250\334\034\357;\371\252@s\014\3004\326\245\222\243Q\316\316\013JX\202\247Dq\264\372d\n\217\227a\177\204\025\365,j\261>\201\210\313\315\270a\211v5\323\355&\022\211\365\226\275\216\314\231m\246=\266\320\241\363=\374?\013\375T\272\210\311\260\265\253\355\264\2438ag\250 \213\265\336\024\273\335\001H\220T\320\250\250\273b\215;\204\030C\001\230;\264\343\276}\275&\265\267\204R\256$G\354\324P\210A)\211O?\237\363u\215\273V8\313L\331\2521)\346\232le\177\217\317\325\215hF\027\256k\206o\270\322)\351lY\326\216J\217\0369\337\357|\320x\205D\331\327\302\212i0\005\221\021\261\322\347\260SS\363&\260\322\374\247I\027\027Ev\212\021\277\223\014\362(\273\3428\306\323y\014\206\217\304j\266\r\314\023\022\0137y\372\256m!E}\236\243kB\363\324\026\035\034\347\2179\374\352\274\257\024O6yR\332\253\321\216\241(\260\312\222\203IQ\264\250\321\373\360\017\025\246\313e\225\270\254\373\363;\005+\247\216,\206\374\027>-\216S5\366h\254\247\243\032\237\203\245*Th""\261H\276\030\323\022\00419d_R\"\253\213\001\254^>\002\266\354\300\363\254bVn\372\2531\356\340\333\273dI\327\326k\356\n\217#\250\031+\007w\036\316\222\277\273q\326\274\377{\344\317\356/\031\231x\355\362\347O\005\374z;!\266C\323\343M\256\255\320jm t\272>\2572\n^\204bY\333\227\030\245\007GSV*\021f%U\222Vv\035\236\273\315\374y\214\023\241\375D\367\024\303H1\310Bf\300RC\210+\357h\360\303\224\004)\334f\203\364TH5\254\337H15\000\237H\315\n\240\303\344!!\rR\202!\311V\267HMr1\317\344\210\023\210X)f7z\206 \342\332\313\010\013\0040\005.\375\264\"\245\204a\202\330\340\021\007<\177\374]\311\024\341BB\311\243S\214";
+    PyObject *data = __Pyx_DecompressString(cstring, 3713, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2905 bytes) */
-const char* const cstring = "x\332\355YKw\333\306\025\026S\311\225l9\216b\325q\354\306\031\312\017\222\261H\231\251\343$\222h\207\266\254\304\347\324\251\024\253\312\243iqF\300\220\232c\020\0001\003\212L\3426K.\261\304\022K.\271\344RK-\271\344R?A?\241wf\000>D\252I\316\351\"=\215\216\004\314\343\316\235\373\374\356`\224+\0325l\351\304XE{\230\021dP\235\243\nq\313\304@\324\3426\322\355\212c[\304\342\210q\314I\321\244\230!\273\204t\3064\335\304\214\365GL\274G\314~\317qI\211\3265\252\333V\321q\210eH\206\026q\221\034\362\270\235-\273\366\001\332'\264\274\317\327\320\216\353\221ed\273\350o\025j}a\037\260eT\301u\321\370\373\006\261\030\345\215Ud\220\022\366L\276\0022\225l\227\343=\223\210\266\203A\3464\253`\323D\005\024\rd6(\023\004\210\357\023\330\330\361\370S\213\0237\373\2224\220\016\224{X\177\t\213p\205 F\313\026\346\236K\220\353\231\204!\241\200\245\357c\253L2r\021\022\213@!\306\210\361\264\316]\214\236\274x\201\244\366@)w(Qb\032\233\342\241\354\260IA\0309\341AC(z@\r\276\277\206\016\366\211\2056\261\311\206$C\224\241\367\357\337s\352\202\210l\322:\330*\"\267\274\312\036q\031\332#\240\027AN}\323\326=\006J\232\266\373\314\242\234b\023\325\260\351\021\224\006\236v$\213\3138rl0\032\265- \300n\331\253\200\0133\317,\223ZDJ\317\270K\255\3623\271\275b\24046\236\343z$\225I\2542\337Gib\tC\212M=i\215\003\n\243l\337>\320\016l\327\320LZ\241<\263\005\306\020]T\243\214\356Q\023\034\206\270].\203\007\322\036(+\027\361\206C\n)'\"Me\266L\254\223}\3334\200+'u\276e\022\021\204r\373-\227\214\205\rJ?\207\030t\205\322\317\240\313d\300\244\366h6\205  \320c\333\346\240\027v2/@:\224\262V \204\224\026)\241\236\013q\001\234\"=$\215\260\227\016\273\272h\317\343\334\266v@\n\354\022,]&\t\245\370\306\260\374<\242Iev\205\341\262\312pCQu/\013\026\027\242\345e\203\324\300\366k\352\225S\266. \213\034(\273g\036\355\331\266\211~@&e\334PA{\036E?\353\006\255\365;\342g\225\361\206I\nK\006\3468\347\202\276\032\2654!\353#\224\202\305\216\211!O\250tsv\317\264\365\227k\250F\\NA\270,6!\320W\301+\316Z\n\255\376\"z\025\216\253(\177\357\336\355""\265\324\322\210H\337~\242\233T\177\231\323\261#\222\250\260\224&\031Tx\210\276\037\241\022?\302e\034q\320\236\344\300\202e\302\327\306hh\t\245\223\034\375\360\003J\362\234n\332\2140\236A.\001\326\326\332\031\034\251\365D\270P\246{\001%\007\013\323\251\\-+SS\323\364\230$\2259\213\217m\375\305\343\302\024O-\343lF\266\242\3214\210\316\263yI\342\247\002\220&09{\331>f\243\272\244cFw\356\304<sU\217\270\215\027\304$:\267\3353t\314L6\355\260\251\300\306\351\021\225a\213\341\3753\231\t>\024?$\007`(\242yC\001rz\302f\212\216A\360l\271\266\203\313X`\321Y\2042\232\343\314H\245&\023\201}\210\013\301\231N\305\350\234Z\006\342\t,_\215\214\274\032\204\353\303\221\211\365ZV\244\2622\336\030\223Z\226\226\242<\023i\217\222\005\020\255\237\372Kc\364\253\025\333 fVj\021\255\223\355\t\224\262BD4\262-\\\341\001\326\225\300\021\306\204\005\316\000'\243eC#\023\350#\0301\"\342\270;I\350\030 #\322~\377\247D\222\025(Z$\333\3434\262@\026\226\030\313J@Wv\236\244\235B\372\254\304\371\254\300\371XI5\241\311\ty\224\370)\251\2603\306)-Y\311r\025\027\036\021\350\003\307\026\204c\0075\t\220T-\3214\347@\223\325\014r\005\340\265b\320,i\220\254]*I\370\214\372\260b5Z\241v?K\334\314\004yeA\211D\234 \214\02049&\214\020q\210fU\205ej\242\223d\245\213\314y\252d\367\2550\360\371\243\323\003\253\3779\006b\244\210\343 \356O\nIu\210\213\225\215\272J\337\350\310\226\022\346\032\237\225\007;\351\227\001al\361\323l\342ca\237\274? \013\236\202\253I\226\252a8UX\274\237\270\2627Qe\031\323J\335\370\010<\201.*\323JJ8\261q\273\242\311\032*\344\212\212i\n\335Ei\341u8.\217\323I\225\324\361/\025;f\204\340.\004A]\35056\225\021sk\250d\222\372*\262\340\364\2766\260\230,\362B\010i\221H\022y\370\034]\220\021LF\304\227*\t\027\001\346\216k\374\355'\236\003\324d\024\006\323\360V\207\201Q\214\2077(\010\247[8\034G\262\300\320\332d\214\037\254\314\014\203\371`g8\236{N\216\250P\217N\037\303\234\230\267\007\361>\312i\022\037y\216\031\301\020`\027\211/\212\347/E\222H\351\021 )LHh\364\352\264^+\243\225jR\331\022ehB\321\"\360e\361[m\372\037""\251M?\243j\374\206\352\277\"T\207\017\255\230\254\242\276\273\330\344\270\315\016S\342\372Y\2248\276\006\211C\001\372\232\350\377:+\312\317\252\"\377g\225c\010\251\327W\340k]u\325\225IY\247\026|\312\312\273\026\246\206\214\350\353\321X\021)\350\252&\003\214\222\017\000\007\361\365M\014F+\216\t\237\214\330\345+\020\217\036]\2210\225s\032\271Q\310Bc\337\245\313\247(b\202l\266$\256\216\310\204%\337g\2631\321\036\000\t\300\223\362h\336\251\277\022\245f%\256i+q\341\201(\353_\224\210K\032\227\241AU\312\014\177W=\373|\353\257;\332\213'\237=}^\324\264\255F\035\3766\250\316\265\317\201\344\013H\335\010\375\000\367\206\232\032e\032p\3229\255\2211|\304n\031~\031f\rK\2476 \274\013z\200\032L\303\234\273\232\205+\244\237H\242\301\350w$~k\340C\031\274\362\241E\330!n`\304\365\215\360\220\016\241X\266\335\206\n\"}\237\000\031\203W\005k/\017\304\276\232N\r\t\020\237\303F}p\324\345\235\000\200\002w\241\372\211{ Yy\"l\353\337\242\302j\306\372\020#\032B\334\341<\031N;M\204\235\374SrF\300(.i\343\272i\330\272\374\024\227\017F\304\355$\030WF*\240dE\323J\236\245kZ\231p\370\325\224E50\"\307 \257\270\202\321+\240\250a\202\013\205m\251\021](\311\010RA\267\016\246\302&{\230\033\341~j\256\322\210\363n\302\204J#9\241\tx\242\026s\010\210bq\341\350\276\003)'\025\246\214,\217\036\232V\001)\305S!h\277\202\305\340\013S\266\341\231\004\336\375\355\007\373i\322\266\352\031\317\306s\266K\313\324\302\246\322%NJ\007|Y!\000\006L\266\030\234\363 \274y\034\376C\007\033\307v\006\027\254Cw\335\375c\301\251\366p@\217\037\035\034\227V\260\333\030>\023:uM\253z\330T*\304K]\302\206.\375\324/\223\226\000=4\215\201\213\325\002hE13r^=uX`\264\334\277\374\036\202\234\234\204\234\234\364\227H\032&}\024\277r\375`\326\344\277\004\000\335d\340*\3032\257\024\333B\323\304\244x\326\271\370\323$\303\030%8\345&\021\301\000\222K'\310\007\213\212t\315#\234\226\032\321K\023\377\233\220\031\241\322\002\"[\223\t\254\272\260\262\337\030\314\375\2308\271?5s\241y\327\337\366\367\003\334\233>/\2334\250\306M\030=\236\276\320\374\300\177""\315O\007I\240_\234\232\231\357w\213\307\263\2577\211\237\357\315^h\256\0025\t>\010\247\303\347\355\205\366\315\366n\347~\247z8wt\371\250\330\233\277\330{\343\262\177\337gA\262\267x-\270\035T\303\30414n\006\333\260\353\345\305\223sSs\363\315\007\376\202\1777\330\026\314\362\307\363o\372\251\340Z\230\017a\365\245&\363\223\376\237\374J\370~\270\335{\343j\220\010\026\216\305\353\307\242Xy\351\277\"\302\353\247D\370\320Ov/\337\014\363\275\371kA&\314\377\"\251z\263b\362\275\340S\240|\332\272\321\256\202\341\326\247f\256\372\325`.\274\332Z8Y\232\2329w2;5s\261\271\351\337\362\261\337\010\317\205F+\331\372\270]\024\303o\371\245`#L\204o\267\222\307\323\327\202lXm%z\323\213\376\263\356;\017\332\340\246\371\376\262\204\360\316\003\177Q\271\n\25413\327L4\257\373\305\336\364\254j\210\261KMX4#\244\362\374\307\335+w[}s\225\002\320D\330\205\007yh\316\276\351\337\366\335\340z\270\321J\264\336n\277\327\221Cb\253z\300\303\017[\267Z\270Uo\263N\352p\361p\347h\241wa^\314'\345f\335\271kARH\377F\263\346\357\004\013\301r\010\273\016K\007s\213~\001\364Z\350M_j\276\n\212\301v,\361\r\277\252$\276\346\347\217\247\177\377\343w\340\210\2344\312\315\326v\313\352<\351T\217g\347\233\305\246&\244\024\215\177\004\353\322,#\235\271+\276\016^8M\231\217\033\037\207\217C\374S\323R\216\033~-\330\t\027\302\345V4p\335\337\014n\0058h\264\022\307\003I\243\206P\343\212T\372N\370;p\372fk\251\365i\373Ag\261\263\335\241\207\325\2763T\343\335\340\\`\204\311\260\320N\364-w\007\242\266\030j\355bd\221\356\\2\274\022\362V\276\365Y{\263s\253\203;\377:\302\021\365\037\203\315\360V\210\273\251\217:1\203\353\240\204j\335\010J\302{\335\314zg|\273\223\363\"}G<2\2474P\244\357\370J\333\356\034\212\"\362Q\007BP\205\000\250q#(\207\333a\245\275\332\3319|\353(q\364Nw\367\313\336\264\210\237j\000\242\274\033\034\2048\374g\373\233\016?\374\360(y\364\260\373\3657=\360&\357^\270\005BM\267\236w\376\320}\270\333\335\375ZL\010\243w/\336\016w[\367[\325\366l\007\354\272\340_\221\221\370YX\354\r\333\366R\263\344o@\202]\017\213\307\261\240b|""\220?\211\221\254\020\212-\370\027en\303\376\3258\334\3150\331\233\277\032\274\026$\203<d\2742\364\300vq+\316\233\005\377\234o\000m\001D\177\322\252\265w:\013\235\345C\343\350\346\321n\367\305\227\335/\277\352~E\272\244\024\233\031\024\2704\034\373C\235\343\351\231\223\217D\322\177\223\020\200\233\202\360N\236<~m\352\274H\226o\303\353\255?w.\034\346E\272\344\377\rM%#,";
-    PyObject *data = __Pyx_DecompressString(cstring, 2905, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (3483 bytes) */
+const char* const cstring = "x\332\355Y\335w\033\305\025\267\251\235\332\211C0qCHJ\030\345KRb\311\021\r\001\3448\301\3710\244\247\2411q\315Gi\367\254vG\362\236\254v\345\335\221,S\322\206\226\026\221\206f{N\201M8\264\013\245E\264\005D[@-\206\370\321\217z\364\243\317!r\354\247\370O\350\235\231]}Xr\234p\372@O\321\261\245\371\270s\347\336\337\275s\357\235\335\360\240\234\0215\t\313Q\024\023M\214dE\"(\211\215\004\226\221\242\021\035Iz2\245kX#\310$\"\301\203\252\"\232H\217#\3114\005I\025M\2632\242\2121\254Vz)\003\307\225\254\240H\2726\230JaMf\0145l 6\224&z(a\350\023h\014+\2111\322\217F\2144\356E\272\201~\230T\264\307\365\t\263\027%\305,m\374\350\030\326L\205LF\221\214\343bZ%} S\\7\210\030S1m\247D\2209`&EUE\003\310\035\010\036SLJ\200\310\030\206\215Sir\\#\330\010\235\301\223H\002\312\230(\235\201Eb\022#SIh\"I\033\030\031i\025\233\210*\240Ic\242\226\300A\266\010\321E\240\220ib\371x\226\030\":z\3724b\332\003%\333!\256`U\036\242_\034\207!\005\204a\023ihPE'\024\231\214\365S\024ac\200\200\340,1a\035L\307&=\325z\031ie\366\014\306)t\337\376}\251\254\247V?\302\331\224\252H\n\341\014\007\220\236\301\206\241\310 wL'cCJ\026\200v\367\322\322\311\0306`\002\303j\214R\331!]J\233\300J\325\215\023\232B\024QE\031QMc\024\020USw\0251L\202R: \256\350\032\020\210F\"\235\004\373\007Oh\252\242a\246\272I\014EK\234\240\250\272\0148\\\362I1\313\301F*\326\022d\014\005\260F\255@7M3('\024\0305\307\364\taB7dAU\222\n\t\236\002$i\027e\024S\211)*X\033\021=\221\000\363\005\322\340\225l\021\231L\341\001\177\312%\365\007O\251\242\204\307tU\006\256\024\256S*\246\036\314\266?e\340\006\237C\201\223\340\300\006U\372\004tM\346m\376\230\022\362#\360&tD\327\t\350%\246\202\247A:\344\327\372\300\377\270\026~\252\236\001\350\003'W\017FC\361\222`W\003\305\322\204\350\332\010H!\032Xt\215\010\204L|\271V~\342\322\370\203\243\024\270\020\007\256\306%\367\205\000q*Z\2045p\006\260\357\347?a\216\365\000\322\360\004\307=x8\246\353*z\016\251\212Id\356\361k\221\3739(+\231J\207~\242&\231T\361\300vY$b\330\000}\005E\023\250\254\207\221\037\026\247T\021\016\231""\302\314\034\212\251\272t\246\037\201s\021\005\204\013\211*\234\222(X%\325\357G\321[\242\347\356\030E\221}\373v\365\373\267\327\211\364\314\303\022x\363\231\260$\246\350\t\034\330\036\300A4p\010\375\244\216\212~\250\311\010\"\240=\016\003\202\tL\372\033h\2248\n\370\010z\3569\344#aI\325Ml\222 20\260\326\372W\340\250hG\251\tY\254\030@\276\352\302\200?\234\t\261s-\010\222G\342\017\256\304G\327\276\237&\024\212\343\232\2742#\235\323\010\002x\347\312\274\030\361q\032\315\2320Yy\331\230h\326\353\022\360\030\355\336\355\361\014\217\247\2611y\032\253X\"\272\261\202\216\301\346\320\326B\005\030\007\352T\206-j\367\017\006\233\330\220~p\030\")\365\346c<\344\005\232l\306\351Lp\236S\206\236\022\023\"\215E+\0212o\366N\206\337\337\234\010\360\301\0068g\300\357\205v\177/\0207ay\266n\344l\325]\017\325M\034\314\204\350Q\346\34050\311\204\224\270{\316\350\261G\276\001\020\255r\364\2677\320G\223\272\214\325\020\323\302]\307\332M(YzqiX\233\232\"\r\261.\016\206\220\233,HU\343\244\273\254f\244\t\275\033Fd\227\330\3536\023\332\013\220.i\245\277\232H,\003\271\213X\273\221\206e\327\201\355\246\031b\001\235\343\334L;\036\351C,\316\207h\234\367\224\344\023\002\233`u\310jR\211\251\006N\001\306\212\245+/\361PG\257\032v\200\032\266\232\223 \222\362%\202\220\232\020X6\203\263\002\3415)+!<\211Cz<\316\302\247\333\207\025Qw\005\337}%q\203M\344e\t\305\025\261\2110TP_\2030T\304\032\232(wK\177S#\261L\347\302\271,eWP\250\332\374\360\362\201\350\215}\300\213\024\236\037x\375f.\311+@OY\267\313\365u\013#?\205\253q\226U\205\314.UB\017\361\345l\274\232\262B^\031`\t\217\207\253fHeD\250*4R9\270\254\327Te\346\323\\]\257~nB\347\246i.%TlDO\n,\207R\271\334d\352G{Q\200Z\035j\355F:\246\022/\377\374\236a\352\010\366\202\023d\251^\rSA:\327\217\342*\316F\221\006\245\177\177\0251\226\344\251\020\325\241ee\204+\035\253Y\033\230\370k\013\201\272\311`\220n[\2470\003\201\032\025\242t#F\317<\234N\0015\256\017\234\001\370\345\345C}V\200_\200\004\352a(\266]\351a\250\277yV\250\256\014\326\206\377\352\316p\033H\247\302\230\037""\016\267^\251\345d\246cpB\35295\343\303*\237\272\250\003\354\\\361i\272\275\325\330\343*]\027z\006\232\204\000tv\271^}\365\271\255Y\242\243\211\253I\232\303\252\211\277\316f\377#\331\354&\362\314\327y\340+\224\007 \246zdI\036b\315\346~\033\252\245\024\263+Q\212\336S\027\317\025\240/\320\376W3\007}\351\274\323\220k\376\337\362KM<?\330'+\031\336\345\217b\022\222\242\301\025\231=\3031\371\220\354\336J\345>zP\r\3364!\222\261/\010!\364V\217eSI\246T\270\212\212\006\351\003\257M+},\230\205S\223k\303\365\221\r5\\x{W$\t\205\342\364\251\024n\262\210\335 C!\2170\006Q\007b\231gX0\364\332\263\253\357,\010L\342\336\233\241\324t\"\215E\2431\014'\036\337\312\n1\016\306\272\251\005\020{\231Z\2562,_D\321\016Y\222\343\370\000\275\215\302}WbO;#7R/:F\237\373}\tmW^x\223\312\257\312`\025,V^\277\0024\322>i\277$\335\010\214\033\270\320\252x\334p\355MBr3<VA\345\206,V\000f\377\276\207p<N\201\351\333\203\026\377\362\333k\377\2762\377\352{\345\213\177,_\274p\365\312\033\213\227\336\275>u\371j\361\374\342\033oU\274*\202\026>\373\240|\341\325\205w^(\347.]\235\272\\\376\315\257\313\271\217\321h\032\023%>I\343\304\027\347.@zT2\030\315\277\366\361\342ek\341\265\213\210)\201\026\337\374\030\366\370\342\334\313\327.\277\300\031\\\237\312\361\252\255\374\366\013\2607\314\226\337\376p\376\225\334\365\251\013\234\370\332\273W\026\256\2748\357\274x\355\275\317\257O\275\004\343t\213k\277\313\317\277\376\317\305\277\332\327^\372Wy\352\347\363\347\336\231?\177\036y\2732\035\346\355\317\313S\027\027\376\374|\371\365\337\317\277\361\247\353S\257\227\177\365\362\265O/\225?\373\260\374\2365\377\321\373\345\363y\316\266|\336\271Z\374t\361-{\341\315<\250\272\360\322\337\351\026\013\277\2700\177\351\203\305\347\337\007!@\312\343*\246\017\261Q\331\2720\377\267\317\313\317_\236\377\307+ \314\302'\177X\274|q\376\223\017\347?\372%g\002B\242=}7\260\023\227\262\332w\323|\310\213\241\253\372\0213e\345\224\357\273\251 V\335\237\301\r\336\242\352\"Q\264\004\367\013Q:\003i\034\202w\024\031\211\030d)#@\303&\031\003\245Cf\332""\210C\205L\037\352\235]KK\371>\357\316\320\347\025\366\220\305+\217\256\351cs\303D\325\252?X\373\244\353\304c\247~0\"\234>\372\350\361\223\203\202pj2\013\377\307\024\211\010\217\001\311\343P\032\271\325%\324\2255MA1\005\340\304\220k\250?E#\001\177\246hNj\222\242C\005\r\232\200j\330\024DB\014A\023\223\270R\250\320\206\251<\213\275_\001\262\037+\016\330\227\340\326f\364\2318}\240Ns\233\004I<\241\033\223<\375Jc\030\310L\370I\212\302\231\t\272\257 )2+\300\036\203\215*\305\247\304\014\007\365\0051\000;\n0;un\355Xy)\006\253M\263R\302\321\006\025\267\266\302\250-k\004\232\260\331?\227\323-<\351;7\357^\"\353\022{8\312\276LL_6\001\270,\307\203\357$\005!\236\326$AH`\002\177\002GT\240\357\213D\220\227>\024\227\222\240\250\254\202\t)\266\212\354\326H\314\273x\272>\010P\211\252y(\\\307}\331\\r\322\253X\232L\360\002\204M\010\264\374S43\205A\024\215PCW\014\250\020\23449\310\314k\005!\tR\322o^\241Vn\010^q\013S\272\234V\341\300T\267\257\356'0l\371\2677\353\315\351\206\222P4Q\345\272xG1\005\266Lb\210\273&k\231p\217\006\367&\236\373\327\\\034Sz\252\372\312\253\346\325e\345\332\265\254]\353\320\215W\263\224\241$Ec\262\366\316\235\312\n\302xZT\271\n\336R\003\2335u,\3773\031\022\240\007\244.01_\000-\327g\352\236\007,\273\214\231J\242\362.\263\246X\013\263b-\314\354E\017\215\311l\344\375\204+\316,\2607\274P\0272\307\345\300\232\351\270\207\205 \320I\372\235%\364_`\014\275(A\024\242b\352\014 93\002\3732\335\350\230\341\351\305\375\021\350\253fv\"\370\261\000\317\026\330\001\346]XYiT\347\316\265.\365\264\264w\345\356\267n\263\002\266\017\272\017\266\264\257\313\355\265\206\2551[\234m[\3535\347\332\326U\210\006\347:n\317a+2\333\261.\027\205il\337\357\2649'\013\335\205\035\205\321\342\376\342\370t\347\314\306\231\301\331\256\365\263wl\264\366[\246\355\233\355\331b\357\262\307\235\3269h\354\260\207\201\367\306\236\2455-\235]\271\003V\267\265\327\036\246\314\"s]wZ~{\213\023q`\365\206\234i\371\254\357XI\347>gx\366\216\315v\253\335=G\177\316\r\322\225\033\376+\"\334\276L\204\007,_i\343\016'2\333""\265\305\016:\221[\222j\266\203N\356\261\037\001\312\343\371m\205q\200\363`K\373fk\334\356t6\347\273\227\266\267\264\257Y\352hi_\237\033\262vZ\2425\351\254q\344\274/\377Pa\220\016\337e\305\355cN\253sw\3367\327\266\305\0169\343\371\326\331\266\036\353D\351\236\003\0050FWeY+5\307\001\253\207\333\006\320h\357\314\265\346\266Z\203\263m\035\274A\3076\344`Q;\225*m\035)m\332\233\257\300\025\267A\023\212\013\261#\320\354\270\323\332e\031\366V\347X\2765\177waO\221\r\321\255\2626q\036\310\357\314\213\371l\301,\372\247{\246Gf\272g\327u\321y\037\333\254\324\271\305\366Q\351\357\310e\254\021\273\333\356u`\327Z\351`\256\307\032\000\275\272g\3336\344\316\332\203\366\260'\3616k\234K\274\305\212\314\265}\363\334\263`\2100\003eG~8\257\025\217\026\307\347:\272r\2039\201JI\033?\266\0172X\352:\235\233,\t\254\260\2342\3425\036r\2168\342j\323L\216mV\306\036q\272\235\336\274;\260\325\032\262w\332\242=\231o\245\212trY\227\276\333\332\322\276\211\251\273\333\371\006\230{(\277=\377H\341@\261\2478\\T\246\307+f\340\215{\3555\266\354\370\234\201Bk\005\263\335\340\257\203\216P\030t\261(u\372\234M\016\311G\362\217\026\206\212;\213b\361g3\242K\375m{\310\331\351\210%\377\203E\217\301V\020\237\267\266\331qj\267R\360`\261q\273\245\265\364t\327\331\302U\201\223\336cq=K\235\310\365\305\303Ep>n|Pc\233\235p\206\235d!Z\034\231\276k\246u\346\236\322\350\023\263m\324s\306m\020\345^{\302\021\235\237\026\236.\222\351\007f|3\207JO==\013v$\245u;A\250\266\374\311\342\267J\207FK\243O\321\t\nwi\375.g4\277\077\077^\350(\202\027w[\233\230\017>\352\014V\034\201\273n\334:\006Gk\25338\347\tJ\307\253'\247\265\356<P\305\272\255\365\354T\303\376\343\236\243\253\216o\266k\263}\233\355\263#p\3269\320U\354\274\226wb\272\2555\226\014\264\003 \372\321|\2460R\354.\366N\3133;fFK\247\237(=\361d\351I\\\302q\017fP`C\255\327\327t\346\332\332i(]\263\364t+\r\250~pl\337\322\221\333Z\326\322c\362\214\2635\377\275\342\272\351\010=(\221\377\000ok\201\325";
+    PyObject *data = __Pyx_DecompressString(cstring, 3483, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (7792 bytes) */
-const char* const bytes = ".Advanced: base dict merged into component stateAlias of css_classAlias of labelAlias of prefix_iconAppended inner iconAuto-grow height; True, or [minRows, maxRows]Density: default/comfortable/compact (small = compact)Disable the inputEnter-key callback (same signature rules as onchange)Enter key pressedExtra CSS class on the fieldField labelFill the full row width; when False the input is 240px wideFixed width; numbers become pxFocus colorInitial value (also the first positional argument)Inline CSS stringInput value changedMax input length (enables counter with show_word_limit)Password visibility toggle (use with type='password')Placeholder textPlease inputPrepended inner icon (Material Icons, or 'bi-' for Bootstrap)Show 'n/maxlength' character counterShow the clear buttonTextarea row count (used with type='textarea')Value-change callback (0-arg or 1-arg event; event.value = new value)?bool | listdisable\n        <div\n            :style=\"data.root_in_row ? 'display: inline-block; vertical-align: top;' : 'display: inline-block; vertical-align: top; width: 100%;'\"\n            \\@click.capture=\"(e) => {\n                const t = e.target;\n                if (!t || !t.closest) return;\n                const inClearable = !!t.closest('.v-field__clearable');\n                const onOutlineEnd = !!t.closest('.v-field__outline__end');\n                const fieldEl = t.closest('.v-field');\n                const hasClearable = !!(fieldEl && fieldEl.querySelector('.v-field__clearable'));\n                if (inClearable || (onOutlineEnd && hasClearable)) {\n                    e.preventDefault();\n                    e.stopPropagation();\n                    data.value = '';\n                    onserver('onchange', '');\n                }\n            }\"\n        >\n            <v-text-field\n                v-if=\"data.type !== 'textarea'\"\n                :model-value=\"data.value\"\n                :label=\"data.label || undefined\"\n                :placehold""er=\"data.placeholder\"\n                :disabled=\"data.disabled\"\n                :maxlength=\"data.maxlength || undefined\"\n                :color=\"data.color\"\n                class=\"ss-input-field\"\n                :prepend-inner-icon=\"data.prepend_inner_icon || undefined\"\n                :append-inner-icon=\"(data.show_password && data.type === 'password') ? (data.__pw_visible ? 'mdi-eye-off' : 'mdi-eye') : (data.append_inner_icon || undefined)\"\n                :type=\"(data.type === 'password' && !data.__pw_visible) ? 'password' : 'text'\"\n                :counter=\"data.show_word_limit && data.maxlength ? data.maxlength : undefined\"\n                :clearable=\"data.clearable\"\n                :density=\"(data.density === 'compact' || data.density === 'small') ? 'compact' : (data.density === 'comfortable') ? 'comfortable' : 'default'\"\n                :variant=\"data.variant\"\n                :class=\"data.css_class\"\n                :style=\"(data.custom_width ? 'width: ' + (typeof data.custom_width === 'number' ? data.custom_width + 'px' : data.custom_width) + '; flex: none;' : (data.block ? '' : 'width: 240px; flex: none;')) + (data.custom_style || '')\"\n                \\@update:model-value=\"(val) => { data.value = val == null ? '' : val; onserver('onchange', data.value) }\"\n                \\@keyup.enter=\"(e) => onserver('onsubmit', data.value)\"\n                \\@click:append-inner=\"() => { if (data.show_password && data.type === 'password') { data.__pw_visible = !data.__pw_visible } }\"\n            />\n            \n            <v-textarea\n                v-else\n                :model-value=\"data.value\"\n                :label=\"data.label || undefined\"\n                :placeholder=\"data.placeholder\"\n                :disabled=\"data.disabled\"\n                :maxlength=\"data.maxlength || undefined\"\n                :color=\"data.color\"\n                class=\"ss-input-field\"\n                :prepend-inner-ic""on=\"data.prepend_inner_icon || undefined\"\n                :append-inner-icon=\"data.append_inner_icon || undefined\"\n                :counter=\"data.show_word_limit && data.maxlength ? data.maxlength : undefined\"\n                :clearable=\"data.clearable\"\n                :density=\"(data.density === 'compact' || data.density === 'small') ? 'compact' : (data.density === 'comfortable') ? 'comfortable' : 'default'\"\n                :variant=\"data.variant\"\n                :class=\"data.css_class\"\n                :rows=\"data.min_rows\"\n                :max-rows=\"data.max_rows\"\n                :auto-grow=\"data.auto_grow\"\n                :style=\"(data.custom_width ? 'width: ' + (typeof data.custom_width === 'number' ? data.custom_width + 'px' : data.custom_width) + ';' : (data.block ? '' : 'width: 240px;')) + (data.custom_style || '')\"\n                \\@update:model-value=\"(val) => { data.value = val == null ? '' : val; onserver('onchange', data.value) }\"\n                \\@keyup.enter=\"(e) => onserver('onsubmit', data.value)\"\n            />\n        </div>\n    enablegcint | strisenabledoutlined/underlined/solo/solo-invertedsimplestart/ss_ui/input.py.ss-input-field .v-field__outline,.ss-input-field.v-field--focused .v-field__outline{--v-field-border-width:1px}text/password/textarea (textarea renders v-textarea)v-text-fieldINPUT_SCHEMA__Pyx_PyDict_NextRefappend_iconappend_icon_is_reactiveappend_inner_iconargargsasyncio.coroutines_attr_nameauto_growautosizeautosize_valblockblock_defaultboolcallablecategorychangecheck_schema_kwargs_cidclassNameclearablecline_in_tracebackcolorcompactcomponents_csscss_classcss_namecustom_stylecustom_width_datadatadefaultdensitydictdisableddoceventeventsextract_valueform__func__getget_active_containergetcmhandlersiconid_in_rowinputinput.<locals>.extract_valueinput.<locals>.myonchangeinput.<locals>.myonsubmitinput_typeinspectint_is_coroutineitemskwargslabel__main__max_rowsmaxlengthmin_rows__module__myonchangemyo""nsubmit__name__nameonchangeonsubmitoriginal_valueoutlinedparametersparams_parentpasswordplaceholderpoppositionalprefix_iconprepend_iconprepend_icon_is_reactiveprepend_inner_iconprimary__pw_visiblepx__qualname__reactiveresroot_in_rowrowrowsrows_val__set_name__setdefaultshow_passwordshow_word_limitsigsignaturesimplestart.ss_ui.inputsizess_coress_core.component_statestrstylesubmitsuffix_icon__test__texttext_inputtextareatitletypevalvaluevaluesvariantvuetifyvuetify_basewidthwidth_for_blockwidth_valwidth_val_for_block\200\001\3604\000\005\013\210+\220Q\220h\230a\330\004\n\210+\220Q\220i\230q\330\004\n\210+\220Q\220h\230a\340\004\013\2105\220\002\220(\230!\200\001\360\024\000\005\014\2105\220\002\220(\230!\200A\340\010\016\210e\2201\330\010\013\210:\220Q\220e\2305\240\004\240M\260\021\260#\260V\2704\270q\300\t\310\023\310A\330\014\r\330\020\023\2204\220s\230!\330\024\032\230%\230q\240\001\340\024\032\230#\230Q\230a\330\023\024\360\006\000\t\014\2106\220\021\220+\230Q\330\010\013\2101\340\014\022\220'\230\032\2401\240A\330\014\017\210s\220!\2203\220m\2402\240Q\330\020\030\230\001\230\021\340\020\030\230\001\200A\360\006\000\t\017\210e\2201\330\010\013\210:\220Q\220e\2305\240\004\240M\260\021\260#\260V\2704\270q\300\t\310\023\310A\330\014\r\330\020\023\2204\220s\230!\330\024\032\230%\230q\240\001\340\024\032\230#\230Q\230a\330\023\024\360\016\000\t\014\2106\220\021\220+\230Q\330\010\013\2107\220!\320\023#\2401\330\014\032\230)\2401\330\010\013\2101\340\014\022\220'\230\032\2401\240A\330\014\017\210s\220!\2203\220m\2402\240Q\330\020\030\230\001\230\021\340\020\030\230\001\200A\330\010\017\210s\220*\230G\2401\240E\250\036\260q\200\001\360<\000\005\030\220q\230\t\240\030\250\021\360\"\000\005\006\360\010\000\005\r\210F\220$\220a\220y\240\006\240d\250!\2509\260A\360\010\000\005\027\220f\230D\240\001\240\031\250!\340\004\032\230-\240q\250\001\330\004\024\220I\320\0356\260a\330\004\014\210F\220$\220a\220y\240\001\340\004\013\2106\220\024\220Q\220h\230a\360\006\000\005\t\210\001""\210\033\220A\330\004\010\210\001\210\033\220A\360\006\000\005\017\210a\330\004\005\330\010\017\210u\220B\320\026+\2501\330\010\013\210:\220Q\220f\230A\330\014\023\2204\220t\2301\230A\330\010\022\220%\220r\230\033\240D\250\001\250\031\260*\270A\330\010\022\220$\220a\220x\230t\2407\250$\250a\250x\260s\270'\300\024\300T\310\021\330\013\014\330\010\022\220!\330\004\010\210\001\320\t\032\230!\360\010\000\005\020\210v\220T\230\021\230,\240a\330\004\013\2106\220\024\220Q\220h\230a\360\010\000\005\024\220=\240\001\240\021\330\004\017\210}\230A\230Q\360\006\000\005\t\210\001\210\036\220q\330\004\010\210\001\210\032\2201\340\004\007\200z\220\021\220.\240\006\240d\250#\250Q\250n\270C\270q\340\010\014\210A\210_\230A\330\010\014\210A\210^\230<\240q\250\001\330\010\014\210A\210^\230<\240q\250\001\330\t\026\220c\230\021\340\010\014\210A\210_\230A\330\010\014\210A\210^\2301\330\010\014\210A\210^\2309\240B\240a\340\010\014\210A\210_\230A\330\010\014\210A\210^\2301\330\010\014\210A\210^\2309\240B\240a\340\004\010\210\001\210\036\220v\230T\240\021\240,\250a\340\004\010\210\001\210\033\220F\230$\230a\230y\250\001\340\004\010\210\001\210\032\2201\340\004\010\210\001\210\032\2201\360\006\000\005\026\220T\230\021\230&\240\003\2401\240F\250\"\250G\2606\270\024\270Q\270i\300q\330\004\010\210\001\210\033\220A\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\360\006\000\005\t\210\001\320\t!\240\026\240t\2501\250H\260F\270$\270a\270\177\310a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\320\t\033\2301\330\004\010\210\001\320\t\036\230f\240D\250\001\320)<\270A\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\360\n\000\005\014\2106\220\024\220Q\220h\230a\360\010\000\005\t\210\001\210\032\2201\330\004\010\210\001\210\035\220a\340\004\010\210\001\320\t \240\006\240d\250!\250?\270!\340\004\022\220$\220a\220q\330\004\036\230g\240Q\240m\260:\270T\300\027\310\001\310\035\320VW\330\004\023""\2204\220q\230\001\330\004\037\230w\240a\240~\260Z\270t\3007\310!\310>\320YZ\330\004\007\200t\320\013$\240D\250\004\250M\270\025\320>V\320VY\320YZ\330\010\014\210A\320\r%\240V\2504\250q\260\010\270\001\340\004\021\220\026\220t\2301\230H\240A\330\004\010\210\001\210\032\2201\360\006\000\005\017\210f\220D\230\001\230\033\240A\340\004\010\210\001\210\035\220a\360\006\000\005\r\210F\220$\220a\220y\240\001\330\004\014\210F\220$\220a\220y\240\001\360\010\000\005\021\220\r\230Q\230a\330\004\007\200q\330\010\013\210:\220Q\220l\240!\330\014\030\230\002\230!\2301\360\016\000\005\t\210\001\320\t\033\2301\330\004\010\210\001\320\t\033\2301\330\004\010\210\001\210\033\220A\360\006\000\005\021\220\006\220d\230!\230=\250\004\250C\250v\260T\270\021\270,\300d\310#\310V\320SW\320WX\320Xe\320ef\330\004\010\210\001\210\037\230\001\340\004\017\210v\220T\230\021\230,\240a\330\004\017\210v\220T\230\021\230,\240a\340\004\005\3608\000\005\006\360Z\001\000\005\013\210'\220\021\220!\360B\002\000\n\020\210v\220\\\240\033\250L\270\013\3001\330\004\013\2101";
+    #else /* compression: none (9262 bytes) */
+const char* const bytes = ".Advanced: base dict merged into component stateAlias of css_classAlias of labelAlias of prefix_iconAppended inner iconAuto-grow height; True, or [minRows, maxRows]Density: default/comfortable/compact (small = compact)Disable the inputEnter-key callback (same signature rules as onchange)Enter key pressedExtra CSS class on the fieldField labelFill the full row width; stack contexts fill by default, row contexts keep 240px compact; explicit width= overrides bothFixed width; numbers become pxFocus colorInitial value (also the first positional argument)Inline CSS stringInput value changedMax input length (enables counter with show_word_limit)Password visibility toggle (use with type='password')Placeholder textPlease inputPrepended inner icon (Material Icons, or 'bi-' for Bootstrap)Show 'n/maxlength' character counterShow the clear buttonTextarea row count (used with type='textarea')Value-change callback (0-arg or 1-arg event; event.value = new value)?bool | listdisable\n        <div\n            :style=\"data.root_in_row ? 'display: inline-block; vertical-align: top;' : 'display: inline-block; vertical-align: top; width: 100%;'\"\n            \\@click.capture=\"(e) => {\n                const t = e.target;\n                if (!t || !t.closest) return;\n                const inClearable = !!t.closest('.v-field__clearable');\n                const onOutlineEnd = !!t.closest('.v-field__outline__end');\n                const fieldEl = t.closest('.v-field');\n                const hasClearable = !!(fieldEl && fieldEl.querySelector('.v-field__clearable'));\n                if (inClearable || (onOutlineEnd && hasClearable)) {\n                    e.preventDefault();\n                    e.stopPropagation();\n                    data.value = '';\n                    onserver('onchange', '');\n                }\n            }\"\n        >\n            <v-text-field\n                v-if=\"data.type !== 'textarea'\"\n                :model-value=\"data.value\"\n                :""label=\"data.label || undefined\"\n                :placeholder=\"data.placeholder\"\n                :disabled=\"data.disabled\"\n                :maxlength=\"data.maxlength || undefined\"\n                :color=\"data.color\"\n                class=\"ss-input-field\"\n                :prepend-inner-icon=\"data.prepend_inner_icon || undefined\"\n                :append-inner-icon=\"(data.show_password && data.type === 'password') ? (data.__pw_visible ? 'mdi-eye-off' : 'mdi-eye') : (data.append_inner_icon || undefined)\"\n                :type=\"(data.type === 'password' && !data.__pw_visible) ? 'password' : 'text'\"\n                :counter=\"data.show_word_limit && data.maxlength ? data.maxlength : undefined\"\n                :clearable=\"data.clearable\"\n                :density=\"(data.density === 'compact' || data.density === 'small') ? 'compact' : (data.density === 'comfortable') ? 'comfortable' : 'default'\"\n                :variant=\"data.variant\"\n                :class=\"data.css_class\"\n                :style=\"(data.custom_width ? 'width: ' + (typeof data.custom_width === 'number' ? data.custom_width + 'px' : data.custom_width) + '; flex: none;' : (data.block ? '' : (data.root_in_row ? 'width: 240px; flex: none;' : 'width: 100%; flex: none;'))) + (data.custom_style || '')\"\n                \\@update:model-value=\"(val) => { data.value = val == null ? '' : val; onserver('onchange', data.value) }\"\n                \\@keyup.enter=\"(e) => onserver('onsubmit', data.value)\"\n                \\@click:append-inner=\"() => { if (data.show_password && data.type === 'password') { data.__pw_visible = !data.__pw_visible } }\"\n            />\n            \n            <v-textarea\n                v-else\n                :model-value=\"data.value\"\n                :label=\"data.label || undefined\"\n                :placeholder=\"data.placeholder\"\n                :disabled=\"data.disabled\"\n                :maxlength=\"data.maxlength || undefined\"\n   ""             :color=\"data.color\"\n                class=\"ss-input-field\"\n                :prepend-inner-icon=\"data.prepend_inner_icon || undefined\"\n                :append-inner-icon=\"data.append_inner_icon || undefined\"\n                :counter=\"data.show_word_limit && data.maxlength ? data.maxlength : undefined\"\n                :clearable=\"data.clearable\"\n                :density=\"(data.density === 'compact' || data.density === 'small') ? 'compact' : (data.density === 'comfortable') ? 'comfortable' : 'default'\"\n                :variant=\"data.variant\"\n                :class=\"data.css_class\"\n                :rows=\"data.min_rows\"\n                :max-rows=\"data.max_rows\"\n                :auto-grow=\"data.auto_grow\"\n                :style=\"(data.custom_width ? 'width: ' + (typeof data.custom_width === 'number' ? data.custom_width + 'px' : data.custom_width) + ';' : (data.block ? '' : (data.root_in_row ? 'width: 240px;' : 'width: 100%;'))) + (data.custom_style || '')\"\n                \\@update:model-value=\"(val) => { data.value = val == null ? '' : val; onserver('onchange', data.value) }\"\n                \\@keyup.enter=\"(e) => onserver('onsubmit', data.value)\"\n            />\n        </div>\n    enablegcint | strisenabledoutlined/underlined/solo/solo-invertedsimplestart/ss_ui/input.py\n.ss-input-field .v-field__outline,\n.ss-input-field .v-field--focused .v-field__outline {\n  --v-field-border-width: 1px;\n}\n.ss-input-field .v-field__outline__start,\n.ss-input-field .v-field__outline__notch::before,\n.ss-input-field .v-field__outline__notch::after,\n.ss-input-field .v-field__outline__end {\n  border-color: #dcdfe6;\n  opacity: 1;\n}\n.ss-input-field .v-field:hover .v-field__outline__start,\n.ss-input-field .v-field:hover .v-field__outline__notch::before,\n.ss-input-field .v-field:hover .v-field__outline__notch::after,\n.ss-input-field .v-field:hover .v-field__outline__end {\n  border-color: #c0c4cc;\n}\n.ss-input-field .v-fie""ld--focused .v-field__outline__start,\n.ss-input-field .v-field--focused .v-field__outline__notch::before,\n.ss-input-field .v-field--focused .v-field__outline__notch::after,\n.ss-input-field .v-field--focused .v-field__outline__end {\n  border-color: #409eff;\n}\n/* \351\252\221\347\272\277\346\226\255\345\217\243\345\217\214\344\277\235\351\231\251\357\274\232\344\270\212\351\235\242 opacity:1 \350\275\257\345\214\226\350\247\204\345\210\231\344\274\232\345\216\213\345\210\266 Vuetify\n   \343\200\214active \346\227\266\351\232\220\350\227\217 notch \351\241\266\347\272\277\343\200\215\347\232\204\350\247\204\345\210\231\357\274\210label \345\244\204\346\226\255\347\272\277\345\244\261\346\225\210\357\274\214\351\241\266\347\272\277\347\251\277\350\277\207\346\240\207\347\255\276\357\274\211\357\274\214\n   \347\224\250\346\233\264\351\253\230\347\211\271\345\274\202\346\200\247\346\212\212 active \346\226\255\345\217\243\346\230\276\345\274\217\350\246\201\345\233\236\346\235\245\357\274\233\345\206\215\347\273\231\345\275\261\345\255\220\346\265\256\345\212\250\346\240\207\347\255\276\345\212\240\344\270\273\351\242\230\350\241\250\351\235\242\350\211\262\n   \350\203\214\346\231\257\351\201\256\347\272\277\357\274\210Element \345\220\214\346\254\276\345\201\232\346\263\225\357\274\214\350\267\237\351\232\217\346\267\261\346\265\205\344\270\273\351\242\230\357\274\211 */\n.ss-input-field .v-field--active.v-field--variant-outlined .v-field__outline__notch::before {\n  opacity: 0;\n}\n.ss-input-field .v-field__outline .v-field-label--floating {\n  background: rgb(var(--v-theme-surface));\n}\ntext/password/textarea (textarea renders v-textarea)v-text-fieldINPUT_SCHEMA__Pyx_PyDict_NextRefappend_iconappend_icon_is_reactiveappend_inner_iconargargsasyncio.coroutines_attr_nameauto_growautosizeautosize_valblockblock_defaultboolcallablecategorychangecheck_schema_kwargs_cidclassNameclearablecline_in_tracebackcolorcompactcomponents_csscss_classcss_namecustom_stylecustom_wid""th_datadatadefaultdensitydictdisableddoceventeventsextract_valueform__func__getget_active_containergetcmhandlersiconid_in_rowinputinput.<locals>.extract_valueinput.<locals>.myonchangeinput.<locals>.myonsubmitinput_typeinspectint_is_coroutineitemskwargslabel__main__max_rowsmaxlengthmin_rows__module__myonchangemyonsubmit__name__nameonchangeonsubmitoriginal_valueoutlinedparametersparams_parentpasswordplaceholderpoppositionalprefix_iconprepend_iconprepend_icon_is_reactiveprepend_inner_iconprimary__pw_visiblepx__qualname__reactiveresroot_in_rowrowrowsrows_val__set_name__setdefaultshow_passwordshow_word_limitsigsignaturesimplestart.ss_ui.inputsizess_coress_core.component_statestrstylesubmitsuffix_icon__test__texttext_inputtextareatitletypevalvaluevaluesvariantvuetifyvuetify_basewidthwidth_for_blockwidth_valwidth_val_for_block\200\001\360\024\000\005\014\2105\220\002\220(\230!\200\001\3608\000\005\013\210+\220Q\220h\230a\330\004\n\210+\220Q\220h\230a\340\004\013\2105\220\002\220(\230!\200A\340\010\016\210e\2201\330\010\013\210:\220Q\220e\2305\240\004\240M\260\021\260#\260V\2704\270q\300\t\310\023\310A\330\014\r\330\020\023\2204\220s\230!\330\024\032\230%\230q\240\001\340\024\032\230#\230Q\230a\330\023\024\360\006\000\t\014\2106\220\021\220+\230Q\330\010\013\2101\340\014\022\220'\230\032\2401\240A\330\014\017\210s\220!\2203\220m\2402\240Q\330\020\030\230\001\230\021\340\020\030\230\001\200A\360\006\000\t\017\210e\2201\330\010\013\210:\220Q\220e\2305\240\004\240M\260\021\260#\260V\2704\270q\300\t\310\023\310A\330\014\r\330\020\023\2204\220s\230!\330\024\032\230%\230q\240\001\340\024\032\230#\230Q\230a\330\023\024\360\016\000\t\014\2106\220\021\220+\230Q\330\010\013\2107\220!\320\023#\2401\330\014\032\230)\2401\330\010\013\2101\340\014\022\220'\230\032\2401\240A\330\014\017\210s\220!\2203\220m\2402\240Q\330\020\030\230\001\230\021\340\020\030\230\001\200A\330\010\017\210s\220*\230G\2401\240E\250\036\260q\200\001\360<\000\005\030\220q\230\t\240\030\250\021\360\"\000\005\006""\360\010\000\005\r\210F\220$\220a\220y\240\006\240d\250!\2509\260A\360\010\000\005\027\220f\230D\240\001\240\031\250!\340\004\032\230-\240q\250\001\330\004\024\220I\320\0356\260a\330\004\014\210F\220$\220a\220y\240\001\340\004\013\2106\220\024\220Q\220h\230a\360\006\000\005\t\210\001\210\033\220A\330\004\010\210\001\210\033\220A\360\006\000\005\017\210a\330\004\005\330\010\017\210u\220B\320\026+\2501\330\010\013\210:\220Q\220f\230A\330\014\023\2204\220t\2301\230A\330\010\022\220%\220r\230\033\240D\250\001\250\031\260*\270A\330\010\022\220$\220a\220x\230t\2407\250$\250a\250x\260s\270'\300\024\300T\310\021\330\013\014\330\010\022\220!\330\004\010\210\001\320\t\032\230!\360\010\000\005\020\210v\220T\230\021\230,\240a\330\004\013\2106\220\024\220Q\220h\230a\360\010\000\005\024\220=\240\001\240\021\330\004\017\210}\230A\230Q\360\006\000\005\t\210\001\210\036\220q\330\004\010\210\001\210\032\2201\340\004\007\200z\220\021\220.\240\006\240d\250#\250Q\250n\270C\270q\340\010\014\210A\210_\230A\330\010\014\210A\210^\230<\240q\250\001\330\010\014\210A\210^\230<\240q\250\001\330\t\026\220c\230\021\340\010\014\210A\210_\230A\330\010\014\210A\210^\2301\330\010\014\210A\210^\2309\240B\240a\340\010\014\210A\210_\230A\330\010\014\210A\210^\2301\330\010\014\210A\210^\2309\240B\240a\340\004\010\210\001\210\036\220v\230T\240\021\240,\250a\340\004\010\210\001\210\033\220F\230$\230a\230y\250\001\360\010\000\005\t\210\001\210\032\2201\360J\001\000\005\026\220T\230\021\230&\240\003\2401\240F\250\"\250G\2606\270\024\270Q\270i\300q\330\004\010\210\001\210\033\220A\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\330\004\010\210\001\320\t\032\230&\240\004\240A\240_\260A\360\006\000\005\t\210\001\320\t!\240\026\240t\2501\250H\260F\270$\270a\270\177\310a\330\004\010\210\001\320\t\034\230F\240$\240a\320'8\270\001\330\004\010\210\001\320\t\033\2301\330\004\010\210\001\320\t\036\230f\240D\250\001\320)<\270A\330\004\010\210\001\210\037\230\006\230d\240!\240=\260\001\360\n\000\005\014\2106""\220\024\220Q\220h\230a\360\010\000\005\t\210\001\210\032\2201\330\004\010\210\001\210\035\220a\340\004\010\210\001\320\t \240\006\240d\250!\250?\270!\340\004\022\220$\220a\220q\330\004\036\230g\240Q\240m\260:\270T\300\027\310\001\310\035\320VW\330\004\023\2204\220q\230\001\330\004\037\230w\240a\240~\260Z\270t\3007\310!\310>\320YZ\330\004\007\200t\320\013$\240D\250\004\250M\270\025\320>V\320VY\320YZ\330\010\014\210A\320\r%\240V\2504\250q\260\010\270\001\340\004\021\220\026\220t\2301\230H\240A\330\004\010\210\001\210\032\2201\360\006\000\005\017\210f\220D\230\001\230\033\240A\340\004\010\210\001\210\035\220a\360\006\000\005\r\210F\220$\220a\220y\240\001\330\004\014\210F\220$\220a\220y\240\001\360\010\000\005\021\220\r\230Q\230a\330\004\007\200q\330\010\013\210:\220Q\220l\240!\330\014\030\230\002\230!\2301\360\016\000\005\t\210\001\320\t\033\2301\330\004\010\210\001\320\t\033\2301\330\004\010\210\001\210\033\220A\360\006\000\005\021\220\006\220d\230!\230=\250\004\250C\250v\260T\270\021\270,\300d\310#\310V\320SW\320WX\320Xe\320ef\330\004\010\210\001\210\037\230\001\340\004\017\210v\220T\230\021\230,\240a\330\004\017\210v\220T\230\021\230,\240a\340\004\005\3608\000\005\006\360Z\001\000\005\013\210'\220\021\220!\360B\002\000\n\020\210v\220\\\240\033\250L\270\013\3001\330\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -7085,12 +7065,12 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_extract_value, __pyx_mstate->__pyx_kp_b_iso88591_A_s_G1E_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 227};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 261};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event, __pyx_mstate->__pyx_n_u_val, __pyx_mstate->__pyx_n_u_sig};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_e1_Qe5_M_V4q_A_4s_q_Qa_6_Q_7_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 255};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 289};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event, __pyx_mstate->__pyx_n_u_val, __pyx_mstate->__pyx_n_u_sig};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_myonsubmit, __pyx_mstate->__pyx_kp_b_iso88591_A_e1_Qe5_M_V4q_A_4s_q_Qa_6_Q_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
@@ -7100,14 +7080,14 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_input, __pyx_mstate->__pyx_kp_b_iso88591_q_F_ay_d_9A_fD_q_I_6a_F_ay_6_Qh, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 368};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 402};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_text_input, __pyx_mstate->__pyx_kp_b_iso88591_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 381};
+    const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS|CO_VARKEYWORDS), 415};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_args, __pyx_mstate->__pyx_n_u_kwargs};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_textarea, __pyx_mstate->__pyx_kp_b_iso88591_4_Qha_Qiq_Qha_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_py, __pyx_mstate->__pyx_n_u_textarea, __pyx_mstate->__pyx_kp_b_iso88591_8_Qha_Qha_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

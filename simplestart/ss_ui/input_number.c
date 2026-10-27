@@ -2761,7 +2761,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "simplestart/ss_ui/input_number.py":246
+/* "simplestart/ss_ui/input_number.py":255
  *             data["precision"] = 0
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
@@ -2808,32 +2808,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_event,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 246, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 255, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 246, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 255, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 246, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "myonchange", 0) < (0)) __PYX_ERR(0, 255, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 246, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, i); __PYX_ERR(0, 255, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 246, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 255, __pyx_L3_error)
     }
     __pyx_v_event = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 246, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("myonchange", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 255, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2875,65 +2875,65 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
   __pyx_cur_scope = __pyx_outer_scope;
   __Pyx_INCREF(__pyx_v_event);
 
-  /* "simplestart/ss_ui/input_number.py":247
+  /* "simplestart/ss_ui/input_number.py":256
  * 
  *     def myonchange(event):
  *         val = event.value             # <<<<<<<<<<<<<<
  * 
  *         # value
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_event, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_val = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input_number.py":250
+  /* "simplestart/ss_ui/input_number.py":259
  * 
  *         # value
  *         res._data["value"] = val             # <<<<<<<<<<<<<<
  *         #  StatePropBinding
  *         if original_value_arg is not None and hasattr(original_value_arg, 'value'):
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 250, __pyx_L1_error) }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 259, __pyx_L1_error) }
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < 0))) __PYX_ERR(0, 250, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < 0))) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input_number.py":252
+  /* "simplestart/ss_ui/input_number.py":261
  *         res._data["value"] = val
  *         #  StatePropBinding
  *         if original_value_arg is not None and hasattr(original_value_arg, 'value'):             # <<<<<<<<<<<<<<
  *             original_value_arg.value = val
  *         #  State
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_original_value_arg)) { __Pyx_RaiseClosureNameError("original_value_arg"); __PYX_ERR(0, 252, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_original_value_arg)) { __Pyx_RaiseClosureNameError("original_value_arg"); __PYX_ERR(0, 261, __pyx_L1_error) }
   __pyx_t_3 = (__pyx_cur_scope->__pyx_v_original_value_arg != Py_None);
   if (__pyx_t_3) {
   } else {
     __pyx_t_2 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_original_value_arg)) { __Pyx_RaiseClosureNameError("original_value_arg"); __PYX_ERR(0, 252, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_original_value_arg)) { __Pyx_RaiseClosureNameError("original_value_arg"); __PYX_ERR(0, 261, __pyx_L1_error) }
   __pyx_t_1 = __pyx_cur_scope->__pyx_v_original_value_arg;
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_2 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input_number.py":253
+    /* "simplestart/ss_ui/input_number.py":262
  *         #  StatePropBinding
  *         if original_value_arg is not None and hasattr(original_value_arg, 'value'):
  *             original_value_arg.value = val             # <<<<<<<<<<<<<<
  *         #  State
  *         if bind_state is not None and hasattr(bind_state, "value"):
 */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_original_value_arg)) { __Pyx_RaiseClosureNameError("original_value_arg"); __PYX_ERR(0, 253, __pyx_L1_error) }
-    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_original_value_arg, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < (0)) __PYX_ERR(0, 253, __pyx_L1_error)
+    if (unlikely(!__pyx_cur_scope->__pyx_v_original_value_arg)) { __Pyx_RaiseClosureNameError("original_value_arg"); __PYX_ERR(0, 262, __pyx_L1_error) }
+    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_original_value_arg, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < (0)) __PYX_ERR(0, 262, __pyx_L1_error)
 
-    /* "simplestart/ss_ui/input_number.py":252
+    /* "simplestart/ss_ui/input_number.py":261
  *         res._data["value"] = val
  *         #  StatePropBinding
  *         if original_value_arg is not None and hasattr(original_value_arg, 'value'):             # <<<<<<<<<<<<<<
@@ -2942,40 +2942,40 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
 */
   }
 
-  /* "simplestart/ss_ui/input_number.py":255
+  /* "simplestart/ss_ui/input_number.py":264
  *             original_value_arg.value = val
  *         #  State
  *         if bind_state is not None and hasattr(bind_state, "value"):             # <<<<<<<<<<<<<<
  *             bind_state.value = val
  * 
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 255, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 264, __pyx_L1_error) }
   __pyx_t_3 = (__pyx_cur_scope->__pyx_v_bind_state != Py_None);
   if (__pyx_t_3) {
   } else {
     __pyx_t_2 = __pyx_t_3;
     goto __pyx_L7_bool_binop_done;
   }
-  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 255, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 264, __pyx_L1_error) }
   __pyx_t_1 = __pyx_cur_scope->__pyx_v_bind_state;
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_HasAttr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_value); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_2 = __pyx_t_3;
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input_number.py":256
+    /* "simplestart/ss_ui/input_number.py":265
  *         #  State
  *         if bind_state is not None and hasattr(bind_state, "value"):
  *             bind_state.value = val             # <<<<<<<<<<<<<<
  * 
  *         # eventData
 */
-    if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 256, __pyx_L1_error) }
-    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_bind_state, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < (0)) __PYX_ERR(0, 256, __pyx_L1_error)
+    if (unlikely(!__pyx_cur_scope->__pyx_v_bind_state)) { __Pyx_RaiseClosureNameError("bind_state"); __PYX_ERR(0, 265, __pyx_L1_error) }
+    if (__Pyx_PyObject_SetAttrStr(__pyx_cur_scope->__pyx_v_bind_state, __pyx_mstate_global->__pyx_n_u_value, __pyx_v_val) < (0)) __PYX_ERR(0, 265, __pyx_L1_error)
 
-    /* "simplestart/ss_ui/input_number.py":255
+    /* "simplestart/ss_ui/input_number.py":264
  *             original_value_arg.value = val
  *         #  State
  *         if bind_state is not None and hasattr(bind_state, "value"):             # <<<<<<<<<<<<<<
@@ -2984,7 +2984,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
 */
   }
 
-  /* "simplestart/ss_ui/input_number.py":259
+  /* "simplestart/ss_ui/input_number.py":268
  * 
  *         # eventData
  *         event = handle_event_data(event, event_data)             # <<<<<<<<<<<<<<
@@ -2992,9 +2992,9 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
  *         if onchange:
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_handle_event_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 268, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 259, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_event_data)) { __Pyx_RaiseClosureNameError("event_data"); __PYX_ERR(0, 268, __pyx_L1_error) }
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -3012,24 +3012,24 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF_SET(__pyx_v_event, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input_number.py":261
+  /* "simplestart/ss_ui/input_number.py":270
  *         event = handle_event_data(event, event_data)
  * 
  *         if onchange:             # <<<<<<<<<<<<<<
  *             onchange(event)
  *         # :model-value + @update:model-value data.value
 */
-  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 261, __pyx_L1_error) }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 261, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 270, __pyx_L1_error) }
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_cur_scope->__pyx_v_onchange); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 270, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "simplestart/ss_ui/input_number.py":262
+    /* "simplestart/ss_ui/input_number.py":271
  * 
  *         if onchange:
  *             onchange(event)             # <<<<<<<<<<<<<<
@@ -3037,7 +3037,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
  *         #
 */
     __pyx_t_5 = NULL;
-    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 262, __pyx_L1_error) }
+    if (unlikely(!__pyx_cur_scope->__pyx_v_onchange)) { __Pyx_RaiseClosureNameError("onchange"); __PYX_ERR(0, 271, __pyx_L1_error) }
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_onchange);
     __pyx_t_4 = __pyx_cur_scope->__pyx_v_onchange; 
     __pyx_t_6 = 1;
@@ -3057,12 +3057,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/input_number.py":261
+    /* "simplestart/ss_ui/input_number.py":270
  *         event = handle_event_data(event, event_data)
  * 
  *         if onchange:             # <<<<<<<<<<<<<<
@@ -3071,7 +3071,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
 */
   }
 
-  /* "simplestart/ss_ui/input_number.py":265
+  /* "simplestart/ss_ui/input_number.py":274
  *         # :model-value + @update:model-value data.value
  *         #
  *         update_cm(res.id)             # <<<<<<<<<<<<<<
@@ -3079,10 +3079,10 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
  *     # =====================================================================
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_update_cm); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_update_cm); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 265, __pyx_L1_error) }
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 265, __pyx_L1_error)
+  if (unlikely(!__pyx_cur_scope->__pyx_v_res)) { __Pyx_RaiseClosureNameError("res"); __PYX_ERR(0, 274, __pyx_L1_error) }
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_res, __pyx_mstate_global->__pyx_n_u_id); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -3102,12 +3102,12 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_12input_number_myo
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "simplestart/ss_ui/input_number.py":246
+  /* "simplestart/ss_ui/input_number.py":255
  *             data["precision"] = 0
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
@@ -3613,23 +3613,23 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
 */
   if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_css, __pyx_mstate_global->__pyx_kp_u_v_number_input_v_field_variant) < 0))) __PYX_ERR(0, 148, __pyx_L1_error)
 
-  /* "simplestart/ss_ui/input_number.py":239
+  /* "simplestart/ss_ui/input_number.py":248
  * 
  *     #  precision  step  precision
  *     if data["precision"] == 0 and isinstance(data["step"], float):             # <<<<<<<<<<<<<<
  *         step_str = str(data["step"])
  *         if "." in step_str:
 */
-  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_precision); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_precision); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = (__Pyx_PyLong_BoolEqObjC(__pyx_t_3, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_7 = (__Pyx_PyLong_BoolEqObjC(__pyx_t_3, __pyx_mstate_global->__pyx_int_0, 0, 0)); if (unlikely((__pyx_t_7 < 0))) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_7) {
   } else {
     __pyx_t_6 = __pyx_t_7;
     goto __pyx_L7_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_step); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_step); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_7 = PyFloat_Check(__pyx_t_3); 
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3637,51 +3637,51 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_6) {
 
-    /* "simplestart/ss_ui/input_number.py":240
+    /* "simplestart/ss_ui/input_number.py":249
  *     #  precision  step  precision
  *     if data["precision"] == 0 and isinstance(data["step"], float):
  *         step_str = str(data["step"])             # <<<<<<<<<<<<<<
  *         if "." in step_str:
  *             data["precision"] = len(step_str.split(".")[1])
 */
-    __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_step); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_GetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_step); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = __Pyx_PyObject_Unicode(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Unicode(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_step_str = ((PyObject*)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "simplestart/ss_ui/input_number.py":241
+    /* "simplestart/ss_ui/input_number.py":250
  *     if data["precision"] == 0 and isinstance(data["step"], float):
  *         step_str = str(data["step"])
  *         if "." in step_str:             # <<<<<<<<<<<<<<
  *             data["precision"] = len(step_str.split(".")[1])
  *         else:
 */
-    __pyx_t_6 = (__Pyx_PyUnicode_ContainsTF(__pyx_mstate_global->__pyx_kp_u__2, __pyx_v_step_str, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 241, __pyx_L1_error)
+    __pyx_t_6 = (__Pyx_PyUnicode_ContainsTF(__pyx_mstate_global->__pyx_kp_u__2, __pyx_v_step_str, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 250, __pyx_L1_error)
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_ui/input_number.py":242
+      /* "simplestart/ss_ui/input_number.py":251
  *         step_str = str(data["step"])
  *         if "." in step_str:
  *             data["precision"] = len(step_str.split(".")[1])             # <<<<<<<<<<<<<<
  *         else:
  *             data["precision"] = 0
 */
-      __pyx_t_1 = PyUnicode_Split(__pyx_v_step_str, __pyx_mstate_global->__pyx_kp_u__2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_1 = PyUnicode_Split(__pyx_v_step_str, __pyx_mstate_global->__pyx_kp_u__2, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_t_1, 1, long, 1, __Pyx_PyLong_From_long, 1, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt_List(__pyx_t_1, 1, long, 1, __Pyx_PyLong_From_long, 1, 0, 1, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_8 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_8 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_8 == ((Py_ssize_t)-1))) __PYX_ERR(0, 251, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = PyLong_FromSsize_t(__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
+      __pyx_t_3 = PyLong_FromSsize_t(__pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_precision, __pyx_t_3) < 0))) __PYX_ERR(0, 242, __pyx_L1_error)
+      if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_precision, __pyx_t_3) < 0))) __PYX_ERR(0, 251, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "simplestart/ss_ui/input_number.py":241
+      /* "simplestart/ss_ui/input_number.py":250
  *     if data["precision"] == 0 and isinstance(data["step"], float):
  *         step_str = str(data["step"])
  *         if "." in step_str:             # <<<<<<<<<<<<<<
@@ -3691,7 +3691,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
       goto __pyx_L9;
     }
 
-    /* "simplestart/ss_ui/input_number.py":244
+    /* "simplestart/ss_ui/input_number.py":253
  *             data["precision"] = len(step_str.split(".")[1])
  *         else:
  *             data["precision"] = 0             # <<<<<<<<<<<<<<
@@ -3699,11 +3699,11 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
  *     def myonchange(event):
 */
     /*else*/ {
-      if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_precision, __pyx_mstate_global->__pyx_int_0) < 0))) __PYX_ERR(0, 244, __pyx_L1_error)
+      if (unlikely((PyDict_SetItem(__pyx_v_data, __pyx_mstate_global->__pyx_n_u_precision, __pyx_mstate_global->__pyx_int_0) < 0))) __PYX_ERR(0, 253, __pyx_L1_error)
     }
     __pyx_L9:;
 
-    /* "simplestart/ss_ui/input_number.py":239
+    /* "simplestart/ss_ui/input_number.py":248
  * 
  *     #  precision  step  precision
  *     if data["precision"] == 0 and isinstance(data["step"], float):             # <<<<<<<<<<<<<<
@@ -3712,19 +3712,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
 */
   }
 
-  /* "simplestart/ss_ui/input_number.py":246
+  /* "simplestart/ss_ui/input_number.py":255
  *             data["precision"] = 0
  * 
  *     def myonchange(event):             # <<<<<<<<<<<<<<
  *         val = event.value
  * 
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_12input_number_12input_number_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_input_number_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input_number, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11simplestart_5ss_ui_12input_number_12input_number_1myonchange, 0, __pyx_mstate_global->__pyx_n_u_input_number_locals_myonchange, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_simplestart_ss_ui_input_number, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_myonchange = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input_number.py":286
+  /* "simplestart/ss_ui/input_number.py":295
  *     #   / myonchange  update_cm
  *     # =====================================================================
  *     res = vuetify(r'''             # <<<<<<<<<<<<<<
@@ -3732,19 +3732,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
  *                 :model-value="data.value"
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "simplestart/ss_ui/input_number.py":311
+  /* "simplestart/ss_ui/input_number.py":320
  *                 \@update:model-value="(val) => onserver('onchange', val)"
  *             />
  *     ''', data=data, handlers={"onchange": myonchange}, bind=bind_state)             # <<<<<<<<<<<<<<
  * 
  *     return res
 */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 311, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_onchange, __pyx_v_myonchange) < (0)) __PYX_ERR(0, 320, __pyx_L1_error)
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -3759,24 +3759,24 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_12input_number_input_number(CYTHO
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_1, __pyx_mstate_global->__pyx_kp_u_v_number_input_model_value_data};
-    __pyx_t_9 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_9, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 286, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_2, __pyx_t_9, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 286, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_bind, __pyx_cur_scope->__pyx_v_bind_state, __pyx_t_9, __pyx_callargs+2, 2) < (0)) __PYX_ERR(0, 286, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_data_2, __pyx_v_data, __pyx_t_9, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 295, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_handlers, __pyx_t_2, __pyx_t_9, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 295, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_bind, __pyx_cur_scope->__pyx_v_bind_state, __pyx_t_9, __pyx_callargs+2, 2) < (0)) __PYX_ERR(0, 295, __pyx_L1_error)
     __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_9);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 286, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_cur_scope->__pyx_v_res = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "simplestart/ss_ui/input_number.py":313
+  /* "simplestart/ss_ui/input_number.py":322
  *     ''', data=data, handlers={"onchange": myonchange}, bind=bind_state)
  * 
  *     return res             # <<<<<<<<<<<<<<
@@ -4893,25 +4893,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 13; } index[] = {{0},{5},{4},{4},{5},{4},{5},{4},{4},{4},{59},{58},{17},{71},{33},{15},{48},{37},{21},{21},{24},{28},{16},{14},{32},{21},{13},{1},{1},{7},{6},{2},{11},{9},{61},{33},{9},{14},{1207},{4163},{19},{20},{5},{3},{6},{18},{4},{10},{4},{8},{8},{8},{6},{19},{18},{15},{13},{17},{4},{12},{5},{4},{7},{8},{3},{5},{9},{10},{6},{4},{8},{3},{17},{8},{6},{4},{9},{2},{12},{32},{3},{13},{5},{6},{5},{8},{3},{3},{10},{10},{4},{8},{8},{7},{18},{6},{11},{9},{3},{10},{9},{2},{12},{8},{8},{3},{5},{12},{10},{30},{4},{8},{11},{5},{5},{7},{17},{12},{13},{7},{4},{8},{13},{3},{8},{4},{9},{3},{5},{6},{7},{12},{5},{113},{539}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2888 bytes) */
-const char* const cstring = "BZh91AY&SY2\007z\316\000\003n\377\377\377\377\377\371\376\377\377\377\377s\377~\277\377\377\376\177\377\367\375\377\347\355\377\300@@@_\340\300\000`\n\216|\333\235\241kV\353\216\n\000\n\"\032\006\202\270\007\2444P\215)\344\236C\3254dz\232y<\246\246\036\250\321\204\332\217ML\217Da2\001\241\243L\201\240\032ha\036\215F\320\324\310=LFL\231\032h4h\006\2312a\224\032A2\2312e<T\375A<\210\365\036\247\251\221\352\000i\211\243@\006\200\003@\310\000\r\000\3202\r4\364\200\000\000\000\000\000\032d\025S\332Si\251\351\003@\r\003C@\000\014j4\014\200\310\000\320\000\320\000\000d4\000\320\006\201\220\003@\006\t\220\000\022$\232\004\t6\2126\325\000\330\240\365\r\244\320\036\202\032\032\036\240\000\000\000\003 \003# \365\r\006\200\000\000\000\000\000\002\006\206\215\000\302\003A\240`@\001\2404\310\r\001\200@d\323@\000\003L\023M0@d\321\220h\302\000\014\206\020\323 I &\2014\001\032\032\010\311\211\023G\251\243&&@4\014\230\232\r\000\003@\000\001\240\017P\031\000\000\000\000\003@\003\024d\322D\233\031M$)\340B\030\376\3741\177\364\270\264M\206fnq\231\231\215X\000\022\200\t\001\024\212\262\371\272\321J\256\2660C H(\266\234\026\252\036\217\211\254NL\206-x\321\r\033]\020F\227\257\346\351\032\023P\r\264\300`\3306\306\340\nX3/\001\203\303\277?\030\314g\320\032\004\216M\331\352\333\253\244\305vK\230\200@\334\r\365Cr\335\3220 \370MJ\247\004\330s\207\217+\255\313\201\316\346\234\311\337\202@\204b \001\022\224\357\320*jk\033x4\224\274R.\351\003\"\340\001V\025\263Ud\010\355\252@e\372i,\005\300\227\tZW\333C7N\3603}\231\370\243\244k\030d7\247\320\301\211\241\260\275<2\"\322HM\003r\303\236\336\264\373qJ\377\226E\303\313jK\t/\021\365W\371h1ri\261\361\236m<\352\021H\322\330a\n\346\300\202U\023\342Y\231z:\024e\237\030\342L\355\t\010\360LiPJ\221K\032\236C\017\246\271\244\n\002\024\323T\n\230g\003J\246t\034\355\373\243\177&\252G'=1\365\250\\]q\334skP\354\274\223\262_\216\356\031a\224c\267\221\233\207#\216\266r\314\352\370?c/Ve*\202\000Q\r#\016\271\3428\274V\251H'F\337\315\275\010\207\250llx\372\026\355%2%_'""\027}=Wn\003#\006\337\346,&\300X\305wN\255\225\353\302\253\r\231jY\202lI\350;Q\312\"\264o\224;\314\013B\030X\252!!\317\315\307!!\356\301\365&\024\321P$\344\312L\2049\000\237P\231\211\250\034\370\200\201\004\007\023\216\264.\202-\030L\304\347U\316\336\225\313/5S[\211A\252j\226^e\032d\225m$lD\2460\033P\000\204+\016\020\022&\210\233\215+\256\275\230\230U\205\277\t\025\271-\272\tiJR\n\235g\244d\030\034\303\002\214\260\272\261j\334\024F\372\266:\253\205\245\261,\024\032\232\256J\226\361\233\271{\201\306\230\316\304\357\366\n\330\324w\353yL\201\276\254,\360\314\ra\302+\273f{;\247\331t\333\260\321\031\263\335CRfv|\354eTR\250\034!\353\222\321R\272B\206M\240\262\254~\326r\321\315\247\257n9\301\352o\035\0278\332{\244\323g\263FX\024l\215\206\250\305\265\373\036\263\262 hk\252\252\024\336\216\247\014\225\005\203\014Q\324(\332\023J\243\267|\310\025S\n\\\310.x\267\346\260\246\260\234\352\223\310\243\246\206\210\337\333(\021\335M\307\017+\225\003U;\350\243\037=5[(\3414\302hK[\335\276d\325\222\260<a\202\257\236\334\256\3046\rETc\034\035\017I\n\224\345\\\013&Yo^\210\244\305\034F\250#\031S\311b\346\366\005ex)\360\347d\3564\270\2051\006\237a\315E\321\242iY\024\263B-R\317d\0105\010\257[ID\330\311\216\\e\010\2060b\240a\211\225\003\271\250Q'3Z\030\r\362\375\242G\204\245D\351l\255\247T\221a\346+\020\230\342\371\020\234\344\240\344\031`r\271\273\241\254h2\340N\360a\014G\315\2332\010%n\204\025\201b\023+\262\253\252\026,d=\021\004\210\352j*\314\265Q\2636\200\027U\211\2141\227\316\3072,4.\325\260\212\3448\327E\236g\356\315\033\202\331X\220\261\345\274\302(#J%\336\311\201\036N\327\266\356\340\371\261[\255\025\202}\372\013)\256\216T\304\370\2179\342\340\254\031\220\030\347^\n\245NLx\000D$ \225Q8\233\025.\245H\213\325\303\332\350\271\316XJ\367\242),v\025\301\000\300\204\252\211\031i\223\t\010\235\273\220za\215\2613+h\306\361.\344PU\326\257\241Bn\355\232xH\347\276\214\307D\007\016\317\300-\265i\010\031\364\331\325\332W\311TQ\353\267\313`,7\315\235B%X\374#f\035's\301\360\213\233\026\204o\223\342""\245\0059F\272\231\353\220R$\312\311\034\325:.\262\3073\025\306\311E\343&\215)\027\020\263\255e\035m\031R\262A{\217\005\374w\332\016@\356Q\364\031\250\352\236I5\317GLO\013\257\013\357J\272\352*\273P\"U\275\230\030\256\374\325\361\361\212\314\310&\031\321|\336\202\301\236\257\232\224\034\017@&\023\020\035\007\271\305\257qk\341\204\252\301\212H`\317R\251\254x9\327>;\230\255ux\351b'\327\366\233\247H\356\215\034\3470\344e\026.^\202A\311\312\347\362\0149\303\246,l\263g\336\014z\321\035.\031\221\032\244\205\030\357\215\304\334|}g&\261\031\206X\234\226a\351\327\345\312\262\276\006i\270\3007\301R\375\203\260Hb\231\256A\355\371\364\306Q\353\252\\\010\200c\341:*8r\202\333\004L\037\004\3030\3144\2150\314P\352\241u0\346\t\266=<'0d\022\264\342G\212\332\322\002\031\204\031;\210\355n\342\236m\016\306'\347\270ff\031\213+\323\227m\350\214\301\313\035\231\353\007\304td2p#w\207?\014\301\026\313\224J\266\310\0149\320\333w\206\342\026\0325\234\020d\327m8m\245VYm\033\360\322\t\004\370l\rfa\222Z\323v`\371+QR4i`\301\222\211}\214\004\376eB\301C\007\271\201\207\276BzD&'V\250\314\315\247\226f\272\201\230\313\253v\323H\356]Q\240\220\265bJ\210'2|T\025[p+\266\321\231\n\273$\363E\263\331\222\211\206a\21198i\300\322\202   \210m\305\203\212m\262u\344\273\265\0063\330ZU1\242\006\313\343&\232\023\311D\nIJ){\231\004\"\342\264\201\tI:\342\"\250\206\341\203\024\210\024$\232\224H$\301&K3y@*A\342\227Jx\323\241\212\266\335\335\314\0206\200T\351\006\244j\026\374A\327\t\202l\373\\\230d32a\273\315F8i[\035\233\032\252\313\035\214\220\203\313\260\225\362\336+\325J\263\212`8U\006N\371\357*\022\346`\300\230f\014\210\310\215\266\272\345\226K\022\322\302cT\325\325n\227\315\206m;6g\233(\355X<\260\303m\330\243\026B\236\254\241\345\000\323\317\272\353\260\262\016\372\242\004\010\221\246!\250\2606x\365\346:\016\223\022\233r<\321\230\234y\306\3638\006\014\315\320c8\230I'\211\223\326\270A\001]\271\347\2444\350\341C\326\312N\260\013V\355[6b\331K\344\342\240K\251\300<\255H\2612\302oQB\200\314\333:[d\274d\267%\001\361U\027""\200\346\214\034\025\274\0348T\206\233\243\"\352\237U\2255F\026[L\035\335\3200\nP\225\000f+\325\212%\235\007\316\334Br+\215\25369[p\030:\2725\375M\271Q\261UD\027\345\354\034d\210\316\263i\314\316\253_$\303\032\334)k\014R\266\223]n\325\007\345\351\274K\033\3624(\344\366C\315\021\3070YF\220\230`\224'\001J\316L\201+'\005Q\236[\002\nl\245U@\\\022(\022d>\264'\256\3616\3418\3314\256\200HE\331r\2042g\261\204X\364\352\\b\260$\030\226\022\r\030`B \231t\322\007Z\324\333L6\0163dr\310\t6\030\207\335\203\260\310\255}\320T\n\373\3360\350\236\025\242<\261\321\0353U\272C\205\230\355\236\204)k\310|\374\370\374\244\321\227r\202\177\213y\274!.\205\202X\215\235gs\021#|d\003.\016\305\340\034\254$\273}\3674\2066\363\344\332\234Q\022Iy\007g\251\035\007d|\207\250\316\312\340\026]Z\222\270-\273.$i\304\255\236CQ\224'\225\021\020\216\025\266\334\206\017k\331\303\316\316\373\3733D\270\\\314Z=3\216\322\034\032\"\031\315\241\323\275\247U\232A\t\211\000\010N\230\231\016G(\002\010\303\232o\003@\013\020\320\262N\264ai\3511\310Cx`\303\370/\303s\013\230\274\337]B\376\324 ,\317E,\243\2749\010\340d\206\231\221\032\026&\2229y\010\200m\010=\207_W\014\314H\217\360\207:\220\2541\\\367\017\000\260HO\330!\327\343\027\240Z?\301\020g\3757[\372\344F\020E\303\352\210\216\311\325\351\220\314\021\226\305e\260\304\035\000\344VJ\023\300:+\014[\267\216\214c\203\201+|\352\312\321\320\252\225\205\214=\222\317\257\2713\"`-\374\321\370\321\224\301m@\313\365Zd\216\242\n\355(\307\222^et2W\030\003\005y\200\351\320\303\331\303q#&L\363\370H\267\245\031t\017\026fLh\034\347it\226\360PUQ-.\224\257g\030K\342\253)\315U\3558Y\346P\375\3447\330\205vC\230\214F\003\333\250\220\331bn<\371\256\335\207m\306\277\023{wF%[\024\342\231\262F\177\234\326\024Z\331l*\034\030\301\020\200\214k\2344A\266r\232h<\212DV\250\006\001\2031\005\t\261k7\303\216\024\350\343\333+%Q\001\033k*\321)H<\260\201$\001\001\004\004\220\256$-mS\341\000\245H\013h\202\000b\305F,8\245\001\243\247\373\353N\277O\210\267x\\\257\006\203Q\203\370\267\274|\367\310\315\327_""\351\262g\241S\251]\035Z#<\306\310h\210\251$\235 iB\214F>)'\272\246u\343\236\242\221s\3349\373\254\322\301\242\032\350\2221\262\3533\215\013\302\220\3445\223\365\246q\355\333Ed\326q\330\2349\341M\204\344\221O\361w$S\205\t\003 w\254\340";
-    PyObject *data = __Pyx_DecompressString(cstring, 2888, 2);
+    const struct { const unsigned int length: 13; } index[] = {{0},{5},{4},{4},{5},{4},{5},{4},{4},{4},{59},{58},{17},{71},{33},{15},{48},{37},{21},{21},{24},{28},{16},{14},{32},{21},{13},{1},{1},{7},{6},{2},{11},{9},{61},{33},{9},{14},{1207},{4671},{19},{20},{5},{3},{6},{18},{4},{10},{4},{8},{8},{8},{6},{19},{18},{15},{13},{17},{4},{12},{5},{4},{7},{8},{3},{5},{9},{10},{6},{4},{8},{3},{17},{8},{6},{4},{9},{2},{12},{32},{3},{13},{5},{6},{5},{8},{3},{3},{10},{10},{4},{8},{8},{7},{18},{6},{11},{9},{3},{10},{9},{2},{12},{8},{8},{3},{5},{12},{10},{30},{4},{8},{11},{5},{5},{7},{17},{12},{13},{7},{4},{8},{13},{3},{8},{4},{9},{3},{5},{6},{7},{12},{5},{113},{539}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (3122 bytes) */
+const char* const cstring = "BZh91AY&SY\225\245\376K\000\003\247\177\377\377\377\377\371\376\377\377\377\377s\377~\277\377\377\376\177\377\367\377\377\377\377\377\300@@@_\340\300\000`\013/\275+\216\332\352\355\335\235\330%\320\246\330\002#*\211#]\240\017{\r\020\223*zh\322O\365S\332jG\246\323S`\322d\304\322\236\246\232zO\323T\374\2154\246\324\365=C\324\017SF\233Bi\220=4\230\215\224\323\322mC\322c\312\003$\375)\210\361@\365=F\207\244\374\250\323'\264\203$M4\323M4\022h\321\223D\237\251<\322jz\203\324\r4\000h\000\006\215\000\000\001\240\000\320\006\206\206\200\000\000\000\000\000\r\006Phi\247\251\243M\006\324\323F\232i\210\001\246\020d\001\241\221\246 \000\000\006\230\206\200\000\320\032h\032i\223\023M\000\006\215\001\240h\000\220\244\010\251\355\251'\35256\241\246\215='\250\000\001\243\324\000\003\324\032\000\000\000\000\03241\003\324\000\000\000\000\000\000\000\000\200\000\3204\014\232\000h\r\014M2d4\000\320\000\006\200\300\206\214L\2310\230A\220\032\006\2324hbdd\006\2002\031\000\t\024\004\020\236\223\023\"\014\232i6)\265OI\247\352\236\243ODdi\223\324\320\323&\200\000\000\000\000\000h\r\244i\240\000\000\000\000\000\003eY\251$\344\3122\206\006V`\320\322\353\n\037\256Kl\025\273\224\352\031\231\230\255 @\231\000X\r\202+L\206\232M\205\2261\202\031\000\021+\251\255r\223\352|.\313\246\241&A\245\021\2421w\034h\221\260\374\264=?'@\316\264\215\203m0\0306\014ln\000X\301\265\360\030\177\\4\357\215\232u\006\241#\203n\273\\\2338Yu\364\350\022\t\034\260\335V\234\274[d\344J2\252\245\220\n\262\020\"D\272\350.l!\320\255J\344\300I\t\031\"\022Z>?]\026~\177c\257\320\342\370\356]-b\032\\\210sFgm\231\372m\224O\271\325\207\335\273\370\343\341\017\202%\341\355J\347\203\030\231\253\334\207?\353\317\275\035\006\265\306A\275\256\312\241}\010D\002\226Ad\354\351\222\2721\010~\037g\247\257\361F}\277\024|j\332\374\326H~\005tZ\032\325\241\3613\270y\252\242M\306P\314\237\326\232Ydn\342\342\313[\227h\305\347\251\366AmG\005l#\"Wx\21221\317.Fu9\363jR\313\222lgX\254\207^\232O!\034\201\026\0025\310\245\310\265\342\246X\353\263\034""\313d&\315\2730^\330\334\220(WC\022\335\341*^\002\0359\260sb\233\024\241\321\233\266\254]\317n\262]\360dR\201\267\033*\241\000\024 \3223x\327\264v\273W(\320+k\336\317\314\224\303\325<\254\355m1l\20040M\267\333\325\322Mz\234\005\0235DX\231\372\206\006d A\003\342\331\235=\372\346x\267:\220\261h\013\031X\240\355\210(\315,F\3748H\370\002\324\206,.%B\021\321e\022\025!\212\227&+Qp\222\211\253\030\202\215Q R\344\233-R::\300H\222\003z\005\236\024-\307Ab\032M\226\333v8m\307\035\327\265V\272\264\206\364\325\227\301\262\254`\02720\026x\005c\001\265\0004e\221I!E\010:p\306\327=\177\200@)\005\222\024R\357\362\022K\251JQm\314\255\230G\212\334\030A\203\002[\301\215r8\334\tC\236\273\216\276\362\342\350G\t\035uo\215\033\312\335\370\372\031f3\246m0\203C&\033C\204\264H3\313\303\377aP\276\006\350\0146\010\264V\277S\202\335\321wX\324Z\244j\214\334wj\3602\332\262mU\225\312\201\267\250\003\222T\304E\031cA\207\006>\3272\234}\317Yd\\\351(\252D\2624\214\r\230\302\256\307\026\347\\\245\2173\303^s|\217k\305\330\2226\036;,\317-\020\2467*\025\031\307\n\0337\034\365\303\332\356vk\260\235+\316\315\337\374>m\335\027\350x\265\250\257\243h\363\303v{\314\246Bw\027\0331E\353\"\271\237\033\224\2453u\037\032\325\352\353\205\320\326^l\306\034\260\373\347\240\026}\304[\266\323\224DOw^\210\240\245\325|K\202\034\005\255.u\035Z\356\337\272\3636\221D\227\312-\036^`:}\300\272\271\370tu~OILA\253\264\356\241\210b\232\013aFv\020\271G\242\310\0107QgN\204\246\306Lq\361\222D\032`\300\220\303i\225\007~\352\204\\\316\230k\034\314\227\t\035\352\214\246Q\262\306\234\253$Z\035\332\265\t\247\017o\335`JI\326*\007l\314A\344\366;\261\344rk\232\241\340\312X\0372\255\240\222X\265 \271\005\350Mc\320\261\330\226\266b^|\220)\355;U\306\213-{\017P\013\276eF2\335\220e\302\036.\236\031*a\3064N\202iH.\363\007'\001:\300\360\0016\\\210\255\204\0069\304\341\225\000#\212\241i\233\200-\250'U\000\274\225\323\222\003\335}\312.\212\330\026+d\002\3416 \313[\260V+w\362\340\0010\240\202\226L\336z\326\343\266\304N+\021G\212\271\024Z+/\242+\000\306""\302\350@b\"N\327CR\252\204\302@\243w\200\017(\306\330\233X\255g,\247\225\024\225\327,\226\226\225\207h\353\205\016\206K[9\300@\206\216`\266\226\"R4i\277\276\331Y(\254-\212\352f\274\026\033\206\337\0312\314\277<\277o\r\370u\263\214\251\007M\201p\363\0137\256\273e\242\333)\212\347d\225\333\342\260\261\254v\023\266\023\206+`\331t\361RqM9\333l\340J\376\213S\306\347Kn(\027\303\316\246m\371\010\210&\336S\000\336\tu\013\023\305DnIP1^\027\336\226\0345\260x\365 T.\213`\313\262g\273\254\353\005~t\025\r\010\311X\240\274qY*\251(\004R\004\304\311\020\224a\003\024`b\214\260\245\2302\332\0144X\254G\254\205*\013e\370\320\251\353s\310n\373\301\340\032#\226\027u\301\372AdZ\014q\342\000\035\014r\233h\343p\226\245\215\255&V\235\030\366qd\330\340\332+\272\304*\353\332\223\314y\271\274\\\376A\235\200\323Z\320K9\025\014\231\263,\321\224\336z\300\3007\001O&\331\014\0012\334\370\320{\216\267L\351>\272\305\314D\203.\351\316S\303\200\026\322\005TFI\215\215\216\206\231g-;\344.<8B\257.\235\323\2045\320\030\2275\035~\316\221 l\033\020k\3673\331\345kW>\3042\212:1\215\2666_v\234\333QD\352\020Yo\321pFa\t\320\032\200#\225\273\243v\250F*p\t\\\365\301\220\204\033x\340\306\341\005\261\236}>\200l[}3\337Eau\362\347\214\005\020\237\036\rog\212X'\331\004h\261\"\304l\032Z0`L\311{\002\247\177`\260R\3020`\310\306\202\212D\252(\\\255m\275<\0259\026\003fm\\\254F\222\034\032\247h\tj\326\265\211\240\255J\363m\025\233R.\305\210m\n\353\351\023c\025v\365\355Lle \240\323\203J\022\004\010H\333\230\007,\303\202\273\262\236E\241\242|6\022\332\306\207\010\313\306\253M$\362\221\022\242T\226?2\201\021\261\006\025\020\222\242wI-\221\270\301\245B\n$\232\244\240Q\202L\246\247N\220*\004EM\372\345P\226\261s\345r\263\204\215\220\025\273\341\251\032\205\2710\20610\253\216(&46\323\037y\250\313-+n\031\362\253/\276\031J\010<\213\022\311NZ\255\332\241f\201T\010%`k\371\330\304\260K\205\206\001P\316\215t\265\305\264\341\003l\246'%\001@2\232a6\001KP\"d\341\303\220\324,\274\360\260\361VZ\242\306!\005\271V\205`\002z\254\214cq\301VKt\202J""\371\2629\335\232r\212\344\021KT\210e\240B\376y\324\342\207\023\362X\006\r\275\346hI\200\004D\324W\"R\020]\213Et\206M\335a\0138\\\333%y\000@\340^\0345a\2362\250L\001:\271\345bs(yC[b\246\205!\267\267\277\254S\245NM$Fj\303 \020s\224\002\350\204\010\n\331i\203%\020\231s>d\230T\372\035R\271w\001P\016p\225\300\004A>TX\037\211m\242 \250\211\331A\271\\\264@\001R\247rS\253\227+\22238\201M\273\372\205\214\010\247\336R\"\246\314\320h\025\233\341\324 @\351\321R\252\024^p]\272k\000\n\327bH\345\025\241\013\027Y]Af\035\022c\007\026\234\002\213\2052\002V\316\005a\321.\200\202\226\321VAx\221!&\210\334\205\025\336'\311\n\316\372\245\216AA\030\363k\204\254\310z\002\036\262\305\272\002/\001\244D\302\246\201v\251$\010\214$\241\323$\005A\035\226P%*\027,Q\260\002R\250\205\302\245Ua\241p\220\207\001>\313u\003Z=\n\001\035\272\347\020\251\253\026\220\335l\354\342\222\0259\032\353\300\321\227\307\272\2437&\321G\216'-\t-\353\320\032\306\337\024\200[m\264\201\255\317\023\021\006\373\022R\355\366\342\3423g>]U\232\034\312\001\331\303:\261\034\330e\215\010\250pi\337[\265\342,\201v8\364\206\234#uzF\246X\236\\\222#xm\267A\205\035\356\0243\257\2778\324im\221\263!E2\007c-\315\211\206\203d\205r:\331|\264\20284\t\036\031\234&\341\347\004\210\3706\366^gt\016\377\302*\326\352\030\356\376h\253\257\214;\031\225{hY\307\344\211\306\014\2639\331\202\324\304\223\0247\\\3726\032\270wO\374\274\257\353z\\\251\3453.\303hp\360\031UUCX\303\337eU\324\353)\342\331\364|K\000\016\274\205\356w\267\273\3163\033Q\2563\356\324=\243\034\013\336\317\330T\210^{\310\342b\226\200\312\345\322\031\262\276\336n\027\001#\260\023i\270\326\301\364fF(t\r&\n<\204\nb\277\345.;\317\270p\203\361\275\200R\300\341\302\037\177\327.\031\2150|\306\250\303\343\344\303\036\223\\\375!\370D\237Gy\030[\207\325)\3675\365V\215\272\216# \013\224\221\227\246\241\242\235o\353\017\225\2522\021\016\347\004u#\334IF\254\221HhI\220\"\305\035\253|\350;K@\033\367\261Sx\360=\303\024\306\262\353\034\303\210\340\230\275\255\265q\376\237\361\356\343\301\315\275""\365g\301\210\250_'\342\"i@\177\302\201}\210 \315\376EK/sQ\370{\266\r\"\241?\0345\255V\035\377\323s\375\266\021\273pt\2674\247J\224%>\033m\034\0328B.\314\251\371\016\347Z\031\274\300\375\362\037\033\023\374K\216\315\376\205x\252D\034\370M2}\340l\264\303\026\004\233cV\301\000\0261\226\260P\211|\332\270s\247$\030\273\031wx\256\207\236\235>\\;?B\332\357\036y_\372\354`\032&\204\006\355\3215\025&\241\306\313\021\001+\267Eq\230mX\273j\306\022\260\241F\253[\270\3679\023\341c\216l\214N\204\3115W\030\\\315\216\214[\317\2523\324\222\317\301\365\r\334\3128/V\364\013\340\200v\255\302\020\000\220\234C\200\250\017`\301\235\201<\007e\320\232\007_\307}\312\350 \210lb*\263\252\313N\262\345\346\356]\374c\322\205YZn\353\351V\215z\031\265nr?\352v\326\342\274\250c\325\262}\346\374\275\275\252e\325\220\361\350?g\215\215em\332\331\035\243O86n\333\234\251\242Q\313L\304MT\357\000\273\222)\302\204\204\255/\362X";
+    PyObject *data = __Pyx_DecompressString(cstring, 3122, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2709 bytes) */
-const char* const cstring = "x\332\305Y\377s\033\305\025\217!N\005\t\020\027\232R:\003k\021Fv\222\263\255|#\225QZ\003\311$\3148\304\2200\204\322\271Y\335\255\244#\247\273\363\355J\226\3702\343B\001A!\2712i\271B\247\250\220\266\352L\223*S\206*i\240\374\230\037\375\243~\314\024\313n~J\376\204\276\335\273\223%\371Dm\023\246\316H\272{\373\366\355{\237}\357\355\333\227\370\3161\253\030\337\t\237\335\360\331\303_\366\302g\037<\354\004\312.\030\331\r\317\217\231\006\263M\035i\212i \312J:I\240\355\243\022\242\245\\\312\324)2m\240b\345$Q\021\266ms\206\242!\225\244q^g\303\217\345)3shFSYv\034i\006C\031\302(\262\212\010[\0261T\242\216#\263@l[S\tET{\221 \177\352\343\032\305)\235 \226%0\317\312\263\003:\311\021\203IB\001d\331\204\022&f$\220\216\355\014A\2407\250\213F\003\t\010,\002\033\200@sX\327Q|\347\030\230u\240\310l\214T\3140\2620\245\24033\305\"\n\360\244\300\212\203\246\235Ci\215\350*2p\216\0346\024[,\0146\022k\034\204+\032\210\023o\010\347\231)Qa\221\rt\252\231\306aCc\032\214\027\260\236'\343\210\346-\313\264\201\341i\206\031A)\315P5#3\211\213Z.\237C\260\2449\003*\010\346I\315XN<\222\317\245\210\215\314tkaK\307\n\241O\032z\311\343D9\260U\263t\300\017\270\270ZG9G\326\324U\230\310H\221=E\260*\231|B\316T\211\247\210\231z\201(\014\245a\357\330\214)\315\340R\240\3333|YI\311b#\263\004\212 \"\217\250\216\374X\3656\207\030\374;\243\360}}\031\245u\0233\215zD5fk\231,\213y\236AQ\312dY\224\3123f\032\240\247!\020\027\034\260\205*AC\035\273;L\265\0347\210a\233\215R*\347\265Q\341\002\262!\320\030\261J\224\331\260\"\254[\220<\232$\030nG\376\337#=\350\301_\202#\241K\002\342d\224{\303\210x\216\206pj\206\317\001Oa\343\270\030\214\343b\3108\337\021\237\201?\366\340\000\303mMaz\251\215U\016h!sZ\376\346\363\267\336Cx\375\335R}\326\3405\204\323\006O\341\216\342s\006\257!\234<4|.\376\030\246\341\222\027\006:.QB\370u\234\"z2j\344u=d4\013^\342\355e2\232\306:\r[Q3 \024{\017+:\304{2\372\022\212u:\207$Yz\236\302\346\346i,!2\303\210\342e<*\213\224\227L&Ql\211\007\275\262\\\270J\014\2521\300M1s\026VX\350.\203g'\2431I\242TJ1C\362rW""\014m\367\326\004\222,\022\340v\024\033G\202\213\257\336\315\306i\035|\005\337\n_g)KxX\265\315\340\314\262G\355\236ca\225\207\274\304L+\201 \323\207\215A\344B\n\367\207E\"o\223\255\210\374.\013\262'<\255\223b\002\031\246A\306c\313QH\353\230\205\271\035\034\0014\360'\337\020\271\200m\rCf\021\360SK\327X,lW}\263}\356p\031\313\347\265\330\315<\3235#,\032\204\313\251\204aM\247\313\006\237\377I\336\202\225Hg\"\031\202\337a\224\334\017\031\216\022\033\214\032\212\231\206\2275c;xB\037\356\\ft\277xm\321F:=\223\277\213\223H\n\314\223\002u\321K\035\202\370\266y\234a\333\326b}e-+\005C\262\354\223dYd\346\0357I\230a2%\233H\244\010\034F\344&\013\305iF\354\233%\023\352\225.\330S\246\r\311\014BO7\355\004zPU\3244\331;\336\301bB:\200\314\220@\361o\266\rK#i\023\242.L\303\236>\341\253\351\007o|u\036!\313p\266\360Z\r\350\006\261\023YL\207\272xe\331\217\267\341\035+\020\347U~+\221\326e\220\257? 3\324\221D\207;\021\207,-\255\224\025\027W\302\372\265 \205\252\336\245\271e\302\351\000\207s\002\331\0042\240V \343a\226\305\307\306\036\352\034\010\222y\347\310\032\364\201\0010,\034P.\034\rB\311\005\205*\270\\\270\006P\t*C\313AB\022\202[\302p\317\351m\2331\326\223\311\367O\033\253Z\236\002c\347h\332\344u\2418\005[\353\267N\306\256\r\345\265j\3066\363\340_AP\246\367\244\037N\343N\266`\354a\374\260\272o\317M\000V\222\202\252\252\013\342\245\360\357m}/\235{\316\350T?\224mm\226\250ZA\343;!\301\321\3054\330\362.k\300H(\342J\376\371\276\366$\262J?\r\374\303\217\005\270=RS\327\324\345\t\367\225U\246\237\265\351\241\223\364J\325\030\335\206Z\265d\220\004\222QaH\364\372\345\262\177m\276~\371\255\353\227?Xx\347\255k\357\235o\376\256\332<\375\367\371/\376\334\374\375\253\213\037~\332\254\274\321<]\271~\371\235\346\337.^\373\334A\376=\tm\033\355e*\304\207\177\031\357a\363\376\320\235\336\261\"y\377\313s\276\241\277\254~\351\316\365x\361\t\252\300]\310\313\266\020(\371\234\261\272\000Y\231\275\313\235#H\224\274'\3203r\275\3528\016\377\306n\246*\211\264fS\270\002d5]]\243\317\266\361\006\245\343Z\002m\345*""\303m\354\233i\334\021e\255H\372\240\371\341\027\013\2257\257}rj\241r\371\253\331W\257\375\323\375\317\371\263~c\nBn\276\376\366|\375\227\213\347\3175\317~\272<\254\232\347\335\205\337\\\004\372\374\277\316/\234\373\004\236\233\316\257@h\273\202\315\372k\315\013\263\363\365K\3157O\203\264\321\346\333\025\220\010s<\241\315Kg`\014\301`2o}5\373s\030N\252\346\214\301\205\326O\241g\362\204i\351\022j\236\372h\361\314GH\311\222\202\rw\314\305\017\353\315\323\357\002O\373J\013\277~}\361L\225\003\306\317\273\240DF\315s\3577?\377x\376\322\331\205w?\206\324\001F\362\341d\264uE\215\242\205\367?[p\277X<{I4\352\026\377\372\247\346\351\177\000_\207\031B\nX\270\360\2072$\232\205S\177\\8s\261\371\306o\203\34588\002\312\346\353\257-~ZY<s\241\245;\367b\037\206\346\331\277,\376\342\263\346\205\327\347\353\347\204\205\357.~\\C\266fY:Yi\222\372\332 \363\265\351\225X4\203W\276\222\320\250g\320\255\242\200Xue\260bK~\312/\246\022#\224i\274\023C\374\266b\364g\313\366\367\245.\215\014\006|\t\024}\376\340X|\367\256\350\267\224\316:\365\323\2145\3527\266J\375Fz6c\276}@\377]~\357\377\244\355Z\340\335\376u\272\036>r\364\3701\371\310\361\311G\017<%?\375\330\241\003\223\023\262|\264T\204\317\343\232\302\344#\242\017\234\026\315_l\224\274t\210i\311P4sD1\241\374d\020G\224\367\200\371\207\337\360\031I\231\246\036\264\245x'\230\027\270\n\3203\246]\362\272\032\220\276\224\2232\205\237\034\226O\316`;C\025qY\326\014\231\331X!\274\270\355j\306t4\327\226UG\262Bi{WI\346\270\211\217\327\325\017\352l\325TH\001\200\021_\217\303\270x\020\334\342\211\002\2269YN\347\rE\2263\204\201\272\252N\344%.\217`S\357\334\346\272\264Zk\232\332\336n\356h=?\242\233\200\004\335?\222+\005\235\035\r\004jTn\201\2501\222\243\036\026\342?&d9\207\001\016\370.\346\304\257\251\346uNmI\340\035TY\366\276\003\232iq4\250\t\265\242f`\016\236\236'2\310\263\260\215s\264\255\227\332rA\313\264\002\024\261\336j\010[EY\236\316c\335\023o\023\254\360\373g\320\332\265\t\025\325\250,S\302|\025\340\311\007\273\255\017?\"\372\360#\355`p\250DsQIg\332""\232\214\342\177[D\277\216\nT\210\3773\302{\243P\007\032\001}\204\343\022<\003t:\365S\025o~\007\r\360\216F8\374\3122\217!\370.Y\304k\301\311J\016\300\021\370\210/Z\360\216)\377GNaJ\204+\315N4\"w\226\211\023\277\261a\335m\233\312{\235\001g\273;u5\262qn\343\375n\246r\274\272\265\232\251M\315\355}\342\312`c\323\375\256V\231\206\261\362\270\223q\217W\266V2\325\251\252^\207\221-\216\346Ns\021\003s\233\007+\003\225Xu\200\363\305\033\233\356q&\234)>\362]\020\375\24035\333\007/\375\367:\323s\367\016U#\265\276\306\372\215\260\352=\316\224\223uqc}\177#r\267\363#\367p\345\271j\261\366\362\227\373\256$\347\236=\321\210\334\343\034vOT^\250E\352\233\276<ter\356\304sa|W\327\337U.:\314\215\273\007+C\325\301*7\252\377\216\362Ag\253\203\235R%R\355\253\0164\326\177g\366EPe\310}\310\235nD6;\2678\203\302\372\376\315\345\202s\314\035pwT@\217\001g\213\0204\311g\004/\207*\0237\356\\\327\177\237\273\305e\225x\345p\225\033\326\277\241\021\031p\006\032\221\273\374\371\261J\367\313fg\203\243\272\203\356\276J\274\021\371\2017{n\353\236\332T#\362=\347\031w\267;]\271\243:\305\255<\350nu\261\373r5\336\365\322!\341\373N\301=\006 \217\326\006\370K\021\246\367q\376C\356\204+D>\353N\001\226\221{\335\276\253\221\037\272\311\352\206\252Z\033\234\333u\350\312\255\036L\240\303\003\036\261\266\257\276kn\377\223W\246o\240u\375\267\225\373\312\367\001\026\205[\326\365GfY9^\236t\357v\037u\325\312\266\352D\365Xm\2406\\\217s\334w\001\234\034\017\360\235\215\345\335e\352\200\007lv\372\234\007*\267\002,\207\252\007A\360\356\332t\275\357\252O\356\273\272\276\377\306\321\276u\375\033\3131\300~\360\306\316u\267\337UN;O\270zU\252\345\353\023W\301\013\342\377\005\256$\372a";
-    PyObject *data = __Pyx_DecompressString(cstring, 2709, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2941 bytes) */
+const char* const cstring = "x\332\305\031ks\033E2>\342 H\200\370\3408\216\253\202\261\t%\233dm+/r2\312]\200\244\034\252\034bH(\340\270\332Z\355\216\344\205\325\356zgdK<\252\014\341\241\204\020/T\200%\341!B\016t\217\030s\307\345\224`\002\037\363\321\037\3751ux%\373S\362\023\256gvW\226d)g;\241\316.\355\356\364\364\364t\367t\367\364\364D6\367\232\231\310f\370m\205\3376\326\330\016\277\035\360\261\031 [\240g+|?b\350\32424\244\312\206\216\010\315j8\2126\366\010\210dSqC#\310\260\000*\311/`\005I\226e\214\022\324\251\340\204\224\326h\327#iB\215\024\032U\025:\324\207T\235\242$\246\004\231\031$\231&\326\025\254\364!c\004[\226\252`\202\210\372\"F\376\320GU\"\3055\214\350\020\206qf\232\356\326p\n\353T\340\014 \323\302\004S>\"\2124\311Jb\004|\003\273\250'\240\200@\"\220\001\000$%i\032\212l\356\005\261vg\250%!E\242\0222%B\200gj\360Id\300\211\203\024{\014+\205\022*\326\024\244K)\274W\227->1\310\210\315> .\253@\216\267\220\224\246\206@\270D\026\300\211j\350{u\225\252\320?\"ii\334\207H\3324\r\013\020\236\244\022\305(\256\352\212\252'\007\244\214\232J\247\020Li\214\002\013\034y@\325\027\003\367\245Sql!#Q\231\330\324$\031\223\307u-\353a\242\024\310\252\232\032\350\017\260\030[\373\031\306\220\241)0\220\342\014}\002K\212`\260\001)C\301\036#F\374y,S\224\200\265\243\243\2060*e\003\336\236b\323\n\362\220\244'\027\224\302\201\310\003*\335\277W\274\305\301:{&e\266\256/\243\204fHT%\036P\t[jr\210\206=\313 (n\320!\024OSj\350\300\247\3165\3161`\t\025\214:kV\267\213\250)&\020\225,\332C\210\230V{\270\t\210:\327F\267\231%\324\202\031a\336\021\301\203\t\034\341f\344\377=\324\004\036\374E\231&4\201\2538\326\301\254\241\233\177w4\300Tu\037\003\276\032\365K\231\240_\3124\350g+\342#\260\317&\030 \270\245\312T\313V\241\212\001\254\301\230\212\275\371\370\225v\003\\\177\265\024\0375h6\300\264\300R\230\241\370\230A\263\001&s\r\037\213}6\342p\301\n\003\036\027 \r\3605)\216\265X\207\236\326\264\006\275C`%\336Z\306:\022\222F\032\315\250\352\340\212\315\273e\r\374=\326\361\022\n\327\032\207 \230Z\232\300\342\246I8\312#C\267\354E<\"\362""\220\027\213\305Px\001\007\275\262\230\270\202u\242R\320\233l\244LI\246\rW\031,;\326\021\026\004B\2048\325\005/v\205\321FoN\000\211<\000nD\341>\304\261\330\354\365h\014V\2037\342K\341\363,\014a\346VU#\030\262\350A\353\307\230\222\302\\^\240\206\031E\020\351\033\365\201\347B\010\367\273y \257\242-\363\370.r\260G<\241\341L\024\351\206\216\373\302\213\265\220\320$\332\310\354`\013 \201=\371\202\210#\222\245J\020Y\270\372\211\251\2514\334hU}\261}\354\3064\026\217\253\240\033i\252\251z#o\340&\247`*\251\032Y\324\371\334\037\322&\314\204k\003I'\274\273Pl'D8\202-\020\2523l\350^\324\014ob\001\275\253v\232\236\235\274Y\201u\327Z&k\363\235H\010\304\023\002v\321K5\204\330\262y\230\215\226\255\202\372\312Jf\n\272D\321\007\211\"\217\314\233\256\0231\335\240\362P4\032\307\260\031\341\353LTJPl]/\232\220\257\324\251=nX\020\314\300\3654\303\212\242\373\024YI\340\355}5(\006\204\003\210\014Q\024\271\266eX\350I\030\340u\2158lj\023>\233\276\363F\032[D\317\003h\376\257\357\226\317\377P\372\340\214;\376\205;~t\366\207OJGN_\236\312\315\277\377\261{h\334K\303`\363\275<u\370\362\324\211\331\342\221\371ON\225O\274^\0211\202\346\276\377\332=\372\301\354\324\t\367\330\333n\356,z*\215\251\232\310V\263\005\301Q\035\301\250\364\341\331\371\023\366\334\207\343\210\257\024\232\377\374,L\r\324\274\331\347\276z\335\315}ty\352\350\374\337\234\362\341s\356\324k\245\261\257\346\276|\325=\371\251\207\000\301\246\364\257\t\367H\241\224\177\253|\346B\365\014\263\305\357\346O9s\237\027\200\275\271\303\377\230;t\264\364\321\327\363\257N\000}\364@\317\022T\357\261x\rF\\\267\020\025\023\350]\216\t,,k\205\023\276E\202\001\360DKO\326\033#$ZI\313H\353J\024Y\3118\304\"\253\223\331\000\244Z),\220\264\225\200\355\267\253ky<@^\301\362t\200\353\330\212\016I\244\263\016W\024\375X\333\265i\t\344\274\254\177)\324\352\204\363m\327\223\251j\003\355\252\3656\330\241\205\245\242J\231\245\240^UI\rY\257\343\3344 3\200\304\014\026\005\303\356\007\226\325\327H\262Ho\357\375\265\035\301F^\333\263\002~\240\003\004k\254PF\034\265C""\272\r\207\024\260\361\306\034\300)@\356\\\254$$ 8!v5\035^\265\030\275M\221\374\330dI\212\232&5.\302\363\005\203\235\tx\006T\231\277\222\025\325-\350\202\375W\002rb[\342\301\204T\213\026\364=(=\250\354\330v\035\024+\010AF\335\314\357#\315\245o\306s\323\021\265\3547D[\231$\212:\242\262\225\020 m\241*,y\2354 $$\360Y?\267[y\020Y\246\235\006\366\341\373\202\231A\304\320Te\361f\373\3122\303\317\312\370\320pb\251l\300\206Z9G\004A \326\301\005\351\200M\325/\231x\233i\351\350\341\371\367&\334\217\013\356\370?g/|\345~\372Z\371\344\267n\376Mw<\017\233\240\373\365\271\371\357m\344\237\221\257\262\211\201\177\370\205\230&2\357l\270\322\233\226D\357\177Y\3165\332\313\362\247\256\235\217\035<\200\0258\007{\321\026\034%\235\322\227\347 K\223w\261q\004\201\222\325\203\232z\256w2\212\300\177\357\365d%\232P-\002\307\277!USVh\263U\270\301\261a%\216\266t\226\341$~m\034\327xY\305\223N\270'/@>8\377\305\261R~\352\247\261\327\346\277s\346&N\373EIp9HYg\213o\227'\316\270\247\277]\354V\356\204S\372\340\034\300g\177\230(\235\371\002\276]\373] Z\315\240[<\344~36[<\357\2765\016\324z\334#y\240\010c<\242\356\371\343\320\207\2403\2266\177\032{\025\272c\2121\2523\242\305cA:\214\334c\237\225\217\177\206\344!<b\031:*\237,\272\343\357\000N\365L\245\367\337(\037/0\205\261\375\256\222Y\272g>t\277?5{\376t\351\235S\020:@H\326\035\353\250\224':Xj]r.\224O\237\347E\332\362\337\277t\307\377\rx5bp* a\351\363\034\004\232\322\261?\227\216\237s\337\374(\230\216)\207\253\322}\343P\371\333|\371\3707\025\336\231\025\373jpO\377\245\374\372Y\367\2337f\213g\270\204\357\224OM\"K5M\r/5H]\325\311|n\232\005\026Ug\351\261\3009j\352t\313H \226\235\031,Y\222?\262\242\204@1\241*\253\302a\277\244\334\361\247E\353\373R\035G:\005\274(\352xnOod\353\226\216\237)\234\325\362\247\352+\344\257w\231\374u7-\304\375\374\n\375O\356\275\377\023\267+Q\357\306\253\361\272w\337\376\203\007\304}\007\007\036\336\375\204\370\344#\375\273\007v\211\342\376l\006~\217\2522\025\367\361;\200\004/\374Kz\326\013\207\022\311\352\262jt\313\006\244\237p""\232\304\204\325\377\331\217Uw(\216\033\206\026\224$\331-\000Kpe\200'\r+\353U\264 |\311/\210\004^)I|aT\262\222D\346\207aU\027\251\005gM\226\334\326\025\342j\n\253\213\262#Q&\244\272\242(2\275\361\237w\243\023\344\331\212!\343\021P\014\177<\n\375\374\203c\363/\002\272L\211b\"\255\313\242\230\304\024\330U4,.`y\000\213x\3736\343\245RVU\225\352\253\206\232k\207\2074\0034Avv\247\262AUO\005\202*\021+JT)N\021O\027\374RJ\024S\022\250\003\236\231\024\177\033JZc\320\n\005V=\027E\357\031\300\014\223i\203\030\220+\252\272\304\224\247\245\261\010\364L\311\222R\244\252\216^1A\3230\003-JZ\3452\300\314\210\342pZ\322<\362\026\366*\033AY\337\302\204g\243\242H0\365Y\200/_\331Uw0\335\374\016\246\273Z\031LU\274\260,'\222U\005f~\323\306k\265\204k\005\373\257nV\027\207<P\017\340\335L/\3017\250N#~\250b\027\037\301\345G\315%\010\274E\221\371\020<\263&\366\312\257\242\234\002\345p\375\360\007\031\361\266)\377%\306%\202\271)\215\355\232\t\335\232\303v\344\312\232U7\255\313m\267\333\354\215\316\340\245\320\332\351\265\3678\311\374\301\302\206Brrpz\373c\027\333g\326\335\343\250\371a\350\313\365\331I\347`~C>Y\030,hE\350\271\323V\235aF\242mz}{\276-\037.\2641\274\310\314\272;\354]\366 \353\371%\220\276\317\036\034k\201F\353]\366\360\364]\235\205\320d\313\314\352\2650\353\035\366\240=\344H3\253[gB\267\333\277s\366\346\237-d&_\376q\307\305\330\364\323\317\314\204\356\260\367:\317\344\237\237\014\025\327\375\330\177q`\372\231g\033\341]Z}[.cS'\342\354\311w\026\332\013L\250\326[r{\354\r\266dg\363\241BK\241mf\365\215c/\002+\235\316\375\316\360Lh\275\375\013\273\235K\337\272>7b\037p\332\234My\340\243\315\276\223\023\032`#\202F\177~\327\225[W\265\336\355\334\351\320|$\277\267\300\004k]3\023j\263\333fB\267\371\343\303\371\372\306z{\215\2558\355\316\216|d&\364\033o\364\364\206m\223\2033\241_\331O9[\235\341\374-\205A&\345\036g\203#9/\027\"u\215\032\n\277\266G\234\003\240\344\236\3116\326\310\300\360\026\206\337\357\354r8\311\247\235A\320e\350.\247\345R\350\267N\254\260\246\240L\266Oo\351\277x\203\247&\340""\341^\0178\271\243\270ez\347\343\027\207\257\240U\2557\345Zrw\203.\372oX\325\032\032\243\271Hn\300\271\335y\330Q\362\017\024v\025\016L\266Mv\025#L\357[@\235L\037`;ks[s\304\006\013Xo\267\330\367\346o\000\265\364\027\366\000\341\255\223\303\305\226K>\270\345\322\352\326+\373[V\265\256\315\205A\367\355W6\257\272\371\266\\\302~\314\321\n\302d\272\270\353\022XA\344\277\236\216\320H";
+    PyObject *data = __Pyx_DecompressString(cstring, 2941, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (7547 bytes) */
-const char* const bytes = "120px12px14px150px16px180px24px32px40pxControl icon style: +/- symbols or stacked arrows (default)Custom width; int gets px appended; overrides size defaultDisable the inputElement-style preset size: large 180x40 / default 150x32 / small 120x24Extra data passed to the callbackForm field nameIncrement step; decimal step auto-sets precisionInitial value; supports State bindingMaximum allowed valueMinimum allowed valueNumber of decimal placesOnly allow multiples of stepPlaceholder textRead-only modeState object for two-way bindingValue-change callbackValue changed.?disableenablegcint | floatisenabled'right' stacks both buttons on the right side (Element-style)simplestart/ss_ui/input_number.pystr | intv-number-input\n        <v-number-input\n                :model-value=\"data.value\"\n                :min=\"data.min\"\n                :max=\"data.max\"\n                :step=\"data.step\"\n                :step-strictly=\"data.step_strictly\"\n                :precision=\"data.precision\"\n                :disabled=\"data.disabled\"\n                :readonly=\"data.readonly\"\n                :name=\"data.name\"\n                :placeholder=\"data.placeholder\"\n                :label=\"null\"\n                :hide-input=\"false\"\n                :inset=\"false\"\n                :class=\"{ 'v-number-input--plusminus': data.controls_icon === 'plusminus' }\"\n                density=\"compact\"\n                :style=\"'--ss-btn-size: ' + data.btn_size + '; --ss-icon-size: ' + data.icon_size + '; --v-input-control-height: ' + data.size_height + '; --v-input-padding-top: 0px; --v-input-padding-bottom: 0px; width: ' + data.custom_width + '; flex: none;'\"\n                flat\n                :reverse=\"data.control_variant === 'split'\"\n                :control-variant=\"data.control_variant\"\n                variant=\"outlined\"\n                hide-details\n                \\@update:model-value=\"(val) => onserver('onchange', val)\"\n            />\n    \n    ""    .v-number-input .v-field--variant-outlined {\n            --v-field-padding-bottom: 0px;\n        }\n        .v-number-input .v-field--variant-outlined .v-field__outline__start,\n        .v-number-input .v-field--variant-outlined .v-field__outline__notch::before,\n        .v-number-input .v-field--variant-outlined .v-field__outline__notch::after,\n        .v-number-input .v-field--variant-outlined .v-field__outline__end {\n            border-color: #dcdfe6;\n            opacity: 1;\n        }\n        .v-number-input .v-field--variant-outlined.v-field--focused .v-field__outline {\n            --v-field-border-width: 1px;\n        }\n        .v-number-input .v-field__prepend-inner:has(.v-number-input__control),\n        .v-number-input .v-field__append-inner:has(.v-number-input__control) {\n            width: var(--ss-btn-size);\n            min-width: var(--ss-btn-size);\n            max-width: var(--ss-btn-size);\n        }\n        .v-number-input .v-number-input__control {\n            position: relative;\n            width: 100%;\n            height: 100%;\n        }\n        .v-number-input .v-number-input__control .v-btn {\n            width: 100% !important;\n            height: calc(var(--ss-btn-size) - 2px) !important;\n            min-width: 0 !important;\n            border-radius: 0;\n            font-size: var(--ss-icon-size);\n            background-color: #f5f7fa;\n            color: #7a7d85;\n        }\n        .v-number-input .v-number-input__control .v-btn--disabled {\n            opacity: 1 !important;\n            background-color: #f5f7fa !important;\n            color: #7a7d85 !important;\n        }\n        .v-number-input .v-number-input__control .v-divider--vertical {\n            display: none;\n        }\n        .v-number-input .v-field__prepend-inner .v-number-input__control .v-btn {\n            border-right: 1px solid #dcdfe6;\n        }\n        .v-number-input .v-field__append-inner .v-number-input__control .v-btn {\n            ""border-left: 1px solid #dcdfe6;\n        }\n        /* controls_position=\"right\"\357\274\210stacked\357\274\211\357\274\232\346\214\211\351\222\256\345\234\250\345\217\263\344\276\247\345\236\202\347\233\264\345\240\206\345\217\240\357\274\214\345\257\271\351\275\220 Element */\n        .v-number-input--stacked .v-field__append-inner > .v-divider--vertical,\n        .v-number-input--stacked .v-number-input__control .v-divider {\n            display: none;\n        }\n        .v-number-input.v-number-input--stacked .v-number-input__control {\n            flex-direction: column !important;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn {\n            height: auto !important;\n            flex: 1 1 0;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn:first-child {\n            border-left: 1px solid #dcdfe6;\n            border-bottom: 1px solid #dcdfe6;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn:last-child {\n            border-left: 1px solid #dcdfe6;\n        }\n        /* stacked\357\274\232\345\233\276\346\240\207\351\243\216\346\240\274\343\200\202\351\273\230\350\256\244 arrows\357\274\210\344\270\212\344\270\213\347\256\255\345\244\264\357\274\214\345\257\271\351\275\220 Element \345\256\230\346\226\271\357\274\214\344\277\256\346\255\243\346\226\271\345\220\221\357\274\232\n           \345\270\203\345\261\200\344\270\272\345\207\217\344\270\212/\345\212\240\344\270\213\357\274\214\347\256\255\345\244\264\345\272\224\344\270\272 \345\207\217=up\343\200\201\345\212\240=down\357\274\214\344\270\216 Vuetify \345\216\237\347\224\237 chevron \347\233\270\345\217\215\357\274\214\n           \346\225\205\347\224\250 .v-icon::before \345\255\227\345\275\242\344\272\244\346\215\242\357\274\211\343\200\202icon=\"plusminus\" \346\227\266\346\230\276\347\244\272 +/- \347\254\246\345\217\267\343\200\202\n           \345\255\227\345\275\242\346\226\271\346\241\210\347\233\264\346""\216\245\346\224\271\345\206\231 .v-icon\357\274\214\345\233\276\346\240\207\345\205\203\347\264\240\347\224\261 Vuetify flex \345\270\203\345\261\200\345\244\251\347\204\266\345\261\205\344\270\255\357\274\214\344\270\215\347\242\260 ripple */\n        .v-number-input--stacked .v-number-input__control .v-btn .v-icon {\n            display: inline-flex !important;\n            font-size: var(--ss-icon-size);\n            color: #7a7d85;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn[data-testid=\"decrement\"] .v-icon::before {\n            content: \"\\F0143\" !important;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn[data-testid=\"increment\"] .v-icon::before {\n            content: \"\\F0140\" !important;\n        }\n        .v-number-input.v-number-input--plusminus .v-number-input__control .v-btn[data-testid=\"decrement\"] .v-icon::before {\n            content: \"\342\210\222\" !important;\n        }\n        .v-number-input.v-number-input--plusminus .v-number-input__control .v-btn[data-testid=\"increment\"] .v-icon::before {\n            content: \"+\" !important;\n        }\n    INPUT_NUMBER_SCHEMA__Pyx_PyDict_NextRefStateanyarrowsasyncio.coroutinesbindbind_stateboolbtn_sizecallablecategorychangecheck_schema_kwargscline_in_tracebackcontrol_variantcontrols_iconcontrols_position_csscustom_width_datadatadefaultdisableddoceventeventDataevent_dataeventsform__func__gethandle_event_datahandlersheighticonicon_sizeidinput_numberinput_number.<locals>.myonchangeint_is_coroutineitemskwargslarge__main__maxmin__module__myonchangename__name__onchangeoptionsoriginal_value_argparamsplaceholderplusminuspoppositionalprecisionpx__qualname__reactivereadonlyresright__set_name__setdefaultsimplestart.ss_ui.input_numbersizesize_cfgsize_heightsmallsplitss_coress_core.componentss_core.mainss_core.utilsstackedstepstep_strstep_strictlystr__test__typeupdate_cmvalvaluevaluesvuetifyvuetify_basewidth\200A\330\010\016\210e\2201\360""\006\000\t\014\2106\220\021\220+\230Q\340\010\013\320\013\036\230g\240U\250$\250g\260Q\3206J\310!\330\014\036\230i\240q\340\010\013\210;\220g\230U\240$\240g\250Q\250l\270!\330\014\026\220i\230q\360\006\000\t\021\320\020!\240\021\240'\250\021\340\010\013\2101\330\014\024\220A\220Q\360\006\000\t\022\220\021\220#\220Q\200\001\360\006\000\005\030\220q\320\030(\250\010\260\001\330\004\013\2106\220\024\220Q\220h\230a\330\004\005\330\010\023\2209\230I\240Z\250x\260|\3008\310=\320XY\330\010\024\220I\230Y\240j\260\010\270\014\300H\310M\320YZ\330\010\023\2209\230I\240Z\250x\260|\3008\310=\320XY\340\004\017\210x\220t\2301\230F\240(\250!\2501\360\006\000\005\r\210F\220$\220a\220y\240\010\250\001\250\021\330\004\007\200z\220\021\220(\230%\230q\330\010\020\220\002\220!\2201\360\006\000\005\020\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\330\004\021\220\026\220t\2301\230H\240A\360\016\000\005\032\230\026\230t\2401\240I\250Q\360\006\000\005\006\330\010\021\220\021\330\010\017\210v\220T\230\021\230'\240\021\330\010\017\210v\220T\230\021\230'\240\021\330\010\020\220\006\220d\230!\2308\2401\330\010\031\230\026\230t\2401\320$5\260Q\330\010\025\220V\2304\230q\240\r\250Q\330\010\024\220F\230$\230a\230|\2501\330\010\024\220F\230$\230a\230|\2501\330\010\020\220\006\220d\230!\2308\2401\330\010\027\220v\230T\240\021\240/\260\021\330\010\027\220x\230q\240\001\330\010\024\220H\230A\230Q\330\010\025\220X\230Q\230a\330\010\030\230\001\340\010\033\230=\250\006\250d\260!\3203H\310\003\310=\320XY\340\010\031\230\037\250\006\250d\260!\2608\2703\320>O\310q\360 \000\005\t\210\001\210\032\2201\360v\002\000\005\010\200t\2101\210M\230\023\230B\230d\240*\250A\250T\260\021\260)\2701\330\010\023\2203\220a\220t\2301\230A\330\010\013\2104\210s\220!\330\014\020\220\001\220\037\240\003\2401\240H\250F\260!\2604\260q\270\001\340\014\020\220\001\220\037\240\001\340\004\005\360P\001\000\005\013\210'\220\021\220!\3602\000\n\017\210f\220J\230l\250-\260u\270A\340\004\013\2101";
+    #else /* compression: none (8055 bytes) */
+const char* const bytes = "120px12px14px150px16px180px24px32px40pxControl icon style: +/- symbols or stacked arrows (default)Custom width; int gets px appended; overrides size defaultDisable the inputElement-style preset size: large 180x40 / default 150x32 / small 120x24Extra data passed to the callbackForm field nameIncrement step; decimal step auto-sets precisionInitial value; supports State bindingMaximum allowed valueMinimum allowed valueNumber of decimal placesOnly allow multiples of stepPlaceholder textRead-only modeState object for two-way bindingValue-change callbackValue changed.?disableenablegcint | floatisenabled'right' stacks both buttons on the right side (Element-style)simplestart/ss_ui/input_number.pystr | intv-number-input\n        <v-number-input\n                :model-value=\"data.value\"\n                :min=\"data.min\"\n                :max=\"data.max\"\n                :step=\"data.step\"\n                :step-strictly=\"data.step_strictly\"\n                :precision=\"data.precision\"\n                :disabled=\"data.disabled\"\n                :readonly=\"data.readonly\"\n                :name=\"data.name\"\n                :placeholder=\"data.placeholder\"\n                :label=\"null\"\n                :hide-input=\"false\"\n                :inset=\"false\"\n                :class=\"{ 'v-number-input--plusminus': data.controls_icon === 'plusminus' }\"\n                density=\"compact\"\n                :style=\"'--ss-btn-size: ' + data.btn_size + '; --ss-icon-size: ' + data.icon_size + '; --v-input-control-height: ' + data.size_height + '; --v-input-padding-top: 0px; --v-input-padding-bottom: 0px; width: ' + data.custom_width + '; flex: none;'\"\n                flat\n                :reverse=\"data.control_variant === 'split'\"\n                :control-variant=\"data.control_variant\"\n                variant=\"outlined\"\n                hide-details\n                \\@update:model-value=\"(val) => onserver('onchange', val)\"\n            />\n    \n    ""    .v-number-input .v-field--variant-outlined {\n            --v-field-padding-bottom: 0px;\n        }\n        .v-number-input .v-field--variant-outlined .v-field__outline__start,\n        .v-number-input .v-field--variant-outlined .v-field__outline__notch::before,\n        .v-number-input .v-field--variant-outlined .v-field__outline__notch::after,\n        .v-number-input .v-field--variant-outlined .v-field__outline__end {\n            border-color: #dcdfe6;\n            opacity: 1;\n        }\n        .v-number-input .v-field--variant-outlined.v-field--focused .v-field__outline {\n            --v-field-border-width: 1px;\n        }\n        /* \351\252\221\347\272\277\346\226\255\345\217\243\345\217\214\344\277\235\346\212\244\357\274\210\351\225\234\345\203\217 input.py\357\274\211\357\274\232\344\270\212\351\235\242\347\232\204 opacity:1 \350\275\257\345\214\226\344\274\232\345\216\213\345\210\266 Vuetify\n           active \346\227\266\351\232\220\350\227\217 notch \351\241\266\347\272\277\347\232\204\346\226\255\345\217\243\350\247\204\345\210\231\357\274\214\351\253\230\347\211\271\345\274\202\346\200\247\350\246\201\345\233\236\346\226\255\345\217\243 + \346\265\256\345\212\250\346\240\207\347\255\276\n           \344\270\273\351\242\230\350\241\250\351\235\242\350\211\262\350\203\214\346\231\257\351\201\256\347\272\277 */\n        .v-number-input .v-field--active.v-field--variant-outlined .v-field__outline__notch::before {\n            opacity: 0;\n        }\n        .v-number-input .v-field__outline .v-field-label--floating {\n            background: rgb(var(--v-theme-surface));\n        }\n        .v-number-input .v-field__prepend-inner:has(.v-number-input__control),\n        .v-number-input .v-field__append-inner:has(.v-number-input__control) {\n            width: var(--ss-btn-size);\n            min-width: var(--ss-btn-size);\n            max-width: var(--ss-btn-size);\n        }\n        .v-number-input .v-number-input__control {\n            positio""n: relative;\n            width: 100%;\n            height: 100%;\n        }\n        .v-number-input .v-number-input__control .v-btn {\n            width: 100% !important;\n            height: calc(var(--ss-btn-size) - 2px) !important;\n            min-width: 0 !important;\n            border-radius: 0;\n            font-size: var(--ss-icon-size);\n            background-color: #f5f7fa;\n            color: #7a7d85;\n        }\n        .v-number-input .v-number-input__control .v-btn--disabled {\n            opacity: 1 !important;\n            background-color: #f5f7fa !important;\n            color: #7a7d85 !important;\n        }\n        .v-number-input .v-number-input__control .v-divider--vertical {\n            display: none;\n        }\n        .v-number-input .v-field__prepend-inner .v-number-input__control .v-btn {\n            border-right: 1px solid #dcdfe6;\n        }\n        .v-number-input .v-field__append-inner .v-number-input__control .v-btn {\n            border-left: 1px solid #dcdfe6;\n        }\n        /* controls_position=\"right\"\357\274\210stacked\357\274\211\357\274\232\346\214\211\351\222\256\345\234\250\345\217\263\344\276\247\345\236\202\347\233\264\345\240\206\345\217\240\357\274\214\345\257\271\351\275\220 Element */\n        .v-number-input--stacked .v-field__append-inner > .v-divider--vertical,\n        .v-number-input--stacked .v-number-input__control .v-divider {\n            display: none;\n        }\n        .v-number-input.v-number-input--stacked .v-number-input__control {\n            flex-direction: column !important;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn {\n            height: auto !important;\n            flex: 1 1 0;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn:first-child {\n            border-left: 1px solid #dcdfe6;\n            border-bottom: 1px solid #dcdfe6;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn:last-child {""\n            border-left: 1px solid #dcdfe6;\n        }\n        /* stacked\357\274\232\345\233\276\346\240\207\351\243\216\346\240\274\343\200\202\351\273\230\350\256\244 arrows\357\274\210\344\270\212\344\270\213\347\256\255\345\244\264\357\274\214\345\257\271\351\275\220 Element \345\256\230\346\226\271\357\274\214\344\277\256\346\255\243\346\226\271\345\220\221\357\274\232\n           \345\270\203\345\261\200\344\270\272\345\207\217\344\270\212/\345\212\240\344\270\213\357\274\214\347\256\255\345\244\264\345\272\224\344\270\272 \345\207\217=up\343\200\201\345\212\240=down\357\274\214\344\270\216 Vuetify \345\216\237\347\224\237 chevron \347\233\270\345\217\215\357\274\214\n           \346\225\205\347\224\250 .v-icon::before \345\255\227\345\275\242\344\272\244\346\215\242\357\274\211\343\200\202icon=\"plusminus\" \346\227\266\346\230\276\347\244\272 +/- \347\254\246\345\217\267\343\200\202\n           \345\255\227\345\275\242\346\226\271\346\241\210\347\233\264\346\216\245\346\224\271\345\206\231 .v-icon\357\274\214\345\233\276\346\240\207\345\205\203\347\264\240\347\224\261 Vuetify flex \345\270\203\345\261\200\345\244\251\347\204\266\345\261\205\344\270\255\357\274\214\344\270\215\347\242\260 ripple */\n        .v-number-input--stacked .v-number-input__control .v-btn .v-icon {\n            display: inline-flex !important;\n            font-size: var(--ss-icon-size);\n            color: #7a7d85;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn[data-testid=\"decrement\"] .v-icon::before {\n            content: \"\\F0143\" !important;\n        }\n        .v-number-input--stacked .v-number-input__control .v-btn[data-testid=\"increment\"] .v-icon::before {\n            content: \"\\F0140\" !important;\n        }\n        .v-number-input.v-number-input--plusminus .v-number-input__control .v-btn[data-testid=\"decrement\"] .v-icon::before {\n            content: \"\342\210\222\" !important;\n        }\n        .v-number-input.v-number-inpu""t--plusminus .v-number-input__control .v-btn[data-testid=\"increment\"] .v-icon::before {\n            content: \"+\" !important;\n        }\n    INPUT_NUMBER_SCHEMA__Pyx_PyDict_NextRefStateanyarrowsasyncio.coroutinesbindbind_stateboolbtn_sizecallablecategorychangecheck_schema_kwargscline_in_tracebackcontrol_variantcontrols_iconcontrols_position_csscustom_width_datadatadefaultdisableddoceventeventDataevent_dataeventsform__func__gethandle_event_datahandlersheighticonicon_sizeidinput_numberinput_number.<locals>.myonchangeint_is_coroutineitemskwargslarge__main__maxmin__module__myonchangename__name__onchangeoptionsoriginal_value_argparamsplaceholderplusminuspoppositionalprecisionpx__qualname__reactivereadonlyresright__set_name__setdefaultsimplestart.ss_ui.input_numbersizesize_cfgsize_heightsmallsplitss_coress_core.componentss_core.mainss_core.utilsstackedstepstep_strstep_strictlystr__test__typeupdate_cmvalvaluevaluesvuetifyvuetify_basewidth\200A\330\010\016\210e\2201\360\006\000\t\014\2106\220\021\220+\230Q\340\010\013\320\013\036\230g\240U\250$\250g\260Q\3206J\310!\330\014\036\230i\240q\340\010\013\210;\220g\230U\240$\240g\250Q\250l\270!\330\014\026\220i\230q\360\006\000\t\021\320\020!\240\021\240'\250\021\340\010\013\2101\330\014\024\220A\220Q\360\006\000\t\022\220\021\220#\220Q\200\001\360\006\000\005\030\220q\320\030(\250\010\260\001\330\004\013\2106\220\024\220Q\220h\230a\330\004\005\330\010\023\2209\230I\240Z\250x\260|\3008\310=\320XY\330\010\024\220I\230Y\240j\260\010\270\014\300H\310M\320YZ\330\010\023\2209\230I\240Z\250x\260|\3008\310=\320XY\340\004\017\210x\220t\2301\230F\240(\250!\2501\360\006\000\005\r\210F\220$\220a\220y\240\010\250\001\250\021\330\004\007\200z\220\021\220(\230%\230q\330\010\020\220\002\220!\2201\360\006\000\005\020\210v\220T\230\021\230,\240a\330\004\021\220\026\220t\2301\230M\250\021\330\004\021\220\026\220t\2301\230H\240A\360\016\000\005\032\230\026\230t\2401\240I\250Q\360\006\000\005\006\330\010\021\220\021\330\010\017\210v\220T\230""\021\230'\240\021\330\010\017\210v\220T\230\021\230'\240\021\330\010\020\220\006\220d\230!\2308\2401\330\010\031\230\026\230t\2401\320$5\260Q\330\010\025\220V\2304\230q\240\r\250Q\330\010\024\220F\230$\230a\230|\2501\330\010\024\220F\230$\230a\230|\2501\330\010\020\220\006\220d\230!\2308\2401\330\010\027\220v\230T\240\021\240/\260\021\330\010\027\220x\230q\240\001\330\010\024\220H\230A\230Q\330\010\025\220X\230Q\230a\330\010\030\230\001\340\010\033\230=\250\006\250d\260!\3203H\310\003\310=\320XY\340\010\031\230\037\250\006\250d\260!\2608\2703\320>O\310q\360 \000\005\t\210\001\210\032\2201\360H\003\000\005\010\200t\2101\210M\230\023\230B\230d\240*\250A\250T\260\021\260)\2701\330\010\023\2203\220a\220t\2301\230A\330\010\013\2104\210s\220!\330\014\020\220\001\220\037\240\003\2401\240H\250F\260!\2604\260q\270\001\340\014\020\220\001\220\037\240\001\340\004\005\360P\001\000\005\013\210'\220\021\220!\3602\000\n\017\210f\220J\230l\250-\260u\270A\340\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -5019,7 +5019,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 246};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 255};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_event, __pyx_mstate->__pyx_n_u_val};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_simplestart_ss_ui_input_number_p, __pyx_mstate->__pyx_n_u_myonchange, __pyx_mstate->__pyx_kp_b_iso88591_A_e1_6_Q_gU_gQ6J_iq_gU_gQl_iq_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }

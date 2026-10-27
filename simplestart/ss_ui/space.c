@@ -2477,10 +2477,10 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Cross_axis_alignment_horizontal __pyx_string_tab[3]
 #define __pyx_kp_u_Custom_gap_size_e_g_50px_alias_c __pyx_string_tab[4]
 #define __pyx_kp_u_Extra_CSS_class_alias_cls __pyx_string_tab[5]
-#define __pyx_kp_u_Gap_size_small_default_medium_la __pyx_string_tab[6]
-#define __pyx_kp_u_Layout_direction_horizontal_vert __pyx_string_tab[7]
+#define __pyx_kp_u_Gap_direction_for_int_px_form_ve __pyx_string_tab[6]
+#define __pyx_kp_u_Gap_size_small_default_medium_la __pyx_string_tab[7]
 #define __pyx_kp_u_Main_axis_alignment __pyx_string_tab[8]
-#define __pyx_kp_u_Margin_class_like_mt_4_first_pos __pyx_string_tab[9]
+#define __pyx_kp_u_Margin_class_like_mt_4_advanced __pyx_string_tab[9]
 #define __pyx_kp_u__2 __pyx_string_tab[10]
 #define __pyx_kp_u__3 __pyx_string_tab[11]
 #define __pyx_kp_u__4 __pyx_string_tab[12]
@@ -4003,59 +4003,59 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
 */
   }
 
-  /* "simplestart/ss_ui/space.py":95
- *     else:
- *         #
+  /* "simplestart/ss_ui/space.py":98
+ *         #  space videomaker
+ *         # direction="vertical"
  *         if isinstance(cls, int):             # <<<<<<<<<<<<<<
- *             #
- *             direction = kwargs.get("direction", "horizontal")
+ *             direction = kwargs.get("direction", "vertical")
+ *             # margin
 */
   /*else*/ {
     __pyx_t_6 = PyLong_Check(__pyx_v_cls); 
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_ui/space.py":97
+      /* "simplestart/ss_ui/space.py":99
+ *         # direction="vertical"
  *         if isinstance(cls, int):
- *             #
- *             direction = kwargs.get("direction", "horizontal")             # <<<<<<<<<<<<<<
+ *             direction = kwargs.get("direction", "vertical")             # <<<<<<<<<<<<<<
  *             # margin
  *             if direction == "vertical":
 */
-      __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_horizontal); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_vertical); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __pyx_v_direction = __pyx_t_4;
       __pyx_t_4 = 0;
 
-      /* "simplestart/ss_ui/space.py":99
- *             direction = kwargs.get("direction", "horizontal")
+      /* "simplestart/ss_ui/space.py":101
+ *             direction = kwargs.get("direction", "vertical")
  *             # margin
  *             if direction == "vertical":             # <<<<<<<<<<<<<<
  *                 style = f"margin: {cls}px 0;"
  *                 display_type = "block"
 */
-      __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_direction, __pyx_mstate_global->__pyx_n_u_vertical, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 99, __pyx_L1_error)
+      __pyx_t_6 = (__Pyx_PyUnicode_Equals(__pyx_v_direction, __pyx_mstate_global->__pyx_n_u_vertical, Py_EQ)); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 101, __pyx_L1_error)
       if (__pyx_t_6) {
 
-        /* "simplestart/ss_ui/space.py":100
+        /* "simplestart/ss_ui/space.py":102
  *             # margin
  *             if direction == "vertical":
  *                 style = f"margin: {cls}px 0;"             # <<<<<<<<<<<<<<
  *                 display_type = "block"
  *             else:
 */
-        __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_7[0] = __pyx_mstate_global->__pyx_kp_u_margin;
         __pyx_t_7[1] = __pyx_t_4;
         __pyx_t_7[2] = __pyx_mstate_global->__pyx_kp_u_px_0;
         __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_7, 3, 8 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4) + 5, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4));
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_v_style = ((PyObject*)__pyx_t_3);
         __pyx_t_3 = 0;
 
-        /* "simplestart/ss_ui/space.py":101
+        /* "simplestart/ss_ui/space.py":103
  *             if direction == "vertical":
  *                 style = f"margin: {cls}px 0;"
  *                 display_type = "block"             # <<<<<<<<<<<<<<
@@ -4065,8 +4065,8 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
         __Pyx_INCREF(__pyx_mstate_global->__pyx_n_u_block);
         __pyx_v_display_type = __pyx_mstate_global->__pyx_n_u_block;
 
-        /* "simplestart/ss_ui/space.py":99
- *             direction = kwargs.get("direction", "horizontal")
+        /* "simplestart/ss_ui/space.py":101
+ *             direction = kwargs.get("direction", "vertical")
  *             # margin
  *             if direction == "vertical":             # <<<<<<<<<<<<<<
  *                 style = f"margin: {cls}px 0;"
@@ -4075,7 +4075,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
         goto __pyx_L5;
       }
 
-      /* "simplestart/ss_ui/space.py":103
+      /* "simplestart/ss_ui/space.py":105
  *                 display_type = "block"
  *             else:
  *                 style = f"margin: 0 {cls}px;"             # <<<<<<<<<<<<<<
@@ -4083,19 +4083,19 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
  *             return vuetify(f'<div style="display:{display_type}; {style}"></div>')
 */
       /*else*/ {
-        __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __pyx_t_7[0] = __pyx_mstate_global->__pyx_kp_u_margin_0;
         __pyx_t_7[1] = __pyx_t_3;
         __pyx_t_7[2] = __pyx_mstate_global->__pyx_kp_u_px;
         __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_7, 3, 10 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 3, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3));
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_v_style = ((PyObject*)__pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "simplestart/ss_ui/space.py":104
+        /* "simplestart/ss_ui/space.py":106
  *             else:
  *                 style = f"margin: 0 {cls}px;"
  *                 display_type = "inline-flex"             # <<<<<<<<<<<<<<
@@ -4107,7 +4107,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
       }
       __pyx_L5:;
 
-      /* "simplestart/ss_ui/space.py":105
+      /* "simplestart/ss_ui/space.py":107
  *                 style = f"margin: 0 {cls}px;"
  *                 display_type = "inline-flex"
  *             return vuetify(f'<div style="display:{display_type}; {style}"></div>')             # <<<<<<<<<<<<<<
@@ -4116,7 +4116,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_3 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_8[0] = __pyx_mstate_global->__pyx_kp_u_div_style_display;
       __pyx_t_8[1] = __pyx_v_display_type;
@@ -4124,7 +4124,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
       __pyx_t_8[3] = __pyx_v_style;
       __pyx_t_8[4] = __pyx_mstate_global->__pyx_kp_u_div;
       __pyx_t_2 = __Pyx_PyUnicode_Join(__pyx_t_8, 5, 20 + __Pyx_PyUnicode_GET_LENGTH(__pyx_v_display_type) + 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_v_style) + 8, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_v_display_type) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_v_style));
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_t_5 = 1;
       #if CYTHON_UNPACK_METHODS
@@ -4144,59 +4144,59 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "simplestart/ss_ui/space.py":95
- *     else:
- *         #
+      /* "simplestart/ss_ui/space.py":98
+ *         #  space videomaker
+ *         # direction="vertical"
  *         if isinstance(cls, int):             # <<<<<<<<<<<<<<
- *             #
- *             direction = kwargs.get("direction", "horizontal")
+ *             direction = kwargs.get("direction", "vertical")
+ *             # margin
 */
     }
 
-    /* "simplestart/ss_ui/space.py":108
+    /* "simplestart/ss_ui/space.py":110
  * 
  *         #
  *         wrap = kwargs.get("wrap", False)             # <<<<<<<<<<<<<<
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):
 */
-    __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_wrap, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyDict_GetItemDefault(__pyx_v_kwargs, __pyx_mstate_global->__pyx_n_u_wrap, Py_False); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_v_wrap = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "simplestart/ss_ui/space.py":110
+    /* "simplestart/ss_ui/space.py":112
  *         wrap = kwargs.get("wrap", False)
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):             # <<<<<<<<<<<<<<
  *             return vuetify(f'<div class="{cls}"></div>')
  *         # inline-flex
 */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_wrap); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_wrap); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 112, __pyx_L1_error)
     if (!__pyx_t_9) {
     } else {
       __pyx_t_6 = __pyx_t_9;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_mt, __pyx_v_cls, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_mt, __pyx_v_cls, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 112, __pyx_L1_error)
     if (!__pyx_t_9) {
     } else {
       __pyx_t_6 = __pyx_t_9;
       goto __pyx_L7_bool_binop_done;
     }
-    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_mb, __pyx_v_cls, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PySequence_ContainsTF(__pyx_mstate_global->__pyx_kp_u_mb, __pyx_v_cls, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 112, __pyx_L1_error)
     __pyx_t_6 = __pyx_t_9;
     __pyx_L7_bool_binop_done:;
     if (__pyx_t_6) {
 
-      /* "simplestart/ss_ui/space.py":111
+      /* "simplestart/ss_ui/space.py":113
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):
  *             return vuetify(f'<div class="{cls}"></div>')             # <<<<<<<<<<<<<<
@@ -4205,15 +4205,15 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
 */
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_1 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_7[0] = __pyx_mstate_global->__pyx_kp_u_div_class;
       __pyx_t_7[1] = __pyx_t_3;
       __pyx_t_7[2] = __pyx_mstate_global->__pyx_kp_u_div;
       __pyx_t_10 = __Pyx_PyUnicode_Join(__pyx_t_7, 3, 12 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 8, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3));
-      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 111, __pyx_L1_error)
+      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 113, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_5 = 1;
@@ -4234,14 +4234,14 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
       __pyx_r = __pyx_t_4;
       __pyx_t_4 = 0;
       goto __pyx_L0;
 
-      /* "simplestart/ss_ui/space.py":110
+      /* "simplestart/ss_ui/space.py":112
  *         wrap = kwargs.get("wrap", False)
  *         # marginblock
  *         if wrap or ("mt-" in cls or "mb-" in cls):             # <<<<<<<<<<<<<<
@@ -4250,7 +4250,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
 */
     }
 
-    /* "simplestart/ss_ui/space.py":114
+    /* "simplestart/ss_ui/space.py":116
  *         # inline-flex
  *         else:
  *             return vuetify(f'<div style="display:inline-flex" class="{cls}"></div>')             # <<<<<<<<<<<<<<
@@ -4258,15 +4258,15 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
     /*else*/ {
       __Pyx_XDECREF(__pyx_r);
       __pyx_t_2 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 114, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_vuetify); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 116, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_v_cls, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __pyx_t_7[0] = __pyx_mstate_global->__pyx_kp_u_div_style_display_inline_flex_c;
       __pyx_t_7[1] = __pyx_t_1;
       __pyx_t_7[2] = __pyx_mstate_global->__pyx_kp_u_div;
       __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_7, 3, 40 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 8, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1));
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 116, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_5 = 1;
@@ -4287,7 +4287,7 @@ static PyObject *__pyx_pf_11simplestart_5ss_ui_5space_2space(CYTHON_UNUSED PyObj
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 116, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
       }
       __pyx_r = __pyx_t_4;
@@ -4746,7 +4746,7 @@ __Pyx_RefNannySetupContext("PyInit_space", 0);
  *     "passthrough": "options",
  *     "positional": ["cls"],             # <<<<<<<<<<<<<<
  *     "params": {
- *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (first positional), or int as px gap"},
+ *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (advanced), or int as px gap (int form defaults to vertical)"},
 */
   __pyx_t_4 = __Pyx_PyList_Pack(1, __pyx_mstate_global->__pyx_n_u_cls); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -4756,8 +4756,8 @@ __Pyx_RefNannySetupContext("PyInit_space", 0);
   /* "simplestart/ss_ui/space.py":11
  *     "positional": ["cls"],
  *     "params": {
- *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (first positional), or int as px gap"},             # <<<<<<<<<<<<<<
- *         "direction": {"type": "str", "default": "horizontal", "doc": "Layout direction: horizontal/vertical"},
+ *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (advanced), or int as px gap (int form defaults to vertical)"},             # <<<<<<<<<<<<<<
+ *         "direction": {"type": "str", "default": "vertical", "doc": "Gap direction for int px form: vertical (default) / horizontal; the bare container form is always a horizontal flex stack"},
  *         "size": {"type": "str", "default": "default", "doc": "Gap size: small/default/medium/large"},
 */
   __pyx_t_4 = __Pyx_PyDict_NewPresized(9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 11, __pyx_L1_error)
@@ -4766,28 +4766,28 @@ __Pyx_RefNannySetupContext("PyInit_space", 0);
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_kp_u_str_int) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, Py_None) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Margin_class_like_mt_4_first_pos) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Margin_class_like_mt_4_advanced) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cls, __pyx_t_5) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/space.py":12
  *     "params": {
- *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (first positional), or int as px gap"},
- *         "direction": {"type": "str", "default": "horizontal", "doc": "Layout direction: horizontal/vertical"},             # <<<<<<<<<<<<<<
+ *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (advanced), or int as px gap (int form defaults to vertical)"},
+ *         "direction": {"type": "str", "default": "vertical", "doc": "Gap direction for int px form: vertical (default) / horizontal; the bare container form is always a horizontal flex stack"},             # <<<<<<<<<<<<<<
  *         "size": {"type": "str", "default": "default", "doc": "Gap size: small/default/medium/large"},
  *         "customSize": {"type": "str", "default": "", "doc": "Custom gap size, e.g. '50px' (alias custom_size)"},
 */
   __pyx_t_5 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_type, __pyx_mstate_global->__pyx_n_u_str) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_horizontal) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Layout_direction_horizontal_vert) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_default, __pyx_mstate_global->__pyx_n_u_vertical) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_doc, __pyx_mstate_global->__pyx_kp_u_Gap_direction_for_int_px_form_ve) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_direction, __pyx_t_5) < (0)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/space.py":13
- *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (first positional), or int as px gap"},
- *         "direction": {"type": "str", "default": "horizontal", "doc": "Layout direction: horizontal/vertical"},
+ *         "cls": {"type": "str | int", "default": None, "doc": "Margin class like 'mt-4' (advanced), or int as px gap (int form defaults to vertical)"},
+ *         "direction": {"type": "str", "default": "vertical", "doc": "Gap direction for int px form: vertical (default) / horizontal; the bare container form is always a horizontal flex stack"},
  *         "size": {"type": "str", "default": "default", "doc": "Gap size: small/default/medium/large"},             # <<<<<<<<<<<<<<
  *         "customSize": {"type": "str", "default": "", "doc": "Custom gap size, e.g. '50px' (alias custom_size)"},
  *         "wrap": {"type": "bool", "default": False, "doc": "Allow wrapping to the next line"},
@@ -4801,7 +4801,7 @@ __Pyx_RefNannySetupContext("PyInit_space", 0);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "simplestart/ss_ui/space.py":14
- *         "direction": {"type": "str", "default": "horizontal", "doc": "Layout direction: horizontal/vertical"},
+ *         "direction": {"type": "str", "default": "vertical", "doc": "Gap direction for int px form: vertical (default) / horizontal; the bare container form is always a horizontal flex stack"},
  *         "size": {"type": "str", "default": "default", "doc": "Gap size: small/default/medium/large"},
  *         "customSize": {"type": "str", "default": "", "doc": "Custom gap size, e.g. '50px' (alias custom_size)"},             # <<<<<<<<<<<<<<
  *         "wrap": {"type": "bool", "default": False, "doc": "Allow wrapping to the next line"},
@@ -5147,25 +5147,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{0},{31},{33},{143},{48},{27},{36},{37},{19},{61},{2},{1},{1},{8},{12},{20},{40},{42},{8},{10},{11},{8},{10},{3},{3},{3},{5},{26},{9},{20},{12},{13},{5},{6},{6},{18},{5},{5},{4},{6},{8},{6},{19},{10},{9},{18},{3},{15},{7},{10},{7},{9},{12},{3},{7},{3},{9},{6},{6},{8},{7},{8},{4},{8},{3},{5},{10},{2},{8},{13},{13},{5},{7},{6},{8},{13},{6},{10},{8},{4},{7},{6},{11},{3},{10},{11},{12},{8},{8},{4},{12},{10},{23},{4},{5},{7},{17},{16},{16},{11},{13},{6},{7},{17},{5},{3},{5},{8},{3},{4},{6},{8},{7},{4},{13},{9},{14},{25},{243},{11},{176}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1308 bytes) */
-const char* const cstring = "BZh91AY&SY7\t\262\217\000\000\260\177\377\347\376\377\336\375\347\377\277\277\317}U\277\377\377\375@@@@@@@@@@@@@\000@\000P\004]\331E\342\244P\211\334p\324\3242)\352zd\324\3657\242j\237\252b~\232\223\323Q\346\244=L'\250\003M4\000=L\201\352=F\232\032?M\032D\362j\034\000\000\000\320\000\000\003@\r\000\000\320\000\003@\000\000\000\321\0314 I\2021&54\365\036\240\000\000\000\000\000\000\000\000\032\001\240\324\365SQ\355$=4\200\001\223 \320\320\000\001\211\221\2404h21\036\240\014@zG\244\364\tBL\232\023&\223h\010\304S\032j~\246\246\321\240\000\215\242\014\020\030\000\000\002`\032\027)TY\231A\037_\2157\372\323\216%!v\353 \251j\242RI\004 \222J\240*\262\301\324l\024\377\247)\221\334\274\302s\245\020&\250p!q\342R0\260\210\244\265M\317\224\203\353\314\205f\264\016\353\247\210,\303a\306\316\"\035{\363\365\204\373\233\203\220\257\252\201\212y\257O\216\342\355\222\003\035\345\363\260\266\323ne\317em\324Rh\350\240/L\3166q\200\354R\345(#\223LD\240\314\262\325\216\233\243}*\023K\220\317\331\240\217_\230 `%\373\270o\301\335!\2114hQ\363W\204h\320\300b2\324\213\203\\\001X\313Q\n*v\rt\264a'\266\203\213+j\326\366\237\251\026Ud\201\031\t\242\005\002a\310\030\322\201\361w\246\311|M-\222\317\r\033AQh>\254\020u\177_\233h2\343\272a\357\275\263\033\221Q\024L\361}\245\325=ju\016\213\364\227\341\351G\274\365u\005(\266\210(\342\2210\363A\234\354t\345\264\323\r\002 \333k)\205\220j\262\272\331\202y\202\332]\0344\037\201\223A\035\234\246\257T\312\030@\357\030S\013'\311\212a\n\245d\227t\310\317d\371)}R51F\243\245\027\343\013\321\330\001\312qm\025n\363\313!:\255,\333\307xL\357.1/\322X\304J\270\376\245s\212\314uNm\025\"q\312\226\354\250\221\321\253I\0160\364\366nx\331\355\343\311]\031\274\264r\314\032\251`P\273\204\013\373\205lj\265F\334\357 \003T\017\252\315\034\211\005@\022\226\021\214r\356i\014xM\236.J\"Ps\267\341\351\306\002\004\303\251\2759s_\036\207\014\333)1\246\005\320R\207\252?r\320\\i\001\237#\242\361\304\255\2505-\220\277,R|\257]\305<t\211\306\266\0066\010\263\203\314\03045p\024\243\302\330p""\2642\264\255\270\337U0 \2710\240J\276\364iAL\206kl\256qS;I!\242*\031\314/W\013\233\022$B\246\037\000\302p&0\341z\320]G\006\017\375\3205\307\216C.\271)6\254Xj\245\010\270\\\225\274\345\310\326\313\216C\021Nr\016F\302\253z\262DIY8ki2\361]h1k\323\240\227UU\025wPD\2613\306\334\311\242\314\362\3014'\002\365\202\321<\213\262\331,QQ\004\025\270\312v\263(\3155b\026\353\016\356P\222c\260DQ\036V\232\241\222\230\3176(\256b\332\302\273\323!\031\220QkR\245\022QdW\212\3100\252\202\251\242\216\300Z\311\007\241t\200a\025\215dS\003\337;Zy\231\024\246\006H\213v\343\026\360\026\325\350\205+\002*\254\225\205\252d\224\215\212~\357\332\303\253.-\22157\333\347l\270\273J\342PRm\331\232G\311s!\226\310B\0023'\343}\207KD\001\300\251&\027\216\031^ct\014k\014\240d\372Q^\310\031\307\202A0\010at\336\231\245\255p|\260c\225\205P\244\311\264\034\323pzL\320\363\304(\252\370\032\017\264S\215\0266\234\255\006\027\014@.7[\001\222n4\004\342,\307\274\343C %5\300*\021\240\003J\203\351\220<\006\304\326\0307P\372\334\325\024\254\354\266\022\003\311\366\262\232yt\366\355o\350\234\275}\0135\237\267\370`\034\217\0228\206\337\341\315~\335\227I\370&\234L\320\206\"\225PY\031.\212'%\217\315t\257\346\n\344d\232HkX\000^+\014k\273fM\002Oos\014\314%\035\210\371\232\200:\210\211/$#\303\354\226\276\027\036\203\327\277\305\202\337\357\277\311\206i\256\314\361\n9ny\322d\352\t\037\267VHc\301V\264\362\320i\001|\037\3065\353\301\227\022w|\017\247!=R\300\177\202\300!\255\007\037kY\373\325\005}\215\032\322\023\344\232\231\271\237)p|\334\333\343\207'\216\302\035\311\261\017\220\371|\267\035\322\247\314\231\265\307B\021\213\261\305\232}\376\025\354\366YuM_\302\025\252t\022\344\265\206\0279\216a\026\010\242\010\277\361w$S\205\t\003p\233(\360";
-    PyObject *data = __Pyx_DecompressString(cstring, 1308, 2);
+    const struct { const unsigned int length: 8; } index[] = {{0},{31},{33},{143},{48},{27},{121},{36},{19},{85},{2},{1},{1},{8},{12},{20},{40},{42},{8},{10},{11},{8},{10},{3},{3},{3},{5},{26},{9},{20},{12},{13},{5},{6},{6},{18},{5},{5},{4},{6},{8},{6},{19},{10},{9},{18},{3},{15},{7},{10},{7},{9},{12},{3},{7},{3},{9},{6},{6},{8},{7},{8},{4},{8},{3},{5},{10},{2},{8},{13},{13},{5},{7},{6},{8},{13},{6},{10},{8},{4},{7},{6},{11},{3},{10},{11},{12},{8},{8},{4},{12},{10},{23},{4},{5},{7},{17},{16},{16},{11},{13},{6},{7},{17},{5},{3},{5},{8},{3},{4},{6},{8},{7},{4},{13},{9},{14},{25},{243},{11},{176}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1335 bytes) */
+const char* const cstring = "BZh91AY&SY<\257\303k\000\000\275\177\377\347\377\377\336\375\347\377\277\277\317}U\277\377\377\375@@@@@@@@@@@@@\000@\000P\004yU<j\224P\241\206\032\232\223\310\232Fi\246\246\364\231'\225\032{P\312=4\214\236\243\311\033Q\352\017Q\240\003\321\007\244\375S\023\322mG\265=&\232OF\241\300\000\000\000\000\000\031\000\000\000\000\000\000\000\001\220\000h\215\032CA4\325<\246\364\210\315 h\032\000dh\000\000\000\000\000\006\217(h\364\207\000\000\000\000\000\000d\000\000\000\000\000\000\000\006@\001)\244&\204\302\032\230\231\023\324\305=\252y4\3243S \032\032\000\000\000\000\000\000z\207\250\327\247x\211\366A~1c\326\375\343\311\221TO\255\256F\333\212\246f\014\021\231\231\274\007B\001\213`\216I\244\224\013/(\226X\242\004\206\270h!u\004\222\230r\310\"Z\346\306\311 m\027(\237>r\031a\017\003\311\230\030\230\200\360\257\301\261\031`\212;\226n\014\205\304\272\010\334\331\330\263\241\305\317\267%`o\030\252\347A%d\327*\020\242\236\203\207\371\323\302\276\224\225R\347\324\026z\312\027.(\3255\022\245?\302v\rM \372\2031\317\246\206n\215\351\312\031e\374\253H\3268\370/\350\n\2201\334\215\272\024\\\222\244\001c\341\231\303U\315\010\262E@\264\313\034\030\207\037\030L'\234\254j\227\200\366\030\016\315!K\023GG\253\233\362Ei\022\210\021\225N:\n%\331\331B\375g\2227h\325\317+\306\356k\024\2610\332\022\005`\344\207]\331\301\311\335T\313\013f\037hl@\303\365^zW\037\013\372\210\202l\364t-\302\265\366)n5MA/F\301\005\030SFKV\025\325\317\177S\274\262\233\004\213\256\213\377\025\215o\033\345CA\r\313\201\343D\3476k\213\362\311J\022\217P\231B\314\211\"UB\251\265c\027M\332}\333\263\311\333u\031\323Ss\230\267\3411s\321\303\236\256\300\021E\236\022/\342\372\372\264\311\254\022Ir\343\240\266&G'\376\316\230\322\025\t\247\3663D\025Tv\323\021\315\024\221i\211\316\nE\014\024\345\221i\007\024\271\374m\n2\250\313\252:\374\333;F}\215\231\213\027\003\004l\340P\322\225\322\205\365\271@)D\205\267\353\341\211D\242\004\212\210B\033}\363\242\024\35584a\261\362\024\252\306q\003SP\007\211Ch\2750\256}\326\013\275\234\350\350/7""\032+\004Y$\322\330\364-\306\240yF\024\310\201\t\303\200\376pf\321V\355p\257>m\332\370,+\246\351\210\342\214\253\242\002\020\242\244\354Y\030\022\275Q\214\343\235Y]6x\274\023\266\330\020$\370\246\316{\214\212\372\235|\206_\315F\200\355\230\210\276\202\311\337^\365\n\000\265\311P\306\203\232\246\321\242K\021\225\240\306\177\326\024\034\204\2101\322\352\223*\356\251q\356\230S\006[\270\344v\242\367\361#,CQ\310F\21044\245\237\034Y\246\355\331V\006\277\006\0261\253\226\334\254`\222\022\331C6\323rS}M\272\357#K6Z\300\315\264,U\305u\337e\356\023\221!YI\265\21415\312\343|\335\002\027i\014\357E$S\250@M\016f\321\310\346\020\314O\213%E\352\214\230\263\326\305U\260\204cE\310jE\024\322\023\2638\223\t\033\201\r\262\335tI\214\n\033H\235\270\301\033r\225of\252\r\340vr\351\352\250Y\221~\001|Y\213V\005);d\013a2y\221\347c;zx\247\253\230m\376\267Z\034\3200-\026\244\010\253\214\336\214$\262k:{TQ@\316\354\334\231\334\206)\003\260\232\033zk$\r7\225\255S\031\206O2l\350\346\252\005a\333*Z\037\201\222\2656%\236\300\331-\303%\355ibi\353y\326\344m\304\361]\"\213.\320\030B\246\305N+\316\025\206B\201\321\002;\357\224-\215N(\200\354\331!\005Ms\210\322R\322X\324\342aF\362\026T\264\251\204\357B|P\271\336\346\265V\353h\210H\257\267\254\336\327\275\321g_\025fl\354\333[%\321\301\240\201!\251\323R\206\216Tf\273\014\245}\202=9\232\347=\266\260H\024]\260\020\336+\226\212\212_\002i\030\353\235Zm\030\tv\230b\312\360\371\357\021\026\377\342l7H\215\3644[\246\003\346B\327\276\2407\004d\\\330e\213\343\216\033\221lr[\311\036\0349\"h\206>\215\257bL\236\270\201\275\227 w\261\023\224\271kc4\000\276\255\363\215}Z\0358\223n\333i\312MO\250\033\336\250\010S\241\203\303M\275\371\343V\276\205(\t\262L\374\335M\225h\2571c\003\271}5\025g-ww\021\323\352\332e\371\275I\303\2564\235\030\254\337\315\313w\211j\276\tL\251\247\356{r\234\363j\261\232\020W\023\214#\332\201\357w\374]\311\024\341B@\362\277\r\254";
+    PyObject *data = __Pyx_DecompressString(cstring, 1335, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1166 bytes) */
-const char* const cstring = "x\332mT\315O[G\020\007\211P>\214\200\320\026\324\017e\rQ\001)\3308M\032\325\004W\224@+5T\030PUEUV\353\367\326\366\226}\037~\27366\255\"\216>\276\343\036\337\361\035}\344\310\221\243\217>\372O\340O\350\354>\333\3206\226=;;;3\373\233\337\314z\217s\357\002]\004\304\367\231[A\322C\262J\221K\233\022q\346\322\375*\343v@]Tf\234\233#\313s%\201\223\000]0[V\367\003O\210-\322d\002\021\316*\256C]\271\203\252^\300.\265#G6-\223:\227B\247\266\340\020\0027\0324\220\314\202\303\304\000\027o>C#\343\303\2102\247\315-!I\000I!?\021T\344\301\356g\035f\333\234fK\236\224\236\2235\036Y\352\332\373u\001{T!>\022\354\222>C4S\311\240\365\227\333~s\035m\230\014\3102>X\237o\0364e@\320\376\351)\2628\021b\344\302\305\346O\203\034y$\034\302yv\000+\353P\233\325\235,'A\205\276%-\257.\221\315\002jI\346\271\371\007\225g\207\005\035\001]\377a\350\010\202\231;\270\223\263s\212\326\035\271\365\002 \226Y $\362=\301t>\302\201\030/@\314\225\010`\371M]\331\016\312\374\260Zx\235\265Y\243\360\032D\222fw\325\350B\2668\335]\265\231\3609i\345?fc\256\356\354\226\246v\365c\261\372 \217r;\310\001\334\246\311y\264\2753\274\321t\004\230\276\357\314\203|\216\251+\217\206\3536rJ[P\231\337\334\001\354\333;\2029>\247I\267\204\300u\226\025>\261h\306o\t\031\240\277u\235\030\037\267\232\360{\303,\211\177\2059<\241\345\323\343\275\375\003|\272\377\363\301\321\036\261mly\216\357\271T\263\014\204b#a\200\001\025\021-\327b^\306\362\002h\014\300\022%\"\230U\342\236u^\362<\236\314\213E$\255xA+\031?\253J\255s,`q\010>\277\000\350\302\260\202]\342P\243%\nd\303\314\30500\026-\021\353\034\206d\364\0300\324\004\026\330B\312d\300Nav\00633\232\217A\013\260l\371\324\366,\214\215\000\334Z\000\024X\032\240\010\332\264\260,\031\t\236zm\020\016\207M\006\374\350\247\010\262\356Bh\205J\370Z\316\375\3301\310\305\\\355\307\\\r\314`jJ\314\004\036\221\302$u\304\237\200\222\225[I\301\030;P\007\206\217C\241\022S>N\336\030\254\236]\327+6\214$\322\363u=\320\275\2008 \205\220UH^\251\372\236\177?\274\030\373\001\005\027\023[\253\023\236\304\007\224\000\033""\360<\250\360\352\201E\005\345e\214\005\225\203\374\240\r\377\003\356\347%c\346%c\346E?K\243\200\357\203%3b\361\201\301Pv\277O\250\031\356\r\363\211j.1j \014Ut\260dF\323\226\270\310\300\274\023\214%\000\003\tL@\217\240?u*\206O\276Q\247\232[\375\267z5~\2672\366(\325~\025\246\303\334\325^\177*\325~\023\216ke\256}\322\235\177\242d\224{\260\273\210H$\343\\oj\276-\023\377\307aZ\357j\341\274jDg\361b\274\325\251%\206\031\365M4\021\355E\277\307\305\377\031\372\332\320]@\321dd\307\351\270p\275\230\270\314\251\337\242\027Q-\236\355\344\356Rc\323\217\303\317C\251rj\25775\013\020\327\302b/\365Y\370G\264\034\217\307_w\254\356\367\277\334\346\222\300\224z\023\315\304\233\235\302\315\362\355x\357\253\265\250\320\371\342:\177\363\356\366\257\356\273\367\335\367\270\213+\335J\365\337H\327;K\235\303\353\247\327\344\372\303\355i\367\270x796=\327~\253\036\251\023\365!.\306\254\323\272\231\325\027\244\332\207\341\323\220\251Zd\230\321\265\177\247\026\257f\332\351\336\304rXS\323\321J\274\330\237\370\344J\266\277m\023}\311Eh\251\305\273\251\261\351T;\037\026C\252r\375\324\212\232Tv\224\216v;\343\375\324|\373R-A]\013+j\006l\271\336\302\023U\353\303.\005\004\025\315\256\227Z\n_\251t\367\313\347\335\347?\336\2445\272\205v#<S\213j#J\367\201\221\227\341Dx\250\326\324Y\264\024\035\306k\300s\022\242\nP\235\016\230\3734\311ppS\274!\377\000p&\323T";
-    PyObject *data = __Pyx_DecompressString(cstring, 1166, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1204 bytes) */
+const char* const cstring = "x\332mTKO[G\024\006\211\320\000\246@h\033\324\2072\206\250\200\024l\234&\215j'T\224@\"\265\251p\210\252*\2522\032\317\035\354)s\037\2763~\245U\304\322\313\273\234\345]\336\245\227,Y\262\364\322K~\002?\241g\346\032\343\266\261\354\2313g\3169s\276o\276\361\256\020~\013\265B\022\004\334\253\"\345#Uc\310cm\205\004\367\330^\215\013'd\036:\346B\330-\352{\212\300N\210Z\334Q\265\275\320\227r\213\264\271DD\360\252\3472O\225P\315\017\371{\023(\220\303\216IC(iJS\330\204\304\215&\013\025\247\260\231:\340\340\315\007h\344\034\3178\026\254\275%\025\t\241(\324'\222\311\"\370\203\274\313\035G\260|\305W\312w\3636\"\317<g\257!a\215\252$@\222\277g\017\020\313Ush\375\361v\320^G\033\266\002\2426\006\233\375\315\375\266\n\t\332;:BT\020)G!Bn\276\200\032\016\017\031U\334\007\374~\210\270\247P\3206\246[\274iwc\330\357&\312\217\341.Y\262*$\034g\314d\"\313T\213t`\032\347\311 E\200\203\236\274\0306_D\322%B\344\207\365\363.sx\303\315\013\022V\331+(\370\037\326_\201\237{C\034\202\2370\264\356\252\255G\006\266\323$\036e\016\220<D\001\020\001\210ai\303,m_\343\264_\203\333,\241\334\217\253;O\363\016o\356<\205!-\377l\325\332Ru\004{\266\352p\031\010\322)~\314\307=\243\242-\003n\365c\271f\243\210\n%\344\002\036+\250\"\332.]\237ho\037n\365F\005c\365\\\213\267\210\256\347m\344V\266\000q\320.\001\266\355\222\344n X\252\014)q\203\347e@(\313\005\035\251B\364\267\341\001\343\303N\033~\3179U\370W\320\374kv|t\270\273\267\217\217\366^\356\277\332%\216\203\251\357\006\276\307\314\035\001\321\330\216\360X\240+\";\036\345~\216\372\241\337\200\316\230\254\020\311iE\370\364\244\342\373\"\325&%\212U\375\260\223J\235\326\030=\301\022&\227\340\223\026\264.-+\330#.\263Vj@5\314=\014\342\244\254\002\232\000A\216d\204\255J\314\022J\246b>\002\271\014\357o$\331\341\025`\325\t\230\343S\214\355\000}\233\001Z\201\251\t\206dm\212U\305\216\020i\346&\021\260\331\346\300\217y\36606<H\2552\005_\352\336\210\226C-\356\2318\356\231\306lOm\205\271\304#R\270b\256\374\023\272\344\307\235\0240\306.\340\300\360q\031 \261\360q\372\236a\366""\235\206\231\261e$\035\375\300\340\201\333\013\211\013\243\224\252\006\305\253\265\300\017\002_r\263i:\016B\006!6\267\336 \"\315\017\031\0016@\317L\372\215\2202\311\3041\306\222\251a}\260\256\205\177\243\227\234\325K\316\352\305\274Dk@\354\330\224\033\2618\346\260\224\335\254Sj\256\327\226\371\324\264\207X3\224\226*6\234r#\265\245!*\264\357\004c\005\215\301\010L\300\035\301\3754\230\274~\243\315\0063\334\232\277\360\323\311\253\225\211[\231\356\223(\033\025Nw/og\272\317\243Ic\314w_\367\027\356i\025\027\306V\255\230\304*)\014n/tU\032\177'\312\232U=Z\320\315\370M\262\224l\365\352\251cV\177\033O\305\273\361\357I\371\177\216K\343\350/\242x:v\222l\262s\266\224\206\314\353\337\342Gq=\231\353\025\2562\0233w\242/\"\245\013zwp{\016Z\\\213\312\203\314\347\321\037\361\335d2\371\246G\373?\374|QH\0233\372y<\233l\366v\316\357^L\016\276^\213wz_\236\025\317\337^\374\325\177\373\256\377\016\367q\265_\255\375\273\323\365\336r\357\340\354\376\0319\373pq\324?,_MO\314\314w\177\321\267\364k\375!)'\274\3279\2373\007d\272\007\321\375\210\353zl\2311\330\277\327K\247\263\335\354`\352nT\3273\361J\262t9\365\311\251\352~\327%\346\220VD\365\322\325\247\0233\231n1*GL\027\006\231\025=\255\2358\033?\353M^f\026\272\357\3652\340Z\\\321\263\340+\014\026\357\351\372%\2542@P\331\256\006\231\345\350\211\316\366\277z\330\177\370\323y\326t\267\330mFo\364\222\336\210\263\227\300\310\343h*:\320k\372M\274\034\037$k\300s\232\242w\000\235I\230\377,\255\260\177^>'\377\0003>\371\013";
+    PyObject *data = __Pyx_DecompressString(cstring, 1204, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1868 bytes) */
-const char* const bytes = "Allow wrapping to the next lineChildren fill the container widthCross-axis alignment; horizontal defaults to center (vertical centering), vertical defaults to flex-start; aliases: top/middle/bottom/start/endCustom gap size, e.g. '50px' (alias custom_size)Extra CSS class (alias cls)Gap size: small/default/medium/largeLayout direction: horizontal/verticalMain-axis alignmentMargin class like 'mt-4' (first positional), or int as px gap; .?\"></div><div class=\"<div style=\"display:<div style=\"display:inline-flex\" class=\"<div style=\"flex: 1; min-width: 0;\"></div>flex-endflex-startinline-flexmargin: margin: 0 mb-mt-px;px 0;simplestart/ss_ui/space.pystr | int__Pyx_PyDict_NextRefSPACE_SCHEMAadd_componentalign_alignappendasyncio.coroutinesbasicblockboolbottomcategorycentercheck_schema_kwargsclass_nameclassnamecline_in_tracebackclscontainer_stackcontentcustomSizedefaultdirectiondisplay_typedoc__doc__end__enter__eventsexc_tbexc_typeexc_val__exit__fill__func__getgetcmhorizontalid__init__inner_context_is_coroutineitemsjustifykwargs__main____metaclass__middle__module____name__nameoptionsparamspassthroughpoppositional__prepare____qualname__reactiveresourceself__set_name__setdefaultsimplestart.ss_ui.spacesizespace__space__space.__enter____space.__exit____space.__init____space.end__space.startspacerss_coress_core.componentstartstrstyle__test__toptypevaluesverticalvuetifywrap\200\001\360\030\000\005\014\2107\220!\2201\200A\340\010\014\210D\220\001\200A\340\010\r\210R\320\017\037\230t\2401\200A\340\010\r\210R\320\017\037\230w\240a\240t\2501\330\010\017\210t\2201\200A\340\010\022\220!\330\010\017\210q\220\017\230v\240T\250\021\250-\260q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\340\010\017\210q\320\020 \240\006\240d\250!\250>\270\021\330\010\017\210q\220\r\230V\2404\240q\250\013\2601\360\014\000\t\022\220\026\220t\2301\230A\330\010\013\2107\220#\220Q\330\014\025\220\\\240\027\250\001\250\035\260c\3209K\3101\330\010\017""\210q\220\014\230D\240\n\250)\260>\300\027\310\001\330\034#\240>\260\032\270:\300Z\310{\320Z^\320^_\320_g\320gh\330\010\017\210q\220\017\230v\240T\250\021\250'\260\023\260F\270$\270a\270~\310S\320PQ\360\006\000\t\r\210L\230\005\230R\230~\250Q\250i\260y\300\013\3101\330\010\014\210F\220$\220i\230q\240\001\200A\340\010\017\210t\2206\230\021\200\n\210!\330\004\027\220q\230\t\240\030\250\021\340\004\007\200t\2103\210a\330\010\017\210w\220c\230\021\360\010\000\t\014\210:\220Q\220e\2301\340\014\030\230\006\230d\240!\240=\260\001\340\014\017\210z\230\023\230A\330\020\030\230\n\240!\2401\330\020\037\230q\340\020\030\230\014\240A\240Q\330\020\037\230q\330\014\023\2207\230!\320\0332\3202B\300!\360\006\000\t\020\210v\220T\230\021\230(\240!\340\010\013\2105\220\004\220F\230#\230T\240\023\240F\250#\250Q\330\014\023\2207\230!\230>\250\021\250!\360\006\000\r\024\2207\230!\320\033E\300Q\300a";
+    #else /* compression: none (1976 bytes) */
+const char* const bytes = "Allow wrapping to the next lineChildren fill the container widthCross-axis alignment; horizontal defaults to center (vertical centering), vertical defaults to flex-start; aliases: top/middle/bottom/start/endCustom gap size, e.g. '50px' (alias custom_size)Extra CSS class (alias cls)Gap direction for int px form: vertical (default) / horizontal; the bare container form is always a horizontal flex stackGap size: small/default/medium/largeMain-axis alignmentMargin class like 'mt-4' (advanced), or int as px gap (int form defaults to vertical); .?\"></div><div class=\"<div style=\"display:<div style=\"display:inline-flex\" class=\"<div style=\"flex: 1; min-width: 0;\"></div>flex-endflex-startinline-flexmargin: margin: 0 mb-mt-px;px 0;simplestart/ss_ui/space.pystr | int__Pyx_PyDict_NextRefSPACE_SCHEMAadd_componentalign_alignappendasyncio.coroutinesbasicblockboolbottomcategorycentercheck_schema_kwargsclass_nameclassnamecline_in_tracebackclscontainer_stackcontentcustomSizedefaultdirectiondisplay_typedoc__doc__end__enter__eventsexc_tbexc_typeexc_val__exit__fill__func__getgetcmhorizontalid__init__inner_context_is_coroutineitemsjustifykwargs__main____metaclass__middle__module____name__nameoptionsparamspassthroughpoppositional__prepare____qualname__reactiveresourceself__set_name__setdefaultsimplestart.ss_ui.spacesizespace__space__space.__enter____space.__exit____space.__init____space.end__space.startspacerss_coress_core.componentstartstrstyle__test__toptypevaluesverticalvuetifywrap\200\001\360\030\000\005\014\2107\220!\2201\200A\340\010\014\210D\220\001\200A\340\010\r\210R\320\017\037\230t\2401\200A\340\010\r\210R\320\017\037\230w\240a\240t\2501\330\010\017\210t\2201\200A\340\010\022\220!\330\010\017\210q\220\017\230v\240T\250\021\250-\260q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\330\010\017\210q\220\n\230&\240\004\240A\240X\250Q\340\010\017\210q\320\020 \240\006\240d\250!\250>\270\021\330\010\017\210q\220\r\230V\2404\240q\250\013\2601\360\014\000\t\022\220\026\220t""\2301\230A\330\010\013\2107\220#\220Q\330\014\025\220\\\240\027\250\001\250\035\260c\3209K\3101\330\010\017\210q\220\014\230D\240\n\250)\260>\300\027\310\001\330\034#\240>\260\032\270:\300Z\310{\320Z^\320^_\320_g\320gh\330\010\017\210q\220\017\230v\240T\250\021\250'\260\023\260F\270$\270a\270~\310S\320PQ\360\006\000\t\r\210L\230\005\230R\230~\250Q\250i\260y\300\013\3101\330\010\014\210F\220$\220i\230q\240\001\200A\340\010\017\210t\2206\230\021\200\n\210!\330\004\027\220q\230\t\240\030\250\021\340\004\007\200t\2103\210a\330\010\017\210w\220c\230\021\360\016\000\t\014\210:\220Q\220e\2301\330\014\030\230\006\230d\240!\240=\260\001\340\014\017\210z\230\023\230A\330\020\030\230\n\240!\2401\330\020\037\230q\340\020\030\230\014\240A\240Q\330\020\037\230q\330\014\023\2207\230!\320\0332\3202B\300!\360\006\000\t\020\210v\220T\230\021\230(\240!\340\010\013\2105\220\004\220F\230#\230T\240\023\240F\250#\250Q\330\014\023\2207\230!\230>\250\021\250!\360\006\000\r\024\2207\230!\320\033E\300Q\300a";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
