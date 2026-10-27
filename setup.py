@@ -1,5 +1,4 @@
 from setuptools import setup, Extension
-from Cython.Build import cythonize
 import os
 import glob
 
@@ -48,7 +47,7 @@ for file in system_files:
 
 setup(
     name="simplestart",
-    version="0.0.1.62",
+    version="0.0.1.64",
     author="readever",
     description="Build interactive web apps with pure Python - reactive UI without HTML/CSS/JavaScript",
     ext_modules=extensions,
