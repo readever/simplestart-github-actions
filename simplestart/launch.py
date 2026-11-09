@@ -45,9 +45,11 @@ def start():
 
     # 添加端口参数
     parser.add_argument('--port', type=int, default=8000, help='port number to use')
-    parser.add_argument('-V', '--version', action='version', version='SimpleStart 0.0.1.71')
+    parser.add_argument('-V', '--version', action='version', version='SimpleStart 0.0.1.73')
     parser.add_argument('--basepath', type=str, default='', help='application base path relative to host')
     parser.add_argument('--allow-origins', type=str, nargs='*', default=['http://localhost:3000', 'http://localhost:8080', 'http://localhost'], help='allowed origins for CORS (e.g., "http://localhost:3000" "https://frontend.example.com"). Default includes localhost variants for development. Use empty list to disable all cross-origin. Use "*" to allow all origins (not recommended for production)')
+    parser.add_argument('--ssl-certfile', type=str, default='', help='path to SSL certificate file (PEM), enables HTTPS, e.g. /etc/letsencrypt/live/domain/fullchain.pem')
+    parser.add_argument('--ssl-keyfile', type=str, default='', help='path to SSL private key file (PEM), e.g. /etc/letsencrypt/live/domain/privkey.pem')
 
     # 解析参数
     args = parser.parse_args()
@@ -152,7 +154,11 @@ ss.link("http://www.simplestart.cc", href="http://www.simplestart.cc", target="_
     server.ss.config.port = port
 
     #路由已经合并到server.py中，直接使用server:app
-    uvicorn.run("server:app", host=host, port=port, reload=False, log_level="warning")
+    # 如果提供了证书文件，则启用 HTTPS（websocket 会自动对应 wss）
+    ssl_certfile = args.ssl_certfile if args.ssl_certfile else None
+    ssl_keyfile = args.ssl_keyfile if args.ssl_keyfile else None
+    uvicorn.run("server:app", host=host, port=port, reload=False, log_level="warning",
+                ssl_certfile=ssl_certfile, ssl_keyfile=ssl_keyfile)
 
 #python3 -m src.launch testme.py --port 8001 # 启动服务器，端口为 8001 for hbuilder
 if __name__ == "__main__":
